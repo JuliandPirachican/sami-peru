@@ -167,7 +167,7 @@ const onRegistrar = async () => {
     appStore.mensaje('Generando proceso')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/procesos/abrir-asistencia`, {
+    const data = await $api(`/api/sami/v1/procesos/abrir-asistencia`, {
       method: "post",
       body: {
         tipo: (formulario.value.tipo === null) ? '' : formulario.value.tipo,
@@ -178,16 +178,14 @@ const onRegistrar = async () => {
         fecha: (formulario.value.fecha === null) ? '' : formulario.value.fecha,
       },
     })
-
-    onLimpiar()
-
+    
     let mensaje = data.message
     mensaje = mensaje.toLowerCase()
     mensaje = mensaje.charAt(0).toUpperCase() + mensaje.slice(1)
     appStore.mensajeSnackbar(mensaje)
     appStore.color("success")
     appStore.snackbar(true)
-
+    onLimpiar()
   } catch (error) {
     const { data } = error.response._data 
     if (typeof data != "undefined") {
