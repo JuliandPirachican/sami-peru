@@ -1,0 +1,215 @@
+<!-- ❗Errors in the form are set on line 60 -->
+<script setup>
+import { useAppStore } from '@/stores/app'
+import authV1BottomShape from '@images/svg/auth-v1-bottom-shape.svg?raw'
+import authV1TopShape from '@images/svg/auth-v1-top-shape.svg?raw'
+import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
+import { themeConfig } from '@themeConfig'
+import { VForm } from 'vuetify/components/VForm'
+
+// import { appStore } from '@/stores/app'
+
+definePage({
+  meta: {
+    layout: 'blank',
+    unauthenticatedOnly: true,
+  },
+})
+
+const isPasswordVisible = ref(false)
+const recordar = ref(true)
+const route = useRoute()
+const router = useRouter()
+const ability = useAbility()
+const appStore = useAppStore()
+
+const refVForm = ref()
+
+const form = ref({
+  pais: null,
+  usuario: '',
+  clave: '',
+})
+
+const paisOptions = [
+  { id: 'bolivia', text: 'Bolivia' },
+  { id: 'colombia', text: 'Colombia' },
+  { id: 'ecuador', text: 'Ecuador' },
+  { id: 'guatemala', text: 'Guatemala' },
+  { id: 'peru', text: 'Perú' },
+]
+
+const login = async () => {
+  try {
+    appStore.mensaje('Validando credenciales')
+    appStore.loading(true)
+
+    const responseLogin = await $api('/api/comun/v1/login/ventas', {
+      method: 'POST',
+      body: {
+        usuario: form.value.usuario,
+        password: form.value.clave,
+        aplicacion: 'sami',
+      },
+    })
+
+    const dataLogin = responseLogin.data
+
+    const responseMenu = await $api(
+      `/api/sami/v1/usuario/menu`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${dataLogin.accessToken}`,
+        },
+      })
+    
+    const userAbility = responseMenu.data.permisos
+
+    ability.update(userAbility)
+    localStorage.setItem('userAbilityRules', JSON.stringify(userAbility))
+    localStorage.setItem('userData', JSON.stringify(dataLogin.data_glob))
+    localStorage.setItem('accessToken', dataLogin.accessToken)    
+    localStorage.setItem('recordar', Boolean(recordar.value))
+    if(recordar.value) {
+      localStorage.setItem('login', JSON.stringify(form.value))
+    } else {
+      localStorage.setItem('login', JSON.stringify({
+        usuario: '',
+        clave: '',
+      }))
+    }
+    await nextTick(() => {
+      appStore.loading(false)
+      router.replace(route.query.to ? String(route.query.to) : `/${form.value.pais}`)
+    })
+  } catch (e) {
+    console.log(e)
+    appStore.loading(false)
+  } finally {
+    appStore.mensaje('')
+  }
+}
+
+const onSubmit = () => {
+  refVForm.value?.validate().then(({ valid: isValid }) => {
+    if (isValid)
+      login()
+  })
+}
+
+onMounted(async () => {
+    
+  const login = localStorage.getItem('login')
+  if(!login) {
+    localStorage.setItem('login', JSON.stringify(form.value))
+  } else {
+    form.value = JSON.parse(login)
+  }
+  if(localStorage.getItem('recordar')) {
+    recordar.value = Boolean(localStorage.getItem('recordar'))
+  }
+})
+
+const onSeleccionarPais = () => {
+  if (form.value.pais != '') {
+    localStorage.setItem('login', JSON.stringify(form.value))
+  }
+}
+</script>
+
+<template>
+  <div class="auth-wrapper d-flex align-center justify-center pa-4">
+    <div class="position-relative my-sm-16">
+      <VNodeRenderer
+        :nodes="h('div', { innerHTML: authV1TopShape })"
+        class="text-primary auth-v1-top-shape d-none d-sm-block"
+      />
+
+      <VNodeRenderer
+        :nodes="h('div', { innerHTML: authV1BottomShape })"
+        class="text-primary auth-v1-bottom-shape d-none d-sm-block"
+      />
+
+      <VCard
+        class="auth-card pa-4"
+        max-width="448"
+      >
+        <VCardText>
+          <AppLogo :width="250" />
+        </VCardText>
+
+        <VCardText>
+          <h4 class="text-h4 mb-1">
+            Bienvenido a <span class="text-capitalize">{{ themeConfig.app.title }}</span>! 👋🏻
+          </h4>
+          <p class="mb-0">
+            Por favor ingresar su usuarios y contraseña 
+          </p>
+        </VCardText>
+
+        <VCardText>
+          <VForm 
+            ref="refVForm"
+            @submit.prevent="onSubmit"
+          >
+            <VRow>
+              <VCol cols="12">
+                <AppSelect
+                  v-model="form.pais"
+                  :items="paisOptions"
+                  label="Unidad de negocio"
+                  placeholder="Seleccionar unidad"
+                  item-title="text"
+                  item-value="id"
+                  :rules="[requiredValidator(form.pais, 'unidad de negocio')]"
+                  @update:model-value="onSeleccionarPais"
+                />
+              </VCol>
+              <VCol cols="12">
+                <AppTextField
+                  v-model="form.usuario"
+                  label="Usuario"
+                  type="text"
+                  placeholder="Ingresar usuario"
+                  :rules="[requiredValidator(form.usuario, 'usuario')]"
+                  autocomplete="off"
+                />
+              </VCol>
+              <VCol cols="12">
+                <AppTextField
+                  v-model="form.clave"
+                  label="Contraseña"
+                  placeholder="············"
+                  :type="isPasswordVisible ? 'text' : 'password'"
+                  :append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+                  :rules="[requiredValidator(form.clave, 'contraseña')]"
+                  @click:append-inner="isPasswordVisible = !isPasswordVisible"
+                />
+
+                <div class="d-flex align-center justify-space-between flex-wrap mt-2 mb-4">
+                  <VCheckbox
+                    v-model="recordar"
+                    label="Recordar usuario y contraseña"
+                  />
+                </div>
+
+                <VBtn
+                  block
+                  type="submit"
+                >
+                  INGRESAR AL SISTEMA
+                </VBtn>
+              </VCol>
+            </VRow>
+          </VForm>
+        </VCardText>
+      </VCard>
+    </div>
+  </div>
+</template>
+
+<style lang="scss">
+@use "@core/scss/template/pages/page-auth.scss";
+</style>
+
