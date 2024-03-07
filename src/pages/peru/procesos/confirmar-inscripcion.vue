@@ -284,7 +284,7 @@ const obtenerDepartamentos = async () => {
       method: "get",
     })
     
-    const itemDepartamentos = response.data.data.data_glob.slice(0, 40)
+    const itemDepartamentos = response.data.data_glob.slice(0, 40)
     
     itemDepartamentos.forEach(element => 
       departamentoOptions.value.push({
@@ -697,7 +697,7 @@ const onRegistrar = async () => {
     appStore.mensaje('Actualizando datos')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil`, {
+    const data  = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil`, {
       method: "put",
       body: {
         tipoDocumento: (preinscripcion.value.tipoDocumento === null) ? '' : preinscripcion.value.tipoDocumento,
@@ -966,7 +966,7 @@ const handleFileUpload = async tipo => {
     dataForm.append('numero', preinscripcion.value.nrodocumento)
     dataForm.append('codigo', tipo)
 
-    const { data } = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil/archivo`, {
+    const data = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil/archivo`, {
       method: "post",
       body: dataForm,
     })
@@ -1109,7 +1109,7 @@ const handleFileUpload = async tipo => {
       :model-value="isOpenEditar"
     >
       <VCard color="background">
-        <VToolbar color="secondary">
+        <VToolbar color="primary">
           <VBtn
             v-if="mobile"
             icon
@@ -1120,7 +1120,7 @@ const handleFileUpload = async tipo => {
             <VIcon icon="tabler-x" />
           </VBtn>
           <VToolbarTitle>
-            Confirmar preinscripción
+            Confirmar inscripción
           </VToolbarTitle>
           <VSpacer />
           <VToolbarItems>
