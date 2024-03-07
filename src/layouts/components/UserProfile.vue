@@ -36,6 +36,7 @@ const logout = async () => {
       offset-x="3"
       offset-y="3"
       color="success"
+      @click="logout"
     >
       <VAvatar
         class="cursor-pointer"
