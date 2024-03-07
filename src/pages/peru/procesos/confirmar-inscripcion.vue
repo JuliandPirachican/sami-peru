@@ -603,7 +603,7 @@ const onAprobar = async () => {
       appStore.mensaje('Generando proceso')
       appStore.loading(true)
 
-      const { data } = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil/aprobar`, {
+      const  data  = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil/aprobar`, {
         method: "put",
         body: {
           nrodocumento: JSON.stringify(selected.value),
@@ -638,7 +638,7 @@ const onRechazar = async () => {
       appStore.mensaje('Generando proceso')
       appStore.loading(true)
 
-      const { data } = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil/rechazar`, {
+      const data = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil/rechazar`, {
         method: "put",
         body: {
           nrodocumento: JSON.stringify(selected.value),
@@ -676,17 +676,17 @@ const onExcel = async () => {
     appStore.mensaje('Generando archivo')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil/excel`, {
+    const { data }  = await $api(`/api/sami/v1/procesos/confirmar-preinscripcion-movil/excel`, {
       method: "post", 
       body: {
         data: items.value,
       },
     })
     
-    window.open($base`/temporales/${data.data}`, '_blank')
+    window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
   }
-  finally {
+  finally { 
     appStore.loading(false)
   }
 }
