@@ -53,6 +53,12 @@ const errorMensajeNombreReferido = ref('')
 const errorApellidoReferido = ref(false)
 const errorMensajeApellidoReferido = ref('')
 
+const errorTelefonoReferido = ref(false)
+const errorMensajeTelefonoReferido = ref('')
+
+const errorCorreoReferido = ref(false)
+const errorMensajeCorreoReferido = ref('')
+
 const errorSelectedDepartamento = ref(false)
 const errorMensajeSelectedDepartamento = ref('')
 
@@ -85,6 +91,18 @@ const limpiarValidacion = () => {
 
   errorDniReferido.value = false
   errorMensajeDniReferido.value = ''
+
+  errorNombreReferido.value = false
+  errorMensajeNombreReferido.value = ''
+
+  errorApellidoReferido.value = false
+  errorMensajeApellidoReferido.value = ''
+
+  errorTelefonoReferido.value = false
+  errorMensajeTelefonoReferido.value = ''
+
+  errorCorreoReferido.value = false
+  errorMensajeCorreoReferido.value = ''
 
   errorSelectedDepartamento.value = false
   errorMensajeSelectedDepartamento.value = ''
@@ -138,7 +156,7 @@ const onRegistrar = async () => {
     }
     direAses = direAses.trim()
 
-    const { data } = await $api(`/api/sami/v1/procesos/registrar-posible-asesora`, {
+    const data  = await $api(`/api/sami/v1/procesos/registrar-posible-asesora`, {
       method: "post",
       body: {
         dniReferente: (formulario.value.dniReferente === null) ? '' : formulario.value.dniReferente,
@@ -186,6 +204,14 @@ const onRegistrar = async () => {
           errorApellidoReferido.value = true
           errorMensajeApellidoReferido.value = data[key]
         }
+        if (key == 'telefonoReferido') {
+          errorTelefonoReferido.value = true
+          errorMensajeTelefonoReferido.value = data[key]
+        }
+        if (key == 'correoReferido') {
+          errorCorreoReferido.value = true
+          errorMensajeCorreoReferido.value = data[key]
+        }
         if (key == 'direAses') {
           errorDireccion.value = true
           errorMensajeDireccion.value = data[key]
@@ -228,6 +254,7 @@ const onLimpiar = () => {
   formulario.value.nombreReferido = ''
   formulario.value.apellidoReferido = ''
   formulario.value.telefonoReferido = ''
+  formulario.value.correoReferido = ''
   formulario.value.selectedDepartamento = null
   formulario.value.selectedProvincia = null
   formulario.value.selectedDistrito = null
@@ -244,6 +271,8 @@ const onLimpiar = () => {
   formulario.value.isDniReferente = false
   formulario.value.isDniReferido = false
 
+  
+
   provinciasOptions.value = []
   distritosOptions.value = []
 }
@@ -255,14 +284,14 @@ const proc_come_posi_ases_nume_iden = async () => {
     appStore.mensaje('Obteniendo información')
     appStore.loading(true)
 
-    const { data } = await $api( `/api/sami/v1/procesos/registrar-posible-asesora/datos-referente`, {
+    const  data  = await $api( `/api/sami/v1/procesos/registrar-posible-asesora/datos-referente`, {
       method: "get",
       query: {
         dniReferente: (formulario.value.dniReferente === null) ? '' : formulario.value.dniReferente,
       },
     })
 
-    const dato = data.data_glob
+    const dato = data.data.data_glob
 
     formulario.value.nombreReferente = dato.nomb_terc
     formulario.value.apellidoReferente = dato.apel_terc
@@ -642,6 +671,8 @@ const obtenerDistrito = async() => {
                       placeholder="Ingresar teléfono"
                       type="text"
                       autocomplete="off"
+                      :error="errorTelefonoReferido"
+                      :error-messages="errorMensajeTelefonoReferido"
                       @keypress="proc_come_posi_ases_bind_nume"
                     />
                   </VCol>
@@ -656,6 +687,8 @@ const obtenerDistrito = async() => {
                       placeholder="Ingresar correo electrónico"
                       type="text"
                       autocomplete="off"
+                      :error="errorCorreoReferido"
+                      :error-messages="errorMensajeCorreoReferido"
                       @keypress="proc_come_posi_ases_bind_corr"
                     />
                   </VCol>
