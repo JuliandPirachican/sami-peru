@@ -55,7 +55,7 @@ const onRegistrar = async () => {
     appStore.mensaje('Generando proceso')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/procesos/respuesta-incidencia-diaria`, {
+    const data  = await $api(`/api/sami/v1/procesos/respuesta-incidencia-diaria`, {
       method: "post",
       body: {
         numeroIncidencia: (formulario.value.numeroIncidencia === null) ? '' : formulario.value.numeroIncidencia,
@@ -77,6 +77,10 @@ const onRegistrar = async () => {
     if (typeof data != "undefined") {
       for (var key in data)
       {
+        if (key == 'numeroIncidencia') {
+          errorIdentificacion.value = true
+          errorMensajeIdentificacion.value = data[key]
+        }
         if (key == 'respuesta') {
           errorRespuesta.value = true
           errorMensajeRespuesta.value = data[key]
@@ -97,14 +101,14 @@ const obtenerDatosAsesora = async () => {
     appStore.mensaje('Obteniendo información')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/procesos/respuesta-incidencia-diaria/datos`, {
+    const data  = await $api(`/api/sami/v1/procesos/respuesta-incidencia-diaria/datos`, {
       method: "get",
       query: {
         identificacion: (formulario.value.dniAsesora === null) ? '' : formulario.value.dniAsesora,
       },
     })
 
-    const dato = data.data_glob
+    const dato = data.data.data_glob
 
     formulario.value.codigo = dato.cons_terc
     formulario.value.nombreAsesora = dato.nomb_terc
