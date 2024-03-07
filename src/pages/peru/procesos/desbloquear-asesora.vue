@@ -87,7 +87,7 @@ const onRegistrar = async () => {
       appStore.mensaje('Generando proceso')
       appStore.loading(true)
  
-      const { data } = await $api(`/api/sami/v1/procesos/desbloquear-asesora`, {
+      const data  = await $api(`/api/sami/v1/procesos/desbloquear-asesora`, {
         method: "post",
         body: {
           asesoras: JSON.stringify(selected.value),
