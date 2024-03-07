@@ -119,7 +119,7 @@ const obtenerDatosSimples = async () => {
     appStore.mensaje('Obteniendo información')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/procesos/actualizar-dato-simple/datos`, {
+    const data = await $api(`/api/sami/v1/procesos/actualizar-dato-simple/datos`, {
 
       method: "get",
       query: {
@@ -127,7 +127,7 @@ const obtenerDatosSimples = async () => {
       },
     })
 
-    const dato = data.data_glob
+    const dato = data.data.data_glob
 
     formulario.value.nombres = dato.nomb_terc
     formulario.value.apellidos = dato.apel_terc
@@ -138,7 +138,8 @@ const obtenerDatosSimples = async () => {
     formulario.value.celular = dato.celu_ases
     formulario.value.correo = dato.corr_ases
 
-    let mensaje = response.data.message
+    let mensaje = data.message
+
     mensaje = mensaje.toLowerCase()
     mensaje = mensaje.charAt(0).toUpperCase() + mensaje.slice(1)
     appStore.mensajeSnackbar(mensaje)
