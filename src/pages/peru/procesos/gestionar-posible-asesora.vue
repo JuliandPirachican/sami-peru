@@ -102,6 +102,8 @@ const onGenerar = async () => {
   try {
     limpiarValidacion()
 
+    items.value = []
+
     appStore.mensaje('Obteniendo información')
     appStore.loading(true)
 
@@ -187,7 +189,7 @@ const onRegistrar = async () => {
     appStore.mensaje('Actualizando datos')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/procesos/gestionar-posible-asesora`, {
+    const data = await $api(`/api/sami/v1/procesos/gestionar-posible-asesora`, {
       method: "put",
       body: {
         consecutivoPosibleAsesora: (posible.value.consecutivoPosibleAsesora === null) ? '' : posible.value.consecutivoPosibleAsesora,
@@ -247,7 +249,7 @@ const limpiarValidacionDetalle = () => {
 }
 
 const proc_come_gest_posi_ases_bind_obse_gest = async () => {
-  const regex = new RegExp('^[A-Za-z ]+$')
+  const regex = new RegExp('^[A-Za-z0-9 ]+$')
 
   const key = String.fromCharCode(
     !event.charCode ? event.which : event.charCode,
