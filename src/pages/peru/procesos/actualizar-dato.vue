@@ -75,7 +75,7 @@ const onRegistrar = async () => {
 
     onLimpiar()
 
-    let mensaje = response.data.message
+    let mensaje = response.message
     mensaje = mensaje.toLowerCase()
     mensaje = mensaje.charAt(0).toUpperCase() + mensaje.slice(1)
     appStore.mensajeSnackbar(mensaje)
