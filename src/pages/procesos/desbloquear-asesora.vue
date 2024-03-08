@@ -68,7 +68,7 @@ const onGenerar = async () => {
   } catch (e) {
     if(e.response !== undefined) {
       // eslint-disable-next-line no-console
-      console.log(e.response.data)
+      console.log(e.response._data)
     }
   }
   finally {

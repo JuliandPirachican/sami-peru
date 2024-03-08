@@ -424,7 +424,7 @@ const obtenerMedios = async () => {
   } catch (e) {
     if(e.response !== undefined) {
       // eslint-disable-next-line no-console
-      console.log(e.response.data)
+      console.log(e.response._data)
     }
   }
   finally {
@@ -452,7 +452,7 @@ const obtenerDepartamentos = async () => {
   } catch (e) {
     if(e.response !== undefined) {
       // eslint-disable-next-line no-console
-      console.log(e.response.data)
+      console.log(e.response._data)
     }
   }
   finally {
@@ -489,7 +489,7 @@ const obtenerProvincia = async() => {
   } catch (e) {
     if(e.response !== undefined) {
       // eslint-disable-next-line no-console
-      console.log(e.response.data)
+      console.log(e.response._data)
     }
   }
   finally {
@@ -524,7 +524,7 @@ const obtenerDistrito = async() => {
   } catch (e) {
     if(e.response !== undefined) {
       // eslint-disable-next-line no-console
-      console.log(e.response.data)
+      console.log(e.response._data)
     }
   }
   finally {
