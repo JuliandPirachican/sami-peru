@@ -203,10 +203,10 @@ const onGenerar = async () => {
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
       },
     })
-
-    itemsGlobal.value = data.data_glob
-    itemsResumen.value = data.data_resu
-    itemsDetalle.value = data.data_deta
+    
+    data.data_glob ? itemsGlobal.value = data.data_glob : ''
+    data.data_resu ? itemsResumen.value = data.data_resu : ''
+    data.data_deta ? itemsDetalle.value = data.data_deta : ''
 
   } catch (error) {
     const { data } = error.response._data    
@@ -230,10 +230,6 @@ const onGenerar = async () => {
 }
 
 const onLimpiar= async () => {
-  /*formulario.value = {
-    campana: null,
-    zona: null,
-  }*/
   itemsGlobal.value = [
     { nomb_conc: 'Venta neta', cant_conc: '0.00', porc_conc: '' },
     { nomb_conc: 'Devoluciones no incluidas en plan de carrera', cant_conc: '0.00', porc_conc: '', align: 'center' },
