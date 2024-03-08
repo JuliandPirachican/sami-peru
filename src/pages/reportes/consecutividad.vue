@@ -15,10 +15,68 @@ const appStore = useAppStore()
 
 const items = ref([])
 const itemsInicialDetalle = ref([])
+const busqueda =  ref({})
 
 const itemsdeta = computed(() => {
-  return itemsInicialDetalle.value
+  if(busqueda.value) {
+    return itemsInicialDetalle.value.filter(item => {
+      return Object.entries(busqueda.value).every(([key, value]) => {
+        if (value.substring(0, 1) === "=") {
+          let el = value.split("=")
+          
+          return (item[key] || "").toString().toUpperCase() === el[1].toString().toUpperCase()
+        }
+        if (value.substring(0, 1) === ">") {
+          let el = value.split(">")
+          if (item[key] !== " ") {
+            return Number(item[key] || "") > el[1]
+          }
+        }
+
+        return (item[key] || "").toString().toUpperCase() === el[1].toString().toUpperCase()
+      })
+    })
+  } else {
+    return itemsInicialDetalle.value
+  }
 })
+
+const onSeleccionar = (columna, item) => {
+  switch (columna) {
+  case 'codi_camp_1':
+    busqueda.value = {
+      'codi_sect': `=${item.codi_sect}`,
+      'codi_camp_1': '>0',
+    }
+    break
+  case 'codi_camp_2':
+    busqueda.value = {
+      'codi_sect': `=${item.codi_sect}`,
+      'codi_camp_1': '>0',
+      'codi_camp_2': '>0',
+    }
+    break
+  case 'codi_camp_3':
+    busqueda.value = {
+      'codi_sect': `=${item.codi_sect}`,
+      'codi_camp_1': '>0',
+      'codi_camp_2': '>0',
+      'codi_camp_3': '>0',
+    }
+    break
+  case 'codi_camp_4':
+    busqueda.value = {
+      'codi_sect': `=${item.codi_sect}`,
+      'codi_camp_1': '>0',
+      'codi_camp_2': '>0',
+      'codi_camp_3': '>0',
+      'codi_camp_4': '>0',
+    }
+    break
+  default:
+    break
+  }
+}
 
 const formulario = ref({
   campana: null,
@@ -264,11 +322,6 @@ const onExcel = async () => {
 }
 
 const onLimpiar= async () => {
-  /*formulario.value = {
-    campana: null,
-    zona: null,
-  }*/
-
   headers.value = [
     { key: 'codi_area',        title: 'Región' },
     { key: 'codi_cort',        title: 'Corte' },
@@ -314,6 +367,7 @@ const onLimpiar= async () => {
   items.value = []
   itemsdeta.value = []
   itemsInicialDetalle.value = []
+  busqueda.value = {}
 }
 
 const limpiarValidacion = () => {
@@ -321,10 +375,6 @@ const limpiarValidacion = () => {
   errorMensajeCampana.value = ''
   errorZona.value = false 
   errorMensajeZona.value = ''
-}
-
-const onSeleccionar = (columna, item) => {
-
 }
 </script>
 
@@ -390,59 +440,51 @@ const onSeleccionar = (columna, item) => {
                 >
                   <template #item.codi_camp_1="{ item }">
                     {{ item.codi_camp_1 }}
-                    <!--
-                      <IconBtn 
+                    <IconBtn 
                       v-if="item.codi_camp_1!='0'"
                       @click="onSeleccionar('codi_camp_1', item)"
-                      >
+                    >
                       <VIcon
-                      icon="tabler-search"
-                      size="20"
+                        icon="tabler-search"
+                        size="14"
                       />
-                      </IconBtn>
-                    -->
+                    </IconBtn>
                   </template>
                   <template #item.codi_camp_2="{ item }">
                     {{ item.codi_camp_2 }}
-                    <!--
-                      <IconBtn 
+                    <IconBtn 
                       v-if="item.codi_camp_2!='0'"
                       @click="onSeleccionar('codi_camp_2', item)"
-                      >
+                    >
                       <VIcon
-                      icon="tabler-search"
-                      size="20"
+                        icon="tabler-search"
+                        size="14"
                       />
-                      </IconBtn>
-                    -->
+                    </IconBtn>
                   </template>
                   <template #item.codi_camp_3="{ item }">
                     {{ item.codi_camp_3 }}
-                    <!--
-                      <IconBtn 
+                    <IconBtn 
                       v-if="item.codi_camp_3!='0'"
                       @click="onSeleccionar('codi_camp_3', item)"
-                      >
+                    >
                       <VIcon
-                      icon="tabler-search"
-                      size="20"
+                        icon="tabler-search"
+                        size="14"
                       />
-                      </IconBtn>
-                    -->
+                    </IconBtn>
                   </template>
                   <template #item.codi_camp_4="{ item }">
                     {{ item.codi_camp_4 }}
-                    <!--
-                      <IconBtn 
+                    <IconBtn 
                       v-if="item.codi_camp_4!='0'"
                       @click="onSeleccionar('codi_camp_4', item)"
-                      >
+                    >
                       <VIcon
-                      icon="tabler-search"
-                      size="20"
+                        icon="tabler-search"
+                        size="14"
                       />
-                      </IconBtn>
-                    -->
+                    </IconBtn>
                   </template>
                   <template #bottom />
                 </VDataTable>
