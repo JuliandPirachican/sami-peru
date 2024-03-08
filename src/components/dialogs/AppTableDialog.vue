@@ -119,7 +119,7 @@ const onSeleccionar = data => {
                 :headers="headers"
                 :items="items"
                 no-data-text=""
-                fixed-header="true"
+                fixed-header
                 :height="(!mobile)? (items.length > 10) ? 400 : null: null"
                 class="text-no-wrap"
                 :items-per-page="-1"
