@@ -208,8 +208,6 @@ onMounted(async () => {
   appStore.titulo(`Procesos / Confirmar inscripción`)
   await obtenerCampana()
   await obtenerZona()
-  await obtenerDepartamentos()
-  await obtenerParentescos()
   preinscripcion.value.fechaNacimiento = new Date()
 })
 
@@ -1080,18 +1078,9 @@ const handleFileUpload = async tipo => {
                     item-value="nume_docu"
                   >
                     <template #item.acciones="{ item }">
-                      <VBtn
-                        icon
-                        size="x-small"
-                        color="primary"
-                        variant="text"
-                        @click="onSeleccionar(item)"
-                      >
-                        <VIcon
-                          size="22"
-                          icon="tabler-pencil"
-                        />
-                      </VBtn>
+                      <IconBtn @click="onSeleccionar(item)">
+                        <VIcon icon="tabler-edit" />
+                      </IconBtn>
                     </template>
                     <template #bottom />
                   </VDataTable>
@@ -1136,22 +1125,22 @@ const handleFileUpload = async tipo => {
             <VTabs
               v-model="preinscripcion.tabindex"
               align-tabs="left"
-              :color="(configStore.theme === 'dark') ? 'background' : 'secondary'"
+              color="dark"
             >
               <VTab :value="1">
-                <span :class="(configStore.theme === 'dark') ? 'text-background' : 'text-secondary'">Datos personales</span>
+                <span class="text-secondary">Datos personales</span>
               </VTab>
               <VTab :value="2">
-                <span :class="(configStore.theme === 'dark') ? 'text-background' : 'text-secondary'">Dirección</span>
+                <span class="text-secondary">Dirección</span>
               </VTab>
               <VTab :value="3">
-                <span :class="(configStore.theme === 'dark') ? 'text-background' : 'text-secondary'">Referencia</span>
+                <span class="text-secondary">Referencia</span>
               </VTab>
               <VTab :value="4">
-                <span :class="(configStore.theme === 'dark') ? 'text-background' : 'text-secondary'">Imagenes</span>
+                <span class="text-secondary">Imagenes</span>
               </VTab>
               <VTab :value="5">
-                <span :class="(configStore.theme === 'dark') ? 'text-background' : 'text-secondary'">Referencia personal</span>
+                <span class="text-secondary">Referencia personal</span>
               </VTab>
             </VTabs>
           </template>
@@ -1347,7 +1336,7 @@ const handleFileUpload = async tipo => {
                             type="text"
                             placeholder="Ingresar zona"
                             autocomplete="off"
-                            disabled="true"
+                            disabled
                             :error="errorZona"
                             :error-messages="errorMensajeZona"
                             @keypress="proc_come_conf_insc_movi_bind_nume"
@@ -1412,7 +1401,7 @@ const handleFileUpload = async tipo => {
                             label="Nombre(s) y apellido(s)"
                             type="text"
                             autocomplete="off"
-                            disabled="true"
+                            disabled
                           />
                         </VCol>
                       </VRow>
@@ -1482,7 +1471,6 @@ const handleFileUpload = async tipo => {
                             :width="300"
                             alt="Solicitud frontal"
                             aspect-ratio="16/9"
-                            cover
                             :src="preinscripcion.srcSolicitudFrontal"
                             @error="errorImagen(1)"
                           />
@@ -1506,7 +1494,7 @@ const handleFileUpload = async tipo => {
                             <VBtn
                               v-if="preinscripcion.srcSolicitudFrontal.includes('fotos') || preinscripcion.srcSolicitudFrontal.includes('temporales')"
                               variant="outlined"
-                              color="primary"
+                              color="secondary"
                               @click="verImagen('Solicitud frontal', preinscripcion.srcSolicitudFrontal)"
                             >
                               VER
@@ -1523,7 +1511,6 @@ const handleFileUpload = async tipo => {
                             :width="300"
                             alt="Solicitud adversa 1"
                             aspect-ratio="16/9"
-                            cover
                             :src="preinscripcion.srcSolicitudAdversa"
                             @error="errorImagen(2)"
                           />
@@ -1547,7 +1534,7 @@ const handleFileUpload = async tipo => {
                             <VBtn
                               v-if="preinscripcion.srcSolicitudAdversa.includes('fotos') || preinscripcion.srcSolicitudAdversa.includes('temporales')"
                               variant="outlined"
-                              color="primary"
+                              color="secondary"
                               @click="verImagen('Solicitud adversa 1', preinscripcion.srcSolicitudAdversa)"
                             >
                               VER
@@ -1564,7 +1551,6 @@ const handleFileUpload = async tipo => {
                             :width="300"
                             alt="Solicitud adversa 2"
                             aspect-ratio="16/9"
-                            cover
                             :src="preinscripcion.srcSolicitudAdversa2"
                             @error="errorImagen(3)"
                           />
@@ -1588,7 +1574,7 @@ const handleFileUpload = async tipo => {
                             <VBtn
                               v-if="preinscripcion.srcSolicitudAdversa2.includes('fotos') || preinscripcion.srcSolicitudAdversa2.includes('temporales')"
                               variant="outlined"
-                              color="primary"
+                              color="secondary"
                               @click="verImagen('Solicitud adversa 2', preinscripcion.srcSolicitudAdversa2)"
                             >
                               VER
@@ -1605,7 +1591,6 @@ const handleFileUpload = async tipo => {
                             :width="300"
                             alt=" Dni frontal"
                             aspect-ratio="16/9"
-                            cover
                             :src="preinscripcion.srcDniFrontal"
                             @error="errorImagen(4)"
                           />
@@ -1629,7 +1614,7 @@ const handleFileUpload = async tipo => {
                             <VBtn
                               v-if="preinscripcion.srcDniFrontal.includes('fotos') || preinscripcion.srcDniFrontal.includes('temporales')"
                               variant="outlined"
-                              color="primary"
+                              color="secondary"
                               @click="verImagen('Dni frontal', preinscripcion.srcDniFrontal)"
                             >
                               VER
@@ -1648,7 +1633,6 @@ const handleFileUpload = async tipo => {
                             :width="300"
                             alt="Dni adverso"
                             aspect-ratio="16/9"
-                            cover
                             :src="preinscripcion.srcDniAdverso"
                             @error="errorImagen(5)"
                           />
@@ -1672,7 +1656,7 @@ const handleFileUpload = async tipo => {
                             <VBtn
                               v-if="preinscripcion.srcDniAdverso.includes('fotos') || preinscripcion.srcDniAdverso.includes('temporales')"
                               variant="outlined"
-                              color="primary"
+                              color="secondary"
                               @click="verImagen('Dni adverso', preinscripcion.srcDniAdverso)"
                             >
                               VER
@@ -1689,7 +1673,6 @@ const handleFileUpload = async tipo => {
                             :width="300"
                             alt="Recibo de servicio"
                             aspect-ratio="16/9"
-                            cover
                             :src="preinscripcion.srcReciboServicio"
                             @error="errorImagen(6)"
                           />
@@ -1713,7 +1696,7 @@ const handleFileUpload = async tipo => {
                             <VBtn
                               v-if="preinscripcion.srcReciboServicio.includes('fotos') || preinscripcion.srcReciboServicio.includes('temporales')"
                               variant="outlined"
-                              color="primary"
+                              color="secondary"
                               @click="verImagen('Recibo de servicio', preinscripcion.srcReciboServicio)"
                             >
                               VER
@@ -1730,7 +1713,6 @@ const handleFileUpload = async tipo => {
                             :width="300"
                             alt="Central de riesgo"
                             aspect-ratio="16/9"
-                            cover
                             :src="preinscripcion.srcCentralRiesgo"
                             @error="errorImagen(7)"
                           />
@@ -1754,7 +1736,7 @@ const handleFileUpload = async tipo => {
                             <VBtn
                               v-if="preinscripcion.srcCentralRiesgo.includes('fotos') || preinscripcion.srcCentralRiesgo.includes('temporales')"
                               variant="outlined"
-                              color="primary"
+                              color="secondary"
                               @click="verImagen('Central de riesgo', preinscripcion.srcCentralRiesgo)"
                             >
                               VER
@@ -1771,7 +1753,6 @@ const handleFileUpload = async tipo => {
                             :width="300"
                             alt="Otros"
                             aspect-ratio="16/9"
-                            cover
                             :src="preinscripcion.srcFachadaCasa"
                             @error="errorImagen(8)"
                           />
@@ -1795,7 +1776,7 @@ const handleFileUpload = async tipo => {
                             <VBtn
                               v-if="preinscripcion.srcFachadaCasa.includes('fotos') || preinscripcion.srcFachadaCasa.includes('temporales')"
                               variant="outlined"
-                              color="primary"
+                              color="secondary"
                               @click="verImagen('Otros', preinscripcion.srcFachadaCasa)"
                             >
                               VER
