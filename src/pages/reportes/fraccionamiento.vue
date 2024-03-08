@@ -319,7 +319,7 @@ const limpiarValidacion = () => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="400"
                 >
                   <template #item.sald_docu_01="{ item }">

@@ -345,7 +345,7 @@ const onSeleccionar = (columna, item) => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="400"
                 >
                   <template #item.codi_camp_1="{ item }">
@@ -411,7 +411,7 @@ const onSeleccionar = (columna, item) => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="400"
                 >
                   <template #top />

@@ -904,6 +904,7 @@ const proc_come_conf_insc_movi_bind_corr = async () => {
 
 const visible = ref()
 const imgs = ref([])
+const index = ref()
 
 const verImagen = (title, src) => {
   imgs.value = [

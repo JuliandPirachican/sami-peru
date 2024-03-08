@@ -659,7 +659,7 @@ const onClose = () => {
                 :items-per-page="-1"
                 class="text-no-wrap"
                 no-data-text=""
-                fixed-header="true"
+                fixed-header
                 height="400"
               > 
                 <template #headers>
@@ -1459,7 +1459,7 @@ const onClose = () => {
           :items-per-page="-1"
           class="text-no-wrap"
           no-data-text="Sin información para mostrar"
-          fixed-header="true"
+          fixed-header
           :height="(!mobile)? (itemsDetalle.length > 15) ? 400 : null: null"
         >
           <template #bottom />

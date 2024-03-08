@@ -401,7 +401,7 @@ const limpiarValidacion = () => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="300"
                 >
                   <template #top />
@@ -454,7 +454,7 @@ const limpiarValidacion = () => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="110"
                 >
                   <template #bottom />
@@ -623,7 +623,7 @@ const limpiarValidacion = () => {
           :items-per-page="-1"
           class="text-no-wrap"
           no-data-text="Sin información para mostrar"
-          fixed-header="true"
+          fixed-header
           :height="(!mobile)? (itemsSubDetalle.length > 15) ? 400 : null: null"
         >
           <template #bottom />

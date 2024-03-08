@@ -341,7 +341,7 @@ const limpiarFiltro = hideOverlay => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="350"
                 >
                   <template #item.acciones="{ item }">
@@ -367,7 +367,7 @@ const limpiarFiltro = hideOverlay => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="400"
                 >              
                   <template #bottom />

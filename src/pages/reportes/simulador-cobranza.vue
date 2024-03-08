@@ -455,7 +455,7 @@ const actualizarItem = item => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="250"
                 >
                   <template #item.valo_docu="{ item }">
@@ -534,7 +534,7 @@ const actualizarItem = item => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="250"
                 >
                   <template #item.simu_21di="{ item }">

@@ -783,7 +783,7 @@ const itemsDetalleVisible = computed(() => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="250"
                 >
                   <template #bottom />
@@ -805,7 +805,7 @@ const itemsDetalleVisible = computed(() => {
                   :items="itemsDetalleVisible"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   height="400"
                 >
                   <!-- pagination -->
@@ -894,7 +894,7 @@ const itemsDetalleVisible = computed(() => {
           :items-per-page="-1"
           class="text-no-wrap"
           no-data-text=""
-          fixed-header="true"
+          fixed-header
           :height="(!mobile)? (itemsColumna.length > 15) ? 400 : null: null"
 
           show-select

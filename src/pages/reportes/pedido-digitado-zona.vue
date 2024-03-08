@@ -915,7 +915,7 @@ const onExcelConcepto = async () => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   density="compact"
                 >
                   <template #bottom />
@@ -933,7 +933,7 @@ const onExcelConcepto = async () => {
                   :items-per-page="-1"
                   class="text-no-wrap"
                   no-data-text=""
-                  fixed-header="true"
+                  fixed-header
                   density="compact"
                   height="400"
                 >
@@ -1023,7 +1023,7 @@ const onExcelConcepto = async () => {
           :items-per-page="-1"
           class="text-no-wrap"
           no-data-text="Sin información para mostrar"
-          fixed-header="true"
+          fixed-header
           :height="(!mobile)? (itemsSubDetalle.length > 15) ? 400 : null: null"
         >
           <template #bottom />
