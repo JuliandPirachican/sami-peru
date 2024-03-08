@@ -301,11 +301,9 @@ const onSeleccionar = async data => {
     appStore.loading(true)
     itemsSubDetalle.value = []
     
-    const { data } = await $api(`/api/sami/v1/reportes/comportamiento-cyd/detalle`, {
+    const data = await $api(`/api/sami/v1/reportes/comportamiento-cyd/detalle`, {
       method: "get",
       query: {
-        codigo: userData.codi_perf,
-        perfil: userData.valo_perf,
         titulo: titulo.value,
         cantidad: cantidad.value,
       },
@@ -315,7 +313,7 @@ const onSeleccionar = async data => {
     isOpen.value = true
   } catch (e) {
   }
-  finally {
+  finally { 
     appStore.loading(false)
   }
 }
