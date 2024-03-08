@@ -1,53 +1,13 @@
 import { useAppStore } from '@/stores/app'
 import { ofetch } from 'ofetch'
 
-const modo = import.meta.env.VITE_MODO
-const login = JSON.parse(localStorage.getItem('login'))
+const modo = import.meta.env.VITE_API_MODO
 
-const pais = login.pais
 let baseURL = ''
 if (modo == 'PRODUCCION') {
-  switch (pais) {
-  case 'bolivia':
-    baseURL = 'https://servicioweb.azzorti.bo'
-    break
-  case 'colombia':
-    baseURL = 'https://servicioweb.dupree.co'
-    break
-  case 'ecuador':
-    baseURL = 'https://servicioweb.azzorti.com'
-    break
-  case 'guatemala':
-    baseURL = 'https://servicioweb.azzorti.gt'
-    break
-  case 'peru':
-    baseURL = 'https://servicioweb.dupree.pe'
-    break
-  default:
-    baseURL = ''
-    break
-  }
+  baseURL = 'https://servicioweb.dupree.pe'
 } else {
-  switch (pais) {
-  case 'bolivia':
-    baseURL = 'https://servicioweb2bol.azzorti.co'
-    break
-  case 'colombia':
-    baseURL = 'https://servicioweb2col.azzorti.co'
-    break
-  case 'ecuador':
-    baseURL = 'https://servicioweb2ecu.azzorti.co'
-    break
-  case 'guatemala':
-    baseURL = 'https://servicioweb2gua.azzorti.co'
-    break
-  case 'peru':
-    baseURL = 'https://servicioweb2per.azzorti.co'
-    break
-  default:
-    baseURL = ''
-    break
-  }
+  baseURL = 'https://servicioweb2per.azzorti.co'
 }
 
 export const $api = ofetch.create({

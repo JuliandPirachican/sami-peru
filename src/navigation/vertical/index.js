@@ -1,5 +1,13 @@
-import peru from './peru'
+import administracion from "./administracion"
+import consultas from "./consultas"
+import main from "./main"
+import procesos from "./procesos"
+import reportes from "./reportes"
 
 export default [
-  ...peru,
+  ...main,
+  ...administracion,
+  ...consultas,
+  ...procesos,
+  ...reportes,
 ]

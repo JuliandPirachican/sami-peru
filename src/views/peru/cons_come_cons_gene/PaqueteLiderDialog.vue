@@ -193,7 +193,7 @@ const headers = [
         v-if="items.data_deta.length > 0"
         :headers="headers"
         :items="items.data_deta"
-        no-data-text=""
+        
         fixed-header="true"
         class="text-no-wrap"
         :items-per-page="-1"

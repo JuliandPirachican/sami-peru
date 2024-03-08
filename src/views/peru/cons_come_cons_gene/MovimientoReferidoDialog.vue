@@ -132,7 +132,7 @@ const onCancelar = () => {
       <VDataTable
         :headers="headersGlobal"
         :items="items.data_glob"
-        no-data-text=""
+        
         fixed-header="true"
         :height="(!mobile)? (items.data_glob.length > 15) ? 400 : null: null"
         class="text-no-wrap"
@@ -146,7 +146,7 @@ const onCancelar = () => {
       <VDataTable
         :headers="headersDetalle"
         :items="items.data_deta"
-        no-data-text=""
+        
         fixed-header="true"
         :height="(!mobile)? (items.data_glob.length > 15) ? 400 : null: null"
         class="text-no-wrap"

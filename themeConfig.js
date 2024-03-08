@@ -15,7 +15,7 @@ export const { themeConfig, layoutConfig } = defineThemeConfig({
     contentLayoutNav: AppContentLayoutNav.Vertical,
     overlayNavFromBreakpoint: breakpointsVuetify.md + 16,
     i18n: {
-      enable: true,
+      enable: false,
       defaultLocale: 'en',
       langConfig: [
         {

@@ -1,0 +1,63 @@
+export default [
+  { 
+    heading: 'Procesos', 
+    subject: 'peru/proc', 
+    action: 'peru/proc',
+  },
+  { 
+    title: 'Abrir asistencia', 
+    to: 'procesos-abrir-asistencia',
+    icon: { icon: 'tabler-pencil-up' },
+    subject: 'peru/proc_come_abri_asis', 
+    action: 'peru/proc_come_abri_asis',
+  },
+  { 
+    title: 'Actualizar dato simple', 
+    to: 'procesos-actualizar-dato',
+    icon: { icon: 'tabler-edit' },
+    subject: 'peru/proc_come_actu_dato_simp', 
+    action: 'peru/proc_come_actu_dato_simp',
+  },
+  { 
+    title: 'Cerrar asistencia', 
+    to: 'procesos-cerrar-asistencia',
+    icon: { icon: 'tabler-pencil-off' },
+    subject: 'peru/proc_come_cerr_asis', 
+    action: 'peru/proc_come_cerr_asis',
+  },
+  { 
+    title: 'Confirmación inscripción', 
+    to: 'procesos-confirmar-inscripcion',
+    icon: { icon: 'tabler-user-plus' },
+    subject: 'peru/proc_come_conf_insc_movi', 
+    action: 'peru/proc_come_conf_insc_movi',
+  },
+  { 
+    title: 'Desbloquear asesora', 
+    to: 'procesos-desbloquear-asesora',
+    icon: { icon: 'tabler-lock-open' },
+    subject: 'peru/proc_come_desb_ases', 
+    action: 'peru/proc_come_desb_ases',
+  },
+  { 
+    title: 'Gestionar posible asesora', 
+    to: 'procesos-gestionar-posible-asesora',
+    icon: { icon: 'tabler-clock-code' },
+    subject: 'peru/proc_come_gest_posi_ases', 
+    action: 'peru/proc_come_gest_posi_ases',
+  },
+  { 
+    title: 'Registro posible asesora', 
+    to: 'procesos-posible-asesora',
+    icon: { icon: 'tabler-rotate-clockwise' },
+    subject: 'peru/proc_come_posi_ases', 
+    action: 'peru/proc_come_posi_ases',
+  },
+  { 
+    title: 'Respuesta Incidencias', 
+    to: 'procesos-respuesta-incidencias',
+    icon: { icon: 'tabler-clock-24' },
+    subject: 'peru/proc_cart_resp_inci_diar', 
+    action: 'peru/proc_cart_resp_inci_diar',
+  },
+]

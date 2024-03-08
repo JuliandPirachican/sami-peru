@@ -26,18 +26,9 @@ const appStore = useAppStore()
 const refVForm = ref()
 
 const form = ref({
-  pais: null,
   usuario: '',
   clave: '',
 })
-
-const paisOptions = [
-  { id: 'bolivia', text: 'Bolivia' },
-  { id: 'colombia', text: 'Colombia' },
-  { id: 'ecuador', text: 'Ecuador' },
-  { id: 'guatemala', text: 'Guatemala' },
-  { id: 'peru', text: 'Perú' },
-]
 
 const login = async () => {
   try {
@@ -81,7 +72,7 @@ const login = async () => {
     }
     await nextTick(() => {
       appStore.loading(false)
-      router.replace(route.query.to ? String(route.query.to) : `/${form.value.pais}`)
+      router.replace(route.query.to ? String(route.query.to) : `/`)
     })
   } catch (e) {
     console.log(e)
@@ -110,12 +101,6 @@ onMounted(async () => {
     recordar.value = Boolean(localStorage.getItem('recordar'))
   }
 })
-
-const onSeleccionarPais = () => {
-  if (form.value.pais != '') {
-    localStorage.setItem('login', JSON.stringify(form.value))
-  }
-}
 </script>
 
 <template>
@@ -136,7 +121,7 @@ const onSeleccionarPais = () => {
         max-width="448"
       >
         <VCardText>
-          <AppLogo :width="250" />
+          <AppLogo width="250" />
         </VCardText>
 
         <VCardText>
@@ -154,18 +139,6 @@ const onSeleccionarPais = () => {
             @submit.prevent="onSubmit"
           >
             <VRow>
-              <VCol cols="12">
-                <AppSelect
-                  v-model="form.pais"
-                  :items="paisOptions"
-                  label="Unidad de negocio"
-                  placeholder="Seleccionar unidad"
-                  item-title="text"
-                  item-value="id"
-                  :rules="[requiredValidator(form.pais, 'unidad de negocio')]"
-                  @update:model-value="onSeleccionarPais"
-                />
-              </VCol>
               <VCol cols="12">
                 <AppTextField
                   v-model="form.usuario"
