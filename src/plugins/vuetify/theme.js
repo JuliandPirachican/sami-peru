@@ -5,7 +5,7 @@ export const themes = {
     colors: {
       'primary': staticPrimaryColor,
       'on-primary': '#231F20',
-      'secondary': '#A8AAAE',
+      'secondary': '#231F20',
       'on-secondary': '#fff',
       'success': '#28C76F',
       'on-success': '#fff',
