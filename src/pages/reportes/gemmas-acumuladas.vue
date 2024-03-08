@@ -505,9 +505,6 @@ const obtenerZona = async () => {
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
       method: "get",
-      query: {
-        codigo: userData.codi_perf,
-      },
     })
     
 
@@ -606,7 +603,11 @@ const limpiarValidacion = () => {
 <template>
   <div>
     <AppPlantilla>
-      <template #botones />
+      <template #botones>
+        <GenerarBoton @procesar="onGenerar" />
+        <ExcelBoton @procesar="onExcel" />  
+        <LimpiarBoton @procesar="onLimpiar" />
+      </template>
       <template #contenido>
         <VRow>
           <VCol cols="12">
