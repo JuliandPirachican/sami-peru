@@ -307,7 +307,7 @@ const onExcel = async () => {
 
     const { data } = await $api(`/api/sami/v1/reportes/consecutividad-asesora/excel`, {
       method: "post",
-      data: {
+      body: {
         data: items.value,
         datadeta: itemsdeta.value,
       },
