@@ -576,7 +576,7 @@ const obtenerDistrito = async() => {
                       label="Nombre(s)"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
 
@@ -589,7 +589,7 @@ const obtenerDistrito = async() => {
                       label="Apellido(s)"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>
