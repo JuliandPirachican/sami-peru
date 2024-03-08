@@ -154,8 +154,6 @@ const onGenerar = async () => {
       query: {
         campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
-        codigo: userData.codi_perf,
-        perfil: userData.valo_perf,
       },
     })
 
@@ -256,7 +254,7 @@ const onExcel = async () => {
         datadeta: itemsdeta.value,
       },
     })
-    
+      
     window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
   }
@@ -270,6 +268,49 @@ const onLimpiar= async () => {
     campana: null,
     zona: null,
   }*/
+
+  headers.value = [
+    { key: 'codi_area',        title: 'Región' },
+    { key: 'codi_cort',        title: 'Corte' },
+    { key: 'codi_zona',        title: 'Zona' },
+    { key: 'codi_sect',        title: 'Sector' },
+    { key: 'codi_camp_1',      title: '0' },
+    { key: 'porc_codi_camp_1', title: '% 0' },
+    { key: 'codi_camp_2',      title: '0' },
+    { key: 'porc_codi_camp_2', title: '% 0' },
+    { key: 'codi_camp_3',      title: '0' },
+    { key: 'porc_codi_camp_3', title: '% 0' },
+    { key: 'codi_camp_4',      title: '0' },
+    { key: 'porc_codi_camp_4', title: '% 0' },
+  ]
+  headersdeta.value = [
+    { key: 'codi_area', title: 'Región' },
+    { key: 'codi_cort', title: 'Corte' },
+    { key: 'codi_zona', title: 'Zona' },
+    { key: 'codi_sect', title: 'Sector' },
+    { key: 'codi_terc', title: 'Código' },
+    { key: 'nume_iden', title: 'Nro ident.' },
+    { key: 'nomb_clie', title: 'Nombre(s) y Apellido(s)' },
+    { key: 'camp_ingr', title: 'Camp. Ingr' },
+    { key: 'tele_terc', title: 'Teléfono' },
+    { key: 'sald_docu', title: 'Saldo' },
+    { key: 'codi_camp_1', title: '0' },
+    { key: 'codi_zona_1', title: '0 Zona' },
+    { key: 'codi_sect_1', title: '0 Sect' },
+    { key: 'tota_fact_1', title: '0 Fact' },
+    { key: 'codi_camp_2', title: '0' },
+    { key: 'codi_zona_2', title: '0 Zona' },
+    { key: 'codi_sect_2', title: '0 Sect' },
+    { key: 'tota_fact_2', title: '0 Fact' },
+    { key: 'codi_camp_3', title: '0' },
+    { key: 'codi_zona_3', title: '0 Zona' },
+    { key: 'codi_sect_3', title: '0 Sect' },
+    { key: 'tota_fact_3', title: '0 Fact' },
+    { key: 'codi_camp_4', title: '0' },
+    { key: 'codi_zona_4', title: '0 Zona' },
+    { key: 'codi_sect_4', title: '0 Sect' },
+    { key: 'tota_fact_4', title: '0 Fact' },
+  ]
   items.value = []
   itemsdeta.value = []
   itemsInicialDetalle.value = []
@@ -278,7 +319,7 @@ const onLimpiar= async () => {
 const limpiarValidacion = () => {
   errorCampana.value = false
   errorMensajeCampana.value = ''
-  errorZona.value = false
+  errorZona.value = false 
   errorMensajeZona.value = ''
 }
 
@@ -350,51 +391,59 @@ const onSeleccionar = (columna, item) => {
                 >
                   <template #item.codi_camp_1="{ item }">
                     {{ item.codi_camp_1 }}
-                    <IconBtn 
+                    <!--
+                      <IconBtn 
                       v-if="item.codi_camp_1!='0'"
                       @click="onSeleccionar('codi_camp_1', item)"
-                    >
+                      >
                       <VIcon
-                        icon="tabler-search"
-                        size="20"
+                      icon="tabler-search"
+                      size="20"
                       />
-                    </IconBtn>
+                      </IconBtn>
+                    -->
                   </template>
                   <template #item.codi_camp_2="{ item }">
                     {{ item.codi_camp_2 }}
-                    <IconBtn 
+                    <!--
+                      <IconBtn 
                       v-if="item.codi_camp_2!='0'"
                       @click="onSeleccionar('codi_camp_2', item)"
-                    >
+                      >
                       <VIcon
-                        icon="tabler-search"
-                        size="20"
+                      icon="tabler-search"
+                      size="20"
                       />
-                    </IconBtn>
+                      </IconBtn>
+                    -->
                   </template>
                   <template #item.codi_camp_3="{ item }">
                     {{ item.codi_camp_3 }}
-                    <IconBtn 
+                    <!--
+                      <IconBtn 
                       v-if="item.codi_camp_3!='0'"
                       @click="onSeleccionar('codi_camp_3', item)"
-                    >
+                      >
                       <VIcon
-                        icon="tabler-search"
-                        size="20"
+                      icon="tabler-search"
+                      size="20"
                       />
-                    </IconBtn>
+                      </IconBtn>
+                    -->
                   </template>
                   <template #item.codi_camp_4="{ item }">
                     {{ item.codi_camp_4 }}
-                    <IconBtn 
+                    <!--
+                      <IconBtn 
                       v-if="item.codi_camp_4!='0'"
                       @click="onSeleccionar('codi_camp_4', item)"
-                    >
+                      >
                       <VIcon
-                        icon="tabler-search"
-                        size="20"
+                      icon="tabler-search"
+                      size="20"
                       />
-                    </IconBtn>
+                      </IconBtn>
+                    -->
                   </template>
                   <template #bottom />
                 </VDataTable>
