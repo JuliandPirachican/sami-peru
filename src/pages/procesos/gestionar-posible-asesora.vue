@@ -90,7 +90,7 @@ const obtenerCampana = async () => {
     )
   } catch (e) {
     if(e.response !== undefined) {
-      console.log(e.response.data)
+      console.log(e.response._data)
     }
   }
   finally {
@@ -302,18 +302,9 @@ const proc_come_gest_posi_ases_bind_obse_gest = async () => {
                   :items-per-page="-1"
                 >
                   <template #item.acciones="{ item }">
-                    <VBtn
-                      icon
-                      size="x-small"
-                      color="primary"
-                      variant="text"
-                      @click="onSeleccionar(item)"
-                    >
-                      <VIcon
-                        size="22"
-                        icon="tabler-pencil"
-                      />
-                    </VBtn>
+                    <IconBtn @click="onSeleccionar(item)">
+                      <VIcon icon="tabler-edit" />
+                    </IconBtn>
                   </template>
                   <template #bottom />
                 </VDataTable>

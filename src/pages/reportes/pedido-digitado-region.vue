@@ -589,7 +589,7 @@ const obtenerCampana = async () => {
     )
   } catch (e) {
     if(e.response !== undefined) {
-      console.log(e.response.data)
+      console.log(e.response._data)
     }
   }
   finally {
@@ -619,7 +619,7 @@ const obtenerRegion = async () => {
     )
   } catch (e) {
     if(e.response !== undefined) {
-      console.log(e.response.data)
+      console.log(e.response._data)
     }
   }
   finally {
