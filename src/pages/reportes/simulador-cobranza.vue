@@ -454,7 +454,7 @@ const actualizarItem = item => {
                   :items="itemsGlobal"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   height="250"
                 >
@@ -533,7 +533,7 @@ const actualizarItem = item => {
                   :items="itemsDetalle"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   height="250"
                 >

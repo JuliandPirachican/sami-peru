@@ -723,7 +723,7 @@ const limpiarValidacion = () => {
                   :items="itemsTotal"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -740,7 +740,7 @@ const limpiarValidacion = () => {
                   :items="itemsIncorporacion"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -757,7 +757,7 @@ const limpiarValidacion = () => {
                   :items="itemsRetencion"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -774,7 +774,7 @@ const limpiarValidacion = () => {
                   :items="itemsActividad"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -791,7 +791,7 @@ const limpiarValidacion = () => {
                   :items="itemsConsecutiva"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -808,7 +808,7 @@ const limpiarValidacion = () => {
                   :items="itemsConsecutivaSegundo"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -825,7 +825,7 @@ const limpiarValidacion = () => {
                   :items="itemsConsecutivaTercer"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -842,7 +842,7 @@ const limpiarValidacion = () => {
                   :items="itemsConsecutivaCuarto"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -859,7 +859,7 @@ const limpiarValidacion = () => {
                   :items="itemsPegs"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -876,7 +876,7 @@ const limpiarValidacion = () => {
                   :items="itemsCapitalizacion"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -893,7 +893,7 @@ const limpiarValidacion = () => {
                   :items="itemsCobranza"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -910,7 +910,7 @@ const limpiarValidacion = () => {
                   :items="itemsCanje"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />
@@ -927,7 +927,7 @@ const limpiarValidacion = () => {
                   :items="itemsNivel"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                 >
                   <template #bottom />

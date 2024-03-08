@@ -400,7 +400,6 @@ const limpiarValidacion = () => {
                   :items="itemsGlobal"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
                   fixed-header
                   height="300"
                 >
@@ -453,7 +452,6 @@ const limpiarValidacion = () => {
                   :items="itemsResumen"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
                   fixed-header
                   height="110"
                 >
@@ -622,7 +620,6 @@ const limpiarValidacion = () => {
           :items="itemsSubDetalle"
           :items-per-page="-1"
           class="text-no-wrap"
-          no-data-text="Sin información para mostrar"
           fixed-header
           :height="(!mobile)? (itemsSubDetalle.length > 15) ? 400 : null: null"
         >

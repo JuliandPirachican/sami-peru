@@ -592,7 +592,7 @@ const limpiarValidacion = () => {
                   :items="itemsGlobal"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   density="compact"
                 >
@@ -628,7 +628,7 @@ const limpiarValidacion = () => {
                   :items="itemsCorte"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   density="compact"
                 >
@@ -694,7 +694,7 @@ const limpiarValidacion = () => {
                   :items="itemsConsolidado"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   density="compact"
                   height="400"
@@ -867,7 +867,7 @@ const limpiarValidacion = () => {
                   :items="itemsRegion"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   density="compact"
                   height="400"

@@ -1980,7 +1980,7 @@ const limpiarValidacion = () => {
                   :items="itemsCorte"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   height="400"
                 > 
@@ -2307,7 +2307,7 @@ const limpiarValidacion = () => {
                   :items="itemsZona"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   height="400"
                 > 

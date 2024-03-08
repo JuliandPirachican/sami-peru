@@ -782,7 +782,7 @@ const itemsDetalleVisible = computed(() => {
                   :items="itemsGlobal"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   height="250"
                 >
@@ -804,7 +804,7 @@ const itemsDetalleVisible = computed(() => {
                   :headers="headersDetalle"
                   :items="itemsDetalleVisible"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   height="400"
                 >
@@ -893,7 +893,7 @@ const itemsDetalleVisible = computed(() => {
           :items="itemsColumna"
           :items-per-page="-1"
           class="text-no-wrap"
-          no-data-text=""
+          
           fixed-header
           :height="(!mobile)? (itemsColumna.length > 15) ? 400 : null: null"
 

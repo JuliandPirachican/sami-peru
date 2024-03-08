@@ -136,7 +136,7 @@ const onCancelar = () => {
       <VDataTable
         :headers="headersGlobal"
         :items="items.data_gana"
-        no-data-text=""
+        
         fixed-header="true"
         :height="(!mobile)? (items.data_gana.length > 15) ? 400 : null: null"
         class="text-no-wrap"
@@ -150,7 +150,7 @@ const onCancelar = () => {
       <VDataTable
         :headers="headersDetalle"
         :items="items.data_pend"
-        no-data-text=""
+        
         fixed-header="true"
         :height="(!mobile)? (items.data_pend.length > 15) ? 400 : null: null"
         class="text-no-wrap"

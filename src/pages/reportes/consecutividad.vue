@@ -344,7 +344,6 @@ const onSeleccionar = (columna, item) => {
                   :items="items"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
                   fixed-header
                   height="400"
                 >
@@ -410,7 +409,6 @@ const onSeleccionar = (columna, item) => {
                   :items="itemsdeta"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
                   fixed-header
                   height="400"
                 >

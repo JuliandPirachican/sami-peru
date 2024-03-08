@@ -658,7 +658,6 @@ const onClose = () => {
                 :items="itemsGlobal"
                 :items-per-page="-1"
                 class="text-no-wrap"
-                no-data-text=""
                 fixed-header
                 height="400"
               > 
@@ -1458,7 +1457,6 @@ const onClose = () => {
           :items="itemsDetalle"
           :items-per-page="-1"
           class="text-no-wrap"
-          no-data-text="Sin información para mostrar"
           fixed-header
           :height="(!mobile)? (itemsDetalle.length > 15) ? 400 : null: null"
         >

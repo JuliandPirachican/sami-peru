@@ -222,8 +222,7 @@ const limpiarValidacion = () => {
               <VCardText>
                 <VDataTable
                   :headers="headers"
-                  :items="items"
-                  no-data-text=""
+                  :items="items"         
                   fixed-header
                   height="400"
                   class="text-no-wrap"

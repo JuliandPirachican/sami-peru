@@ -1072,7 +1072,6 @@ const handleFileUpload = async tipo => {
                     v-model="selected"
                     :headers="visibleHeaders"
                     :items="items"
-                    no-data-text=""
                     fixed-header
                     height="400"
                     class="text-no-wrap"

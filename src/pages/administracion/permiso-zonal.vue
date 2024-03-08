@@ -129,7 +129,6 @@ onMounted(() => {
                   v-model="selected"
                   :headers="headers"
                   :items="items"
-                  no-data-text=""
                   fixed-header
                   height="400"
                   :items-per-page="-1"

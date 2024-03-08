@@ -89,7 +89,7 @@ const onCancelar = () => {
       <VDataTable
         :headers="headers"
         :items="items"
-        no-data-text=""
+        
         fixed-header="true"
         :height="(!mobile)? (items.length > 15) ? 400 : null: null"
         class="text-no-wrap"

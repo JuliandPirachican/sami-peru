@@ -914,7 +914,7 @@ const onExcelConcepto = async () => {
                   :items="itemsGlobal"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   density="compact"
                 >
@@ -932,7 +932,7 @@ const onExcelConcepto = async () => {
                   :items="itemsDetalle"
                   :items-per-page="-1"
                   class="text-no-wrap"
-                  no-data-text=""
+                  
                   fixed-header
                   density="compact"
                   height="400"

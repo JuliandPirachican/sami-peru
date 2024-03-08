@@ -296,7 +296,6 @@ const proc_come_gest_posi_ases_bind_obse_gest = async () => {
                 <VDataTable
                   :headers="headers"
                   :items="items"
-                  no-data-text=""
                   fixed-header
                   height="400"
                   class="text-no-wrap"
