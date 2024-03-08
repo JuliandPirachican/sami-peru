@@ -14,8 +14,7 @@ const { mobile } = useDisplay()
 const appStore = useAppStore()
 const userData = JSON.parse(localStorage.getItem('userData'))
 
-const itemsInicial = ref([])
-const multiSearch =  ref({})
+const items = ref([])
 const errorCorreo = ref(false)
 const mensajeCorreo = ref('')
 const errorFecha = ref(false)
@@ -54,57 +53,6 @@ const headers = computed(() => {
   ]
 })
 
-const items = computed(() => {
-  if(multiSearch.value) {
-    return itemsInicial.value.filter(item => {
-      return Object.entries(multiSearch.value).every(([key, value]) => {
-        if (value.includes("|") && !value.includes("!")) {
-          let el = value.split("|")
-          
-          return el.some(elem =>
-            (item[key] || "").toString().toUpperCase().startsWith(elem.toString().toUpperCase()),
-          )
-        }
-        if (value.substring(0, 1) === "!" && !value.includes("|")) {
-          let el = value.split("!")
-          
-          return el.some(elem =>
-            !(item[key] || "").toString().toUpperCase().startsWith(elem.toString().toUpperCase()),
-          )
-        }
-        if (value.includes("|") && value.substring(0, 1) === "!") {
-          let el = value.split("!")[1].split("|")
-          
-          return !el.some(elem =>
-            (item[key] || "").toString().toUpperCase().startsWith(elem.toString().toUpperCase()),
-          )
-        }
-        if (value.substring(0, 1) === ">") {
-          let el = value.split(">")
-          if (item[key] !== " ") {
-            return Number(item[key] || "") > el[1]
-          }
-        }
-        if (value.substring(0, 1) === "<") {
-          let el = value.split("<")
-          if (item[key] !== " ") {
-            return Number(item[key] || "") < el[1]
-          }
-        }
-        if (value.substring(0, 1) === "=") {
-          let el = value.split("=")
-          
-          return (item[key] || "").toString().toUpperCase() === el[1].toString().toUpperCase()
-        }
-        
-        return (item[key] || "").toString().toUpperCase().includes(value.toString().toUpperCase())
-      })
-    })
-  } else {
-    return itemsInicial.value
-  }
-})
-
 const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
@@ -127,7 +75,6 @@ const onGenerar = async () => {
     })
 
     items.value = data.data_glob
-    itemsInicial.value = data.data_glob
     
   } catch (e) {
   }
@@ -138,8 +85,6 @@ const onGenerar = async () => {
 
 const onLimpiar= async () => {
   items.value = []
-  itemsInicial.value = []
-  multiSearch.value = {}
 }
 
 const onExcel = async () => {
@@ -188,7 +133,7 @@ const onRegistrar = async () => {
     appStore.mensaje('Actualizando lider')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/reportes/directorio-lider`, {
+    const data  = await $api(`/api/sami/v1/reportes/directorio-lider`, {
       method: "put",
       body: {
         // eslint-disable-next-line camelcase
@@ -254,63 +199,7 @@ const limpiarValidacion = () => {
                   class="text-no-wrap"
                   :items-per-page="-1"
                 >
-                  <template #top>
-                    <!-- v-container, v-col and v-row are just for decoration purposes. -->
-                    <VRow>
-                      <VCol
-                        cols="12"
-                        md="3"
-                      >
-                        <VTextField
-                          v-model="multiSearch['codi_area']"
-                          append-inner-icon="tabler-search"
-                          variant="underlined"
-                          type="text"
-                          label="Región"
-                          class="mb-2"
-                        />
-                      </VCol>
-                      <VCol
-                        cols="12"
-                        md="3"
-                      >
-                        <VTextField
-                          v-model="multiSearch['codi_zona']"
-                          append-inner-icon="tabler-search"
-                          variant="underlined"
-                          type="text"
-                          label="Zona"
-                          class="mb-2"
-                        />
-                      </VCol>
-                      <VCol
-                        cols="12"
-                        md="3"
-                      >
-                        <VTextField
-                          v-model="multiSearch['codi_sect']"
-                          append-inner-icon="tabler-search"
-                          variant="underlined"
-                          type="text"
-                          label="Sector"
-                          class="mb-2"
-                        />
-                      </VCol>
-                      <VCol
-                        cols="12"
-                        md="3"
-                      >
-                        <VTextField
-                          v-model="multiSearch['nomb_terc']"
-                          append-inner-icon="tabler-search"
-                          variant="underlined"
-                          type="text"
-                          label="Nombres y apellido"
-                          class="mb-2"
-                        />
-                      </VCol>
-                    </VRow>
-                  </template>
+                  <template #top />
            
                   <template #item.acciones="{ item }">
                     <VBtn
