@@ -161,9 +161,6 @@ const obtenerZona = async () => {
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
       method: "get",
-      query: {
-        codigo: userData.codi_perf,
-      },
     })
 
     const itemZona = data.data_glob
@@ -197,8 +194,6 @@ const onGenerar = async () => {
       query: {
         campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
-        codigo: userData.codi_perf,
-        perfil: userData.valo_perf,
       },
     })
 
