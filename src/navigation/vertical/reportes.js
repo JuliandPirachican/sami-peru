@@ -197,6 +197,34 @@ export default [
     subject: 'peru/repo_come_stat_mgzz', 
     action: 'peru/repo_come_stat_mgzz', 
   },
+
+  /*{ 
+    title: 'Solicitar vacaciones', 
+    to: 'reportes-vacaciones-consolidado',
+    icon: { icon: 'tabler-report' },
+    subject: 'peru/repo_come_soli_vaca', 
+    action: 'peru/repo_come_soli_vaca', 
+  },*/
+
+  { 
+    title: 'Vacaciones', 
+    icon: { icon: 'tabler-search' },
+    children: [
+      { 
+        title: 'Consolidado', 
+        to: 'reportes-vacaciones-consolidado',
+        subject: 'peru/repo_come_soli_vaca', 
+        action: 'peru/repo_come_soli_vaca', 
+      },
+
+      /*{ 
+        title: 'Pendientes región', 
+        to: 'reportes-vacaciones-pendientes-region',
+        subject: 'peru/repo_come_vaca_pend', 
+        action: 'peru/repo_come_vaca_pend', 
+      },*/
+    ],
+  },
   { 
     title: 'Tracking zona', 
     to: 'reportes-tracking-zona',
@@ -211,6 +239,8 @@ export default [
     subject: 'peru/repo_come_visi', 
     action: 'peru/repo_come_visi', 
   },
+
+
 
 
 
