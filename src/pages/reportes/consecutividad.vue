@@ -177,9 +177,6 @@ const obtenerZona = async () => {
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
       method: "get",
-      query: {
-        codigo: userData.codi_perf,
-      },
     })
 
     const itemZona = data.data_glob
@@ -308,8 +305,10 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/consecutividad-asesora/excel`, {
       method: "post",
       body: {
-        data: items.value,
-        datadeta: itemsdeta.value,
+        cabeceraGlobal: headers.value,
+        detalleGlobal: items.value,
+        cabeceraDetalle: headersdeta.value,
+        detalleDetalle: itemsdeta.value,
       },
     })
       
