@@ -216,13 +216,12 @@ export default [
         subject: 'peru/repo_come_soli_vaca', 
         action: 'peru/repo_come_soli_vaca', 
       },
-
-      /*{ 
+      { 
         title: 'Pendientes región', 
-        to: 'reportes-vacaciones-pendientes-region',
+        to: 'reportes-vacaciones-pendientes',
         subject: 'peru/repo_come_vaca_pend', 
         action: 'peru/repo_come_vaca_pend', 
-      },*/
+      },
     ],
   },
   { 
