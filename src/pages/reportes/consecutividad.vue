@@ -308,8 +308,10 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/consecutividad-asesora/excel`, {
       method: "post",
       body: {
-        data: items.value,
-        datadeta: itemsdeta.value,
+        cabeceraGlobal: headers.value,
+        detalleGlobal: items.value,
+        cabeceraDetalle: headersdeta.value,
+        detalleDetalle: itemsdeta.value,
       },
     })
       
