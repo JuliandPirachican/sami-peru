@@ -414,11 +414,7 @@ const obtenerZona = async () => {
     appStore.loading(true)
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
-     
       method: "GET",
-      query: {
-        codigo: userData.codi_perf,
-      },
     })
     
 
