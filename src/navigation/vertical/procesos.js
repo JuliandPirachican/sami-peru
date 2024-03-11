@@ -60,4 +60,11 @@ export default [
     subject: 'peru/proc_cart_resp_inci_diar', 
     action: 'peru/proc_cart_resp_inci_diar',
   },
+  { 
+    title: 'Solicitud vacaciones', 
+    to: 'procesos-solicitar-vacaciones',
+    icon: { icon: 'tabler-clock-24' },
+    subject: 'peru/proc_come_soli_vaca', 
+    action: 'peru/proc_come_soli_vaca',
+  },
 ]

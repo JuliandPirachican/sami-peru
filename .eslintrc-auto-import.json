@@ -352,6 +352,7 @@
     "watchWithFilter": true,
     "whenever": true,
     "base": true,
-    "$base": true
+    "$base": true,
+    "useClipboardItems": true
   }
 }
