@@ -1,8 +1,8 @@
 <script setup>
+import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
 import pages401 from '@images/pages/401.png'
 import miscMaskDark from '@images/pages/misc-mask-dark.png'
 import miscMaskLight from '@images/pages/misc-mask-light.png'
-import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
 
 definePage({
   alias: '/pages/misc/not-authorized',
@@ -19,16 +19,16 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
   <div class="misc-wrapper">
     <ErrorHeader
       status-code="401"
-      title="You are not authorized! 🔐"
-      description="You do not have permission to view this page using the credentials that you have provided while login.
-       Please contact your site administrator."
+      title="Usted no está autorizado! 🔐"
+      description="No tiene permiso para ver esta página con las credenciales que proporcionó al iniciar sesión.
+       Por favor contacte al administrador de su sitio."
     />
 
     <VBtn
       class="mt-2 mb-10"
       to="/"
     >
-      Back Home
+      REGRESAR
     </VBtn>
 
     <!-- 👉 Image -->

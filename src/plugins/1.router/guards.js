@@ -31,7 +31,7 @@ export const setupGuards = router => {
     if (!canNavigate(to)) {
       /* eslint-disable indent */
             return isLoggedIn
-                ? { name: 'not-authorized' }
+                ? { name: 'no-autorizado' }
                 : {
                     name: 'login',
                     query: {
