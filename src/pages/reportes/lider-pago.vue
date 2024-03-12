@@ -12,6 +12,8 @@ definePage({
 const appStore = useAppStore()
 const userData = JSON.parse(localStorage.getItem('userData'))
 
+const rowsPerPage = ref(100)
+const currentPage = ref(1)
 const items = ref([])
 
 const headers = [
@@ -93,6 +95,14 @@ const onExcel = async () => {
     appStore.loading(false)
   }
 }
+
+const itemsDetalleVisible = computed(() => {
+  // Calcula las filas visibles según la página actual y el número de filas por página
+  const start = (currentPage.value - 1) * rowsPerPage.value
+  const end = start + rowsPerPage.value
+  
+  return items.value.slice(start, end)
+})
 </script>
 
 <template>
@@ -109,15 +119,53 @@ const onExcel = async () => {
             <VCard title="Lista de lideres">
               <VCardText>
                 <VDataTable
+                  v-model:items-per-page="rowsPerPage"
                   :headers="headers"
-                  :items="items"
-                  
+                  :items="(items.length > 100) ? itemsDetalleVisible: items"
                   fixed-header
                   height="400"
                   class="text-no-wrap"
-                  :items-per-page="-1"
                 >
-                  <template #bottom />
+                  <template #bottom>
+                    <VDivider v-if="items.length>100" />
+
+                    <div class="d-flex align-center justify-sm-end justify-center flex-wrap gap-3 py-5 pt-3">
+                      <VPagination
+                        v-if="items.length>0"
+                        v-model="currentPage"
+                        :length="Math.ceil(items.length / rowsPerPage)"
+                        :total-visible="$vuetify.display.xs ? 1 : Math.min(Math.ceil(items.length / rowsPerPage), 5)"
+                      >
+                        <template #prev="slotProps">
+                          <VBtn
+                            variant="tonal"
+                            color="default"
+                            v-bind="slotProps"
+                            :icon="false"
+                          >
+                            <VIcon
+                              icon="tabler-arrow-bar-left"
+                              size="22"
+                            />
+                          </VBtn>
+                        </template>
+
+                        <template #next="slotProps">
+                          <VBtn
+                            variant="tonal"
+                            color="default"
+                            v-bind="slotProps"
+                            :icon="false"
+                          >
+                            <VIcon
+                              icon="tabler-arrow-bar-right"
+                              size="22"
+                            />
+                          </VBtn>
+                        </template>
+                      </VPagination>
+                    </div>
+                  </template>
                 </VDataTable>
               </VCardText>
             </VCard>

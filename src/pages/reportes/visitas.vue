@@ -17,7 +17,6 @@ const formulario = ref({
   campana: null,
 })
 
-
 const headers = computed(() => {
   return [
     {
@@ -126,6 +125,17 @@ const errorMensajeCampana = ref('')
 
 const loginData = JSON.parse(localStorage.getItem('login'))
 
+const rowsPerPage = ref(100)
+const currentPage = ref(1)
+
+const itemsDetalleVisible = computed(() => {
+  // Calcula las filas visibles según la página actual y el número de filas por página
+  const start = (currentPage.value - 1) * rowsPerPage.value
+  const end = start + rowsPerPage.value
+  
+  return items.value.slice(start, end)
+})
+
 onMounted(async () => {
   appStore.titulo(`Reportes / Visitas`)
   await obtenerCampana()
@@ -158,7 +168,6 @@ const obtenerCampana = async () => {
     appStore.loading(false)
   }
 }
-
 
 const onGenerar = async () => {
   try {
@@ -265,11 +274,10 @@ const limpiarValidacion = () => {
             <VCard title="Lista visita">
               <VCardText>
                 <VDataTable
+                  v-model:items-per-page="rowsPerPage"
                   :headers="headers"
-                  :items="items"
-                  :items-per-page="-1"
+                  :items="(items.length > 100) ? itemsDetalleVisible: items"
                   class="text-no-wrap"
-                  
                   fixed-header
                   height="400"
                 >
@@ -307,7 +315,46 @@ const limpiarValidacion = () => {
                     </div>
                     <div v-else />
                   </template>
-                  <template #bottom />
+                  <template #bottom>
+                    <VDivider v-if="items.length>rowsPerPage" />
+
+                    <div class="d-flex align-center justify-sm-end justify-center flex-wrap gap-3 py-5 pt-3">
+                      <VPagination
+                        v-if="items.length>0"
+                        v-model="currentPage"
+                        :length="Math.ceil(items.length / rowsPerPage)"
+                        :total-visible="$vuetify.display.xs ? 1 : Math.min(Math.ceil(items.length / rowsPerPage), 5)"
+                      >
+                        <template #prev="slotProps">
+                          <VBtn
+                            variant="tonal"
+                            color="default"
+                            v-bind="slotProps"
+                            :icon="false"
+                          >
+                            <VIcon
+                              icon="tabler-arrow-bar-left"
+                              size="22"
+                            />
+                          </VBtn>
+                        </template>
+
+                        <template #next="slotProps">
+                          <VBtn
+                            variant="tonal"
+                            color="default"
+                            v-bind="slotProps"
+                            :icon="false"
+                          >
+                            <VIcon
+                              icon="tabler-arrow-bar-right"
+                              size="22"
+                            />
+                          </VBtn>
+                        </template>
+                      </VPagination>
+                    </div>
+                  </template>
                 </VDataTable>
               </VCardText>
             </VCard>

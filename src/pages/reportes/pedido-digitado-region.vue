@@ -1004,8 +1004,8 @@ const onExcelConcepto = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/pedidos-digitados-region/excelDetalle`, {
       method: "post",
       body: {
-        titulo: conceptoTitulo.value,
-        data: itemsSubDetalle.value,
+        cabecera: headersSubDetalle.value,
+        detalle: itemsSubDetalle.value,
       },
     })
     
