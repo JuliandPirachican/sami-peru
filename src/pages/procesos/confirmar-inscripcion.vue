@@ -208,6 +208,8 @@ onMounted(async () => {
   appStore.titulo(`Procesos / Confirmar inscripción`)
   await obtenerCampana()
   await obtenerZona()
+  await obtenerDepartamentos()
+  await obtenerParentescos()
   preinscripcion.value.fechaNacimiento = new Date()
 })
 
