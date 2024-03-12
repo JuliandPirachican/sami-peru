@@ -35,15 +35,15 @@ const logout = async () => {
       location="bottom right"
       offset-x="3"
       offset-y="3"
-      color="success"
+      color="error"
       @click="logout"
     >
       <VAvatar
         class="cursor-pointer"
-        :color="!(userData && userData.avatar) ? 'primary' : undefined"
+        :color="!(userData && userData.avatar) ? 'dark' : undefined"
         :variant="!(userData && userData.avatar) ? 'tonal' : undefined"
       >
-        <VIcon icon="tabler-user" />
+        <VIcon icon="tabler-logout" />
       </VAvatar>
     </VBadge>
   </div>
