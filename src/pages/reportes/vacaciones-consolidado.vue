@@ -83,7 +83,7 @@ const errorAnio = ref(false)
 const errorMensajeAnio = ref('')
 
 onMounted(async () => {
-  appStore.titulo(`Reportes / Consolidado`)
+  appStore.titulo(`Reportes / Vacaciones / Consolidado`)
 })
 
 const onGenerar = async () => {
@@ -104,7 +104,8 @@ const onGenerar = async () => {
     items.value = data.data_glob
     
   } catch (error) {
-    const { data } = error.response._data    
+    const { data } = error.response._data
+
     if (typeof data != "undefined") {
       for (var key in data)
       {
@@ -135,8 +136,8 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/vacaciones-consolidado/excel`, {
       method: "post",
       body: {
-        cabecera: items.value,
-        detalle: headers.value,
+        cabecera: headers.value,
+        detalle: items.value,
       },
     })
     
@@ -164,20 +165,29 @@ const limpiarValidacion = () => {
       </template>
       <template #contenido>
         <VRow>
-          <VCol
-            cols="12"
-            md="4"
-          >
-            <AppTextField
-              v-model="formulario.anio"
-              label="Año"
-              type="text"
-              placeholder="0"
-              autocomplete="off"
-              :error="errorAnio"
-              :error-messages="errorMensajeAnio"
-            />
+          <VCol cols="12">
+            <VCard title="Buscar vacaciones">
+              <VCardText>
+                <VRow justify="space-between">
+                  <VCol
+                    cols="12"
+                    md="4"
+                  >
+                    <AppTextField
+                      v-model="formulario.anio"
+                      label="Año"
+                      type="text"
+                      placeholder="0"
+                      autocomplete="off"
+                      :error="errorAnio"
+                      :error-messages="errorMensajeAnio"
+                    />
+                  </VCol>
+                </VRow>
+              </VCardText>
+            </VCard>
           </VCol>
+          
 
           <VCol cols="12">
             <VCard title="Lista vacaciones">
