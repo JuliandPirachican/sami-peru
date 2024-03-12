@@ -197,15 +197,6 @@ export default [
     subject: 'peru/repo_come_stat_mgzz', 
     action: 'peru/repo_come_stat_mgzz', 
   },
-
-  /*{ 
-    title: 'Solicitar vacaciones', 
-    to: 'reportes-vacaciones-consolidado',
-    icon: { icon: 'tabler-report' },
-    subject: 'peru/repo_come_soli_vaca', 
-    action: 'peru/repo_come_soli_vaca', 
-  },*/
-
   { 
     title: 'Vacaciones', 
     icon: { icon: 'tabler-search' },

@@ -84,7 +84,29 @@ const errorMensajeAnio = ref('')
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Vacaciones / Consolidado`)
+  await onAnio()
 })
+
+const onAnio = async () => {
+  try {
+    appStore.mensaje('Obteniendo año')
+    appStore.loading(true)
+
+    const data  = await $api(`/api/sami/v1/reportes/vacaciones-consolidado/anio`, {
+      method: "get",
+    })
+
+    formulario.value.anio = data.data.data_glob.anio
+
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error.message)
+  }
+  finally {
+    appStore.loading(false)
+  }
+  
+}
 
 const onGenerar = async () => {
   try {
@@ -126,6 +148,7 @@ const onLimpiar= async () => {
     anio: null,
   }
   items.value = []
+  await onAnio()
 }
 
 const onExcel = async () => {
