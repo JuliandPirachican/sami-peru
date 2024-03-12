@@ -57,7 +57,7 @@ declare module 'vue-router/auto/routes' {
     'procesos-gestionar-posible-asesora': RouteRecordInfo<'procesos-gestionar-posible-asesora', '/procesos/gestionar-posible-asesora', Record<never, never>, Record<never, never>>,
     'procesos-posible-asesora': RouteRecordInfo<'procesos-posible-asesora', '/procesos/posible-asesora', Record<never, never>, Record<never, never>>,
     'procesos-respuesta-incidencias': RouteRecordInfo<'procesos-respuesta-incidencias', '/procesos/respuesta-incidencias', Record<never, never>, Record<never, never>>,
-    'register': RouteRecordInfo<'register', '/register', Record<never, never>, Record<never, never>>,
+    'procesos-solicitar-vacaciones': RouteRecordInfo<'procesos-solicitar-vacaciones', '/procesos/solicitar-vacaciones', Record<never, never>, Record<never, never>>,
     'reportes-asistencia-conferencia': RouteRecordInfo<'reportes-asistencia-conferencia', '/reportes/asistencia-conferencia', Record<never, never>, Record<never, never>>,
     'reportes-ciclo-pedido': RouteRecordInfo<'reportes-ciclo-pedido', '/reportes/ciclo-pedido', Record<never, never>, Record<never, never>>,
     'reportes-comportamiento-cambios': RouteRecordInfo<'reportes-comportamiento-cambios', '/reportes/comportamiento-cambios', Record<never, never>, Record<never, never>>,
@@ -86,6 +86,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-simulador-cobranza': RouteRecordInfo<'reportes-simulador-cobranza', '/reportes/simulador-cobranza', Record<never, never>, Record<never, never>>,
     'reportes-status-mgz': RouteRecordInfo<'reportes-status-mgz', '/reportes/status-mgz', Record<never, never>, Record<never, never>>,
     'reportes-tracking-zona': RouteRecordInfo<'reportes-tracking-zona', '/reportes/tracking-zona', Record<never, never>, Record<never, never>>,
+    'reportes-vacaciones-consolidado': RouteRecordInfo<'reportes-vacaciones-consolidado', '/reportes/vacaciones-consolidado', Record<never, never>, Record<never, never>>,
     'reportes-visitas': RouteRecordInfo<'reportes-visitas', '/reportes/visitas', Record<never, never>, Record<never, never>>,
   }
 }
