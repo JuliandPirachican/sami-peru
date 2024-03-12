@@ -40,15 +40,13 @@ import type {
 declare module 'vue-router/auto/routes' {
   export interface RouteNamedMap {
     '$error': RouteRecordInfo<'$error', '/:error(.*)', { error: ParamValue<true> }, { error: ParamValue<false> }>,
-    'access-control': RouteRecordInfo<'access-control', '/access-control', Record<never, never>, Record<never, never>>,
     'administracion-log-usuario': RouteRecordInfo<'administracion-log-usuario', '/administracion/log-usuario', Record<never, never>, Record<never, never>>,
     'administracion-permiso-zonal': RouteRecordInfo<'administracion-permiso-zonal', '/administracion/permiso-zonal', Record<never, never>, Record<never, never>>,
     'consultas-generales': RouteRecordInfo<'consultas-generales', '/consultas/generales', Record<never, never>, Record<never, never>>,
     'consultas-log-pedido': RouteRecordInfo<'consultas-log-pedido', '/consultas/log-pedido', Record<never, never>, Record<never, never>>,
-    'forgot-password': RouteRecordInfo<'forgot-password', '/forgot-password', Record<never, never>, Record<never, never>>,
     'login': RouteRecordInfo<'login', '/login', Record<never, never>, Record<never, never>>,
     'main': RouteRecordInfo<'main', '/main', Record<never, never>, Record<never, never>>,
-    'not-authorized': RouteRecordInfo<'not-authorized', '/not-authorized', Record<never, never>, Record<never, never>>,
+    'no-autorizado': RouteRecordInfo<'no-autorizado', '/no-autorizado', Record<never, never>, Record<never, never>>,
     'procesos-abrir-asistencia': RouteRecordInfo<'procesos-abrir-asistencia', '/procesos/abrir-asistencia', Record<never, never>, Record<never, never>>,
     'procesos-actualizar-dato': RouteRecordInfo<'procesos-actualizar-dato', '/procesos/actualizar-dato', Record<never, never>, Record<never, never>>,
     'procesos-cerrar-asistencia': RouteRecordInfo<'procesos-cerrar-asistencia', '/procesos/cerrar-asistencia', Record<never, never>, Record<never, never>>,
@@ -57,7 +55,7 @@ declare module 'vue-router/auto/routes' {
     'procesos-gestionar-posible-asesora': RouteRecordInfo<'procesos-gestionar-posible-asesora', '/procesos/gestionar-posible-asesora', Record<never, never>, Record<never, never>>,
     'procesos-posible-asesora': RouteRecordInfo<'procesos-posible-asesora', '/procesos/posible-asesora', Record<never, never>, Record<never, never>>,
     'procesos-respuesta-incidencias': RouteRecordInfo<'procesos-respuesta-incidencias', '/procesos/respuesta-incidencias', Record<never, never>, Record<never, never>>,
-    'register': RouteRecordInfo<'register', '/register', Record<never, never>, Record<never, never>>,
+    'procesos-solicitar-vacaciones': RouteRecordInfo<'procesos-solicitar-vacaciones', '/procesos/solicitar-vacaciones', Record<never, never>, Record<never, never>>,
     'reportes-asistencia-conferencia': RouteRecordInfo<'reportes-asistencia-conferencia', '/reportes/asistencia-conferencia', Record<never, never>, Record<never, never>>,
     'reportes-ciclo-pedido': RouteRecordInfo<'reportes-ciclo-pedido', '/reportes/ciclo-pedido', Record<never, never>, Record<never, never>>,
     'reportes-comportamiento-cambios': RouteRecordInfo<'reportes-comportamiento-cambios', '/reportes/comportamiento-cambios', Record<never, never>, Record<never, never>>,
@@ -86,6 +84,8 @@ declare module 'vue-router/auto/routes' {
     'reportes-simulador-cobranza': RouteRecordInfo<'reportes-simulador-cobranza', '/reportes/simulador-cobranza', Record<never, never>, Record<never, never>>,
     'reportes-status-mgz': RouteRecordInfo<'reportes-status-mgz', '/reportes/status-mgz', Record<never, never>, Record<never, never>>,
     'reportes-tracking-zona': RouteRecordInfo<'reportes-tracking-zona', '/reportes/tracking-zona', Record<never, never>, Record<never, never>>,
+    'reportes-vacaciones-consolidado': RouteRecordInfo<'reportes-vacaciones-consolidado', '/reportes/vacaciones-consolidado', Record<never, never>, Record<never, never>>,
+    'reportes-vacaciones-pendientes': RouteRecordInfo<'reportes-vacaciones-pendientes', '/reportes/vacaciones-pendientes', Record<never, never>, Record<never, never>>,
     'reportes-visitas': RouteRecordInfo<'reportes-visitas', '/reportes/visitas', Record<never, never>, Record<never, never>>,
   }
 }

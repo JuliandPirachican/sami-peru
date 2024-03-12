@@ -800,7 +800,6 @@ const itemsDetalleVisible = computed(() => {
                   :headers="headersDetalle"
                   :items="itemsDetalleVisible"
                   class="text-no-wrap"
-                  
                   fixed-header
                   height="400"
                 >

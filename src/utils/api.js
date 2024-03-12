@@ -39,13 +39,27 @@ export const $api = ofetch.create({
     }
     mensaje = mensaje.toLowerCase()
     mensaje = mensaje.charAt(0).toUpperCase() + mensaje.slice(1)
+    if(login) {
+      const app = useAppStore()
+      
+      app.loading(false)
+      localStorage.removeItem('accessToken')
+      localStorage.removeItem('userData')
+      localStorage.removeItem('userAbilityRules')
+      alert(`Debe iniciar sesión ${mensaje}`)
+      window.location.href = import.meta.env.BASE_URL + 'login'
 
-    const app = useAppStore()
+      return false 
+    } else {
+      const app = useAppStore()
 
-    app.loading(false)
-    app.mensajeSnackbar(mensaje)
-    app.color("error")
-    app.snackbar(true)
+      app.loading(false)
+      app.mensajeSnackbar(mensaje)
+      app.color("error")
+      app.snackbar(true)
+    }
+    
+   
   },
 })
 

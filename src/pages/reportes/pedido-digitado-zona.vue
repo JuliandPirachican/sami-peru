@@ -453,20 +453,23 @@ const onGenerar = async () => {
     itemsDetalle.value = data.data_deta
     
   } catch (error) {
-    const { data } = error.response._data    
-    if (typeof data != "undefined") {
-      for (var key in data)
-      {
-        if (key == 'campana') {
-          errorCampana.value = true
-          errorMensajeCampana.value = data[key]
-        }
-        if (key == 'zona') {
-          errorZona.value = true
-          errorMensajeZona.value = data[key]
+    if(typeof error.response != "undefined") {
+      const { data } = error.response._data    
+      if (typeof data != "undefined") {
+        for (var key in data)
+        {
+          if (key == 'campana') {
+            errorCampana.value = true
+            errorMensajeCampana.value = data[key]
+          }
+          if (key == 'zona') {
+            errorZona.value = true
+            errorMensajeZona.value = data[key]
+          }
         }
       }
     }
+   
   }
   finally {
     appStore.loading(false)
@@ -843,8 +846,8 @@ const onExcelConcepto = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/pedidos-digitados/excelDetalle`, {
       method: "post",
       body: {
-        titulo: conceptoTitulo.value,
-        data: itemsSubDetalle.value,
+        cabecera: headersSubDetalle.value,
+        detalle: itemsSubDetalle.value,
       },
     })
     

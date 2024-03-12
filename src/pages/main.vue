@@ -98,8 +98,13 @@ const errorMensajeCampana = ref('')
 
 onMounted(async () => {
   appStore.titulo(`Dashboard / Ventas`)
-  await obtenerCampana()
-  await onGenerar()
+  try {
+    await obtenerCampana()
+    await onGenerar()
+  } catch (error) {
+    console.log(error)
+  }
+  
 })
 
 const obtenerCampana = async () => {
@@ -224,13 +229,15 @@ const onGenerar = async () => {
     variableData.value = data.variable
     cierreData.value = data.cierre
   } catch (error) {
-    const { data } = error.response._data    
-    if (typeof data != "undefined") {
-      for (var key in data)
-      {
-        if (key == 'campana') {
-          errorCampana.value = true
-          errorMensajeCampana.value = data[key]
+    if(error.response !== undefined) {
+      const { data } = error.response._data    
+      if (typeof data != "undefined") {
+        for (var key in data)
+        {
+          if (key == 'campana') {
+            errorCampana.value = true
+            errorMensajeCampana.value = data[key]
+          }
         }
       }
     }
