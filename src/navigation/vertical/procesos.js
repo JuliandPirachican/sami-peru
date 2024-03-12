@@ -47,6 +47,13 @@ export default [
     action: 'peru/proc_come_gest_posi_ases',
   },
   { 
+    title: 'Gestionar vacaciones', 
+    to: 'procesos-gestionar-vacaciones',
+    icon: { icon: 'tabler-clock-code' },
+    subject: 'peru/proc_come_gest_vaca', 
+    action: 'peru/proc_come_gest_vaca',
+  },
+  { 
     title: 'Registro posible asesora', 
     to: 'procesos-posible-asesora',
     icon: { icon: 'tabler-rotate-clockwise' },
