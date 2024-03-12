@@ -68,6 +68,13 @@ export default [
     action: 'peru/proc_cart_resp_inci_diar',
   },
   { 
+    title: 'Solicitud recodificacion', 
+    to: 'procesos-solicitar-recodificacion',
+    icon: { icon: 'tabler-clock-24' },
+    subject: 'peru/proc_come_soli_reco', 
+    action: 'peru/proc_come_soli_reco',
+  },
+  { 
     title: 'Solicitud vacaciones', 
     to: 'procesos-solicitar-vacaciones',
     icon: { icon: 'tabler-clock-24' },
