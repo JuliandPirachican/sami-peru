@@ -5239,7 +5239,6 @@ const onGenerar = async () => {
     }
     
   } catch (error) {
-    console.log(error)
     if(typeof error.response !== "undefined") {
       const { data } = error.response._data
       if (typeof data != "undefined") {
