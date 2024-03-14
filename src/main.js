@@ -1,10 +1,12 @@
-import { createApp } from 'vue'
 import App from '@/App.vue'
 import { registerPlugins } from '@core/utils/plugins'
+import { createApp } from 'vue'
 
 // Styles
 import '@core/scss/template/index.scss'
 import '@styles/styles.scss'
+import 'jqwidgets-scripts/jqwidgets/styles/jqx.base.css'
+import 'jqwidgets-scripts/jqwidgets/styles/jqx.material.css'
 
 // Create vue app
 const app = createApp(App)

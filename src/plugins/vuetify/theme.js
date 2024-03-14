@@ -27,6 +27,7 @@ export const themes = {
       'grey-700': '#616161',
       'grey-800': '#424242',
       'grey-900': '#212121',
+      'primary-light': '#FFFDE7',
       'perfect-scrollbar-thumb': '#DBDADE',
       'skin-bordered-background': '#fff',
       'skin-bordered-surface': '#fff',
