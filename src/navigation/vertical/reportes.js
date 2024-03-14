@@ -94,6 +94,12 @@ export default [
         action: 'peru/repo_come_proy_camp', 
       },
       { 
+        title: 'Seguimiento cierre país', 
+        to: 'reportes-seguimiento-cierre-pais',
+        subject: 'peru/repo_come_segu_cier_camp_pais', 
+        action: 'peru/repo_come_segu_cier_camp_pais', 
+      },
+      { 
         title: 'Seguimiento cierre region', 
         to: 'reportes-seguimiento-cierre-region',
         subject: 'peru/repo_come_segu_cier_camp_regi', 
@@ -229,10 +235,4 @@ export default [
     subject: 'peru/repo_come_visi', 
     action: 'peru/repo_come_visi', 
   },
-
-
-
-
-
-  
 ]
