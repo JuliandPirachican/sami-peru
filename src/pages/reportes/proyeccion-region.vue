@@ -2,6 +2,7 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
 import { VDataTable } from 'vuetify/labs/VDataTable'
+import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue"
 
 definePage({
   meta: {
@@ -47,10 +48,11 @@ const variables = ref([
 ])
 
 const selectedVariable = ref(0)
+
 const itemsCorte = ref([])
 const itemsZona = ref([])
 
-const headersCorte = computed(() => {
+const cabecera = computed(() => {
   if(selectedVariable.value === 0) {
     return [
       {
@@ -843,7 +845,7 @@ const headersCorte = computed(() => {
   }
 })
 
-const headersZona = computed(() => {
+const cabeceraZona = computed(() => {
   if(selectedVariable.value === 0) {
     return [
       {
@@ -1635,7 +1637,1425 @@ const headersZona = computed(() => {
     ]
   }
 })
-      
+
+const columnas = [
+  {
+    text: 'Corte',
+    datafield: 'codi_cort',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Regíon',
+    datafield: 'codi_area',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Nro zonas',
+    datafield: 'tota_zona',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Act. inic.',
+    datafield: 'acti_inic',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Obj. camp.',
+    datafield: 'pedi_tota_cant',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pedi_tota_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Proyeccion (%)',
+    datafield: 'pedi_tota_prim_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pedi_tota_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Reproyección (%)',
+    datafield: 'pedi_tota_segu_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Obj. camp.',
+    datafield: 'pedi_inco_cant',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pedi_inco_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'Proyección (%)',
+    datafield: 'pedi_inco_prim_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pedi_inco_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'Reproyección (%)',
+    datafield: 'pedi_inco_segu_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'obj. camp.',
+    datafield: 'pedi_rete_cant',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pedi_rete_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Proyección (%)',
+    datafield: 'pedi_rete_prim_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pedi_rete_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Reproyección (%)',
+    datafield: 'pedi_rete_segu_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Camp. ante.',
+    datafield: 'acti_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+    
+  },
+  {
+    text: 'Obj.% acti. camp.',
+    datafield: 'acti_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Obj. pedi. acti.',
+    datafield: 'acti_obje_pedi',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Proyección (%)',
+    datafield: 'acti_porc_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'acti_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Reproyeccion (%)',
+    datafield: 'acti_porc_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'acti_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Rete. camp. ante.',
+    datafield: 'cons_rete_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_prim',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'cons_rete_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_prim',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'cons_rete_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_prim',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'cons_rete_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_prim',
+  },
+  {
+    text: '1 Camp. ante.',
+    datafield: 'cons_segu_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_segu',
+  },
+  {
+    text: 'Obje. form. éxito',
+    datafield: 'cons_segu_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_segu',
+  },
+  {
+    text: '2 Camp. ante.',
+    datafield: 'cons_terc_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_terc',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'cons_terc_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_terc',
+  },
+  {
+    text: '3 Camp. ante.',
+    datafield: 'cons_cuar_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_cuar',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'cons_cuar_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_cuar',
+  },
+  {
+    text: 'Peg21',
+    datafield: 'pe21',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe21',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'pe21_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe21',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pe21_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe21',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pe21_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe21',
+  },
+  {
+    text: 'Peg42',
+    datafield: 'pe42',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe42',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'pe42_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe42',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pe42_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe42',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pe42_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe42',
+  },
+  {
+    text: 'Peg63',
+    datafield: 'pe63',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe63',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'pe63_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe63',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pe63_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe63',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pe63_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe63',
+  },
+  {
+    text: 'Pegs',
+    datafield: 'pegs',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'suma',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'pegs_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'suma',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pegs_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'suma',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pegs_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'suma',
+  },
+  {
+    text: 'Pos. Rein.',
+    datafield: 'rein',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rein',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'rein_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rein',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'rein_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rein',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'rein_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rein',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'capi_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'capi',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'capi_repr',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'capi',
+  },
+  {
+    text: 'Venta',
+    datafield: 'tota_vent',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Cobranza 88%(por cobrar)',
+    datafield: 'cobr',
+    width: '250',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Cobranza 88%(te puedes quedar)',
+    datafield: 'cobr_colc',
+    width: '250',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Cobranza 92%(por cobrar)',
+    datafield: 'co92',
+    width: '250',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Cobranza 92%(te puedes quedar)',
+    datafield: 'co92_colc',
+    width: '250',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+]
+
+const columnasZona = [
+  {
+    text: 'Corte',
+    datafield: 'codi_cort',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Zona',
+    datafield: 'codi_zona',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Gerente',
+    datafield: 'nomb_vend',
+    width: '250',
+    align: 'center',
+    cellsalign: 'left',
+    editable: true,
+  },
+  {
+    text: 'Act. inic.',
+    datafield: 'acti_inic',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Obj. camp.',
+    datafield: 'pedi_tota_cant',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pedi_tota_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Proyeccion (%)',
+    datafield: 'pedi_tota_prim_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pedi_tota_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Reproyección (%)',
+    datafield: 'pedi_tota_segu_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'tota',
+  },
+  {
+    text: 'Obj. camp.',
+    datafield: 'pedi_inco_cant',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pedi_inco_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'Proyección (%)',
+    datafield: 'pedi_inco_prim_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pedi_inco_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'Reproyección (%)',
+    datafield: 'pedi_inco_segu_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'inco',
+  },
+  {
+    text: 'obj. camp.',
+    datafield: 'pedi_rete_cant',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pedi_rete_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Proyección (%)',
+    datafield: 'pedi_rete_prim_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pedi_rete_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Reproyección (%)',
+    datafield: 'pedi_rete_segu_porc',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+  },
+  {
+    text: 'Camp. ante.',
+    datafield: 'acti_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+    
+  },
+  {
+    text: 'Obj.% acti. camp.',
+    datafield: 'acti_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Obj. pedi. acti.',
+    datafield: 'acti_obje_pedi',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Proyección (%)',
+    datafield: 'acti_porc_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'acti_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Reproyeccion (%)',
+    datafield: 'acti_porc_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'acti_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+  },
+  {
+    text: 'Rete. camp. ante.',
+    datafield: 'cons_rete_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_prim',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'cons_rete_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_prim',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'cons_rete_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_prim',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'cons_rete_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_prim',
+  },
+  {
+    text: '1 Camp. ante.',
+    datafield: 'cons_segu_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_segu',
+  },
+  {
+    text: 'Obje. form. éxito',
+    datafield: 'cons_segu_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_segu',
+  },
+  {
+    text: '2 Camp. ante.',
+    datafield: 'cons_terc_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_terc',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'cons_terc_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_terc',
+  },
+  {
+    text: '3 Camp. ante.',
+    datafield: 'cons_cuar_camp_ante',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_cuar',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'cons_cuar_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'cons_cuar',
+  },
+  {
+    text: 'Peg21',
+    datafield: 'pe21',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe21',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'pe21_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe21',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pe21_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe21',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pe21_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe21',
+  },
+  {
+    text: 'Peg42',
+    datafield: 'pe42',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe42',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'pe42_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe42',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pe42_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe42',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pe42_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe42',
+  },
+  {
+    text: 'Peg63',
+    datafield: 'pe63',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe63',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'pe63_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe63',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pe63_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe63',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pe63_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'pe63',
+  },
+  {
+    text: 'Pegs',
+    datafield: 'pegs',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'suma',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'pegs_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'suma',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'pegs_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'suma',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'pegs_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'suma',
+  },
+  {
+    text: 'Pos. Rein.',
+    datafield: 'rein',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rein',
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'rein_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rein',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'rein_prim',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rein',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'rein_segu',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rein',
+  },
+  {
+    text: 'Obj. proyección',
+    datafield: 'capi_obje',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'capi',
+  },
+  {
+    text: 'Reproyección',
+    datafield: 'capi_repr',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'capi',
+  },
+  {
+    text: 'Venta',
+    datafield: 'tota_vent',
+    width: '200',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Cobranza 88%(por cobrar)',
+    datafield: 'cobr',
+    width: '250',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Cobranza 88%(te puedes quedar)',
+    datafield: 'cobr_colc',
+    width: '250',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Cobranza 92%(por cobrar)',
+    datafield: 'co92',
+    width: '250',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+  {
+    text: 'Cobranza 92%(te puedes quedar)',
+    datafield: 'co92_colc',
+    width: '250',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+  },
+]
+
+const columnasGrupo = [
+  {
+    text: 'Pedidos Totales',
+    align: 'center',
+    name: 'tota',
+  },
+  {
+    text: 'Incorporación',
+    align: 'center',
+    name: 'inco',
+  },
+  {
+    text: 'Pedidos de retención',
+    align: 'center',
+    name: 'rete',
+  },
+  {
+    text: '% Actividad',
+    align: 'center',
+    name: 'acti',
+  },
+  {
+    text: 'Consecutividad pedidos de retención 90%',
+    align: 'center',
+    name: 'cons_prim',
+  },
+  {
+    text: 'Consecutividad 2do pedido 100%',
+    align: 'center',
+    name: 'cons_segu',
+  },
+  {
+    text: 'Consecutividad 3er pedido 80%',
+    align: 'center',
+    name: 'cons_terc',
+  },
+  {
+    text: 'Consecutividad 4to pedido 70%',
+    align: 'center',
+    name: 'cons_cuar',
+  },
+  {
+    text: 'Peg21 40%',
+    align: 'center',
+    name: 'pe21',
+  },
+  {
+    text: 'Peg42 30%',
+    align: 'center',
+    name: 'pe42',
+  },
+  {
+    text: 'Peg63 25%',
+    align: 'center',
+    name: 'pe63',
+  },
+  {
+    text: 'Suma de Pegs 35%',
+    align: 'center',
+    name: 'suma',
+  },
+  {
+    text: 'Reingresos 10%',
+    align: 'center',
+    name: 'rein',
+  },
+  {
+    text: 'Capitalización',
+    align: 'center',
+    name: 'capi',
+  },
+]
+
+const columnasGrupoZona = [
+  {
+    text: 'Pedidos Totales',
+    align: 'center',
+    name: 'tota',
+  },
+  {
+    text: 'Incorporación',
+    align: 'center',
+    name: 'inco',
+  },
+  {
+    text: 'Pedidos de retención',
+    align: 'center',
+    name: 'rete',
+  },
+  {
+    text: '% Actividad',
+    align: 'center',
+    name: 'acti',
+  },
+  {
+    text: 'Consecutividad pedidos de retención 90%',
+    align: 'center',
+    name: 'cons_prim',
+  },
+  {
+    text: 'Consecutividad 2do pedido 100%',
+    align: 'center',
+    name: 'cons_segu',
+  },
+  {
+    text: 'Consecutividad 3er pedido 80%',
+    align: 'center',
+    name: 'cons_terc',
+  },
+  {
+    text: 'Consecutividad 4to pedido 70%',
+    align: 'center',
+    name: 'cons_cuar',
+  },
+  {
+    text: 'Peg21 40%',
+    align: 'center',
+    name: 'pe21',
+  },
+  {
+    text: 'Peg42 30%',
+    align: 'center',
+    name: 'pe42',
+  },
+  {
+    text: 'Peg63 25%',
+    align: 'center',
+    name: 'pe63',
+  },
+  {
+    text: 'Suma de Pegs 35%',
+    align: 'center',
+    name: 'suma',
+  },
+  {
+    text: 'Reingresos 10%',
+    align: 'center',
+    name: 'rein',
+  },
+  {
+    text: 'Capitalización',
+    align: 'center',
+    name: 'capi',
+  },
+]
+
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'codi_cort', type: 'number' },
+    { name: 'codi_area', type: 'string' },
+    { name: 'tota_zona', type: 'number' },
+    { name: 'acti_inic', type: 'number' },
+    { name: 'pedi_tota_cant', type: 'number' },
+    { name: 'pedi_tota_prim', type: 'number' },
+    { name: 'pedi_tota_prim_porc', type: 'number' },
+    { name: 'pedi_tota_segu', type: 'number' },
+    { name: 'pedi_tota_segu_porc', type: 'number' },
+    { name: 'pedi_inco_cant', type: 'number' },
+    { name: 'pedi_inco_prim', type: 'number' },
+    { name: 'pedi_inco_prim_porc', type: 'number' },
+    { name: 'pedi_inco_segu', type: 'number' },
+    { name: 'pedi_inco_segu_porc', type: 'number' },
+    { name: 'pedi_rete_cant', type: 'number' },
+    { name: 'pedi_rete_prim', type: 'number' },
+    { name: 'pedi_rete_prim_porc', type: 'number' },
+    { name: 'pedi_rete_segu', type: 'number' },
+    { name: 'pedi_rete_segu_porc', type: 'number' },
+    { name: 'acti_camp_ante', type: 'number' },
+    { name: 'acti_obje', type: 'number' },
+    { name: 'acti_obje_pedi', type: 'number' },
+    { name: 'acti_porc_prim', type: 'number' },
+    { name: 'acti_prim', type: 'number' },
+    { name: 'acti_porc_segu', type: 'number' },
+    { name: 'acti_segu', type: 'number' },
+    { name: 'cons_rete_camp_ante', type: 'number' },
+    { name: 'cons_rete_obje', type: 'number' },
+    { name: 'cons_rete_prim', type: 'number' },
+    { name: 'cons_rete_segu', type: 'number' },
+    { name: 'cons_segu_camp_ante', type: 'number' },
+    { name: 'cons_segu_obje', type: 'number' },
+    { name: 'cons_terc_obje', type: 'number' },
+    { name: 'cons_cuar_camp_ante', type: 'number' },
+    { name: 'cons_cuar_obje', type: 'number' },
+    { name: 'pe21', type: 'number' },
+    { name: 'pe21_obje', type: 'number' },
+    { name: 'pe21_prim', type: 'number' },
+    { name: 'pe21_segu', type: 'number' },
+    { name: 'pe42', type: 'number' },
+    { name: 'pe42_obje', type: 'number' },
+    { name: 'pe42_prim', type: 'number' },
+    { name: 'pe42_prim', type: 'number' },
+    { name: 'pe42_segu', type: 'number' },
+    { name: 'pe63', type: 'number' },
+    { name: 'pe63_obje', type: 'number' },
+    { name: 'pe63_prim', type: 'number' },
+    { name: 'pe63_segu', type: 'number' },
+    { name: 'pegs', type: 'number' },
+    { name: 'pegs_obje', type: 'number' },
+    { name: 'pegs_prim', type: 'number' },
+    { name: 'pegs_segu', type: 'number' },
+    { name: 'rein', type: 'number' },
+    { name: 'rein_obje', type: 'number' },
+    { name: 'rein_prim', type: 'number' },
+    { name: 'rein_segu', type: 'number' },
+    { name: 'capi_obje', type: 'number' },
+    { name: 'capi_repr', type: 'number' },
+    { name: 'tota_vent', type: 'number' },
+    { name: 'cobr', type: 'number' },
+    { name: 'cobr_colc', type: 'number' },
+    { name: 'co92', type: 'number' },
+    { name: 'co92_colc', type: 'number' },
+  ],
+  datatype: 'json',
+})
+
+const sourceGlobalZona = ref({
+  localdata: [],
+  datafields: [
+    { name: 'codi_cort', type: 'number' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'nomb_vend', type: 'string' },
+    { name: 'acti_inic', type: 'number' },
+    { name: 'pedi_tota_cant', type: 'number' },
+    { name: 'pedi_tota_prim', type: 'number' },
+    { name: 'pedi_tota_prim_porc', type: 'number' },
+    { name: 'pedi_tota_segu', type: 'number' },
+    { name: 'pedi_tota_segu_porc', type: 'number' },
+    { name: 'pedi_inco_cant', type: 'number' },
+    { name: 'pedi_inco_prim', type: 'number' },
+    { name: 'pedi_inco_prim_porc', type: 'number' },
+    { name: 'pedi_inco_segu', type: 'number' },
+    { name: 'pedi_inco_segu_porc', type: 'number' },
+    { name: 'pedi_rete_cant', type: 'number' },
+    { name: 'pedi_rete_prim', type: 'number' },
+    { name: 'pedi_rete_prim_porc', type: 'number' },
+    { name: 'pedi_rete_segu', type: 'number' },
+    { name: 'pedi_rete_segu_porc', type: 'number' },
+    { name: 'acti_camp_ante', type: 'number' },
+    { name: 'acti_obje', type: 'number' },
+    { name: 'acti_obje_pedi', type: 'number' },
+    { name: 'acti_porc_prim', type: 'number' },
+    { name: 'acti_prim', type: 'number' },
+    { name: 'acti_porc_segu', type: 'number' },
+    { name: 'acti_segu', type: 'number' },
+    { name: 'cons_rete_camp_ante', type: 'number' },
+    { name: 'cons_rete_obje', type: 'number' },
+    { name: 'cons_rete_prim', type: 'number' },
+    { name: 'cons_rete_segu', type: 'number' },
+    { name: 'cons_segu_camp_ante', type: 'number' },
+    { name: 'cons_segu_obje', type: 'number' },
+    { name: 'cons_terc_obje', type: 'number' },
+    { name: 'cons_cuar_camp_ante', type: 'number' },
+    { name: 'cons_cuar_obje', type: 'number' },
+    { name: 'pe21', type: 'number' },
+    { name: 'pe21_obje', type: 'number' },
+    { name: 'pe21_prim', type: 'number' },
+    { name: 'pe21_segu', type: 'number' },
+    { name: 'pe42', type: 'number' },
+    { name: 'pe42_obje', type: 'number' },
+    { name: 'pe42_prim', type: 'number' },
+    { name: 'pe42_prim', type: 'number' },
+    { name: 'pe42_segu', type: 'number' },
+    { name: 'pe63', type: 'number' },
+    { name: 'pe63_obje', type: 'number' },
+    { name: 'pe63_prim', type: 'number' },
+    { name: 'pe63_segu', type: 'number' },
+    { name: 'pegs', type: 'number' },
+    { name: 'pegs_obje', type: 'number' },
+    { name: 'pegs_prim', type: 'number' },
+    { name: 'pegs_segu', type: 'number' },
+    { name: 'rein', type: 'number' },
+    { name: 'rein_obje', type: 'number' },
+    { name: 'rein_prim', type: 'number' },
+    { name: 'rein_segu', type: 'number' },
+    { name: 'capi_obje', type: 'number' },
+    { name: 'capi_repr', type: 'number' },
+    { name: 'tota_vent', type: 'number' },
+    { name: 'cobr', type: 'number' },
+    { name: 'cobr_colc', type: 'number' },
+    { name: 'co92', type: 'number' },
+    { name: 'co92_colc', type: 'number' },
+  ],
+  datatype: 'json',
+})
+
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const adaptadorGlobalZona = new jqx.dataAdapter(sourceGlobalZona.value)
+
+const refGridGlobal = ref()
+const refGridGlobalZona = ref()
+
+const localization = appStore.localization
+
 const campanaOptions = ref([])
 const errorCampana = ref(false)
 const errorMensajeCampana = ref('')
@@ -1731,8 +3151,6 @@ const onGenerar = async () => {
       reproyeccionActividad: '0.00',
       reproyeccionPorcentajeActividad: '0.00',
     }
-    itemsCorte.value = []
-    itemsZona.value = []
 
     const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-region`, {
       method: "get",
@@ -1742,8 +3160,14 @@ const onGenerar = async () => {
       },
     })
 
-    itemsCorte.value = data.data_cons
-    itemsZona.value = data.data_glob
+    sourceGlobal.value.localdata =  data.data_cons
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
+
+    sourceGlobalZona.value.localdata =  data.data_glob
+    refGridGlobalZona.value.updatebounddata('cells')
+    refGridGlobalZona.value.refreshfilterrow()
+
     general.value = {
       objetivoIncorporacion: data.obje_inco,
       proyeccionIncorporacion: data.obje_inco_proy,
@@ -1805,8 +3229,13 @@ const onLimpiar= async () => {
     reproyeccionActividad: '0.00',
     reproyeccionPorcentajeActividad: '0.00',
   }
-  itemsCorte.value = []
-  itemsZona.value = []
+  sourceGlobal.value.localdata = []
+  refGridGlobal.value.updatebounddata('cells')
+  refGridGlobal.value.refreshfilterrow()
+
+  sourceGlobalZona.value.localdata = []
+  refGridGlobalZona.value.updatebounddata('cells')
+  refGridGlobalZona.value.refreshfilterrow()
 }
 
 const onExcel = async () => {
@@ -1819,10 +3248,10 @@ const onExcel = async () => {
       body: {
         general: general.value,
         variable: selectedVariable.value,
-        data_corte: itemsCorte.value,
-        cabecera_corte: headersCorte.value,
-        data_zona: itemsZona.value,
-        cabecera_zona: headersZona.value,
+        cabecera_corte: cabecera.value,
+        detalle: JSON.stringify(refGridGlobal.value.exportdata('xml')),
+        cabecera_zona: cabeceraZona.value,
+        detalle_zona: JSON.stringify(refGridGlobalZona.value.exportdata('xml')),
       },
     })
     
@@ -1840,6 +3269,630 @@ const limpiarValidacion = () => {
   errorArea.value = false
   errorMensajeArea.value = ''
 }
+
+const columnsOcultarTodo = [
+  'codi_cort',
+  'codi_area',
+  'tota_zona',
+  'acti_inic',
+  'pedi_tota_cant',
+  'pedi_tota_prim',
+  'pedi_tota_prim_porc',
+  'pedi_tota_segu',
+  'pedi_tota_segu_porc',
+  'pedi_inco_cant',
+  'pedi_inco_prim',
+  'pedi_inco_prim_porc',
+  'pedi_inco_segu',
+  'pedi_inco_segu_porc',
+  'pedi_rete_cant',
+  'pedi_rete_prim',
+  'pedi_rete_prim_porc',
+  'pedi_rete_segu',
+  'pedi_rete_segu_porc',
+  'acti_camp_ante',
+  'acti_obje',
+  'acti_obje_pedi',
+  'acti_porc_prim',
+  'acti_prim',
+  'acti_porc_segu',
+  'acti_segu',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'cons_terc_camp_ante',
+  'cons_terc_obje',
+  'cons_cuar_camp_ante',       
+  'cons_cuar_obje',
+  'pe21',
+  'pe21_obje',
+  'pe21_prim',
+  'pe21_segu',
+  'pe42',
+  'pe42_obje',
+  'pe42_prim',
+  'pe42_segu',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'pegs',
+  'pegs_obje',
+  'pegs_prim',
+  'pegs_segu',
+  'rein',
+  'rein_obje',
+  'rein_prim',
+  'rein_segu',
+  'capi_obje',
+  'capi_repr',
+  'tota_vent',
+  'cobr',
+  'cobr_colc',
+  'co92',
+  'co92_colc',
+]
+
+const columnsMostrarTodo = [
+  'codi_cort',
+  'codi_area',
+  'tota_zona',
+  'acti_inic',
+  'pedi_tota_cant',
+  'pedi_tota_prim',
+  'pedi_tota_prim_porc',
+  'pedi_tota_segu',
+  'pedi_tota_segu_porc',
+  'pedi_inco_cant',
+  'pedi_inco_prim',
+  'pedi_inco_prim_porc',
+  'pedi_inco_segu',
+  'pedi_inco_segu_porc',
+  'pedi_rete_cant',
+  'pedi_rete_prim',
+  'pedi_rete_prim_porc',
+  'pedi_rete_segu',
+  'pedi_rete_segu_porc',
+  'acti_camp_ante',
+  'acti_obje',
+  'acti_obje_pedi',
+  'acti_porc_prim',
+  'acti_prim',
+  'acti_porc_segu',
+  'acti_segu',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'cons_terc_camp_ante',
+  'cons_terc_obje',
+  'cons_cuar_camp_ante',       
+  'cons_cuar_obje',
+  'pe21',
+  'pe21_obje',
+  'pe21_prim',
+  'pe21_segu',
+  'pe42',
+  'pe42_obje',
+  'pe42_prim',
+  'pe42_segu',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'pegs',
+  'pegs_obje',
+  'pegs_prim',
+  'pegs_segu',
+  'rein',
+  'rein_obje',
+  'rein_prim',
+  'rein_segu',
+  'capi_obje',
+  'capi_repr',
+  'tota_vent',
+  'cobr',
+  'cobr_colc',
+  'co92',
+  'co92_colc',
+]
+
+const columnsMostrarPedidosTotales = [
+  'codi_cort',
+  'codi_area',
+  'tota_zona',
+  'acti_inic',
+  'pedi_tota_cant',
+  'pedi_tota_prim',
+  'pedi_tota_prim_porc',
+  'pedi_tota_segu',
+  'pedi_tota_segu_porc',
+  'pedi_inco_cant',
+  'pedi_inco_prim',
+  'pedi_inco_prim_porc',
+  'pedi_inco_segu',
+  'pedi_inco_segu_porc',
+  'pedi_rete_cant',
+  'pedi_rete_prim',
+  'pedi_rete_prim_porc',
+  'pedi_rete_segu',
+  'pedi_rete_segu_porc',
+]
+
+const columnsMostrarPedidosActividad = [
+  'codi_cort',
+  'codi_area',
+  'tota_zona',
+  'acti_inic',
+  'acti_camp_ante',
+  'acti_obje',
+  'acti_obje_pedi',
+  'acti_porc_prim',
+  'acti_prim',
+  'acti_porc_segu',
+  'acti_segu',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'pe21',
+  'pe21_obje',
+  'pe21_prim',
+  'pe21_segu',
+  'pe42',
+  'pe42_obje',
+  'pe42_prim',
+  'pe42_segu',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'pegs',
+  'pegs_obje',
+  'pegs_prim',
+  'pegs_segu',
+]
+
+const columnsMostrarPedidosRetencion = [
+  'codi_cort',
+  'codi_area',
+  'tota_zona',
+  'acti_inic',
+  'pedi_rete_cant',
+  'pedi_rete_prim',
+  'pedi_rete_prim_porc',
+  'pedi_rete_segu',
+  'pedi_rete_segu_porc',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'pe21',
+  'pe21_obje',
+  'pe21_prim',
+  'pe21_segu',
+  'pe42',
+  'pe42_obje',
+  'pe42_prim',
+  'pe42_segu',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'pegs',
+  'pegs_obje',
+  'pegs_prim',
+  'pegs_segu',
+  'rein',
+  'rein_obje',
+  'rein_prim',
+  'rein_segu',
+]
+
+const columnsMostrarCapitalizacion = [
+  'codi_cort',
+  'codi_area',
+  'tota_zona',
+  'acti_inic',
+  'pedi_inco_cant',
+  'pedi_inco_prim',
+  'pedi_inco_prim_porc',
+  'pedi_inco_segu',
+  'pedi_inco_segu_porc',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'rein',
+  'rein_obje',
+  'rein_prim',
+  'rein_segu',
+  'capi_obje',
+  'capi_repr',
+]
+
+const columnsMostrarCobranza = [
+  'codi_cort',
+  'codi_area',
+  'tota_zona',
+  'acti_inic',
+  'tota_vent',
+  'cobr',
+  'cobr_colc',
+  'co92',
+  'co92_colc',
+]
+
+const columnsMostrarConsecutividad = [
+  'codi_cort',
+  'codi_area',
+  'tota_zona',
+  'acti_inic',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'cons_terc_camp_ante',
+  'cons_terc_obje',
+  'cons_cuar_camp_ante',
+  'cons_cuar_obje',
+]
+
+
+const columnsOcultarTodoZona = [
+  'codi_cort',
+  'codi_zona',
+  'nomb_vend',
+  'acti_inic',
+  'pedi_tota_cant',
+  'pedi_tota_prim',
+  'pedi_tota_prim_porc',
+  'pedi_tota_segu',
+  'pedi_tota_segu_porc',
+  'pedi_inco_cant',
+  'pedi_inco_prim',
+  'pedi_inco_prim_porc',
+  'pedi_inco_segu',
+  'pedi_inco_segu_porc',
+  'pedi_rete_cant',
+  'pedi_rete_prim',
+  'pedi_rete_prim_porc',
+  'pedi_rete_segu',
+  'pedi_rete_segu_porc',
+  'acti_camp_ante',
+  'acti_obje',
+  'acti_obje_pedi',
+  'acti_porc_prim',
+  'acti_prim',
+  'acti_porc_segu',
+  'acti_segu',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'cons_terc_camp_ante',
+  'cons_terc_obje',
+  'cons_cuar_camp_ante',       
+  'cons_cuar_obje',
+  'pe21',
+  'pe21_obje',
+  'pe21_prim',
+  'pe21_segu',
+  'pe42',
+  'pe42_obje',
+  'pe42_prim',
+  'pe42_segu',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'pegs',
+  'pegs_obje',
+  'pegs_prim',
+  'pegs_segu',
+  'rein',
+  'rein_obje',
+  'rein_prim',
+  'rein_segu',
+  'capi_obje',
+  'capi_repr',
+  'tota_vent',
+  'cobr',
+  'cobr_colc',
+  'co92',
+  'co92_colc',
+]
+
+const columnsMostrarTodoZona = [
+  'codi_cort',
+  'codi_zona',
+  'nomb_vend',
+  'acti_inic',
+  'pedi_tota_cant',
+  'pedi_tota_prim',
+  'pedi_tota_prim_porc',
+  'pedi_tota_segu',
+  'pedi_tota_segu_porc',
+  'pedi_inco_cant',
+  'pedi_inco_prim',
+  'pedi_inco_prim_porc',
+  'pedi_inco_segu',
+  'pedi_inco_segu_porc',
+  'pedi_rete_cant',
+  'pedi_rete_prim',
+  'pedi_rete_prim_porc',
+  'pedi_rete_segu',
+  'pedi_rete_segu_porc',
+  'acti_camp_ante',
+  'acti_obje',
+  'acti_obje_pedi',
+  'acti_porc_prim',
+  'acti_prim',
+  'acti_porc_segu',
+  'acti_segu',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'cons_terc_camp_ante',
+  'cons_terc_obje',
+  'cons_cuar_camp_ante',       
+  'cons_cuar_obje',
+  'pe21',
+  'pe21_obje',
+  'pe21_prim',
+  'pe21_segu',
+  'pe42',
+  'pe42_obje',
+  'pe42_prim',
+  'pe42_segu',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'pegs',
+  'pegs_obje',
+  'pegs_prim',
+  'pegs_segu',
+  'rein',
+  'rein_obje',
+  'rein_prim',
+  'rein_segu',
+  'capi_obje',
+  'capi_repr',
+  'tota_vent',
+  'cobr',
+  'cobr_colc',
+  'co92',
+  'co92_colc',
+]
+
+const columnsMostrarPedidosTotalesZona = [
+  'codi_cort',
+  'codi_zona',
+  'nomb_vend',
+  'acti_inic',
+  'pedi_tota_cant',
+  'pedi_tota_prim',
+  'pedi_tota_prim_porc',
+  'pedi_tota_segu',
+  'pedi_tota_segu_porc',
+  'pedi_inco_cant',
+  'pedi_inco_prim',
+  'pedi_inco_prim_porc',
+  'pedi_inco_segu',
+  'pedi_inco_segu_porc',
+  'pedi_rete_cant',
+  'pedi_rete_prim',
+  'pedi_rete_prim_porc',
+  'pedi_rete_segu',
+  'pedi_rete_segu_porc',
+]
+
+const columnsMostrarPedidosActividadZona = [
+  'codi_cort',
+  'codi_zona',
+  'nomb_vend',
+  'acti_inic',
+  'acti_camp_ante',
+  'acti_obje',
+  'acti_obje_pedi',
+  'acti_porc_prim',
+  'acti_prim',
+  'acti_porc_segu',
+  'acti_segu',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'pe21',
+  'pe21_obje',
+  'pe21_prim',
+  'pe21_segu',
+  'pe42',
+  'pe42_obje',
+  'pe42_prim',
+  'pe42_segu',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'pegs',
+  'pegs_obje',
+  'pegs_prim',
+  'pegs_segu',
+]
+
+const columnsMostrarPedidosRetencionZona = [
+  'codi_cort',
+  'codi_zona',
+  'nomb_vend',
+  'acti_inic',
+  'pedi_rete_cant',
+  'pedi_rete_prim',
+  'pedi_rete_prim_porc',
+  'pedi_rete_segu',
+  'pedi_rete_segu_porc',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'pe21',
+  'pe21_obje',
+  'pe21_prim',
+  'pe21_segu',
+  'pe42',
+  'pe42_obje',
+  'pe42_prim',
+  'pe42_segu',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'pegs',
+  'pegs_obje',
+  'pegs_prim',
+  'pegs_segu',
+  'rein',
+  'rein_obje',
+  'rein_prim',
+  'rein_segu',
+]
+
+const columnsMostrarCapitalizacionZona = [
+  'codi_cort',
+  'codi_zona',
+  'nomb_vend',
+  'acti_inic',
+  'pedi_inco_cant',
+  'pedi_inco_prim',
+  'pedi_inco_prim_porc',
+  'pedi_inco_segu',
+  'pedi_inco_segu_porc',
+  'pe63',
+  'pe63_obje',
+  'pe63_prim',
+  'pe63_segu',
+  'rein',
+  'rein_obje',
+  'rein_prim',
+  'rein_segu',
+  'capi_obje',
+  'capi_repr',
+]
+
+const columnsMostrarCobranzaZona = [
+  'codi_cort',
+  'codi_zona',
+  'nomb_vend',
+  'acti_inic',
+  'tota_vent',
+  'cobr',
+  'cobr_colc',
+  'co92',
+  'co92_colc',
+]
+
+const columnsMostrarConsecutividadZona = [
+  'codi_cort',
+  'codi_zona',
+  'nomb_vend',
+  'acti_inic',
+  'cons_rete_camp_ante',
+  'cons_rete_obje',
+  'cons_rete_prim',
+  'cons_rete_segu',
+  'cons_segu_camp_ante',
+  'cons_segu_obje',
+  'cons_terc_camp_ante',
+  'cons_terc_obje',
+  'cons_cuar_camp_ante',
+  'cons_cuar_obje',
+]
+
+watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
+  refGridGlobal.value.beginupdate()
+  refGridGlobalZona.value.beginupdate()
+
+  columnsOcultarTodo.forEach(column => {
+    refGridGlobal.value.hidecolumn(column)
+  })
+  columnsOcultarTodoZona.forEach(column => {
+    refGridGlobalZona.value.hidecolumn(column)
+  })
+  
+  if (nuevaVariable === 0) {
+    columnsMostrarTodo.forEach(column => {
+      refGridGlobal.value.showcolumn(column)
+    })
+    columnsMostrarTodoZona.forEach(column => {
+      refGridGlobalZona.value.showcolumn(column)
+    })
+  } else if (nuevaVariable === 1) {
+    columnsMostrarPedidosTotales.forEach(column => {
+      refGridGlobal.value.showcolumn(column)
+    })
+    columnsMostrarPedidosTotalesZona.forEach(column => {
+      refGridGlobalZona.value.showcolumn(column)
+    })
+  } else if (nuevaVariable === 2) {
+    columnsMostrarPedidosActividad.forEach(column => {
+      refGridGlobal.value.showcolumn(column)
+    })
+    columnsMostrarPedidosActividadZona.forEach(column => {
+      refGridGlobalZona.value.showcolumn(column)
+    })
+  } else if (nuevaVariable === 3) {
+    columnsMostrarPedidosRetencion.forEach(column => {
+      refGridGlobal.value.showcolumn(column)
+    })
+    columnsMostrarPedidosRetencionZona.forEach(column => {
+      refGridGlobalZona.value.showcolumn(column)
+    })
+  } else if (nuevaVariable === 4) {
+    columnsMostrarCapitalizacion.forEach(column => {
+      refGridGlobal.value.showcolumn(column)
+    })
+    columnsMostrarCapitalizacionZona.forEach(column => {
+      refGridGlobalZona.value.showcolumn(column)
+    })
+  } else if (nuevaVariable === 5) {
+    columnsMostrarCobranza.forEach(column => {
+      refGridGlobal.value.showcolumn(column)
+    })
+    columnsMostrarCobranzaZona.forEach(column => {
+      refGridGlobalZona.value.showcolumn(column)
+    })
+  } else if (nuevaVariable === 6) {
+    columnsMostrarConsecutividad.forEach(column => {
+      refGridGlobal.value.showcolumn(column)
+    })
+    columnsMostrarConsecutividadZona.forEach(column => {
+      refGridGlobalZona.value.showcolumn(column)
+    })
+  }
+  refGridGlobal.value.endupdate()
+  refGridGlobalZona.value.endupdate()
+})
 </script>
 
 <template>
@@ -1975,326 +4028,33 @@ const limpiarValidacion = () => {
           <VCol cols="12">
             <VCard title="Consolidado por corte">
               <VCardText>
-                <VDataTable
-                  :headers="headersCorte"
-                  :items="itemsCorte"
-                  :items-per-page="-1"
-                  class="text-no-wrap"
-                  
-                  fixed-header
-                  height="400"
-                > 
-                  <template #headers>
-                    <tr>
-                      <th rowspan="2">
-                        CORTE
-                      </th>
-                      <th rowspan="2">
-                        REGIÓN
-                      </th>
-                      <th rowspan="2">
-                        NRO ZONAS
-                      </th>
-                      <th rowspan="2">
-                        ACT. INIC.
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 1"
-                        class="text-center"
-                        colspan="5"
-                      >
-                        PEDIDOS TOTALES
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4"
-                        class="text-center"
-                        colspan="5"
-                      >
-                        INCORPORACIÓN
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3"
-                        class="text-center"
-                        colspan="5"
-                      >
-                        PEDIDOS DE RETENCIÓN
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2"
-                        class="text-center"
-                        colspan="7"
-                      >
-                        % ACTIVIDAD
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        CONSECUTIVIDAD PEDIDOS DE RETENCIÓN 90%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6"
-                        class="text-center"
-                        colspan="2"
-                      >
-                        CONSECUTIVIDAD 2do pedido 100%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 6"
-                        class="text-center"
-                        colspan="2"
-                      >
-                        CONSECUTIVIDAD 3er pedido 80%'
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 6"
-                        class="text-center"
-                        colspan="2"
-                      >
-                        CONSECUTIVIDAD 4to pedido 70%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Peg21 40%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Peg42 30%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Peg63 25%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Suma Pegs 35%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Reingresos 10%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 4"
-                        class="text-center"
-                        colspan="2"
-                      >
-                        Capitalización
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        VENTA
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        COBRANZA 88%(POR COBRAR)
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        COBRANZA 88%(TE PUEDES QUEDAR)
-                      </th>
-
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        COBRANZA 92%(POR COBRAR)
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        COBRANZA 92%(TE PUEDES QUEDAR)
-                      </th>
-                    </tr>
-                    <tr>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        OBJ. CAMP.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        PROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        REPROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        OBJ. CAMP.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        PROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        REPROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        OBJ. CAMP.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        PROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        REPROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        OBJ. % ACTI. CAMP.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        OBJ. PEDI. ACT.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        PROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        REPROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        RETE. CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        1 CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 6">
-                        2 CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 6">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 6">
-                        3 CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 6">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        PEG21
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        PEG42
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4">
-                        PEG63
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        PEGS
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4">
-                        POS. REIN.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 4">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 4">
-                        REPROYECCIÓN
-                      </th>
-                    </tr>
-                  </template>
-                  <template #bottom />
-                </VDataTable>
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :localization="localization"
+                  :height="450"
+                  :columns="columnas"
+                  :source="adaptadorGlobal"
+                  :columngroups="columnasGrupo"
+                  columnsresize
+                  :columnsautoresize="false"
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  showstatusbar
+                  showaggregates
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  editable
+                  editmode="click"
+                />
               </VCardText>
             </VCard>
           </VCol>
@@ -2302,326 +4062,33 @@ const limpiarValidacion = () => {
           <VCol cols="12">
             <VCard title="Detalle por zona">
               <VCardText>
-                <VDataTable
-                  :headers="headersZona"
-                  :items="itemsZona"
-                  :items-per-page="-1"
-                  class="text-no-wrap"
-                  
-                  fixed-header
-                  height="400"
-                > 
-                  <template #headers>
-                    <tr>
-                      <th rowspan="2">
-                        CORTE
-                      </th>
-                      <th rowspan="2">
-                        ZONA
-                      </th>
-                      <th rowspan="2">
-                        GERENTE
-                      </th>
-                      <th rowspan="2">
-                        ACT. INIC.
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 1"
-                        class="text-center"
-                        colspan="5"
-                      >
-                        PEDIDOS TOTALES
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4"
-                        class="text-center"
-                        colspan="5"
-                      >
-                        INCORPORACIÓN
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3"
-                        class="text-center"
-                        colspan="5"
-                      >
-                        PEDIDOS DE RETENCIÓN
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2"
-                        class="text-center"
-                        colspan="7"
-                      >
-                        % ACTIVIDAD
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        CONSECUTIVIDAD PEDIDOS DE RETENCIÓN 90%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6"
-                        class="text-center"
-                        colspan="2"
-                      >
-                        CONSECUTIVIDAD 2do pedido 100%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 6"
-                        class="text-center"
-                        colspan="2"
-                      >
-                        CONSECUTIVIDAD 3er pedido 80%'
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 6"
-                        class="text-center"
-                        colspan="2"
-                      >
-                        CONSECUTIVIDAD 4to pedido 70%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Peg21 40%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Peg42 30%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Peg63 25%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Suma Pegs 35%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4"
-                        class="text-center"
-                        colspan="4"
-                      >
-                        Reingresos 10%
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 4"
-                        class="text-center"
-                        colspan="2"
-                      >
-                        Capitalización
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        VENTA
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        COBRANZA 88%(POR COBRAR)
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        COBRANZA 88%(TE PUEDES QUEDAR)
-                      </th>
-
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        COBRANZA 92%(POR COBRAR)
-                      </th>
-                      <th
-                        v-if="selectedVariable === 0 || selectedVariable === 5"
-                        rowspan="2"
-                      >
-                        COBRANZA 92%(TE PUEDES QUEDAR)
-                      </th>
-                    </tr>
-                    <tr>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        OBJ. CAMP.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        PROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1">
-                        REPROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        OBJ. CAMP.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        PROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 4">
-                        REPROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        OBJ. CAMP.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        PROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 1 || selectedVariable === 3">
-                        REPROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        OBJ. % ACTI. CAMP.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        OBJ. PEDI. ACT.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        PROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        REPROYECCIÓN (%)
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        RETE. CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        1 CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 6">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 6">
-                        2 CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 6">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 6">
-                        3 CAMP. ANTE.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 6">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        PEG21
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        PEG42
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4">
-                        PEG63
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3 || selectedVariable === 4">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        PEGS
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 2 || selectedVariable === 3">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4">
-                        POS. REIN.
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4">
-                        OBJ. FORM. ÉXITO
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 3 || selectedVariable === 4">
-                        REPROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 4">
-                        OBJ. PROYECCIÓN
-                      </th>
-                      <th v-if="selectedVariable === 0 || selectedVariable === 4">
-                        REPROYECCIÓN
-                      </th>
-                    </tr>
-                  </template>
-                  <template #bottom />
-                </VDataTable>
+                <JqxGrid
+                  ref="refGridGlobalZona"
+                  theme="material"
+                  width="100%"
+                  :localization="localization"
+                  :height="450"
+                  :columns="columnasZona"
+                  :source="adaptadorGlobalZona"
+                  :columngroups="columnasGrupoZona"
+                  columnsresize
+                  :columnsautoresize="false"
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  showstatusbar
+                  showaggregates
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  editable
+                  editmode="click"
+                />
               </VCardText>
             </VCard>
           </VCol>

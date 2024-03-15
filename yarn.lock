@@ -4178,6 +4178,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+jqwidgets-scripts@^19.0.0:
+  version "19.0.0"
+  resolved "https://registry.yarnpkg.com/jqwidgets-scripts/-/jqwidgets-scripts-19.0.0.tgz#139388bd55ba17797cf2a82d670dd3b3f1db35d1"
+  integrity sha512-HgMo+lwLqyhtV6mTP/Qfa4m8mSn4iCFpNBDjejcO6BGzaWOxc+aYN6cmN+3y2tZ7MwsR8VWiW6Lq9Nt+UQKzhA==
+
 js-levenshtein@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/js-levenshtein/-/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
