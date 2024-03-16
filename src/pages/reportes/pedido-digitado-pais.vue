@@ -10,7 +10,6 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const formulario = ref({
@@ -293,8 +292,6 @@ const campanaOptions = ref([])
 const corteOptions = ref([])
 const errorCampana = ref(false)
 const errorMensajeCampana = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Pedido digitado pais`)

@@ -1,8 +1,8 @@
 <!-- eslint-disable camelcase -->
 <script setup>
 import { useAppStore } from '@/stores/app'
-import { VDataTable } from 'vuetify/labs/VDataTable'
 import Swal from 'sweetalert2'
+import { VDataTable } from 'vuetify/labs/VDataTable'
 
 definePage({
   meta: {
@@ -11,7 +11,6 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 

@@ -9,7 +9,6 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const formulario = ref({
@@ -76,8 +75,6 @@ const errorMensajeReferenciaReferido = ref('')
 
 const errorSelectedMedios = ref(false)
 const errorMensajeSelectedMedios = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Procesos / Posible asesora`)

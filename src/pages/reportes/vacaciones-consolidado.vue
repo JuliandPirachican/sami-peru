@@ -9,7 +9,6 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const formulario = ref({
@@ -77,7 +76,6 @@ const headers = computed(() => {
 })
 
 const items = ref([])
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 const errorAnio = ref(false)
 const errorMensajeAnio = ref('')

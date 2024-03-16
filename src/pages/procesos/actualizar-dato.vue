@@ -9,7 +9,6 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const formulario = ref({
@@ -35,8 +34,6 @@ const errorMensajeCelular = ref('')
 
 const errorCorreo = ref(false)
 const errorMensajeCorreo = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Procesos / Actualizar dato simple`)

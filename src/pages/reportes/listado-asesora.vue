@@ -12,7 +12,6 @@ definePage({
 })
 
 const { mobile } = useDisplay()
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const rowsPerPage = ref(100)
@@ -371,8 +370,6 @@ const errorMensajeCampana = ref('')
 const zonaOptions = ref([])
 const errorZona = ref(false)
 const errorMensajeZona = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Listado asesora`)

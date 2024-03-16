@@ -1,7 +1,7 @@
 <!-- eslint-disable camelcase -->
 <script setup>
 import { useAppStore } from '@/stores/app'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { EncryptStorage } from 'encrypt-storage'
 import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue"
 
 definePage({
@@ -11,7 +11,11 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
 
 const formulario = ref({
@@ -3063,8 +3067,6 @@ const errorMensajeCampana = ref('')
 const areaOptions = ref([])
 const errorArea = ref(false)
 const errorMensajeArea = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Proyección región`)

@@ -9,7 +9,6 @@ definePage({
 })
 
 const appStore = useAppStore()
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 const formulario = ref({
   usuario: '',

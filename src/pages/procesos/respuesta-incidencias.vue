@@ -9,7 +9,6 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const formulario = ref({
@@ -33,8 +32,6 @@ const errorMensajeIdentificacion = ref('')
 
 const errorRespuesta = ref(false)
 const errorMensajeRespuesta = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Procesos / Respuesta incidencia diaria`)

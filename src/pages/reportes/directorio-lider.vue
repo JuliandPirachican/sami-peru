@@ -1,5 +1,6 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
 import { useDisplay } from 'vuetify'
 import { VDataTable } from 'vuetify/labs/VDataTable'
 
@@ -10,9 +11,13 @@ definePage({
   },
 })
 
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
 const { mobile } = useDisplay()
 const appStore = useAppStore()
-const userData = JSON.parse(localStorage.getItem('userData'))
+const userData = encryptStorage.getItem('userData')
 
 const items = ref([])
 const errorCorreo = ref(false)
@@ -52,8 +57,6 @@ const headers = computed(() => {
     { title: 'Estado', key: 'acti_esta' },
   ]
 })
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Directorio lider`)

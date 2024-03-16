@@ -11,7 +11,6 @@ definePage({
 
 // *Declaracion de variables
 const appStore = useAppStore()
-const userData = JSON.parse(localStorage.getItem('userData'))
 
 const headers = [
   {
@@ -46,8 +45,6 @@ const headers = [
 
 const selected = ref([])
 const items = ref([])
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Procesos / Desbloquear asesora`)

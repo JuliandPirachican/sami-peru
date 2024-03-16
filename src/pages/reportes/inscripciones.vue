@@ -10,7 +10,6 @@ definePage({
 })
 
 const appStore = useAppStore()
-const userData = JSON.parse(localStorage.getItem('userData'))
 
 const items = ref([])
 const errorCampana = ref(false)
@@ -96,8 +95,6 @@ const headers = [
     key: 'hora_zona',
   },
 ]
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Inscripciones`)

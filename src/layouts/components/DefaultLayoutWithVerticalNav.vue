@@ -1,11 +1,16 @@
 <script setup>
 import navItems from '@/navigation/vertical'
+import { EncryptStorage } from 'encrypt-storage'
 import { useDisplay } from 'vuetify'
 
 // Components
 import Footer from '@/layouts/components/Footer.vue'
 import NavbarTitulo from '@/layouts/components/NavbarTitulo.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
+
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
 
 // @layouts plugin
 import { VerticalNavLayout } from '@layouts'
@@ -15,9 +20,8 @@ const { mobile } = useDisplay()
 // SECTION: Loading Indicator
 const isFallbackStateActive = ref(false)
 const refLoadingIndicator = ref(null)
-const userData = JSON.parse(localStorage.getItem('userData'))
+const userData = encryptStorage.getItem('userData')
 const clase = "mr-4 text-right"
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 watch([
   isFallbackStateActive,

@@ -1,17 +1,24 @@
 <script setup>
+import { EncryptStorage } from 'encrypt-storage'
+
 const router = useRouter()
 const ability = useAbility()
 
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
 // TODO: Get type from backend
-const userData = JSON.parse(localStorage.getItem('userData'))
+const userData = encryptStorage.getItem('userData')
+
 
 const logout = async () => {
 
   // Remove "accessToken" from cookie
-  localStorage.removeItem('accessToken')
+  encryptStorage.removeItem('accessToken')
 
   // Remove "userData" from cookie
-  localStorage.removeItem('userData')
+  encryptStorage.removeItem('userData')
 
   // Redirect to login page
   await router.push('/login')
@@ -19,7 +26,7 @@ const logout = async () => {
   // ℹ️ We had to remove abilities in then block because if we don't nav menu items mutation is visible while redirecting user to login page
 
   // Remove "userAbilities" from cookie
-  localStorage.removeItem('userAbilityRules')
+  encryptStorage.removeItem('userAbilityRules')
 
   // Reset ability to initial ability
   ability.update([])

@@ -11,8 +11,6 @@ definePage({
 
 // *Declaracion de variables
 const appStore = useAppStore()
-const userData = JSON.parse(localStorage.getItem('userData'))
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 const headers = [
   {
