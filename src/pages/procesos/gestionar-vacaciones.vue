@@ -13,7 +13,6 @@ definePage({
 
 const { mobile } = useDisplay()
 const appStore = useAppStore()
-const userData = JSON.parse(localStorage.getItem('userData'))
 
 const items = ref([])
 const selected = ref([])
@@ -49,8 +48,6 @@ const headers = computed(() => {
     { title: 'Dia(s).', key: 'nume_diaa' },
   ]
 })
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Procesos / Gestionar vacaciones`)

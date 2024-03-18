@@ -9,7 +9,6 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const headers = computed(() => {
@@ -53,7 +52,6 @@ const headers = computed(() => {
 })
 
 const items = ref([])
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Vacaciones / Pendientes`)

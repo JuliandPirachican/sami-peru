@@ -13,7 +13,6 @@ definePage({
 
 const { mobile } = useDisplay()
 const appStore = useAppStore()
-const userData = JSON.parse(localStorage.getItem('userData'))
 
 const items = ref([])
 
@@ -63,8 +62,6 @@ const headers = computed(() => {
     { title: 'Correo electronico', key: 'corr_ases' },
   ]
 })
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Procesos / Gestionar posible asesora`)

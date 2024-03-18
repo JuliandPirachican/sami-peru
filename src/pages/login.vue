@@ -5,15 +5,18 @@ import authV1BottomShape from '@images/svg/auth-v1-bottom-shape.svg?raw'
 import authV1TopShape from '@images/svg/auth-v1-top-shape.svg?raw'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
+import { EncryptStorage } from 'encrypt-storage'
 import { VForm } from 'vuetify/components/VForm'
-
-// import { appStore } from '@/stores/app'
 
 definePage({
   meta: {
     layout: 'blank',
     unauthenticatedOnly: true,
   },
+})
+
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
 })
 
 const isPasswordVisible = ref(false)
@@ -58,14 +61,14 @@ const login = async () => {
     const userAbility = responseMenu.data.permisos
 
     ability.update(userAbility)
-    localStorage.setItem('userAbilityRules', JSON.stringify(userAbility))
-    localStorage.setItem('userData', JSON.stringify(dataLogin.data_glob))
-    localStorage.setItem('accessToken', dataLogin.accessToken)    
-    localStorage.setItem('recordar', Boolean(recordar.value))
+    encryptStorage.setItem('userAbilityRules', JSON.stringify(userAbility))
+    encryptStorage.setItem('userData', JSON.stringify(dataLogin.data_glob))
+    encryptStorage.setItem('accessToken', dataLogin.accessToken)    
+    encryptStorage.setItem('recordar', Boolean(recordar.value))
     if(recordar.value) {
-      localStorage.setItem('login', JSON.stringify(form.value))
+      encryptStorage.setItem('login', JSON.stringify(form.value))
     } else {
-      localStorage.setItem('login', JSON.stringify({
+      encryptStorage.setItem('login', JSON.stringify({
         usuario: '',
         clave: '',
       }))
@@ -90,15 +93,15 @@ const onSubmit = () => {
 }
 
 onMounted(async () => {
-    
-  const login = localStorage.getItem('login')
+  
+  const login = encryptStorage.getItem('login')
   if(!login) {
-    localStorage.setItem('login', JSON.stringify(form.value))
+    encryptStorage.setItem('login', JSON.stringify(form.value))
   } else {
-    form.value = JSON.parse(login)
+    form.value = login
   }
-  if(localStorage.getItem('recordar')) {
-    recordar.value = Boolean(localStorage.getItem('recordar'))
+  if(encryptStorage.getItem('recordar')) {
+    recordar.value = Boolean(encryptStorage.getItem('recordar'))
   }
 })
 </script>

@@ -9,7 +9,6 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const formulario = ref({
@@ -52,8 +51,6 @@ const headers = computed(() => {
     { key: 'fech_devo', title: 'Devolución' },
   ]
 })
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Distribucion / Estado pedido fecha`)

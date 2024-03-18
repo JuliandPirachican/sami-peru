@@ -5,6 +5,7 @@ import MovimientoReferidoDialog from '@/views/peru/cons_come_cons_gene/Movimient
 import PaqueteLiderDialog from '@/views/peru/cons_come_cons_gene/PaqueteLiderDialog.vue'
 import PremioEnviarDialog from '@/views/peru/cons_come_cons_gene/PremioEnviarDialog.vue'
 import ServicioDetalleDialog from '@/views/peru/cons_come_cons_gene/ServicioDetalleDialog.vue'
+import { EncryptStorage } from 'encrypt-storage'
 
 definePage({
   meta: {
@@ -13,10 +14,13 @@ definePage({
   },
 })
 
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
 // *Declaracion de variables
 const appStore = useAppStore()
-const userData = JSON.parse(localStorage.getItem('userData'))
-const loginData = JSON.parse(localStorage.getItem('login'))
+const userData = encryptStorage.getItem('userData')
 
 const headersGlobal = ref([])
 const itemsGlobal = ref([])

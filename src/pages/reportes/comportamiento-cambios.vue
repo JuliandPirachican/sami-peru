@@ -2,6 +2,7 @@
 
 <script setup>
 import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
 import { useDisplay } from 'vuetify'
 import { VDataTable } from 'vuetify/labs/VDataTable'
 
@@ -12,8 +13,12 @@ definePage({
   },
 })
 
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
 const { mobile } = useDisplay()
-const userData = JSON.parse(localStorage.getItem('userData'))
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
 const isOpen = ref(false)   
 const titulo = ref('')
@@ -123,8 +128,6 @@ const errorMensajeCampana = ref('')
 const zonaOptions = ref([])
 const errorZona = ref(false)
 const errorMensajeZona = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Comportamiento C&D`)

@@ -1,5 +1,10 @@
 import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
 import { ofetch } from 'ofetch'
+
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
 
 const modo = import.meta.env.VITE_API_MODO
 
@@ -13,7 +18,7 @@ if (modo == 'PRODUCCION') {
 export const $api = ofetch.create({
   baseURL: baseURL,
   async onRequest({ options }) {
-    const accessToken = localStorage.getItem('accessToken')
+    const accessToken = encryptStorage.getItem('accessToken')
     if (accessToken) {
       options.headers = {
         ...options.headers,
@@ -43,9 +48,9 @@ export const $api = ofetch.create({
       const app = useAppStore()
       
       app.loading(false)
-      localStorage.removeItem('accessToken')
-      localStorage.removeItem('userData')
-      localStorage.removeItem('userAbilityRules')
+      encryptStorage.removeItem('accessToken')
+      encryptStorage.removeItem('userData')
+      encryptStorage.removeItem('userAbilityRules')
       alert(`Debe iniciar sesión ${mensaje}`)
       window.location.href = import.meta.env.BASE_URL + 'login'
 

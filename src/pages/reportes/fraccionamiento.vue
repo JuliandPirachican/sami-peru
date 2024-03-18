@@ -9,15 +9,12 @@ definePage({
   },
 })
 
-
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const formulario = ref({
   campana: null,
   zona: null,
 })
-
 
 const headers = computed(() => {
   return [
@@ -118,8 +115,6 @@ const errorMensajeCampana = ref('')
 const zonaOptions = ref([])
 const errorZona = ref(false)
 const errorMensajeZona = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Fraccionamiento`)

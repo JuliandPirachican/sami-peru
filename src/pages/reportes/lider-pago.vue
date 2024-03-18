@@ -10,7 +10,6 @@ definePage({
 })
 
 const appStore = useAppStore()
-const userData = JSON.parse(localStorage.getItem('userData'))
 
 const rowsPerPage = ref(100)
 const currentPage = ref(1)
@@ -46,8 +45,6 @@ const headers = [
     title: 'Comisión',
   },
 ]
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Lider pago`)

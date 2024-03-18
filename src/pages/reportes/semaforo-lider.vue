@@ -1,6 +1,7 @@
 <!-- eslint-disable camelcase -->
 <script setup>
 import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
 import { VDataTable } from 'vuetify/labs/VDataTable'
 
 definePage({
@@ -10,7 +11,11 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
 
 const formulario = ref({
@@ -96,8 +101,6 @@ const errorMensajeZona = ref('')
 const sectorOptions = ref([])
 const errorSector = ref(false)
 const errorMensajeSector = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Semaforo zona`)

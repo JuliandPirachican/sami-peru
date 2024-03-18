@@ -1,5 +1,6 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
 import mapboxgl from 'mapbox-gl'
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 
@@ -10,7 +11,11 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
 const accessToken = 'pk.eyJ1Ijoic29jaWFsZXhwbG9yZXIiLCJhIjoiREFQbXBISSJ9.dwFTwfSaWsHvktHrRtpydQ'
 const map = ref()
@@ -40,8 +45,6 @@ const posicionActual = () => {
     longitud.value = data.coords.longitude
   })
 }
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Tracking zona`)

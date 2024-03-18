@@ -1,5 +1,6 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
 
 definePage({
   meta: {
@@ -8,7 +9,11 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
 
 const formulario = ref({
@@ -60,8 +65,6 @@ const horaOptions = ref([
 
 const errorFecha = ref(false)
 const errorMensajeFecha = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Procesos / Abrir asistencia`)

@@ -9,7 +9,6 @@ definePage({
 })
 
 const appStore = useAppStore()
-const userData = JSON.parse(localStorage.getItem('userData'))
 const archivo = ref('')
 
 const formulario = ref({
@@ -22,8 +21,6 @@ const errorCampana = ref(false)
 const errorMensajeCampana = ref('')
 const errorDocumento = ref(false)
 const errorMensajeDocumento = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
 
 onMounted(async () => {
   appStore.titulo(`Consultas / Log pedido`)
