@@ -10,7 +10,6 @@ definePage({
   },
 })
 
-const userData = JSON.parse(localStorage.getItem('userData'))
 const appStore = useAppStore()
 
 const getClassByValue = value => {
@@ -3078,9 +3077,6 @@ const errorMensajeCampana = ref('')
 const zonaOptions = ref([])
 const errorZona = ref(false)
 const errorMensajeZona = ref('')
-
-const loginData = JSON.parse(localStorage.getItem('login'))
-
 
 const onEditar = event => {
   const { args } = event
