@@ -364,7 +364,7 @@ const handleFileUpload = async tipo => {
                       label="Código"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                       :error="errorCodigo"
                       :error-messages="errorMensajeCodigo"
                     />
@@ -379,7 +379,7 @@ const handleFileUpload = async tipo => {
                       label="Nombre(s)"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
 
@@ -392,7 +392,7 @@ const handleFileUpload = async tipo => {
                       label="Apellido(s)"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>
@@ -407,7 +407,7 @@ const handleFileUpload = async tipo => {
                       label="Zona"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
 
@@ -420,7 +420,7 @@ const handleFileUpload = async tipo => {
                       label="Sector"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>
@@ -435,7 +435,7 @@ const handleFileUpload = async tipo => {
                       label="Dirección"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>
@@ -450,7 +450,7 @@ const handleFileUpload = async tipo => {
                       label="Teléfono casa"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
 
@@ -463,7 +463,7 @@ const handleFileUpload = async tipo => {
                       label="Teléfono celular"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>
@@ -478,7 +478,7 @@ const handleFileUpload = async tipo => {
                       label="Correo electrónico"
                       type="text"
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>

@@ -217,7 +217,7 @@ const onLimpiar = () => {
                       type="text"
                       placeholder=""
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
 
@@ -231,7 +231,7 @@ const onLimpiar = () => {
                       type="text"
                       placeholder=""
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>
@@ -247,7 +247,7 @@ const onLimpiar = () => {
                       type="text"
                       placeholder=""
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
 
@@ -261,7 +261,7 @@ const onLimpiar = () => {
                       type="text"
                       placeholder=""
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                       class="col-md-6"
                     />
                   </VCol>
@@ -278,7 +278,7 @@ const onLimpiar = () => {
                       type="text"
                       placeholder=""
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>

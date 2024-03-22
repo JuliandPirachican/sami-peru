@@ -432,7 +432,7 @@ const proc_come_soli_vaca_fech_inic = () => {
                     autocomplete="off"
                     :error="errorFechaIngreso"
                     :error-messages="errorMensajeFechaIngreso"
-                    disabled="true"
+                    disabled
                   />
                 </VCol>
                 <VCol
@@ -445,7 +445,7 @@ const proc_come_soli_vaca_fech_inic = () => {
                     type="text"
                     placeholder="0"
                     autocomplete="off"
-                    disabled="true"
+                    disabled
                   />
                 </VCol>
                 <VCol
@@ -458,7 +458,7 @@ const proc_come_soli_vaca_fech_inic = () => {
                     type="text"
                     placeholder="0"
                     autocomplete="off"
-                    disabled="true"
+                    disabled
                   />
                 </VCol>
                 <VCol
@@ -471,7 +471,7 @@ const proc_come_soli_vaca_fech_inic = () => {
                     type="text"
                     placeholder="0"
                     autocomplete="off"
-                    disabled="true"
+                    disabled
                   />
                 </VCol>
               </VRow>
@@ -526,7 +526,7 @@ const proc_come_soli_vaca_fech_inic = () => {
                     type="number"
                     placeholder="0"
                     autocomplete="off"
-                    disabled="true"
+                    disabled
                   />
                 </VCol>
                 <VCol

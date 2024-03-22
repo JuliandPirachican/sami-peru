@@ -73,10 +73,10 @@ const login = async () => {
         clave: '',
       }))
     }
-    await nextTick(() => {
-      appStore.loading(false)
-      router.replace(route.query.to ? String(route.query.to) : `/`)
-    })
+
+    await router.replace(route.query.to ? String(route.query.to) : `/`)
+    appStore.loading(false)
+  
   } catch (e) {
     console.log(e)
     appStore.loading(false)

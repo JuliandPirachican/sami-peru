@@ -359,7 +359,7 @@ const limpiarValidacion = () => {
                       placeholder="Seleccionar fecha"
                       :error="errorFecha"
                       :error-messages="errorMensajeFecha"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>
