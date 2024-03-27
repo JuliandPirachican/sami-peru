@@ -16,25 +16,95 @@ const formulario = ref({
   campana: null,
 })
 
-const getClassByValue = value => {
+const claseCumplimientoIncorporacion =(row, columnfield, value) => {
   const data = parseFloat(value).toFixed(2)
   if (data >= 100) {
-    return 'text-success'
+    return `text-success`
   }
   if (data >= 90 && data < 100) {
-    return 'text-warning'
+    return `text-warning`
   }
   
-  return 'text-error'
+  return `text-error`
+}
+    
+// eslint-disable-next-line sonarjs/no-identical-functions
+const claseCumplimientoIncorporacionCierre = (row, columnfield, value) => {
+  const data = parseFloat(value).toFixed(2)
+  if (data >= 100) {
+    return `text-success`
+  }
+  if (data >= 90 && data < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+    
+// eslint-disable-next-line sonarjs/no-identical-functions
+const claseCumplimientoRetencionEstimado = (row, columnfield, value) => {
+  const data = parseFloat(value).toFixed(2)
+  if (data >= 100) {
+    return `text-success`
+  }
+  if (data >= 90 && data < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+    
+// eslint-disable-next-line sonarjs/no-identical-functions
+const claseCumplimientoRetencionCierre = (row, columnfield, value) => {
+  const data = parseFloat(value).toFixed(2)
+  if (data >= 100) {
+    return `text-success`
+  }
+  if (data >= 90 && data < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+    
+// eslint-disable-next-line sonarjs/no-identical-functions
+const claseCumplimientoTotalEstimado =(row, columnfield, value) => {
+  const data = parseFloat(value).toFixed(2)
+  if (data >= 100) {
+    return `text-success`
+  }
+  if (data >= 90 && data < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+    
+// eslint-disable-next-line sonarjs/no-identical-functions
+const claseCumplimientoTotalCierre = (row, columnfield, value) => {
+  const data = parseFloat(value).toFixed(2)
+  if (data >= 100) {
+    return `text-success`
+  }
+  if (data >= 90 && data < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
 }
 
-const claseCumplimientoIncorporacion = (row, columnfield, value) => getClassByValue(value)
-const claseCumplimientoIncorporacionCierre = (row, columnfield, value) => getClassByValue(value)
-const claseCumplimientoRetencionEstimado = (row, columnfield, value) => getClassByValue(value)
-const claseCumplimientoRetencionCierre = (row, columnfield, value) => getClassByValue(value)
-const claseCumplimientoTotalEstimado = (row, columnfield, value) => getClassByValue(value)
-const claseCumplimientoTotalCierre = (row, columnfield, value) => getClassByValue(value)
-const claseAsertividad = (row, columnfield, value) => getClassByValue(value)
+// eslint-disable-next-line sonarjs/no-identical-functions
+const claseAsertividad = (row, columnfield, value) => {
+  const data = parseFloat(value).toFixed(2)
+  if (data >= 100) {
+    return `text-success`
+  }
+  if (data >= 90 && data < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
 
 const cabeceraGlobal = [
   {

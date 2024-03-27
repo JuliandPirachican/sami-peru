@@ -8,7 +8,7 @@ const store = useAppStore()
 <template>
   <div class="d-flex">
     <VAvatar
-      size="30"
+      size="24"
       :image="bandera"
     >
       <span v-if="notification.text">{{ avatarText(notification.text) }}</span>

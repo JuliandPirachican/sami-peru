@@ -53,188 +53,462 @@ const variables = ref([
 
 const selectedVariable = ref(0)
 
-const getDataRecord = row => {
-  return refGridGlobal.value.getrowdata(row)
-}
+const claseCumplimientoTotal = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
 
-const handleZeroValue = value => {
-  return value === 0 ? '' : value
-}
-
-const applyClassBasedOnPercentageAndObjective = (row, value, objective, thresholds) => {
-  const dataRecord = getDataRecord(row)
-  const objeValue = parseInt(dataRecord[objective])
-  const numericValue = parseFloat(value).toFixed(2)
-  if (objeValue === 0) return ''
-  for (const [threshold, className] of thresholds) {
-    if (numericValue >= threshold) return className
+  const objeTota = parseInt(dataRecord.obje_tota)
+  const cumpTota = parseFloat(value).toFixed(2)
+  if (objeTota === 0) {
+    return ''
+  }
+  if (cumpTota >= 100) {
+    return 'text-success'
+  }
+  if (cumpTota >= 80 && cumpTota < 100) {
+    return 'text-warning'
   }
   
   return 'text-error'
 }
 
-const applyClassBasedOnDifference = value => {
-  return parseInt(value) >= 0 ? '' : 'text-error'
-}
-
-const claseCumplimientoTotal = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_tota', [
-    [100, 'text-success'],
-    [80, 'text-warning'],
-  ])
-}
-
-const claseDiferenciaTotal = value => {
-  return applyClassBasedOnDifference(value)
-}
-
-const claseCumplimientoIncorporacion = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_inco', [
-    [100, 'text-success'],
-    [80, 'text-warning'],
-  ])
-}
-
-const claseCumplimientoRetencion = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_rete', [
-    [100, 'text-success'],
-    [95, 'text-warning'],
-  ])
-}
-
-const claseDiferenciaRetencion = value => {
-  return applyClassBasedOnDifference(value)
-}
-
-const clasePorcentajeActividad = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_acti', [
-    [100, 'text-success'],
-  ])
-}
-
-const claseObjetivoConsecutividadRetencion = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_rete_cons_sist_ocul', [
-    [100, 'text-success'],
-    [80, 'text-warning'],
-  ])
-}
-
-const claseCumplimientoConsecutividadRetencion = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_rete_cons', [
-    [100, 'text-success'],
-    [90, 'text-warning'],
-  ])
-}
-
-const claseCumplimientoConsecutividadSegundoRetencion = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_rete_cons_segu', [
-    [100, 'text-success'],
-    [80, 'text-warning'],
-  ])
-}
-
-const claseCumplimientoConsecutividadTercerRetencion = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_rete_cons_terc', [
-    [80, 'text-success'],
-    [70, 'text-warning'],
-  ])
-}
-
-const claseCumplimientoConsecutividadCuartoRetencion = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_rete_cons_cuar', [
-    [70, 'text-success'],
-    [60, 'text-warning'],
-  ])
-}
-
-const claseObjetivoPeg21 = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_pe21_sist_ocul', [
-    [100, 'text-success'],
-    [80, 'text-warning'],
-  ])
-}
-
-const clasePorcentajePeg21 = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_pe21', [
-    [100, 'text-success'],
-    [90, 'text-warning'],
-  ])
-}
-
-const claseObjetivoPeg42 = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_pe42_sist_ocul', [
-    [100, 'text-success'],
-    [80, 'text-warning'],
-  ])
-}
-
-const clasePorcentajePeg42 = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_pe42', [
-    [100, 'text-success'],
-    [90, 'text-warning'],
-  ])
-}
-
-const claseObjetivoPeg63 = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_pe63_sist_ocul', [
-    [100, 'text-success'],
-    [80, 'text-warning'],
-  ])
-}
-
-const clasePorcentajePeg63 = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_pe63', [
-    [100, 'text-success'],
-    [90, 'text-warning'],
-  ])
-}
-
-const claseObjetivoPegs = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_pegs_sist_ocul', [
-    [100, 'text-success'],
-    [80, 'text-warning'],
-  ])
-}
-
-const clasePorcentajePegs = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_pegs', [
-    [100, 'text-success'],
-    [90, 'text-warning'],
-  ])
-}
-
-const claseObjetivoReingreso = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_rein_sist_ocul', [
-    [100, 'text-success'],
-    [80, 'text-warning'],
-  ])
-}
-
-const clasePorcentajeReingreso = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_rein', [
-    [100, 'text-success'],
-    [90, 'text-warning'],
-  ])
-}
-
-const claseFacturacionCapitalizacion = (row, value) => {
-  return applyClassBasedOnPercentageAndObjective(row, value, 'obje_capi', [
-    [1, 'text-warning'],
-  ])
-}
-
-const claseObjetivoCapitalizacion = value => {
-  return applyClassBasedOnDifference(value)
-}
-
-const clasePorcentaje21di = value => {
-  const numericValue = parseFloat(value).toFixed(2)
-  const data = 88
-  if (numericValue === '0.00') return ''
+const claseDiferenciaTotal = (row, columnfield, value) => {
   
-  return numericValue >= data ? 'text-success' : 'text-error'
+  const difeRete = parseInt(value)
+  if (difeRete >= 0) {
+    return ``
+  }
+  
+  return `text-error`
 }
 
+const claseCumplimientoIncorporacion = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeInco = parseInt(dataRecord.obje_inco)
+  const cumpInco = parseFloat(value).toFixed(2)
+  if (objeInco === 0) {
+    return ''
+  }
+  if (cumpInco >= 100) {
+    return 'text-success'
+  }
+  if (cumpInco >= 80 && cumpInco < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+
+const claseCumplimientoRetencion = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeRete = parseInt(dataRecord.obje_rete)
+  const cumpRete = parseFloat(value).toFixed(2)
+  if (objeRete === 0) {
+    return ''
+  }
+  if (cumpRete >= 100) {
+    return 'text-success'
+  }
+  if (cumpRete >= 95 && cumpRete < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+ 
+// eslint-disable-next-line sonarjs/no-identical-functions
+const claseDiferenciaRetencion = (row, columnfield, value) => {
+  
+  const difeRete = parseInt(value)
+  if (difeRete >= 0) {
+    return ``
+  }
+  
+  return `text-error`
+}
+
+const clasePorcentajeActividad = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  const objeActi = parseFloat(dataRecord.obje_acti).toFixed(2)
+  const porcActi = parseFloat(value).toFixed(2)
+  if (objeActi === 0) {
+    return ''
+  }
+  if (porcActi >= objeActi) {
+    return 'text-success'
+  }
+  
+  return 'text-error'
+}
+
+const claseObjetivoConsecutividadRetencion = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeReteSist = parseInt(dataRecord.obje_rete_cons_sist_ocul)
+  
+  const objeRete = parseInt(value)
+
+  let porcReteCons = 100 * (objeRete / objeReteSist)
+  porcReteCons = parseFloat(porcReteCons).toFixed(2)
+
+  if (objeReteSist === 0) {
+    return ``
+  }
+  if (porcReteCons >= 100) {
+    return `text-success`
+  }
+  if (porcReteCons >= 80 && porcReteCons < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const claseCumplimientoConsecutividadRetencion = (
+  row,
+  columnfield,
+  value,
+) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeReteCons = parseInt(dataRecord.obje_rete_cons)
+  const porcReteCons = parseFloat(value).toFixed(2)
+
+  if (objeReteCons === 0) {
+    return ''
+  }
+  if (porcReteCons >= 100) {
+    return 'text-success'
+  }
+  if (porcReteCons >= 90 && porcReteCons < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+
+const claseCumplimientoConsecutividadSegundoRetencion = (
+  row,
+  columnfield,
+  value,
+) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeData = parseInt(dataRecord.obje_rete_cons_segu)
+  const valoData = parseFloat(value).toFixed(2)
+
+  if (objeData === 0) {
+    return ''
+  }
+  if (valoData >= 100) {
+    return 'text-success'
+  }
+  if (valoData >= 80 && valoData < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+
+const claseCumplimientoConsecutividadTercerRetencion = (
+  row,
+  columnfield,
+  value,
+) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeData = parseInt(dataRecord.obje_rete_cons_terc)
+  const valoData = parseFloat(value).toFixed(2)
+
+  if (objeData === 0) {
+    return ''
+  }
+  if (valoData >= 80) {
+    return 'text-success'
+  }
+  if (valoData >= 70 && valoData < 80) {
+    return 'ttext-warning'
+  }
+  
+  return 'text-error'
+}
+
+const claseCumplimientoConsecutividadCuartoRetencion = (
+  row,
+  columnfield,
+  value,
+) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeData = parseInt(dataRecord.obje_rete_cons_cuar)
+  const valoData = parseFloat(value).toFixed(2)
+
+  if (objeData === 0) {
+    return ''
+  }
+  if (valoData >= 70) {
+    return 'text-success'
+  }
+  if (valoData >= 60 && valoData < 70) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+
+const claseObjetivoPeg21 = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objePe21 = parseInt(dataRecord.obje_pe21_sist_ocul)
+  
+  const factPe21 = parseInt(value)
+
+  let porcPe21 = 100 * (factPe21 / objePe21)
+  porcPe21 = parseFloat(porcPe21).toFixed(2)
+
+  if (factPe21 === 0) {
+    return ``
+  }
+  if (porcPe21 >= 100) {
+    return `text-success`
+  }
+  if (porcPe21 >= 80 && porcPe21 < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePorcentajePeg21 = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objePe21 = parseInt(dataRecord.obje_pe21)
+  const porcPe21 = parseFloat(value).toFixed(2)
+
+  if (objePe21 === 0) {
+    return ''
+  }
+  if (porcPe21 >= 100) {
+    return 'text-success'
+  }
+  if (porcPe21 >= 90 && porcPe21 < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+
+const claseObjetivoPeg42 = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objePe42 = parseInt(dataRecord.obje_pe42_sist_ocul)
+  
+  const factPe42 = parseInt(value)
+
+  let porcPe42 = 100 * (factPe42 / objePe42)
+  porcPe42 = parseFloat(porcPe42).toFixed(2)
+
+  if (factPe42 === 0) {
+    return ``
+  }
+  if (porcPe42 >= 100) {
+    return `text-success`
+  }
+  if (porcPe42 >= 80 && porcPe42 < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePorcentajePeg42 =  (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objePe42 = parseInt(dataRecord.obje_pe42)
+  const porcPe42 = parseFloat(value).toFixed(2)
+
+  if (objePe42 === 0) {
+    return ''
+  }
+  if (porcPe42 >= 100) {
+    return 'text-success'
+  }
+  if (porcPe42 >= 90 && porcPe42 < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+
+const claseObjetivoPeg63 = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objePe63 = parseInt(dataRecord.obje_pe63_sist_ocul)
+  
+  const factPe63 = parseInt(value)
+
+  let porcPe63 = 100 * (factPe63 / objePe63)
+  porcPe63 = parseFloat(porcPe63).toFixed(2)
+
+  if (factPe63 === 0) {
+    return ``
+  }
+  if (porcPe63 >= 100) {
+    return `text-success`
+  }
+  if (porcPe63 >= 80 && porcPe63 < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePorcentajePeg63 = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objePe63 = parseInt(dataRecord.obje_pe63)
+  const porcPe63 = parseFloat(value).toFixed(2)
+
+  if (objePe63 === 0) {
+    return ''
+  }
+  if (porcPe63 >= 100) {
+    return 'text-success'
+  }
+  if (porcPe63 >= 90 && porcPe63 < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+
+const claseObjetivoPegs = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objePegs = parseInt(dataRecord.obje_pegs_sist_ocul)
+  
+  const factPegs = parseInt(value)
+
+  let porcPegs = 100 * (factPegs / objePegs)
+  porcPegs = parseFloat(porcPegs).toFixed(2)
+
+  if (factPegs === 0) {
+    return ``
+  }
+  if (porcPegs >= 100) {
+    return `text-success`
+  }
+  if (porcPegs >= 80 && porcPegs < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+} 
+
+const clasePorcentajePegs =  (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objePegs = parseInt(dataRecord.obje_pegs)
+  const porcPegs = parseFloat(value).toFixed(2)
+
+  if (objePegs === 0) {
+    return ''
+  }
+  if (porcPegs >= 100) {
+    return 'text-success'
+  }
+  if (porcPegs >= 90 && porcPegs < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+} 
+
+const claseObjetivoReingreso =  (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeRein = parseInt(dataRecord.obje_rein_sist_ocul)
+  
+  const factRein = parseInt(value)
+
+  let porcRein = 100 * (factRein / objeRein)
+  porcRein = parseFloat(porcRein).toFixed(2)
+
+  if (factRein === 0) {
+    return ``
+  }
+  if (porcRein >= 100) {
+    return `text-success`
+  }
+  if (porcRein >= 80 && porcRein < 100) {
+    return `text-success`
+  }
+  
+  return `text-error`
+}
+ 
+const clasePorcentajeReingreso = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeRein = parseInt(dataRecord.obje_rein)
+  const factRein = parseFloat(value).toFixed(2)
+
+  if (objeRein === 0) {
+    return ''
+  }
+  if (factRein >= 100) {
+    return 'text-success'
+  }
+  if (factRein >= 90 && factRein < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+ 
+const claseFacturacionCapitalizacion = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const objeCapi = parseInt(dataRecord.obje_capi)
+  
+  const factCapi = parseInt(value)
+
+  if (objeCapi === 0) {
+    return ''
+  }
+  if (factCapi >= objeCapi) {
+    return 'text-success'
+  }
+  if (factCapi >= 1 && factCapi < objeCapi) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+
+// eslint-disable-next-line sonarjs/no-identical-functions
+const claseObjetivoCapitalizacion = (row, columnfield, value) => {  
+  const difeRete = parseInt(value)
+  if (difeRete >= 0) {
+    return ``
+  }
+    
+  return `text-error`
+} 
+
+const clasePorcentaje21di = (row, columnfield, value) => {
+  const valoData = parseFloat(value).toFixed(2)
+  const data = 88
+  if (valoData === '0.00') {
+    return ''
+  }
+  if (valoData >= data) {
+    return 'text-success'
+  }
+  
+  return 'text-error'
+}
 
 const cabecera = computed(() => {
   if(selectedVariable.value === 0) {

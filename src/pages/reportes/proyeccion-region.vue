@@ -1642,22 +1642,613 @@ const cabeceraZona = computed(() => {
   }
 })
 
+const clasePedidoTotalZona = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pedi_inco_obje)
+  let dataProy = 0
+  if (columnfield === 'pedi_tota_prim') {
+    
+    dataProy = parseInt(dataRecord.pedi_tota_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pedi_tota_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+  
+const claseIncorporacionZona = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pedi_inco_obje)
+  let dataProy = 0
+  if (columnfield === 'pedi_inco_prim') {
+    
+    dataProy = parseInt(dataRecord.pedi_inco_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pedi_inco_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const claseRetencionZona = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pedi_rete_obje)
+  let dataProy = 0
+  if (columnfield === 'pedi_rete_prim') {
+    
+    dataProy = parseInt(dataRecord.pedi_rete_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pedi_rete_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const claseActividadZona = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.acti_obje_pedi)
+  let dataProy = 0
+  if (columnfield === 'acti_prim') {
+    
+    dataProy = parseInt(dataRecord.acti_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.acti_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  
+  return `text-error`
+}
+
+const claseConsecutividadRetencionZona = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.cons_rete_obje)
+  let dataProy = 0
+  if (columnfield === 'cons_rete_prim') {
+    
+    dataProy = parseInt(dataRecord.cons_rete_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.cons_rete_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePeg21Zona  = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pe21_obje)
+  let dataProy = 0
+  if (columnfield === 'pe21_prim') {
+    
+    dataProy = parseInt(dataRecord.pe21_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pe21_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePeg42Zona  = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pe42_obje)
+  let dataProy = 0
+  if (columnfield === 'pe42_prim') {
+    
+    dataProy = parseInt(dataRecord.pe42_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pe42_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePeg63Zona = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pe63_obje)
+  let dataProy = 0
+  if (columnfield === 'pe63_prim') {
+    
+    dataProy = parseInt(dataRecord.pe63_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pe63_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePegsZona = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pegs_obje)
+  let dataProy = 0
+  if (columnfield === 'pegs_prim') {
+    
+    dataProy = parseInt(dataRecord.pegs_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pegs_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const claseReingresoZona = (row, columnfield, value) => {
+  const dataRecord = refGridGlobalZona.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.rein_obje)
+  let dataProy = 0
+  if (columnfield === 'rein_prim') {
+    
+    dataProy = parseInt(dataRecord.rein_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.rein_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const claseCapitalizacionZona = (row, columnfield, value) => {
+  if (value <= 0) {
+    return `text-error`
+  }
+  
+  return ``
+}
+
+const clasePedidoTotalConsolidado = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  const dataObje = parseInt(dataRecord.pedi_inco_obje)
+  let dataProy = 0
+  if (columnfield === 'pedi_tota_prim') {
+    dataProy = parseInt(dataRecord.pedi_tota_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pedi_tota_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const claseIncorporacionConsolidado = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pedi_inco_obje)
+  let dataProy = 0
+  if (columnfield === 'pedi_inco_prim') {
+    
+    dataProy = parseInt(dataRecord.pedi_inco_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pedi_inco_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const claseRetencionConsolidado = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pedi_rete_obje)
+  let dataProy = 0
+  if (columnfield === 'pedi_rete_prim') {
+    
+    dataProy = parseInt(dataRecord.pedi_rete_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pedi_rete_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const claseActividadConsolidado   = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.acti_obje_pedi)
+  let dataProy = 0
+  if (columnfield === 'acti_prim') {
+    
+    dataProy = parseInt(dataRecord.acti_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.acti_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  
+  return `text-error`
+}
+
+const claseConsecutividadRetencionConsolidado = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.cons_rete_obje)
+  let dataProy = 0
+  if (columnfield === 'cons_rete_prim') {
+    
+    dataProy = parseInt(dataRecord.cons_rete_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.cons_rete_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePeg21Consolidado = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pe21_obje)
+  let dataProy = 0
+  if (columnfield === 'pe21_prim') {
+    
+    dataProy = parseInt(dataRecord.pe21_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pe21_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePeg42Consolidado = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pe42_obje)
+  let dataProy = 0
+  if (columnfield === 'pe42_prim') {
+    
+    dataProy = parseInt(dataRecord.pe42_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pe42_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePeg63Consolidado = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pe63_obje)
+  let dataProy = 0
+  if (columnfield === 'pe63_prim') {
+    
+    dataProy = parseInt(dataRecord.pe63_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pe63_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const clasePegsConsolidado = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.pegs_obje)
+  let dataProy = 0
+  if (columnfield === 'pegs_prim') {
+    
+    dataProy = parseInt(dataRecord.pegs_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.pegs_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+const claseReingresoConsolidado = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  
+  const dataObje = parseInt(dataRecord.rein_obje)
+  let dataProy = 0
+  if (columnfield === 'rein_prim') {
+    
+    dataProy = parseInt(dataRecord.rein_prim)
+  } else {
+    
+    dataProy = parseInt(dataRecord.rein_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning`
+  }
+  
+  return `text-error`
+}
+
+// eslint-disable-next-line sonarjs/no-identical-functions
+const claseCapitalizacionConsolidado = (row, columnfield, value) => {
+  if (value <= 0) {
+    return `text-error`
+  }
+  
+  return ``
+}
+
 const columnas = [
   {
     text: 'Corte',
     datafield: 'codi_cort',
-    width: '100',
+    width: '60',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    pinned: true,
+    filtertype: 'checkedlist',
   },
   {
-    text: 'Regíon',
+    text: 'Región',
     datafield: 'codi_area',
-    width: '100',
+    width: '60',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    pinned: true,
+    filtertype: 'checkedlist',
   },
   {
     text: 'Nro zonas',
@@ -1665,561 +2256,1556 @@ const columnas = [
     width: '100',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    pinned: true,
+    filtertype: 'checkedlist',
   },
   {
     text: 'Act. inic.',
     datafield: 'acti_inic',
-    width: '100',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    pinned: true,
+    cellsformat: 'N',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. camp.',
     datafield: 'pedi_tota_cant',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pedi_tota_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePedidoTotalConsolidado,
   },
   {
-    text: 'Proyeccion (%)',
+    text: 'Proyección (%)',
     datafield: 'pedi_tota_prim_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'P2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_tota_prim
+          obje += record.pedi_tota_cant
+          let total = 0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Reproyección',
     datafield: 'pedi_tota_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePedidoTotalConsolidado,
   },
   {
     text: 'Reproyección (%)',
     datafield: 'pedi_tota_segu_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'P2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_tota_segu
+          obje += record.pedi_tota_cant
+          let total = 0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Obj. camp.',
     datafield: 'pedi_inco_cant',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pedi_inco_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseIncorporacionConsolidado,
   },
   {
     text: 'Proyección (%)',
     datafield: 'pedi_inco_prim_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_inco_prim
+          obje += record.pedi_inco_cant
+          let total = 0.0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Reproyección',
     datafield: 'pedi_inco_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseIncorporacionConsolidado,
   },
   {
     text: 'Reproyección (%)',
     datafield: 'pedi_inco_segu_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_inco_segu
+          obje += record.pedi_inco_cant
+          let total = 0.0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
-    text: 'obj. camp.',
+    text: 'Obj. camp.',
     datafield: 'pedi_rete_cant',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pedi_rete_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseRetencionConsolidado,
   },
   {
     text: 'Proyección (%)',
     datafield: 'pedi_rete_prim_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_rete_prim
+          obje += record.pedi_rete_cant
+          let total = 0.0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Reproyección',
     datafield: 'pedi_rete_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseRetencionConsolidado,
   },
   {
     text: 'Reproyección (%)',
     datafield: 'pedi_rete_segu_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_rete_segu
+          obje += record.pedi_rete_cant
+          let total = 0.0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
+  },
+  {
+    text: 'nume acti ante',
+    datafield: 'nume_acti_ante',
+    hidden: true,
+  },
+  {
+    text: 'tota ingr ante',
+    datafield: 'tota_ingr_ante',
+    hidden: true,
+  },
+  {
+    text: 'tota rein ante',
+    datafield: 'tota_rein_ante',
+    hidden: true,
+  },
+  {
+    text: 'acti inic ante',
+    datafield: 'acti_inic_ante',
+    hidden: true,
+  },
+  {
+    text: 'tota pedi ante',
+    datafield: 'tota_pedi_ante',
+    hidden: true,
+  },
+  {
+    text: 'nume acti',
+    datafield: 'nume_acti',
+    hidden: true,
+  },
+  {
+    text: 'acti nume prim',
+    datafield: 'acti_nume_prim',
+    hidden: true,
+  },
+  {
+    text: 'acti nume segu',
+    datafield: 'acti_nume_segu',
+    hidden: true,
   },
   {
     text: 'Camp. ante.',
     datafield: 'acti_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
     columngroup: 'acti',
-    
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let sumaNumePedi = 0
+          let sumaTotaIngr = 0
+          let sumaTotaRein = 0
+          let sumaActiInic = 0
+          if (record.visibleindex === 0) {
+            sumaNumePedi = 0
+            sumaTotaIngr = 0
+            sumaTotaRein = 0
+            sumaActiInic = 0
+          }
+          sumaNumePedi += record.tota_pedi_ante
+          sumaTotaIngr += record.tota_ingr_ante
+          sumaTotaRein += record.tota_rein_ante
+          sumaActiInic += record.acti_inic_ante
+
+          let total = 0.0
+          
+          if (
+          
+            parseInt(sumaNumePedi) -
+                    
+                    parseInt(sumaTotaIngr) -
+                    
+                    parseInt(sumaTotaRein) >
+                    0
+                  
+                  && parseInt(sumaActiInic) > 0
+          ) {
+            
+            total =
+                    100
+                    
+                    * ((parseInt(sumaNumePedi) -
+                      
+                      parseInt(sumaTotaIngr) -
+                      
+                      parseInt(sumaTotaRein)) /
+                      
+                      parseInt(sumaActiInic))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
-    text: 'Obj.% acti. camp.',
+    text: 'Obj. % acti. camp.',
     datafield: 'acti_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'P2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let sumaNumeActi = 0
+          let sumaActiObje = 0
+          if (record.visibleindex === 0) {
+            sumaNumeActi = 0
+            sumaActiObje = 0
+          }
+          sumaNumeActi += record.acti_inic
+          sumaActiObje += record.acti_obje_pedi
+          let total = 0
+          
+          if (parseInt(sumaNumeActi) > 0 && parseInt(sumaActiObje) > 0) {
+            
+            total =
+                    100 * (parseFloat(sumaActiObje) / parseFloat(sumaNumeActi))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
-    text: 'Obj. pedi. acti.',
+    text: 'Obj. pedi. act.',
     datafield: 'acti_obje_pedi',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {   
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Proyección (%)',
     datafield: 'acti_porc_prim',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let sumaActiPrim = 0
+          let sumaActiInic = 0
+          if (record.visibleindex === 0) {
+            sumaActiPrim = 0
+            sumaActiInic = 0
+          }
+          sumaActiPrim += record.acti_prim
+          sumaActiInic += record.acti_inic
+          let total = 0
+          
+          if (
+          
+            parseInt(sumaActiPrim) > 0 &&
+                  
+                  parseFloat(sumaActiInic) > 0
+          ) {
+            
+            total =
+                    
+                    100 * (parseInt(sumaActiPrim) / parseInt(sumaActiInic))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'acti_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseActividadConsolidado,
   },
   {
-    text: 'Reproyeccion (%)',
+    text: 'Reproyección (%)',
     datafield: 'acti_porc_segu',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let sumaActiSegu = 0
+          let sumaActiInic = 0
+          if (record.visibleindex === 0) {
+            sumaActiSegu = 0
+            sumaActiInic = 0
+          }
+          sumaActiSegu += record.acti_segu
+          sumaActiInic += record.acti_inic
+          let total = 0
+          
+          if (
+          
+            parseInt(sumaActiSegu) > 0 &&
+                  
+                  parseFloat(sumaActiInic) > 0
+          ) {
+            
+            total =
+                    
+                    100 * (parseInt(sumaActiSegu) / parseInt(sumaActiInic))
+          }
+          
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Reproyección',
     datafield: 'acti_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseActividadConsolidado,
   },
   {
     text: 'Rete. camp. ante.',
     datafield: 'cons_rete_camp_ante',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'cons_rete_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'cons_rete_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseConsecutividadRetencionConsolidado,
   },
   {
     text: 'Reproyección',
     datafield: 'cons_rete_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
-    columngroup: 'cons_prim',
+    editable: false,
+    pinned: false,
+    columngroup: 'cons_rete',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseConsecutividadRetencionConsolidado,
   },
   {
-    text: '1 Camp. ante.',
+    text: '1 camp. ante.',
     datafield: 'cons_segu_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_segu',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
-    text: 'Obje. form. éxito',
+    text: 'Obj. form. éxito',
     datafield: 'cons_segu_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_segu',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
-    text: '2 Camp. ante.',
+    text: '2 camp. ante.',
     datafield: 'cons_terc_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_terc',
+    cellsformat: 'N',
+    aggregates: [
+      {        
+        T: function (aggregatedValue, currentValue) {   
+          aggregatedValue += currentValue
+
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'cons_terc_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_terc',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
-    text: '3 Camp. ante.',
+    text: '3 camp. ante.',
     datafield: 'cons_cuar_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_cuar',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'cons_cuar_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_cuar',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Peg21',
     datafield: 'pe21',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'pe21_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pe21_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg21Consolidado,
   },
   {
     text: 'Reproyección',
     datafield: 'pe21_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg21Consolidado,
   },
   {
     text: 'Peg42',
     datafield: 'pe42',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'pe42_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pe42_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg42Consolidado,
   },
   {
     text: 'Reproyección',
     datafield: 'pe42_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg42Consolidado,
   },
   {
     text: 'Peg63',
     datafield: 'pe63',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'pe63_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pe63_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg63Consolidado,
   },
   {
     text: 'Reproyección',
     datafield: 'pe63_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg63Consolidado,
   },
   {
     text: 'Pegs',
     datafield: 'pegs',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
-    columngroup: 'suma',
+    editable: false,
+    pinned: false,
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'pegs_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
-    columngroup: 'suma',
+    editable: false,
+    pinned: false,
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pegs_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
-    columngroup: 'suma',
+    editable: false,
+    pinned: false,
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePegsConsolidado,
   },
   {
     text: 'Reproyección',
     datafield: 'pegs_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
-    columngroup: 'suma',
+    editable: false,
+    pinned: false,
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePegsConsolidado,
   },
   {
-    text: 'Pos. Rein.',
+    text: 'Pos. rein.',
     datafield: 'rein',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'rein_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'rein_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseReingresoConsolidado,
   },
   {
     text: 'Reproyección',
     datafield: 'rein_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseReingresoConsolidado,
   },
   {
     text: 'Obj. proyección',
     datafield: 'capi_obje',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'capi',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseCapitalizacionConsolidado,
   },
   {
     text: 'Reproyección',
     datafield: 'capi_repr',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'capi',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseCapitalizacionConsolidado,
   },
   {
     text: 'Venta',
     datafield: 'tota_vent',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'D2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Cobranza 88%(por cobrar)',
     datafield: 'cobr',
-    width: '250',
+    width: '160',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'D2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Cobranza 88%(te puedes quedar)',
     datafield: 'cobr_colc',
-    width: '250',
+    width: '180',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'd2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Cobranza 92%(por cobrar)',
     datafield: 'co92',
-    width: '250',
+    width: '160',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'D2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Cobranza 92%(te puedes quedar)',
     datafield: 'co92_colc',
-    width: '250',
+    width: '180',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'D2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
 ]
 
-const columnasZona = [
+const columnasZona = 
+[
   {
     text: 'Corte',
     datafield: 'codi_cort',
-    width: '100',
+    width: '60',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    pinned: true,
+    filtertype: 'checkedlist',
   },
   {
     text: 'Zona',
     datafield: 'codi_zona',
-    width: '100',
+    width: '60',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    pinned: true,
+    filtertype: 'checkedlist',
   },
   {
     text: 'Gerente',
@@ -2227,542 +3813,1654 @@ const columnasZona = [
     width: '250',
     align: 'center',
     cellsalign: 'left',
-    editable: true,
+    pinned: true,
   },
   {
     text: 'Act. inic.',
     datafield: 'acti_inic',
-    width: '100',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    pinned: true,
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. camp.',
     datafield: 'pedi_tota_cant',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pedi_tota_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePedidoTotalZona,
   },
   {
-    text: 'Proyeccion (%)',
+    text: 'Proyección (%)',
     datafield: 'pedi_tota_prim_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'P2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_tota_prim
+          obje += record.pedi_tota_cant
+          let total = 0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Reproyección',
     datafield: 'pedi_tota_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePedidoTotalZona,
   },
   {
     text: 'Reproyección (%)',
     datafield: 'pedi_tota_segu_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'tota',
+    cellsformat: 'P2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_tota_segu
+          obje += record.pedi_tota_cant
+          let total = 0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Obj. camp.',
     datafield: 'pedi_inco_cant',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pedi_inco_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseIncorporacionZona,
   },
   {
     text: 'Proyección (%)',
     datafield: 'pedi_inco_prim_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_inco_prim
+          obje += record.pedi_inco_cant
+          let total = 0.0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Reproyección',
     datafield: 'pedi_inco_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseIncorporacionZona,
   },
   {
     text: 'Reproyección (%)',
     datafield: 'pedi_inco_segu_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'inco',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_inco_segu
+          obje += record.pedi_inco_cant
+          let total = 0.0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
-    text: 'obj. camp.',
+    text: 'Obj. camp.',
     datafield: 'pedi_rete_cant',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pedi_rete_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseRetencionZona,
   },
   {
     text: 'Proyección (%)',
     datafield: 'pedi_rete_prim_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_rete_prim
+          obje += record.pedi_rete_cant
+          let total = 0.0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Reproyección',
     datafield: 'pedi_rete_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseRetencionZona,
   },
   {
     text: 'Reproyección (%)',
     datafield: 'pedi_rete_segu_porc',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rete',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue, column, record) {
+          let data = 0
+          let obje = 0
+          if (record.visibleindex === 0) {
+            data = 0
+            obje = 0
+          }
+          data += record.pedi_rete_segu
+          obje += record.pedi_rete_cant
+          let total = 0.0
+          
+          if (parseInt(data) != 0 && parseInt(obje) != 0) {
+            
+            total = 100 * (parseInt(data) / parseInt(obje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
+  },
+  {
+    text: 'nume acti ante',
+    datafield: 'nume_acti_ante',
+    hidden: true,
+    cellsformat: 'N',
+    columngroup: 'acti',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'tota ingr ante',
+    datafield: 'tota_ingr_ante',
+    hidden: true,
+    cellsformat: 'N',
+    columngroup: 'acti',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'tota rein ante',
+    datafield: 'tota_rein_ante',
+    hidden: true,
+    cellsformat: 'N',
+    columngroup: 'acti',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'acti inic ante',
+    datafield: 'acti_inic_ante',
+    hidden: true,
+    cellsformat: 'N',
+    columngroup: 'acti',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'tota pedi ante',
+    datafield: 'tota_pedi_ante',
+    hidden: true,
+    cellsformat: 'N',
+    columngroup: 'acti',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Camp. ante.',
     datafield: 'acti_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
-    
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue, column, record) {
+          let sumaNumePedi = 0
+          let sumaTotaIngr = 0
+          let sumaTotaRein = 0
+          let sumaActiInic = 0
+          if (record.visibleindex === 0) {
+            sumaNumePedi = 0
+            sumaTotaIngr = 0
+            sumaTotaRein = 0
+            sumaActiInic = 0
+          }
+          sumaNumePedi += record.tota_pedi_ante
+          sumaTotaIngr += record.tota_ingr_ante
+          sumaTotaRein += record.tota_rein_ante
+          sumaActiInic += record.acti_inic_ante
+
+          let total = 0.0
+          
+          if (
+          
+            parseInt(sumaNumePedi) -
+                    
+                    parseInt(sumaTotaIngr) -
+                    
+                    parseInt(sumaTotaRein) >
+                    0
+                  
+                  && parseInt(sumaActiInic) > 0
+          ) {
+            
+            total =
+                    100
+                    
+                    * ((parseInt(sumaNumePedi) -
+                      
+                      parseInt(sumaTotaIngr) -
+                      
+                      parseInt(sumaTotaRein)) /
+                      
+                      parseInt(sumaActiInic))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
+  },
+  {
+    text: 'nume acti',
+    datafield: 'nume_acti',
+    hidden: true,
+    cellsformat: 'N',
+    columngroup: 'acti',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'acti nume prim',
+    datafield: 'acti_nume_prim',
+    hidden: true,
+    cellsformat: 'N',
+    columngroup: 'acti',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'acti nume segu',
+    datafield: 'acti_nume_segu',
+    hidden: true,
+    cellsformat: 'N',
+    columngroup: 'acti',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj.% acti. camp.',
     datafield: 'acti_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'P2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let sumaNumeActi = 0
+          let sumaActiObje = 0
+          if (record.visibleindex === 0) {
+            sumaNumeActi = 0
+            sumaActiObje = 0
+          }
+          sumaNumeActi += record.acti_inic
+          sumaActiObje += record.acti_obje_pedi
+          let total = 0
+          
+          if (parseInt(sumaNumeActi) > 0 && parseInt(sumaActiObje) > 0) {
+            
+            total =
+                    100 * (parseFloat(sumaActiObje) / parseFloat(sumaNumeActi))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
-    text: 'Obj. pedi. acti.',
+    text: 'Obj. pedi. act.',
     datafield: 'acti_obje_pedi',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Proyección (%)',
     datafield: 'acti_porc_prim',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let sumaActiPrim = 0
+          let sumaActiInic = 0
+          if (record.visibleindex === 0) {
+            sumaActiPrim = 0
+            sumaActiInic = 0
+          }
+          sumaActiPrim += record.acti_prim
+          sumaActiInic += record.acti_inic
+          let total = 0
+          
+          if (
+          
+            parseInt(sumaActiPrim) > 0 &&
+                  
+                  parseFloat(sumaActiInic) > 0
+          ) {
+            
+            total =
+                    
+                    100 * (parseInt(sumaActiPrim) / parseInt(sumaActiInic))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'acti_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseActividadZona,
   },
   {
-    text: 'Reproyeccion (%)',
+    text: 'Reproyección (%)',
     datafield: 'acti_porc_segu',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'p2',
+    aggregates: [
+      {
+        T(aggregatedValue, currentValue, column, record) {
+          let sumaActiSegu = 0
+          let sumaActiInic = 0
+          if (record.visibleindex === 0) {
+            sumaActiSegu = 0
+            sumaActiInic = 0
+          }
+          sumaActiSegu += record.acti_segu
+          sumaActiInic += record.acti_inic
+          let total = 0
+          
+          if (
+          
+            parseInt(sumaActiSegu) > 0 &&
+                  
+                  parseFloat(sumaActiInic) > 0
+          ) {
+            
+            total =
+                    
+                    100 * (parseInt(sumaActiSegu) / parseInt(sumaActiInic))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
   },
   {
     text: 'Reproyección',
     datafield: 'acti_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'acti',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseActividadZona,
   },
   {
     text: 'Rete. camp. ante.',
     datafield: 'cons_rete_camp_ante',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'cons_rete_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'cons_rete_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseConsecutividadRetencionZona,
   },
   {
     text: 'Reproyección',
     datafield: 'cons_rete_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseConsecutividadRetencionZona,
   },
   {
     text: '1 Camp. ante.',
     datafield: 'cons_segu_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_segu',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
-    text: 'Obje. form. éxito',
+    text: 'Obj. form. éxito',
     datafield: 'cons_segu_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_segu',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: '2 Camp. ante.',
     datafield: 'cons_terc_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_terc',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'cons_terc_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_terc',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: '3 Camp. ante.',
     datafield: 'cons_cuar_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_cuar',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'cons_cuar_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'cons_cuar',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Peg21',
     datafield: 'pe21',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'pe21_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pe21_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg21Zona,
   },
   {
     text: 'Reproyección',
     datafield: 'pe21_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg21Zona,
   },
   {
     text: 'Peg42',
     datafield: 'pe42',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'pe42_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pe42_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg42Zona,
   },
   {
     text: 'Reproyección',
     datafield: 'pe42_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg42Zona,
   },
   {
     text: 'Peg63',
     datafield: 'pe63',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'pe63_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pe63_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg63Zona,
   },
   {
     text: 'Reproyección',
     datafield: 'pe63_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePeg63Zona,
   },
   {
     text: 'Pegs',
     datafield: 'pegs',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
-    columngroup: 'suma',
+    editable: false,
+    pinned: false,
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'pegs_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
-    columngroup: 'suma',
+    editable: false,
+    pinned: false,
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'pegs_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
-    columngroup: 'suma',
+    editable: false,
+    pinned: false,
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePegsZona,
   },
   {
     text: 'Reproyección',
     datafield: 'pegs_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
-    columngroup: 'suma',
+    editable: false,
+    pinned: false,
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePegsZona,
   },
   {
     text: 'Pos. Rein.',
     datafield: 'rein',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. form. éxito',
     datafield: 'rein_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Obj. proyección',
     datafield: 'rein_prim',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseReingresoZona,
   },
   {
     text: 'Reproyección',
     datafield: 'rein_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseReingresoZona,
   },
   {
     text: 'Obj. proyección',
     datafield: 'capi_obje',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'capi',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseCapitalizacionZona,
   },
   {
     text: 'Reproyección',
     datafield: 'capi_repr',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
     columngroup: 'capi',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: claseCapitalizacionZona,
   },
   {
     text: 'Venta',
     datafield: 'tota_vent',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'D2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Cobranza 88%(por cobrar)',
     datafield: 'cobr',
-    width: '250',
+    width: '160',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'D2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Cobranza 88%(te puedes quedar)',
     datafield: 'cobr_colc',
-    width: '250',
+    width: '180',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'd2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Cobranza 92%(por cobrar)',
     datafield: 'co92',
-    width: '250',
+    width: '160',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'D2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
   {
     text: 'Cobranza 92%(te puedes quedar)',
     datafield: 'co92_colc',
-    width: '250',
+    width: '180',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
+    pinned: false,
+    cellsformat: 'D2',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
   },
 ]
 
@@ -3017,6 +5715,7 @@ const sourceGlobalZona = ref({
     { name: 'cons_rete_segu', type: 'number' },
     { name: 'cons_segu_camp_ante', type: 'number' },
     { name: 'cons_segu_obje', type: 'number' },
+    { name: 'cons_terc_camp_ante', type: 'number' },
     { name: 'cons_terc_obje', type: 'number' },
     { name: 'cons_cuar_camp_ante', type: 'number' },
     { name: 'cons_cuar_obje', type: 'number' },
@@ -3189,20 +5888,24 @@ const onGenerar = async () => {
     }
     
   } catch (error) {
-    const { data } = error.response._data    
-    if (typeof data != "undefined") {
-      for (var key in data)
-      {
-        if (key == 'campana') {
-          errorCampana.value = true
-          errorMensajeCampana.value = data[key]
-        }
-        if (key == 'area') {
-          errorArea.value = true
-          errorMensajeArea.value = data[key]
+    console.log(error)
+    if (typeof error.response != "undefined") {
+      const { data } = error.response._data    
+      if (typeof data != "undefined") {
+        for (var key in data)
+        {
+          if (key == 'campana') {
+            errorCampana.value = true
+            errorMensajeCampana.value = data[key]
+          }
+          if (key == 'area') {
+            errorArea.value = true
+            errorMensajeArea.value = data[key]
+          }
         }
       }
     }
+    
   }
   finally {
     appStore.loading(false)

@@ -38,11 +38,6 @@ const headers = computed(() => {
       sortable: true,
     },
     {
-      title: 'Telefono referente',
-      key: 'tele_terc',
-      sortable: true,
-    },
-    {
       title: 'Nro ident. referido',
       key: 'nume_iden',
       sortable: true,
@@ -214,7 +209,8 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/posible-asesora/excel`, {
       method: "post",
       body: {
-        data: items.value,
+        cabecera: headers.value,
+        detalle: items.value,
       },
     })
     
