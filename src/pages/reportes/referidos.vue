@@ -18,68 +18,70 @@ const formulario = ref({
 
 const items = ref([])
 
-const headers = [
-  {
-    title: 'Campaña',
-    key: 'codi_camp',
-  },
-  {
-    title: 'Corte',
-    key: 'codi_cort',
-  },
-  {
-    title: 'Región',
-    key: 'codi_area',
-  },
-  {
-    title: 'Zona referido',
-    key: 'codi_zona_hijo',
-  },
-  {
-    title: 'Sector referido',
-    key: 'codi_sect_hijo',
-  },
-  {
-    title: 'Nro ident. referido',
-    key: 'nume_iden_hijo',
-  },
-  {
-    title: 'Nombre(s) y apellido(s) referido',
-    key: 'nomb_terc_hijo',
-  },
-  {
-    title: 'Zona referente',
-    key: 'codi_zona',
-  },
-  {
-    title: 'Sector referente',
-    key: 'codi_sect',
-  },
-  {
-    title: 'Nro iden. referente',
-    key: 'nume_iden_padr',
-  },
-  {
-    title: 'Nombre(s) y apellido(s) referente',
-    key: 'nomb_terc_padr',
-  },
-  {
-    title: '1er pedido',
-    key: 'opci_pre1',
-  },
-  {
-    title: '2do pedido',
-    key: 'opci_pre2',
-  },
-  {
-    title: '3er pedido',
-    key: 'opci_pre3',
-  },
-  {
-    title: '4to pedido',
-    key: 'opci_pre4',
-  },
-]
+const headers = computed(() => {
+  return [
+    {
+      title: 'Campaña',
+      key: 'codi_camp',
+    },
+    {
+      title: 'Corte',
+      key: 'codi_cort',
+    },
+    {
+      title: 'Región',
+      key: 'codi_area',
+    },
+    {
+      title: 'Zona referido',
+      key: 'codi_zona_hijo',
+    },
+    {
+      title: 'Sector referido',
+      key: 'codi_sect_hijo',
+    },
+    {
+      title: 'Nro ident. referido',
+      key: 'nume_iden_hijo',
+    },
+    {
+      title: 'Nombre(s) y apellido(s) referido',
+      key: 'nomb_terc_hijo',
+    },
+    {
+      title: 'Zona referente',
+      key: 'codi_zona',
+    },
+    {
+      title: 'Sector referente',
+      key: 'codi_sect',
+    },
+    {
+      title: 'Nro iden. referente',
+      key: 'nume_iden_padr',
+    },
+    {
+      title: 'Nombre(s) y apellido(s) referente',
+      key: 'nomb_terc_padr',
+    },
+    {
+      title: '1er pedido',
+      key: 'opci_pre1',
+    },
+    {
+      title: '2do pedido',
+      key: 'opci_pre2',
+    },
+    {
+      title: '3er pedido',
+      key: 'opci_pre3',
+    },
+    {
+      title: '4to pedido',
+      key: 'opci_pre4',
+    },
+  ]
+})
 
 const campanaOptions = ref([])
 const errorCampana = ref(false)
@@ -205,7 +207,8 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/referido/excel`, {
       method: "post",
       body: {
-        data: items.value,
+        cabecera: headers.value,
+        detalle: items.value,
       },
     })
     

@@ -15,36 +15,38 @@ const rowsPerPage = ref(100)
 const currentPage = ref(1)
 const items = ref([])
 
-const headers = [
-  {
-    key: 'codi_area',
-    title: 'Región',
-  },
-  {
-    key: 'codi_zona',
-    title: 'Zona',
-  },
-  {
-    key: 'codi_sect',
-    title: 'Sector',
-  },
-  {
-    key: 'nume_iden',
-    title: 'Nro ident.',
-  },
-  {
-    key: 'nomb_terc',
-    title: 'Nombre(s) y Apellido(s)',
-  },
-  {
-    key: 'codi_camp',
-    title: 'Campaña',
-  },
-  {
-    key: 'tota_comi',
-    title: 'Comisión',
-  },
-]
+const headers = computed(() => {
+  return [
+    {
+      key: 'codi_area',
+      title: 'Región',
+    },
+    {
+      key: 'codi_zona',
+      title: 'Zona',
+    },
+    {
+      key: 'codi_sect',
+      title: 'Sector',
+    },
+    {
+      key: 'nume_iden',
+      title: 'Nro ident.',
+    },
+    {
+      key: 'nomb_terc',
+      title: 'Nombre(s) y Apellido(s)',
+    },
+    {
+      key: 'codi_camp',
+      title: 'Campaña',
+    },
+    {
+      key: 'tota_comi',
+      title: 'Comisión',
+    },
+  ]
+})
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Lider pago`)
@@ -81,7 +83,8 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/lider-pago/excel`, {
       method: "post",
       body: {
-        data: items.value,
+        cabecera: headers.value,
+        detalle: items.value,
       },
     })
     

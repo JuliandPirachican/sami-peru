@@ -36,25 +36,25 @@ const isOpenEditar = ref(false)
 
 const headers = computed(() => {
   return [
-    { title: '', key: 'acciones', sortable: false, width: '10px' },
-    { title: 'Región', key: 'codi_area' },
-    { title: 'Zona', key: 'codi_zona' },
-    { title: 'Sector', key: 'codi_sect' },
-    { title: 'Nro documento', key: 'nume_iden' },
-    { title: 'Nombres y apellidos', key: 'nomb_terc' },
-    { title: 'Telf. personal', key: 'tele_terc' },
-    { title: 'Telf. RPC', key: 'celu_terc' },
-    { title: 'Correo electrónico', key: 'mail_ases' },
-    { title: 'Departamento', key: 'nomb_dpto' },
-    { title: 'Provincia', key: 'nomb_ciud' },
-    { title: 'Distrito', key: 'nomb_barr' },
-    { title: 'Dirección', key: 'dire_terc' },
-    { title: 'Referencia', key: 'dire_refe' },
-    { title: 'Latutud', key: 'cx' },
-    { title: 'Longitud', key: 'cy' },
-    { title: 'Cumpleaños', key: 'fech_naci' },
-    { title: 'Fecha ingreso', key: 'fech_ingr' },
-    { title: 'Estado', key: 'acti_esta' },
+    { title: '', key: 'acciones', sortable: false },
+    { title: 'Región', key: 'codi_area', sortable: false },
+    { title: 'Zona', key: 'codi_zona', sortable: false },
+    { title: 'Sector', key: 'codi_sect', sortable: false },
+    { title: 'Nro documento', key: 'nume_iden', sortable: false },
+    { title: 'Nombres y apellidos', key: 'nomb_terc', sortable: false },
+    { title: 'Telf. personal', key: 'tele_terc', sortable: false },
+    { title: 'Telf. RPC', key: 'celu_terc', sortable: false },
+    { title: 'Correo electrónico', key: 'mail_ases', sortable: false },
+    { title: 'Departamento', key: 'nomb_dpto', sortable: false },
+    { title: 'Provincia', key: 'nomb_ciud', sortable: false },
+    { title: 'Distrito', key: 'nomb_barr', sortable: false },
+    { title: 'Dirección', key: 'dire_terc', sortable: false },
+    { title: 'Referencia', key: 'dire_refe', sortable: false },
+    { title: 'Latitud', key: 'cx', sortable: false },
+    { title: 'Longitud', key: 'cy', sortable: false },
+    { title: 'Cumpleaños', key: 'fech_naci', sortable: false },
+    { title: 'Fecha ingreso', key: 'fech_ingr', sortable: false },
+    { title: 'Estado', key: 'acti_esta', sortable: false },
   ]
 })
 
@@ -98,7 +98,8 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/directorio-lider/excel`, {
       method: "post",
       body: {
-        data: items.value,
+        cabecera: headers.value,
+        detalle: items.value,
       },
     })
     

@@ -21,80 +21,82 @@ const formulario = ref({
 
 const campanaOptions = ref([])
 
-const headers = [
-  {
-    title: 'Región',
-    key: 'codi_area',
-  },
-  {
-    title: 'Zona app',
-    key: 'zona_zona',
-  },
-  {
-    title: 'Sector app',
-    key: 'zona_sect',
-  },
-  {
-    title: 'Zona',
-    key: 'codi_zona',
-  },
-  {
-    title: 'Sector',
-    key: 'codi_sect',
-  },
-  {
-    title: 'Documento ident.',
-    key: 'nume_iden',
-  },
-  {
-    title: 'Nombre(s) y apellido(s)',
-    key: 'nomb_terc',
-  },
-  {
-    title: 'Estado',
-    key: 'esta_insc',
-  },
-  {
-    title: 'Usuario',
-    key: 'usua_modi',
-  },
-  {
-    title: 'Fecha',
-    key: 'fech_modi',
-  },
-  {
-    title: '1ra Fact.',
-    key: 'fech_fact',
-  },
-  {
-    title: '1ra Desp.',
-    key: 'fech_desp',
-  },
-  {
-    title: 'Ult. Fact.',
-    key: 'ulti_fact',
-  },
-  {
-    title: 'Folio',
-    key: 'nume_foli',
-  },
-  {
-    title: 'Latitud',
-    key: 'coor_cx',
-  },
-  {
-    title: 'Longitud',
-    key: 'coor_cy',
-  },
-  {
-    title: 'Observación',
-    key: 'obse_insc',
-  },
-  {
-    title: 'Fecha app',
-    key: 'hora_zona',
-  },
-]
+const headers = computed(() => {
+  return [
+    {
+      title: 'Región',
+      key: 'codi_area',
+    },
+    {
+      title: 'Zona app',
+      key: 'zona_zona',
+    },
+    {
+      title: 'Sector app',
+      key: 'zona_sect',
+    },
+    {
+      title: 'Zona',
+      key: 'codi_zona',
+    },
+    {
+      title: 'Sector',
+      key: 'codi_sect',
+    },
+    {
+      title: 'Documento ident.',
+      key: 'nume_iden',
+    },
+    {
+      title: 'Nombre(s) y apellido(s)',
+      key: 'nomb_terc',
+    },
+    {
+      title: 'Estado',
+      key: 'esta_insc',
+    },
+    {
+      title: 'Usuario',
+      key: 'usua_modi',
+    },
+    {
+      title: 'Fecha',
+      key: 'fech_modi',
+    },
+    {
+      title: '1ra Fact.',
+      key: 'fech_fact',
+    },
+    {
+      title: '1ra Desp.',
+      key: 'fech_desp',
+    },
+    {
+      title: 'Ult. Fact.',
+      key: 'ulti_fact',
+    },
+    {
+      title: 'Folio',
+      key: 'nume_foli',
+    },
+    {
+      title: 'Latitud',
+      key: 'coor_cx',
+    },
+    {
+      title: 'Longitud',
+      key: 'coor_cy',
+    },
+    {
+      title: 'Observación',
+      key: 'obse_insc',
+    },
+    {
+      title: 'Fecha app',
+      key: 'hora_zona',
+    },
+  ]
+})
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Inscripciones`)
