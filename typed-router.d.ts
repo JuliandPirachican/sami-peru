@@ -84,6 +84,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-seguimiento-cierre-region': RouteRecordInfo<'reportes-seguimiento-cierre-region', '/reportes/seguimiento-cierre-region', Record<never, never>, Record<never, never>>,
     'reportes-seguimiento-cierre-zona': RouteRecordInfo<'reportes-seguimiento-cierre-zona', '/reportes/seguimiento-cierre-zona', Record<never, never>, Record<never, never>>,
     'reportes-semaforo-lider': RouteRecordInfo<'reportes-semaforo-lider', '/reportes/semaforo-lider', Record<never, never>, Record<never, never>>,
+    'reportes-semaforo-zona': RouteRecordInfo<'reportes-semaforo-zona', '/reportes/semaforo-zona', Record<never, never>, Record<never, never>>,
     'reportes-simulador-cobranza': RouteRecordInfo<'reportes-simulador-cobranza', '/reportes/simulador-cobranza', Record<never, never>, Record<never, never>>,
     'reportes-status-mgz': RouteRecordInfo<'reportes-status-mgz', '/reportes/status-mgz', Record<never, never>, Record<never, never>>,
     'reportes-tracking-zona': RouteRecordInfo<'reportes-tracking-zona', '/reportes/tracking-zona', Record<never, never>, Record<never, never>>,

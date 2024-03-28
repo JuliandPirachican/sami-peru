@@ -103,7 +103,7 @@ const errorSector = ref(false)
 const errorMensajeSector = ref('')
 
 onMounted(async () => {
-  appStore.titulo(`Reportes / Semaforo lider`)
+  appStore.titulo(`Reportes / Semáforo lider`)
   await obtenerCampana()
   await obtenerZona()
   inicioVariables()
