@@ -103,7 +103,7 @@ const errorSector = ref(false)
 const errorMensajeSector = ref('')
 
 onMounted(async () => {
-  appStore.titulo(`Reportes / Semaforo zona`)
+  appStore.titulo(`Reportes / Semaforo lider`)
   await obtenerCampana()
   await obtenerZona()
   inicioVariables()
@@ -173,7 +173,7 @@ const obtenerSector = async () => {
 
     const { data } = await $api(`/api/comun/v1/sectores`, {
       method: "get",
-      paqueryrams: {
+      query: {
         codigo: userData.codi_perf,
         zona: formulario.value.zona,
       },
