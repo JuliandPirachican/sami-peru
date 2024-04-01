@@ -54,6 +54,13 @@ export default [
     action: 'peru/proc_come_gest_vaca',
   },
   { 
+    title: 'Grabar pedido', 
+    to: 'procesos-grabar-pedido',
+    icon: { icon: 'tabler-clock-code' },
+    subject: 'peru/proc_come_grab_pedi', 
+    action: 'peru/proc_come_grab_pedi',
+  },
+  { 
     title: 'Registro posible asesora', 
     to: 'procesos-posible-asesora',
     icon: { icon: 'tabler-rotate-clockwise' },
