@@ -75,6 +75,13 @@ export default [
     action: 'peru/proc_cart_resp_inci_diar',
   },
   { 
+    title: 'Producto zona', 
+    to: 'procesos-producto-zona',
+    icon: { icon: 'tabler-clock-24' },
+    subject: 'peru/proc_come_prod_zona', 
+    action: 'peru/proc_come_prod_zona',
+  },
+  { 
     title: 'Solicitud recodificacion', 
     to: 'procesos-solicitar-recodificacion',
     icon: { icon: 'tabler-clock-24' },
