@@ -121,7 +121,7 @@ const onGenerar = async () => {
       appStore.mensaje('Obteniendo información')
       appStore.loading(true)
 
-      const response = await $api(`/api/inca/consultas/v1/generales/cliente`, {
+      const response = await $api(`/api/sami/v1/consulta/general/cliente`, {
         method: "GET",
         query: {
           documento: formulario.value.documento,

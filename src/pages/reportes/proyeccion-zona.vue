@@ -12,13 +12,7 @@ definePage({
 
 const appStore = useAppStore()
 
-const getClassByValue = value => {
-  const data = parseFloat(value).toFixed(2)
-  
-  return 'text-success'
-}
 
-const claseCumplimientoObjetivo = (row, columnfield, value) => getClassByValue(value)
 
 const formulario = ref({
   campana: null,
@@ -1787,37 +1781,283 @@ const cabecera = computed(() => {
   
 })
 
-const colum = [
+const claseIncorporacion = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  // eslint-disable-next-line
+      const dataObje = parseInt(dataRecord.pedi_inco_obje);
+  let dataProy = 0
+  if (columnfield === 'pedi_inco_prim') {
+    dataProy = parseInt(dataRecord.pedi_inco_prim)
+  } else {
+    dataProy = parseInt(dataRecord.pedi_inco_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (dataProy === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (porcProy >= 100) {
+    return `bg-primary-light text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `bg-primary-light text-warning`
+  }
+  
+  return `bg-primary-light text-error`
+}
+
+const claseRetencion = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  const dataObje = parseInt(dataRecord.pedi_rete_obje)
+  let dataProy = 0
+  if (columnfield === 'pedi_rete_prim') {
+    dataProy = parseInt(dataRecord.pedi_rete_prim)
+  } else {
+    // eslint-disable-next-line
+        dataProy = parseInt(dataRecord.pedi_rete_segu);
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return 'text-warning'
+  }
+  
+  return `text-error`
+}
+    
+const claseActividad = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  const dataObje = parseInt(dataRecord.acti_obje_pedi)
+  let dataProy = 0
+  if (columnfield === 'acti_prim') {
+    dataProy = parseInt(dataRecord.acti_prim)
+  } else {
+    dataProy = parseInt(dataRecord.acti_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ``
+  }
+  if (dataProy === 0) {
+    return ``
+  }
+  if (porcProy >= 100) {
+    return `text-success`
+  }
+  
+  return `text-error`
+}
+
+const claseConsecutividadRetencion =  (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  const dataObje = parseInt(dataRecord.cons_rete_obje)
+  let dataProy = 0
+  if (columnfield === 'cons_rete_prim') {
+    dataProy = parseInt(dataRecord.cons_rete_prim)
+  } else {
+    dataProy = parseInt(dataRecord.cons_rete_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (dataProy === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (porcProy >= 100) {
+    return `bg-primary-light text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `bg-primary-light text-warning`
+  }
+  
+  return `bg-primary-light text-error`
+}
+    
+const claseProyeccionPeg21 = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  const dataObje = parseInt(dataRecord.pe21_obje)
+  let dataProy = 0
+  if (columnfield === 'pe21_prim') {
+    dataProy = parseInt(dataRecord.pe21_prim)
+  } else {
+    dataProy = parseInt(dataRecord.pe21_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (dataProy === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (porcProy >= 100) {
+    return `bg-primary-light text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `bg-primary-light text-warning`
+  }
+  
+  return `bg-primary-light text-error`
+}
+
+const claseProyeccionPeg42 = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  // eslint-disable-next-line
+      const dataObje = parseInt(dataRecord.pe42_obje);
+  let dataProy = 0
+  if (columnfield === 'pe42_prim') {
+    // eslint-disable-next-line
+        dataProy = parseInt(dataRecord.pe42_prim);
+  } else {
+    // eslint-disable-next-line
+        dataProy = parseInt(dataRecord.pe42_segu);
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (dataProy === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (porcProy >= 100) {
+    return `bg-primary-light text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `bg-primary-light text-warning`
+  }
+  
+  return `bg-primary-light text-error`
+}
+
+const claseProyeccionPeg63 = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  const dataObje = parseInt(dataRecord.pe63_obje)
+  let dataProy = 0
+  if (columnfield === 'pe63_prim') {
+    dataProy = parseInt(dataRecord.pe63_prim)
+  } else {
+    dataProy = parseInt(dataRecord.pe63_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return `text-secondary bg-primary-light`
+  }
+  if (dataProy === 0) {
+    return `text-secondary bg-primary-light`
+  }
+  if (porcProy >= 100) {
+    return `text-success bg-primary-light`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `text-warning bg-primary-light`
+  }
+  
+  return `text-error bg-primary-light`
+}
+
+const claseProyeccionPegs = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  const dataObje = parseInt(dataRecord.pegs_obje)
+  let dataProy = 0
+  if (columnfield === 'pegs_prim') {
+    dataProy = parseInt(dataRecord.pegs_prim)
+  } else {
+    dataProy = parseInt(dataRecord.pegs_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return ''
+  }
+  if (dataProy === 0) {
+    return ''
+  }
+  if (porcProy >= 100) {
+    return 'text-sucess'
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return 'text-warning'
+  }
+  
+  return 'text-error'
+}
+
+const claseProyeccionReingreso = (row, columnfield, value) => {
+  const dataRecord = refGridGlobal.value.getrowdata(row)
+  const dataObje = parseInt(dataRecord.rein_obje)
+  let dataProy = 0
+  if (columnfield === 'rein_prim') {
+    dataProy = parseInt(dataRecord.rein_prim)
+  } else {
+    dataProy = parseInt(dataRecord.rein_segu)
+  }
+  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  if (dataObje === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (dataProy === 0) {
+    return `bg-primary-light text-secondary`
+  }
+  if (porcProy >= 100) {
+    return `bg-primary-light text-success`
+  }
+  if (porcProy >= 80 && porcProy < 100) {
+    return `bg-primary-light text-warning`
+  }
+  
+  return `bg-primary-light text-error`
+}
+
+const claseCapitalizacion = (row, columnfield, value) => {
+  if (value <= 0) {
+    return `text-error`
+  }
+  
+  return ``
+}
+
+const columnaGlobal = [
   {
     text: 'Sector',
-    datafield: 'codi_sect',
-    width: '100',
+    dataField: 'codi_sect',
+    width: '60',
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    filtertype: 'checkedlist',
     pinned: true,
+    filtertype: 'checkedlist',
   },
   {
     text: 'Lider',
-    datafield: 'nomb_vend',
-    width: '300',
+    dataField: 'nomb_vend',
+    width: '250',
     align: 'center',
     cellsalign: 'left',
     editable: false,
     pinned: true,
+    filtertype: 'checkedlist',
   },
   {
     text: 'Act. inic.',
-    datafield: 'acti_inic',
-    width: '100',
+    dataField: 'acti_inic',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     pinned: true,
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -1828,15 +2068,16 @@ const colum = [
   },
   {
     text: 'Obje. form. éxito',
-    datafield: 'pedi_tota_obje',
-    width: '200',
+    dataField: 'pedi_tota_obje',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'tota',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -1847,18 +2088,20 @@ const colum = [
   },
   {
     text: 'Obj. proyección',
-    datafield: 'pedi_tota_prim',
-    width: '200',
+    dataField: 'pedi_tota_prim',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'tota',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
-          
+       
           return aggregatedValue
         },
       },
@@ -1866,12 +2109,15 @@ const colum = [
   },
   {
     text: 'Reproyección',
-    datafield: 'pedi_tota_segu',
-    width: '200',
+    dataField: 'pedi_tota_segu',
+    hidden: true,
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'tota',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1884,15 +2130,16 @@ const colum = [
   },
   {
     text: 'Obje. form. éxito',
-    datafield: 'pedi_inco_obje',
-    width: '200',
+    dataField: 'pedi_inco_obje',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'inco',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -1903,15 +2150,17 @@ const colum = [
   },
   {
     text: 'Obj. proyección',
-    datafield: 'pedi_inco_prim',
-    width: '200',
+    dataField: 'pedi_inco_prim',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'inco',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -1919,21 +2168,28 @@ const colum = [
         },
       },
     ],
-    cellclassname() {
-      return 'text-secondary bg-primary-light'
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
     },
+    cellclassname: claseIncorporacion,
   },
   {
     text: 'Reproyección',
-    datafield: 'pedi_inco_segu',
-    width: '200',
+    dataField: 'pedi_inco_segu',
+    hidden: true,
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'inco',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -1941,18 +2197,27 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseIncorporacion,
   },
   {
     text: 'Obje. form. éxito',
     datafield: 'pedi_rete_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'rete',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -1964,14 +2229,16 @@ const colum = [
   {
     text: 'Obj. proyección',
     datafield: 'pedi_rete_prim',
-    width: '200',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'rete',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -1979,18 +2246,21 @@ const colum = [
         },
       },
     ],
+    cellclassname: claseRetencion,
   },
   {
     text: 'Reproyección',
     datafield: 'pedi_rete_segu',
-    width: '200',
+    hidden: true,
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'rete',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -1998,18 +2268,55 @@ const colum = [
         },
       },
     ],
+    cellclassname: claseRetencion,
   },
   {
-    text: 'camp. ante.',
+    text: 'tota ingr ante',
+    datafield: 'tota_ingr_ante',
+    hidden: true,
+  },
+  {
+    text: 'tota rein ante',
+    datafield: 'tota_rein_ante',
+    hidden: true,
+  },
+  {
+    text: 'acti inic ante',
+    datafield: 'acti_inic_ante',
+    hidden: true,
+  },
+  {
+    text: 'tota pedi ante',
+    datafield: 'tota_pedi_ante',
+    hidden: true,
+  },
+  {
+    text: 'nume acti',
+    datafield: 'nume_acti',
+    hidden: true,
+  },
+  {
+    text: 'acti nume prim',
+    datafield: 'acti_nume_prim',
+    hidden: true,
+  },
+  {
+    text: 'acti nume segu',
+    datafield: 'acti_nume_segu',
+    hidden: true,
+  },
+  {
+    text: 'Camp. ante.',
     datafield: 'acti_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'acti',
+    cellsformat: 'P2',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue, column, record) {
           let sumaNumePedi = 0
           let sumaTotaIngr = 0
@@ -2027,14 +2334,10 @@ const colum = [
           sumaActiInic += record.acti_inic_ante
           let total = 0
 
-          // eslint-disable-next-line radix
           const calculo = parseInt(sumaNumePedi)
-                  // eslint-disable-next-line radix
                   - parseInt(sumaTotaIngr)
-                  // eslint-disable-next-line radix
                   - parseInt(sumaTotaRein)
 
-          // eslint-disable-next-line radix
           const activas = parseInt(sumaActiInic)
           if (calculo > 0 && activas > 0) {
             total = 100 * (calculo / activas)
@@ -2047,19 +2350,20 @@ const colum = [
     ],
   },
   {
-    text: 'Obj. %.',
+    text: 'Obje. %',
     datafield: 'acti_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: true,
-    cellclassname: claseCumplimientoObjetivo,
     columngroup: 'acti',
+    cellsformat: 'P2',
+    filtertype: 'number',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
           let sumaActiInic = 0
-          let sumaActiObjePedi = 0 
+          let sumaActiObjePedi = 0
           if (record.visibleindex === 0) {
             sumaActiInic = 0
             sumaActiObjePedi = 0
@@ -2067,16 +2371,12 @@ const colum = [
           sumaActiInic += record.acti_inic
           sumaActiObjePedi += record.acti_obje_pedi
           let total = 0
-          // eslint-disable-next-line
-                if (
-          // eslint-disable-next-line radix
+          if (
             parseInt(sumaActiInic) > 0
                   && parseFloat(sumaActiObjePedi) > 0
           ) {
-            // eslint-disable-next-line
-                  total =
+            total =
                     100
-                    // eslint-disable-next-line radix
                     * (parseFloat(sumaActiObjePedi) / parseInt(sumaActiInic))
           }
           total = parseFloat(total).toFixed(2)
@@ -2085,18 +2385,29 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname() {
+      return 'text-secondary bg-primary-light'
+    },
   },
   {
-    text: 'Obj. pedi.',
+    text: 'Obje. pedi.',
     datafield: 'acti_obje_pedi',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'acti',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2108,11 +2419,14 @@ const colum = [
   {
     text: 'Proyección (%)',
     datafield: 'acti_porc_prim',
-    width: '200',
+    hidden: true,
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'acti',
+    cellsformat: 'p2',
+    filtertype: 'number',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
@@ -2125,15 +2439,11 @@ const colum = [
           sumaActiPrim += record.acti_prim
           sumaActiInic += record.acti_inic
           let total = 0
-          // eslint-disable-next-line
-                if (
-          // eslint-disable-next-line radix
+          if (
             parseInt(sumaActiPrim) > 0
-                  // eslint-disable-next-line radix
                   && parseInt(sumaActiInic) > 0
           ) {
-            // eslint-disable-next-line
-                  total =
+            total =
                     100 * (parseFloat(sumaActiPrim) / parseFloat(sumaActiInic))
           }
           total = parseFloat(total).toFixed(2)
@@ -2146,14 +2456,16 @@ const colum = [
   {
     text: 'Obj. proyección',
     datafield: 'acti_prim',
-    width: '200',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
     columngroup: 'acti',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2161,18 +2473,21 @@ const colum = [
         },
       },
     ],
+    cellclassname: claseActividad,
   },
   {
     text: 'Reproyección (%)',
     datafield: 'acti_porc_segu',
-    width: '200',
+    hidden: true,
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
     columngroup: 'acti',
+    cellsformat: 'P2',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue, column, record) {
           let sumaActiSegu = 0
           let sumaActiInic = 0
@@ -2184,13 +2499,10 @@ const colum = [
           sumaActiInic += record.acti_inic
           let total = 0
           if (
-          // eslint-disable-next-line radix
             parseInt(sumaActiSegu) > 0
                   && parseFloat(sumaActiInic) > 0
           ) {
-            // eslint-disable-next-line
-                  total =
-                    // eslint-disable-next-line radix
+            total =
                     100 * (parseInt(sumaActiSegu) / parseInt(sumaActiInic))
           }
           total = parseFloat(total).toFixed(2)
@@ -2203,14 +2515,16 @@ const colum = [
   {
     text: 'Reproyección',
     datafield: 'acti_segu',
-    width: '200',
+    hidden: true,
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'acti',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2218,18 +2532,20 @@ const colum = [
         },
       },
     ],
+    cellclassname: claseActividad,
   },
   {
     text: 'Rete. camp. ante.',
     datafield: 'cons_rete_camp_ante',
-    width: '200',
+    width: '150',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2239,16 +2555,17 @@ const colum = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Obje. form. éxito',
     datafield: 'cons_rete_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2260,14 +2577,16 @@ const colum = [
   {
     text: 'Obj. proyección',
     datafield: 'cons_rete_prim',
-    width: '200',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2275,18 +2594,28 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },    
+    cellclassname: claseConsecutividadRetencion,
   },
   {
     text: 'Reproyección',
     datafield: 'cons_rete_segu',
-    width: '200',
+    hidden: true,
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'cons_prim',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2294,18 +2623,27 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseConsecutividadRetencion,
   },
   {
     text: '1 Camp. ante.',
     datafield: 'cons_segu_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'cons_segu',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2317,14 +2655,15 @@ const colum = [
   {
     text: 'Obje. form. éxito',
     datafield: 'cons_segu_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'cons_segu',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2336,14 +2675,15 @@ const colum = [
   {
     text: '2 Camp. ante.',
     datafield: 'cons_terc_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'cons_terc',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2353,16 +2693,17 @@ const colum = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Obje. form. éxito',
     datafield: 'cons_terc_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'cons_terc',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2374,14 +2715,15 @@ const colum = [
   {
     text: '3 Camp. ante.',
     datafield: 'cons_cuar_camp_ante',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'cons_cuar',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2393,14 +2735,15 @@ const colum = [
   {
     text: 'Obje. form. éxito',
     datafield: 'cons_cuar_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'cons_cuar',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2412,14 +2755,15 @@ const colum = [
   {
     text: 'Peg21',
     datafield: 'pe21',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2431,14 +2775,15 @@ const colum = [
   {
     text: 'Obje. form. éxito',
     datafield: 'pe21_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2448,16 +2793,18 @@ const colum = [
     ],
   },
   {
-    text: 'Obj. proyección.',
+    text: 'Obj. proyección',
     datafield: 'pe21_prim',
-    width: '200',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2465,18 +2812,28 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseProyeccionPeg21,
   },
   {
     text: 'Reproyección',
+    hidden: true,
     datafield: 'pe21_segu',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'pe21',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2484,18 +2841,27 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseProyeccionPeg21,
   },
   {
     text: 'Peg42',
     datafield: 'pe42',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2505,16 +2871,17 @@ const colum = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Obje. form. éxito',
     datafield: 'pe42_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2526,14 +2893,16 @@ const colum = [
   {
     text: 'Obj. proyección',
     datafield: 'pe42_prim',
-    width: '200',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2541,18 +2910,28 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseProyeccionPeg42,
   },
   {
     text: 'Reproyección',
     datafield: 'pe42_segu',
-    width: '200',
+    hidden: true,
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'pe42',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2560,18 +2939,27 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseProyeccionPeg42,
   },
   {
     text: 'Peg63',
     datafield: 'pe63',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2581,16 +2969,17 @@ const colum = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Obje. form. éxito',
     datafield: 'pe63_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2602,33 +2991,45 @@ const colum = [
   {
     text: 'Obj. proyección',
     datafield: 'pe63_prim',
-    width: '200',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
-          
+       
           return aggregatedValue
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseProyeccionPeg63,
   },
   {
     text: 'Reproyección',
     datafield: 'pe63_segu',
-    width: '200',
+    hidden: true,
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'pe63',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2636,18 +3037,27 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseProyeccionPeg63,
   },
   {
     text: 'Pegs',
     datafield: 'pegs',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    columngroup: 'suma',
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2657,16 +3067,17 @@ const colum = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Obje. form. éxito',
     datafield: 'pegs_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    columngroup: 'suma',
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2678,14 +3089,16 @@ const colum = [
   {
     text: 'Obj. proyección',
     datafield: 'pegs_prim',
-    width: '200',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    columngroup: 'suma',
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2693,18 +3106,21 @@ const colum = [
         },
       },
     ],
+    cellclassname: claseProyeccionPegs,
   },
   {
     text: 'Reproyección',
     datafield: 'pegs_segu',
-    width: '200',
+    hidden: true,
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    columngroup: 'suma',
+    columngroup: 'pegs',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2712,18 +3128,20 @@ const colum = [
         },
       },
     ],
+    cellclassname: claseProyeccionPegs,
   },
   {
     text: 'Pos. rein.',
     datafield: 'rein',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2733,16 +3151,17 @@ const colum = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Obje. form. éxito',
     datafield: 'rein_obje',
-    width: '200',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'rein',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2754,14 +3173,16 @@ const colum = [
   {
     text: 'Obj. proyección',
     datafield: 'rein_prim',
-    width: '200',
+    hidden: true,
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'rein',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2769,18 +3190,28 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseProyeccionReingreso,
   },
   {
     text: 'Reproyección',
     datafield: 'rein_segu',
-    width: '200',
+    hidden: true,
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'rein',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2788,18 +3219,27 @@ const colum = [
         },
       },
     ],
+    validation(cell, value) {
+      if (value === '0') {
+        return true
+      }
+      
+      return !(value === '')
+    },
+    cellclassname: claseProyeccionReingreso,
   },
   {
     text: 'Obj. proyección',
     datafield: 'capi_obje',
-    width: '200',
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'capi',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2807,18 +3247,21 @@ const colum = [
         },
       },
     ],
+    cellclassname: claseCapitalizacion,
   },
   {
     text: 'Reproyección',
     datafield: 'capi_repr',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: true,
     columngroup: 'capi',
+    cellsformat: 'N',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2826,18 +3269,20 @@ const colum = [
         },
       },
     ],
+    cellclassname: claseCapitalizacion,
   },
   {
     text: 'Venta',
     datafield: 'tota_vent',
-    width: '200',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    cellsformat: 'D2',
+    filtertype: 'number',
     aggregates: [
       {
-        
-        T: function (aggregatedValue, currentValue) {
+        T: function (aggregatedValue, currentValue) { 
           aggregatedValue += currentValue
           
           return aggregatedValue
@@ -2848,13 +3293,14 @@ const colum = [
   {
     text: 'Cobranza 88%(por cobrar)',
     datafield: 'cobr',
-    width: '200',
+    width: '160',
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    cellsformat: 'D2',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2866,13 +3312,14 @@ const colum = [
   {
     text: 'Cobranza 88%(te puedes quedar)',
     datafield: 'cobr_colc',
-    width: '250',
+    width: '180',
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    cellsformat: 'D2',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2884,13 +3331,14 @@ const colum = [
   {
     text: 'Cobranza 92%(por cobrar)',
     datafield: 'co92',
-    width: '250',
+    width: '160',
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    cellsformat: 'D2',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2902,13 +3350,14 @@ const colum = [
   {
     text: 'Cobranza 92%(te puedes quedar)',
     datafield: 'co92_colc',
-    width: '250',
+    width: '180',
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    cellsformat: 'D2',
+    filtertype: 'number',
     aggregates: [
       {
-        
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
@@ -2920,7 +3369,7 @@ const colum = [
   {
     text: 'Nivel lider obje. proy.',
     datafield: 'nive_lide',
-    width: '200',
+    width: '180',
     align: 'center',
     cellsalign: 'center',
     editable: false,
@@ -2986,7 +3435,7 @@ const columnasGrupo = [
   {
     text: 'Suma de Pegs 35%',
     align: 'center',
-    name: 'suma',
+    name: 'pegs',
   },
   {
     text: 'Reingresos 10%',
@@ -4955,35 +5404,37 @@ watch(selectedColumna, async (nuevaVariable, antiguaVariable) => {
           </VCol>
 
           <VCol cols="12">
-            <VCard>
-              <JqxGrid
-                ref="refGridGlobal"
-                theme="material"
-                width="100%"
-                :localization="localization"
-                :height="450"
-                :columns="colum"
-                :source="adaptadorGlobal"
-                :columngroups="columnasGrupo"
-                columnsresize
-                :columnsautoresize="false"
-                enableanimations
-                sortable
-                sortmode="many"
-                filterable
-                :altrows="false"
-                :showemptyrow="false"
-                columnsreorder
-                showstatusbar
-                showaggregates
-                selectionmode="singlecell"
-                scrollmode="logical"
-                showfilterrow
-                :columnsmenu="false"
-                editable
-                editmode="click"
-                @cellendedit="onEditar($event)"
-              />
+            <VCard title="Lista de proyección">
+              <VCardText>
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :localization="localization"
+                  :height="450"
+                  :columns="columnaGlobal"
+                  :source="adaptadorGlobal"
+                  :columngroups="columnasGrupo"
+                  columnsresize
+                  :columnsautoresize="false"
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  showstatusbar
+                  showaggregates
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  editable
+                  editmode="click"
+                  @cellendedit="onEditar($event)"
+                />
+              </VCardText>
             </VCard>
           </VCol>
         </VRow>

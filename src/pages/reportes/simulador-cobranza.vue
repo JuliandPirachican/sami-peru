@@ -290,7 +290,7 @@ const onExcel = async () => {
     appStore.mensaje('Generando archivo')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/inca/reportes/ventas/v1/simulador/cobranza/excel`, {
+    const { data } = await $api(`/api/sami/v1/reportes/saldo-cartera/excel`, {
       method: "POST",
       body: {
         cabeceraGlobal: headersGlobal.value,

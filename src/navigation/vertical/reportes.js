@@ -114,8 +114,14 @@ export default [
       { 
         title: 'Semaforo lider', 
         to: 'reportes-semaforo-lider',
-        subject: 'peru/repo_come_sema-lide', 
-        action: 'peru/repo_come_sema-lide', 
+        subject: 'peru/repo_come_sema_lide', 
+        action: 'peru/repo_come_sema_lide', 
+      },
+      { 
+        title: 'Semaforo zona', 
+        to: 'reportes-semaforo-zona',
+        subject: 'peru/repo_come_sema_zona', 
+        action: 'peru/repo_come_sema_zona', 
       },  
     ],
   },
