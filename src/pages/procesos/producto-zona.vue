@@ -186,70 +186,67 @@ const limpiarValidacion = () => {
 </script>
 
 <template>
-  <section>
-    <VRow>
-      <VCol cols="12">
-        <AppTitulo titulo="Procesos | Producto zona" />
-      </VCol>
-
-      <VCol
-        cols="12"
-        class="d-flex justify-end flex-wrap gap-x-4 gap-y-4"
-      >
+  <div>
+    <AppPlantilla>
+      <template #botones>
         <GenerarBoton @procesar="onGenerar" />
         <ExcelBoton @procesar="onExcel" />
         <LimpiarBoton @procesar="onLimpiar" />
-      </VCol>
+      </template>
 
-      <VCol cols="12">
-        <VCard>
-          <VCardText>
-            <VRow> 
-              <VCol
-                cols="12"
-                md="4"
-              >
-                <AppSelect
-                  v-model="formulario.campana"
-                  :items="campanaOptions"
-                  label="Campaña"
-                  placeholder="Seleccionar campaña"
-                  item-title="text"
-                  item-value="id"
-                  :error="errorCampana"
-                  :error-messages="errorMensajeCampana"
-                />
-              </VCol>
-              <VCol
-                cols="12"
-                md="4"
-              >
-                <AppSelect
-                  v-model="formulario.zona"
-                  :items="zonaOptions"
-                  label="Zona"
-                  placeholder="Seleccionar zona"
-                  item-title="text"
-                  item-value="id"
-                  :error="errorZona"
-                  :error-messages="errorMensajeZona"
-                />
-              </VCol>
-              <VDataTable
-                :headers="visibleHeaders"
-                :items="items"
-                no-data-text=""
-                fixed-header
-                height="400"
-                class="text-no-wrap"
-                :items-per-page="-1"
-              >
-                <template #bottom />
-              </VDataTable>
-            </VRow>
-          </VCardText>
-        </VCard>
-      </VCol>
-    </VRow>
-  </section>
+      <template #contenido>
+        <VRow>
+          <VCol cols="12">
+            <VCard>
+              <VCardText>
+                <VRow> 
+                  <VCol
+                    cols="12"
+                    md="4"
+                  >
+                    <AppSelect
+                      v-model="formulario.campana"
+                      :items="campanaOptions"
+                      label="Campaña"
+                      placeholder="Seleccionar campaña"
+                      item-title="text"
+                      item-value="id"
+                      :error="errorCampana"
+                      :error-messages="errorMensajeCampana"
+                    />
+                  </VCol>
+                  <VCol
+                    cols="12"
+                    md="4"
+                  >
+                    <AppSelect
+                      v-model="formulario.zona"
+                      :items="zonaOptions"
+                      label="Zona"
+                      placeholder="Seleccionar zona"
+                      item-title="text"
+                      item-value="id"
+                      :error="errorZona"
+                      :error-messages="errorMensajeZona"
+                    />
+                  </VCol>
+                  <VDataTable
+                    :headers="visibleHeaders"
+                    :items="items"
+                    no-data-text=""
+                    fixed-header
+                    height="400"
+                    class="text-no-wrap"
+                    :items-per-page="-1"
+                  >
+                    <template #bottom />
+                  </VDataTable>
+                </VRow>
+              </VCardText>
+            </VCard>
+          </VCol>
+        </VRow>
+      </template>
+    </AppPlantilla>
+  </div>
 </template>
