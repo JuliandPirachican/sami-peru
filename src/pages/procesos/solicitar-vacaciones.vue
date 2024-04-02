@@ -128,7 +128,7 @@ const onIniciar = async () => {
           icon: 'warning',
           confirmButtonText: 'Aceptar',
           customClass: {
-            confirmButton: 'btn btn-danger',
+            confirmButton: 'v-btn bg-error',
           },
           showClass: {
             popup: 'animate__animated animate__bounceIn',
@@ -207,7 +207,7 @@ const onRegistrar = async () => {
       icon: 'success',
       confirmButtonText: 'Aceptar',
       customClass: {
-        confirmButton: 'btn btn-success',
+        confirmButton: 'v-btn bg-error',
       },
       showClass: {
         popup: 'animate__animated animate__bounceIn',

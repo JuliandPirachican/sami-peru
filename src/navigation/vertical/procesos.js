@@ -56,7 +56,7 @@ export default [
   { 
     title: 'Grabar pedido', 
     to: 'procesos-grabar-pedido',
-    icon: { icon: 'tabler-clock-code' },
+    icon: { icon: 'tabler-shopping-cart' },
     subject: 'peru/proc_come_grab_pedi', 
     action: 'peru/proc_come_grab_pedi',
   },
@@ -94,5 +94,12 @@ export default [
     icon: { icon: 'tabler-clock-24' },
     subject: 'peru/proc_come_soli_vaca', 
     action: 'peru/proc_come_soli_vaca',
+  },
+  { 
+    title: 'Vinculación digital', 
+    to: 'procesos-vinculacion-digital',
+    icon: { icon: 'tabler-world-up' },
+    subject: 'peru/proc_come_vinc_digi', 
+    action: 'peru/proc_come_vinc_digi',
   },
 ]

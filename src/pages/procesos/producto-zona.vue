@@ -2,7 +2,7 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
 import { EncryptStorage } from 'encrypt-storage'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue'
 
 definePage({
   meta: {
@@ -32,9 +32,8 @@ const zonaOptions = ref([])
 const errorZona = ref(false)
 const errorMensajeZona = ref('')
 
-const headers = computed(() => {
+const cabecera = computed(() => {
   return [
-    { title: 'Fila',        key: 'cons_prod', hidden: true },
     { title: 'Campaña',     key: 'codi_camp' },
     { title: 'Zona',        key: 'codi_zona' },
     { title: 'Código',      key: 'codi_prod' },
@@ -45,7 +44,88 @@ const headers = computed(() => {
   ]
 })
 
-const visibleHeaders = computed(() => headers.value.filter(header => !header.hidden))
+const columnaGlobal = [
+  {
+    text: 'Fila',
+    dataField: 'cons_prod',
+    hidden: true,
+  },
+  {
+    text: 'Campaña',
+    dataField: 'codi_camp',
+    width: '10%',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+  },
+  {
+    text: 'Zona',
+    dataField: 'codi_zona',
+    width: '10%',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+  },
+  {
+    text: 'Código',
+    dataField: 'codi_prod',
+    width: '15%',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+  },
+  {
+    text: 'Producto',
+    dataField: 'nomb_prod',
+    width: '20%',
+    align: 'center',
+    cellsalign: 'left',
+    editable: false,
+  },
+  {
+    text: 'Doc. ident.',
+    dataField: 'nume_iden',
+    width: '15%',
+    align: 'center',
+    cellsalign: 'center',
+    columntype: 'textbox',
+  },
+  {
+    text: 'Sector',
+    dataField: 'codi_sect',
+    width: '10%',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+  },
+  {
+    text: 'Asesora',
+    dataField: 'nomb_terc',
+    width: '20%',
+    align: 'center',
+    cellsalign: 'left',
+    editable: false,
+  },
+]
+
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'cons_prod', type: 'number' },
+    { name: 'codi_camp', type: 'string' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'codi_prod', type: 'string' },
+    { name: 'nomb_prod', type: 'string' },
+    { name: 'nume_iden', type: 'string' },
+    { name: 'codi_sect', type: 'string' },
+    { name: 'nomb_terc', type: 'string' },
+  ],
+  datatype: 'json',
+})
+
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const refGridGlobal = ref()
+const localization = appStore.localization
 
 onMounted(async () => {
   appStore.titulo(`Procesos / producto zona`)
@@ -123,8 +203,9 @@ const onGenerar = async () => {
       },
     })
 
-    items.value = []
-    items.value = data.data_glob
+    sourceGlobal.value.localdata =  data.data_glob
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -163,8 +244,8 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/procesos/producto-zona/excel`, {
       method: "post",
       body: {
-        cabecera: headers.value,
-        detalle: items.value,
+        cabecera: cabecera.value,
+        detalle: JSON.stringify(refGridGlobal.value.exportdata('xml')),
       },
     })
 
@@ -176,6 +257,40 @@ const onExcel = async () => {
   }
 }
 
+const onEditar = async event => {
+  appStore.mensaje('Generando proceso')
+  appStore.loading(true)
+
+  const { args } = event
+  const rowIndex = args.rowindex
+  const cellValue = args.value
+  try {
+    const numeIden = cellValue.trim()
+    const codiZona = refGridGlobal.value.getcellvaluebyid(rowIndex, 'codi_zona')
+    const consProd = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_prod')
+
+    const { data } = await $api(`/api/sami/v1/procesos/producto-zona/productos`, {
+      method: "put",
+      body: {
+        documento: numeIden,
+        zona: codiZona,
+        codigo: consProd,
+      },
+    })
+
+    const { nomb_terc, codi_sect } = data
+
+    refGridGlobal.value.setcellvalue(rowIndex, 'nomb_terc', nomb_terc)
+    refGridGlobal.value.setcellvalue(rowIndex, 'codi_sect', codi_sect)
+  } catch (error) {
+    refGridGlobal.value.setcellvalue(rowIndex, 'nume_iden', '')
+    refGridGlobal.value.setcellvalue(rowIndex, 'codi_sect', '')
+    refGridGlobal.value.setcellvalue(rowIndex, 'nomb_terc', '')
+  }
+  appStore.loading(false)
+  appStore.mensaje('')
+}
+    
 const limpiarValidacion = () => {
   errorCampana.value = false
   errorMensajeCampana.value = ''
@@ -197,9 +312,9 @@ const limpiarValidacion = () => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard>
+            <VCard title="Buscar producto zona">
               <VCardText>
-                <VRow> 
+                <VRow justify="space-between"> 
                   <VCol
                     cols="12"
                     md="4"
@@ -230,18 +345,38 @@ const limpiarValidacion = () => {
                       :error-messages="errorMensajeZona"
                     />
                   </VCol>
-                  <VDataTable
-                    :headers="visibleHeaders"
-                    :items="items"
-                    no-data-text=""
-                    fixed-header
-                    height="400"
-                    class="text-no-wrap"
-                    :items-per-page="-1"
-                  >
-                    <template #bottom />
-                  </VDataTable>
                 </VRow>
+              </VCardText>
+            </VCard>
+          </VCol>
+          <VCol cols="12">
+            <VCard title="Lista producto zona">
+              <VCardText>
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :localization="localization"
+                  :enablehover="false"
+                  :height="450"
+                  :columns="columnaGlobal"
+                  :source="adaptadorGlobal"
+                  columnsresize
+                  :columnsautoresize="false"
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  editable
+                  @cellendedit="onEditar($event)"
+                />
               </VCardText>
             </VCard>
           </VCol>

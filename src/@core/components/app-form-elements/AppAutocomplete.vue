@@ -32,7 +32,6 @@ const label = computed(() => useAttrs().label)
         ...$attrs,
         class: null,
         label: undefined,
-        id: elementId,
         variant: 'outlined',
         menuProps: {
           contentClass: [

@@ -42,6 +42,7 @@ const errorMensajeZona = ref('')
 
 const errorNroDocumento = ref(false)
 const errorMensajeNroDocumento = ref('')
+const refAutocomplete = ref()
 
 const headers = computed(() => {
   return [
@@ -138,19 +139,6 @@ const onRegistrar = async () => {
       let moneda = ''
       minimo = 190
       moneda = 'S/'
-
-      /*switch (this.country) {
-      case 'pe':
-        minimo = 190
-        moneda = 'S/'
-        break
-      case 'ec':
-        minimo = 70
-        moneda = '$'
-        break
-      default:
-        break
-      }*/
       let minimoHtml = ''
 
       if (parseInt(data.data.tota_pedi, 10) < minimo) {
@@ -183,8 +171,8 @@ const onRegistrar = async () => {
           confirmButtonText: 'Grabar pedido',
           cancelButtonText: 'Cancelar pedido',
           customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger ml-2',
+            confirmButton: 'v-btn bg-primary mr-1',
+            cancelButton: 'v-btn bg-error ml-1',
           },
         }).then(result => {
           if (result.isConfirmed) {
@@ -215,8 +203,8 @@ const onRegistrar = async () => {
           confirmButtonText: 'Grabar pedido',
           cancelButtonText: 'Cancelar pedido',
           customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger ml-2',
+            confirmButton: 'v-btn bg-primary mr-1',
+            cancelButton: 'v-btn bg-error ml-1',
           },
         }).then(result => {
           if (result.isConfirmed) {
@@ -247,8 +235,8 @@ const onRegistrar = async () => {
         confirmButtonText: 'Grabar pedido',
         cancelButtonText: 'Cancelar pedido',
         customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger',
+          confirmButton: 'v-btn bg-primary mr-1',
+          cancelButton: 'v-btn bg-error ml-1',
         },
       })
     }
@@ -324,7 +312,7 @@ const obtenerEstadoPedidogz = async() => {
     appStore.loading(true)
     limpiarValidacion()
 
-    const response = await $api(`/api/sami/v1/procesos/grabar-pedido/estado-pedigz`, {
+    const { data } = await $api(`/api/sami/v1/procesos/grabar-pedido/estado-pedigz`, {
       method: "get",
       query: {
         nroDocumento: (formulario.value.nroDocumento === null) ? '' : formulario.value.nroDocumento,
@@ -332,13 +320,14 @@ const obtenerEstadoPedidogz = async() => {
       },
     })
 
-    const data = response.data.dato_ases[0]
-
-    formulario.value.asesora = data.nomb_ases
-    formulario.value.campana = data.codi_camp
-    formulario.value.saldo = data.sald_ases
+    formulario.value.asesora = data.dato_ases[0].nomb_ases
+    formulario.value.campana = data.dato_ases[0].codi_camp
+    formulario.value.saldo = data.dato_ases[0].sald_ases
     formulario.value.isNroDocumento = true
     formulario.value.isAutocomplete = false
+
+    itemsGlobal.value = data.codi_pedi
+
   } catch (error) {
     const { data } = error.response._data
 
@@ -432,7 +421,18 @@ const selectHandler = async suggestion => {
         itemsGlobal.value.push(detalle)
       }
 
-      formulario.value.autocomplete = ''
+      formulario.value.autocomplete = null
+
+      const autocomplete = document.getElementById("formulario-autocomplete")
+      
+      setTimeout(() => {
+        autocomplete.blur()
+      }, 50)
+
+      setTimeout(() => {
+        autocomplete.focus()
+      }, 100)
+
     }
   }
   
@@ -450,22 +450,21 @@ const proc_come_grab_pedi_conf = async () => {
       },
     })
 
-    const htmlMensaje = `
-                                      <div class='row mt-1'>
-                                        <div class='col text-left'>
-                                          <strong>Documento :</strong> ${data.message.nume_iden}
-                                        </div>
-                                      </div>
-                                      <div class='row mt-1'>
-                                        <div class='col text-left'>
-                                          <strong>Asesora(or) :</strong> ${formulario.value.asesora}
-                                        </div>
-                                      </div>
-                                      <div class='row mt-1'>
-                                        <div class='col text-left'>
-                                          <strong>Grabación :</strong> ${data.message.nume_grab}
-                                        </div>
-                                      </div>`
+    const htmlMensaje = `<div class='row mt-1'>
+                            <div class='col text-left'>
+                              <strong>Documento :</strong> ${data.message.nume_iden}
+                            </div>
+                        </div>
+                        <div class='row mt-1'>
+                          <div class='col text-left'>
+                            <strong>Asesora(or) :</strong> ${formulario.value.asesora}
+                        </div>
+                        </div>
+                        <div class='row mt-1'>
+                          <div class='col text-left'>
+                            <strong>Grabación :</strong> ${data.message.nume_grab}
+                          </div>
+                      </div>`
 
     Swal.fire({
       title: 'Pedido grabado.',
@@ -476,30 +475,34 @@ const proc_come_grab_pedi_conf = async () => {
       confirmButtonText: 'Aceptar',
       cancelButtonText: 'Cancelar pedido',
       customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger',
+        confirmButton: 'v-btn bg-primary mr-1',
+        cancelButton: 'v-btn bg-error ml-1',
       },
     })
 
     onLimpiar()
 
   } catch (error) {
-    const { data } = error.response._data
-    if (typeof data != "undefined") {
-      for (var key in data)
-      {
-        if (key == 'nroDocumento') {
-          errorNroDocumento.value = true
-          errorMensajeNroDocumento.value = data[key]
-        }
+    console.log(error)
+    if (typeof error.response != "undefined") {
+      const { data } = error.response._data
+      if (typeof data != "undefined") {
+        for (var key in data)
+        {
+          if (key == 'nroDocumento') {
+            errorNroDocumento.value = true
+            errorMensajeNroDocumento.value = data[key]
+          }
 
-        if (key == 'productos') {
-          appStore.mensajeSnackbar(data[key])
-          appStore.color("error")
-          appStore.snackbar(true)
+          if (key == 'productos') {
+            appStore.mensajeSnackbar(data[key])
+            appStore.color("error")
+            appStore.snackbar(true)
+          }
         }
       }
     }
+    
   }
   finally {
     appStore.loading(false)
@@ -605,6 +608,8 @@ const proc_come_grab_pedi_conf = async () => {
                 <VRow>
                   <VCol>
                     <AppAutocomplete
+                      id="formulario-autocomplete"
+                      ref="refAutocomplete"
                       v-model="formulario.autocomplete"
                       label="Ingresar producto"
                       :items="arrayDatos"
@@ -632,7 +637,7 @@ const proc_come_grab_pedi_conf = async () => {
                     <VBtn
                       icon
                       size="x-small"
-                      color="primary"
+                      color="default"
                       variant="text"
                       @click="onSeleccionar(item)"
                     >
