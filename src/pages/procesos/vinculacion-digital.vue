@@ -3,8 +3,8 @@
 import { useAppStore } from '@/stores/app'
 import { EncryptStorage } from 'encrypt-storage'
 import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue"
-import { useDisplay } from 'vuetify'
 import Swal from 'sweetalert2'
+import { useDisplay } from 'vuetify'
 
 definePage({
   meta: {
@@ -48,7 +48,7 @@ const cabecera = computed(() => {
       key: 'codi_sect',
     },
     {
-      title: 'Cédula',
+      title: 'Documento identidad',
       key: 'nume_iden',
     },
     {
@@ -76,7 +76,7 @@ const cabecera = computed(() => {
       key: 'nomb_dpto',
     },
     {
-      title: 'Ciudad',
+      title: 'Provincia',
       key: 'nomb_ciud',
     },
     {
@@ -98,105 +98,105 @@ const columnasGlobal = [
   {
     text: 'Fecha envio',
     dataField: 'fech_envi',
-    width: '10%',
+    width: (mobile) ? '25%':'10%',
     cellsalign: 'center',
     align: 'center',
   },
   {
     text: 'Campaña',
     dataField: 'codi_camp',
-    width: '10%',
+    width: (mobile) ? '25%':'10%',
     cellsalign: 'center',
     align: 'center',
   },
   {
     text: 'Zona',
     dataField: 'codi_zona',
-    width: '10%',
+    width: (mobile) ? '25%':'10%',
     cellsalign: 'center',
     align: 'center',
   },
   {
     text: 'Sector',
     dataField: 'codi_sect',
-    width: '10%',
+    width: (mobile) ? '25%':'10%',
     cellsalign: 'center',
     align: 'center',
   },
   {
-    text: 'Cédula',
+    text: 'Documento identidad',
     dataField: 'nume_iden',
-    width: '10%',
+    width: (mobile) ? '25%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
     text: 'Primer nombre',
     dataField: 'prim_nomb',
-    width: '10%',
+    width: (mobile) ? '35%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
     text: 'Segundo nombre',
     dataField: 'segu_nomb',
-    width: '10%',
+    width: (mobile) ? '35%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
     text: 'Primer apellido',
     dataField: 'prim_apel',
-    width: '10%',
+    width: (mobile) ? '35%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
     text: 'Segundo apellido',
     dataField: 'segu_apel',
-    width: '10%',
+    width: (mobile) ? '35%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
     text: 'Celular',
     dataField: 'celu_ases',
-    width: '10%',
+    width: (mobile) ? '30%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
     text: 'Departamento',
     dataField: 'nomb_dpto',
-    width: '10%',
+    width: (mobile) ? '30%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
-    text: 'Ciudad',
+    text: 'Provincia',
     dataField: 'nomb_ciud',
-    width: '10%',
+    width: (mobile) ? '30%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
     text: 'Dirección',
     dataField: 'dire_ases',
-    width: '10%',
+    width: (mobile) ? '40%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
     text: 'Fecha nacimiento',
     dataField: 'fech_naci',
-    width: '10%',
+    width: (mobile) ? '30%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
   {
     text: 'Sexo',
     dataField: 'codi_sexo',
-    width: '10%',
+    width: (mobile) ? '25%':'10%',
     cellsalign: 'left',
     align: 'center',
   },
@@ -377,7 +377,6 @@ const onAprobar = async () => {
         nombAses = nombAses.toLowerCase()
         nombAses = nombAses.charAt(0).toUpperCase() + nombAses.slice(1)
 
-        console.log(nombAses)
         Swal.fire({
           title: 'Confirmación',
           text: `Desea aprobar la solicitud del cliente ${nombAses}`,
@@ -448,13 +447,16 @@ const onConfirmar = async () => {
         method: "post",
       })
 
-      if (response.data.status) {
-        ppStore.color("success")
+      if (rsVinculacion.status) {
+        appStore.color("success")
       } else {
         appStore.color("error")
       }
       appStore.mensajeSnackbar(rsVinculacion.message)
       appStore.snackbar(true)
+      
+      refGridGlobal.value.deleterow(rowindexes)
+      refGridGlobal.value.clearselection()
       // eslint-disable-next-line no-empty
     } catch (error) {
 

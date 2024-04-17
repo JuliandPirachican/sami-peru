@@ -2231,6 +2231,17 @@ const claseCapitalizacionConsolidado = (row, columnfield, value) => {
   return ``
 }
 
+let data = 0
+let obje = 0
+let sumaNumePedi = 0
+let sumaTotaIngr = 0
+let sumaTotaRein = 0
+let sumaActiInic = 0
+let sumaNumeActi = 0
+let sumaActiObje = 0
+let sumaActiPrim = 0
+let sumaActiSegu = 0
+
 const columnas = [
   {
     text: 'Corte',
@@ -2331,8 +2342,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -2388,8 +2398,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -2467,8 +2476,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -2524,8 +2532,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -2603,8 +2610,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -2660,8 +2666,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -2733,10 +2738,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let sumaNumePedi = 0
-          let sumaTotaIngr = 0
-          let sumaTotaRein = 0
-          let sumaActiInic = 0
+          
           if (record.visibleindex === 0) {
             sumaNumePedi = 0
             sumaTotaIngr = 0
@@ -2793,8 +2795,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let sumaNumeActi = 0
-          let sumaActiObje = 0
+          
           if (record.visibleindex === 0) {
             sumaNumeActi = 0
             sumaActiObje = 0
@@ -2848,8 +2849,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let sumaActiPrim = 0
-          let sumaActiInic = 0
+         
           if (record.visibleindex === 0) {
             sumaActiPrim = 0
             sumaActiInic = 0
@@ -2912,8 +2912,7 @@ const columnas = [
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let sumaActiSegu = 0
-          let sumaActiInic = 0
+         
           if (record.visibleindex === 0) {
             sumaActiSegu = 0
             sumaActiInic = 0
@@ -3894,8 +3893,7 @@ const columnasZona =
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -3952,8 +3950,7 @@ const columnasZona =
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -4032,8 +4029,7 @@ const columnasZona =
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -4090,8 +4086,7 @@ const columnasZona =
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -4170,8 +4165,7 @@ const columnasZona =
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -4228,8 +4222,7 @@ const columnasZona =
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let data = 0
-          let obje = 0
+          
           if (record.visibleindex === 0) {
             data = 0
             obje = 0
@@ -4353,10 +4346,7 @@ const columnasZona =
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaNumePedi = 0
-          let sumaTotaIngr = 0
-          let sumaTotaRein = 0
-          let sumaActiInic = 0
+          
           if (record.visibleindex === 0) {
             sumaNumePedi = 0
             sumaTotaIngr = 0
@@ -4467,8 +4457,7 @@ const columnasZona =
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let sumaNumeActi = 0
-          let sumaActiObje = 0
+          
           if (record.visibleindex === 0) {
             sumaNumeActi = 0
             sumaActiObje = 0
@@ -4524,8 +4513,7 @@ const columnasZona =
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let sumaActiPrim = 0
-          let sumaActiInic = 0
+         
           if (record.visibleindex === 0) {
             sumaActiPrim = 0
             sumaActiInic = 0
@@ -4588,8 +4576,7 @@ const columnasZona =
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
-          let sumaActiSegu = 0
-          let sumaActiInic = 0
+         
           if (record.visibleindex === 0) {
             sumaActiSegu = 0
             sumaActiInic = 0

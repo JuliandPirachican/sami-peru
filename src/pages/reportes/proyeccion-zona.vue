@@ -2025,6 +2025,14 @@ const claseCapitalizacion = (row, columnfield, value) => {
   return ``
 }
 
+let sumaNumePedi = 0
+let sumaTotaIngr = 0
+let sumaTotaRein = 0
+let sumaActiInic = 0
+let sumaActiObjePedi = 0
+let sumaActiPrim = 0
+let sumaActiSegu = 0
+
 const columnaGlobal = [
   {
     text: 'Sector',
@@ -2318,10 +2326,7 @@ const columnaGlobal = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaNumePedi = 0
-          let sumaTotaIngr = 0
-          let sumaTotaRein = 0
-          let sumaActiInic = 0
+          
           if (record.visibleindex === 0) {
             sumaNumePedi = 0
             sumaTotaIngr = 0
@@ -2362,8 +2367,7 @@ const columnaGlobal = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaActiInic = 0
-          let sumaActiObjePedi = 0
+          
           if (record.visibleindex === 0) {
             sumaActiInic = 0
             sumaActiObjePedi = 0
@@ -2430,8 +2434,7 @@ const columnaGlobal = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaActiPrim = 0
-          let sumaActiInic = 0
+          
           if (record.visibleindex === 0) {
             sumaActiPrim = 0
             sumaActiInic = 0
@@ -2489,8 +2492,7 @@ const columnaGlobal = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaActiSegu = 0
-          let sumaActiInic = 0
+         
           if (record.visibleindex === 0) {
             sumaActiSegu = 0
             sumaActiInic = 0

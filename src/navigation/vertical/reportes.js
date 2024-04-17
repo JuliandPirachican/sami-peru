@@ -210,6 +210,13 @@ export default [
     action: 'peru/repo_come_stat_mgzz', 
   },
   { 
+    title: 'Tracking zona', 
+    to: 'reportes-tracking-zona',
+    icon: { icon: 'tabler-report' },
+    subject: 'peru/repo_come_trac_zona', 
+    action: 'peru/repo_come_trac_zona', 
+  },
+  { 
     title: 'Vacaciones', 
     icon: { icon: 'tabler-search' },
     children: [
@@ -228,11 +235,11 @@ export default [
     ],
   },
   { 
-    title: 'Tracking zona', 
-    to: 'reportes-tracking-zona',
+    title: 'Vinculación digital', 
+    to: 'reportes-vinculacion-digital',
     icon: { icon: 'tabler-report' },
-    subject: 'peru/repo_come_trac_zona', 
-    action: 'peru/repo_come_trac_zona', 
+    subject: 'peru/repo_come_vinc_digi', 
+    action: 'peru/repo_come_vinc_digi', 
   },
   { 
     title: 'Visitas', 

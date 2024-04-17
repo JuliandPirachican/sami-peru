@@ -510,6 +510,18 @@ const columnasGrupo = [
   },
 ]
 
+let sumaFact = 0
+let sumaObje = 0
+let sumaValo = 0
+let sumaSald = 0
+let sumaLine = 0
+let sumaPedi = 0
+let sumaActiInic = 0
+let sumaNumePedi = 0
+let sumaTotaIngr = 0
+let sumaTotaRein = 0
+let sumaRece = 0
+          
 const columnasGlobal = [
   {
     text: 'Zona',
@@ -605,8 +617,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -679,8 +690,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -753,8 +763,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -827,10 +836,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaActiInic = 0
-          let sumaNumePedi = 0
-          let sumaTotaIngr = 0
-          let sumaTotaRein = 0
+          
           if (record.visibleindex === 0) {
             sumaActiInic = 0
             sumaNumePedi = 0
@@ -867,8 +873,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -899,10 +904,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaActiInic = 0
-          let sumaNumePedi = 0
-          let sumaTotaIngr = 0
-          let sumaTotaRein = 0
+          
           if (record.visibleindex === 0) {
             sumaActiInic = 0
             sumaNumePedi = 0
@@ -1000,8 +1002,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -1074,8 +1075,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -1148,8 +1148,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -1222,8 +1221,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -1388,8 +1386,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -1483,8 +1480,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -1578,8 +1574,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex=== 0) {
             sumaFact = 0
             sumaObje = 0
@@ -1675,8 +1670,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
+          
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -1784,8 +1778,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaValo = 0
-          let sumaSald = 0
+          
           if (record.visibleindex === 0) {
             sumaValo = 0
             sumaSald = 0
@@ -1837,8 +1830,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaValo = 0
-          let sumaSald = 0
+          
           if (record.visibleindex === 0) {
             sumaValo = 0
             sumaSald = 0
@@ -1883,8 +1875,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaLine = 0
-          let sumaPedi = 0
+          
           if (record.visibleindex === 0) {
             sumaLine = 0
             sumaPedi = 0
@@ -1917,8 +1908,7 @@ const columnasGlobal = [
       {
         
         T: function(aggregatedValue, currentValue, column, record) {
-          let sumaRece = 0
-          let sumaPedi = 0
+          
           if (record.visibleindex === 0) {
             sumaRece = 0
             sumaPedi = 0

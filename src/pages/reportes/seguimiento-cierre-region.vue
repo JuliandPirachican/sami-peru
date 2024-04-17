@@ -1919,6 +1919,13 @@ const cabecera = computed(() => {
   }
 })
 
+let sumaFact = 0
+let sumaObje = 0
+let sumaNumePedi = 0
+let sumaTotaIngr = 0
+let sumaTotaRein = 0
+let sumaActiInic = 0
+
 const columnas = [
   {
     text: 'obje rete cons sist',
@@ -2171,7 +2178,7 @@ const columnas = [
             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
           }
           total = parseFloat(total).toFixed(2)
-          
+            
           return total
         },
       },
@@ -2246,8 +2253,6 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -2259,6 +2264,7 @@ const columnas = [
             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
           }
           total = parseFloat(total).toFixed(2)
+          console.log(sumaFact, sumaObje, total)
           
           return total
         },
@@ -2979,10 +2985,6 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaActiInic = 0
-          let sumaNumePedi = 0
-          let sumaTotaIngr = 0
-          let sumaTotaRein = 0
           if (record.visibleindex === 0) {
             sumaActiInic = 0
             sumaNumePedi = 0
@@ -3030,10 +3032,6 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaActiInic = 0
-          let sumaNumePedi = 0
-          let sumaTotaIngr = 0
-          let sumaTotaRein = 0
           if (record.visibleindex === 0) {
             sumaActiInic = 0
             sumaNumePedi = 0
@@ -3141,8 +3139,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3215,8 +3211,6 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3286,8 +3280,6 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3362,8 +3354,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3438,8 +3428,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3515,8 +3503,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3591,8 +3577,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3668,8 +3652,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3766,8 +3748,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3843,8 +3823,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -3941,8 +3919,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4018,8 +3994,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4114,10 +4088,8 @@ const columnas = [
     editable: false,
     aggregates: [
       {
-        
+      
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4193,8 +4165,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4291,8 +4261,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4368,8 +4336,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4466,8 +4432,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4543,8 +4507,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4778,8 +4740,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4833,8 +4793,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4866,8 +4824,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
@@ -4901,8 +4857,6 @@ const columnas = [
       {
         
         T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0

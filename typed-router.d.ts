@@ -93,6 +93,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-tracking-zona': RouteRecordInfo<'reportes-tracking-zona', '/reportes/tracking-zona', Record<never, never>, Record<never, never>>,
     'reportes-vacaciones-consolidado': RouteRecordInfo<'reportes-vacaciones-consolidado', '/reportes/vacaciones-consolidado', Record<never, never>, Record<never, never>>,
     'reportes-vacaciones-pendientes': RouteRecordInfo<'reportes-vacaciones-pendientes', '/reportes/vacaciones-pendientes', Record<never, never>, Record<never, never>>,
+    'reportes-vinculacion-digital': RouteRecordInfo<'reportes-vinculacion-digital', '/reportes/vinculacion-digital', Record<never, never>, Record<never, never>>,
     'reportes-visitas': RouteRecordInfo<'reportes-visitas', '/reportes/visitas', Record<never, never>, Record<never, never>>,
   }
 }
