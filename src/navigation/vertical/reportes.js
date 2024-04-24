@@ -196,6 +196,13 @@ export default [
     action: 'peru/repo_come_refe', 
   },
   { 
+    title: 'Segmentación asesora', 
+    to: 'reportes-segmentacion-asesora',
+    icon: { icon: 'tabler-report' },
+    subject: 'peru/repo_come_segm_ases', 
+    action: 'peru/repo_come_segm_ases', 
+  },
+  { 
     title: 'Simulador de cobranza', 
     to: 'reportes-simulador-cobranza',
     icon: { icon: 'tabler-report' },

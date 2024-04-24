@@ -2979,7 +2979,7 @@ const onEditar = event => {
                   :source="adaptadorGlobal"
                   :columngroups="columnasGrupo"
                   columnsresize
-                  :columnsautoresize="false"
+                  columnsautoresize
                   enableanimations
                   sortable
                   sortmode="many"
@@ -3014,7 +3014,7 @@ const onEditar = event => {
                   :source="adaptadorDetalle"
                   :columngroups="columnasGrupo"
                   columnsresize
-                  :columnsautoresize="false"
+                  columnsautoresize
                   enableanimations
                   sortable
                   sortmode="many"

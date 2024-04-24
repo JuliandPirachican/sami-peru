@@ -2460,7 +2460,7 @@ const onClose = () => {
                   :source="adaptadorGlobal"
                   :columngroups="columnasGrupo"
                   columnsresize
-                  :columnsautoresize="false"
+                  columnsautoresize
                   enableanimations
                   sortable
                   sortmode="many"

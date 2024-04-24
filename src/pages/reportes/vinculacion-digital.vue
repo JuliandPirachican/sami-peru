@@ -473,7 +473,7 @@ const limpiarValidacion = () => {
                   :columns="columnasGlobal"
                   :source="adaptadorGlobal"
                   columnsresize
-                  :columnsautoresize="false"
+                  columnsautoresize
                   enableanimations
                   sortable
                   sortmode="many"

@@ -5418,7 +5418,7 @@ watch(selectedColumna, async (nuevaVariable, antiguaVariable) => {
                   :source="adaptadorGlobal"
                   :columngroups="columnasGrupo"
                   columnsresize
-                  :columnsautoresize="false"
+                  columnsautoresize
                   enableanimations
                   sortable
                   sortmode="many"

@@ -6730,7 +6730,7 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                   :source="adaptadorGlobal"
                   :columngroups="columnasGrupo"
                   columnsresize
-                  :columnsautoresize="false"
+                  columnsautoresize
                   enableanimations
                   sortable
                   sortmode="many"
@@ -6764,7 +6764,7 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                   :source="adaptadorGlobalZona"
                   :columngroups="columnasGrupoZona"
                   columnsresize
-                  :columnsautoresize="false"
+                  columnsautoresize
                   enableanimations
                   sortable
                   sortmode="many"
