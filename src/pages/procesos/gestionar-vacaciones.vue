@@ -1,13 +1,13 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { useDisplay } from 'vuetify'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import { useDisplay } from 'vuetify';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/proc_come_gest_vaca',
-    subject: 'peru/proc_come_gest_vaca',
+    action: 'colombia/proc_come_gest_vaca',
+    subject: 'colombia/proc_come_gest_vaca',
   },
 })
 

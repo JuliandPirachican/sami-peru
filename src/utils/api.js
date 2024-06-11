@@ -10,9 +10,10 @@ const modo = import.meta.env.VITE_API_MODO
 
 let baseURL = ''
 if (modo == 'PRODUCCION') {
-  baseURL = 'https://servicioweb.dupree.pe'
+  baseURL = 'https://servicioweb.dupree.co'
+  // baseURL = 'https://servicioweb.dupree.pe'
 } else {
-  baseURL = 'https://servicioweb2per.azzorti.co'
+  baseURL = 'https://servicioweb2col.azzorti.co'
 }
 
 export const $api = ofetch.create({

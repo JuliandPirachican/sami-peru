@@ -1,14 +1,14 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
-import Swal from 'sweetalert2'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
+import Swal from 'sweetalert2';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/proc_come_grab_pedi',
-    subject: 'peru/proc_come_grab_pedi',
+    action: 'colombia/proc_come_grab_pedi',
+    subject: 'colombia/proc_come_grab_pedi',
   },
 })
 

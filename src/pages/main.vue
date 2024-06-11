@@ -1,5 +1,5 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
+import { useAppStore } from '@/stores/app';
 
 const variableData = ref([
   {
@@ -79,8 +79,8 @@ const cierreData = ref([
 
 definePage({
   meta: {
-    action: 'peru/index',
-    subject: 'peru/index',
+    action: 'colombia/index',
+    subject: 'colombia/index',
   },
 })
 

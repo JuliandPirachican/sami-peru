@@ -1,14 +1,14 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue"
-import { useDisplay } from 'vuetify'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue";
+import { useDisplay } from 'vuetify';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_eval_cier',
-    subject: 'peru/repo_come_eval_cier',
+    action: 'colombia/repo_come_eval_cier',
+    subject: 'colombia/repo_come_eval_cier',
   },
 })
 

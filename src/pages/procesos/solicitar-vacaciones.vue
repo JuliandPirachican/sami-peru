@@ -1,13 +1,13 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import Swal from 'sweetalert2'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import Swal from 'sweetalert2';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/proc_come_soli_vaca',
-    subject: 'peru/proc_come_soli_vaca',
+    action: 'colombia/proc_come_soli_vaca',
+    subject: 'colombia/proc_come_soli_vaca',
   },
 })
 

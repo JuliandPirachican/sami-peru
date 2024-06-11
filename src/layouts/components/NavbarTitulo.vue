@@ -1,6 +1,6 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import bandera from '@images/flags/pe.png'
+import { useAppStore } from '@/stores/app';
+import bandera from '@images/flags/co.png';
 
 const store = useAppStore()
 </script>

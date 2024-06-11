@@ -1,10 +1,10 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
+import { useAppStore } from '@/stores/app';
 
 definePage({
   meta: {
-    action: 'peru/cons_come_logg_pedi',
-    subject: 'peru/cons_come_logg_pedi',
+    action: 'colombia/cons_come_logg_pedi',
+    subject: 'colombia/cons_come_logg_pedi',
   },
 })
 

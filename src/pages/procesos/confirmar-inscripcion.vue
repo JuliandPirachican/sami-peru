@@ -9,8 +9,8 @@ import { VDataTable } from 'vuetify/labs/VDataTable'
 
 definePage({
   meta: {
-    action: 'peru/proc_come_conf_insc_movi',
-    subject: 'peru/proc_come_conf_insc_movi',
+    action: 'colombia/proc_come_conf_insc_movi',
+    subject: 'colombia/proc_come_conf_insc_movi',
   },
 })
 

@@ -104,51 +104,25 @@ const onLimpiar = () => {
 }
 
 onMounted(() => {
-  appStore.titulo(`Administración / Permiso zonal`)
+  appStore.titulo(`Cambio Clave`)
   onGenerar()
 })
-var x=getElementByClass("x-panel-header");
-console.log(x)
 </script>
-<style lang="scss">
-
-</style>
 
 <template>
   <div>
     <AppPlantilla>
       <template #botones>
-        <GenerarBoton @procesar="onGenerar" />
+        <!-- <GenerarBoton @procesar="onGenerar" /> -->
         <RegistrarBoton @procesar="onRegistrar" />
         <LimpiarBoton @procesar="onLimpiar" />
       </template>
       <template #contenido>
         <VRow>
-          <VCol cols="12">
+          <VCol cols="24">
             <VCard title="Lista de programas">
               <VCardText>
-                <!-- <VDataTable
-                  v-model="selected"
-                  :headers="headers"
-                  :items="items"
-                  fixed-header
-                  height="400"
-                  :items-per-page="-1"
-                  show-select
-                  item-value="codi_prog"
-                >
-                  <template #bottom />
-                </VDataTable> -->
-                <v-card>
-                  <iframe src="https://intranet2col.azzorti.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
-
-                </v-card>
-                <v-dialog eager v-model="editBoardDialog">
-                  <v-card>
-                    <!-- HERE -->
-                    <iframe src="https://intranet2col.azzorti.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
-                  </v-card>
-                </v-dialog>
+                <iframe src="https://servicioweb2col.azzorti.co/Formulario_ferney/" frameborder="0"></iframe>
               </VCardText>
             </VCard>
           </VCol>

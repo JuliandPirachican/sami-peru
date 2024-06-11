@@ -1,15 +1,15 @@
 <!-- eslint-disable camelcase -->
 
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
-import { useDisplay } from 'vuetify'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
+import { useDisplay } from 'vuetify';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_comp_canj_devo',
-    subject: 'peru/repo_come_comp_canj_devo',
+    action: 'colombia/repo_come_comp_canj_devo',
+    subject: 'colombia/repo_come_comp_canj_devo',
   },
 })
 

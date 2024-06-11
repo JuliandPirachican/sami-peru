@@ -1,13 +1,13 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import debounce from 'lodash.debounce'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import debounce from 'lodash.debounce';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_simu_cobr',
-    subject: 'peru/repo_come_simu_cobr',
+    action: 'colombia/repo_come_simu_cobr',
+    subject: 'colombia/repo_come_simu_cobr',
   },
 })
 

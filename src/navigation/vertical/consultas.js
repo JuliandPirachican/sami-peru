@@ -1,21 +1,21 @@
 export default [
   { 
     heading: 'Consultas', 
-    subject: 'peru/cons', 
-    action: 'peru/cons',
+    subject: 'colombia/cons', 
+    action: 'colombia/cons',
   },
   { 
     title: 'Generales', 
     to: 'consultas-generales', 
     icon: { icon: 'tabler-search' },
-    subject: 'peru/cons_come_cons_gene', 
-    action: 'peru/cons_come_cons_gene',
+    subject: 'colombia/cons_come_cons_gene', 
+    action: 'colombia/cons_come_cons_gene',
   },
   { 
     title: 'Log pedido', 
     to: 'consultas-log-pedido', 
     icon: { icon: 'tabler-shopping-cart-cog' },
-    subject: 'peru/cons_come_logg_pedi', 
-    action: 'peru/cons_come_logg_pedi',
+    subject: 'colombia/cons_come_logg_pedi', 
+    action: 'colombia/cons_come_logg_pedi',
   },
 ]

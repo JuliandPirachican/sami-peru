@@ -1,13 +1,13 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
-import { useDisplay } from 'vuetify'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
+import { useDisplay } from 'vuetify';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_dire_lide',
-    subject: 'peru/repo_come_dire_lide',
+    action: 'colombia/repo_come_dire_lide',
+    subject: 'colombia/repo_come_dire_lide',
   },
 })
 

@@ -1,13 +1,13 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_sema_lide',
-    subject: 'peru/repo_come_sema_lide',
+    action: 'colombia/repo_come_sema_lide',
+    subject: 'colombia/repo_come_sema_lide',
   },
 })
 

@@ -8,8 +8,8 @@ import { useDisplay } from 'vuetify'
 
 definePage({
   meta: {
-    action: 'peru/proc_come_vinc_digi',
-    subject: 'peru/proc_come_vinc_digi',
+    action: 'colombia/proc_come_vinc_digi',
+    subject: 'colombia/proc_come_vinc_digi',
   },
 })
 

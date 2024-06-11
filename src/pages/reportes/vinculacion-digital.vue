@@ -1,14 +1,14 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
-import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue"
-import { useDisplay } from 'vuetify'
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
+import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue";
+import { useDisplay } from 'vuetify';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_vinc_digi',
-    subject: 'peru/repo_come_vinc_digi',
+    action: 'colombia/repo_come_vinc_digi',
+    subject: 'colombia/repo_come_vinc_digi',
   },
 })
 

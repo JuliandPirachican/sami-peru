@@ -1,5 +1,5 @@
 {
-  "name": "azzorti-sami-peru",
+  "name": "azzorti-sami-colombia",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -128,7 +128,7 @@
     "apexcharts": "^3",
     "stylelint-order": "6.0.3"
   },
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "pnpm@8.6.2",
   "msw": {
     "workerDirectory": "public"
   }
