@@ -1,11 +1,11 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
 
 definePage({
   meta: {
-    action: 'peru/proc_come_abri_asis',
-    subject: 'peru/proc_come_abri_asis',
+    action: 'colombia/proc_come_abri_asis',
+    subject: 'colombia/proc_come_abri_asis',
   },
 })
 

@@ -1,12 +1,12 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_asis_conf',
-    subject: 'peru/repo_come_asis_conf',
+    action: 'colombia/repo_come_asis_conf',
+    subject: 'colombia/repo_come_asis_conf',
   },
 })
 

@@ -6,8 +6,8 @@ export default [
       {
         title: 'Ventas',
         to: 'main',
-        subject: 'peru/index', 
-        action: 'peru/index',
+        subject: 'colombia/index', 
+        action: 'colombia/index',
       },
     ],
   },

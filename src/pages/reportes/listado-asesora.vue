@@ -1,13 +1,13 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { useDisplay } from 'vuetify'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import { useDisplay } from 'vuetify';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_list_ases',
-    subject: 'peru/repo_come_list_ases',
+    action: 'colombia/repo_come_list_ases',
+    subject: 'colombia/repo_come_list_ases',
   },
 })
 

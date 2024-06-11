@@ -1,16 +1,16 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
-import ConsultaGemmaDialog from '@/views/peru/cons_come_cons_gene/ConsultaGemmaDialog.vue'
-import MovimientoReferidoDialog from '@/views/peru/cons_come_cons_gene/MovimientoReferidoDialog.vue'
-import PaqueteLiderDialog from '@/views/peru/cons_come_cons_gene/PaqueteLiderDialog.vue'
-import PremioEnviarDialog from '@/views/peru/cons_come_cons_gene/PremioEnviarDialog.vue'
-import ServicioDetalleDialog from '@/views/peru/cons_come_cons_gene/ServicioDetalleDialog.vue'
+import ConsultaGemmaDialog from '@/views/colombia/cons_come_cons_gene/ConsultaGemmaDialog.vue'
+import MovimientoReferidoDialog from '@/views/colombia/cons_come_cons_gene/MovimientoReferidoDialog.vue'
+import PaqueteLiderDialog from '@/views/colombia/cons_come_cons_gene/PaqueteLiderDialog.vue'
+import PremioEnviarDialog from '@/views/colombia/cons_come_cons_gene/PremioEnviarDialog.vue'
+import ServicioDetalleDialog from '@/views/colombia/cons_come_cons_gene/ServicioDetalleDialog.vue'
 import { EncryptStorage } from 'encrypt-storage'
 
 definePage({
   meta: {
-    action: 'peru/cons_come_cons_gene',
-    subject: 'peru/cons_come_cons_gene',
+    action: 'colombia/cons_come_cons_gene',
+    subject: 'colombia/cons_come_cons_gene',
   },
 })
 

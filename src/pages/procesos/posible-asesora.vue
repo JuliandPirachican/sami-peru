@@ -1,11 +1,11 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
+import { useAppStore } from '@/stores/app';
 
 definePage({
   meta: {
-    action: 'peru/proc_come_posi_ases',
-    subject: 'peru/proc_come_posi_ases',
+    action: 'colombia/proc_come_posi_ases',
+    subject: 'colombia/proc_come_posi_ases',
   },
 })
 

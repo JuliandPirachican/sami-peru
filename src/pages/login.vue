@@ -129,7 +129,7 @@ onMounted(async () => {
 
         <VCardText>
           <h4 class="text-h4 mb-1">
-            Bienvenido a <span class="text-capitalize">{{ themeConfig.app.title }}</span>! 👋🏻
+            Bienvenidos a <span class="text-capitalize">{{ themeConfig.app.title }}</span>! 👋🏻
           </h4>
           <p class="mb-0">
             Por favor ingresar su usuarios y contraseña 

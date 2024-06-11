@@ -1,13 +1,13 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
-import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue"
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
+import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue";
 
 definePage({
   meta: {
-    action: 'peru/repo_come_proy_camp_regi',
-    subject: 'peru/repo_come_proy_camp_regi',
+    action: 'colombia/repo_come_proy_camp_regi',
+    subject: 'colombia/repo_come_proy_camp_regi',
   },
 })
 

@@ -1,12 +1,12 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue'
+import { useAppStore } from '@/stores/app';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_segm_ases',
-    subject: 'peru/repo_come_segm_ases',
+    action: 'colombia/repo_come_segm_ases',
+    subject: 'colombia/repo_come_segm_ases',
   },
 })
 

@@ -1,11 +1,10 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
-import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'colombia/proc_come_desb_ases',
-    subject: 'colombia/proc_come_desb_ases',
+    action: 'colombia/admi_camb_cont',
+    subject: 'colombia/admi_camb_cont',
   },
 })
 
@@ -14,58 +13,50 @@ const appStore = useAppStore()
 
 const headers = [
   {
-    title: 'Nro docu.',
-    key: 'nume_docu',
+    title: 'Codigo',
+    key: 'codi_prog',
   },
   {
-    title: 'Nombre(s)',
-    key: 'nomb_terc',
+    title: 'Programa',
+    key: 'nomb_prog',
   },
   {
-    title: 'Apellido(s)',
-    key: 'apel_terc',
-  },
-  {
-    title: 'Zona',
-    key: 'codi_zona',
-  },
-  {
-    title: 'Sector',
-    key: 'codi_sect',
-  },
-  {
-    title: 'Telefono',
-    key: 'tele_terc',
-  },
-  {
-    title: 'Celular',
-    key: 'celu_terc',
+    title: 'Ruta',
+    key: 'ruta_prog',
   },
 ]
 
 const selected = ref([])
 const items = ref([])
 
-onMounted(async () => {
-  appStore.titulo(`Procesos / Desbloquear asesora`)
-})
-
+// *Metodos
+// ^Metodo generar lista de modulos y auto selecciona modulos ya asignados al perfil gerente de zona
 const onGenerar = async () => {
   try {
     onLimpiar()
     appStore.mensaje('Obteniendo información')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/procesos/desbloquear-asesora/asesoras`, {
+    const response = await $api(`/api/sami/v1/administracion/permisos`, {
       method: "get",
     })
 
-    items.value = data.data_glob
+    items.value = response.data.data_glob
 
+    const programas = response.data.data_usua
+
+    nextTick(() => {
+      for (let a = 0; a < programas.length; a += 1) {
+        for (let b = 0; b < items.value.length; b += 1) {
+          if (programas[a].codi_prog === items.value[b].codi_prog) {
+            selected.value.push(items.value[b].codi_prog)
+          }
+        }
+      }
+    })
   } catch (e) {
     if(e.response !== undefined) {
-      // eslint-disable-next-line no-console
-      console.log(e.response._data)
+      console.log(e.response.data)
     }
   }
   finally {
@@ -76,7 +67,7 @@ const onGenerar = async () => {
 // ^Metodo registrar modulos al perfil gerente de zona
 const onRegistrar = async () => {
   if(selected.value.length == 0) {
-    appStore.mensajeSnackbar('Debe seleccionar asesora para desbloquear.')
+    appStore.mensajeSnackbar('No a seleccionado ningun programa.')
     appStore.color("error")
     appStore.snackbar(true)
   } else {
@@ -84,16 +75,14 @@ const onRegistrar = async () => {
       appStore.mensaje('Generando proceso')
       appStore.loading(true)
  
-      const data  = await $api(`/api/sami/v1/procesos/desbloquear-asesora`, {
-        method: "post",
+      const response = await $api(`/api/sami/v1/administracion/permisos`, {
+        method: "POST",
         body: {
-          asesoras: JSON.stringify(selected.value),
+          programas: JSON.stringify(selected.value),
         },
       })
 
-      onLimpiar()
-
-      let mensaje = data.message
+      let mensaje = response.message
       mensaje = mensaje.toLowerCase()
       mensaje = mensaje.charAt(0).toUpperCase() + mensaje.slice(1)
       appStore.mensajeSnackbar(mensaje)
@@ -104,36 +93,20 @@ const onRegistrar = async () => {
     finally {
       appStore.loading(false)
     }
-
   }
   
 }
 
-const onExcel = async () => {
-  try {
-    appStore.mensaje('Generando archivo')
-    appStore.loading(true)
-
-    const { data } = await $api(`/api/sami/v1/procesos/desbloquear-asesora/excel`, {
-      method: "post",
-      body: {
-        data: items.value,
-      },
-    })
-    
-    window.open(`${$base}/temporales/${data}`, '_blank')
-  } catch (e) {
-  }
-  finally {
-    appStore.loading(false)
-  }
-}
-
-// ^Metodo limpia modulos seleccionados y lista de modulos
+// ^Metodo limpia modulos seleccionados y lista de modulos 
 const onLimpiar = () => {
   items.value = []
   selected.value = []
 }
+
+onMounted(() => {
+  appStore.titulo(`Administración / Permiso zonal`)
+  onGenerar()
+})
 </script>
 
 <template>
@@ -141,16 +114,15 @@ const onLimpiar = () => {
     <AppPlantilla>
       <template #botones>
         <GenerarBoton @procesar="onGenerar" />
-        <ExcelBoton @procesar="onExcel" />
         <RegistrarBoton @procesar="onRegistrar" />
         <LimpiarBoton @procesar="onLimpiar" />
       </template>
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Lista de asesoras">
+            <VCard title="Lista de programas">
               <VCardText>
-                <VDataTable
+                <!-- <VDataTable
                   v-model="selected"
                   :headers="headers"
                   :items="items"
@@ -158,10 +130,20 @@ const onLimpiar = () => {
                   height="400"
                   :items-per-page="-1"
                   show-select
-                  item-value="nume_docu"
+                  item-value="codi_prog"
                 >
                   <template #bottom />
-                </VDataTable>
+                </VDataTable> -->
+                <v-card>
+                  <iframe src="https://intranet2col.azzorti.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
+
+                </v-card>
+                <v-dialog eager v-model="editBoardDialog">
+                  <v-card>
+                    <!-- HERE -->
+                    <iframe src="https://intranet2col.azzorti.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
+                  </v-card>
+                </v-dialog>
               </VCardText>
             </VCard>
           </VCol>
@@ -170,4 +152,3 @@ const onLimpiar = () => {
     </AppPlantilla>
   </div>
 </template>
-

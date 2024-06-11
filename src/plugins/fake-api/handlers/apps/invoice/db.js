@@ -845,7 +845,7 @@ export const database = [
       address: '075 Smith Views',
       company: 'Jenkins-Rosales Inc',
       companyEmail: 'calvin07@joseph-edwards.org',
-      country: 'Colombia',
+      country: 'colombia/',
       contact: '(895) 401-4255',
       name: 'Lori Wells',
     },

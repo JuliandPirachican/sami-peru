@@ -1,13 +1,13 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
-import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue'
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 
 definePage({
   meta: {
-    action: 'peru/proc_come_prod_zona',
-    subject: 'peru/proc_come_prod_zona',
+    action: 'colombia/proc_come_prod_zona',
+    subject: 'colombia/proc_come_prod_zona',
   },
 })
 

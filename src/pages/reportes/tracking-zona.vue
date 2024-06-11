@@ -1,13 +1,13 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { EncryptStorage } from 'encrypt-storage'
-import mapboxgl from 'mapbox-gl'
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
+import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
+import mapboxgl from 'mapbox-gl';
+import { PerfectScrollbar } from 'vue3-perfect-scrollbar';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_trac_zona',
-    subject: 'peru/repo_come_trac_zona',
+    action: 'colombia/repo_come_trac_zona',
+    subject: 'colombia/repo_come_trac_zona',
   },
 })
 

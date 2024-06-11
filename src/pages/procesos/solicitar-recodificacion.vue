@@ -1,13 +1,13 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app'
-import sinImagen from '@images/sin_imagen.png'
+import { useAppStore } from '@/stores/app';
+import sinImagen from '@images/sin_imagen.png';
 
 
 definePage({
   meta: {
-    action: 'peru/proc_come_soli_reco',
-    subject: 'peru/proc_come_soli_reco',
+    action: 'colombia/proc_come_soli_reco',
+    subject: 'colombia/proc_come_soli_reco',
   },
 })
 

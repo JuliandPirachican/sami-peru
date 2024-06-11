@@ -1,11 +1,11 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useAppStore } from '@/stores/app';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
 definePage({
   meta: {
-    action: 'peru/repo_come_lide_pago',
-    subject: 'peru/repo_come_lide_pago',
+    action: 'colombia/repo_come_lide_pago',
+    subject: 'colombia/repo_come_lide_pago',
   },
 })
 
