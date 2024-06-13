@@ -48,6 +48,7 @@ const login = async () => {
     })
 
     const dataLogin = responseLogin.data
+    const dataSessionIncaIframe=responseLogin.session_iframe
 
     const responseMenu = await $api(
       `/api/sami/v1/usuario/menu`, {
@@ -63,7 +64,8 @@ const login = async () => {
     ability.update(userAbility)
     encryptStorage.setItem('userAbilityRules', JSON.stringify(userAbility))
     encryptStorage.setItem('userData', JSON.stringify(dataLogin.data_glob))
-    encryptStorage.setItem('accessToken', dataLogin.accessToken)    
+    encryptStorage.setItem('accessToken', dataLogin.accessToken) 
+    localStorage.setItem('session_iframe', dataSessionIncaIframe)    
     encryptStorage.setItem('recordar', Boolean(recordar.value))
     if(recordar.value) {
       encryptStorage.setItem('login', JSON.stringify(form.value))
