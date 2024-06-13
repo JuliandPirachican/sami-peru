@@ -79,8 +79,8 @@ const cierreData = ref([
 
 definePage({
   meta: {
-    action: 'colombia/index',
-    subject: 'colombia/index',
+    action: 'peru/index',
+    subject: 'peru/index',
   },
 })
 

@@ -1,5 +1,5 @@
 <script setup>
-import { EncryptStorage } from 'encrypt-storage'
+import { EncryptStorage } from 'encrypt-storage';
 
 const router = useRouter()
 const ability = useAbility()
@@ -19,6 +19,7 @@ const logout = async () => {
 
   // Remove "userData" from cookie
   encryptStorage.removeItem('userData')
+  localStorage.removeItem("session_iframe")
 
   // Redirect to login page
   await router.push('/login')
