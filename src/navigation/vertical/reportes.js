@@ -262,5 +262,12 @@ export default [
     subject: 'colombia/repo_conc_dupr', 
     action: 'colombia/repo_conc_dupr', 
   },
+  { 
+    title: 'Impresion Saldos Cartera', 
+    to: 'reportes-impr-sald-cart',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/impr_sald_cart', 
+    action: 'colombia/impr_sald_cart', 
+  },
   
 ]
