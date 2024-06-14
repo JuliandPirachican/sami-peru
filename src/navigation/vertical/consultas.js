@@ -33,7 +33,7 @@ export default [
     action: 'colombia/cons_sald_cart_ingr',
   },
   { 
-    title: 'Consulta gene cliente', 
+    title: 'Consulta Generales cliente', 
     to: 'consultas-cons-clie', 
     icon: { icon: 'tabler-shopping-cart-cog' },
     subject: 'colombia/cons_clie', 
