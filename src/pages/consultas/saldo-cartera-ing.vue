@@ -6,7 +6,7 @@ definePage({
     action: 'colombia/cons_sald_cart_ingr',
     subject: 'colombia/cons_sald_cart_ingr',
   },
-})
+}) 
 
 // *Declaracion de variables
 const appStore = useAppStore()
