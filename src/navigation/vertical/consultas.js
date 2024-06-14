@@ -25,4 +25,11 @@ export default [
     subject: 'colombia/cons_sald_cart_gene', 
     action: 'colombia/cons_sald_cart_gene',
   },
+  { 
+    title: 'Consulta Saldo Cartera Ingresos', 
+    to: 'consultas-saldo-cartera', 
+    icon: { icon: 'tabler-shopping-cart-cog' },
+    subject: 'colombia/cons_sald_cart_ingr', 
+    action: 'colombia/cons_sald_cart_ingr',
+  },
 ]
