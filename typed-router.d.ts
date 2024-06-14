@@ -52,6 +52,7 @@ declare module 'vue-router/auto/routes' {
     'procesos-actualizar-dato': RouteRecordInfo<'procesos-actualizar-dato', '/procesos/actualizar-dato', Record<never, never>, Record<never, never>>,
     'procesos-cerrar-asistencia': RouteRecordInfo<'procesos-cerrar-asistencia', '/procesos/cerrar-asistencia', Record<never, never>, Record<never, never>>,
     'procesos-confirmar-inscripcion': RouteRecordInfo<'procesos-confirmar-inscripcion', '/procesos/confirmar-inscripcion', Record<never, never>, Record<never, never>>,
+    'procesos-consolidado-campana': RouteRecordInfo<'procesos-consolidado-campana', '/procesos/consolidado-campana', Record<never, never>, Record<never, never>>,
     'procesos-desbloquear-asesora': RouteRecordInfo<'procesos-desbloquear-asesora', '/procesos/desbloquear-asesora', Record<never, never>, Record<never, never>>,
     'procesos-gestionar-posible-asesora': RouteRecordInfo<'procesos-gestionar-posible-asesora', '/procesos/gestionar-posible-asesora', Record<never, never>, Record<never, never>>,
     'procesos-gestionar-vacaciones': RouteRecordInfo<'procesos-gestionar-vacaciones', '/procesos/gestionar-vacaciones', Record<never, never>, Record<never, never>>,

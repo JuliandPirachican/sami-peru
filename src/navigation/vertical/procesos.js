@@ -102,4 +102,11 @@ export default [
     subject: 'colombia/proc_come_vinc_digi', 
     action: 'colombia/proc_come_vinc_digi',
   },
+  { 
+    title: 'Consolidado Campaña', 
+    to: 'procesos-consolidado-campana',
+    icon: { icon: 'tabler-world-up' },
+    subject: 'colombia/proc_tab_cons', 
+    action: 'colombia/proc_tab_cons',
+  },
 ]
