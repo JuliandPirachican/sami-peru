@@ -71,6 +71,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-asistencia-conferencia': RouteRecordInfo<'reportes-asistencia-conferencia', '/reportes/asistencia-conferencia', Record<never, never>, Record<never, never>>,
     'reportes-ciclo-pedido': RouteRecordInfo<'reportes-ciclo-pedido', '/reportes/ciclo-pedido', Record<never, never>, Record<never, never>>,
     'reportes-comportamiento-cambios': RouteRecordInfo<'reportes-comportamiento-cambios', '/reportes/comportamiento-cambios', Record<never, never>, Record<never, never>>,
+    'reportes-concurso-suenos': RouteRecordInfo<'reportes-concurso-suenos', '/reportes/concurso-suenos', Record<never, never>, Record<never, never>>,
     'reportes-consecutividad': RouteRecordInfo<'reportes-consecutividad', '/reportes/consecutividad', Record<never, never>, Record<never, never>>,
     'reportes-directorio-lider': RouteRecordInfo<'reportes-directorio-lider', '/reportes/directorio-lider', Record<never, never>, Record<never, never>>,
     'reportes-distribucion-consolidado-estado-pedido': RouteRecordInfo<'reportes-distribucion-consolidado-estado-pedido', '/reportes/distribucion/consolidado-estado-pedido', Record<never, never>, Record<never, never>>,
