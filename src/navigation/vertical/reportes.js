@@ -269,5 +269,12 @@ export default [
     subject: 'colombia/impr_sald_cart', 
     action: 'colombia/impr_sald_cart', 
   },
+  { 
+    title: 'Reporte Faltante Anunciado', 
+    to: 'reportes-falt-anun',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_falt_anun', 
+    action: 'colombia/repo_falt_anun', 
+  },
   
 ]

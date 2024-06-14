@@ -78,6 +78,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-distribucion-consolidado-estado-pedido': RouteRecordInfo<'reportes-distribucion-consolidado-estado-pedido', '/reportes/distribucion/consolidado-estado-pedido', Record<never, never>, Record<never, never>>,
     'reportes-distribucion-estado-pedido-fecha': RouteRecordInfo<'reportes-distribucion-estado-pedido-fecha', '/reportes/distribucion/estado-pedido-fecha', Record<never, never>, Record<never, never>>,
     'reportes-evaluacion-cierre': RouteRecordInfo<'reportes-evaluacion-cierre', '/reportes/evaluacion-cierre', Record<never, never>, Record<never, never>>,
+    'reportes-falt-anun': RouteRecordInfo<'reportes-falt-anun', '/reportes/falt-anun', Record<never, never>, Record<never, never>>,
     'reportes-fraccionamiento': RouteRecordInfo<'reportes-fraccionamiento', '/reportes/fraccionamiento', Record<never, never>, Record<never, never>>,
     'reportes-gemmas-acumuladas': RouteRecordInfo<'reportes-gemmas-acumuladas', '/reportes/gemmas-acumuladas', Record<never, never>, Record<never, never>>,
     'reportes-impr-sald-cart': RouteRecordInfo<'reportes-impr-sald-cart', '/reportes/impr-sald-cart', Record<never, never>, Record<never, never>>,
