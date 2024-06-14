@@ -45,6 +45,7 @@ declare module 'vue-router/auto/routes' {
     'administracion-permiso-zonal': RouteRecordInfo<'administracion-permiso-zonal', '/administracion/permiso-zonal', Record<never, never>, Record<never, never>>,
     'consultas-generales': RouteRecordInfo<'consultas-generales', '/consultas/generales', Record<never, never>, Record<never, never>>,
     'consultas-log-pedido': RouteRecordInfo<'consultas-log-pedido', '/consultas/log-pedido', Record<never, never>, Record<never, never>>,
+    'consultas-saldo-cartera': RouteRecordInfo<'consultas-saldo-cartera', '/consultas/saldo-cartera', Record<never, never>, Record<never, never>>,
     'login': RouteRecordInfo<'login', '/login', Record<never, never>, Record<never, never>>,
     'main': RouteRecordInfo<'main', '/main', Record<never, never>, Record<never, never>>,
     'no-autorizado': RouteRecordInfo<'no-autorizado', '/no-autorizado', Record<never, never>, Record<never, never>>,
