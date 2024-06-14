@@ -32,4 +32,4 @@ export default [
     subject: 'colombia/cons_sald_cart_ingr', 
     action: 'colombia/cons_sald_cart_ingr',
   },
-]
+] 
