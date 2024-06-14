@@ -8,33 +8,28 @@
 /// <reference types="unplugin-vue-router/client" />
 
 import type {
+  NavigationGuard,
+  ParamValue,
+  RouteLocationAsPathTypedList,
+  RouteLocationAsRelativeTypedList,
+  RouteLocationAsString,
+  RouteLocationNormalizedLoadedTypedList,
+  RouteLocationNormalizedTypedList,
+  RouteLocationResolvedTypedList,
   // type safe route locations
   RouteLocationTypedList,
-  RouteLocationResolvedTypedList,
-  RouteLocationNormalizedTypedList,
-  RouteLocationNormalizedLoadedTypedList,
-  RouteLocationAsString,
-  RouteLocationAsRelativeTypedList,
-  RouteLocationAsPathTypedList,
-
   // helper types
   // route definitions
   RouteRecordInfo,
-  ParamValue,
-  ParamValueOneOrMore,
-  ParamValueZeroOrMore,
-  ParamValueZeroOrOne,
-
-  // vue-router extensions
-  _RouterTyped,
-  RouterLinkTyped,
   RouterLinkPropsTyped,
-  NavigationGuard,
+  RouterLinkTyped,
   UseLinkFnTyped,
 
   // data fetching
   _DataLoader,
   _DefineLoaderOptions,
+  // vue-router extensions
+  _RouterTyped
 } from 'unplugin-vue-router/types'
 
 declare module 'vue-router/auto/routes' {
@@ -51,6 +46,7 @@ declare module 'vue-router/auto/routes' {
     'no-autorizado': RouteRecordInfo<'no-autorizado', '/no-autorizado', Record<never, never>, Record<never, never>>,
     'procesos-abrir-asistencia': RouteRecordInfo<'procesos-abrir-asistencia', '/procesos/abrir-asistencia', Record<never, never>, Record<never, never>>,
     'procesos-actualizar-dato': RouteRecordInfo<'procesos-actualizar-dato', '/procesos/actualizar-dato', Record<never, never>, Record<never, never>>,
+    'procesos-aprob-ingr-digitales': RouteRecordInfo<'procesos-aprob-ingr-digitales', '/procesos/aprob-ingr-digitales', Record<never, never>, Record<never, never>>,
     'procesos-cerrar-asistencia': RouteRecordInfo<'procesos-cerrar-asistencia', '/procesos/cerrar-asistencia', Record<never, never>, Record<never, never>>,
     'procesos-confirmar-inscripcion': RouteRecordInfo<'procesos-confirmar-inscripcion', '/procesos/confirmar-inscripcion', Record<never, never>, Record<never, never>>,
     'procesos-consolidado-campana': RouteRecordInfo<'procesos-consolidado-campana', '/procesos/consolidado-campana', Record<never, never>, Record<never, never>>,
@@ -180,10 +176,8 @@ declare module 'vue-router/auto' {
   ): _DataLoader<Awaited<P>, isLazy>
 
   export {
-    _definePage as definePage,
-    _HasDataLoaderMeta as HasDataLoaderMeta,
-    _setupDataFetchingGuard as setupDataFetchingGuard,
-    _stopDataFetchingScope as stopDataFetchingScope,
+    _HasDataLoaderMeta as HasDataLoaderMeta, _definePage as definePage, _setupDataFetchingGuard as setupDataFetchingGuard,
+    _stopDataFetchingScope as stopDataFetchingScope
   } from 'unplugin-vue-router/runtime'
 }
 

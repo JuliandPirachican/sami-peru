@@ -109,4 +109,11 @@ export default [
     subject: 'colombia/proc_tab_cons', 
     action: 'colombia/proc_tab_cons',
   },
+  { 
+    title: 'Aprobacion ingresos digitales', 
+    to: 'procesos-aprob-ingr-digitales',
+    icon: { icon: 'tabler-world-up' },
+    subject: 'colombia/form_veri_pre_ases',  
+    action: 'colombia/form_veri_pre_ases',
+  },
 ]
