@@ -24,5 +24,5 @@ export default [
     icon: { icon: 'tabler-lock-minus' },
     subject: 'colombia/admi_camb_cont', 
     action: 'colombia/admi_camb_cont',
-  }
+  },
 ]

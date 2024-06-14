@@ -8,28 +8,33 @@
 /// <reference types="unplugin-vue-router/client" />
 
 import type {
-  NavigationGuard,
-  ParamValue,
-  RouteLocationAsPathTypedList,
-  RouteLocationAsRelativeTypedList,
-  RouteLocationAsString,
-  RouteLocationNormalizedLoadedTypedList,
-  RouteLocationNormalizedTypedList,
-  RouteLocationResolvedTypedList,
   // type safe route locations
   RouteLocationTypedList,
+  RouteLocationResolvedTypedList,
+  RouteLocationNormalizedTypedList,
+  RouteLocationNormalizedLoadedTypedList,
+  RouteLocationAsString,
+  RouteLocationAsRelativeTypedList,
+  RouteLocationAsPathTypedList,
+
   // helper types
   // route definitions
   RouteRecordInfo,
-  RouterLinkPropsTyped,
+  ParamValue,
+  ParamValueOneOrMore,
+  ParamValueZeroOrMore,
+  ParamValueZeroOrOne,
+
+  // vue-router extensions
+  _RouterTyped,
   RouterLinkTyped,
+  RouterLinkPropsTyped,
+  NavigationGuard,
   UseLinkFnTyped,
 
   // data fetching
   _DataLoader,
   _DefineLoaderOptions,
-  // vue-router extensions
-  _RouterTyped
 } from 'unplugin-vue-router/types'
 
 declare module 'vue-router/auto/routes' {
@@ -38,6 +43,7 @@ declare module 'vue-router/auto/routes' {
     'administracion-cambio-contrasena': RouteRecordInfo<'administracion-cambio-contrasena', '/administracion/cambio-contrasena', Record<never, never>, Record<never, never>>,
     'administracion-log-usuario': RouteRecordInfo<'administracion-log-usuario', '/administracion/log-usuario', Record<never, never>, Record<never, never>>,
     'administracion-permiso-zonal': RouteRecordInfo<'administracion-permiso-zonal', '/administracion/permiso-zonal', Record<never, never>, Record<never, never>>,
+    'consultas-cons-clie': RouteRecordInfo<'consultas-cons-clie', '/consultas/cons-clie', Record<never, never>, Record<never, never>>,
     'consultas-generales': RouteRecordInfo<'consultas-generales', '/consultas/generales', Record<never, never>, Record<never, never>>,
     'consultas-log-pedido': RouteRecordInfo<'consultas-log-pedido', '/consultas/log-pedido', Record<never, never>, Record<never, never>>,
     'consultas-saldo-cartera': RouteRecordInfo<'consultas-saldo-cartera', '/consultas/saldo-cartera', Record<never, never>, Record<never, never>>,
@@ -48,6 +54,7 @@ declare module 'vue-router/auto/routes' {
     'procesos-abrir-asistencia': RouteRecordInfo<'procesos-abrir-asistencia', '/procesos/abrir-asistencia', Record<never, never>, Record<never, never>>,
     'procesos-actualizar-dato': RouteRecordInfo<'procesos-actualizar-dato', '/procesos/actualizar-dato', Record<never, never>, Record<never, never>>,
     'procesos-aprob-ingr-digitales': RouteRecordInfo<'procesos-aprob-ingr-digitales', '/procesos/aprob-ingr-digitales', Record<never, never>, Record<never, never>>,
+    'procesos-asi-lide-rein': RouteRecordInfo<'procesos-asi-lide-rein', '/procesos/asi-lide-rein', Record<never, never>, Record<never, never>>,
     'procesos-cerrar-asistencia': RouteRecordInfo<'procesos-cerrar-asistencia', '/procesos/cerrar-asistencia', Record<never, never>, Record<never, never>>,
     'procesos-confirmar-inscripcion': RouteRecordInfo<'procesos-confirmar-inscripcion', '/procesos/confirmar-inscripcion', Record<never, never>, Record<never, never>>,
     'procesos-consolidado-campana': RouteRecordInfo<'procesos-consolidado-campana', '/procesos/consolidado-campana', Record<never, never>, Record<never, never>>,
@@ -179,8 +186,10 @@ declare module 'vue-router/auto' {
   ): _DataLoader<Awaited<P>, isLazy>
 
   export {
-    _HasDataLoaderMeta as HasDataLoaderMeta, _definePage as definePage, _setupDataFetchingGuard as setupDataFetchingGuard,
-    _stopDataFetchingScope as stopDataFetchingScope
+    _definePage as definePage,
+    _HasDataLoaderMeta as HasDataLoaderMeta,
+    _setupDataFetchingGuard as setupDataFetchingGuard,
+    _stopDataFetchingScope as stopDataFetchingScope,
   } from 'unplugin-vue-router/runtime'
 }
 
