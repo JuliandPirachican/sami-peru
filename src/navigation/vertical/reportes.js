@@ -255,4 +255,11 @@ export default [
     subject: 'colombia/repo_come_visi', 
     action: 'colombia/repo_come_visi', 
   },
+  { 
+    title: 'Concurso Sueños', 
+    to: 'reportes-concurso-suenos',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_conc_dupr', 
+    action: 'colombia/repo_conc_dupr', 
+  },
 ]

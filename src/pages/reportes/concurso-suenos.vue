@@ -2,7 +2,7 @@
 import { useAppStore } from '@/stores/app'
 
 definePage({
-  meta: {
+  meta: { 
     action: 'colombia/repo_conc_dupr',
     subject: 'colombia/repo_conc_dupr',
   },
