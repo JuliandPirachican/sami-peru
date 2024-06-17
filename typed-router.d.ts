@@ -61,6 +61,7 @@ declare module 'vue-router/auto/routes' {
     'procesos-solicitar-recodificacion': RouteRecordInfo<'procesos-solicitar-recodificacion', '/procesos/solicitar-recodificacion', Record<never, never>, Record<never, never>>,
     'procesos-solicitar-vacaciones': RouteRecordInfo<'procesos-solicitar-vacaciones', '/procesos/solicitar-vacaciones', Record<never, never>, Record<never, never>>,
     'procesos-vinculacion-digital': RouteRecordInfo<'procesos-vinculacion-digital', '/procesos/vinculacion-digital', Record<never, never>, Record<never, never>>,
+    'prueba': RouteRecordInfo<'prueba', '/prueba', Record<never, never>, Record<never, never>>,
     'reportes-asistencia-conferencia': RouteRecordInfo<'reportes-asistencia-conferencia', '/reportes/asistencia-conferencia', Record<never, never>, Record<never, never>>,
     'reportes-ciclo-pedido': RouteRecordInfo<'reportes-ciclo-pedido', '/reportes/ciclo-pedido', Record<never, never>, Record<never, never>>,
     'reportes-comportamiento-cambios': RouteRecordInfo<'reportes-comportamiento-cambios', '/reportes/comportamiento-cambios', Record<never, never>, Record<never, never>>,
