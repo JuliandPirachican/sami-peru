@@ -123,4 +123,11 @@ export default [
     subject: 'colombia/asi_lide_rein',  
     action: 'colombia/asi_lide_rein',
   }, 
+  { 
+    title: 'Pre Pedido', 
+    to: 'procesos-pre-pedido',
+    icon: { icon: 'tabler-world-up' },
+    subject: 'colombia/pre_pedido',  
+    action: 'colombia/pre_pedido',
+  },
 ]

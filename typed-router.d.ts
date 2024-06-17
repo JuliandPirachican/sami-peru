@@ -63,6 +63,7 @@ declare module 'vue-router/auto/routes' {
     'procesos-gestionar-vacaciones': RouteRecordInfo<'procesos-gestionar-vacaciones', '/procesos/gestionar-vacaciones', Record<never, never>, Record<never, never>>,
     'procesos-grabar-pedido': RouteRecordInfo<'procesos-grabar-pedido', '/procesos/grabar-pedido', Record<never, never>, Record<never, never>>,
     'procesos-posible-asesora': RouteRecordInfo<'procesos-posible-asesora', '/procesos/posible-asesora', Record<never, never>, Record<never, never>>,
+    'procesos-pre-pedido': RouteRecordInfo<'procesos-pre-pedido', '/procesos/pre-pedido', Record<never, never>, Record<never, never>>,
     'procesos-producto-zona': RouteRecordInfo<'procesos-producto-zona', '/procesos/producto-zona', Record<never, never>, Record<never, never>>,
     'procesos-respuesta-incidencias': RouteRecordInfo<'procesos-respuesta-incidencias', '/procesos/respuesta-incidencias', Record<never, never>, Record<never, never>>,
     'procesos-solicitar-recodificacion': RouteRecordInfo<'procesos-solicitar-recodificacion', '/procesos/solicitar-recodificacion', Record<never, never>, Record<never, never>>,
