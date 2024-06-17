@@ -262,5 +262,33 @@ export default [
     subject: 'colombia/repo_conc_dupr', 
     action: 'colombia/repo_conc_dupr', 
   },
+  { 
+    title: 'Impresion Saldos Cartera', 
+    to: 'reportes-impr-sald-cart',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/impr_sald_cart', 
+    action: 'colombia/impr_sald_cart', 
+  },
+  { 
+    title: 'Reporte Faltante Anunciado', 
+    to: 'reportes-falt-anun',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_falt_anun', 
+    action: 'colombia/repo_falt_anun', 
+  },
+  { 
+    title: 'Reporte Lideres Referidas', 
+    to: 'reportes-repo-lide-refe',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_lide_refe', 
+    action: 'colombia/repo_lide_refe', 
+  },
+  { 
+    title: 'Reporte App Movil', 
+    to: 'reportes-reporte-app-movil',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_app_movi', 
+    action: 'colombia/repo_app_movi', 
+  },
   
 ]

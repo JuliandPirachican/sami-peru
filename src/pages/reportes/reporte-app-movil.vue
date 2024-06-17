@@ -3,10 +3,10 @@ import { useAppStore } from '@/stores/app';
 
 definePage({
   meta: {
-    action: 'colombia/cons_sald_cart_ingr',
-    subject: 'colombia/cons_sald_cart_ingr',
+    action: 'colombia/repo_app_movi',
+    subject: 'colombia/repo_app_movi',
   },
-}) 
+})
 
 // *Declaracion de variables
 const appStore = useAppStore()
@@ -125,7 +125,7 @@ const onLimpiar = () => {
 }
 
 onMounted(() => {
-  appStore.titulo(`Saldo Cartera Ingresos`)
+  appStore.titulo(`Reporte App Movil`)
   onGenerar()
 })
 </script>
@@ -141,10 +141,11 @@ onMounted(() => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Saldo Cartera Ingresos">
+            <VCard title="App Movil">
               <VCardText>
                 <v-card>
-                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet2col.azzorti.co/desarrollo/cgis/sald_cart_ing/" frameborder="0"></iframe>
+                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet2col.azzorti.co/desarrollo/cgis/repo_movil.php" frameborder="0"></iframe>
+
                 </v-card>
               </VCardText>
             </VCard>

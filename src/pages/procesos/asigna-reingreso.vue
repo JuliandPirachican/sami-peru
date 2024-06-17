@@ -1,12 +1,12 @@
 <script setup>
-import { useAppStore } from '@/stores/app';
+import { useAppStore } from '@/stores/app'
 
 definePage({
   meta: {
-    action: 'colombia/cons_sald_cart_ingr',
-    subject: 'colombia/cons_sald_cart_ingr',
+    action: 'colombia/asi_lide_rein',
+    subject: 'colombia/asi_lide_rein',
   },
-}) 
+})
 
 // *Declaracion de variables
 const appStore = useAppStore()
@@ -103,19 +103,20 @@ const onRegistrar = async () => {
  */
 const modi_frame= ()=>{
   //obtiene data de localstorage
-  let session_iframe=localStorage.getItem("session_iframe");
+  let session_iframe=localStorage.getItem("session_iframe")
   let decrypt_info=atob(session_iframe)
-  let decode_info=JSON.parse(decrypt_info);
+  let decode_info=JSON.parse(decrypt_info)
+
   //navega en el DOM buscando un iframe para poder acceder a los campos
-  let iframe=document.querySelector("iframe");
-  let iframedom=iframe.contentWindow.document;
-  let input_usua=iframedom.getElementById("usua");//input usuario
-  input_usua.value=decode_info.codi_usua;
-  let input_pass=iframedom.getElementsByTagName("input")[1]; // input contraseña
-  input_pass.value=decode_info.pass_inca;
-  let button_submit=iframedom.getElementsByTagName("button")[0];//button submit form
-  button_submit.click();//clic para iniciar sesion
-};
+  let iframe=document.querySelector("iframe")
+  let iframedom=iframe.contentWindow.document
+  let input_usua=iframedom.getElementById("usua")//input usuario
+  input_usua.value=decode_info.codi_usua
+  let input_pass=iframedom.getElementsByTagName("input")[1] // input contraseña
+  input_pass.value=decode_info.pass_inca
+  let button_submit=iframedom.getElementsByTagName("button")[0]//button submit form
+  button_submit.click()//clic para iniciar sesion
+}
 
 
 // ^Metodo limpia modulos seleccionados y lista de modulos 
@@ -125,7 +126,7 @@ const onLimpiar = () => {
 }
 
 onMounted(() => {
-  appStore.titulo(`Saldo Cartera Ingresos`)
+  appStore.titulo(`Asignacion Reingreso Lider`)
   onGenerar()
 })
 </script>
@@ -133,19 +134,20 @@ onMounted(() => {
 <template>
   <div>
     <AppPlantilla>
-      <template #botones>
-        <GenerarBoton @procesar="onGenerar" />
-        <RegistrarBoton @procesar="onRegistrar" />
-        <LimpiarBoton @procesar="onLimpiar" />
-      </template>
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Saldo Cartera Ingresos">
+            <VCard title="Asignacion Reingreso Lider">
               <VCardText>
-                <v-card>
-                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet2col.azzorti.co/desarrollo/cgis/sald_cart_ing/" frameborder="0"></iframe>
-                </v-card>
+                <VCard>
+                  <iframe
+                    id="iframe_option"
+                    ref="iframe_camb_clav"
+                    src="https://intranet2col.azzorti.co/CI/asi_lide_rein"
+                    frameborder="0"
+                    @load="modi_frame"
+                  />
+                </VCard>
               </VCardText>
             </VCard>
           </VCol>
@@ -154,8 +156,9 @@ onMounted(() => {
     </AppPlantilla>
   </div>
 </template>
+
 <style>
 #iframe_option{
-  width: 100%;
+  inline-size: 100%;
 }
 </style>

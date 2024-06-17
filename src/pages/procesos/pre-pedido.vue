@@ -3,8 +3,8 @@ import { useAppStore } from '@/stores/app'
 
 definePage({
   meta: {
-    action: 'colombia/asi_lide_rein',
-    subject: 'colombia/asi_lide_rein',
+    action: 'colombia/pre_pedido',
+    subject: 'colombia/pre_pedido',
   },
 })
 
@@ -126,7 +126,7 @@ const onLimpiar = () => {
 }
 
 onMounted(() => {
-  appStore.titulo(`Asignacion Reingresos`)
+  appStore.titulo(`Pre Pedido`)
   onGenerar()
 })
 </script>
@@ -134,21 +134,16 @@ onMounted(() => {
 <template>
   <div>
     <AppPlantilla>
-      <template #botones>
-        <GenerarBoton @procesar="onGenerar" />
-        <RegistrarBoton @procesar="onRegistrar" />
-        <LimpiarBoton @procesar="onLimpiar" />
-      </template>
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Asignacion Reingresos">
+            <VCard title="Pre Pedido">
               <VCardText>
                 <VCard>
                   <iframe
                     id="iframe_option"
                     ref="iframe_camb_clav"
-                    src="https://intranet2col.azzorti.co/CI/asi_lide_rein/"
+                    src="https://intranet2col.azzorti.co/desarrollo/cgis/pre_pedi/pre_pedi_form.php"
                     frameborder="0"
                     @load="modi_frame"
                   />

@@ -126,7 +126,7 @@ const onLimpiar = () => {
 }
 
 onMounted(() => {
-  appStore.titulo(`Saldo Cartera`)
+  appStore.titulo(`Consultas Generales`)
   onGenerar()
 })
 </script>
@@ -134,21 +134,16 @@ onMounted(() => {
 <template>
   <div>
     <AppPlantilla>
-      <template #botones>
-        <GenerarBoton @procesar="onGenerar" />
-        <RegistrarBoton @procesar="onRegistrar" />
-        <LimpiarBoton @procesar="onLimpiar" />
-      </template>
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Saldo Cartera">
+            <VCard title="Consultas Generales">
               <VCardText>
                 <VCard>
                   <iframe
                     id="iframe_option"
                     ref="iframe_camb_clav"
-                    src="https://intranet2col.azzorti.co/desarrollo/cgis/sald_cart/"
+                    src="https://intranet2col.azzorti.co/desarrollo/cgis/cons_clie.php"
                     frameborder="0"
                     @load="modi_frame"
                   />

@@ -117,10 +117,17 @@ export default [
     action: 'colombia/form_veri_pre_ases',
   }, 
   { 
-    title: 'Asignacion Reingresos lide', 
-    to: 'procesos-asi-lide-rein',
+    title: 'Asignacion reingreso lider', 
+    to: 'procesos-asigna-reingreso',
     icon: { icon: 'tabler-world-up' },
     subject: 'colombia/asi_lide_rein',  
     action: 'colombia/asi_lide_rein',
+  }, 
+  { 
+    title: 'Pre Pedido', 
+    to: 'procesos-pre-pedido',
+    icon: { icon: 'tabler-world-up' },
+    subject: 'colombia/pre_pedido',  
+    action: 'colombia/pre_pedido',
   },
 ]

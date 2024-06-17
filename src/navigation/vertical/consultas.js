@@ -27,13 +27,13 @@ export default [
   },
   { 
     title: 'Consulta Saldo Cartera Ingresos', 
-    to: 'consultas-saldo-cartera', 
+    to: 'consultas-saldo-cartera-ing', 
     icon: { icon: 'tabler-shopping-cart-cog' },
     subject: 'colombia/cons_sald_cart_ingr', 
     action: 'colombia/cons_sald_cart_ingr',
   },
   { 
-    title: 'Consulta gene cliente', 
+    title: 'Consulta Generales cliente', 
     to: 'consultas-cons-clie', 
     icon: { icon: 'tabler-shopping-cart-cog' },
     subject: 'colombia/cons_clie', 
