@@ -354,7 +354,7 @@ export default [
   },
   { 
     title: 'Indicador Gestion', 
-    to: 'reportes-tab_cons', 
+    to: 'reportes-indicadores-gestion', 
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_tab_cons', 
     action: 'colombia/repo_tab_cons', 
