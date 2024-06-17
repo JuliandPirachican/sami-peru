@@ -1,5 +1,6 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
+import { style_iframe } from '@/stores/style-iframe';
 
 definePage({
   meta: {
@@ -124,9 +125,12 @@ const onLimpiar = () => {
   selected.value = []
 }
 
+
+
 onMounted(() => {
   appStore.titulo(`Administración / Permiso zonal`)
   onGenerar()
+  style_iframe()
 })
 </script>
 
