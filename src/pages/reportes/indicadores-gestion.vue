@@ -21,7 +21,7 @@ const headers = [
     key: 'nomb_prog',
   },
   {
-    title: 'Ruta',
+    title: 'Ruta', 
     key: 'ruta_prog',
   },
 ]
