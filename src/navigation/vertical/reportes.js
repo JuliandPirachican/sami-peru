@@ -283,5 +283,12 @@ export default [
     subject: 'colombia/repo_lide_refe', 
     action: 'colombia/repo_lide_refe', 
   },
+  { 
+    title: 'Reporte App Movil', 
+    to: 'reportes-reporte-app-movil',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_app_movi', 
+    action: 'colombia/repo_app_movi', 
+  },
   
 ]
