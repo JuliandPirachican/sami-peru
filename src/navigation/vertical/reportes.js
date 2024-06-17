@@ -297,11 +297,52 @@ export default [
     subject: 'colombia/repo_pre_pedi', 
     action: 'colombia/repo_pre_pedi', 
   },
-  { 
-    title: 'Reporte PBIE', 
-    to: 'reportes-reporte-pbie',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/menu_repo_pbie', 
-    action: 'colombia/menu_repo_pbie', 
+  {
+    title: 'Reporte PBIE',
+    icon: { icon: 'tabler-circle' },
+    children: [
+      {
+        title: 'Evaluación cierre  zonas',
+        to: 'main',
+        icon: { icon: 'tabler-edit' },
+        subject: 'colombia/index', 
+        action: 'colombia/index',
+      },
+      {
+        title: 'Proyección campaña región',
+        to: 'main',
+        icon: { icon: 'tabler-info-circle' },
+        subject: 'colombia/index', 
+        action: 'colombia/index',
+      },
+      {
+        title: 'Proyección campaña zona',
+        to: 'main',
+        icon: { icon: 'tabler-player-track-next' },
+        subject: 'colombia/index', 
+        action: 'colombia/index',
+      },
+      {
+        title: 'Seguimiento cierre país',
+        to: 'main',
+        icon: { icon: 'tabler-phone-incoming' },
+        subject: 'colombia/index', 
+        action: 'colombia/index',
+      },
+      {
+        title: 'Seguimiento cierre región',
+        to: 'main',
+        icon: { icon: 'tabler-phone' },
+        subject: 'colombia/index', 
+        action: 'colombia/index',
+      },
+      {
+        title: 'Seguimiento cierre zona',
+        to: 'main',
+        icon: { icon: 'tabler-edit' },
+        subject: 'colombia/index', 
+        action: 'colombia/index',
+      },
+    ],
   },
 ]
