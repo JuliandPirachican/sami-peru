@@ -276,5 +276,12 @@ export default [
     subject: 'colombia/repo_falt_anun', 
     action: 'colombia/repo_falt_anun', 
   },
+  { 
+    title: 'Reporte Lideres Referidas', 
+    to: 'reportes-repo-lide-refe',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_lide_refe', 
+    action: 'colombia/repo_lide_refe', 
+  },
   
 ]
