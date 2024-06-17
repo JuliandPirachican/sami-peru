@@ -116,4 +116,11 @@ export default [
     subject: 'colombia/form_veri_pre_ases',  
     action: 'colombia/form_veri_pre_ases',
   }, 
+  { 
+    title: 'Asignacion reingreso lider', 
+    to: 'procesos-asigna-reingreso',
+    icon: { icon: 'tabler-world-up' },
+    subject: 'colombia/asi_lide_rein',  
+    action: 'colombia/asi_lide_rein',
+  }, 
 ]
