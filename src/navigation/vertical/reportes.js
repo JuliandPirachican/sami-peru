@@ -359,6 +359,13 @@ export default [
     subject: 'colombia/repo_tab_cons', 
     action: 'colombia/repo_tab_cons', 
   },
+  { 
+    title: 'Reporte Vinculacion', 
+    to: 'reportes-reporte-vinculacion', 
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_vinc_digi', 
+    action: 'colombia/repo_vinc_digi', 
+  },
   
 ]
  

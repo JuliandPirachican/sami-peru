@@ -109,6 +109,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-vacaciones-pendientes': RouteRecordInfo<'reportes-vacaciones-pendientes', '/reportes/vacaciones-pendientes', Record<never, never>, Record<never, never>>,
     'reportes-vinculacion-digital': RouteRecordInfo<'reportes-vinculacion-digital', '/reportes/vinculacion-digital', Record<never, never>, Record<never, never>>,
     'reportes-visitas': RouteRecordInfo<'reportes-visitas', '/reportes/visitas', Record<never, never>, Record<never, never>>,
+    'reportes-reporte-vinculacion': RouteRecordInfo<'reportes-reporte-vinculacion', '/reportes/reporte-vinculacion', Record<never, never>, Record<never, never>>,
   }
 }
 
