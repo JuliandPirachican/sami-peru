@@ -27,7 +27,7 @@ export default [
   },
   { 
     title: 'Consulta Saldo Cartera Ingresos', 
-    to: 'consultas-saldo-cartera', 
+    to: 'consultas-saldo-cartera-ing', 
     icon: { icon: 'tabler-shopping-cart-cog' },
     subject: 'colombia/cons_sald_cart_ingr', 
     action: 'colombia/cons_sald_cart_ingr',

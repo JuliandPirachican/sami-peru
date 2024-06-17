@@ -97,6 +97,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-proyeccion-region': RouteRecordInfo<'reportes-proyeccion-region', '/reportes/proyeccion-region', Record<never, never>, Record<never, never>>,
     'reportes-proyeccion-zona': RouteRecordInfo<'reportes-proyeccion-zona', '/reportes/proyeccion-zona', Record<never, never>, Record<never, never>>,
     'reportes-referidos': RouteRecordInfo<'reportes-referidos', '/reportes/referidos', Record<never, never>, Record<never, never>>,
+    'reportes-repo-lide-refe': RouteRecordInfo<'reportes-repo-lide-refe', '/reportes/repo-lide-refe', Record<never, never>, Record<never, never>>,
     'reportes-segmentacion-asesora': RouteRecordInfo<'reportes-segmentacion-asesora', '/reportes/segmentacion-asesora', Record<never, never>, Record<never, never>>,
     'reportes-seguimiento-cierre-pais': RouteRecordInfo<'reportes-seguimiento-cierre-pais', '/reportes/seguimiento-cierre-pais', Record<never, never>, Record<never, never>>,
     'reportes-seguimiento-cierre-region': RouteRecordInfo<'reportes-seguimiento-cierre-region', '/reportes/seguimiento-cierre-region', Record<never, never>, Record<never, never>>,
