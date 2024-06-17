@@ -137,7 +137,7 @@ onMounted(() => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Consultas Generales">
+            <VCard title="Asignacion Reingreso Lider">
               <VCardText>
                 <VCard>
                   <iframe
