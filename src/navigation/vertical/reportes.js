@@ -345,4 +345,20 @@ export default [
       },
     ],
   },
+  { 
+    title: 'Concurso Sueños', 
+    to: 'reportes-concurso-suenos',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_conc_dupr', 
+    action: 'colombia/repo_conc_dupr', 
+  },
+  { 
+    title: 'Indicador Gestion', 
+    to: 'reportes-tab_cons', 
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_tab_cons', 
+    action: 'colombia/repo_tab_cons', 
+  },
+  
 ]
+ 

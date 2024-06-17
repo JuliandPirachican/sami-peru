@@ -84,7 +84,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-fraccionamiento': RouteRecordInfo<'reportes-fraccionamiento', '/reportes/fraccionamiento', Record<never, never>, Record<never, never>>,
     'reportes-gemmas-acumuladas': RouteRecordInfo<'reportes-gemmas-acumuladas', '/reportes/gemmas-acumuladas', Record<never, never>, Record<never, never>>,
     'reportes-impr-sald-cart': RouteRecordInfo<'reportes-impr-sald-cart', '/reportes/impr-sald-cart', Record<never, never>, Record<never, never>>,
-    'reportes-indicadores-gestion': RouteRecordInfo<'reportes-indicadores-gestion', '/reportes/indicadores_gestion', Record<never, never>, Record<never, never>>,
+    'reportes-indicadores-gestion': RouteRecordInfo<'reportes-indicadores-gestion', '/reportes/indicadores-gestion', Record<never, never>, Record<never, never>>,
     'reportes-inscripciones': RouteRecordInfo<'reportes-inscripciones', '/reportes/inscripciones', Record<never, never>, Record<never, never>>,
     'reportes-lider-pago': RouteRecordInfo<'reportes-lider-pago', '/reportes/lider-pago', Record<never, never>, Record<never, never>>,
     'reportes-listado-asesora': RouteRecordInfo<'reportes-listado-asesora', '/reportes/listado-asesora', Record<never, never>, Record<never, never>>,
