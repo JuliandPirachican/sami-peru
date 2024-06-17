@@ -297,5 +297,11 @@ export default [
     subject: 'colombia/repo_pre_pedi', 
     action: 'colombia/repo_pre_pedi', 
   },
-  
+  { 
+    title: 'Reporte PBIE', 
+    to: 'reportes-reporte-pbie',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/menu_repo_pbie', 
+    action: 'colombia/menu_repo_pbie', 
+  },
 ]

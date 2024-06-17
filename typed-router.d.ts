@@ -100,6 +100,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-repo-lide-refe': RouteRecordInfo<'reportes-repo-lide-refe', '/reportes/repo-lide-refe', Record<never, never>, Record<never, never>>,
     'reportes-reporte-app-movil': RouteRecordInfo<'reportes-reporte-app-movil', '/reportes/reporte-app-movil', Record<never, never>, Record<never, never>>,
     'reportes-reporte-duproyecta': RouteRecordInfo<'reportes-reporte-duproyecta', '/reportes/reporte-duproyecta', Record<never, never>, Record<never, never>>,
+    'reportes-reporte-pbie': RouteRecordInfo<'reportes-reporte-pbie', '/reportes/reporte-pbie', Record<never, never>, Record<never, never>>,
     'reportes-segmentacion-asesora': RouteRecordInfo<'reportes-segmentacion-asesora', '/reportes/segmentacion-asesora', Record<never, never>, Record<never, never>>,
     'reportes-seguimiento-cierre-pais': RouteRecordInfo<'reportes-seguimiento-cierre-pais', '/reportes/seguimiento-cierre-pais', Record<never, never>, Record<never, never>>,
     'reportes-seguimiento-cierre-region': RouteRecordInfo<'reportes-seguimiento-cierre-region', '/reportes/seguimiento-cierre-region', Record<never, never>, Record<never, never>>,
