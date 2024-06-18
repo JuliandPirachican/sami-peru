@@ -1,5 +1,7 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
+import { style_iframe_cgis } from '@/stores/style-iframe'
+
 
 definePage({
   meta: { 
