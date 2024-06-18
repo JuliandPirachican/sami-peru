@@ -128,7 +128,7 @@ const onLimpiar = () => {
 
 
 onMounted(() => {
-  appStore.titulo(`Administración / Permiso zonal`)
+  appStore.titulo(`Administración / Cambio De Contraseña`)
   onGenerar()
   style_iframe()
 })

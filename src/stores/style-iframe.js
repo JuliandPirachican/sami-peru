@@ -9,6 +9,9 @@ export function style_iframe() {
       stylebootstrap.rel = "stylesheet";
       stylebootstrap.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
       contentiframe.head.appendChild(stylebootstrap);
+
+      var style_def=contentiframe.getElementsByTagName("link")[0];
+      style_def.parentNode.removeChild(style_def)
   
       var scriptbootstrap = contentiframe.createElement("script");
       scriptbootstrap.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js";
