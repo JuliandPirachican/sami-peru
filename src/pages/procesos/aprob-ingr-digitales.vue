@@ -1,6 +1,6 @@
 <script setup>
-import { useAppStore } from '@/stores/app';
-import { style_iframe_cgis } from '@/stores/style-iframe';
+import { useAppStore } from '@/stores/app'
+import { style_iframe_cgis } from '@/stores/style-iframe'
 
 
 definePage({
@@ -13,7 +13,7 @@ definePage({
 // *Declaracion de variables
 const appStore = useAppStore()
 
-const headers = [
+const headers = [ 
   { 
     title: 'Codigo',
     key: 'codi_prog',
@@ -129,8 +129,8 @@ const onLimpiar = () => {
 
 onMounted(() => {
   appStore.titulo(`Proceso / Aprobación Ingresos Digitales`) 
-  onGenerar() ;
-  style_iframe_cgis();
+  onGenerar() 
+  style_iframe_cgis()
 }) 
 </script>
 
