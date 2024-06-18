@@ -1,5 +1,6 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
+import { style_iframe_cgis } from '@/stores/style-iframe'
 
 definePage({
   meta: {
@@ -128,6 +129,7 @@ const onLimpiar = () => {
 onMounted(() => {
   appStore.titulo(`Consultas Generales`)
   onGenerar()
+  style_iframe_cgis()
 })
 </script>
 
