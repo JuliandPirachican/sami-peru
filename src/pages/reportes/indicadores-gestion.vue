@@ -1,14 +1,13 @@
 <script setup>
-import { useAppStore } from '@/stores/app';
-import { style_iframe_cgis } from '@/stores/style-iframe';
-
+import { useAppStore } from '@/stores/app'
+import { style_iframe_cgis } from '@/stores/style-iframe'
 
 definePage({
-  meta: {
-    action: 'colombia/cons_sald_cart_ingr',
-    subject: 'colombia/cons_sald_cart_ingr',
+  meta: { 
+    action: 'colombia/repo_tab_cons',
+    subject: 'colombia/repo_tab_cons',
   },
-}) 
+})
 
 // *Declaracion de variables
 const appStore = useAppStore()
@@ -19,11 +18,11 @@ const headers = [
     key: 'codi_prog',
   },
   {
-    title: 'Programa',
+    title: 'Programa', 
     key: 'nomb_prog',
   },
   {
-    title: 'Ruta',
+    title: 'Ruta', 
     key: 'ruta_prog',
   },
 ]
@@ -105,19 +104,20 @@ const onRegistrar = async () => {
  */
 const modi_frame= ()=>{
   //obtiene data de localstorage
-  let session_iframe=localStorage.getItem("session_iframe");
+  let session_iframe=localStorage.getItem("session_iframe")
   let decrypt_info=atob(session_iframe)
-  let decode_info=JSON.parse(decrypt_info);
+  let decode_info=JSON.parse(decrypt_info)
+
   //navega en el DOM buscando un iframe para poder acceder a los campos
-  let iframe=document.querySelector("iframe");
-  let iframedom=iframe.contentWindow.document;
-  let input_usua=iframedom.getElementById("usua");//input usuario
-  input_usua.value=decode_info.codi_usua;
-  let input_pass=iframedom.getElementsByTagName("input")[1]; // input contraseña
-  input_pass.value=decode_info.pass_inca;
-  let button_submit=iframedom.getElementsByTagName("button")[0];//button submit form
-  button_submit.click();//clic para iniciar sesion
-};
+  let iframe=document.querySelector("iframe")
+  let iframedom=iframe.contentWindow.document
+  let input_usua=iframedom.getElementById("usua")//input usuario
+  input_usua.value=decode_info.codi_usua
+  let input_pass=iframedom.getElementsByTagName("input")[1] // input contraseña
+  input_pass.value=decode_info.pass_inca
+  let button_submit=iframedom.getElementsByTagName("button")[0]//button submit form
+  button_submit.click()//clic para iniciar sesion
+}
 
 
 // ^Metodo limpia modulos seleccionados y lista de modulos 
@@ -127,28 +127,29 @@ const onLimpiar = () => {
 }
 
 onMounted(() => {
-  appStore.titulo(`Saldo Cartera Ingresos`)
-  onGenerar();
-  style_iframe_cgis();
-})
+  appStore.titulo(`Reportes / Indicadores de gestión`) 
+  onGenerar() 
+  style_iframe_cgis() 
+}) 
 </script>
 
 <template>
   <div>
     <AppPlantilla>
-      <template #botones>
-        <GenerarBoton @procesar="onGenerar" />
-        <RegistrarBoton @procesar="onRegistrar" />
-        <LimpiarBoton @procesar="onLimpiar" />
-      </template>
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Saldo Cartera Ingresos">
+            <VCard title="Indicadores de gestión"> 
               <VCardText>
-                <v-card>
-                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet2col.azzorti.co/desarrollo/cgis/sald_cart_ing/" frameborder="0"></iframe>
-                </v-card>
+                <VCard>
+                  <iframe
+                    id="iframe_option"
+                    ref="iframe_cons_camp"
+                    src="https://intranet2col.azzorti.co/desarrollo/cgis/tab_cons_2.php"
+                    frameborder="0"
+                    @load="modi_frame"
+                  />
+                </VCard>
               </VCardText>
             </VCard>
           </VCol>
@@ -157,8 +158,9 @@ onMounted(() => {
     </AppPlantilla>
   </div>
 </template>
+
 <style>
 #iframe_option{
-  width: 100%;
+  inline-size: 100%;
 }
 </style>

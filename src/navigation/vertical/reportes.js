@@ -290,5 +290,41 @@ export default [
     subject: 'colombia/repo_app_movi', 
     action: 'colombia/repo_app_movi', 
   },
+  { 
+    title: 'Reporte Duproyecta', 
+    to: 'reportes-reporte-duproyecta',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_pre_pedi', 
+    action: 'colombia/repo_pre_pedi', 
+  },
+  {
+    title: 'Reporte PBIE', 
+    to: 'reportes-reporte-pbie',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/menu_repo_pbie', 
+    action: 'colombia/menu_repo_pbie', 
+  },
+  { 
+    title: 'Concurso Sueños', 
+    to: 'reportes-concurso-suenos',
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_conc_dupr', 
+    action: 'colombia/repo_conc_dupr', 
+  },
+  { 
+    title: 'Indicador Gestion', 
+    to: 'reportes-indicadores-gestion', 
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_tab_cons', 
+    action: 'colombia/repo_tab_cons', 
+  },
+  { 
+    title: 'Reporte Vinculacion', 
+    to: 'reportes-reporte-vinculacion', 
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_vinc_digi', 
+    action: 'colombia/repo_vinc_digi', 
+  },
   
 ]
+ 

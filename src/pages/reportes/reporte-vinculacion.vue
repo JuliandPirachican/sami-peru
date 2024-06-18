@@ -3,8 +3,8 @@ import { useAppStore } from '@/stores/app'
 
 definePage({
   meta: { 
-    action: 'colombia/repo_tab_cons',
-    subject: 'colombia/repo_tab_cons',
+    action: 'colombia/repo_vinc_digi',
+    subject: 'colombia/repo_vinc_digi',
   },
 })
 
@@ -21,7 +21,7 @@ const headers = [
     key: 'nomb_prog',
   },
   {
-    title: 'Ruta',
+    title: 'Ruta', 
     key: 'ruta_prog',
   },
 ]
@@ -126,7 +126,7 @@ const onLimpiar = () => {
 }
 
 onMounted(() => {
-  appStore.titulo(`Reportes / Indicadores de gestión`) 
+  appStore.titulo(`Reportes / Vinculación Digital`) 
   onGenerar() 
 }) 
 </script>
@@ -137,13 +137,13 @@ onMounted(() => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Indicadores de gestión"> 
+            <VCard title="Reporte Vinculación Digital">  
               <VCardText>
                 <VCard>
                   <iframe
                     id="iframe_option"
-                    ref="iframe_cons_camp"
-                    src="https://intranet2col.azzorti.co/desarrollo/cgis/tab_cons_2.php"
+                    ref="iframe_repo_vinc"
+                    src="https://intranet2col.azzorti.co/CI/repo_vinc_digi"
                     frameborder="0"
                     @load="modi_frame"
                   />
