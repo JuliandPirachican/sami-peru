@@ -128,6 +128,7 @@ const onLimpiar = () => {
 onMounted(() => {
   appStore.titulo(`Reportes / Vinculación Digital`) 
   onGenerar() 
+  style_iframe_cgis() 
 }) 
 </script>
 
