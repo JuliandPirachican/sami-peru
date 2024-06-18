@@ -1,6 +1,6 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
-import { style_iframe } from '@/stores/style-iframe';
+import { style_iframe_cgis } from '@/stores/style-iframe';
 
 definePage({
   meta: {
@@ -130,7 +130,7 @@ const onLimpiar = () => {
 onMounted(() => {
   appStore.titulo(`Administración / Cambio De Contraseña`)
   onGenerar()
-  style_iframe()
+  style_iframe_cgis()
 })
 </script>
 
