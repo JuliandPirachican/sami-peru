@@ -305,13 +305,6 @@ export default [
     action: 'colombia/menu_repo_pbie', 
   },
   { 
-    title: 'Concurso Sueños', 
-    to: 'reportes-concurso-suenos',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_conc_dupr', 
-    action: 'colombia/repo_conc_dupr', 
-  },
-  { 
     title: 'Indicador Gestion', 
     to: 'reportes-indicadores-gestion', 
     icon: { icon: 'tabler-report' },
