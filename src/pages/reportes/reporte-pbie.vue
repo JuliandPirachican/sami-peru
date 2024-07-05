@@ -143,7 +143,7 @@ onMounted(() => {
                   <iframe
                     id="iframe_option"
                     ref="iframe_camb_clav"
-                    src="https://bi.azzorti.co/reportes/menu_repo_pbie.php"
+                    src="https://intranet2col.azzorti.co/desarrollo/cgis/reporte_pbie.php#"
                     frameborder="0"
                     @load="modi_frame"
                   />
