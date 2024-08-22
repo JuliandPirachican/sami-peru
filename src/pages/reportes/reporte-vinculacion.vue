@@ -1,6 +1,6 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { style_iframe_cgis } from '@/stores/style-iframe'
+import { useAppStore } from '@/stores/app';
+import { style_iframe_cgis } from '@/stores/style-iframe';
 
 
 definePage({
@@ -146,7 +146,7 @@ onMounted(() => {
                   <iframe
                     id="iframe_option"
                     ref="iframe_repo_vinc"
-                    src="https://intranet2col.azzorti.co/CI/repo_vinc_digi"
+                    src="https://intranet.dupree.co/CI/repo_vinc_digi"
                     frameborder="0"
                     @load="modi_frame"
                   />

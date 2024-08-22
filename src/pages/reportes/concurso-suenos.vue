@@ -1,6 +1,6 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { style_iframe_cgis } from '@/stores/style-iframe'
+import { useAppStore } from '@/stores/app';
+import { style_iframe_cgis } from '@/stores/style-iframe';
 
 definePage({
   meta: { 
@@ -145,7 +145,7 @@ onMounted(() => {
                   <iframe
                     id="iframe_option"
                     ref="iframe_cons_camp"
-                    src="https://intranet2col.azzorti.co/CI/repo_conc_dupr"
+                    src="https://intranet.dupree.co/CI/repo_conc_dupr"
                     frameborder="0"
                     @load="modi_frame"
                   />

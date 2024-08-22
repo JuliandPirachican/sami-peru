@@ -146,7 +146,7 @@ onMounted(() => {
                   <iframe
                     id="iframe_option"
                     ref="iframe_camb_clav"
-                    src="https://intranet2col.azzorti.co/CI/repo_pre_pedi"
+                    src="https://intranet.dupree.co/CI/repo_pre_pedi"
                     frameborder="0"
                     @load="modi_frame"
                   />

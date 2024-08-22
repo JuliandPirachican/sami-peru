@@ -146,7 +146,7 @@ onMounted(() => {
                   <iframe
                     id="iframe_option"
                     ref="iframe_camb_clav"
-                    src="https://intranet2col.azzorti.co/desarrollo/cgis/reporte_pbie.php#"
+                    src="https://intranet.dupree.co/desarrollo/cgis/reporte_pbie.php#"
                     frameborder="0"
                     @load="modi_frame"
                   />

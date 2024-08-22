@@ -149,7 +149,7 @@ onMounted(() => {
                   <iframe
                     id="iframe_option"
                     ref="iframe_camb_clav"
-                    src="https://intranet2col.azzorti.co/CI/asi_lide_rein"
+                    src="https://intranet.dupree.co/CI/asi_lide_rein"
                     frameborder="0"
                     @load="modi_frame"
                   />

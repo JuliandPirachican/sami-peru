@@ -147,7 +147,7 @@ onMounted(() => {
             <VCard title="Saldo Cartera">
               <VCardText>
                 <v-card>
-                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet2col.azzorti.co/desarrollo/cgis/sald_cart/" frameborder="0"></iframe>
+                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet.dupree.co/desarrollo/cgis/sald_cart/" frameborder="0"></iframe>
                 </v-card>
               </VCardText>
             </VCard>

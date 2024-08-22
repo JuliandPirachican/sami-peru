@@ -140,13 +140,13 @@ console.log(x)
                   <template #bottom />
                 </VDataTable> -->
                 <v-card>
-                  <iframe src="https://intranet2col.azzorti.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
+                  <iframe src="https://intranet.dupree.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
 
                 </v-card>
                 <v-dialog eager v-model="editBoardDialog">
                   <v-card>
                     <!-- HERE -->
-                    <iframe src="https://intranet2col.azzorti.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
+                    <iframe src="https://intranet.dupree.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
                   </v-card>
                 </v-dialog>
               </VCardText>
