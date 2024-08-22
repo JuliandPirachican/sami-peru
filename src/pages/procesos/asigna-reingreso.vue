@@ -1,6 +1,6 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { style_iframe_cgis } from '@/stores/style-iframe'
+import { useAppStore } from '@/stores/app';
+import { style_iframe_cgis } from '@/stores/style-iframe';
 
 
 
@@ -165,6 +165,6 @@ onMounted(() => {
 
 <style>
 #iframe_option{
-  inline-size: 100%;
+  width: 100%;
 }
 </style>
