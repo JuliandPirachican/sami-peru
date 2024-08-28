@@ -1,5 +1,8 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
+import { useAppStore } from '@/stores/app';
+import { style_iframe_cgis } from '@/stores/style-iframe';
+
+
 
 definePage({
   meta: {
@@ -128,6 +131,7 @@ const onLimpiar = () => {
 onMounted(() => {
   appStore.titulo(`Pre Pedido`)
   onGenerar()
+  style_iframe_cgis()
 })
 </script>
 
@@ -143,7 +147,7 @@ onMounted(() => {
                   <iframe
                     id="iframe_option"
                     ref="iframe_camb_clav"
-                    src="https://intranet2col.azzorti.co/desarrollo/cgis/pre_pedi/pre_pedi_form.php"
+                    src="https://intranet.dupree.co/desarrollo/cgis/pre_pedi/pre_pedi_form.php"
                     frameborder="0"
                     @load="modi_frame"
                   />
@@ -159,6 +163,6 @@ onMounted(() => {
 
 <style>
 #iframe_option{
-  inline-size: 100%;
+  width: 100%;
 }
 </style>
