@@ -57,13 +57,13 @@ export default [
       },
     ],
   },
-  { 
-    title: 'Fraccionamiento', 
-    to: 'reportes-fraccionamiento',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_come_sald_cart', 
-    action: 'colombia/repo_come_sald_cart', 
-  },
+  // { 
+  //   title: 'Fraccionamiento', 
+  //   to: 'reportes-fraccionamiento',
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_come_sald_cart', 
+  //   action: 'colombia/repo_come_sald_cart', 
+  // },
   { 
     title: 'Gemmas acumuladas', 
     to: 'reportes-gemmas-acumuladas',
@@ -126,19 +126,37 @@ export default [
     ],
   },
   { 
+    title: 'Comercial', 
+    icon: { icon: 'tabler-search' },
+    children: [
+      { 
+        title: 'Lideres Ganadoras Zona', 
+        to: 'reportes-comercial-lider-ganadoras-zona',
+        subject: 'colombia/repo_come_lide_gana_zona', 
+        action: 'colombia/repo_come_lide_gana_zona', 
+      },
+      { 
+        title: 'Lideres Ganadoras Region', 
+        to: 'reportes-comercial-lider-ganadoras-region',
+        subject: 'colombia/repo_come_lide_gana_regi', 
+        action: 'colombia/repo_come_lide_gana_regi', 
+      }
+    ],
+  },
+  { 
     title: 'Inscripciones', 
     to: 'reportes-inscripciones',
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_come_insc_movi', 
     action: 'colombia/repo_come_insc_movi', 
   },
-  { 
-    title: 'Lider pago', 
-    to: 'reportes-lider-pago',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_come_lide_pago', 
-    action: 'colombia/repo_come_lide_pago', 
-  },
+  // { 
+  //   title: 'Lider pago', 
+  //   to: 'reportes-lider-pago',
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_come_lide_pago', 
+  //   action: 'colombia/repo_come_lide_pago', 
+  // },
   { 
     title: 'Listado asesora', 
     to: 'reportes-listado-asesora',

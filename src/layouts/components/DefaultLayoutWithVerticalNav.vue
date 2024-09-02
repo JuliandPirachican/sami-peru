@@ -7,6 +7,11 @@ import { useDisplay } from 'vuetify'
 import Footer from '@/layouts/components/Footer.vue'
 import NavbarTitulo from '@/layouts/components/NavbarTitulo.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
+/**
+ * se agrega modo oscuro a sami 
+ */
+import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
+
 
 const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
   storageType: 'localStorage',
@@ -66,6 +71,8 @@ watch([
             {{ userData.nomb_empl }} {{ userData.apel_empl }}
           </div>
         </div>
+        <!-- se pone modo oscuro en sami -->
+        <NavbarThemeSwitcher />
         <UserProfile />
       </div>
     </template>

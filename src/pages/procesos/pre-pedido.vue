@@ -126,7 +126,7 @@ const onLimpiar = () => {
 }
 
 onMounted(() => {
-  appStore.titulo(`Pre Pedido`)
+  appStore.titulo(`Azzorti Proyecta`)
   onGenerar()
 })
 </script>
@@ -137,7 +137,7 @@ onMounted(() => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Pre Pedido">
+            <VCard title="Azzorti Proyecta">
               <VCardText>
                 <VCard>
                   <iframe
