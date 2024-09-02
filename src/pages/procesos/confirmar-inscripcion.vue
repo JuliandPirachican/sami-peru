@@ -205,7 +205,7 @@ const headers = computed(() => {
 const visibleHeaders = computed(() => headers.value.filter(header => !header.hidden))
 
 onMounted(async () => {
-  appStore.titulo(`Procesos / Confirmar inscripción`)
+  appStore.titulo(`Procesos / Confirmar Incorporacion Digital`)
   await obtenerCampana()
   await obtenerZona()
   await obtenerDepartamentos()
@@ -1027,7 +1027,7 @@ const handleFileUpload = async tipo => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Buscar inscripción">
+            <VCard title="Buscar Incorporacion">
               <VCardText>
                 <VRow justify="space-between">
                   <VCol
@@ -1111,7 +1111,7 @@ const handleFileUpload = async tipo => {
             <VIcon icon="tabler-x" />
           </VBtn>
           <VToolbarTitle>
-            Confirmar inscripción
+            Confirmar Incorporacion Digital
           </VToolbarTitle>
           <VSpacer />
           <VToolbarItems>

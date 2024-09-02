@@ -26,7 +26,7 @@ export default [
     action: 'colombia/proc_come_cerr_asis',
   },
   { 
-    title: 'Confirmación inscripción', 
+    title: 'Confirmación incorporación digital', 
     to: 'procesos-confirmar-inscripcion',
     icon: { icon: 'tabler-user-plus' },
     subject: 'colombia/proc_come_conf_insc_movi', 
@@ -110,7 +110,7 @@ export default [
     action: 'colombia/proc_tab_cons',
   },
   { 
-    title: 'Aprobacion ingresos digitales', 
+    title: 'Aprobacion incorporaciones digitales', 
     to: 'procesos-aprob-ingr-digitales',
     icon: { icon: 'tabler-world-up' },
     subject: 'colombia/form_veri_pre_ases',  
@@ -124,7 +124,7 @@ export default [
     action: 'colombia/asi_lide_rein',
   }, 
   { 
-    title: 'Pre Pedido', 
+    title: 'Azzorti Proyecta', 
     to: 'procesos-pre-pedido',
     icon: { icon: 'tabler-world-up' },
     subject: 'colombia/pre_pedido',  

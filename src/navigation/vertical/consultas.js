@@ -4,13 +4,13 @@ export default [
     subject: 'colombia/cons', 
     action: 'colombia/cons',
   },
-  { 
-    title: 'Generales', 
-    to: 'consultas-generales', 
-    icon: { icon: 'tabler-search' },
-    subject: 'colombia/cons_come_cons_gene', 
-    action: 'colombia/cons_come_cons_gene',
-  },
+  // { 
+  //   title: 'Generales', 
+  //   to: 'consultas-generales', 
+  //   icon: { icon: 'tabler-search' },
+  //   subject: 'colombia/cons_come_cons_gene', 
+  //   action: 'colombia/cons_come_cons_gene',
+  // },
   { 
     title: 'Log pedido', 
     to: 'consultas-log-pedido', 
