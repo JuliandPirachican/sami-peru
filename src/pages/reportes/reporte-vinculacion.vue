@@ -1,5 +1,7 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
+import { useAppStore } from '@/stores/app';
+import { style_iframe_cgis } from '@/stores/style-iframe';
+
 
 definePage({
   meta: { 
@@ -128,6 +130,7 @@ const onLimpiar = () => {
 onMounted(() => {
   appStore.titulo(`Reportes / Vinculación Digital`) 
   onGenerar() 
+  style_iframe_cgis() 
 }) 
 </script>
 
@@ -143,7 +146,7 @@ onMounted(() => {
                   <iframe
                     id="iframe_option"
                     ref="iframe_repo_vinc"
-                    src="https://intranet2col.azzorti.co/CI/repo_vinc_digi"
+                    src="https://intranet.dupree.co/CI/repo_vinc_digi"
                     frameborder="0"
                     @load="modi_frame"
                   />

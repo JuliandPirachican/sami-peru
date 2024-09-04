@@ -1,6 +1,6 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { style_iframe_cgis } from '@/stores/style-iframe'
+import { useAppStore } from '@/stores/app';
+import { style_iframe_cgis } from '@/stores/style-iframe';
 
 definePage({
   meta: {
@@ -145,7 +145,7 @@ onMounted(() => {
                   <iframe
                     id="iframe_option"
                     ref="iframe_camb_clav"
-                    src="https://intranet2col.azzorti.co/desarrollo/cgis/cons_clie.php"
+                    src="https://intranet.dupree.co/desarrollo/cgis/cons_clie.php"
                     frameborder="0"
                     @load="modi_frame"
                   />
@@ -161,6 +161,6 @@ onMounted(() => {
 
 <style>
 #iframe_option{
-  inline-size: 100%;
+  width: 100%;
 }
 </style>

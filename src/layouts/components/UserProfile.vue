@@ -36,7 +36,17 @@ const logout = async () => {
 
 <template>
   <div>
-    <VBadge
+    <VAvatar
+     @click="logout"
+      class="cursor-pointer"
+      :color="!(userData && userData.avatar) ? 'dark' : undefined"
+      :variant="!(userData && userData.avatar) ? 'tonal' : undefined"
+    >
+      <VIcon icon="tabler-logout" />
+    </VAvatar>
+
+    <!-- componente comentareado por orden de Rayni -->
+    <!-- <VBadge
       v-if="userData"
       dot
       bordered
@@ -44,15 +54,8 @@ const logout = async () => {
       offset-x="3"
       offset-y="3"
       color="error"
-      @click="logout"
+     
     >
-      <VAvatar
-        class="cursor-pointer"
-        :color="!(userData && userData.avatar) ? 'dark' : undefined"
-        :variant="!(userData && userData.avatar) ? 'tonal' : undefined"
-      >
-        <VIcon icon="tabler-logout" />
-      </VAvatar>
-    </VBadge>
+    </VBadge> -->
   </div>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import { style_iframe_cgis } from '@/stores/style-iframe'
+import { useAppStore } from '@/stores/app';
+import { style_iframe_cgis } from '@/stores/style-iframe';
 
 
 definePage({
@@ -140,13 +140,13 @@ onMounted(() => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Aprobacion Ingresos">
+            <VCard title="Aprobacion Incorporaciones Digitales">
               <VCardText>
                 <VCard>
                   <iframe
                     id="iframe_option"
                     ref="iframe_apro_vinc"
-                    src="https://intranet2col.azzorti.co/CI/form_veri_pre_ases"
+                    src="https://intranet.dupree.co/CI/form_veri_pre_ases"
                     frameborder="0"
                     @load="modi_frame"
                   />
