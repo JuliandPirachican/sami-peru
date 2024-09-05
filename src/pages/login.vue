@@ -48,7 +48,7 @@ const login = async () => {
     })
 
     const dataLogin = responseLogin.data
-    const dataSessionIncaIframe=responseLogin.session_iframe
+    const dataSessionIncaIframe=btoa(JSON.stringify(dataLogin.session_iframe).trim()) ;
 
     const responseMenu = await $api(
       `/api/sami/v1/usuario/menu`, {
@@ -60,6 +60,7 @@ const login = async () => {
       })
     
     const userAbility = responseMenu.data.permisos
+    // console.log(dataSessionIncaIframe)
 
     ability.update(userAbility)
     encryptStorage.setItem('userAbilityRules', JSON.stringify(userAbility))
