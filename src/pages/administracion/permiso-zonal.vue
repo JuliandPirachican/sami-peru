@@ -147,7 +147,7 @@ onMounted(() => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Lista de programas">
+            <VCard title="Permiso Zonal">
               <VCardText>
                 <!-- <VDataTable
                   v-model="selected"
