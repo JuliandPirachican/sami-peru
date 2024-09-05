@@ -137,11 +137,6 @@ onMounted(() => {
 <template>
   <div>
     <AppPlantilla>
-      <template #botones>
-        <GenerarBoton @procesar="onGenerar" />
-        <RegistrarBoton @procesar="onRegistrar" />
-        <LimpiarBoton @procesar="onLimpiar" />
-      </template>
       <template #contenido>
         <VRow>
           <VCol cols="12">
@@ -149,7 +144,6 @@ onMounted(() => {
               <VCardText>
                 <v-card>
                   <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet.dupree.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
-
                 </v-card>
               </VCardText>
             </VCard>
