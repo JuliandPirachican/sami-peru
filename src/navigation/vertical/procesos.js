@@ -12,7 +12,7 @@ export default [
     action: 'colombia/proc_come_abri_asis',
   },
   { 
-    title: 'Actualizar dato simple', 
+    title: 'Actualizar dato asesora', 
     to: 'procesos-actualizar-dato',
     icon: { icon: 'tabler-edit' },
     subject: 'colombia/proc_come_actu_dato_simp', 

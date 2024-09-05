@@ -26,7 +26,7 @@ export default [
     action: 'colombia/repo_come_comp_canj_devo', 
   },
   { 
-    title: 'Consecutividad asesoras', 
+    title: 'Consecutividad asesoras nuevas', 
     to: 'reportes-consecutividad',
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_come_cons_ases_nuev', 
@@ -76,7 +76,7 @@ export default [
     icon: { icon: 'tabler-search' },
     children: [
       { 
-        title: 'Evaluación cierre', 
+        title: 'Evaluación cierre zona', 
         to: 'reportes-evaluacion-cierre',
         subject: 'colombia/repo_come_eval_cier', 
         action: 'colombia/repo_come_eval_cier', 
@@ -145,7 +145,7 @@ export default [
   //   ],
   // },
   { 
-    title: 'Inscripciones', 
+    title: 'Incorporacion Digital', 
     to: 'reportes-inscripciones',
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_come_insc_movi', 
@@ -194,7 +194,7 @@ export default [
     action: 'colombia/repo_come_posi_ases', 
   },
   { 
-    title: 'Prepedido', 
+    title: 'Azzorti Proyecta', 
     to: 'reportes-prepedido',
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_come_prep_pedi', 
@@ -268,7 +268,7 @@ export default [
     action: 'colombia/repo_come_vinc_digi', 
   },
   { 
-    title: 'Visitas', 
+    title: 'Azzorti Maps', 
     to: 'reportes-visitas',
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_come_visi', 
@@ -289,21 +289,21 @@ export default [
     action: 'colombia/impr_sald_cart', 
   },
   { 
-    title: 'Reporte Faltante Anunciado', 
+    title: 'Faltante Anunciado', 
     to: 'reportes-falt-anun',
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_falt_anun', 
     action: 'colombia/repo_falt_anun', 
   },
   { 
-    title: 'Reporte Lideres Referidas', 
+    title: 'Lideres Referidas', 
     to: 'reportes-repo-lide-refe',
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_lide_refe', 
     action: 'colombia/repo_lide_refe', 
   },
   { 
-    title: 'Reporte App Movil', 
+    title: 'App Movil', 
     to: 'reportes-reporte-app-movil',
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_app_movi', 
@@ -331,7 +331,7 @@ export default [
     action: 'colombia/repo_tab_cons', 
   },
   { 
-    title: 'Reporte Vinculacion', 
+    title: 'Vinculacion', 
     to: 'reportes-reporte-vinculacion', 
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_vinc_digi', 
