@@ -136,11 +136,6 @@ onMounted(() => {
 <template>
   <div>
     <AppPlantilla>
-      <template #botones>
-        <GenerarBoton @procesar="onGenerar" />
-        <RegistrarBoton @procesar="onRegistrar" />
-        <LimpiarBoton @procesar="onLimpiar" />
-      </template>
       <template #contenido>
         <VRow>
           <VCol cols="12">

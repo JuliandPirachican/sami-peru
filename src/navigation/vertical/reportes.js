@@ -122,27 +122,28 @@ export default [
         to: 'reportes-semaforo-zona',
         subject: 'colombia/repo_come_sema_zona', 
         action: 'colombia/repo_come_sema_zona', 
-      },  
-    ],
-  },
-  { 
-    title: 'Comercial', 
-    icon: { icon: 'tabler-search' },
-    children: [
+      },
       { 
         title: 'Lideres Ganadoras Zona', 
-        to: 'reportes-comercial-lider-ganadoras-zona',
+        to: 'reportes-lider-ganadoras-zona',
         subject: 'colombia/repo_come_lide_gana_zona', 
         action: 'colombia/repo_come_lide_gana_zona', 
       },
       { 
         title: 'Lideres Ganadoras Region', 
-        to: 'reportes-comercial-lider-ganadoras-region',
+        to: 'reportes-lider-ganadoras-region',
         subject: 'colombia/repo_come_lide_gana_regi', 
         action: 'colombia/repo_come_lide_gana_regi', 
-      }
+      }  
     ],
   },
+  // { 
+  //   title: 'Comercial', 
+  //   icon: { icon: 'tabler-search' },
+  //   children: [
+    
+  //   ],
+  // },
   { 
     title: 'Inscripciones', 
     to: 'reportes-inscripciones',

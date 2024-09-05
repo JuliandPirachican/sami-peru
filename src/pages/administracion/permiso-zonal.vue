@@ -1,5 +1,6 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
+import { style_iframe_cgis } from '@/stores/style-iframe';
 
 definePage({
   meta: {
@@ -97,6 +98,26 @@ const onRegistrar = async () => {
   
 }
 
+/**
+ * funcion que permite loguear dentro del iframe 
+ * usando localstorage
+ */
+ const modi_frame= ()=>{
+  //obtiene data de localstorage
+  let session_iframe=localStorage.getItem("session_iframe");
+  let decrypt_info=atob(session_iframe)
+  let decode_info=JSON.parse(decrypt_info);
+  //navega en el DOM buscando un iframe para poder acceder a los campos
+  let iframe=document.querySelector("iframe");
+  let iframedom=iframe.contentWindow.document;
+  let input_usua=iframedom.getElementById("usua");//input usuario
+  input_usua.value=decode_info.codi_usua;
+  let input_pass=iframedom.getElementsByTagName("input")[1]; // input contraseña
+  input_pass.value=decode_info.pass_inca;
+  let button_submit=iframedom.getElementsByTagName("button")[0];//button submit form
+  button_submit.click();//clic para iniciar sesion
+};
+
 // ^Metodo limpia modulos seleccionados y lista de modulos 
 const onLimpiar = () => {
   items.value = []
@@ -106,9 +127,10 @@ const onLimpiar = () => {
 onMounted(() => {
   appStore.titulo(`Administración / Permiso zonal`)
   onGenerar()
+  style_iframe_cgis()
 })
-var x=getElementByClass("x-panel-header");
-console.log(x)
+// var x=getElementByClass("x-panel-header");
+// console.log(x)
 </script>
 <style lang="scss">
 
@@ -118,9 +140,9 @@ console.log(x)
   <div>
     <AppPlantilla>
       <template #botones>
-        <GenerarBoton @procesar="onGenerar" />
+        <!-- <GenerarBoton @procesar="onGenerar" />
         <RegistrarBoton @procesar="onRegistrar" />
-        <LimpiarBoton @procesar="onLimpiar" />
+        <LimpiarBoton @procesar="onLimpiar" /> -->
       </template>
       <template #contenido>
         <VRow>
@@ -140,15 +162,9 @@ console.log(x)
                   <template #bottom />
                 </VDataTable> -->
                 <v-card>
-                  <iframe src="https://intranet.dupree.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
+                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet2col.azzorti.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
 
                 </v-card>
-                <v-dialog eager v-model="editBoardDialog">
-                  <v-card>
-                    <!-- HERE -->
-                    <iframe src="https://intranet.dupree.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
-                  </v-card>
-                </v-dialog>
               </VCardText>
             </VCard>
           </VCol>
@@ -157,3 +173,8 @@ console.log(x)
     </AppPlantilla>
   </div>
 </template>
+<style>
+#iframe_option{
+  width: 100%;
+}
+</style>
