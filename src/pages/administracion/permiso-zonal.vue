@@ -140,9 +140,9 @@ onMounted(() => {
   <div>
     <AppPlantilla>
       <template #botones>
-        <GenerarBoton @procesar="onGenerar" />
+        <!-- <GenerarBoton @procesar="onGenerar" />
         <RegistrarBoton @procesar="onRegistrar" />
-        <LimpiarBoton @procesar="onLimpiar" />
+        <LimpiarBoton @procesar="onLimpiar" /> -->
       </template>
       <template #contenido>
         <VRow>
