@@ -1,17 +1,18 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
-import { style_iframe_cgis } from '@/stores/style-iframe';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 
+ 
 definePage({
   meta: {
     action: 'colombia/admi_perm_zona',
     subject: 'colombia/admi_perm_zona',
   },
 })
-
+ 
 // *Declaracion de variables
 const appStore = useAppStore()
-
+ 
 const headers = [
   {
     title: 'Codigo',
@@ -26,10 +27,10 @@ const headers = [
     key: 'ruta_prog',
   },
 ]
-
+ 
 const selected = ref([])
 const items = ref([])
-
+ 
 // *Metodos
 // ^Metodo generar lista de modulos y auto selecciona modulos ya asignados al perfil gerente de zona
 const onGenerar = async () => {
@@ -37,15 +38,15 @@ const onGenerar = async () => {
     onLimpiar()
     appStore.mensaje('Obteniendo información')
     appStore.loading(true)
-
+ 
     const response = await $api(`/api/sami/v1/administracion/permisos`, {
       method: "get",
     })
-
+ 
     items.value = response.data.data_glob
-
+ 
     const programas = response.data.data_usua
-
+ 
     nextTick(() => {
       for (let a = 0; a < programas.length; a += 1) {
         for (let b = 0; b < items.value.length; b += 1) {
@@ -64,7 +65,7 @@ const onGenerar = async () => {
     appStore.loading(false)
   }
 }
-
+ 
 // ^Metodo registrar modulos al perfil gerente de zona
 const onRegistrar = async () => {
   if(selected.value.length == 0) {
@@ -82,7 +83,7 @@ const onRegistrar = async () => {
           programas: JSON.stringify(selected.value),
         },
       })
-
+ 
       let mensaje = response.message
       mensaje = mensaje.toLowerCase()
       mensaje = mensaje.charAt(0).toUpperCase() + mensaje.slice(1)
@@ -97,59 +98,33 @@ const onRegistrar = async () => {
   }
   
 }
-
-/**
- * funcion que permite loguear dentro del iframe 
- * usando localstorage
- */
- const modi_frame= ()=>{
-  //obtiene data de localstorage
-  let session_iframe=localStorage.getItem("session_iframe");
-  let decrypt_info=atob(session_iframe)
-  let decode_info=JSON.parse(decrypt_info);
-  //navega en el DOM buscando un iframe para poder acceder a los campos
-  let iframe=document.querySelector("iframe");
-  let iframedom=iframe.contentWindow.document;
-  let input_usua=iframedom.getElementById("usua");//input usuario
-  input_usua.value=decode_info.codi_usua;
-  let input_pass=iframedom.getElementsByTagName("input")[1]; // input contraseña
-  input_pass.value=decode_info.pass_inca;
-  let button_submit=iframedom.getElementsByTagName("button")[0];//button submit form
-  button_submit.click();//clic para iniciar sesion
-};
-
-// ^Metodo limpia modulos seleccionados y lista de modulos 
+ 
+// ^Metodo limpia modulos seleccionados y lista de modulos
 const onLimpiar = () => {
   items.value = []
   selected.value = []
 }
-
+ 
 onMounted(() => {
   appStore.titulo(`Administración / Permiso zonal`)
   onGenerar()
-  style_iframe_cgis()
 })
-// var x=getElementByClass("x-panel-header");
-// console.log(x)
 </script>
-<style lang="scss">
-
-</style>
-
+ 
 <template>
   <div>
     <AppPlantilla>
       <template #botones>
-        <!-- <GenerarBoton @procesar="onGenerar" />
+        <GenerarBoton @procesar="onGenerar" />
         <RegistrarBoton @procesar="onRegistrar" />
-        <LimpiarBoton @procesar="onLimpiar" /> -->
+        <LimpiarBoton @procesar="onLimpiar" />
       </template>
       <template #contenido>
         <VRow>
           <VCol cols="12">
             <VCard title="Lista de programas">
               <VCardText>
-                <!-- <VDataTable
+                <VDataTable
                   v-model="selected"
                   :headers="headers"
                   :items="items"
@@ -158,13 +133,10 @@ onMounted(() => {
                   :items-per-page="-1"
                   show-select
                   item-value="codi_prog"
+                  no-data-text="No se encontraron registros"
                 >
                   <template #bottom />
-                </VDataTable> -->
-                <v-card>
-                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet2col.azzorti.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
-
-                </v-card>
+                </VDataTable>
               </VCardText>
             </VCard>
           </VCol>
@@ -173,8 +145,3 @@ onMounted(() => {
     </AppPlantilla>
   </div>
 </template>
-<style>
-#iframe_option{
-  width: 100%;
-}
-</style>
