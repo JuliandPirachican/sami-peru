@@ -25,10 +25,10 @@ const objetivo31Options = ref([])
 
 const headersGlobal = computed(() => {
   return [
-    {
-      title: 'Sector',
-      key: 'codi_sect',
-    },
+    // {
+    //   title: 'Sector',
+    //   key: 'codi_sect',
+    // },
     {
       title: 'Valor',
       key: 'valo_docu',
@@ -86,11 +86,11 @@ const headersGlobal = computed(() => {
 
 const headersDetalle = computed(() => {
   return [
-    {
-      title: 'Sector',
-      key: 'codi_sect',
+    // {
+    //   title: 'Sector',
+    //   key: 'codi_sect',
     
-    },
+    // },
     {
       title: 'Código',
       key: 'codi_terc',
