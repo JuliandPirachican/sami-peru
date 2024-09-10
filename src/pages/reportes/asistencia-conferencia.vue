@@ -68,16 +68,16 @@ const headers = computed(() => {
       title: 'Tipo',
       sortable: true,
     },
-    {
-      key: 'clie_gema',
-      title: 'Gemma',
-      sortable: true,
-    },
-    {
-      key: 'nive_gema',
-      title: 'Nivel',
-      sortable: true,
-    },
+    // {
+    //   key: 'clie_gema',
+    //   title: 'Gemma',
+    //   sortable: true,
+    // },
+    // {
+    //   key: 'nive_gema',
+    //   title: 'Nivel',
+    //   sortable: true,
+    // },
   ]
 })
 
