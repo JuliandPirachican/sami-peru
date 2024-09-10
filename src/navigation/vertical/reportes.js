@@ -5,7 +5,7 @@ export default [
     action: 'colombia/repo',
   },
   { 
-    title: 'Asistencia conferencia', 
+    title: 'Asistencia conferencia',  
     to: 'reportes-asistencia-conferencia',
     icon: { icon: 'tabler-report' },
     subject: 'colombia/repo_come_asis_conf', 
