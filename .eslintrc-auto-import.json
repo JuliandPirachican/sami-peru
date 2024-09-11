@@ -353,6 +353,7 @@
     "whenever": true,
     "base": true,
     "$base": true,
-    "useClipboardItems": true
+    "useClipboardItems": true,
+    "$embed": true
   }
 }

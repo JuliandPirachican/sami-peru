@@ -127,6 +127,11 @@ const onLimpiar = () => {
   selected.value = []
 }
 
+/**
+ * url del embebido
+ */
+ const full_url_embed=$embed+"CI/repo_pre_pedi";
+
 onMounted(() => {
   appStore.titulo(`Reporte Duproyecta`)
   onGenerar()
@@ -143,13 +148,12 @@ onMounted(() => {
             <VCard title="Reporte Duproyecta">
               <VCardText>
                 <VCard>
-                  <iframe
-                    id="iframe_option"
-                    ref="iframe_camb_clav"
-                    src="https://intranet.dupree.co/CI/repo_pre_pedi"
-                    frameborder="0"
-                    @load="modi_frame"
-                  />
+                  <iframe id="iframe_option"
+                           ref="iframe_camb_clav" 
+                           @load="modi_frame" 
+                           :src=full_url_embed
+                           frameborder="0">
+                  </iframe>
                 </VCard>
               </VCardText>
             </VCard>

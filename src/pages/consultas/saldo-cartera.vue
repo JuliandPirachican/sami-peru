@@ -126,6 +126,12 @@ const onLimpiar = () => {
   selected.value = []
 }
 
+
+/**
+ * url del embebido
+ */
+ const full_url_embed=$embed+"desarrollo/cgis/sald_cart/";
+
 onMounted(() => {
   appStore.titulo(`Saldo Cartera`)
   onGenerar();
@@ -142,7 +148,11 @@ onMounted(() => {
             <VCard title="Saldo Cartera">
               <VCardText>
                 <v-card>
-                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet.dupree.co/desarrollo/cgis/sald_cart/" frameborder="0"></iframe>
+                  <iframe id="iframe_option"
+                           ref="iframe_camb_clav" 
+                           @load="modi_frame" 
+                           :src=full_url_embed
+                           frameborder="0"></iframe>
                 </v-card>
               </VCardText>
             </VCard>

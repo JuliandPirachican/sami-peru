@@ -127,6 +127,11 @@ const onLimpiar = () => {
   selected.value = []
 }
 
+/**
+ * url del embebido
+ */
+ const full_url_embed=$embed+"CI/form_veri_pre_ases";
+
 onMounted(() => {
   appStore.titulo(`Proceso / Aprobación Ingresos Digitales`) 
   onGenerar() 
@@ -143,13 +148,12 @@ onMounted(() => {
             <VCard title="Aprobacion Incorporaciones Digitales">
               <VCardText>
                 <VCard>
-                  <iframe
-                    id="iframe_option"
-                    ref="iframe_apro_vinc"
-                    src="https://intranet.dupree.co/CI/form_veri_pre_ases"
-                    frameborder="0"
-                    @load="modi_frame"
-                  />
+                  <iframe id="iframe_option"
+                           ref="iframe_camb_clav" 
+                           @load="modi_frame" 
+                           :src=full_url_embed
+                           frameborder="0">
+                  </iframe>
                 </VCard>
               </VCardText>
             </VCard>

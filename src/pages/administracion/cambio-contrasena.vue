@@ -65,6 +65,11 @@ const onGenerar = async () => {
   }
 }
 
+/**
+ * url del embebido
+ */
+const full_url_embed=$embed+"desarrollo/cgis/actu_clav_usua.php";
+
 // ^Metodo registrar modulos al perfil gerente de zona
 const onRegistrar = async () => {
   if(selected.value.length == 0) {
@@ -143,7 +148,11 @@ onMounted(() => {
             <VCard title="Cambio de clave">
               <VCardText>
                 <v-card>
-                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet.dupree.co/desarrollo/cgis/actu_clav_usua.php" frameborder="0"></iframe>
+                  <iframe id="iframe_option"
+                           ref="iframe_camb_clav" 
+                           @load="modi_frame" 
+                           :src=full_url_embed
+                           frameborder="0"></iframe>
                 </v-card>
               </VCardText>
             </VCard>

@@ -126,6 +126,11 @@ const onLimpiar = () => {
   selected.value = []
 }
 
+/**
+ * url del embebido
+ */
+ const full_url_embed=$embed+"desarrollo/cgis/tab_cons_2.php";
+
 onMounted(() => {
   appStore.titulo(`Reportes / Indicadores de gestión`) 
   onGenerar() 
@@ -142,13 +147,12 @@ onMounted(() => {
             <VCard title="Indicadores de gestión"> 
               <VCardText>
                 <VCard>
-                  <iframe
-                    id="iframe_option"
-                    ref="iframe_cons_camp"
-                    src="https://intranet.dupree.co/desarrollo/cgis/tab_cons_2.php"
-                    frameborder="0"
-                    @load="modi_frame"
-                  />
+                  <iframe id="iframe_option"
+                           ref="iframe_camb_clav" 
+                           @load="modi_frame" 
+                           :src=full_url_embed
+                           frameborder="0">
+                  </iframe>
                 </VCard>
               </VCardText>
             </VCard>
