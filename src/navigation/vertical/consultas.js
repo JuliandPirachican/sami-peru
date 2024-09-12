@@ -25,15 +25,15 @@ export default [
     subject: 'colombia/cons_sald_cart_gene', 
     action: 'colombia/cons_sald_cart_gene',
   },
+  // { 
+  //   title: 'Consulta Saldo Cartera Ingresos', 
+  //   to: 'consultas-saldo-cartera-ing', 
+  //   icon: { icon: 'tabler-shopping-cart-cog' },
+  //   subject: 'colombia/cons_sald_cart_ingr', 
+  //   action: 'colombia/cons_sald_cart_ingr',
+  // },
   { 
-    title: 'Consulta Saldo Cartera Ingresos', 
-    to: 'consultas-saldo-cartera-ing', 
-    icon: { icon: 'tabler-shopping-cart-cog' },
-    subject: 'colombia/cons_sald_cart_ingr', 
-    action: 'colombia/cons_sald_cart_ingr',
-  },
-  { 
-    title: 'Consulta Generales', 
+    title: 'Consultas Generales', 
     to: 'consultas-cons-clie', 
     icon: { icon: 'tabler-shopping-cart-cog' },
     subject: 'colombia/cons_clie', 

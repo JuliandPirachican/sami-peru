@@ -26,7 +26,7 @@ export default [
     action: 'colombia/proc_come_cerr_asis',
   },
   { 
-    title: 'Confirmación incorporación digital', 
+    title: 'Incorporaciones', 
     to: 'procesos-confirmar-inscripcion',
     icon: { icon: 'tabler-user-plus' },
     subject: 'colombia/proc_come_conf_insc_movi', 
@@ -39,13 +39,13 @@ export default [
     subject: 'colombia/proc_come_desb_ases', 
     action: 'colombia/proc_come_desb_ases',
   },
-  { 
-    title: 'Gestionar posible asesora', 
-    to: 'procesos-gestionar-posible-asesora',
-    icon: { icon: 'tabler-clock-code' },
-    subject: 'colombia/proc_come_gest_posi_ases', 
-    action: 'colombia/proc_come_gest_posi_ases',
-  },
+  // { 
+  //   title: 'Gestionar posible asesora', 
+  //   to: 'procesos-gestionar-posible-asesora',
+  //   icon: { icon: 'tabler-clock-code' },
+  //   subject: 'colombia/proc_come_gest_posi_ases', 
+  //   action: 'colombia/proc_come_gest_posi_ases',
+  // },
   { 
     title: 'Gestionar vacaciones', 
     to: 'procesos-gestionar-vacaciones',
@@ -60,13 +60,13 @@ export default [
     subject: 'colombia/proc_come_grab_pedi', 
     action: 'colombia/proc_come_grab_pedi',
   },
-  { 
-    title: 'Registro posible asesora', 
-    to: 'procesos-posible-asesora',
-    icon: { icon: 'tabler-rotate-clockwise' },
-    subject: 'colombia/proc_come_posi_ases', 
-    action: 'colombia/proc_come_posi_ases',
-  },
+  // { 
+  //   title: 'Registro posible asesora', 
+  //   to: 'procesos-posible-asesora',
+  //   icon: { icon: 'tabler-rotate-clockwise' },
+  //   subject: 'colombia/proc_come_posi_ases', 
+  //   action: 'colombia/proc_come_posi_ases',
+  // },
   { 
     title: 'Respuesta Incidencias', 
     to: 'procesos-respuesta-incidencias',

@@ -214,13 +214,13 @@ export default [
     subject: 'colombia/repo_come_refe', 
     action: 'colombia/repo_come_refe', 
   },
-  { 
-    title: 'Segmentación asesora', 
-    to: 'reportes-segmentacion-asesora',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_come_segm_ases', 
-    action: 'colombia/repo_come_segm_ases', 
-  },
+  // { 
+  //   title: 'Segmentación asesora', 
+  //   to: 'reportes-segmentacion-asesora',
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_come_segm_ases', 
+  //   action: 'colombia/repo_come_segm_ases', 
+  // },
   { 
     title: 'Simulador de cobranza', 
     to: 'reportes-simulador-cobranza',

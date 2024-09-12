@@ -205,7 +205,7 @@ const headers = computed(() => {
 const visibleHeaders = computed(() => headers.value.filter(header => !header.hidden))
 
 onMounted(async () => {
-  appStore.titulo(`Procesos / Confirmar Incorporacion Digital`)
+  appStore.titulo(`Procesos / Incorporaciones`)
   await obtenerCampana()
   await obtenerZona()
   await obtenerDepartamentos()
@@ -1111,7 +1111,7 @@ const handleFileUpload = async tipo => {
             <VIcon icon="tabler-x" />
           </VBtn>
           <VToolbarTitle>
-            Confirmar Incorporacion Digital
+            Incorporaciones
           </VToolbarTitle>
           <VSpacer />
           <VToolbarItems>
