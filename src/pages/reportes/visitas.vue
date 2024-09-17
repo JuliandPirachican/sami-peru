@@ -134,7 +134,7 @@ const itemsDetalleVisible = computed(() => {
 })
 
 onMounted(async () => {
-  appStore.titulo(`Reportes / Visitas`)
+  appStore.titulo(`Reportes / Azzorti Maps`)
   await obtenerCampana()
 })
 
@@ -244,7 +244,7 @@ const limpiarValidacion = () => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Buscar visitas">
+            <VCard title="Buscar en Azzorti Maps">
               <VCardText>
                 <VRow justify="space-between">
                   <VCol
@@ -268,7 +268,7 @@ const limpiarValidacion = () => {
           </VCol>
 
           <VCol cols="12">
-            <VCard title="Lista visita">
+            <VCard title="Lista Azzorti Maps">
               <VCardText>
                 <VDataTable
                   v-model:items-per-page="rowsPerPage"
