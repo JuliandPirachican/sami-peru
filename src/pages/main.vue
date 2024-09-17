@@ -18,9 +18,9 @@ const variableData = ref([
     titulo: 'Cobranza 21 días',
     valor: '0.00%',
     Subtitulo1: 'Venta',
-    valor1: 'S/ 0.00',
+    valor1: 'COP/ 0.00',
     Subtitulo2: 'Saldo',
-    valor2: 'S/ 0.00',
+    valor2: 'COP/ 0.00',
   },
   {
     icono: 'tabler-users',
@@ -151,9 +151,9 @@ const onLimpiar = () => {
       titulo: 'Cobranza 21 días',
       valor: '0.00%',
       Subtitulo1: 'Venta',
-      valor1: 'S/ 0.00',
+      valor1: 'COP/ 0.00',
       Subtitulo2: 'Saldo',
-      valor2: 'S/ 0.00',
+      valor2: 'COP/ 0.00',
     },
     {
       icono: 'tabler-users',
