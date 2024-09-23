@@ -186,13 +186,13 @@ export default [
     subject: 'colombia/repo_come_pedi_digi', 
     action: 'colombia/repo_come_pedi_digi', 
   },
-  { 
-    title: 'Posible asesora', 
-    to: 'reportes-posibles-asesoras',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_come_posi_ases', 
-    action: 'colombia/repo_come_posi_ases', 
-  },
+  // { 
+  //   title: 'Posible asesora', 
+  //   to: 'reportes-posibles-asesoras',
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_come_posi_ases', 
+  //   action: 'colombia/repo_come_posi_ases', 
+  // },
   { 
     title: 'Azzorti Proyecta', 
     to: 'reportes-prepedido',
@@ -309,13 +309,13 @@ export default [
     subject: 'colombia/repo_app_movi', 
     action: 'colombia/repo_app_movi', 
   },
-  { 
-    title: 'Reporte Duproyecta', 
-    to: 'reportes-reporte-duproyecta',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_pre_pedi', 
-    action: 'colombia/repo_pre_pedi', 
-  },
+  // { 
+  //   title: 'Reporte Duproyecta', 
+  //   to: 'reportes-reporte-duproyecta',
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_pre_pedi', 
+  //   action: 'colombia/repo_pre_pedi', 
+  // },
   {
     title: 'Reporte PBIE', 
     to: 'reportes-reporte-pbie',

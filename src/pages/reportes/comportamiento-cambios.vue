@@ -37,7 +37,7 @@ const headersGlobal = computed(() => {
   return [
     { title: '', key: 'acciones', sortable: false, width: '10px' },
     { key: 'nomb_conc', title: 'Concepto',   align: 'left' },
-    { key: 'cant_conc', title: 'Monto S/',   align: 'center' },
+    { key: 'cant_conc', title: 'Monto COP/',   align: 'center' },
     { key: 'porc_conc', title: 'Porcentaje', align: 'center' },
   ]
 })

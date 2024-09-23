@@ -1,7 +1,7 @@
 <script setup>
-import { useAppStore } from '@/stores/app'
-import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue'
-import { useDisplay } from 'vuetify'
+import { useAppStore } from '@/stores/app';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+import { useDisplay } from 'vuetify';
 
 definePage({
   meta: {
@@ -202,9 +202,9 @@ const onGenerar = async () => {
       },
     })
 
-    items.value = data.data_glob
+    items.value = data.data
 
-    sourceGlobal.value.localdata =  data.data_glob
+    sourceGlobal.value.localdata =  data.data
     refGridGlobal.value.updatebounddata('cells')
     refGridGlobal.value.refreshfilterrow()
   } catch (error) {

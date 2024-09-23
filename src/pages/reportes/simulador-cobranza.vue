@@ -33,22 +33,22 @@ const headersGlobal = computed(() => {
       title: 'Valor',
       key: 'valo_docu',
     },
-    {
-      title: 'Obj. max. saldo 21d',
-      key: 'obje_21di',
-    },
+    // {
+    //   title: 'Obj. max. saldo 21d',
+    //   key: 'obje_21di',
+    // },
     {
       title: 'Obj. max. saldo 31d',
       key: 'obje_31di',
     },
-    {
-      title: 'Saldo 21 días',
-      key: 'sald_21di',
-    },
-    {
-      title: '% 21 días',
-      key: 'porc_21di',
-    },
+    // {
+    //   title: 'Saldo 21 días',
+    //   key: 'sald_21di',
+    // },
+    // {
+    //   title: '% 21 días',
+    //   key: 'porc_21di',
+    // },
     {
       title: 'Saldo 31 días',
       key: 'sald_31di',
@@ -65,18 +65,18 @@ const headersGlobal = computed(() => {
       title: '% Actual',
       key: 'porc_actu',
     },
-    {
-      title: 'Simulador',
-      key: 'simu_21di',
-    },
-    {
-      title: '% Simulador',
-      key: 'porc_simu_21di',
-    },
-    {
-      title: 'Falta cobrar 21d',
-      key: 'falt_cobr_21di',
-    },
+    // {
+    //   title: 'Simulador',
+    //   key: 'simu_21di',
+    // },
+    // {
+    //   title: '% Simulador',
+    //   key: 'porc_simu_21di',
+    // },
+    // {
+    //   title: 'Falta cobrar 21d',
+    //   key: 'falt_cobr_21di',
+    // },
     {
       title: 'Falta cobrar 31d',
       key: 'falt_cobr_31di',
@@ -127,10 +127,10 @@ const headersDetalle = computed(() => {
       title: 'Percepcion',
       key: 'impu_perc',
     },
-    {
-      title: 'Saldo 21di',
-      key: 'sald_21di',
-    },
+    // {
+    //   title: 'Saldo 21di',
+    //   key: 'sald_21di',
+    // },
     {
       title: 'Saldo 31di',
       key: 'sald_31di',
@@ -139,10 +139,10 @@ const headersDetalle = computed(() => {
       title: 'Saldo actual',
       key: 'sald_actu',
     },
-    {
-      title: 'Simulador',
-      key: 'simu_21di',
-    },
+    // {
+    //   title: 'Simulador',
+    //   key: 'simu_21di',
+    // },
   ]
 })
 
@@ -418,14 +418,14 @@ const actualizarItem = item => {
                     cols="12"
                     md="4"
                   >
-                    <AppSelect
+                    <!-- <AppSelect
                       v-model="formulario.objetivo21"
                       :items="objetivo21Options"
                       label="Objetivo 21 días"
                       placeholder="Seleccionar objetivo"
                       item-title="text"
                       item-value="id"
-                    />
+                    /> -->
                   </VCol>
                   <VCol
                     cols="12"
@@ -454,32 +454,32 @@ const actualizarItem = item => {
                 >
                   <template #item.valo_docu="{ item }">
                     <VChip color="secondary">
-                      S/.{{ item.valo_docu }}
+                      COP/.{{ item.valo_docu }}
                     </VChip>
                   </template>
-                  <template #item.obje_21di="{ item }">
+                  <!-- <template #item.obje_21di="{ item }">
                     <VChip color="secondary">
-                      S/.{{ item.obje_21di }}
+                      COP/.{{ item.obje_21di }}
                     </VChip>
-                  </template>
+                  </template> -->
                   <template #item.obje_31di="{ item }">
                     <VChip color="secondary">
-                      S/.{{ item.obje_31di }}
+                      COP/.{{ item.obje_31di }}
                     </VChip>
                   </template>
-                  <template #item.sald_21di="{ item }">
+                  <!-- <template #item.sald_21di="{ item }">
                     <VChip color="error">
-                      S/.{{ item.sald_21di }}
+                      COP/.{{ item.sald_21di }}
                     </VChip>
-                  </template>
-                  <template #item.porc_21di="{ item }">
+                  </template> -->
+                  <!-- <template #item.porc_21di="{ item }">
                     <VChip color="error">
                       {{ item.porc_21di }}%
                     </VChip>
-                  </template>
+                  </template> -->
                   <template #item.sald_31di="{ item }">
                     <VChip color="error">
-                      S/.{{ item.sald_31di }}
+                      COP/.{{ item.sald_31di }}
                     </VChip>
                   </template>
                   <template #item.porc_31di="{ item }">
@@ -489,7 +489,7 @@ const actualizarItem = item => {
                   </template>
                   <template #item.sald_actu="{ item }">
                     <VChip color="error">
-                      S/.{{ item.sald_actu }}
+                      COP/.{{ item.sald_actu }}
                     </VChip>
                   </template>
                   <template #item.porc_actu="{ item }">
@@ -497,24 +497,24 @@ const actualizarItem = item => {
                       {{ item.porc_actu }}%
                     </VChip>
                   </template>
-                  <template #item.simu_21di="{ item }">
+                  <!-- <template #item.simu_21di="{ item }">
                     <VChip color="success">
                       {{ item.simu_21di }}%
                     </VChip>
-                  </template>
-                  <template #item.porc_simu_21di="{ item }">
+                  </template> -->
+                  <!-- <template #item.porc_simu_21di="{ item }">
                     <VChip color="success">
                       {{ item.porc_simu_21di }}%
                     </VChip>
                   </template>
                   <template #item.falt_cobr_21di="{ item }">
                     <VChip color="success">
-                      S/.{{ item.falt_cobr_21di }}
+                      COP/.{{ item.falt_cobr_21di }}
                     </VChip>
-                  </template>
+                  </template> -->
                   <template #item.falt_cobr_31di="{ item }">
                     <VChip color="success">
-                      S/.{{ item.falt_cobr_31di }}
+                      COP/.{{ item.falt_cobr_31di }}
                     </VChip>
                   </template>
                   <template #bottom />
@@ -531,7 +531,7 @@ const actualizarItem = item => {
                   fixed-header
                   height="250"
                 >
-                  <template #item.simu_21di="{ item }">
+                  <!-- <template #item.simu_21di="{ item }">
                     <AppTextField
                       v-model="item.simu_21di"
                       placeholder=""
@@ -539,7 +539,7 @@ const actualizarItem = item => {
                       base-color="success"
                       @update:model-value="updateQueryBuscar(item)"
                     />
-                  </template>
+                  </template> -->
                   <template #bottom />
                 </VDataTable>
               </VCardText>

@@ -29,12 +29,12 @@ const headers = computed(() => {
       sortable: true,
       width: '10px',
     },
-    {
-      title: 'Sector',
-      key: 'codi_sect',
-      sortable: true,
-      width: '10px',
-    },
+    // {
+    //   title: 'Sector',
+    //   key: 'codi_sect',
+    //   sortable: true,
+    //   width: '10px',
+    // },
     {
       title: 'Código',
       key: 'codi_prod',
