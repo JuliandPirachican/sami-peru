@@ -79,7 +79,7 @@ const headers = computed(() => {
     {
       text: 'Corte',
       dataField: 'codi_cort',
-      width: '65',
+      width: '80',
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist'
@@ -87,49 +87,52 @@ const headers = computed(() => {
     {
       text: 'Region',
       dataField: 'codi_area',
-      width: '65',
+      width: '80',
       align: 'center',
       cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
       text: 'Zona',
       dataField: 'codi_zona',
-      width: '65',
+      width: '80',
       align: 'center',
       cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
       text: 'Sector',
       dataField: 'codi_sect',
-      width: '65',
+      width: '80',
       align: 'center',
       cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
       text: 'Nro. Iden',
       dataField: 'nume_iden',
-      width: '65',
+      width: '120',
       align: 'center',
       cellsalign: 'center',
     },
     {
       text: 'Nombre(s) y Apellido(s)',
       dataField: 'nomb_terc',
-      width: '65',
+      width: '190',
       align: 'center',
       cellsalign: 'center',
     },
     {
       text: 'Fecha',
       dataField: 'acti_hora',
-      width: '65',
+      width: '160',
       align: 'center',
       cellsalign: 'center',
     },
     {
       text: 'Tipo',
       dataField: 'nomb_reun',
-      width: '65',
+      width: '120',
       align: 'center',
       cellsalign: 'center',
     },
@@ -146,7 +149,8 @@ const sourceGlobal = ref({
     { name: 'codi_zona', type: 'string' },
     { name: 'codi_sect', type: 'string' },
     { name: 'nume_iden', type: 'integer' },
-    { name: 'acti_hora', type: 'date' },
+    { name: 'nomb_terc', type: 'string' },
+    { name: 'acti_hora', type: 'string' },
     { name: 'nomb_reun', type: 'string' },
   ],
   datatype: 'json',
