@@ -50,7 +50,7 @@ const headersGlobal = computed(() => {
     { title: 'PPP Rece.', key: 'pppp_rece' },
     { title: 'Unid', key: 'tota_unid' },
     { title: 'UPP', key: 'tota_uppp' },
-    { title: `S/. Unid.`, key: 'mont_unid' },
+    { title: `COP. Unid.`, key: 'mont_unid' },
     { title: 'Peg21', key: 'posi_eg21' },
     { title: 'Peg42', key: 'posi_eg42' },
     { title: 'Peg63', key: 'posi_egre' },
@@ -590,7 +590,7 @@ const itemsDetalleVisible = computed(() => {
                   <li>Peg42</li>
                   <li>Peg63</li>
                   <li>
-                    Posible Reingreso &lt;= S/. 25.00
+                    Posible Reingreso &lt;= COP. 25.00
                   </li>
                 </ol>
               </VTooltip>
@@ -678,7 +678,7 @@ const itemsDetalleVisible = computed(() => {
                   <li>Peg42</li>
                   <li>Peg63</li>
                   <li>Posible Reingreso</li>
-                  <li>Posible Reincorporación &lt;= S/. 25.00</li>
+                  <li>Posible Reincorporación &lt;= COP. 25.00</li>
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 4</VListItemTitle>

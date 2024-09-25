@@ -454,22 +454,22 @@ const actualizarItem = item => {
                 >
                   <template #item.valo_docu="{ item }">
                     <VChip color="secondary">
-                      S/.{{ item.valo_docu }}
+                      COP.{{ item.valo_docu }}
                     </VChip>
                   </template>
                   <template #item.obje_21di="{ item }">
                     <VChip color="secondary">
-                      S/.{{ item.obje_21di }}
+                      COP.{{ item.obje_21di }}
                     </VChip>
                   </template>
                   <template #item.obje_31di="{ item }">
                     <VChip color="secondary">
-                      S/.{{ item.obje_31di }}
+                      COP.{{ item.obje_31di }}
                     </VChip>
                   </template>
                   <template #item.sald_21di="{ item }">
                     <VChip color="error">
-                      S/.{{ item.sald_21di }}
+                      COP.{{ item.sald_21di }}
                     </VChip>
                   </template>
                   <template #item.porc_21di="{ item }">
@@ -479,7 +479,7 @@ const actualizarItem = item => {
                   </template>
                   <template #item.sald_31di="{ item }">
                     <VChip color="error">
-                      S/.{{ item.sald_31di }}
+                      COP.{{ item.sald_31di }}
                     </VChip>
                   </template>
                   <template #item.porc_31di="{ item }">
@@ -489,7 +489,7 @@ const actualizarItem = item => {
                   </template>
                   <template #item.sald_actu="{ item }">
                     <VChip color="error">
-                      S/.{{ item.sald_actu }}
+                      COP.{{ item.sald_actu }}
                     </VChip>
                   </template>
                   <template #item.porc_actu="{ item }">
@@ -509,12 +509,12 @@ const actualizarItem = item => {
                   </template>
                   <template #item.falt_cobr_21di="{ item }">
                     <VChip color="success">
-                      S/.{{ item.falt_cobr_21di }}
+                      COP.{{ item.falt_cobr_21di }}
                     </VChip>
                   </template>
                   <template #item.falt_cobr_31di="{ item }">
                     <VChip color="success">
-                      S/.{{ item.falt_cobr_31di }}
+                      COP.{{ item.falt_cobr_31di }}
                     </VChip>
                   </template>
                   <template #bottom />

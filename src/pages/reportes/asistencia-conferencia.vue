@@ -1,7 +1,8 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
-import { VDataTable } from 'vuetify/labs/VDataTable';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+
 
 definePage({
   meta: {
@@ -16,6 +17,7 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 
 const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
+const refGridGlobal=ref()
 
 const formulario = ref({
   campana: null,
@@ -26,60 +28,131 @@ const formulario = ref({
 const itemsInicial = ref([])
 const multiSearch =  ref({})
 
-const headers = computed(() => {
+const headers1 = computed(() => {
   return [
     {
       key: 'codi_cort',
       title: 'Corte',
       sortable: true,
     },
-    {
-      key: 'codi_area',
-      title: 'Región',
-      sortable: true,
-    },
-    {
-      key: 'codi_zona',
-      title: 'Zona',
-      sortable: true,
-    },
-    {
-      key: 'codi_sect',
-      title: 'Sector',
-      sortable: true,
-    },
-    {
-      key: 'nume_iden',
-      title: 'Nro ident.',
-      sortable: true,
-    },
-    {
-      key: 'nomb_terc',
-      title: 'Nombre(s) y Apellido(s)',
-      sortable: true,
-    },
-    {
-      key: 'acti_hora',
-      title: 'Fecha',
-      sortable: true,
-    },
-    {
-      key: 'nomb_reun',
-      title: 'Tipo',
-      sortable: true,
-    },
     // {
-    //   key: 'clie_gema',
-    //   title: 'Gemma',
+    //   key: 'codi_area',
+    //   title: 'Región',
     //   sortable: true,
     // },
     // {
-    //   key: 'nive_gema',
-    //   title: 'Nivel',
+    //   key: 'codi_zona',
+    //   title: 'Zona',
     //   sortable: true,
     // },
+    // {
+    //   key: 'codi_sect',
+    //   title: 'Sector',
+    //   sortable: true,
+    // },
+    // {
+    //   key: 'nume_iden',
+    //   title: 'Nro ident.',
+    //   sortable: true,
+    // },
+    // {
+    //   key: 'nomb_terc',
+    //   title: 'Nombre(s) y Apellido(s)',
+    //   sortable: true,
+    // },
+    // {
+    //   key: 'acti_hora',
+    //   title: 'Fecha',
+    //   sortable: true,
+    // },
+    // {
+    //   key: 'nomb_reun',
+    //   title: 'Tipo',
+    //   sortable: true,
+    // },
+
   ]
 })
+
+const headers = computed(() => {
+  return [
+    {
+      text: 'Corte',
+      dataField: 'codi_cort',
+      width: '65',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Region',
+      dataField: 'codi_area',
+      width: '65',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '65',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '65',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Nro. Iden',
+      dataField: 'nume_iden',
+      width: '65',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Nombre(s) y Apellido(s)',
+      dataField: 'nomb_terc',
+      width: '65',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Fecha',
+      dataField: 'acti_hora',
+      width: '65',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Tipo',
+      dataField: 'nomb_reun',
+      width: '65',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    
+  ]
+})
+
+
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'codi_cort', type: 'string' },
+    { name: 'codi_area', type: 'string' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'codi_sect', type: 'string' },
+    { name: 'nume_iden', type: 'integer' },
+    { name: 'acti_hora', type: 'date' },
+    { name: 'nomb_reun', type: 'string' },
+  ],
+  datatype: 'json',
+})
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const localization = appStore.localization
 
 const items = computed(() => {
   if(multiSearch.value) {
@@ -218,6 +291,7 @@ const obtenerReunion = async () => {
     
 
     const itemReunion = data.data_glob
+
     
     itemReunion.forEach(element => 
       tipoOptions.value.push({
@@ -257,6 +331,9 @@ const onGenerar = async () => {
 
     items.value = data.data_glob
     itemsInicial.value = data.data_glob
+    sourceGlobal.value.localdata = data.data_glob
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -285,6 +362,7 @@ const onLimpiar= async () => {
     zona: null,
     tipo: null,
   }
+  refGridGlobal.value.updatebounddata('cells')
   items.value = []
   itemsInicial.value = []
 }
@@ -388,7 +466,7 @@ const limpiarValidacion = () => {
           <VCol cols="12">
             <VCard title="Lista asistencia">
               <VCardText>
-                <VDataTable
+                <!-- <VDataTable
                   :headers="headers"
                   :items="items"
                   :items-per-page="-1"
@@ -397,7 +475,29 @@ const limpiarValidacion = () => {
                   height="400"
                 >              
                   <template #bottom />
-                </VDataTable>
+                </VDataTable> -->
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headers"
+                  :source="adaptadorGlobal"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  :editable="false"
+                />
               </VCardText>
             </VCard>
           </VCol>

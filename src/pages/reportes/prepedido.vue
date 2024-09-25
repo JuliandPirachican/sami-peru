@@ -203,8 +203,8 @@ const onGenerar = async () => {
     limpiarValidacion()
 
     filtro.value = ''
-    itemsGlobal.value = []
-    itemsDetalleTotal.value = []
+    // itemsGlobal.value = []
+    // itemsDetalleTotal.value = []
 
     const { data } = await $api(`/api/sami/v1/reportes/prepedido`, {
       method: "get",
@@ -252,12 +252,14 @@ const onExcel = async () => {
   try {
     appStore.mensaje('Generando archivo')
     appStore.loading(true)
-
+    console.log(itemsGlobal.value)
+    console.log(itemsDetalle.value)
     const { data } = await $api( `/api/sami/v1/reportes/prepedido/excel`, {
       method: "post",
       body: {
         data_glob: itemsGlobal.value,
         data_deta: itemsDetalle.value,
+        cabeceraGlobal:headersGlobal
       },
     })
     

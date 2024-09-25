@@ -37,7 +37,7 @@ const headersGlobal = computed(() => {
   return [
     { title: '', key: 'acciones', sortable: false, width: '10px' },
     { key: 'nomb_conc', title: 'Concepto',   align: 'left' },
-    { key: 'cant_conc', title: 'Monto S/',   align: 'center' },
+    { key: 'cant_conc', title: 'Monto COP',   align: 'center' },
     { key: 'porc_conc', title: 'Porcentaje', align: 'center' },
   ]
 })
@@ -293,7 +293,7 @@ const onExcelDetalle = async () => {
   finally {
     appStore.loading(false)
   }
-}
+} 
 
 const onSeleccionar = async data => {
   titulo.value = data.nomb_conc
@@ -502,10 +502,10 @@ const limpiarValidacion = () => {
                         {{ item.nomb_vend }}
                       </td>
                       <td>
-                        S/. {{ item.vent_neta }}
+                        COP. {{ item.vent_neta }}
                       </td>
                       <td>
-                        S/. {{ item.canj_devo }}
+                        COP. {{ item.canj_devo }}
                       </td>
                       <td>
                         <div v-if="item.porc_canj_devo != ''">

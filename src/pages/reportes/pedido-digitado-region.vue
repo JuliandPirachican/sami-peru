@@ -438,36 +438,36 @@ const initConfiguracion = () => {
     {
       nomb_conc: 'Venta',
       line_desc: 'Linea',
-      obje_conc: `S/. 0.00`,
+      obje_conc: `COP. 0.00`,
       falt_desc: 'Faltante',
-      fact_conc: `S/. 0.00`,
+      fact_conc: `COP. 0.00`,
       rece_desc: 'Recepcionado',
-      porc_conc: `S/. 0.00`,
+      porc_conc: `COP. 0.00`,
     },
     {
       nomb_conc: 'P.P. Facturado',
       line_desc: '',
-      obje_conc: `S/. 0.00`,
+      obje_conc: `COP. 0.00`,
       falt_desc: '',
       fact_conc: 'P.P. Recepcionado',
       rece_desc: '',
-      porc_conc: `S/. 0.00`,
+      porc_conc: `COP. 0.00`,
     },
     {
       nomb_conc: 'Cobranza 21 días',
       line_desc: '',
-      obje_conc: `S/. 0.00`,
+      obje_conc: `COP. 0.00`,
       falt_desc: '',
-      fact_conc: `S/. 0.00`,
+      fact_conc: `COP. 0.00`,
       rece_desc: '',
       porc_conc: '0.00 %',
     },
     {
       nomb_conc: 'Cobranza saldo actual',
       line_desc: '',
-      obje_conc: `S/. 0.00`,
+      obje_conc: `COP. 0.00`,
       falt_desc: '',
-      fact_conc: `S/. 0.00`,
+      fact_conc: `COP. 0.00`,
       rece_desc: '',
       porc_conc: '0.00 %',
     },
@@ -683,7 +683,11 @@ const onLimpiar= async () => {
 const onExcel = async () => {
   try {
     appStore.mensaje('Generando archivo')
-    appStore.loading(true)
+    appStore.loading(true);
+    console.log(itemsGlobal.value)
+    console.log(itemsDetalle.value)
+    console.log(itemsCorte.value)
+    console.log(itemsZona.value)
 
     const { data } = await $api(`/api/sami/v1/reportes/pedidos-digitados-region/excel`, {
       method: "post",
@@ -1139,7 +1143,7 @@ const onExcelConcepto = async () => {
                       </th>
                       <th rowspan="2">
                         NRO ZONA
-                      </th>
+                      </th> 
                       <th
                         colspan="6"
                         class="text-center"
