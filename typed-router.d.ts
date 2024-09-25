@@ -40,7 +40,6 @@ import type {
 declare module 'vue-router/auto/routes' {
   export interface RouteNamedMap {
     '$error': RouteRecordInfo<'$error', '/:error(.*)', { error: ParamValue<true> }, { error: ParamValue<false> }>,
-    'administracion-asistencia': RouteRecordInfo<'administracion-asistencia', '/administracion/asistencia', Record<never, never>, Record<never, never>>,
     'administracion-cambio-contrasena': RouteRecordInfo<'administracion-cambio-contrasena', '/administracion/cambio-contrasena', Record<never, never>, Record<never, never>>,
     'administracion-log-usuario': RouteRecordInfo<'administracion-log-usuario', '/administracion/log-usuario', Record<never, never>, Record<never, never>>,
     'administracion-permiso-zonal': RouteRecordInfo<'administracion-permiso-zonal', '/administracion/permiso-zonal', Record<never, never>, Record<never, never>>,

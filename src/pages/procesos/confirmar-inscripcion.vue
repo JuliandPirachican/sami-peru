@@ -163,7 +163,6 @@ const isOpenEditar = ref(false)
 
 const headers = computed(() => {
   return [
-    { title: '', key: 'acciones', sortable: false, width: '10px' },
     { title: 'Campaña', key: 'codi_camp' },
     { title: 'Zona', key: 'codi_zona' },
     { title: 'Sector', key: 'codi_sect' },
@@ -1914,4 +1913,7 @@ const handleFileUpload = async tipo => {
 .flat-picker-custom-style {
   inset-block: auto 8px;
 }
+// .custom-checkbox-unchecked:first-child{
+//   visibility:hidden;
+// }
 </style>
