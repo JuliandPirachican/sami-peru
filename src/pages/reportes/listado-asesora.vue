@@ -1,8 +1,10 @@
 <!-- eslint-disable camelcase -->
 <script setup>
 import { useAppStore } from '@/stores/app';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 import { useDisplay } from 'vuetify';
 import { VDataTable } from 'vuetify/labs/VDataTable';
+
 
 definePage({
   meta: {
@@ -12,7 +14,9 @@ definePage({
 })
 
 const { mobile } = useDisplay()
-const appStore = useAppStore()
+const appStore = useAppStore();
+const refGridGlobal=ref();
+const refGridDetalle=ref()
 
 const rowsPerPage = ref(100)
 const currentPage = ref(1)
@@ -22,181 +26,728 @@ const formulario = ref({
   zona: null,
 })
 
+
 const headersGlobal = computed(() => {
   return [
-    { title: 'Región', key: 'codi_area' },
-    { title: 'Zona', key: 'codi_zona' },
-    { title: 'Sector', key: 'codi_sect' },
-    { title: 'Act. inic.', key: 'acti_inic' },
-    { title: 'Ingr.', key: 'tota_ingr' },
-    { title: 'Reing.', key: 'tota_rein' },
-    { title: 'Reco.', key: 'tota_reco' },
-    { title: 'Egre.', key: 'tota_egre' },
-    { title: 'Act. fin.', key: 'acti_fina' },
-    { title: 'Posi. rein.', key: 'posi_rein' },
-    { title: 'Capi.', key: 'tota_capi' },
-    { title: 'Pedi. reten.', key: 'pedi_rete' },
-    { title: '% Acti.', key: 'porc_acti' },
-    { title: 'Pedi. total', key: 'nume_pedi' },
-    { title: 'Vta. publ.', key: 'vent_publ' },
-    { title: 'PPP Publ.', key: 'pppp_publ' },
-    { title: 'Vta. Fact.', key: 'tota_fact' },
-    { title: 'PPP Fact.', key: 'pppp_fact' },
-    { title: 'Faltante', key: 'tota_falt' },
-    { title: '% Faltante', key: 'porc_falt' },
-    { title: 'Vta. Linea', key: 'tota_line' },
-    { title: 'PPP Linea', key: 'tota_pedi' },
-    { title: 'Vta. Rece.', key: 'vent_rece' },
-    { title: 'PPP Rece.', key: 'pppp_rece' },
-    { title: 'Unid', key: 'tota_unid' },
-    { title: 'UPP', key: 'tota_uppp' },
-    { title: `COP. Unid.`, key: 'mont_unid' },
-    { title: 'Peg21', key: 'posi_eg21' },
-    { title: 'Peg42', key: 'posi_eg42' },
-    { title: 'Peg63', key: 'posi_egre' },
-    { title: 'Ret. peg21', key: 'rete_pe21' },
-    { title: '% Ret. peg21', key: 'porc_re21' },
-    { title: 'Ret. peg42', key: 'rete_pe42' },
-    { title: '% Ret. peg42', key: 'porc_re42' },
-    { title: 'Ret. peg63', key: 'rete_pe63' },
-    { title: '% Ret. peg63', key: 'porc_re63' },
-  ]
-})
+    {
+      text: 'Region',
+      dataField: 'codi_area',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      pinned: true
+    },
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      pinned: true
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      pinned: true
+    },
+    {
+      text: 'Act. Inic.',
+      dataField: 'acti_inic',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Incorp.',
+      dataField: 'tota_ingr',
+      width: '170',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist', 
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Reing.',
+      dataField: 'tota_rein',
+      width: '250',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Reco.',
+      dataField: 'tota_reco',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Egre.',
+      dataField: 'tota_egre',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Capi.',
+      dataField: 'tota_capi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Act. Fin.',
+      dataField: 'acti_fina',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Posi. Rein',
+      dataField: 'posi_rein',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Rete. PEG21',
+      dataField: 'rete_pe21',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: '% Rete PEG21',
+      dataField: 'porc_re21',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Rete. PEG42',
+      dataField: 'rete_pe42',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: '% Rete PEG42',
+      dataField: 'porc_re42',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Rete. PEG63',
+      dataField: 'rete_pe63',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: '% Rete PEG63',
+      dataField: 'porc_re63',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: '% Acti.',
+      dataField: 'porc_acti',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Pedi. Reten.',
+      dataField: 'pedi_rete',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Pedi. Total',
+      dataField: 'nume_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    // {
+    //   text: 'Vta. Publ',
+    //   dataField: 'vent_publ',
+    //   width: '150',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
+    // {
+    //   text: 'Ppp Publ.',
+    //   dataField: 'pppp_publ',
+    //   width: '150',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
+    {
+      text: 'Vta. Linea',
+      dataField: 'tota_line',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      columngroup: 'Inventory',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Ppp Linea',
+      dataField: 'tota_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      columngroup: 'Inventory',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Vta. Rece.',
+      dataField: 'vent_rece',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Ppp Rece.',
+      dataField: 'pppp_rece',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Vta. Fact',
+      dataField: 'tota_fact',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Ppp Fact',
+      dataField: 'pppp_fact',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Faltante',
+      dataField: 'tota_falt',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: '% Faltante',
+      dataField: 'porc_falt',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
 
-const headersDetalleTotal = [
-  {
-    title: 'Zona',
-    key: 'codi_zona',
-  },
-  {
-    title: 'Sector',
-    key: 'codi_sect',
-  },
-  {
-    title: 'Nro ident.',
-    key: 'nume_iden',
-  },
-  {
-    title: 'Nombre(s) y apellido(s)',
-    key: 'nomb_clie',
-  },
-  {
-    title: 'Cumpleaños',
-    key: 'fech_naci',
-  },
-  {
-    title: 'Distrito',
-    key: 'nomb_barr',
-  },
-  {
-    title: 'Dirección',
-    key: 'dire_terc',
-  },
-  {
-    title: 'Teléfono 1',
-    key: 'tele_ter1',
-  },
-  {
-    title: 'Teléfono 2',
-    key: 'tele_ter2',
-  },
-  {
-    title: 'Status',
-    key: 'tipo_clie',
-  },
-  {
-    title: 'Cupo',
-    key: 'cupo_cred',
-  },
-  {
-    title: 'Saldo',
-    key: 'sald_docu',
-  },
-  {
-    title: 'Camp. ingr.',
-    key: 'camp_ingr',
-  },
-  {
-    title: 'Ult. camp1',
-    key: 'codi_camp_1',
-  },
-  {
-    title: 'Ptos azzo. ult. camp1',
-    key: 'tota_publ_1',
-  },
-  {
-    title: 'Fact. ult. camp1',
-    key: 'tota_fact_1',
-  },
-  {
-    title: 'Devo. ult. camp1',
-    key: 'tota_devo_1',
-  },
-  {
-    title: 'Ult. camp2',
-    key: 'codi_camp_2',
-  },
-  {
-    title: 'Ptos azzo. ult. camp2',
-    key: 'tota_publ_2',
-  },
-  {
-    title: 'Fact. ult. camp2',
-    key: 'tota_fact_2',
-  },
-  {
-    title: 'Devo. ult. camp2',
-    key: 'tota_devo_2',
-  },
-  {
-    title: 'Ult. camp3',
-    key: 'codi_camp_3',
-  },
-  {
-    title: 'Ptos azzo. ult. camp3',
-    key: 'tota_publ_3',
-  },
-  {
-    title: 'Fact. ult. camp3',
-    key: 'tota_fact_3',
-  },
-  {
-    title: 'Devo. ult. camp3',
-    key: 'tota_devo_3',
-  },
-  {
-    title: 'Ult. camp4',
-    key: 'codi_camp_4',
-  },
-  {
-    title: 'Ptos azzo. ult. camp4',
-    key: 'tota_publ_4',
-  },
-  {
-    title: 'Fact. ult. camp4',
-    key: 'tota_fact_4',
-  },
-  {
-    title: 'Devo. ult. camp4',
-    key: 'tota_devo_4',
-  },
-  {
-    title: 'Estado pedido',
-    key: 'esta_pedi',
-  },
-  {
-    title: 'Gemma',
-    key: 'clie_gemm',
-  },
-  {
-    title: 'Nivel',
-    key: 'nive_gemm',
-  },
-  {
-    title: 'Creciendo con azzorti',
-    key: 'desc_segm',
-  },
-]
+    {
+      text: 'Unid.',
+      dataField: 'tota_unid',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'UPP',
+      dataField: 'tota_uppp',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'COP. Unid',
+      dataField: 'mont_unid',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'PEG21',
+      dataField: 'posi_eg21',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'PEG42',
+      dataField: 'posi_eg42',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'PEG63',
+      dataField: 'posi_egre',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+
+    
+  ]
+});
+
+const columnGroups= [
+        { text: 'Inventory Details', align: 'center', name: 'Inventory' }  // Columna padre
+      ];
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [{name: "codi_area",type:"string"},
+  {name: "codi_zona",type:"string"},
+  {name: "codi_sect",type:"string"},
+  {name: "acti_inic",type:"string"},
+  {name: "tota_ingr",type:"string"},
+  {name: "tota_rein",type:"string"},
+  {name: "tota_reco",type:"string"},
+  {name: "tota_egre",type:"string"},
+  {name: "acti_fina",type:"string"},
+  {name: "posi_rein",type:"string"},
+  {name: "tota_capi",type:"string"},
+  {name: "pedi_rete",type:"string"},
+  {name: "porc_acti",type:"string"},
+  {name: "nume_pedi",type:"string"},
+  {name: "vent_publ",type:"string"},
+  {name: "pppp_publ",type:"string"},
+  {name: "tota_fact",type:"string"},
+  {name: "pppp_fact",type:"string"},
+  {name: "tota_falt",type:"string"},
+  {name: "porc_falt",type:"string"},
+  {name: "tota_line",type:"string"},
+  {name: "tota_pedi",type:"string"},
+  {name: "vent_rece",type:"string"},
+  {name: "pppp_rece",type:"string"},
+  {name: "tota_unid",type:"string"},
+  {name: "tota_uppp",type:"string"},
+  {name: "mont_unid",type:"string"},
+  {name: "posi_eg21",type:"string"},
+  {name: "posi_eg42",type:"string"},
+  {name: "posi_egre",type:"string"},
+  // {name: "rete_pe21",type:"string"},
+  // {name: "porc_re21",type:"string"},
+  // {name: "rete_pe42",type:"string"},
+  // {name: "porc_re42",type:"string"},
+  // {name: "rete_pe63",type:"string"},
+  // {name: "porc_re63",type:"string"}
+],
+  datatype: 'json',
+});
+
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const localizationGlobal = appStore.localization
+
+const headersDetalleTotal = computed(() => {
+  return [
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Nro ident.',
+      dataField: 'nume_iden',
+      width: '110',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Nombre(s) y apellido(s)',
+      dataField: 'nomb_clie',
+      width: '270',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Cumpleaños',
+      dataField: 'fech_naci',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'     
+       // , aggregates: ['count']
+    },
+    {
+      text: 'Barrio',
+      dataField: 'nomb_barr',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Dirección',
+      dataField: 'dire_terc',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Telefono 1 ',
+      dataField: 'tele_ter1',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Telefono 2',
+      dataField: 'tele_ter2',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Status',
+      dataField: 'tipo_clie',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Cupo',
+      dataField: 'cupo_cred',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Saldo',
+      dataField: 'sald_docu',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Camp. Ingr.',
+      dataField: 'camp_ingr',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Ult. Camp1',
+      dataField: 'codi_camp_1',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Ptos. Azzo. Ult. Camp1',
+      dataField: 'tota_publ_1',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Fact Ult. Camp1',
+      dataField: 'tota_fact_1',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Devo Ult. Camp1',
+      dataField: 'tota_devo_1',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Ult. Camp2',
+      dataField: 'codi_camp_2',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Ptos. Azzo. Ult. Camp2',
+      dataField: 'tota_publ_2',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Fact Ult. Camp2',
+      dataField: 'tota_fact_2',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Devo Ult. Camp2',
+      dataField: 'tota_devo_2',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Ult. Camp3',
+      dataField: 'codi_camp_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Ptos. Azzo. Ult. Camp3',
+      dataField: 'tota_publ_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Fact Ult. Camp3',
+      dataField: 'tota_fact_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Devo Ult. Camp3',
+      dataField: 'tota_devo_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Ult. Camp4',
+      dataField: 'codi_camp_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Ptos. Azzo. Ult. Camp4',
+      dataField: 'tota_publ_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Fact Ult. Camp4',
+      dataField: 'tota_fact_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Devo Ult. Camp4',
+      dataField: 'tota_devo_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Estado Pedido',
+      dataField: 'esta_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    
+  ]
+});
+
+const sourceDetalle = ref({
+  localdata: [],
+  datafields: [  {name: "codi_zona",type:"string"},
+  {name: "codi_sect",type:"string"},
+  {name: "nume_iden",type:"string"},
+  {name: "nomb_clie",type:"string"},
+  {name: "fech_naci",type:"string"},
+  {name: "nomb_barr",type:"string"},
+  {name: "dire_terc",type:"string"},
+  {name: "tele_ter1",type:"string"},
+  {name: "tele_ter2",type:"string"},
+  {name: "tipo_clie",type:"string"},
+  {name: "cupo_cred",type:"string"},
+  {name: "sald_docu",type:"string"},
+  {name: "camp_ingr",type:"string"},
+  {name: "codi_camp_1",type:"string"},
+  {name: "tota_publ_1",type:"string"},
+  {name: "tota_fact_1",type:"string"},
+  {name: "tota_devo_1",type:"string"},
+  {name: "codi_camp_2",type:"string"},
+  {name: "tota_publ_2",type:"string"},
+  {name: "tota_fact_2",type:"string"},
+  {name: "tota_devo_2",type:"string"},
+  {name: "codi_camp_3",type:"string"},
+  {name: "tota_publ_3",type:"string"},
+  {name: "tota_fact_3",type:"string"},
+  {name: "tota_devo_3",type:"string"},
+  {name: "codi_camp_4",type:"string"},
+  {name: "tota_publ_4",type:"string"},
+  {name: "tota_fact_4",type:"string"},
+  {name: "tota_devo_4",type:"string"},
+  {name: "esta_pedi",type:"string"}],
+  datatype: 'json',
+});
+
+const adaptadorDetalle = new jqx.dataAdapter(sourceDetalle.value)
+const localizationDetalle = appStore.localization
 
 const selectedColumna = ref([
   'codi_sect',
@@ -452,6 +1003,12 @@ const onGenerar = async () => {
 
     itemsGlobal.value = data.data_glob
     itemsDetalle.value = data.data_deta
+    sourceGlobal.value.localdata = data.data_glob
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
+    sourceDetalle.value.localdata = data.data_deta
+    refGridDetalle.value.updatebounddata('cells')
+    refGridDetalle.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -481,17 +1038,21 @@ const onLimpiar= async () => {
   }
   itemsGlobal.value = []
   itemsDetalle.value = []
+  refGridGlobal.value.updatebounddata('cells')
 }
 
 const onExcel = async tipo => {
   try {
+    console.log(headersDetalle)
+    console.log("--------")
+    console.log(headersDetalle.value)
     appStore.mensaje('Generando archivo')
     appStore.loading(true)
-
+    console.log(tipo)
     const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/excel`, {
       method: "POST",
       body: {
-        columnas: headersDetalle.value,
+        columnas: headersDetalleTotal.value,
         tipo: tipo,
         data_glob: itemsGlobal.value,
         data_deta: itemsDetalle.value,
@@ -770,17 +1331,31 @@ const itemsDetalleVisible = computed(() => {
           <VCol cols="12">
             <VCard title="Lista consolidado">
               <VCardText>
-                <VDataTable
-                  :headers="headersGlobal"
-                  :items="itemsGlobal"
-                  :items-per-page="-1"
-                  class="text-no-wrap"
-                  
-                  fixed-header
-                  height="250"
-                >
-                  <template #bottom />
-                </VDataTable>
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headersGlobal"
+                  :source="adaptadorGlobal"
+                  :columnGroups="columnGroups"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  showstatusbar
+                  showaggregates
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </VCard>
           </VCol>
@@ -792,56 +1367,28 @@ const itemsDetalleVisible = computed(() => {
                 </IconBtn>
               </template>
               <VCardText>
-                <VDataTable
-                  v-model:items-per-page="rowsPerPage"
-                  :headers="headersDetalle"
-                  :items="itemsDetalleVisible"
-                  class="text-no-wrap"
-                  fixed-header
-                  height="400"
-                >
-                  <!-- pagination -->
-                  <template #bottom>
-                    <VDivider v-if="itemsDetalle.length>0" />
-
-                    <div class="d-flex align-center justify-sm-end justify-center flex-wrap gap-3 py-5 pt-3">
-                      <VPagination
-                        v-if="itemsDetalle.length>0"
-                        v-model="currentPage"
-                        :length="Math.ceil(itemsDetalle.length / rowsPerPage)"
-                        :total-visible="$vuetify.display.xs ? 1 : Math.min(Math.ceil(itemsDetalle.length / rowsPerPage), 5)"
-                      >
-                        <template #prev="slotProps">
-                          <VBtn
-                            variant="tonal"
-                            color="default"
-                            v-bind="slotProps"
-                            :icon="false"
-                          >
-                            <VIcon
-                              icon="tabler-arrow-bar-left"
-                              size="22"
-                            />
-                          </VBtn>
-                        </template>
-
-                        <template #next="slotProps">
-                          <VBtn
-                            variant="tonal"
-                            color="default"
-                            v-bind="slotProps"
-                            :icon="false"
-                          >
-                            <VIcon
-                              icon="tabler-arrow-bar-right"
-                              size="22"
-                            />
-                          </VBtn>
-                        </template>
-                      </VPagination>
-                    </div>
-                  </template>
-                </VDataTable>
+                <JqxGrid
+                  ref="refGridDetalle"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headersDetalleTotal"
+                  :source="adaptadorDetalle"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </VCard>
           </VCol>
@@ -898,3 +1445,24 @@ const itemsDetalleVisible = computed(() => {
     </VDialog>
   </div>
 </template>
+
+<style scoped>
+/* Estilo para la barra de estado (statusbar) */
+.jqx-grid-statusbar {
+  border-top: 2px solid #333;  /* Borde superior de la barra de estado */
+  background-color: #f9f9f9;  /* Fondo opcional */
+  padding: 5px;
+}
+
+/* Bordes entre las celdas de la barra de estado (aggregates) */
+.jqx-grid-statusbar .jqx-grid-statusbar-cell {
+  border-left: 1px solid #ccc;  /* Borde izquierdo entre las celdas de agregados */
+  padding: 5px;
+}
+
+/* Borde derecho de la última celda en la barra de estado */
+.jqx-grid-statusbar .jqx-grid-statusbar-cell:last-child {
+  border-right: 1px solid #ccc;
+}
+</style>
+

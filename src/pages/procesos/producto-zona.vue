@@ -1,113 +1,114 @@
-<!-- eslint-disable camelcase -->
 <script setup>
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
-
+import { useDisplay } from 'vuetify';
+ 
 definePage({
   meta: {
     action: 'colombia/proc_come_prod_zona',
     subject: 'colombia/proc_come_prod_zona',
   },
 })
-
+ 
 const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
   storageType: 'localStorage',
 })
-
+ 
+const { mobile } = useDisplay()
 const appStore = useAppStore()
-
-const items = ref([])
-
+ 
 const formulario = ref({
   campana: null,
   zona: null,
 })
-
+ 
 const campanaOptions = ref([])
 const errorCampana = ref(false)
 const errorMensajeCampana = ref('')
-
+ 
 const zonaOptions = ref([])
 const errorZona = ref(false)
 const errorMensajeZona = ref('')
-
+ 
 const cabecera = computed(() => {
   return [
     { title: 'Campaña',     key: 'codi_camp' },
     { title: 'Zona',        key: 'codi_zona' },
+    { title: 'Sector',      key: 'codi_sect' },
     { title: 'Código',      key: 'codi_prod' },
     { title: 'Producto',    key: 'nomb_prod' },
     { title: 'Doc. ident.', key: 'nume_iden' },
-    { title: 'Sector',      key: 'codi_sect' },
     { title: 'Asesora',     key: 'nomb_terc' },
   ]
 })
-
-const columnaGlobal = [
-  {
-    text: 'Fila',
-    dataField: 'cons_prod',
-    hidden: true,
-  },
-  {
-    text: 'Campaña',
-    dataField: 'codi_camp',
-    width: '10%',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-  },
-  {
-    text: 'Zona',
-    dataField: 'codi_zona',
-    width: '10%',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-  },
-  {
-    text: 'Código',
-    dataField: 'codi_prod',
-    width: '15%',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-  },
-  {
-    text: 'Producto',
-    dataField: 'nomb_prod',
-    width: '20%',
-    align: 'center',
-    cellsalign: 'left',
-    editable: false,
-  },
-  {
-    text: 'Doc. ident.',
-    dataField: 'nume_iden',
-    width: '15%',
-    align: 'center',
-    cellsalign: 'center',
-    columntype: 'textbox',
-  },
-  {
-    text: 'Sector',
-    dataField: 'codi_sect',
-    width: '10%',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-  },
-  {
-    text: 'Asesora',
-    dataField: 'nomb_terc',
-    width: '20%',
-    align: 'center',
-    cellsalign: 'left',
-    editable: false,
-  },
-]
-
+ 
+const columnaGlobal = computed(() => {
+  return [
+    {
+      text: 'Fila',
+      dataField: 'cons_prod',
+      hidden: true,
+    },
+    {
+      text: 'Campaña',
+      dataField: 'codi_camp',
+      width: (mobile.value)? null :'10%',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+    },
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: (mobile.value)? null :'10%',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: (mobile.value)? null :'10%',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+    },
+    {
+      text: 'Código',
+      dataField: 'codi_prod',
+      width: (mobile.value)? null :'15%',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+    },
+    {
+      text: 'Producto',
+      dataField: 'nomb_prod',
+      width: (mobile.value)? null :'20%',
+      align: 'center',
+      cellsalign: 'left',
+      editable: false,
+    },
+    {
+      text: 'Doc. ident.',
+      dataField: 'nume_iden',
+      width: (mobile.value)? null :'15%',
+      align: 'center',
+      cellsalign: 'left',
+      columntype: 'textbox',
+    },
+    {
+      text: 'Asesora',
+      dataField: 'nomb_terc',
+      width: (mobile.value)? null :'20%',
+      align: 'center',
+      cellsalign: 'left',
+      editable: false,
+    },
+  ]
+})
+ 
 const sourceGlobal = ref({
   localdata: [],
   datafields: [
@@ -122,29 +123,30 @@ const sourceGlobal = ref({
   ],
   datatype: 'json',
 })
-
+ 
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const refFileUpload = ref()
 const refGridGlobal = ref()
 const localization = appStore.localization
-
+ 
 onMounted(async () => {
-  appStore.titulo(`Procesos / producto zona`)
+  appStore.titulo(`Procesos / Producto zona`)
   await obtenerCampana()
   await obtenerZona()
 })
-
+ 
 const obtenerCampana = async () => {
   try {
     appStore.mensaje('Obteniendo campañas')
     appStore.loading(true)
-
-    const response  = await $api(`/api/comun/v1/campanas`, {
+ 
+    const { data } = await $api(`/api/comun/v1/campanas/futuras`, {
       method: "get",
     })
     
-    const itemCampana = response.data.data_glob.slice(0, 40)
+    const itemCampana = data.data_glob.slice(0, 40)
     
-    itemCampana.forEach(element => 
+    itemCampana.forEach(element =>
       campanaOptions.value.push({
         id: element.codi_camp,
         text: element.codi_camp,
@@ -159,19 +161,19 @@ const obtenerCampana = async () => {
     appStore.loading(false)
   }
 }
-
+ 
 const obtenerZona = async () => {
   try {
     appStore.mensaje('Obteniendo zona')
     appStore.loading(true)
-
+ 
     const response  = await $api(`/api/comun/v1/zonas`, {
       method: "get",
     })
-
+ 
     const itemZona = response.data.data_glob
     
-    itemZona.forEach(element => 
+    itemZona.forEach(element =>
       zonaOptions.value.push({
         id: element.codi_zona,
         text: element.codi_zona,
@@ -187,14 +189,18 @@ const obtenerZona = async () => {
     appStore.loading(false)
   }
 }
-
+ 
 const onGenerar = async () => {
   try {
     limpiarValidacion()
-
+ 
+    sourceGlobal.value.localdata =  []
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
+  
     appStore.mensaje('Obteniendo información')
     appStore.loading(true)
-
+ 
     const { data } = await $api(`/api/sami/v1/procesos/producto-zona/productos`, {
       method: "get",
       query: {
@@ -202,23 +208,25 @@ const onGenerar = async () => {
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
       },
     })
-
+ 
     sourceGlobal.value.localdata =  data.data_glob
     refGridGlobal.value.updatebounddata('cells')
     refGridGlobal.value.refreshfilterrow()
     
   } catch (error) {
-    const { data } = error.response._data    
-    if (typeof data != "undefined") {
-      for (var key in data)
-      {
-        if (key == 'campana') {
-          errorCampana.value = true
-          errorMensajeCampana.value = data[key]
-        }
-        if (key == 'zona') {
-          errorZona.value = true
-          errorMensajeZona.value = data[key]
+    if(error.response !== undefined) {
+      const { data } = error.response._data    
+      if (typeof data != "undefined") {
+        for (var key in data)
+        {
+          if (key == 'campana') {
+            errorCampana.value = true
+            errorMensajeCampana.value = data[key]
+          }
+          if (key == 'zona') {
+            errorZona.value = true
+            errorMensajeZona.value = data[key]
+          }
         }
       }
     }
@@ -227,20 +235,23 @@ const onGenerar = async () => {
     appStore.loading(false)
   }
 }
-
+ 
 const onLimpiar= async () => {
-  items.value = []
+ 
   formulario.value = {
     campana: null,
     zona: null,
   }
+  sourceGlobal.value.localdata =  []
+  refGridGlobal.value.updatebounddata('cells')
+  refGridGlobal.value.refreshfilterrow()
 }
-
+ 
 const onExcel = async () => {
   try {
     appStore.mensaje('Generando archivo')
     appStore.loading(true)
-
+ 
     const { data } = await $api(`/api/sami/v1/procesos/producto-zona/excel`, {
       method: "post",
       body: {
@@ -248,7 +259,7 @@ const onExcel = async () => {
         detalle: JSON.stringify(refGridGlobal.value.exportdata('xml')),
       },
     })
-
+ 
     window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
   }
@@ -256,11 +267,11 @@ const onExcel = async () => {
     appStore.loading(false)
   }
 }
-
+ 
 const onEditar = async event => {
   appStore.mensaje('Generando proceso')
   appStore.loading(true)
-
+ 
   const { args } = event
   const rowIndex = args.rowindex
   const cellValue = args.value
@@ -268,7 +279,7 @@ const onEditar = async event => {
     const numeIden = cellValue.trim()
     const codiZona = refGridGlobal.value.getcellvaluebyid(rowIndex, 'codi_zona')
     const consProd = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_prod')
-
+ 
     const { data } = await $api(`/api/sami/v1/procesos/producto-zona/productos`, {
       method: "put",
       body: {
@@ -277,9 +288,9 @@ const onEditar = async event => {
         codigo: consProd,
       },
     })
-
+ 
     const { nomb_terc, codi_sect } = data
-
+ 
     refGridGlobal.value.setcellvalue(rowIndex, 'nomb_terc', nomb_terc)
     refGridGlobal.value.setcellvalue(rowIndex, 'codi_sect', codi_sect)
   } catch (error) {
@@ -294,27 +305,87 @@ const onEditar = async event => {
 const limpiarValidacion = () => {
   errorCampana.value = false
   errorMensajeCampana.value = ''
-
+ 
   errorZona.value = false
   errorMensajeZona.value = ''
 }
+ 
+const onSubir = () => {
+  refFileUpload.value.click()
+}
+ 
+const handleFileUpload = async () => {
+  try {
+    appStore.mensaje('Subiendo archivo')
+    appStore.loading(true)
+  
+    const dataForm = new FormData()
+ 
+    dataForm.append('file', refFileUpload.value.files[0])
+    dataForm.append('campana', (formulario.value.campana === null) ? '' : formulario.value.campana)
+    dataForm.append('zona', (formulario.value.zona === null) ? '' : formulario.value.zona)
+ 
+    await $api(`/api/sami/v1/procesos/producto-zona/masivo`, {
+      method: "post",
+      body: dataForm,
+    })
+    
+   
+    
+    appStore.mensajeSnackbar('Archivo cargado con éxito.')
+    appStore.color("success")
+    appStore.snackbar(true)
+    setTimeout(() => {
+      onGenerar()
+    }, 1000)
+  } catch (error) {
+    if(error.response !== undefined) {
+      const { data } = error.response._data    
+      if (typeof data != "undefined") {
+        for (var key in data)
+        {
+          if (key == 'campana') {
+            errorCampana.value = true
+            errorMensajeCampana.value = data[key]
+          }
+          if (key == 'zona') {
+            errorZona.value = true
+            errorMensajeZona.value = data[key]
+          }
+        }
+      }
+    }
+  } finally {
+    refFileUpload.value.value = ''
+    appStore.loading(false)
+    appStore.mensaje('')
+  }
+}
 </script>
-
+ 
 <template>
   <div>
     <AppPlantilla>
       <template #botones>
         <GenerarBoton @procesar="onGenerar" />
         <ExcelBoton @procesar="onExcel" />
+        <SubirBoton disabled @procesar="onSubir" />
         <LimpiarBoton @procesar="onLimpiar" />
       </template>
-
+ 
       <template #contenido>
+        <input
+          ref="refFileUpload"
+          type="file"
+          class="d-none"
+          accept=".txt"
+          @change="handleFileUpload"
+        >
         <VRow>
           <VCol cols="12">
             <VCard title="Buscar producto zona">
               <VCardText>
-                <VRow justify="space-between"> 
+                <VRow justify="space-between">
                   <VCol
                     cols="12"
                     md="4"

@@ -1,6 +1,6 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
-import { VDataTable } from 'vuetify/labs/VDataTable';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 
 definePage({
   meta: {
@@ -10,6 +10,7 @@ definePage({
 })
 
 const appStore = useAppStore()
+const refGridGlobal=ref()
 
 const formulario = ref({
   campana: null,
@@ -46,19 +47,89 @@ const errorIdentificacion = ref(false)
 const errorMensajeIdentificacion = ref('')
 
 const items = ref([])
-
 const headers = computed(() => {
   return [
-    { key: 'cons_fila', title: 'Item' },
-    { key: 'codi_camp', title: 'Campaña' },
-    { key: 'codi_zona', title: 'Zona' },
-    { key: 'codi_sect', title: 'Sector' },
-    { key: 'nume_iden', title: 'Nro ident.' },
-    { key: 'nomb_comp', title: 'Nombre(s) y Apellido(s)' },
-    { key: 'nume_fact', title: 'Pedido' },
-    { key: 'esta_fina', title: 'Estado' },
+    {
+      text: 'Item',
+      dataField: 'cons_fila',
+      width: '50',
+      align: 'center',
+      cellsalign: 'center',
+      // filtertype: 'checkedlist'
+    },
+    {
+      text: 'Campaña',
+      dataField: 'codi_camp',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Nro. Iden',
+      dataField: 'nume_iden',
+      width: '170',
+      align: 'center',
+      cellsalign: 'center'
+      // , aggregates: ['count']
+    },
+    {
+      text: 'Nombre(s) y Apellido(s)',
+      dataField: 'nomb_comp',
+      width: '250',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Pedido',
+      dataField: 'nume_fact',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Estado',
+      dataField: 'esta_fina',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    
   ]
+});
+
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'cons_fila', type: 'string' },
+    { name: 'codi_camp', type: 'string' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'codi_sect', type: 'string' },
+    { name: 'nume_iden', type: 'integer' },
+    { name: 'nomb_comp', type: 'string' },
+    { name: 'nume_fact', type: 'string' },
+    { name: 'esta_fina', type: 'string' },
+  ],
+  datatype: 'json',
 })
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const localization = appStore.localization
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Distribucion / Consolidado estado pedido`)
@@ -173,6 +244,9 @@ const onGenerar = async () => {
     })
 
     items.value = data.data_glob
+    sourceGlobal.value.localdata = data.data_glob
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -209,6 +283,7 @@ const onLimpiar= async () => {
   }
 
   items.value = []
+  refGridGlobal.value.updatebounddata('cells')
 }
 
 const onExcel = async () => {
@@ -343,7 +418,7 @@ const limpiarValidacion = () => {
           <VCol cols="12">
             <VCard title="Lista de pedidos">
               <VCardText>
-                <VDataTable
+                <!-- <VDataTable
                   :headers="headers"
                   :items="items"
                   :items-per-page="-1"
@@ -353,7 +428,30 @@ const limpiarValidacion = () => {
                   height="400"
                 >
                   <template #bottom />
-                </VDataTable>
+                </VDataTable> -->
+
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headers"
+                  :source="adaptadorGlobal"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </VCard>
           </VCol>

@@ -16,8 +16,8 @@ const { mobile } = useDisplay()
   >
     <VIcon
       start
-      icon="tabler-search"
+      icon="tabler-send"
     />
-    GENERAR
+    SUBIR
   </VBtn>
 </template>

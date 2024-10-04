@@ -28,58 +28,13 @@ const formulario = ref({
 const itemsInicial = ref([])
 const multiSearch =  ref({})
 
-const headers1 = computed(() => {
-  return [
-    {
-      key: 'codi_cort',
-      title: 'Corte',
-      sortable: true,
-    },
-    // {
-    //   key: 'codi_area',
-    //   title: 'Región',
-    //   sortable: true,
-    // },
-    // {
-    //   key: 'codi_zona',
-    //   title: 'Zona',
-    //   sortable: true,
-    // },
-    // {
-    //   key: 'codi_sect',
-    //   title: 'Sector',
-    //   sortable: true,
-    // },
-    // {
-    //   key: 'nume_iden',
-    //   title: 'Nro ident.',
-    //   sortable: true,
-    // },
-    // {
-    //   key: 'nomb_terc',
-    //   title: 'Nombre(s) y Apellido(s)',
-    //   sortable: true,
-    // },
-    // {
-    //   key: 'acti_hora',
-    //   title: 'Fecha',
-    //   sortable: true,
-    // },
-    // {
-    //   key: 'nomb_reun',
-    //   title: 'Tipo',
-    //   sortable: true,
-    // },
-
-  ]
-})
 
 const headers = computed(() => {
   return [
     {
       text: 'Corte',
       dataField: 'codi_cort',
-      width: '80',
+      width: '150',
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist'
@@ -87,7 +42,7 @@ const headers = computed(() => {
     {
       text: 'Region',
       dataField: 'codi_area',
-      width: '80',
+      width: '150',
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist'
@@ -95,7 +50,7 @@ const headers = computed(() => {
     {
       text: 'Zona',
       dataField: 'codi_zona',
-      width: '80',
+      width: '150',
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist'
@@ -103,7 +58,7 @@ const headers = computed(() => {
     {
       text: 'Sector',
       dataField: 'codi_sect',
-      width: '80',
+      width: '150',
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist'
@@ -111,28 +66,29 @@ const headers = computed(() => {
     {
       text: 'Nro. Iden',
       dataField: 'nume_iden',
-      width: '120',
+      width: '170',
       align: 'center',
-      cellsalign: 'center',
+      cellsalign: 'center'
+      // , aggregates: ['count']
     },
     {
       text: 'Nombre(s) y Apellido(s)',
       dataField: 'nomb_terc',
-      width: '190',
+      width: '250',
       align: 'center',
       cellsalign: 'center',
     },
     {
       text: 'Fecha',
       dataField: 'acti_hora',
-      width: '160',
+      width: '180',
       align: 'center',
       cellsalign: 'center',
     },
     {
       text: 'Tipo',
       dataField: 'nomb_reun',
-      width: '120',
+      width: '150',
       align: 'center',
       cellsalign: 'center',
     },
@@ -501,7 +457,9 @@ const limpiarValidacion = () => {
                   showfilterrow
                   :columnsmenu="false"
                   :editable="false"
-                />
+                  />
+                  <!-- showstatusbar -->
+                  <!-- showaggregates -->
               </VCardText>
             </VCard>
           </VCol>

@@ -2,8 +2,10 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 import { useDisplay } from 'vuetify';
 import { VDataTable } from 'vuetify/labs/VDataTable';
+
 
 definePage({
   meta: {
@@ -19,6 +21,8 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 const { mobile } = useDisplay()
 const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
+const refGridCorte=ref();
+const refGridZona=ref();
 
 const formulario = ref({
   campana: null,
@@ -74,314 +78,1095 @@ const headersDetalle = [
 
 const itemsDetalle = ref([])
 
-const headersCorte = [
+
+
+const headersCorte = computed(() => {
+  return [
   {
-    title: 'Corte',
-    key: 'codi_cort',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Corte",
+    dataField: "codi_cort",
+    pinned:true
   },
   {
-    title: 'Región',
-    key: 'codi_area',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Región",
+    dataField: "codi_area",
+    pinned:true
   },
   {
-    title: 'N° Zonas',
-    key: 'codi_zona',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "N° Zonas",
+    dataField: "codi_zona",
+    pinned:true
   },
   {
-    title: 'Objetivo',
-    key: 'obje_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Objetivo",
+    dataField: "obje_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Facturado',
-    key: 'fact_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Facturado",
+    dataField: "fact_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Cump. Fact.',
-    key: 'cump_fact_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Cump. Fact.",
+    dataField: "cump_fact_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Pend. Fact.',
-    key: 'pend_fact_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Pend. Fact.",
+    dataField: "pend_fact_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Total',
-    key: 'tota_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Total",
+    dataField: "tota_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+
   },
   {
-    title: '% Cump.',
-    key: 'cump_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Cump.",
+    dataField: "cump_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Objetivo',
-    key: 'obje_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Objetivo",
+    dataField: "obje_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Facturado',
-    key: 'fact_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Facturado",
+    dataField: "fact_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Cump. Fact.',
-    key: 'cump_fact_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Cump. Fact.",
+    dataField: "cump_fact_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Pend. Fact.',
-    key: 'pend_fact_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Pend. Fact.",
+    dataField: "pend_fact_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Total',
-    key: 'tota_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Total",
+    dataField: "tota_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Cump.',
-    key: 'cump_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Cump.",
+    dataField: "cump_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Acti.',
-    key: 'acti_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Acti.",
+    dataField: "acti_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Objetivo',
-    key: 'obje_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Objetivo",
+    dataField: "obje_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Facturado',
-    key: 'fact_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Facturado",
+    dataField: "fact_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Cump. Fact.',
-    key: 'cump_fact_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Cump. Fact.",
+    dataField: "cump_fact_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Pend. Fact.',
-    key: 'pend_fact_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Pend. Fact.",
+    dataField: "pend_fact_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Total',
-    key: 'tota_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Total",
+    dataField: "tota_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Cump.',
-    key: 'cump_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Cump.",
+    dataField: "cump_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Capi.',
-    key: 'fact_capi',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Capi.",
+    dataField: "fact_capi",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Facturación',
-    key: 'valo_docu',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Facturación",
+    dataField: "valo_docu",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Saldo 21di',
-    key: 'sald_21di',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Saldo 21di",
+    dataField: "sald_21di",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Cobr. 21di',
-    key: 'porc_21di',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Cobr. 21di",
+    dataField: "porc_21di",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Saldo Actu.',
-    key: 'sald_docu',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Saldo Actu.",
+    dataField: "sald_docu",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Actu.',
-    key: 'porc_docu',
-  },
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Actu.",
+    dataField: "porc_docu",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  }
 ]
+});
+
+const sourceCorte = ref({
+  localdata: [],
+  datafields: [
+  { type: "string", name: "codi_cort" },
+  { type: "string", name: "codi_area" },
+  { type: "string", name: "codi_zona" },
+  { type: "string", name: "obje_inco" },
+  { type: "string", name: "fact_inco" },
+  { type: "string", name: "cump_fact_inco" },
+  { type: "string", name: "pend_fact_inco" },
+  { type: "string", name: "tota_inco" },
+  { type: "string", name: "cump_inco" },
+  { type: "string", name: "obje_rete" },
+  { type: "string", name: "fact_rete" },
+  { type: "string", name: "cump_fact_rete" },
+  { type: "string", name: "pend_fact_rete" },
+  { type: "string", name: "tota_rete" },
+  { type: "string", name: "cump_rete" },
+  { type: "string", name: "acti_rete" },
+  { type: "string", name: "obje_tota" },
+  { type: "string", name: "fact_tota" },
+  { type: "string", name: "cump_fact_tota" },
+  { type: "string", name: "pend_fact_tota" },
+  { type: "string", name: "tota_tota" },
+  { type: "string", name: "cump_tota" },
+  { type: "string", name: "fact_capi" },
+  { type: "string", name: "valo_docu" },
+  { type: "string", name: "sald_21di" },
+  { type: "string", name: "porc_21di" },
+  { type: "string", name: "sald_docu" },
+  { type: "string", name: "porc_docu" },
+],
+  datatype: 'json',
+})
+const adaptadorCorte = new jqx.dataAdapter(sourceCorte.value)
+const localization = appStore.localization
 
 const itemsCorte = ref([])
 
-const headersZona = [
+const headersZona = computed(() => {
+  return [
   {
-    title: 'Corte',
-    key: 'codi_cort',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Corte",
+    dataField: "codi_cort",
+    pinned:true
   },
   {
-    title: 'Región',
-    key: 'codi_area',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Región",
+    dataField: "codi_area",
+    pinned:true
   },
   {
-    title: 'Zona',
-    key: 'codi_zona',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Zona",
+    dataField: "codi_zona",
+    pinned:true
   },
   {
-    title: 'Gerente Zonal',
-    key: 'nomb_vend',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Gerente Zonal",
+    dataField: "nomb_vend",
+    pinned:true
   },
   {
-    title: 'Objetivo',
-    key: 'obje_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Objetivo",
+    dataField: "obje_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Facturado',
-    key: 'fact_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Facturado",
+    dataField: "fact_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Cump. Fact.',
-    key: 'cump_fact_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Cump. Fact.",
+    dataField: "cump_fact_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Pend. Fact.',
-    key: 'pend_fact_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Pend. Fact.",
+    dataField: "pend_fact_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Total',
-    key: 'tota_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Total",
+    dataField: "tota_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Cump.',
-    key: 'cump_inco',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Cump.",
+    dataField: "cump_inco",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Objetivo',
-    key: 'obje_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Objetivo",
+    dataField: "obje_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Facturado',
-    key: 'fact_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Facturado",
+    dataField: "fact_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Cump. Fact.',
-    key: 'cump_fact_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Cump. Fact.",
+    dataField: "cump_fact_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Pend. Fact.',
-    key: 'pend_fact_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Pend. Fact.",
+    dataField: "pend_fact_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Total',
-    key: 'tota_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Total",
+    dataField: "tota_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Cump.',
-    key: 'cump_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Cump.",
+    dataField: "cump_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Obje. Acti.',
-    key: 'obje_acti',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Obje. Acti.",
+    dataField: "obje_acti",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Acti.',
-    key: 'acti_rete',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Acti.",
+    dataField: "acti_rete",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Objetivo',
-    key: 'obje_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Objetivo",
+    dataField: "obje_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Facturado',
-    key: 'fact_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Facturado",
+    dataField: "fact_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Cump. Fact.',
-    key: 'cump_fact_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Cump. Fact.",
+    dataField: "cump_fact_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Pend. Fact.',
-    key: 'pend_fact_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Pend. Fact.",
+    dataField: "pend_fact_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Total',
-    key: 'tota_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Total",
+    dataField: "tota_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Cump.',
-    key: 'cump_tota',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Cump.",
+    dataField: "cump_tota",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Capi.',
-    key: 'fact_capi',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Capi.",
+    dataField: "fact_capi",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Vta. Linea',
-    key: 'vent_line',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Vta. Linea",
+    dataField: "vent_line",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Faltante',
-    key: 'vent_falt',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Faltante",
+    dataField: "vent_falt",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Vta. Rece.',
-    key: 'vent_rece',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Vta. Rece.",
+    dataField: "vent_rece",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: '% Falt.',
-    key: 'porc_falt',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Falt.",
+    dataField: "porc_falt",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Facturado',
-    key: 'pppp_fact',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Facturación",
+    dataField: "valo_docu",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
   {
-    title: 'Recepcionado',
-    key: 'pppp_rece',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Saldo 21di",
+    dataField: "sald_21di",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Cobr. 21di",
+    dataField: "porc_21di",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Saldo Actu.",
+    dataField: "sald_docu",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "% Actu.",
+    dataField: "porc_docu",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Reingresos",
+    dataField: "tota_rein",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Egresos",
+    dataField: "tota_egre",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Act. Final",
+    dataField: "acti_fina",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
 
-  {
-    title: 'Facturación',
-    key: 'valo_docu',
-  },
-  {
-    title: 'Saldo 21di',
-    key: 'sald_21di',
-  },
-  {
-    title: '% Cobr. 21di',
-    key: 'porc_21di',
-  },
-  {
-    title: 'Saldo Actu.',
-    key: 'sald_docu',
-  },
-  {
-    title: '% Actu.',
-    key: 'porc_docu',
-  },
-  {
-    title: 'Reingresos',
-    key: 'tota_rein',
-  },
-  {
-    title: 'Egresos',
-    key: 'tota_egre',
-  },
-  {
-    title: 'Act. Final',
-    key: 'acti_fina',
-  },
-  {
-    title: 'P Rreingreso',
-    key: 'posi_rein',
-  },
-  {
-    title: 'Peg21',
-    key: 'posi_eg21',
-  },
 
   {
-    title: 'Peg42',
-    key: 'posi_eg42',
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "P Rreingreso",
+    dataField: "posi_rein",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
   },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Peg21",
+    dataField: "posi_eg21",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Peg42",
+    dataField: "posi_eg42",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Peg63",
+    dataField: "posi_eg63",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Ret. Peg21",
+    dataField: "rete_eg21",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Ret. Peg42",
+    dataField: "rete_eg42",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Ret. Peg63",
+    dataField: "rete_eg63",
+    aggregates: ['sum'],
+    aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+    }
+  }
+  ]
+});
 
+const sourceZona = ref({
+  localdata: [],
+  datafields: [
   {
-    title: 'Peg63',
-    key: 'posi_eg63',
-  },
-
-  {
-    title: 'Ret. Peg21',
-    key: 'rete_eg21',
+    type: 'string',
+    name: 'codi_cort',
   },
   {
-    title: 'Ret. Peg42',
-    key: 'rete_eg42',
+    type: 'string',
+    name: 'codi_area',
   },
-
   {
-    title: 'Ret. Peg63',
-    key: 'rete_eg63',
+    type: 'string',
+    name: 'codi_zona',
   },
-]
+  {
+    type: 'string',
+    name: 'nomb_vend',
+  },
+  {
+    type: 'string',
+    name: 'obje_inco',
+  },
+  {
+    type: 'string',
+    name: 'fact_inco',
+  },
+  {
+    type: 'string',
+    name: 'cump_fact_inco',
+  },
+  {
+    type: 'string',
+    name: 'pend_fact_inco',
+  },
+  {
+    type: 'string',
+    name: 'tota_inco',
+  },
+  {
+    type: 'string',
+    name: 'cump_inco',
+  },
+  {
+    type: 'string',
+    name: 'obje_rete',
+  },
+  {
+    type: 'string',
+    name: 'fact_rete',
+  },
+  {
+    type: 'string',
+    name: 'cump_fact_rete',
+  },
+  {
+    type: 'string',
+    name: 'pend_fact_rete',
+  },
+  {
+    type: 'string',
+    name: 'tota_rete',
+  },
+  {
+    type: 'string',
+    name: 'cump_rete',
+  },
+  {
+    type: 'string',
+    name: 'obje_acti',
+  },
+  {
+    type: 'string',
+    name: 'acti_rete',
+  },
+  {
+    type: 'string',
+    name: 'obje_tota',
+  },
+  {
+    type: 'string',
+    name: 'fact_tota',
+  },
+  {
+    type: 'string',
+    name: 'cump_fact_tota',
+  },
+  {
+    type: 'string',
+    name: 'pend_fact_tota',
+  },
+  {
+    type: 'string',
+    name: 'tota_tota',
+  },
+  {
+    type: 'string',
+    name: 'cump_tota',
+  },
+  {
+    type: 'string',
+    name: 'fact_capi',
+  },
+  {
+    type: 'string',
+    name: 'vent_line',
+  },
+  {
+    type: 'string',
+    name: 'vent_falt',
+  },
+  {
+    type: 'string',
+    name: 'vent_rece',
+  },
+  {
+    type: 'string',
+    name: 'porc_falt',
+  },
+  {
+    type: 'string',
+    name: 'pppp_fact',
+  },
+  {
+    type: 'string',
+    name: 'pppp_rece',
+  },
+  {
+    type: 'string',
+    name: 'valo_docu',
+  },
+  {
+    type: 'string',
+    name: 'sald_21di',
+  },
+  {
+    type: 'string',
+    name: 'porc_21di',
+  },
+  {
+    type: 'string',
+    name: 'sald_docu',
+  },
+  {
+    type: 'string',
+    name: 'porc_docu',
+  },
+  {
+    type: 'string',
+    name: 'tota_rein',
+  },
+  {
+    type: 'string',
+    name: 'tota_egre',
+  },
+  {
+    type: 'string',
+    name: 'acti_fina',
+  },
+  {
+    type: 'string',
+    name: 'posi_rein',
+  },
+  {
+    type: 'string',
+    name: 'posi_eg21',
+  },
+  {
+    type: 'string',
+    name: 'posi_eg42',
+  },
+  {
+    type: 'string',
+    name: 'posi_eg63',
+  },
+  {
+    type: 'string',
+    name: 'rete_eg21',
+  },
+  {
+    type: 'string',
+    name: 'rete_eg42',
+  },
+  {
+    type: 'string',
+    name: 'rete_eg63',
+  }
+],
+  datatype: 'json',
+})
+const adaptadorZona = new jqx.dataAdapter(sourceZona.value)
+const localizationZone = appStore.localization
 
 const itemsZona = ref([])
 
@@ -648,8 +1433,16 @@ const onGenerar = async () => {
 
     itemsGlobal.value = data.data_glob
     itemsDetalle.value = data.data_deta
+
     itemsCorte.value = data.data_cort
+    sourceCorte.value.localdata = data.data_cort
+    refGridCorte.value.updatebounddata('cells')
+    refGridCorte.value.refreshfilterrow()
+
     itemsZona.value = data.data_zona
+    sourceZona.value.localdata = data.data_zona
+    refGridZona.value.updatebounddata('cells')
+    refGridZona.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -684,7 +1477,8 @@ const onExcel = async () => {
   try {
     appStore.mensaje('Generando archivo')
     appStore.loading(true);
-    console.log(itemsGlobal.value)
+    console.log(headersCorte.value)
+    console.log(headersZona.value)
     console.log(itemsDetalle.value)
     console.log(itemsCorte.value)
     console.log(itemsZona.value)
@@ -692,6 +1486,8 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/pedidos-digitados-region/excel`, {
       method: "post",
       body: {
+        CabeceraCorte:headersCorte.value,
+        CabeceraZona:headersZona.value,
         data_glob: itemsGlobal.value,
         data_deta: itemsDetalle.value,
         data_cort: itemsCorte.value,
@@ -701,6 +1497,7 @@ const onExcel = async () => {
     
     window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
+    console.error(e)
   }
   finally {
     appStore.loading(false)
@@ -1122,188 +1919,30 @@ const onExcelConcepto = async () => {
           <VCol cols="12">
             <VCard title="Detalle corte">
               <VCardText>
-                <VDataTable
-                  :headers="headersCorte"
-                  :items="itemsCorte"
-                  :items-per-page="-1"
-                  item-key="codi_cort"
-                  class="text-no-wrap"
-                  
-                  fixed-header
-                  density="compact"
-                  height="400"
-                >
-                  <template #headers>
-                    <tr>
-                      <th rowspan="2">
-                        CORTE
-                      </th>
-                      <th rowspan="2">
-                        REGIÓN
-                      </th>
-                      <th rowspan="2">
-                        NRO ZONA
-                      </th> 
-                      <th
-                        colspan="6"
-                        class="text-center"
-                      >
-                        INCORPORACION
-                      </th>
-                      <th 
-                        colspan="7" 
-                        class="text-center"
-                      >
-                        RETENCION
-                      </th>
-                      <th
-                        colspan="7"
-                        class="text-center"
-                      >
-                        PEDIDOS TOTALES
-                      </th>
-                      <th 
-                        colspan="5"
-                        class="text-center"
-                      >
-                        COBRANZA
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>TOTAL</th>
-                      <th>% CUMP.</th>
-
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>TOTAL</th>
-                      <th>% CUMP.</th>
-                      <th>% ACTI.</th>
-
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>'TOTAL</th>
-                      <th>% CUMP.</th>
-                      <th>CAPI.</th>
-
-                      <th>FACTURACIÓN</th>
-                      <th>SALDO 21DI</th>
-                      <th>% COBR. 21DI</th>
-                      <th>SALDO ACTU.</th>
-                      <th>% ACTU.</th>
-                    </tr>
-                  </template>
-                  <template #item.obje_inco="{ item }">
-                    <VChip color="warning">
-                      {{ item.obje_inco }}
-                    </VChip>
-                  </template>
-                  <template #item.fact_inco="{ item }">
-                    <VChip color="warning">
-                      {{ item.fact_inco }}
-                    </VChip>
-                  </template>
-                  <template #item.cump_fact_inco="{ item }">
-                    <VChip color="warning">
-                      {{ item.cump_fact_inco }}
-                    </VChip>
-                  </template>
-                  <template #item.pend_fact_inco="{ item }">
-                    <VChip color="warning">
-                      {{ item.pend_fact_inco }}
-                    </VChip>
-                  </template>
-                  <template #item.tota_inco="{ item }">
-                    <VChip color="warning">
-                      {{ item.tota_inco }}
-                    </VChip>
-                  </template>
-                  <template #item.cump_inco="{ item }">
-                    <VChip color="warning">
-                      {{ item.cump_inco }}
-                    </VChip>
-                  </template>
-
-                  <template #item.obje_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.obje_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.fact_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.fact_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.cump_fact_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.cump_fact_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.pend_fact_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.pend_fact_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.tota_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.tota_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.cump_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.cump_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.acti_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.acti_rete }}
-                    </VChip>
-                  </template>
-
-                  <template #item.obje_tota="{ item }">
-                    <VChip color="error">
-                      {{ item.obje_tota }}
-                    </VChip>
-                  </template>
-                  <template #item.fact_tota="{ item }">
-                    <VChip color="error">
-                      {{ item.fact_tota }}
-                    </VChip>
-                  </template>
-                  <template #item.cump_fact_tota="{ item }">
-                    <VChip color="error">
-                      {{ item.cump_fact_tota }}
-                    </VChip>
-                  </template>
-                  <template #item.pend_fact_tota="{ item }">
-                    <VChip color="error">
-                      {{ item.pend_fact_tota }}
-                    </VChip>
-                  </template>
-                  <template #item.tota_tota="{ item }">
-                    <VChip color="error">
-                      {{ item.tota_tota }}
-                    </VChip>
-                  </template>
-                  <template #item.cump_tota="{ item }">
-                    <VChip color="error">
-                      {{ item.cump_tota }}
-                    </VChip>
-                  </template>
-                  <template #item.fact_capi="{ item }">
-                    <VChip color="error">
-                      {{ item.fact_capi }}
-                    </VChip>
-                  </template>              
-                  <template #bottom />
-                </VDataTable>
+                   <JqxGrid
+                  ref="refGridCorte"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headersCorte"
+                  :source="adaptadorCorte"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  showstatusbar
+                  showaggregates
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </VCard>
           </VCol>
@@ -1311,135 +1950,30 @@ const onExcelConcepto = async () => {
           <VCol cols="12">
             <VCard title="Detalle zona">
               <VCardText>
-                <VDataTable
-                  :headers="headersZona"
-                  :items="itemsZona"
-                  :items-per-page="-1"
-                  class="text-no-wrap"
-                  
-                  fixed-header
-                  density="compact"
-                  height="400"
-                >
-                  <template #headers>
-                    <tr>
-                      <th rowspan="2">
-                        CORTE
-                      </th>
-                      <th rowspan="2">
-                        REGIÓN
-                      </th>
-                      <th rowspan="2">
-                        ZONA
-                      </th>
-                      <th rowspan="2">
-                        GERENTE ZONA
-                      </th>
-                      <th
-                        colspan="6"
-                        class="text-center"
-                      >
-                        INCORPORACION
-                      </th>
-                      <th 
-                        colspan="8" 
-                        class="text-center"
-                      >
-                        RETENCION
-                      </th>
-                      <th
-                        colspan="7"
-                        class="text-center"
-                      >
-                        PEDIDOS TOTALES
-                      </th>
-                      <th 
-                        colspan="4"
-                        class="text-center"
-                      >
-                        FACTURACIÓN
-                      </th>
-                      <th 
-                        colspan="2"
-                        class="text-center"
-                      >
-                        P.P.P.
-                      </th>
-                      <th 
-                        colspan="5"
-                        class="text-center"
-                      >
-                        COBRANZA
-                      </th>
-                      <th rowspan="2">
-                        REINGRESOS
-                      </th>
-                      <th rowspan="2">
-                        EGRESOS
-                      </th>
-                      <th rowspan="2">
-                        ACT. FINAL
-                      </th>
-                      <th rowspan="2">
-                        P. REINGRESO
-                      </th>
-
-                      <th rowspan="2">
-                        PEG21
-                      </th>
-                      <th rowspan="2">
-                        PEG42
-                      </th>
-                      <th rowspan="2">
-                        PEG63
-                      </th>
-                      <th rowspan="2">
-                        RET. PEG21
-                      </th>
-                      <th rowspan="2">
-                        RET. PEG42
-                      </th>
-                      <th rowspan="2">
-                        RET. PEG63
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>TOTAL</th>
-                      <th>% CUMP.</th>
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>TOTAL</th>
-                      <th>% CUMP.</th>
-                      <th>% OBJE. ACTI.</th>
-                      <th>% ACTI.</th>
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>TOTAL</th>
-                      <th>% CUMP.</th>
-                      <th>CAPI.</th>
-                      <th>VTA. LINEA</th>
-                      <th>FALTANTE</th>
-                      <th>VTA. RECE.</th>
-                      <th>% FALT.</th>
-                      <th>FACTURADO</th>
-                      <th>RECEPCIONADO</th>
-                      <th>FACTURACIÓN</th>
-                      <th>SALDO 21DI</th>
-                      <th>% COBR. 21DI</th>
-                      <th>SALDO ACTU.</th>
-                      <th>% ACTU.</th>
-                    </tr>
-                  </template>
-                  <template #bottom />
-                </VDataTable>
+                <JqxGrid
+                  ref="refGridZona"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headersZona"
+                  :source="adaptadorZona"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  showstatusbar
+                  showaggregates
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </VCard>
           </VCol>

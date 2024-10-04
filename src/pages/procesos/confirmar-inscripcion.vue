@@ -163,6 +163,7 @@ const isOpenEditar = ref(false)
 
 const headers = computed(() => {
   return [
+    { title: '', key: 'acciones', sortable: false, width: '10px' },
     { title: 'Campaña', key: 'codi_camp' },
     { title: 'Zona', key: 'codi_zona' },
     { title: 'Sector', key: 'codi_sect' },
@@ -204,7 +205,7 @@ const headers = computed(() => {
 const visibleHeaders = computed(() => headers.value.filter(header => !header.hidden))
 
 onMounted(async () => {
-  appStore.titulo(`Procesos / Incorporaciones`)
+  appStore.titulo(`Procesos / Incorporacion Digital`)
   await obtenerCampana()
   await obtenerZona()
   await obtenerDepartamentos()
@@ -1074,8 +1075,9 @@ const handleFileUpload = async tipo => {
                     fixed-header
                     height="400"
                     class="text-no-wrap"
-                    :items-per-page="-1"
+                    :items-per-page="-1" 
                     show-select
+                    select-strategy="single"
                     item-value="nume_docu"
                   >
                     <template #item.acciones="{ item }">
@@ -1110,7 +1112,7 @@ const handleFileUpload = async tipo => {
             <VIcon icon="tabler-x" />
           </VBtn>
           <VToolbarTitle>
-            Incorporaciones
+            Confirmar Incorporacion Digital
           </VToolbarTitle>
           <VSpacer />
           <VToolbarItems>
@@ -1913,7 +1915,4 @@ const handleFileUpload = async tipo => {
 .flat-picker-custom-style {
   inset-block: auto 8px;
 }
-// .custom-checkbox-unchecked:first-child{
-//   visibility:hidden;
-// }
 </style>

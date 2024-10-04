@@ -2,7 +2,8 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
-import { VDataTable } from 'vuetify/labs/VDataTable';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+
 
 definePage({
   meta: {
@@ -17,6 +18,8 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 
 const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
+const refGridGlobal=ref();
+const refGridDetalle=ref();
 
 const formulario = ref({
   campana: null,
@@ -36,49 +39,110 @@ const itemsDetalle = computed(() => {
   } else {
     return itemsDetalleTotal.value
   }
+});
+
+const headersGlobal = computed(() => {
+  return [
+    {
+      text: '',
+      dataField: 'acciones',
+      width: '50',
+      align: 'center',
+      cellsalign: 'center',
+      // filtertype: 'checkedlist'
+    },
+    {
+      text: 'Corte',
+      dataField: 'codi_cort',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Region',
+      dataField: 'codi_area',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Nro. Iden',
+      dataField: 'nume_iden',
+      width: '160',
+      align: 'center',
+      cellsalign: 'center'
+      // , aggregates: ['count']
+    },
+    {
+      text: 'Nombre(s) y Apellido(s)',
+      dataField: 'nomb_terc',
+      width: '250',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Prepedido',
+      dataField: 'cant_prep',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Pedido',
+      dataField: 'cant_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: '% Cumplimiento',
+      dataField: 'porc_prep',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    
+  ]
+});
+
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'acciones', type: 'string' },
+    { name: 'codi_cort', type: 'string' },
+    { name: 'codi_area', type: 'string' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'codi_sect', type: 'string' },
+    { name: 'nume_iden', type: 'integer' },
+    { name: 'nomb_terc', type: 'string' },
+    { name: 'cant_prep', type: 'string' },
+    { name: 'cant_pedi', type: 'string' },
+    { name: 'porc_prep', type: 'string' },
+  ],
+  datatype: 'json',
 })
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const localization = appStore.localization
 
-const headersGlobal = [
-  { title: '', key: 'acciones', sortable: false, width: '10px' },
-  {
-    title: 'Corte',
-    key: 'codi_cort',
-  },
-  {
-    title: 'Región',
-    key: 'codi_area',
-  },
-  {
-    title: 'Zona',
-    key: 'codi_zona',
-  },
-  {
-    title: 'Sector',
-    key: 'codi_sect',
-  },
-  {
-    title: 'Nro ident.',
-    key: 'nume_iden',
-  },
-  {
-    title: 'Nombre(s) y apellido(s)',
-    key: 'nomb_terc',
-  },
-  {
-    title: 'Prepedido',
-    key: 'cant_prep',
-  },
-  {
-    title: 'Pedido',
-    key: 'cant_pedi',
-  },
-  {
-    title: '% Cumplimiento',
-    key: 'porc_prep',
-  },
-]
-
-const headersDetalle = [
+const headersDetalle1 = [
   {
     title: 'Corte',
     key: 'codi_cort',
@@ -124,6 +188,116 @@ const headersDetalle = [
     key: 'esta_prep',
   },
 ]
+
+const headersDetalle = computed(() => {
+  return [
+    {
+      text: 'Corte',
+      dataField: 'codi_cort',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Region',
+      dataField: 'codi_area',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Nro. Iden',
+      dataField: 'nume_iden',
+      width: '160',
+      align: 'center',
+      cellsalign: 'center'
+      // , aggregates: ['count']
+    },
+    {
+      text: 'Nombre(s) y Apellido(s)',
+      dataField: 'nomb_terc',
+      width: '250',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Código',
+      dataField: 'codi_prod',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Descripción',
+      dataField: 'nomb_prod',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Cantidad',
+      dataField: 'cant_prod',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Página',
+      dataField: 'nume_pagi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Estado',
+      dataField: 'esta_prep',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    
+  ]
+});
+
+const sourceDetalle = ref({
+  localdata: [],
+  datafields: [
+    { name: 'acciones', type: 'string' },
+    { name: 'codi_cort', type: 'string' },
+    { name: 'codi_area', type: 'string' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'codi_sect', type: 'string' },
+    { name: 'nume_iden', type: 'integer' },
+    { name: 'nomb_terc', type: 'string' },
+    { name: 'codi_prod', type: 'string' },
+    { name: 'nomb_prod', type: 'string' },
+    { name: 'cant_prod', type: 'string' },
+    { name: 'nume_pagi', type: 'string' },
+    { name: 'esta_prep', type: 'string' },
+  ],
+  datatype: 'json',
+})
+const adaptadorDetalle = new jqx.dataAdapter(sourceDetalle.value)
+const localizationDetail = appStore.localization
+
       
 const campanaOptions = ref([])
 const errorCampana = ref(false)
@@ -134,7 +308,7 @@ const errorZona = ref(false)
 const errorMensajeZona = ref('')
 
 onMounted(async () => {
-  appStore.titulo(`Reportes / Prepedido`)
+  appStore.titulo(`Reportes / Azzorti Proyecta`)
   await obtenerCampana()
   await obtenerZona()
 })
@@ -216,6 +390,13 @@ const onGenerar = async () => {
 
     itemsGlobal.value = data.data_glob
     itemsDetalleTotal.value = data.data_deta
+    sourceGlobal.value.localdata = data.data_glob
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
+
+    sourceDetalle.value.localdata = data.data_deta
+    refGridDetalle.value.updatebounddata('cells')
+    refGridDetalle.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -246,6 +427,8 @@ const onLimpiar= async () => {
   filtro.value = ''
   itemsGlobal.value = []
   itemsDetalleTotal.value = []
+  refGridGlobal.value.updatebounddata('cells')
+  refGridDetalle.value.updatebounddata('cells')
 }
 
 const onExcel = async () => {
@@ -259,7 +442,8 @@ const onExcel = async () => {
       body: {
         data_glob: itemsGlobal.value,
         data_deta: itemsDetalle.value,
-        cabeceraGlobal:headersGlobal
+        cabeceraGlobal:headersGlobal.value,
+        cabeceraDetalle:headersDetalle.value  
       },
     })
     
@@ -299,7 +483,7 @@ const limpiarFiltro = hideOverlay => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Buscar prepedidos">
+            <VCard title="Buscar Azzorti Proyecta">
               <VCardText>
                 <VRow justify="space-between">
                   <VCol
@@ -338,45 +522,62 @@ const limpiarFiltro = hideOverlay => {
           </VCol>
 
           <VCol cols="12">
-            <VCard title="Lista general prepedido">
+            <VCard title="Lista general Azzorti Proyecta">
               <VCardText>
-                <VDataTable
-                  :headers="headersGlobal"
-                  :items="itemsGlobal"
-                  :items-per-page="-1"
-                  class="text-no-wrap"
-                  
-                  fixed-header
-                  height="350"
-                >
-                  <template #item.acciones="{ item }">
-                    <IconBtn @click="onSeleccionar(item)">
-                      <VIcon icon="tabler-search" />
-                    </IconBtn>
-                  </template>
-                  <template #bottom />
-                </VDataTable>
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headersGlobal"
+                  :source="adaptadorGlobal"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </VCard>
           </VCol>
           <VCol cols="12">
             <AppCardActions
-              title="Lista detalle prepedido"
+              title="Lista detalle Azzorti Proyecta"
               action-refresh
               @refresh="limpiarFiltro"
             >
               <VCardText>
-                <VDataTable
-                  :headers="headersDetalle"
-                  :items="itemsDetalle"
-                  :items-per-page="-1"
-                  class="text-no-wrap"
-                  
-                  fixed-header
-                  height="400"
-                >              
-                  <template #bottom />
-                </VDataTable>
+                <JqxGrid
+                  ref="refGridDetalle"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headersDetalle"
+                  :source="adaptadorDetalle"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </AppCardActions>
           </VCol>
