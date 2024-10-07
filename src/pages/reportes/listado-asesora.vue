@@ -1075,7 +1075,7 @@ const onPdf = async tipo => {
     const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/pdf`, {
       method: "post",
       body: {
-        columnas: headersDetalle.value,
+        columnas: headersDetalleTotal.value,
         tipo: tipo,
         data_glob: itemsGlobal.value,
         data_deta: itemsDetalle.value,
