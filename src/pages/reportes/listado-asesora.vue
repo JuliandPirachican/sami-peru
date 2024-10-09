@@ -462,7 +462,9 @@ const sourceGlobal = ref({
 });
 
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
-const localizationGlobal = appStore.localization
+const localizationGlobal =  {
+    filterselectstring: ' ',
+};
 
 const headersDetalleTotal = computed(() => {
   return [
@@ -747,7 +749,9 @@ const sourceDetalle = ref({
 });
 
 const adaptadorDetalle = new jqx.dataAdapter(sourceDetalle.value)
-const localizationDetalle = appStore.localization
+const localizationDetalle =  {
+    filterselectstring: ' ',
+};
 
 const selectedColumna = ref([
   'codi_sect',
@@ -1338,7 +1342,7 @@ const itemsDetalleVisible = computed(() => {
                   :height="450"
                   :columns="headersGlobal"
                   :source="adaptadorGlobal"
-                  :columnGroups="columnGroups"
+                  :localization="localizationGlobal"
                   columnsresize
                   columnsautoresize
                   enableanimations
@@ -1374,6 +1378,7 @@ const itemsDetalleVisible = computed(() => {
                   :height="450"
                   :columns="headersDetalleTotal"
                   :source="adaptadorDetalle"
+                  :localization="localizationDetalle"
                   columnsresize
                   columnsautoresize
                   enableanimations

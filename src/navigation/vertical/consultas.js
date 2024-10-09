@@ -39,4 +39,11 @@ export default [
     subject: 'colombia/cons_clie', 
     action: 'colombia/cons_clie',
   },
+  { 
+    title: 'Consolidado Campaña', 
+    to: 'procesos-consolidado-campana',
+    icon: { icon: 'tabler-world-up' },
+    subject: 'colombia/proc_tab_cons', 
+    action: 'colombia/proc_tab_cons',
+  },
 ] 

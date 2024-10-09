@@ -461,8 +461,13 @@ const sourceDeta = ref({
 
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
 const adaptadordeta = new jqx.dataAdapter(sourceDeta.value)
-const localization = appStore.localization
-const localizationdeta = appStore.localization
+const localization =  {
+    filterselectstring: ' ',
+};
+
+const localizationdeta =  {
+    filterselectstring: ' ',
+};
 const campanaOptions = ref([])
 const errorCampana = ref(false)
 const errorMensajeCampana = ref('')
@@ -776,6 +781,7 @@ const limpiarValidacion = () => {
                   :height="450"
                   :columns="headers"
                   :source="adaptadorGlobal"
+                  :localization="localization"
                   columnsresize
                   columnsautoresize
                   enableanimations
@@ -805,6 +811,7 @@ const limpiarValidacion = () => {
                   :height="450"
                   :columns="headersdeta"
                   :source="adaptadordeta"
+                  :localization="localizationdeta"
                   columnsresize
                   columnsautoresize
                   enableanimations

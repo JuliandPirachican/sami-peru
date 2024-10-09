@@ -26,7 +26,7 @@ export default [
     action: 'colombia/proc_come_cerr_asis',
   },
   { 
-    title: 'Incorporaciones', 
+    title: 'Confirmar Incorporacion Digital', 
     to: 'procesos-confirmar-inscripcion',
     icon: { icon: 'tabler-user-plus' },
     subject: 'colombia/proc_come_conf_insc_movi', 
@@ -102,13 +102,7 @@ export default [
     subject: 'colombia/proc_come_vinc_digi', 
     action: 'colombia/proc_come_vinc_digi',
   },
-  { 
-    title: 'Consolidado Campaña', 
-    to: 'procesos-consolidado-campana',
-    icon: { icon: 'tabler-world-up' },
-    subject: 'colombia/proc_tab_cons', 
-    action: 'colombia/proc_tab_cons',
-  },
+
   { 
     title: 'Aprobacion incorporaciones digitales', 
     to: 'procesos-aprob-ingr-digitales',

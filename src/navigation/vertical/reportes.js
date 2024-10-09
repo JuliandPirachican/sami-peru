@@ -323,13 +323,13 @@ export default [
     subject: 'colombia/menu_repo_pbie', 
     action: 'colombia/menu_repo_pbie', 
   },
-  { 
-    title: 'Indicador Gestion', 
-    to: 'reportes-indicadores-gestion', 
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_tab_cons', 
-    action: 'colombia/repo_tab_cons', 
-  },
+  // { 
+  //   title: 'Indicador Gestion', 
+  //   to: 'reportes-indicadores-gestion', 
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_tab_cons', 
+  //   action: 'colombia/repo_tab_cons', 
+  // },
   { 
     title: 'Vinculacion', 
     to: 'reportes-reporte-vinculacion', 

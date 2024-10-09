@@ -136,7 +136,9 @@ const sourceGlobal = ref({
   datatype: 'json',
 })
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
-const localization = appStore.localization
+const localization =  {
+    filterselectstring: ' ',
+};
 
 const items = ref([])
 const refGridGlobal=ref()
@@ -365,6 +367,7 @@ const limpiarValidacion = () => {
                   :height="450"
                   :columns="headers"
                   :source="adaptadorGlobal"
+                  :localization="localization"
                   columnsresize
                   columnsautoresize
                   enableanimations

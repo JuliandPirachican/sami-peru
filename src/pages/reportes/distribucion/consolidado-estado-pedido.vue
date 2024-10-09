@@ -129,7 +129,9 @@ const sourceGlobal = ref({
   datatype: 'json',
 })
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
-const localization = appStore.localization
+const localization =  {
+    filterselectstring: ' ',
+};
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Distribucion / Consolidado estado pedido`)
@@ -436,6 +438,7 @@ const limpiarValidacion = () => {
                   width="100%"
                   :height="450"
                   :columns="headers"
+                  :localization="localization"
                   :source="adaptadorGlobal"
                   columnsresize
                   columnsautoresize

@@ -36,7 +36,7 @@ const errorCorreo = ref(false)
 const errorMensajeCorreo = ref('')
 
 onMounted(async () => {
-  appStore.titulo(`Procesos / Actualizar dato simple`)
+  appStore.titulo(`Procesos / Actualizar Dato Asesora`)
 })
 
 const limpiarValidacion = () => {

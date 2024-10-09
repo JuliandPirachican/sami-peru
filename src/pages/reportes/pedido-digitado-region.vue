@@ -448,7 +448,9 @@ const sourceCorte = ref({
   datatype: 'json',
 })
 const adaptadorCorte = new jqx.dataAdapter(sourceCorte.value)
-const localization = appStore.localization
+const localization =  {
+    filterselectstring: ' ',
+};
 
 const itemsCorte = ref([])
 
@@ -1166,7 +1168,9 @@ const sourceZona = ref({
   datatype: 'json',
 })
 const adaptadorZona = new jqx.dataAdapter(sourceZona.value)
-const localizationZone = appStore.localization
+const localizationZone =  {
+    filterselectstring: ' ',
+};
 
 const itemsZona = ref([])
 
@@ -1926,6 +1930,7 @@ const onExcelConcepto = async () => {
                   :height="450"
                   :columns="headersCorte"
                   :source="adaptadorCorte"
+                  :localization="localization"
                   columnsresize
                   columnsautoresize
                   enableanimations
@@ -1957,6 +1962,7 @@ const onExcelConcepto = async () => {
                   :height="450"
                   :columns="headersZona"
                   :source="adaptadorZona"
+                  :localization="localizationZone"
                   columnsresize
                   columnsautoresize
                   enableanimations

@@ -205,7 +205,7 @@ const headers = computed(() => {
 const visibleHeaders = computed(() => headers.value.filter(header => !header.hidden))
 
 onMounted(async () => {
-  appStore.titulo(`Procesos / Incorporacion Digital`)
+  appStore.titulo(`Procesos / Confirmar Incorporacion Digital`)
   await obtenerCampana()
   await obtenerZona()
   await obtenerDepartamentos()
@@ -1065,7 +1065,7 @@ const handleFileUpload = async tipo => {
             </VCard>
           </VCol>
           <VCol cols="12">
-            <VCard title="Lista inscripción">
+            <VCard title="Lista De Incorporacion">
               <VCardText>
                 <VRow>
                   <VDataTable

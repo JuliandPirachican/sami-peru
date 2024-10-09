@@ -15,7 +15,7 @@ const variableData = ref([
   {
     icono: 'tabler-alert-triangle',
     color: 'warning',
-    titulo: 'Cobranza 21 días',
+    titulo: 'Cobranza 31 días',
     valor: '0.00%',
     Subtitulo1: 'Venta',
     valor1: 'COP/ 0.00',
@@ -148,7 +148,7 @@ const onLimpiar = () => {
     {
       icono: 'tabler-alert-triangle',
       color: 'warning',
-      titulo: 'Cobranza 21 días',
+      titulo: 'Cobranza 31 días',
       valor: '0.00%',
       Subtitulo1: 'Venta',
       valor1: 'COP/ 0.00',

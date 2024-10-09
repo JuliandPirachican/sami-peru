@@ -112,7 +112,9 @@ const sourceGlobal = ref({
   datatype: 'json',
 })
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
-const localization = appStore.localization
+const localization =  {
+    filterselectstring: ' ',
+};
 
 const items = computed(() => {
   if(multiSearch.value) {
@@ -443,6 +445,7 @@ const limpiarValidacion = () => {
                   :height="450"
                   :columns="headers"
                   :source="adaptadorGlobal"
+                  :localization="localization"
                   columnsresize
                   columnsautoresize
                   enableanimations

@@ -140,7 +140,9 @@ const sourceGlobal = ref({
   datatype: 'json',
 })
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
-const localization = appStore.localization
+const localization =  {
+    filterselectstring: ' ',
+};
 
 const headersDetalle1 = [
   {
@@ -296,7 +298,9 @@ const sourceDetalle = ref({
   datatype: 'json',
 })
 const adaptadorDetalle = new jqx.dataAdapter(sourceDetalle.value)
-const localizationDetail = appStore.localization
+const localizationDetail =  {
+    filterselectstring: ' ',
+};
 
       
 const campanaOptions = ref([])
@@ -531,6 +535,7 @@ const limpiarFiltro = hideOverlay => {
                   :height="450"
                   :columns="headersGlobal"
                   :source="adaptadorGlobal"
+                  :localization="localization"
                   columnsresize
                   columnsautoresize
                   enableanimations
@@ -563,6 +568,7 @@ const limpiarFiltro = hideOverlay => {
                   :height="450"
                   :columns="headersDetalle"
                   :source="adaptadorDetalle"
+                  :localization="localizationDetail"
                   columnsresize
                   columnsautoresize
                   enableanimations

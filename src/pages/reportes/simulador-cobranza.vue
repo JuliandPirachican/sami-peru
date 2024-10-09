@@ -195,7 +195,9 @@ const sourceGlobal = ref({
   datatype: 'json',
 })
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
-const localization = appStore.localization
+const localization =  {
+    filterselectstring: ' ',
+};
  
 const headersDetalle = computed(() => {
   return [
@@ -341,7 +343,9 @@ const sourceDetalle = ref({
   datatype: 'json',
 })
 const adaptadorDetalle = new jqx.dataAdapter(sourceDetalle.value)
-const localizationdetail = appStore.localization
+const localizationDetail =  {
+    filterselectstring: ' ',
+};
  
 const itemsGlobal = ref([])
 const itemsDetalle = ref([])
@@ -654,6 +658,7 @@ const actualizarItem = item => {
                   :height="450"
                   :columns="headersGlobal"
                   :source="adaptadorGlobal"
+                  :localization="localization"
                   columnsresize
                   columnsautoresize
                   enableanimations
@@ -681,6 +686,7 @@ const actualizarItem = item => {
                   :height="450"
                   :columns="headersDetalle"
                   :source="adaptadorDetalle"
+                  :localization="localizationDetail"
                   columnsresize
                   columnsautoresize
                   enableanimations
