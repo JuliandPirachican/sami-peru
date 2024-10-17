@@ -32,12 +32,19 @@ export default [
     subject: 'colombia/repo_come_cons_ases_nuev', 
     action: 'colombia/repo_come_cons_ases_nuev', 
   },
+  // { 
+  //   title: 'Directorio lider', 
+  //   to: 'reportes-directorio-lider',
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_come_dire_lide', 
+  //   action: 'colombia/repo_come_dire_lide', 
+  // },
   { 
-    title: 'Directorio lider', 
-    to: 'reportes-directorio-lider',
+    title: 'Directorio Lider', 
+    to: 'reportes-repo-lide-refe',
     icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_come_dire_lide', 
-    action: 'colombia/repo_come_dire_lide', 
+    subject: 'colombia/repo_lide_refe', 
+    action: 'colombia/repo_lide_refe', 
   },
   { 
     title: 'Distribución', 
@@ -295,13 +302,7 @@ export default [
     subject: 'colombia/repo_falt_anun', 
     action: 'colombia/repo_falt_anun', 
   },
-  { 
-    title: 'Lideres Referidas', 
-    to: 'reportes-repo-lide-refe',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_lide_refe', 
-    action: 'colombia/repo_lide_refe', 
-  },
+
   { 
     title: 'App Movil', 
     to: 'reportes-reporte-app-movil',

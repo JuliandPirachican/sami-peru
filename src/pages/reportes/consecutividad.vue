@@ -114,9 +114,17 @@ const headers = computed(() => {
       filtertype: 'checkedlist'
     },
     {
-      text: 'Sector',
+      text: 'Consecutivo Lider',
       dataField: 'codi_sect',
-      width: '90',
+      width: '200',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Nombre(s) y Apellido(s)',
+      dataField: 'nomb_terc',
+      width: '200',
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist'
@@ -189,6 +197,7 @@ const sourceGlobal = ref({
     { name: 'codi_cort', type: 'string' },
     { name: 'codi_zona', type: 'string' },
     { name: 'codi_sect', type: 'string' },
+    { name: 'nomb_terc', type: 'string' },
     { name: 'codi_camp_1', type: 'integer' },
     { name: 'porc_codi_camp_1', type: 'string' },
     { name: 'codi_camp_2', type: 'string' },
@@ -233,6 +242,13 @@ const headersdeta1 = ref([
 
 const headersdeta = computed(() => {
   return [
+    {
+      text: 'Camp. Ingr',
+      dataField: 'camp_ingr',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+    },
     {
       text: 'Region',
       dataField: 'codi_area',
@@ -287,13 +303,7 @@ const headersdeta = computed(() => {
       align: 'center',
       cellsalign: 'center',
     },
-    {
-      text: 'Camp. Ingr',
-      dataField: 'camp_ingr',
-      width: '120',
-      align: 'center',
-      cellsalign: 'center',
-    },
+    
     {
       text: 'Teléfono',
       dataField: 'tele_terc',
@@ -477,7 +487,7 @@ const errorZona = ref(false)
 const errorMensajeZona = ref('')
 
 onMounted(async () => {
-  appStore.titulo(`Reportes / Consecutividad`)
+  appStore.titulo(`Reportes / Consecutividad De Nuevas Asesoras`)
   await obtenerCampana()
   await obtenerZona()
 })

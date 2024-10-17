@@ -32,13 +32,34 @@ const headersGlobal = computed(() => {
     align: "center",
     cellsAlign: "center",
     filterType: "checkedlist",
+    text: "Codigo Lider",
+    dataField: "cons_lide",
+    pinned:true,
+    // cellclassname: 'text-white bg-primary-light',
+  },
+  {
+    width: 250,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
+    text: "Nombre Lider",
+    dataField: "nomb_terc",
+    pinned:true,
+    // cellclassname: 'text-white bg-primary-light',
+  },
+  {
+    width: 150,
+    align: "center",
+    cellsAlign: "center",
+    filterType: "checkedlist",
     text: "Valor",
     dataField: "valo_docu",
     pinned:true,
-    cellclassname: 'text-white bg-primary-light',
+    // cellclassname: 'text-white bg-primary-light',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        // suma=Math.round(aggregates['sum'],2);
+        return  (aggregates['sum']!=undefined) ?  'T:'+Math.round(aggregates['sum'],4):'T:' +0;
     }
   },
   {
@@ -79,9 +100,9 @@ const headersGlobal = computed(() => {
     text: "% 31 días",
     dataField: "porc_31di",
     cellclassname: 'text-white bg-error',
-    aggregates: ['sum'],
+    aggregates: ['avg'],
     aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0;
     }
   },
   {
@@ -105,9 +126,9 @@ const headersGlobal = computed(() => {
     text: "% Actual",
     dataField: "porc_actu",
     cellclassname: 'text-white bg-error',
-    aggregates: ['sum'],
+    aggregates: ['avg'],
     aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0;
     }
   },
   {
@@ -131,9 +152,9 @@ const headersGlobal = computed(() => {
     text: "% Simulador",
     dataField: "porc_simu_21di",
     cellclassname: 'text-white bg-success',
-    aggregates: ['sum'],
+    aggregates: ['avg'],
     aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0;
     }
   },
   {
@@ -155,6 +176,14 @@ const headersGlobal = computed(() => {
 const sourceGlobal = ref({
   localdata: [],
   datafields: [
+    {
+      type: "string",
+      name: "cons_lide",
+    },
+    {
+      type: "string",
+      name: "nomb_terc",
+    },
     {
       type: "string",
       name: "valo_docu",

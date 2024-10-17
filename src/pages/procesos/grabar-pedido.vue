@@ -1,49 +1,49 @@
-<!-- eslint-disable camelcase -->
 <script setup>
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
 import Swal from 'sweetalert2';
+import { useDisplay } from 'vuetify';
 import { VDataTable } from 'vuetify/labs/VDataTable';
 
+ 
 definePage({
   meta: {
     action: 'colombia/proc_come_grab_pedi',
     subject: 'colombia/proc_come_grab_pedi',
   },
 })
-
+ 
 const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
   storageType: 'localStorage',
 })
-
+ 
+const { mobile } = useDisplay()
 const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
-
+ 
 const itemsGlobal = ref([])
 const itemsProductos = ref([])
 const arrayDatos = ref([])
-
+const detalleProducto = ref({})
+const zonaProducto = ref('')
+ 
+const arraySustituto = ref([])
+ 
 const formulario = ref({
-  zona: null,
   nroDocumento: '',
   asesora: '',
   campana: '',
   saldo: '',
   producto: '',
-  autocomplete: null,
-  isNroDocumento: true,
+  autocomplete: '',
   isZona: false,
   isAutocomplete: true,
 })
-
-const zonaOptions = ref([])
-const errorZona = ref(false)
-const errorMensajeZona = ref('')
-
+ 
 const errorNroDocumento = ref(false)
 const errorMensajeNroDocumento = ref('')
 const refAutocomplete = ref()
-
+ 
 const headers = computed(() => {
   return [
     { title: 'Código', key: 'codi_vent' },
@@ -54,102 +54,82 @@ const headers = computed(() => {
     { title: 'Acciones', key: 'acciones', sortable: false, width: '10px' },
   ]
 })
-
+ 
+const mostrarSustituto = ref(false)
+ 
 onMounted(async () => {
-  appStore.titulo(`Procesos / Grabar pedido`)
-  await obtenerZona()
+  appStore.titulo(`Procesos / Grabar pedido`)  
 })
-
-const obtenerZona = async () => {
-  try {
-    appStore.mensaje('Obteniendo zonas')
-    appStore.loading(true)
-
-    const { data } = await $api(`/api/comun/v1/zonas`, {
-      method: "get",
-    })
-
-    const itemZona = data.data_glob
-
-    itemZona.forEach(element =>
-      zonaOptions.value.push({
-        id: element.codi_zona,
-        text: element.codi_zona,
-      }),
-    )
-  } catch (e) {
-    if(e.response !== undefined) {
-      // eslint-disable-next-line no-console
-      console.log(e.response._data)
-    }
-  }
-  finally {
-    appStore.loading(false)
-  }
-}
-
+ 
 const onLimpiar= async () => {
   itemsGlobal.value = []
   itemsProductos.value = []
-  arrayDatos.value = []
   formulario.value = {
-    zona: null,
     nroDocumento: '',
     asesora: '',
     campana: '',
     saldo: '',
-    autocomplete: null,
-    isNroDocumento: true,
+    producto: '',
+    autocomplete: '',
     isZona: false,
     isAutocomplete: true,
   }
+  arraySustituto.value = []
 }
-
+ 
 const limpiarValidacion= async () => {
-  errorZona.value = false
-  errorMensajeZona.value = ''
-
   errorNroDocumento.value = false
   errorMensajeNroDocumento.value = ''
 }
-
+ 
 const onSeleccionar = data => {
   const index = itemsGlobal.value.indexOf(data)
   if (index !== -1) {
     itemsGlobal.value.splice(index, 1)
   }
 }
-
+ 
+ 
 const onRegistrar = async () => {
+  if(arraySustituto.value.length > 0) {
+    mostrarSustituto.value = true
+  }
+  else {
+    liquidarPedido()
+  }
+}
+ 
+const liquidarPedido = async () => {
   try {
     limpiarValidacion()
-    appStore.mensaje('Generando proceso')
+    appStore.mensaje(`Liquidando pedido ${formulario.value.nroDocumento}`)
     appStore.loading(true)
-
-    const data = await $api(`/api/sami/v1/procesos/grabar-pedido/liquida-pedigz`, {
+ 
+    const data = await $api(`/hmvc/ventas_v1/pedido/liquida_pedigz`, {
       method: "post",
       body: {
-        nroDocumento: (formulario.value.nroDocumento === null) ? '' : formulario.value.nroDocumento,
-        productos: itemsGlobal.value,
+        'nume_iden': (formulario.value.nroDocumento === null) ? '' : formulario.value.nroDocumento,
+        'codi_digi': itemsGlobal.value,
+        'codi_perf': 'GZ',
       },
     })
-
-    if (data.data.pasa_pedi) {
+ 
+    if (data.message.pasa_pedi) {
       let minimo = 0
       let moneda = ''
-      minimo = 190
+      minimo = 199
       moneda = 'S/'
       let minimoHtml = ''
-
-      if (parseInt(data.data.tota_pedi, 10) < minimo) {
+ 
+      if (parseInt(data.message.tota_pedi, 10) < minimo) {
         minimoHtml = `<div class='row mt-1'>
                                   <div class='col text-center text-danger'>
                                     Pedido por debajo monto minimo ${moneda} ${minimo}
                                   </div>
                                 </div>`
       }
-
-      if (data.data.mensajes.length === 0) {
+ 
+      if (data.message.mensajes.length === 0) {
         const htmlMensaje = `<div class='row'>
                                         <div class='col text-left'>
                                           No tiene ninguna observación, ya puede grabar su pedido
@@ -157,11 +137,11 @@ const onRegistrar = async () => {
                                       </div>
                                       <div class='row mt-1'>
                                         <div class='col text-left'>
-                                          <strong>Total :</strong> ${data.data.tota_pedi}
+                                          <strong>Total :</strong> ${data.message.tota_pedi}
                                         </div>
                                       </div>
                                       ${minimoHtml}`
-
+ 
         Swal.fire({
           title: 'Liquidación pedido',
           html: htmlMensaje,
@@ -176,21 +156,21 @@ const onRegistrar = async () => {
           },
         }).then(result => {
           if (result.isConfirmed) {
-            proc_come_grab_pedi_conf()
+            confirmarGrabarPedido()
           }
         })
       } else {
         let htmlMensaje = ''
-        for (let m = 0; m < data.data.mensajes.length; m += 1) {
+        for (let m = 0; m < data.message.mensajes.length; m += 1) {
           htmlMensaje = `${htmlMensaje} <div class='row'>
                                         <div class='col text-left'>
-                                          ${data.data.mensajes[m].desc_cond}
+                                          ${data.message.mensajes[m].desc_cond}
                                         </div>
                                       </div>`
         }
         htmlMensaje = `${htmlMensaje} <div class='row mt-1'>
                                         <div class='col text-left'>
-                                          <strong>Total :</strong> ${data.data.tota_pedi}
+                                          <strong>Total :</strong> ${data.message.tota_pedi}
                                         </div>
                                       </div>
                                       ${minimoHtml}`
@@ -208,22 +188,22 @@ const onRegistrar = async () => {
           },
         }).then(result => {
           if (result.isConfirmed) {
-            proc_come_grab_pedi_conf()
+            confirmarGrabarPedido()
           }
         })
       }
     } else {
       let htmlMensaje = ''
-      for (let m = 0; m < data.data.mensajes.length; m += 1) {
+      for (let m = 0; m < data.message.mensajes.length; m += 1) {
         htmlMensaje = `${htmlMensaje} <div class='row'>
                                         <div class='col text-left'>
-                                          ${data.data.mensajes[m].desc_cond}
+                                          ${data.message.mensajes[m].desc_cond}
                                         </div>
                                       </div>`
       }
       htmlMensaje = `${htmlMensaje} <div class='row mt-1'>
                                         <div class='col text-left'>
-                                          <strong>Total :</strong> ${data.data.tota_pedi}
+                                          <strong>Total :</strong> ${data.message.tota_pedi}
                                         </div>
                                       </div>`
       Swal.fire({
@@ -240,7 +220,7 @@ const onRegistrar = async () => {
         },
       })
     }
-
+ 
   } catch (error) {
     const { data } = error.response._data
     if (typeof data != "undefined") {
@@ -250,7 +230,7 @@ const onRegistrar = async () => {
           errorNroDocumento.value = true
           errorMensajeNroDocumento.value = data[key]
         }
-
+ 
         if (key == 'productos') {
           appStore.mensajeSnackbar(data[key])
           appStore.color("error")
@@ -263,74 +243,99 @@ const onRegistrar = async () => {
     appStore.loading(false)
   }
 }
-
-const obtenerProductos = async() => {
+ 
+const obtenerProductos = async zona => {
   try {
     appStore.mensaje('Obteniendo productos')
-    appStore.loading(true)
-
-    limpiarValidacion()
-
-    const response = await $api(`/api/sami/v1/procesos/grabar-pedido/productos`, {
-      method: "get",
-      query: {
-        zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
+ 
+    const data  = await $api(`/hmvc/ventas_v1/pedido/productos`, {
+      method: "POST",
+      body: {
+        "codi_zona": zona,
+        "codi_perf": "GZ",
       },
     })
-
-    itemsGlobal.value = []
-    itemsProductos.value = []
-    arrayDatos.value = []
-    formulario.value.autocomplete = null
-    formulario.value.isZona = true
-    formulario.value.isNroDocumento = false
-    
-    itemsProductos.value = response.data.map(item => ({
+ 
+    itemsProductos.value = data.map(item => ({
       codigo: item.codi_vent,
       producto: item.nomb_prod,
       pagina: item.nume_pagi,
       precio: item.prec_vent,
       faltante: item.indi_falt,
     }))
-
-    arrayDatos.value = itemsProductos.value.map(item => `${item.codigo} - ${item.producto}`)
-
+ 
+    arrayDatos.value = itemsProductos.value.map(item => `${item.codigo}`)
+ 
   } catch (e) {
-    if(e.response !== undefined) {
-      // eslint-disable-next-line no-console
-      console.log(e.response.data)
-    }
-  }
-  finally {
-    appStore.loading(false)
+    console.log(e)
   }
 }
-
+ 
 const obtenerEstadoPedidogz = async() => {
   try {
     appStore.mensaje('Obteniendo datos')
     appStore.loading(true)
     limpiarValidacion()
-
+ 
+    itemsGlobal.value = []
+    itemsProductos.value = []
+    formulario.value.asesora = ''
+    formulario.value.campana = ''
+    formulario.value.saldo = ''
+    formulario.value.producto = ''
+    formulario.value.autocomplete = ''
+    formulario.value.isZona = false
+    formulario.value.isAutocomplete = true
+    
     const { data } = await $api(`/api/sami/v1/procesos/grabar-pedido/estado-pedigz`, {
       method: "get",
       query: {
         nroDocumento: (formulario.value.nroDocumento === null) ? '' : formulario.value.nroDocumento,
-        zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
       },
     })
-
-    formulario.value.asesora = data.dato_ases[0].nomb_ases
-    formulario.value.campana = data.dato_ases[0].codi_camp
-    formulario.value.saldo = data.dato_ases[0].sald_ases
-    formulario.value.isNroDocumento = true
+ 
+    const zona = data.codi_zona
+    const documento = data.nume_iden
+    
+    if(zonaProducto.value != zona) {
+      zonaProducto.value = zona
+      await obtenerProductos(zona)
+    }
+    
+    const estadoPedido = await $api('/hmvc/ventas_v1/pedido/estado_pedigz', {
+      method: 'POST',
+      body: {
+        "nume_iden": documento,
+        "valo_perf": zona,
+        "tipo_usua": "GZ",
+      },
+    })
+    
+    formulario.value.asesora = estadoPedido.dato_ases[0].nomb_ases
+    formulario.value.campana = estadoPedido.dato_ases[0].codi_camp
+    formulario.value.saldo = estadoPedido.dato_ases[0].sald_ases
     formulario.value.isAutocomplete = false
-
-    itemsGlobal.value = data.codi_pedi
-
+    itemsGlobal.value = estadoPedido.codi_pedi.map(item => {
+      return {
+        ...item,
+        tipo_prod: 'producto',
+      }
+    })
+    arraySustituto.value = estadoPedido.prod_sust.map(item => {
+      return {
+        ...item,
+        tipo_prod: 'sustituto',
+      }
+    })
+ 
+    itemsGlobal.value.forEach(item => {
+      if (arraySustituto.value.some(sustituto => sustituto.codi_vent === item.codi_vent)) {
+        item.tipo_prod = 'sustituto'
+      }
+    })
   } catch (error) {
     const { data } = error.response._data
-
+ 
     if (typeof data != "undefined") {
       for (var key in data)
       {
@@ -338,54 +343,86 @@ const obtenerEstadoPedidogz = async() => {
           errorNroDocumento.value = true
           errorMensajeNroDocumento.value = data[key]
         }
-        if (key == 'zona') {
-          errorZona.value = true
-          errorMensajeZona.value = data[key]
-        }
       }
     }
   }
   finally {
+ 
     appStore.loading(false)
   }
 }
-
+ 
 const proc_come_grab_pedi_bind_nume = async () => {
-  const regex = new RegExp('^[0-9]+$')
-
+  const regex = /^\d+$/
+ 
   const key = String.fromCharCode(
     !event.charCode ? event.which : event.charCode,
   )
-
+ 
   if (!regex.test(key)) {
     event.preventDefault()
-
+ 
     return false
   }
   
   return true
 }
-
+ 
+const agregarProducto = () => {
+  if(formulario.value.producto == '') {
+    appStore.mensajeSnackbar(`Código producto obligatorio.`)
+    appStore.color("error")
+    appStore.snackbar(true)
+  } else {
+    itemsGlobal.value.push(detalleProducto.value )
+    
+    formulario.value.producto = ''
+    formulario.value.autocomplete = ''
+    detalleProducto.value = {}
+    setTimeout(() => {
+      const autocompleteComponent = refAutocomplete.value
+      const domElement = autocompleteComponent.$el // Accede al elemento DOM subyacente
+ 
+      const inputElement = domElement.querySelector('input')
+      if (inputElement) {
+        document.getElementById(inputElement.id).value = null
+      }
+    }, 100)
+  }
+}
+ 
+const agregarSustituto  = item => {
+  itemsGlobal.value = itemsGlobal.value.filter(item => item.tipo_prod !== 'sustituto')
+ 
+  item.cant_pedi = 1
+  itemsGlobal.value.push(item)
+  mostrarSustituto.value = false
+ 
+  liquidarPedido()
+}
+ 
 const selectHandler = async suggestion => {
-  if(suggestion != null){
-    const datos = suggestion.split(" ")
-    const selectedProduct = itemsProductos.value.find(item => item.codigo === datos[0])
-
+  if(suggestion != null) {
+    formulario.value.producto = ''
+ 
+    const selectedProduct = itemsProductos.value.find(item => item.codigo === suggestion)
+ 
     const codigo = selectedProduct.codigo
     const producto = selectedProduct.producto
     const faltante = selectedProduct.faltante
     const precio = selectedProduct.precio
     const pagina = selectedProduct.pagina
-
+ 
     if (faltante === 1) {
       appStore.mensajeSnackbar(`${codigo} ${producto} es un faltante anunciado.`)
       appStore.color("error")
       appStore.snackbar(true)
-
-      formulario.value.autocomplete = null
+ 
+      formulario.value.autocomplete = ''
+      
     } else {
       const productosJson = itemsGlobal.value
-
+ 
       let estado = 0
       if (productosJson.length > 0) {
         for (let i = 0; i < productosJson.length; i += 1) {
@@ -398,58 +435,43 @@ const selectHandler = async suggestion => {
           appStore.color("error")
           appStore.snackbar(true)
         } else {
-          const detalle = {
+          detalleProducto.value = {
             codi_vent: codigo,
             nomb_prod: producto,
             prec_vent: precio,
             nume_pagi: pagina,
             cant_pedi: 1,
+            tipo_prod: 'producto',
           }
-
-          itemsGlobal.value.push(detalle)
+          formulario.value.producto = producto
         }
       } else {
-
-        const detalle = {
+        detalleProducto.value = {
           codi_vent: codigo,
           nomb_prod: producto,
           prec_vent: precio,
           nume_pagi: pagina,
           cant_pedi: 1,
+          tipo_prod: 'producto',
         }
-
-        itemsGlobal.value.push(detalle)
+        formulario.value.producto = producto
       }
-
-      formulario.value.autocomplete = null
-
-      const autocomplete = document.getElementById("formulario-autocomplete")
-      
-      setTimeout(() => {
-        autocomplete.blur()
-      }, 50)
-
-      setTimeout(() => {
-        autocomplete.focus()
-      }, 100)
-
     }
   }
-  
 }
-
-const proc_come_grab_pedi_conf = async () => {
+ 
+const confirmarGrabarPedido = async () => {
   try {
-    appStore.mensaje('Generando proceso.')
+    appStore.mensaje('Grabando pedido.')
     appStore.loading(true)
-
-    const data = await $api(`/api/sami/v1/procesos/grabar-pedido/guarda_pedigz`, {
+ 
+    const data = await $api(`/hmvc/ventas_v1/pedido/guarda_pedigz`, {
       method: "post",
       body: {
-        nroDocumento: (formulario.value.nroDocumento === null) ? '' : formulario.value.nroDocumento,
+        "nume_iden": (formulario.value.nroDocumento === null) ? '' : formulario.value.nroDocumento,
       },
     })
-
+ 
     const htmlMensaje = `<div class='row mt-1'>
                             <div class='col text-left'>
                               <strong>Documento :</strong> ${data.message.nume_iden}
@@ -465,7 +487,7 @@ const proc_come_grab_pedi_conf = async () => {
                             <strong>Grabación :</strong> ${data.message.nume_grab}
                           </div>
                       </div>`
-
+ 
     Swal.fire({
       title: 'Pedido grabado.',
       html: htmlMensaje,
@@ -479,9 +501,9 @@ const proc_come_grab_pedi_conf = async () => {
         cancelButton: 'v-btn bg-error ml-1',
       },
     })
-
+ 
     onLimpiar()
-
+ 
   } catch (error) {
     console.log(error)
     if (typeof error.response != "undefined") {
@@ -493,7 +515,7 @@ const proc_come_grab_pedi_conf = async () => {
             errorNroDocumento.value = true
             errorMensajeNroDocumento.value = data[key]
           }
-
+ 
           if (key == 'productos') {
             appStore.mensajeSnackbar(data[key])
             appStore.color("error")
@@ -509,7 +531,7 @@ const proc_come_grab_pedi_conf = async () => {
   }
 }
 </script>
-
+ 
 <template>
   <div>
     <AppPlantilla>
@@ -525,26 +547,6 @@ const proc_come_grab_pedi_conf = async () => {
                 <VRow>
                   <VCol
                     cols="12"
-                    md="2"
-                  >
-                    <AppSelect
-                      v-model="formulario.zona"
-                      :items="zonaOptions"
-                      label="Zona"
-                      placeholder="Zona"
-                      :disabled="formulario.isZona"
-                      item-title="text"
-                      item-value="id"
-                      :error="errorZona"
-                      :error-messages="errorMensajeZona"
-                      @update:model-value="obtenerProductos"
-                    />
-                  </VCol>
-                </VRow>
-
-                <VRow>
-                  <VCol
-                    cols="12"
                     md="3"
                   >
                     <AppTextField
@@ -553,7 +555,6 @@ const proc_come_grab_pedi_conf = async () => {
                       type="text"
                       placeholder="Ingresar nro documento"
                       autocomplete="off"
-                      :disabled="formulario.isNroDocumento"
                       :error="errorNroDocumento"
                       :error-messages="errorMensajeNroDocumento"
                       @keypress="proc_come_grab_pedi_bind_nume"
@@ -561,7 +562,7 @@ const proc_come_grab_pedi_conf = async () => {
                       @keydown.tab="obtenerEstadoPedidogz"
                     />
                   </VCol>
-
+ 
                   <VCol
                     cols="12"
                     md="5"
@@ -572,10 +573,10 @@ const proc_come_grab_pedi_conf = async () => {
                       type="text"
                       placeholder=""
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
-
+ 
                   <VCol
                     cols="12"
                     md="2"
@@ -586,10 +587,10 @@ const proc_come_grab_pedi_conf = async () => {
                       type="text"
                       placeholder=""
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
-
+ 
                   <VCol
                     cols="12"
                     md="2"
@@ -600,29 +601,41 @@ const proc_come_grab_pedi_conf = async () => {
                       type="text"
                       placeholder=""
                       autocomplete="off"
-                      disabled="true"
+                      disabled
                     />
                   </VCol>
                 </VRow>
-
+ 
                 <VRow>
-                  <VCol>
+                  <VCol cols="2">
                     <AppAutocomplete
-                      id="formulario-autocomplete"
+                      id="idAutocomplete"
                       ref="refAutocomplete"
                       v-model="formulario.autocomplete"
-                      label="Ingresar producto"
+                      label="Código producto"
                       :items="arrayDatos"
-                      placeholder="Ingresar producto"
+                      placeholder=""
                       :disabled="formulario.isAutocomplete"
-                      item-text="producto"
+                      item-text="codigo"
                       item-value="codigo"
+                      clear-on-select
+                      @keydown.enter="agregarProducto"
                       @update:model-value="selectHandler"
+                    />
+                  </VCol>
+                  <VCol cols="10">
+                    <AppTextField
+                      v-model="formulario.producto"
+                      label="Descripcion producto"
+                      type="text"
+                      placeholder=""
+                      autocomplete="off"
+                      disabled
                     />
                   </VCol>
                 </VRow>
               </VCardText>
-
+ 
               <VCardText>
                 <VDataTable
                   :headers="headers"
@@ -647,13 +660,15 @@ const proc_come_grab_pedi_conf = async () => {
                       />
                     </VBtn>
                   </template>
-
+ 
                   <template #item.cant_pedi="row">
                     <VTextField
+                      v-if="row.item.tipo_prod === 'producto'"
                       v-model="row.item.cant_pedi"
                       type="number"
                       @keypress="proc_come_grab_pedi_bind_nume"
                     />
+                    <span v-else> {{ row.item.cant_pedi }} </span>
                   </template>
           
                   <template #bottom />
@@ -664,5 +679,6 @@ const proc_come_grab_pedi_conf = async () => {
         </VRow>
       </template>
     </AppPlantilla>
+    
   </div>
 </template>

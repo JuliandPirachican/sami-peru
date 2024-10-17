@@ -106,15 +106,15 @@ const initConfiguracion = () => {
       rece_desc: '',
       porc_conc: '0.00 %',
     }, 
-    {
-      nomb_conc: 'Retención',
-      line_desc: '',
-      obje_conc: '0',
-      falt_desc: '',
-      fact_conc: '0',
-      rece_desc: '',
-      porc_conc: '0.00 %',
-    },
+    // {
+    //   nomb_conc: 'Retención',
+    //   line_desc: '',
+    //   obje_conc: '0',
+    //   falt_desc: '',
+    //   fact_conc: '0',
+    //   rece_desc: '',
+    //   porc_conc: '0.00 %',
+    // },
     {
       nomb_conc: 'Pedidos Totales',
       line_desc: '',
@@ -256,12 +256,12 @@ const initConfiguracion = () => {
       cant_conc: '0',
       porc_conc: '',
     },
-    {
-      cons_fila: '5',
-      nomb_conc: 'Pedidos facturados de retencion',
-      cant_conc: '0',
-      porc_conc: '',
-    },
+    // {
+    //   cons_fila: '5',
+    //   nomb_conc: 'Pedidos facturados de retencion',
+    //   cant_conc: '0',
+    //   porc_conc: '',
+    // },
     {
       cons_fila: '6',
       nomb_conc: 'Pedidos facturados de incorporacion',

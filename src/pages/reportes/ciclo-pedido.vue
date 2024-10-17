@@ -131,6 +131,7 @@ const sourceGlobal = ref({
     { name: 'fech_pedi', type: 'string' },
     { name: 'fech_fact', type: 'string' },
     { name: 'fech_emba', type: 'string' },
+    { name: 'fech_desp', type: 'string' },
     { name: 'fech_reci', type: 'string' },
   ],
   datatype: 'json',
