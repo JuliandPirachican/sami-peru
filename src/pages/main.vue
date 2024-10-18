@@ -56,7 +56,7 @@ const cierreData = ref([
     color2: 'secondary',
   },
   {
-    titulo: 'Mi cierre - Retención',
+    titulo: 'Mi cierre - Venta Recepcionada',
     objetivo: '0',
     facturado: '0',
     pendiente: '0',
@@ -189,7 +189,7 @@ const onLimpiar = () => {
       color2: 'secondary',
     },
     {
-      titulo: 'Mi cierre - Retención',
+      titulo: 'Mi cierre - Venta Recepcionada',
       objetivo: '0',
       facturado: '0',
       pendiente: '0',

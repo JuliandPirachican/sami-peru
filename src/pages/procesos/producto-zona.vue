@@ -35,7 +35,7 @@ const cabecera = computed(() => {
   return [
     { title: 'Campaña',     key: 'codi_camp' },
     { title: 'Zona',        key: 'codi_zona' },
-    { title: 'Sector',      key: 'codi_sect' },
+    { title: 'Cod Lide',      key: 'codi_sect' },
     { title: 'Código',      key: 'codi_prod' },
     { title: 'Producto',    key: 'nomb_prod' },
     { title: 'Doc. ident.', key: 'nume_iden' },
@@ -67,7 +67,7 @@ const columnaGlobal = computed(() => {
       editable: false,
     },
     {
-      text: 'Sector',
+      text: 'Cod Lide',
       dataField: 'codi_sect',
       width: (mobile.value)? null :'10%',
       align: 'center',
