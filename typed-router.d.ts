@@ -99,6 +99,7 @@ declare module 'vue-router/auto/routes' {
     'reportes-proyeccion-region': RouteRecordInfo<'reportes-proyeccion-region', '/reportes/proyeccion-region', Record<never, never>, Record<never, never>>,
     'reportes-proyeccion-zona': RouteRecordInfo<'reportes-proyeccion-zona', '/reportes/proyeccion-zona', Record<never, never>, Record<never, never>>,
     'reportes-referidos': RouteRecordInfo<'reportes-referidos', '/reportes/referidos', Record<never, never>, Record<never, never>>,
+    'reportes-repo-cons-asig-sect': RouteRecordInfo<'reportes-repo-cons-asig-sect', '/reportes/repo-cons-asig-sect', Record<never, never>, Record<never, never>>,
     'reportes-repo-lide-refe': RouteRecordInfo<'reportes-repo-lide-refe', '/reportes/repo-lide-refe', Record<never, never>, Record<never, never>>,
     'reportes-reporte-app-movil': RouteRecordInfo<'reportes-reporte-app-movil', '/reportes/reporte-app-movil', Record<never, never>, Record<never, never>>,
     'reportes-reporte-duproyecta': RouteRecordInfo<'reportes-reporte-duproyecta', '/reportes/reporte-duproyecta', Record<never, never>, Record<never, never>>,

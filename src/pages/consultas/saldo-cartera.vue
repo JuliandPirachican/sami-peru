@@ -41,7 +41,9 @@ const onGenerar = async () => {
 
     const response = await $api(`/api/sami/v1/administracion/permisos`, {
       method: "get",
-    })
+    });
+
+ 
 
     items.value = response.data.data_glob
 
@@ -117,7 +119,10 @@ const modi_frame= ()=>{
   input_pass.value=decode_info.pass_inca;
   let button_submit=iframedom.getElementsByTagName("button")[0];//button submit form
   button_submit.click();//clic para iniciar sesion
+
+  
 };
+
 
 
 // ^Metodo limpia modulos seleccionados y lista de modulos 
@@ -136,7 +141,10 @@ onMounted(() => {
   appStore.titulo(`Saldo Cartera`)
   onGenerar();
   style_iframe_cgis();
+  
 })
+
+
 </script>
 
 <template>

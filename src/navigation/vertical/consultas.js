@@ -46,4 +46,5 @@ export default [
     subject: 'colombia/proc_tab_cons', 
     action: 'colombia/proc_tab_cons',
   },
+
 ] 

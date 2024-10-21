@@ -47,6 +47,13 @@ export default [
     action: 'colombia/repo_lide_refe', 
   },
   { 
+    title: 'Consulta Asignacion Sectores', 
+    to: 'reportes-repo-cons-asig-sect',
+    icon: { icon: 'tabler-world-up' },
+    subject: 'colombia/repo_cons_asig_sect', 
+    action: 'colombia/repo_cons_asig_sect',
+  },
+  { 
     title: 'Distribución', 
     icon: { icon: 'tabler-search' },
     children: [
