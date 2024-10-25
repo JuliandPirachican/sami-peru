@@ -114,7 +114,7 @@ const headers = computed(() => {
       filtertype: 'checkedlist'
     },
     {
-      text: 'Consecutivo Lider',
+      text: 'C.C Lider',
       dataField: 'codi_sect',
       width: '200',
       align: 'center',
@@ -122,7 +122,7 @@ const headers = computed(() => {
       filtertype: 'checkedlist'
     },
     {
-      text: 'Nombre(s) y Apellido(s)',
+      text: 'Nombre Lider',
       dataField: 'nomb_terc',
       width: '200',
       align: 'center',

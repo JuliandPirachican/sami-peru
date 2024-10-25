@@ -1243,7 +1243,7 @@ const initConfiguracion = () => {
       porc_conc: `COP. 0.00`,
     },
     {
-      nomb_conc: 'Cobranza 21 días',
+      nomb_conc: 'Cobranza 31 días',
       line_desc: '',
       obje_conc: `COP. 0.00`,
       falt_desc: '',
@@ -1274,25 +1274,25 @@ const initConfiguracion = () => {
   itemsDetalle.value = [
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención consecutivas',
+      nomb_conc: 'Pedidos pendientes de retención ciclo de nuevas 2do pedido',
       cant_conc: '0',
       porc_conc: '',
     },
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención consecutivas 2do pedido',
+      nomb_conc: 'Pedidos pendientes de retención ciclo de nuevas 3er pedido',
       cant_conc: '0',
       porc_conc: '',
     },
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención consecutivas 3er pedido',
+      nomb_conc: 'Pedidos pendientes de retención ciclo de nuevas 4to pedido',
       cant_conc: '0',
       porc_conc: '',
     },
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención consecutivas 4to pedido',
+      nomb_conc: 'Pedidos pendientes de retención ciclo de nuevas 5to pedido',
       cant_conc: '0',
       porc_conc: '',
     },
@@ -1316,13 +1316,13 @@ const initConfiguracion = () => {
     },
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención reingresos',
+      nomb_conc: 'Pedidos pendientes de retención',
       cant_conc: '0',
       porc_conc: '',
     },
     {
       cons_fila: '1',
-      nomb_conc: 'Pedidos pendientes de retención',
+      nomb_conc: 'Pedidos pendientes de activas',
       cant_conc: '0',
       porc_conc: '0.00 %',
     },
@@ -1340,7 +1340,7 @@ const initConfiguracion = () => {
     },
     {
       cons_fila: '4',
-      nomb_conc: 'Retenidos de retención',
+      nomb_conc: 'Retenidos de activas',
       cant_conc: '0',
       porc_conc: '',
     },

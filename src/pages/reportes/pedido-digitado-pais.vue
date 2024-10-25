@@ -306,7 +306,7 @@ const initConfiguracion = () => {
       porc_conc: `COP. 0.00`,
     },
     {
-      nomb_conc: 'Cobranza 21 días',
+      nomb_conc: 'Cobranza 31 días',
       line_desc: '',
       obje_conc: `COP. 0.00`,
       falt_desc: '',
@@ -809,13 +809,7 @@ const limpiarValidacion = () => {
                       <th>TOTAL</th>
                       <th>% CUMP.</th>
                       <th>% ACTI.</th>
-                      <!-- <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>TOTAL</th>
-                      <th>% CUMP.</th> -->
-                      <!-- <th>CAPI.</th> -->
+
                     </tr>
                   </template>
                   <template #bottom />
