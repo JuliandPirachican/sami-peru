@@ -18,108 +18,25 @@ const formulario = ref({
   campana: null,
 })
 
-const headers1 = computed(() => {
-  return [
-    {
-      key: 'nume_iden',
-      title: 'Nro identificación',
-      sortable: true,
-    },
-    {
-      key: 'nomb_terc',
-      title: 'Nombre',
-      sortable: true,
-    },
-    {
-      key: 'apel_terc',
-      title: 'Apellido',
-      sortable: true,
-    },
-    {
-      key: 'codi_zona',
-      title: 'Zona',
-      sortable: true,
-    },
-    {
-      key: 'codi_sect',
-      title: 'Sector',
-      sortable: true,
-    },
-    {
-      key: 'tele_terc',
-      title: 'Teléfono',
-      sortable: true,
-    },
-    {
-      key: 'celu_ter1',
-      title: 'Celular',
-      sortable: true,
-    },
-    {
-      key: 'dire_terc',
-      title: 'Dirección',
-      sortable: true,
-    },
-    {
-      key: 'fech_visi',
-      title: 'Fecha',
-      sortable: true,
-    },
-    {
-      key: 'tipo_usua',
-      title: 'Tipo',
-      sortable: true,
-    },
-    {
-      key: 'valo_perf',
-      title: 'Perfil',
-      sortable: true,
-    },
-    {
-      key: 'esta_acti',
-      title: 'Status',
-      sortable: true,
-    },
-    {
-      key: 'obse_visi',
-      title: 'Observación',
-      sortable: true,
-    },
-    {
-      key: 'obse_deta',
-      title: 'Detalle',
-      sortable: true,
-    },
-    {
-      key: 'dist_visi',
-      title: 'Distancia',
-      sortable: true,
-    },
-    {
-      key: 'acti_esta',
-      title: 'Efectividad',
-      sortable: true,
-    },
-    {
-      key: 'celu_terc',
-      title: 'Celular 2',
-      sortable: true,
-    },
-    {
-      key: 'emai_terc',
-      title: 'Correo electrónico',
-      sortable: true,
-    },
-    {
-      key: 'esta_pedi',
-      title: 'Pasa pedido',
-      sortable: true,
-    },
-  ]
-});
 
 const headers = computed(() => {
   return [
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
     {
       text: 'Nro. Identificación',
       dataField: 'nume_iden',
@@ -142,22 +59,6 @@ const headers = computed(() => {
       width: '250',
       align: 'center',
       cellsalign: 'center',
-    },
-    {
-      text: 'Zona',
-      dataField: 'codi_zona',
-      width: '150',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
-    },
-    {
-      text: 'Sector',
-      dataField: 'codi_sect',
-      width: '150',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
     },
     {
       text: 'Celular',
@@ -211,28 +112,21 @@ const headers = computed(() => {
       cellsalign: 'center',
     },
     {
-      text: 'Detalle',
+      text: 'Tipo  Visita',
       dataField: 'obse_deta',
       width: '150',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: 'Distancia',
-      dataField: 'dist_visi',
+      text: 'Pasa Pedido',
+      dataField: 'esta_pedi',
       width: '150',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: 'Efectividad',
-      dataField: 'acti_esta',
-      width: '150',
-      align: 'center',
-      cellsalign: 'center',
-    },
-    {
-      text: 'Celular 2',
+      text: 'Celular App',
       dataField: 'celu_terc',
       width: '150',
       align: 'center',
@@ -246,8 +140,17 @@ const headers = computed(() => {
       cellsalign: 'center',
     },
     {
-      text: 'Pasa Pedido',
-      dataField: 'esta_pedi',
+      text: 'Distancia',
+      dataField: 'dist_visi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    
+ 
+    {
+      text: 'Distancia < 50M',
+      dataField: 'acti_esta',
       width: '150',
       align: 'center',
       cellsalign: 'center',

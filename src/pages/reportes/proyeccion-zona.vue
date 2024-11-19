@@ -5363,7 +5363,7 @@ watch(selectedColumna, async (nuevaVariable, antiguaVariable) => {
             </VCard>
           </VCol>
 
-          <VCol cols="12">
+          <!-- <VCol cols="12">
             <VCard title="Variables">
               <VCardText>
                 <VRadioGroup
@@ -5403,7 +5403,7 @@ watch(selectedColumna, async (nuevaVariable, antiguaVariable) => {
                 </VRadioGroup>
               </VCardText>
             </VCard>
-          </VCol>
+          </VCol> -->
 
           <VCol cols="12">
             <VCard title="Lista de proyección">

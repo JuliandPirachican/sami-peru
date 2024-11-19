@@ -1,4 +1,17 @@
 <!-- eslint-disable camelcase -->
+<style >
+.jqx-grid-cell{
+  background-color:white ;
+}
+
+.jqx-grid-statusbar  .jqx-grid-cell{
+  border: 1px solid #7272729f !important; 
+  background-color: white;
+
+} 
+
+</style>
+
 <script setup>
 import { useAppStore } from '@/stores/app';
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
@@ -48,7 +61,7 @@ const headersGlobal = computed(() => {
       pinned: true
     },
     {
-      text: 'Sector',
+      text: 'Codigo Lider',
       dataField: 'codi_sect',
       width: '150',
       align: 'center',
@@ -73,7 +86,7 @@ const headersGlobal = computed(() => {
       filtertype: 'checkedlist', 
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+          return  (aggregates['sum']!=undefined) ?  "<div >"+'T:'+aggregates['sum']+"</div>":"<div >"+'T:' +"0"+"</div>";
       }
     },
     {
@@ -251,7 +264,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      columngroup: 'Inventory',
+      columngroup: 'vent_line',
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -264,7 +277,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      columngroup: 'Inventory',
+      columngroup: 'vent_line',
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -277,6 +290,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      columngroup:"vent_recep",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -289,6 +303,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      columngroup:"vent_recep",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -301,6 +316,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      columngroup:"vent_fact",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -313,6 +329,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      columngroup:"vent_fact",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -325,6 +342,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      columngroup:"falt",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -336,7 +354,8 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      columngroup:"falt"
     },
 
     {
@@ -346,6 +365,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      columngroup:"unid",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -358,6 +378,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      columngroup:"unid",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -370,6 +391,7 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      columngroup:"unid",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -417,8 +439,13 @@ const headersGlobal = computed(() => {
 });
 
 const columnGroups= [
-        { text: 'Inventory Details', align: 'center', name: 'Inventory' }  // Columna padre
-      ];
+    { text: 'Venta Linea', align: 'center', name: 'vent_line' }
+  , { text: 'Venta Recepcionada', align: 'center', name: 'vent_recep'}
+  , { text: 'Venta Facturada', align: 'center', name: 'vent_fact'}
+  , { text: 'Faltante', align: 'center', name: 'falt'}
+  , { text: 'Unidades', align: 'center', name: 'unid'}
+];
+
 const sourceGlobal = ref({
   localdata: [],
   datafields: [{name: "codi_area",type:"string"},
@@ -571,7 +598,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      cellclassname: ' bg-primary-light',
     },
     {
       text: 'Ult. Camp1',
@@ -579,7 +607,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      cellclassname: ' bg-primary-light',
     },
     {
       text: 'Ptos. Azzo. Ult. Camp1',
@@ -587,7 +616,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      cellclassname: ' bg-primary-light',
     },
     {
       text: 'Fact Ult. Camp1',
@@ -595,7 +625,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      cellclassname: ' bg-primary-light',
     },
     {
       text: 'Devo Ult. Camp1',
@@ -603,6 +634,7 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
+      cellclassname: ' bg-primary-light',
       filtertype: 'checkedlist'
     },
     {
@@ -611,7 +643,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      cellclassname: 'bg-primary-light',
     },
     {
       text: 'Ptos. Azzo. Ult. Camp2',
@@ -619,7 +652,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      cellclassname: 'text-white bg-success',
     },
     {
       text: 'Fact Ult. Camp2',
@@ -627,7 +661,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      cellclassname: 'text-white bg-success',
     },
     {
       text: 'Devo Ult. Camp2',
@@ -635,72 +670,73 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      cellclassname: 'text-white bg-success',
     },
-    {
-      text: 'Ult. Camp3',
-      dataField: 'codi_camp_3',
-      width: '100',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
-    },
-    {
-      text: 'Ptos. Azzo. Ult. Camp3',
-      dataField: 'tota_publ_3',
-      width: '100',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
-    },
-    {
-      text: 'Fact Ult. Camp3',
-      dataField: 'tota_fact_3',
-      width: '100',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
-    },
-    {
-      text: 'Devo Ult. Camp3',
-      dataField: 'tota_devo_3',
-      width: '100',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
-    },
-    {
-      text: 'Ult. Camp4',
-      dataField: 'codi_camp_4',
-      width: '100',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
-    },
-    {
-      text: 'Ptos. Azzo. Ult. Camp4',
-      dataField: 'tota_publ_4',
-      width: '100',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
-    },
-    {
-      text: 'Fact Ult. Camp4',
-      dataField: 'tota_fact_4',
-      width: '100',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
-    },
-    {
-      text: 'Devo Ult. Camp4',
-      dataField: 'tota_devo_4',
-      width: '100',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist'
-    },
+    // {
+    //   text: 'Ult. Camp3',
+    //   dataField: 'codi_camp_3',
+    //   width: '100',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
+    // {
+    //   text: 'Ptos. Azzo. Ult. Camp3',
+    //   dataField: 'tota_publ_3',
+    //   width: '100',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
+    // {
+    //   text: 'Fact Ult. Camp3',
+    //   dataField: 'tota_fact_3',
+    //   width: '100',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
+    // {
+    //   text: 'Devo Ult. Camp3',
+    //   dataField: 'tota_devo_3',
+    //   width: '100',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
+    // {
+    //   text: 'Ult. Camp4',
+    //   dataField: 'codi_camp_4',
+    //   width: '100',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
+    // {
+    //   text: 'Ptos. Azzo. Ult. Camp4',
+    //   dataField: 'tota_publ_4',
+    //   width: '100',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
+    // {
+    //   text: 'Fact Ult. Camp4',
+    //   dataField: 'tota_fact_4',
+    //   width: '100',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
+    // {
+    //   text: 'Devo Ult. Camp4',
+    //   dataField: 'tota_devo_4',
+    //   width: '100',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist'
+    // },
     {
       text: 'Estado Pedido',
       dataField: 'esta_pedi',
@@ -1339,10 +1375,11 @@ const itemsDetalleVisible = computed(() => {
                   ref="refGridGlobal"
                   theme="material"
                   width="100%"
-                  :height="450"
+                  :height="325"
                   :columns="headersGlobal"
                   :source="adaptadorGlobal"
                   :localization="localizationGlobal"
+                  :columngroups="columnGroups"
                   columnsresize
                   columnsautoresize
                   enableanimations
@@ -1451,23 +1488,5 @@ const itemsDetalleVisible = computed(() => {
   </div>
 </template>
 
-<style scoped>
-/* Estilo para la barra de estado (statusbar) */
-.jqx-grid-statusbar {
-  border-top: 2px solid #333;  /* Borde superior de la barra de estado */
-  background-color: #f9f9f9;  /* Fondo opcional */
-  padding: 5px;
-}
 
-/* Bordes entre las celdas de la barra de estado (aggregates) */
-.jqx-grid-statusbar .jqx-grid-statusbar-cell {
-  border-left: 1px solid #ccc;  /* Borde izquierdo entre las celdas de agregados */
-  padding: 5px;
-}
-
-/* Borde derecho de la última celda en la barra de estado */
-.jqx-grid-statusbar .jqx-grid-statusbar-cell:last-child {
-  border-right: 1px solid #ccc;
-}
-</style>
 

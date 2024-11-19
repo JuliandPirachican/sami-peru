@@ -27,10 +27,14 @@ export const themes = {
       'grey-700': '#616161',
       'grey-800': '#424242',
       'grey-900': '#212121',
-      'primary-light': '#FFFDE7',
+      // 'primary-light': '#FFFDE7',
       'perfect-scrollbar-thumb': '#DBDADE',
       'skin-bordered-background': '#fff',
       'skin-bordered-surface': '#fff',
+      'primary-light': '#FFFDE7',
+      'error-light': '#FDC0C0',
+      'success-light': '#B2FBDB',
+      'info-light': '#81BEF7',
     },
     variables: {
       'code-color': '#d400ff',
@@ -88,6 +92,10 @@ export const themes = {
       'perfect-scrollbar-thumb': '#4A5072',
       'skin-bordered-background': '#2f3349',
       'skin-bordered-surface': '#2f3349',
+      'primary-light': '#FFFDE7',
+      'error-light': '#FDC0C0',
+      'success-light': '#B2FBDB',
+      'info-light': '#81BEF7'
     },
     variables: {
       'code-color': '#d400ff',
