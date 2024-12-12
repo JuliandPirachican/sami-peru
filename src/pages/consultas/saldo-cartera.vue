@@ -41,7 +41,9 @@ const onGenerar = async () => {
 
     const response = await $api(`/api/sami/v1/administracion/permisos`, {
       method: "get",
-    })
+    });
+
+ 
 
     items.value = response.data.data_glob
 
@@ -117,7 +119,10 @@ const modi_frame= ()=>{
   input_pass.value=decode_info.pass_inca;
   let button_submit=iframedom.getElementsByTagName("button")[0];//button submit form
   button_submit.click();//clic para iniciar sesion
+
+  
 };
+
 
 
 // ^Metodo limpia modulos seleccionados y lista de modulos 
@@ -126,11 +131,20 @@ const onLimpiar = () => {
   selected.value = []
 }
 
+
+/**
+ * url del embebido
+ */
+ const full_url_embed=$embed+"desarrollo/cgis/sald_cart/";
+
 onMounted(() => {
   appStore.titulo(`Saldo Cartera`)
   onGenerar();
   style_iframe_cgis();
+  
 })
+
+
 </script>
 
 <template>
@@ -142,7 +156,11 @@ onMounted(() => {
             <VCard title="Saldo Cartera">
               <VCardText>
                 <v-card>
-                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet.dupree.co/desarrollo/cgis/sald_cart/" frameborder="0"></iframe>
+                  <iframe id="iframe_option"
+                           ref="iframe_camb_clav" 
+                           @load="modi_frame" 
+                           :src=full_url_embed
+                           frameborder="0"></iframe>
                 </v-card>
               </VCardText>
             </VCard>

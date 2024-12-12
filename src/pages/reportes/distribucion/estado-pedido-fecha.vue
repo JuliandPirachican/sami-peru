@@ -1,6 +1,7 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
-import { VDataTable } from 'vuetify/labs/VDataTable';
+import { EncryptStorage } from 'encrypt-storage';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 
 definePage({
   meta: {
@@ -9,7 +10,13 @@ definePage({
   },
 })
 
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
+const refGridGlobal=ref()
 
 const formulario = ref({
   campana: null,
@@ -35,7 +42,7 @@ const errorMensajeIdentificacion = ref('')
 
 const items = ref([])
 
-const headers = computed(() => {
+const headers1 = computed(() => {
   return [
     { key: 'cons_fila', title: 'Item' },
     { key: 'codi_camp', title: 'Campaña' },
@@ -51,6 +58,124 @@ const headers = computed(() => {
     { key: 'fech_devo', title: 'Devolución' },
   ]
 })
+
+const headers = computed(() => {
+  return [
+    {
+      text: 'Item',
+      dataField: 'cons_fila',
+      width: '50',
+      align: 'center',
+      cellsalign: 'center',
+      // filtertype: 'checkedlist'
+    },
+    {
+      text: 'Campaña',
+      dataField: 'codi_camp',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Nro. Iden',
+      dataField: 'nume_iden',
+      width: '170',
+      align: 'center',
+      cellsalign: 'center'
+      // , aggregates: ['count']
+    },
+    {
+      text: 'Nombre(s) y Apellido(s)',
+      dataField: 'nomb_comp',
+      width: '250',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Pedido',
+      dataField: 'nume_fact',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Picking',
+      dataField: 'fech_fact',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Transito',
+      dataField: 'fech_desp',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Reparto',
+      dataField: 'fech_asig',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Entregado',
+      dataField: 'fech_entr',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Devolución',
+      dataField: 'fech_devo',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    
+  ]
+});
+
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'cons_fila', type: 'string' },
+    { name: 'codi_camp', type: 'string' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'codi_sect', type: 'string' },
+    { name: 'nume_iden', type: 'integer' },
+    { name: 'nomb_comp', type: 'string' },
+    { name: 'nume_fact', type: 'string' },
+    { name: 'fech_fact', type: 'string' },
+    { name: 'fech_desp', type: 'string' },
+    { name: 'fech_asig', type: 'string' },
+    { name: 'fech_entr', type: 'string' },
+    { name: 'fech_devo', type: 'string' },
+  ],
+  datatype: 'json',
+})
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const localization =  {
+    filterselectstring: ' ',
+};
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Distribucion / Estado pedido fecha`)
@@ -92,6 +217,9 @@ const obtenerZona = async () => {
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
       method: "get",
+      query: {
+        codigo: userData.codi_perf,
+      },
     })
 
     const itemZona = data.data_glob
@@ -164,6 +292,9 @@ const onGenerar = async () => {
     })
 
     items.value = data.data_glob
+    sourceGlobal.value.localdata = data.data_glob
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -200,6 +331,7 @@ const onLimpiar= async () => {
   }
 
   items.value = []
+  refGridGlobal.value.updatebounddata('cells')
 }
 
 const onExcel = async () => {
@@ -316,7 +448,7 @@ const limpiarValidacion = () => {
           <VCol cols="12">
             <VCard title="Lista de pedidos">
               <VCardText>
-                <VDataTable
+                <!-- <VDataTable
                   :headers="headers"
                   :items="items"
                   :items-per-page="-1"
@@ -326,7 +458,31 @@ const limpiarValidacion = () => {
                   height="400"
                 >
                   <template #bottom />
-                </VDataTable>
+                </VDataTable> -->
+
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headers"
+                  :source="adaptadorGlobal"
+                  :localization="localization"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </VCard>
           </VCol>

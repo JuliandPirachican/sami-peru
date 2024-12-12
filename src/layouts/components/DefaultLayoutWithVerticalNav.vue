@@ -11,6 +11,7 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
  * se agrega modo oscuro a sami 
  */
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
+import NavSearchBar from '@/layouts/components/NavSearchBar.vue'
 
 
 const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
@@ -71,6 +72,7 @@ watch([
             {{ userData.nomb_empl }} {{ userData.apel_empl }}
           </div>
         </div>
+        <NavSearchBar/>
         <!-- se pone modo oscuro en sami -->
         <NavbarThemeSwitcher />
         <UserProfile />

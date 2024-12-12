@@ -1,119 +1,24 @@
 <script setup>
-import { useConfigStore } from '@core/stores/config'
-import Shepherd from 'shepherd.js'
-import { withQuery } from 'ufo'
+import { useConfigStore } from '@core/stores/config';
+import is from '@sindresorhus/is';
+import { EncryptStorage } from 'encrypt-storage';
+import Shepherd from 'shepherd.js';
+
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
 
 defineOptions({
   // 👉 Is App Search Bar Visible
   inheritAttrs: false,
 })
 
+const menu = encryptStorage.getItem('menu')
 const configStore = useConfigStore()
 const isAppSearchBarVisible = ref(false)
 
 // 👉 Default suggestions
-const suggestionGroups = [
-  {
-    title: 'Popular Searches',
-    content: [
-      {
-        icon: 'tabler-chart-donut',
-        title: 'Analytics',
-        url: { name: 'dashboards-analytics' },
-      },
-      {
-        icon: 'tabler-chart-bubble',
-        title: 'CRM',
-        url: { name: 'dashboards-crm' },
-      },
-      {
-        icon: 'tabler-file',
-        title: 'Landing Page',
-        url: { name: 'front-pages-landing-page' },
-      },
-      {
-        icon: 'tabler-users',
-        title: 'User List',
-        url: { name: 'apps-user-list' },
-      },
-    ],
-  },
-  {
-    title: 'Apps & Pages',
-    content: [
-      {
-        icon: 'tabler-calendar',
-        title: 'Calendar',
-        url: { name: 'apps-calendar' },
-      },
-      {
-        icon: 'tabler-shopping-cart',
-        title: 'ECommerce Product',
-        url: { name: 'apps-ecommerce-product-list' },
-      },
-      {
-        icon: 'tabler-school',
-        title: 'Academy',
-        url: { name: 'apps-academy-dashboard' },
-      },
-      {
-        icon: 'tabler-truck',
-        title: 'Logistic Fleet',
-        url: { name: 'apps-logistics-fleet' },
-      },
-    ],
-  },
-  {
-    title: 'User Interface',
-    content: [
-      {
-        icon: 'tabler-letter-a',
-        title: 'Typography',
-        url: { name: 'pages-typography' },
-      },
-      {
-        icon: 'tabler-square',
-        title: 'Tabs',
-        url: { name: 'components-tabs' },
-      },
-      {
-        icon: 'tabler-map',
-        title: 'Tour',
-        url: { name: 'extensions-tour' },
-      },
-      {
-        icon: 'tabler-keyboard',
-        title: 'Statistics',
-        url: { name: 'pages-cards-card-statistics' },
-      },
-    ],
-  },
-  {
-    title: 'Popular Searches',
-    content: [
-      {
-        icon: 'tabler-list',
-        title: 'Select',
-        url: { name: 'forms-select' },
-      },
-      {
-        icon: 'tabler-currency-dollar',
-        title: 'Payment',
-        url: { name: 'front-pages-payment' },
-      },
-      {
-        icon: 'tabler-calendar',
-        title: 'Date & Time Picker',
-        url: { name: 'forms-date-time-picker' },
-      },
-      {
-        icon: 'tabler-home',
-        title: 'Property Listing Wizard',
-        url: { name: 'wizard-examples-property-listing' },
-      },
-    ],
-  },
-]
+const suggestionGroups = menu
 
 // 👉 No Data suggestion
 const noDataSuggestions = [
@@ -142,15 +47,32 @@ const router = useRouter()
 const searchResult = ref([])
 
 const fetchResults = async () => {
-  const { data } = await useApi(withQuery('/app-bar/search', { q: searchQuery.value }))
 
-  searchResult.value = data.value
+  const q = is.string(searchQuery.value) ? searchQuery.value : undefined
+  const queryLowered = (q ?? '').toString().toLowerCase()
+  const filteredSearchData = []
+
+  menu.forEach(item => { 
+    if (item.children) {
+      const matchingChildren = item.children.filter(child => child.title.toLowerCase().includes(queryLowered))
+      if (matchingChildren.length > 0) {
+        const parentCopy = { ...item }
+        if (matchingChildren.length > 5)
+          parentCopy.children = matchingChildren.slice(0, 5)
+        else
+          parentCopy.children = matchingChildren
+        filteredSearchData.push(parentCopy)
+      }
+    }  
+  })
+  searchResult.value = filteredSearchData
+  
 }
 
 watch(searchQuery, fetchResults)
 
 const redirectToSuggestedOrSearchedPage = selected => {
-  router.push(selected.url)
+  router.push(selected.to)
   isAppSearchBarVisible.value = false
   searchQuery.value = ''
 }
@@ -212,7 +134,7 @@ const LazyAppBarSearch = defineAsyncComponent(() => import('@core/components/App
             </p>
             <VList class="card-list">
               <VListItem
-                v-for="item in suggestion.content"
+                v-for="item in suggestion.children"
                 :key="item.title"
                 link
                 :title="item.title"
@@ -231,25 +153,6 @@ const LazyAppBarSearch = defineAsyncComponent(() => import('@core/components/App
           </VCol>
         </VRow>
       </VCardText>
-    </template>
-    <!-- no data suggestion -->
-    <template #noDataSuggestion>
-      <div class="mt-8">
-        <span class="d-flex justify-center text-disabled">Try searching for</span>
-        <h6
-          v-for="suggestion in noDataSuggestions"
-          :key="suggestion.title"
-          class="app-bar-search-suggestion text-sm font-weight-regular cursor-pointer mt-3"
-          @click="redirectToSuggestedOrSearchedPage(suggestion)"
-        >
-          <VIcon
-            size="20"
-            :icon="suggestion.icon"
-            class="me-3"
-          />
-          <span class="text-sm">{{ suggestion.title }}</span>
-        </h6>
-      </div>
     </template>
     <!-- search result -->
     <template #searchResult="{ item }">

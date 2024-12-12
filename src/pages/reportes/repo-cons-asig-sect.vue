@@ -5,8 +5,8 @@ import { useDisplay } from 'vuetify';
 
 definePage({
   meta: {
-    action: 'colombia/repo_come_lide_gana_zona',
-    subject: 'colombia/repo_come_lide_gana_zona',
+    action: 'colombia/repo_cons_asig_sect',
+    subject: 'colombia/repo_cons_asig_sect',
   },
 })
 
@@ -35,24 +35,28 @@ const headers = computed(() => {
       title: 'Item',
     },
     {
-      key: 'codi_area',
-      title: 'Región',
-    },
-    {
       key: 'codi_zona',
       title: 'Zona',
+    },
+    {
+      key: 'nomb_zona',
+      title: 'Nombre Zona',
     },
     {
       key: 'codi_sect',
       title: 'Sector',
     },
     {
-      key: 'nomb_terc',
-      title: 'Nombre(s) y Apellido(s)',
+      key: 'desc_sect',
+      title: 'Nombre Sector',
     },
     {
-      key: 'desc_prem',
+      key: 'nume_iden',
       title: 'Premio',
+    },
+    {
+      key: 'nomb_terc',
+      title: 'Nombre(s) y Apellido(s)',
     },
   ]
 })
@@ -67,16 +71,16 @@ const columnasGlobal = computed(() => {
       cellsalign: 'center',
     },
     {
-      text: 'Región',
-      dataField: 'codi_area',
+      text: 'Zona',
+      dataField: 'codi_zona',
       width: '65',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: 'Zona',
-      dataField: 'codi_zona',
-      width: '65',
+      text: 'Nombre Zona',
+      dataField: 'nomb_zona',
+      width: '130',
       align: 'center',
       cellsalign: 'center',
     },
@@ -89,16 +93,25 @@ const columnasGlobal = computed(() => {
       filtertype: 'checkedlist',
     },
     {
-      text: 'Nombre(s) y apellido(s)',
-      dataField: 'nomb_terc',
+      text: 'Nombre Sector',
+      dataField: 'desc_sect',
+      width: '130',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+    },
+    {
+      text: 'Numero Identificacion',
+      dataField: 'nume_iden',
+      width: '150',
       align: 'center',
       cellsalign: 'left',
     },
     {
-      text: 'Premio',
-      dataField: 'desc_prem',
-      width: '250',
+      text: 'Nombre(s) y apellido(s)',
+      dataField: 'nomb_terc',
       align: 'center',
+      width: '350',
       cellsalign: 'left',
     },
   ]
@@ -108,11 +121,12 @@ const sourceGlobal = ref({
   localdata: [],
   datafields: [
     { name: 'cons_fila', type: 'string' },
-    { name: 'codi_area', type: 'string' },
     { name: 'codi_zona', type: 'string' },
+    { name: 'nomb_zona', type: 'string' },
     { name: 'codi_sect', type: 'string' },
+    { name: 'desc_sect', type: 'string' },
+    { name: 'nume_iden', type: 'string' },
     { name: 'nomb_terc', type: 'string' },
-    { name: 'desc_prem', type: 'string' },
   ],
   datatype: 'json',
 })
@@ -123,7 +137,7 @@ const refGridGlobal = ref()
 const localization = appStore.localization
 
 onMounted(async () => {
-  appStore.titulo(`Reportes / Lideres ganadoras zona`)
+  appStore.titulo(`Reportes / Consulta Asignacion Sectores`)
   await obtenerCampana()
   await obtenerZona()
 })
@@ -194,17 +208,17 @@ const onGenerar = async () => {
 
     items.value = []
 
-    const { data } = await $api(`/api/sami/v1/reportes/lider-ganadoras-zona`, {
+    const { data } = await $api(`/api/sami/v1/reportes/consulta-asignacion-sector`, {
       method: "get",
       query: {
         campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
       },
     })
+    console.log(data)
+    items.value = data.data_glob
 
-    items.value = data.data
-
-    sourceGlobal.value.localdata =  data.data
+    sourceGlobal.value.localdata =  data.data_glob
     refGridGlobal.value.updatebounddata('cells')
     refGridGlobal.value.refreshfilterrow()
   } catch (error) {
@@ -286,24 +300,9 @@ const onExcel = async () => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Buscar lideres">
+            <VCard title="Buscar Asignaciones">
               <VCardText>
                 <VRow justify="space-between">
-                  <VCol
-                    cols="12"
-                    md="4"
-                  >
-                    <AppSelect
-                      v-model="formulario.campana"
-                      :items="campanaOptions"
-                      label="Campaña"
-                      placeholder="Seleccionar campaña"
-                      item-title="text"
-                      item-value="id"
-                      :error="errorCampana"
-                      :error-messages="errorMensajeCampana"
-                    />
-                  </VCol>
                   <VCol
                     cols="12"
                     md="4"
@@ -325,7 +324,7 @@ const onExcel = async () => {
           </VCol>
 
           <VCol cols="12">
-            <VCard title="Lista de lideres">
+            <VCard title="Listado De Asignaciones">
               <VCardText>
                 <JqxGrid
                   ref="refGridGlobal"

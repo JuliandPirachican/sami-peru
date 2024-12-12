@@ -43,11 +43,11 @@ const uploadInputFormatoRuc = ref()
 const archivoFoto = ref(null)
 
 const tiposOptions = ref([
-  { id: 'dni_ruc',       text: 'Cambio dni por Ruc' },
-  { id: 'ruc_dni',       text: 'Cambio ruc por dni' },
-  { id: 'zona',          text: 'Cambio zona' },
+  { id: 'dni_ruc',       text: 'Cambio De Barrio' },
+  { id: 'ruc_dni',       text: 'Cambio De Ciudad' },
+  { id: 'zona',          text: 'Zona Incorrecta' },
   { id: 'direccion',     text: 'Cambio dirección' },
-  { id: 'celular_email', text: 'Otros: Celular/email' },
+  { id: 'sector',        text: 'Sector Incorrecto' },
 ])
 
 const errorIdentificacion = ref(false)

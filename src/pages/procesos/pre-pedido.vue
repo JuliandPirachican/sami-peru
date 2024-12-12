@@ -128,6 +128,12 @@ const onLimpiar = () => {
   selected.value = []
 }
 
+
+/**
+ * url del embebido
+ */
+ const full_url_embed=$embed+"desarrollo/cgis/pre_pedi/pre_pedi_form.php";
+ 
 onMounted(() => {
   appStore.titulo(`Azzorti Proyecta`)
   onGenerar()
@@ -144,13 +150,12 @@ onMounted(() => {
             <VCard title="Azzorti Proyecta">
               <VCardText>
                 <VCard>
-                  <iframe
-                    id="iframe_option"
-                    ref="iframe_camb_clav"
-                    src="https://intranet.dupree.co/desarrollo/cgis/pre_pedi/pre_pedi_form.php"
-                    frameborder="0"
-                    @load="modi_frame"
-                  />
+                  <iframe id="iframe_option"
+                           ref="iframe_camb_clav" 
+                           @load="modi_frame" 
+                           :src=full_url_embed
+                           frameborder="0">
+                  </iframe>
                 </VCard>
               </VCardText>
             </VCard>

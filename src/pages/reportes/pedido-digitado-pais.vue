@@ -56,22 +56,7 @@ const headersCorte = [
     title: '% Cump.',
     key: 'cump_inco',
   },
-  {
-    title: 'Objetivo',
-    key: 'obje_rete',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rete',
-  },
-  {
-    title: '% Cump.',
-    key: 'cump_rete',
-  },
-  {
-    title: '% Acti.',
-    key: 'acti_rete',
-  },
+
   {
     title: 'Objetivo',
     key: 'obje_tota',
@@ -135,34 +120,7 @@ const headersConsolidado = [
     title: '% Cump.',
     key: 'cump_inco',
   },
-  {
-    title: 'Objetivo',
-    key: 'obje_rete',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rete',
-  },
-  {
-    title: 'Cump. Fact.',
-    key: 'cump_fact_rete',
-  },
-  {
-    title: 'Pend. Fact.',
-    key: 'pend_fact_rete',
-  },
-  {
-    title: 'Total',
-    key: 'tota_rete',
-  },
-  {
-    title: '% Cump.',
-    key: 'cump_rete',
-  },
-  {
-    title: '% Acti.',
-    key: 'acti_rete',
-  },
+
   {
     title: 'Objetivo',
     key: 'obje_tota',
@@ -226,34 +184,34 @@ const headersRegion = [
     title: '% Cump.',
     key: 'cump_inco',
   },
-  {
-    title: 'Objetivo',
-    key: 'obje_rete',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rete',
-  },
-  {
-    title: 'Cump. Fact.',
-    key: 'cump_fact_rete',
-  },
-  {
-    title: 'Pend. Fact.',
-    key: 'pend_fact_rete',
-  },
-  {
-    title: 'Total',
-    key: 'tota_rete',
-  },
-  {
-    title: '% Cump.',
-    key: 'cump_rete',
-  },
-  {
-    title: '% Acti.',
-    key: 'acti_rete',
-  },
+  // {
+  //   title: 'Objetivo',
+  //   key: 'obje_rete',
+  // },
+  // {
+  //   title: 'Facturado',
+  //   key: 'fact_rete',
+  // },
+  // {
+  //   title: 'Cump. Fact.',
+  //   key: 'cump_fact_rete',
+  // },
+  // {
+  //   title: 'Pend. Fact.',
+  //   key: 'pend_fact_rete',
+  // },
+  // {
+  //   title: 'Total',
+  //   key: 'tota_rete',
+  // },
+  // {
+  //   title: '% Cump.',
+  //   key: 'cump_rete',
+  // },
+  // {
+  //   title: '% Acti.',
+  //   key: 'acti_rete',
+  // },
   {
     title: 'Objetivo',
     key: 'obje_tota',
@@ -311,15 +269,15 @@ const initConfiguracion = () => {
       rece_desc: '',
       porc_conc: '0.00 %',
     },
-    {
-      nomb_conc: 'Retención',
-      line_desc: '',
-      obje_conc: '0',
-      falt_desc: '',
-      fact_conc: '0',
-      rece_desc: '',
-      porc_conc: '0.00 %',
-    },
+    // {
+    //   nomb_conc: 'Retención',
+    //   line_desc: '',
+    //   obje_conc: '0',
+    //   falt_desc: '',
+    //   fact_conc: '0',
+    //   rece_desc: '',
+    //   porc_conc: '0.00 %',
+    // },
     {
       nomb_conc: 'Pedidos Totales',
       line_desc: '',
@@ -332,36 +290,36 @@ const initConfiguracion = () => {
     {
       nomb_conc: 'Venta',
       line_desc: 'Linea',
-      obje_conc: `S/. 0.00`,
+      obje_conc: `COP. 0.00`,
       falt_desc: 'Faltante',
-      fact_conc: `S/. 0.00`,
+      fact_conc: `COP. 0.00`,
       rece_desc: 'Recepcionado',
-      porc_conc: `S/. 0.00`,
+      porc_conc: `COP. 0.00`,
     },
     {
       nomb_conc: 'P.P. Facturado',
       line_desc: '',
-      obje_conc: `S/. 0.00`,
+      obje_conc: `COP. 0.00`,
       falt_desc: '',
       fact_conc: 'P.P. Recepcionado',
       rece_desc: '',
-      porc_conc: `S/. 0.00`,
+      porc_conc: `COP. 0.00`,
     },
     {
-      nomb_conc: 'Cobranza 21 días',
+      nomb_conc: 'Cobranza 31 días',
       line_desc: '',
-      obje_conc: `S/. 0.00`,
+      obje_conc: `COP. 0.00`,
       falt_desc: '',
-      fact_conc: `S/. 0.00`,
+      fact_conc: `COP. 0.00`,
       rece_desc: '',
-      porc_conc: '0.00 %',
+      porc_conc: '0.00 %', 
     },
     {
       nomb_conc: 'Cobranza saldo actual',
       line_desc: '',
-      obje_conc: `S/. 0.00`,
+      obje_conc: `COP. 0.00`,
       falt_desc: '',
-      fact_conc: `S/. 0.00`,
+      fact_conc: `COP. 0.00`,
       rece_desc: '',
       porc_conc: '0.00 %',
     },
@@ -605,7 +563,7 @@ const limpiarValidacion = () => {
                 <VRow justify="space-between">
                   <VCol
                     cols="12"
-                    md="4"
+                    md="3"
                   >
                     <AppSelect
                       v-model="formulario.corte"
@@ -630,6 +588,7 @@ const limpiarValidacion = () => {
                   density="compact"
                 >
                   <template #headers>
+                    
                     <tr>
                       <th rowspan="2">
                         CORTE
@@ -640,18 +599,14 @@ const limpiarValidacion = () => {
                       >
                         INCORPORACIÓN
                       </th>
-                      <th
-                        colspan="4"
-                        class="text-center"
-                      >
-                        RETENCIÓN
-                      </th>
+
                       <th
                         colspan="4"
                         class="text-center"
                       >
                         PEDIDOS TOTALES 
                       </th>
+                      
 
                       <th rowspan="2">
                         P.P. FACT.
@@ -671,11 +626,9 @@ const limpiarValidacion = () => {
                       <th>FACTURADO</th>
                       <th>% CUMP.</th>
                       <th>% ACTI.</th>
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>% CUMP.</th>
-                      <th>CAPI</th>
+
                     </tr>
+                  
                   </template>
                   <template #bottom />
                 </VDataTable>
@@ -710,43 +663,29 @@ const limpiarValidacion = () => {
                       >
                         INCORPORACIÓN
                       </th>
-                      <th 
-                        colspan="7" 
-                        class="text-center"
-                      >
-                        RETENCIÓN
-                      </th>
                       <th
-                        colspan="7"
+                        colspan="6"
                         class="text-center"
                       >
                         PEDIDOS TOTALES
                       </th>
+
                     </tr>
                     <tr>
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>TOTAL</th>
-                      <th>% CUMP.</th>
-
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>TOTAL</th>
-                      <th>% CUMP.</th>
-                      <th>% ACTI.</th>
-
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>'TOTAL</th>
-                      <th>% CUMP.</th>
-                      <th>CAPI.</th>
-                    </tr>
+                        <th>OBJETIVO</th>
+                        <th>FACTURADO</th>
+                        <th>CUMP. FACT.</th>
+                        <th>PEND. FACT.</th>
+                        <th>TOTAL</th>
+                        <th>% CUMP.</th>
+                        <th>OBJETIVO</th>
+                        <th>FACTURADO</th>
+                        <th>CUMP. FACT.</th>
+                        <th>PEND. FACT.</th>
+                        <th>TOTAL</th>
+                        <th>% CUMP.</th>
+                        <th>CAPI</th>
+                      </tr>
                   </template>
                   <template #item.obje_inco="{ item }">
                     <VChip color="warning">
@@ -778,42 +717,7 @@ const limpiarValidacion = () => {
                       {{ item.cump_inco }}
                     </VChip>
                   </template>
-
-                  <template #item.obje_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.obje_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.fact_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.fact_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.cump_fact_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.cump_fact_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.pend_fact_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.pend_fact_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.tota_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.tota_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.cump_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.cump_rete }}
-                    </VChip>
-                  </template>
-                  <template #item.acti_rete="{ item }">
-                    <VChip color="success">
-                      {{ item.acti_rete }}
-                    </VChip>
-                  </template>
+ 
 
                   <template #item.obje_tota="{ item }">
                     <VChip color="error">
@@ -883,12 +787,7 @@ const limpiarValidacion = () => {
                       >
                         INCORPORACION
                       </th>
-                      <th 
-                        colspan="8" 
-                        class="text-center"
-                      >
-                        RETENCION
-                      </th>
+
                       <th
                         colspan="7"
                         class="text-center"
@@ -910,13 +809,7 @@ const limpiarValidacion = () => {
                       <th>TOTAL</th>
                       <th>% CUMP.</th>
                       <th>% ACTI.</th>
-                      <th>OBJETIVO</th>
-                      <th>FACTURADO</th>
-                      <th>CUMP. FACT.</th>
-                      <th>PEND. FACT.</th>
-                      <th>TOTAL</th>
-                      <th>% CUMP.</th>
-                      <th>CAPI.</th>
+
                     </tr>
                   </template>
                   <template #bottom />

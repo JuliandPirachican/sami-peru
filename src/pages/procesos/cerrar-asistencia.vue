@@ -61,9 +61,11 @@ const obtenerReunion = async () => {
     )
 
   } catch (e) {
-    if(e.response !== undefined) {
-      console.log(e.response._data)
-    }
+    console.log("dentro de este catch")
+    console.error(e)
+    // if(e.response !== undefined) {
+    //   console.log(e.response._data)
+    // }
   }
   finally {
     appStore.loading(false)
@@ -144,7 +146,6 @@ const onRegistrar = async () => {
     })
 
     onLimpiar()
-
     let mensaje = data.message
     mensaje = mensaje.toLowerCase()
     mensaje = mensaje.charAt(0).toUpperCase() + mensaje.slice(1)

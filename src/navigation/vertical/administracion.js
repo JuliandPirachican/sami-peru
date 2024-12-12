@@ -25,4 +25,11 @@ export default [
     subject: 'colombia/admi_camb_cont', 
     action: 'colombia/admi_camb_cont',
   },
+  { 
+    title: 'Asistencia', 
+    to: 'administracion-asistencia', 
+    icon: { icon: 'tabler-lock-minus' },
+    subject: 'colombia/admi_asis', 
+    action: 'colombia/admi_asis',
+  },
 ]

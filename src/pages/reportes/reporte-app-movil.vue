@@ -126,6 +126,11 @@ const onLimpiar = () => {
   selected.value = []
 }
 
+/**
+ * url del embebido
+ */
+ const full_url_embed=$embed+"desarrollo/cgis/repo_movil.php";
+
 onMounted(() => {
   appStore.titulo(`Reporte App Movil`)
   onGenerar();
@@ -142,8 +147,12 @@ onMounted(() => {
             <VCard title="App Movil">
               <VCardText>
                 <v-card>
-                  <iframe id="iframe_option" ref="iframe_camb_clav" @load="modi_frame" src="https://intranet.dupree.co/desarrollo/cgis/repo_movil.php" frameborder="0"></iframe>
-
+                  <iframe id="iframe_option"
+                           ref="iframe_camb_clav" 
+                           @load="modi_frame" 
+                           :src=full_url_embed
+                           frameborder="0">
+                  </iframe>
                 </v-card>
               </VCardText>
             </VCard>

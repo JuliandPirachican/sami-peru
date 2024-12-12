@@ -1,6 +1,8 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
-import { VDataTable } from 'vuetify/labs/VDataTable';
+import { EncryptStorage } from 'encrypt-storage';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+
 
 definePage({
   meta: {
@@ -9,7 +11,13 @@ definePage({
   },
 })
 
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
+const refGridGlobal=ref()
 
 const formulario = ref({
   campana: null,
@@ -46,19 +54,91 @@ const errorIdentificacion = ref(false)
 const errorMensajeIdentificacion = ref('')
 
 const items = ref([])
-
 const headers = computed(() => {
   return [
-    { key: 'cons_fila', title: 'Item' },
-    { key: 'codi_camp', title: 'Campaña' },
-    { key: 'codi_zona', title: 'Zona' },
-    { key: 'codi_sect', title: 'Sector' },
-    { key: 'nume_iden', title: 'Nro ident.' },
-    { key: 'nomb_comp', title: 'Nombre(s) y Apellido(s)' },
-    { key: 'nume_fact', title: 'Pedido' },
-    { key: 'esta_fina', title: 'Estado' },
+    {
+      text: 'Item',
+      dataField: 'cons_fila',
+      width: '50',
+      align: 'center',
+      cellsalign: 'center',
+      // filtertype: 'checkedlist'
+    },
+    {
+      text: 'Campaña',
+      dataField: 'codi_camp',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
+      text: 'Nro. Iden',
+      dataField: 'nume_iden',
+      width: '170',
+      align: 'center',
+      cellsalign: 'center'
+      // , aggregates: ['count']
+    },
+    {
+      text: 'Nombre(s) y Apellido(s)',
+      dataField: 'nomb_comp',
+      width: '250',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Pedido',
+      dataField: 'nume_fact',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Estado',
+      dataField: 'esta_fina',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    
   ]
+});
+
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'cons_fila', type: 'string' },
+    { name: 'codi_camp', type: 'string' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'codi_sect', type: 'string' },
+    { name: 'nume_iden', type: 'integer' },
+    { name: 'nomb_comp', type: 'string' },
+    { name: 'nume_fact', type: 'string' },
+    { name: 'esta_fina', type: 'string' },
+  ],
+  datatype: 'json',
 })
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const localization =  {
+    filterselectstring: ' ',
+};
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Distribucion / Consolidado estado pedido`)
@@ -100,6 +180,9 @@ const obtenerZona = async () => {
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
       method: "get",
+      query: {
+        codigo: userData.codi_perf,
+      },
     })
 
     const itemZona = data.data_glob
@@ -125,10 +208,10 @@ const onZonaChange = async () => {
     sectorOptions.value = []
     formulario.value.sector = null
 
-    appStore.mensaje('Obteniendo sectores')
+    appStore.mensaje('Obteniendo lideres')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/comun/v1/sectores`, {
+    const { data } = await $api(`/api/comun/v1/zonas/lideres`, {
       method: "get",
       query: {
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
@@ -139,8 +222,8 @@ const onZonaChange = async () => {
 
     itemSector.forEach(element =>
       sectorOptions.value.push({
-        id: element.codi_sect,
-        text: element.codi_sect,
+        id: element.nume_iden,
+        text: element.nom_lider,
       }),
     )
   } catch (e) {
@@ -173,6 +256,9 @@ const onGenerar = async () => {
     })
 
     items.value = data.data_glob
+    sourceGlobal.value.localdata = data.data_glob
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -209,6 +295,7 @@ const onLimpiar= async () => {
   }
 
   items.value = []
+  refGridGlobal.value.updatebounddata('cells')
 }
 
 const onExcel = async () => {
@@ -294,8 +381,8 @@ const limpiarValidacion = () => {
                     <AppSelect
                       v-model="formulario.sector"
                       :items="sectorOptions"
-                      label="Sector"
-                      placeholder="Seleccionar sector"
+                      label="Lider"
+                      placeholder="Seleccionar lider"
                       item-title="text"
                       item-value="id"
                       :error="errorSector"
@@ -343,7 +430,7 @@ const limpiarValidacion = () => {
           <VCol cols="12">
             <VCard title="Lista de pedidos">
               <VCardText>
-                <VDataTable
+                <!-- <VDataTable
                   :headers="headers"
                   :items="items"
                   :items-per-page="-1"
@@ -353,7 +440,31 @@ const limpiarValidacion = () => {
                   height="400"
                 >
                   <template #bottom />
-                </VDataTable>
+                </VDataTable> -->
+
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headers"
+                  :localization="localization"
+                  :source="adaptadorGlobal"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </VCard>
           </VCol>

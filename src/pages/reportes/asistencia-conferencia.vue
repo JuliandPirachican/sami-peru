@@ -1,7 +1,8 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
-import { VDataTable } from 'vuetify/labs/VDataTable';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+
 
 definePage({
   meta: {
@@ -16,6 +17,7 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 
 const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
+const refGridGlobal=ref()
 
 const formulario = ref({
   campana: null,
@@ -26,60 +28,93 @@ const formulario = ref({
 const itemsInicial = ref([])
 const multiSearch =  ref({})
 
+
 const headers = computed(() => {
   return [
     {
-      key: 'codi_cort',
-      title: 'Corte',
-      sortable: true,
+      text: 'Corte',
+      dataField: 'codi_cort',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
-      key: 'codi_area',
-      title: 'Región',
-      sortable: true,
+      text: 'Region',
+      dataField: 'codi_area',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
-      key: 'codi_zona',
-      title: 'Zona',
-      sortable: true,
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
-      key: 'codi_sect',
-      title: 'Sector',
-      sortable: true,
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
-      key: 'nume_iden',
-      title: 'Nro ident.',
-      sortable: true,
+      text: 'Nro. Iden',
+      dataField: 'nume_iden',
+      width: '170',
+      align: 'center',
+      cellsalign: 'center'
+      // , aggregates: ['count']
     },
     {
-      key: 'nomb_terc',
-      title: 'Nombre(s) y Apellido(s)',
-      sortable: true,
+      text: 'Nombre(s) y Apellido(s)',
+      dataField: 'nomb_terc',
+      width: '250',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'acti_hora',
-      title: 'Fecha',
-      sortable: true,
+      text: 'Fecha',
+      dataField: 'acti_hora',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'nomb_reun',
-      title: 'Tipo',
-      sortable: true,
+      text: 'Tipo',
+      dataField: 'nomb_reun',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
-    {
-      key: 'clie_gema',
-      title: 'Gemma',
-      sortable: true,
-    },
-    {
-      key: 'nive_gema',
-      title: 'Nivel',
-      sortable: true,
-    },
+    
   ]
 })
+
+
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'codi_cort', type: 'string' },
+    { name: 'codi_area', type: 'string' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'codi_sect', type: 'string' },
+    { name: 'nume_iden', type: 'integer' },
+    { name: 'nomb_terc', type: 'string' },
+    { name: 'acti_hora', type: 'string' },
+    { name: 'nomb_reun', type: 'string' },
+  ],
+  datatype: 'json',
+})
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const localization =  {
+    filterselectstring: ' ',
+};
 
 const items = computed(() => {
   if(multiSearch.value) {
@@ -218,6 +253,7 @@ const obtenerReunion = async () => {
     
 
     const itemReunion = data.data_glob
+
     
     itemReunion.forEach(element => 
       tipoOptions.value.push({
@@ -257,6 +293,9 @@ const onGenerar = async () => {
 
     items.value = data.data_glob
     itemsInicial.value = data.data_glob
+    sourceGlobal.value.localdata = data.data_glob
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -285,6 +324,7 @@ const onLimpiar= async () => {
     zona: null,
     tipo: null,
   }
+  refGridGlobal.value.updatebounddata('cells')
   items.value = []
   itemsInicial.value = []
 }
@@ -388,7 +428,7 @@ const limpiarValidacion = () => {
           <VCol cols="12">
             <VCard title="Lista asistencia">
               <VCardText>
-                <VDataTable
+                <!-- <VDataTable
                   :headers="headers"
                   :items="items"
                   :items-per-page="-1"
@@ -397,7 +437,32 @@ const limpiarValidacion = () => {
                   height="400"
                 >              
                   <template #bottom />
-                </VDataTable>
+                </VDataTable> -->
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headers"
+                  :source="adaptadorGlobal"
+                  :localization="localization"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
+                  <!-- showstatusbar -->
+                  <!-- showaggregates -->
               </VCardText>
             </VCard>
           </VCol>

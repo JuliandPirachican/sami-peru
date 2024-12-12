@@ -9,10 +9,12 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 const modo = import.meta.env.VITE_API_MODO
 
 let baseURL = ''
+let baseURL_embed="";
 if (modo == 'PRODUCCION') {
   baseURL = 'https://servicioweb.dupree.co'
-  // baseURL = 'https://servicioweb.dupree.pe'
+  baseURL_embed = 'https://intranet.dupree.co/'
 } else {
+  baseURL_embed = 'https://intranet2col.azzorti.co/'
   baseURL = 'https://servicioweb2col.azzorti.co'
 }
 
@@ -70,3 +72,4 @@ export const $api = ofetch.create({
 })
 
 export const $base = baseURL
+export const $embed=baseURL_embed

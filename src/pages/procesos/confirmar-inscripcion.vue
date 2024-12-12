@@ -173,8 +173,8 @@ const headers = computed(() => {
     { title: 'Nro docu.', key: 'nume_docu' },
     { title: 'Nombre(s)', key: 'nomb_terc' },
     { title: 'Apellido(s)', key: 'apel_terc' },
-    { title: 'Provincia', key: 'nomb_ciud' },
-    { title: 'Distrito', key: 'nomb_barr' },
+    { title: 'Ciudad', key: 'nomb_ciud' },
+    { title: 'Barrio', key: 'nomb_barr' },
     { title: 'Dirección', key: 'dire_terc' },
     { title: 'tipo_via', key: 'tipo_viaa', hidden: true },
     { title: 'cons_dpto', key: 'cons_dpto', hidden: true },
@@ -1065,7 +1065,7 @@ const handleFileUpload = async tipo => {
             </VCard>
           </VCol>
           <VCol cols="12">
-            <VCard title="Lista inscripción">
+            <VCard title="Lista De Incorporacion">
               <VCardText>
                 <VRow>
                   <VDataTable
@@ -1075,8 +1075,9 @@ const handleFileUpload = async tipo => {
                     fixed-header
                     height="400"
                     class="text-no-wrap"
-                    :items-per-page="-1"
+                    :items-per-page="-1" 
                     show-select
+                    select-strategy="single"
                     item-value="nume_docu"
                   >
                     <template #item.acciones="{ item }">

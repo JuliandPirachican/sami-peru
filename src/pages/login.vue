@@ -1,5 +1,6 @@
 <!-- ❗Errors in the form are set on line 60 -->
 <script setup>
+import navItems from '@/navigation/opciones/'
 import { useAppStore } from '@/stores/app'
 import authV1BottomShape from '@images/svg/auth-v1-bottom-shape.svg?raw'
 import authV1TopShape from '@images/svg/auth-v1-top-shape.svg?raw'
@@ -61,11 +62,29 @@ const login = async () => {
     
     const userAbility = responseMenu.data.permisos
     // console.log(dataSessionIncaIframe)
+    const filteredNavItems = navItems.filter(item => userAbility.some(dataItem => dataItem.subject === item.subject))
+    const menu = []
+    const headingMap = {}
+
+    filteredNavItems.forEach(item => {
+      if (item.heading) {
+        const newHeading = { title: item.heading, children: [] }
+
+        headingMap[item.action] = newHeading
+        menu.push(newHeading)
+      } else if (item.title) {
+        const heading = Object.keys(headingMap).find(key => item.action == key)
+        if (heading) {
+          headingMap[heading].children.push(item)
+        }
+      }
+    })
 
     ability.update(userAbility)
     encryptStorage.setItem('userAbilityRules', JSON.stringify(userAbility))
     encryptStorage.setItem('userData', JSON.stringify(dataLogin.data_glob))
     encryptStorage.setItem('accessToken', dataLogin.accessToken) 
+    encryptStorage.setItem('menu', JSON.stringify(menu))
     localStorage.setItem('session_iframe', dataSessionIncaIframe)    
     encryptStorage.setItem('recordar', Boolean(recordar.value))
     if(recordar.value) {
@@ -132,7 +151,7 @@ onMounted(async () => {
 
         <VCardText>
           <h4 class="text-h4 mb-1">
-            Bienvenidos a<span class="text-capitalize">{{ themeConfig.app.title }}</span>! 👋🏻
+            Bienvenidos a <span class="text-capitalize">{{ themeConfig.app.title }}</span>! 👋🏻
           </h4>
           <p class="mb-0">
             Por favor ingresar su usuarios y contraseña 

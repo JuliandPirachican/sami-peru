@@ -130,6 +130,12 @@ const onLimpiar = () => {
   selected.value = []
 }
 
+
+/**
+ * url del embebido
+ */
+ const full_url_embed=$embed+"CI/asi_lide_rein";
+
 onMounted(() => {
   appStore.titulo(`Asignacion Reingreso Lider`)
   onGenerar()
@@ -146,13 +152,12 @@ onMounted(() => {
             <VCard title="Asignacion Reingreso Lider">
               <VCardText>
                 <VCard>
-                  <iframe
-                    id="iframe_option"
-                    ref="iframe_camb_clav"
-                    src="https://intranet.dupree.co/CI/asi_lide_rein"
-                    frameborder="0"
-                    @load="modi_frame"
-                  />
+                  <iframe id="iframe_option"
+                           ref="iframe_camb_clav" 
+                           @load="modi_frame" 
+                           :src=full_url_embed
+                           frameborder="0">
+                  </iframe>
                 </VCard>
               </VCardText>
             </VCard>

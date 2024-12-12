@@ -1,6 +1,7 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
-import { VDataTable } from 'vuetify/labs/VDataTable';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+
 
 definePage({
   meta: {
@@ -10,111 +11,191 @@ definePage({
 })
 
 
-const appStore = useAppStore()
+const appStore = useAppStore();
+const refGridGlobal=ref()
 
 const formulario = ref({
   campana: null,
 })
 
+
 const headers = computed(() => {
   return [
     {
-      key: 'nume_iden',
-      title: 'Nro identificación',
-      sortable: true,
+      text: 'Zona',
+      dataField: 'codi_zona',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
-      key: 'nomb_terc',
-      title: 'Nombre',
-      sortable: true,
+      text: 'Sector',
+      dataField: 'codi_sect',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
-      key: 'apel_terc',
-      title: 'Apellido',
-      sortable: true,
+      text: 'C.C Lider',
+      dataField: 'nume_iden_lide',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
-      key: 'codi_zona',
-      title: 'Zona',
-      sortable: true,
+      text: 'Nro. Identificación',
+      dataField: 'nume_iden',
+      width: '170',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+      // , aggregates: ['count']
     },
     {
-      key: 'codi_sect',
-      title: 'Sector',
-      sortable: true,
+      text: 'Nombre',
+      dataField: 'nomb_terc',
+      width: '250',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'tele_terc',
-      title: 'Teléfono',
-      sortable: true,
+      text: 'Apellidos',
+      dataField: 'apel_terc',
+      width: '250',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'celu_ter1',
-      title: 'Celular',
-      sortable: true,
+      text: 'Celular',
+      dataField: 'celu_ter1',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
-      key: 'dire_terc',
-      title: 'Dirección',
-      sortable: true,
+      text: 'Dirección',
+      dataField: 'dire_terc',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
     },
     {
-      key: 'fech_visi',
-      title: 'Fecha',
-      sortable: true,
+      text: 'Fecha',
+      dataField: 'fech_visi',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'tipo_usua',
-      title: 'Tipo',
-      sortable: true,
+      text: 'Tipo',
+      dataField: 'tipo_usua',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'valo_perf',
-      title: 'Perfil',
-      sortable: true,
+      text: 'Perfil',
+      dataField: 'valo_perf',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'esta_acti',
-      title: 'Status',
-      sortable: true,
+      text: 'Status',
+      dataField: 'esta_acti',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'obse_visi',
-      title: 'Observación',
-      sortable: true,
+      text: 'Observación',
+      dataField: 'obse_visi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'obse_deta',
-      title: 'Detalle',
-      sortable: true,
+      text: 'Tipo  Visita',
+      dataField: 'obse_deta',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'dist_visi',
-      title: 'Distancia',
-      sortable: true,
+      text: 'Pasa Pedido',
+      dataField: 'esta_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'acti_esta',
-      title: 'Efectividad',
-      sortable: true,
+      text: 'Celular App',
+      dataField: 'celu_terc',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'celu_terc',
-      title: 'Celular 2',
-      sortable: true,
+      text: 'Correo Electronico',
+      dataField: 'emai_terc',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
     {
-      key: 'emai_terc',
-      title: 'Correo electrónico',
-      sortable: true,
+      text: 'Distancia',
+      dataField: 'dist_visi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
+    
+ 
     {
-      key: 'esta_pedi',
-      title: 'Pasa pedido',
-      sortable: true,
+      text: 'Distancia < 50M',
+      dataField: 'acti_esta',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
     },
+    
   ]
+});
+
+const sourceGlobal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'nume_iden', type: 'integer' },
+    { name: 'nomb_terc', type: 'string' },
+    { name: 'apel_terc', type: 'string' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'codi_sect', type: 'string' },
+    { name: 'nume_iden_lide', type: 'string' },
+    { name: 'celu_ter1', type: 'string' },
+    { name: 'dire_terc', type: 'string' },
+    { name: 'fech_visi', type: 'string' },
+    { name: 'tipo_usua', type: 'string' },
+    { name: 'valo_perf', type: 'string' },
+    { name: 'esta_acti', type: 'string' },
+    { name: 'obse_visi', type: 'string' },
+    { name: 'obse_deta', type: 'string' },
+    { name: 'dist_visi', type: 'string' },
+    { name: 'acti_esta', type: 'string' },
+    { name: 'celu_terc', type: 'string' },
+    { name: 'emai_terc', type: 'string' },
+    { name: 'esta_pedi', type: 'string' },
+  ],
+  datatype: 'json',
 })
+const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+const localization =  {
+    filterselectstring: ' ',
+};
 
 const items = ref([])
 
@@ -134,7 +215,7 @@ const itemsDetalleVisible = computed(() => {
 })
 
 onMounted(async () => {
-  appStore.titulo(`Reportes / Visitas`)
+  appStore.titulo(`Reportes / Azzorti Maps`)
   await obtenerCampana()
 })
 
@@ -182,6 +263,9 @@ const onGenerar = async () => {
     })
 
     items.value = data.data_glob
+    sourceGlobal.value.localdata = data.data_glob
+    refGridGlobal.value.updatebounddata('cells')
+    refGridGlobal.value.refreshfilterrow()
     
   } catch (error) {
     const { data } = error.response._data    
@@ -205,6 +289,7 @@ const onLimpiar= async () => {
     campana: null,
   }
   items.value = []
+  refGridGlobal.value.updatebounddata('cells')
 }
 
 const onExcel = async () => {
@@ -215,7 +300,8 @@ const onExcel = async () => {
     const { data } = await $api(`/api/sami/v1/reportes/visita-zona/excel`, {
       method: "post",
       body: {
-        data: items.value,
+        cabecera: headers.value,
+        detalle: items.value,
       },
     })
     
@@ -244,7 +330,7 @@ const limpiarValidacion = () => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Buscar visitas">
+            <VCard title="Buscar en Azzorti Maps">
               <VCardText>
                 <VRow justify="space-between">
                   <VCol
@@ -268,91 +354,31 @@ const limpiarValidacion = () => {
           </VCol>
 
           <VCol cols="12">
-            <VCard title="Lista visita">
+            <VCard title="Lista Azzorti Maps">
               <VCardText>
-                <VDataTable
-                  v-model:items-per-page="rowsPerPage"
-                  :headers="headers"
-                  :items="(items.length > 100) ? itemsDetalleVisible: items"
-                  class="text-no-wrap"
-                  fixed-header
-                  height="400"
-                >
-                  <template #item.acti_esta="{ item }">
-                    <div v-if="item.acti_esta != ''">
-                      <VChip
-                        v-if="item.acti_esta.toLowerCase() === 'si'"
-                        color="success"
-                      >
-                        {{ item.acti_esta }}
-                      </VChip>
-                      <VChip
-                        v-else
-                        color="error"
-                      >
-                        {{ item.acti_esta }}
-                      </VChip>
-                    </div>
-                    <div v-else />
-                  </template>
-                  <template #item.esta_pedi="{ item }">
-                    <div v-if="item.esta_pedi != ''">
-                      <VChip
-                        v-if="item.esta_pedi.toLowerCase() === 'si'"
-                        color="success"
-                      >
-                        {{ item.esta_pedi }}
-                      </VChip>
-                      <VChip
-                        v-else
-                        color="error"
-                      >
-                        {{ item.esta_pedi }}
-                      </VChip>
-                    </div>
-                    <div v-else />
-                  </template>
-                  <template #bottom>
-                    <VDivider v-if="items.length>rowsPerPage" />
-
-                    <div class="d-flex align-center justify-sm-end justify-center flex-wrap gap-3 py-5 pt-3">
-                      <VPagination
-                        v-if="items.length>0"
-                        v-model="currentPage"
-                        :length="Math.ceil(items.length / rowsPerPage)"
-                        :total-visible="$vuetify.display.xs ? 1 : Math.min(Math.ceil(items.length / rowsPerPage), 5)"
-                      >
-                        <template #prev="slotProps">
-                          <VBtn
-                            variant="tonal"
-                            color="default"
-                            v-bind="slotProps"
-                            :icon="false"
-                          >
-                            <VIcon
-                              icon="tabler-arrow-bar-left"
-                              size="22"
-                            />
-                          </VBtn>
-                        </template>
-
-                        <template #next="slotProps">
-                          <VBtn
-                            variant="tonal"
-                            color="default"
-                            v-bind="slotProps"
-                            :icon="false"
-                          >
-                            <VIcon
-                              icon="tabler-arrow-bar-right"
-                              size="22"
-                            />
-                          </VBtn>
-                        </template>
-                      </VPagination>
-                    </div>
-                  </template>
-                </VDataTable>
+                <JqxGrid
+                  ref="refGridGlobal"
+                  theme="material"
+                  width="100%"
+                  :height="450"
+                  :columns="headers"
+                  :source="adaptadorGlobal"
+                  :localization="localization"
+                  columnsresize
+                  columnsautoresize
+                  enableanimations
+                  sortable
+                  sortmode="many"
+                  filterable
+                  :altrows="false"
+                  :showemptyrow="false"
+                  columnsreorder
+                  selectionmode="singlecell"
+                  scrollmode="logical"
+                  showfilterrow
+                  :columnsmenu="false"
+                  :editable="false"
+                  />
               </VCardText>
             </VCard>
           </VCol>

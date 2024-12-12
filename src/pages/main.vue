@@ -15,12 +15,12 @@ const variableData = ref([
   {
     icono: 'tabler-alert-triangle',
     color: 'warning',
-    titulo: 'Cobranza 21 días',
+    titulo: 'Cobranza 31 días',
     valor: '0.00%',
     Subtitulo1: 'Venta',
-    valor1: 'S/ 0.00',
+    valor1: 'COP/ 0.00',
     Subtitulo2: 'Saldo',
-    valor2: 'S/ 0.00',
+    valor2: 'COP/ 0.00',
   },
   {
     icono: 'tabler-users',
@@ -56,7 +56,7 @@ const cierreData = ref([
     color2: 'secondary',
   },
   {
-    titulo: 'Mi cierre - Retención',
+    titulo: 'Mi cierre - Venta Recepcionada',
     objetivo: '0',
     facturado: '0',
     pendiente: '0',
@@ -148,12 +148,12 @@ const onLimpiar = () => {
     {
       icono: 'tabler-alert-triangle',
       color: 'warning',
-      titulo: 'Cobranza 21 días',
+      titulo: 'Cobranza 31 días',
       valor: '0.00%',
       Subtitulo1: 'Venta',
-      valor1: 'S/ 0.00',
+      valor1: 'COP/ 0.00',
       Subtitulo2: 'Saldo',
-      valor2: 'S/ 0.00',
+      valor2: 'COP/ 0.00',
     },
     {
       icono: 'tabler-users',
@@ -189,7 +189,7 @@ const onLimpiar = () => {
       color2: 'secondary',
     },
     {
-      titulo: 'Mi cierre - Retención',
+      titulo: 'Mi cierre - Venta Recepcionada',
       objetivo: '0',
       facturado: '0',
       pendiente: '0',
