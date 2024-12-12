@@ -16,6 +16,7 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 })
  
 const { mobile } = useDisplay()
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
  
 const formulario = ref({
@@ -169,6 +170,9 @@ const obtenerZona = async () => {
  
     const response  = await $api(`/api/comun/v1/zonas`, {
       method: "get",
+      query: {
+        codigo: userData.codi_perf,
+      },
     })
  
     const itemZona = response.data.data_glob

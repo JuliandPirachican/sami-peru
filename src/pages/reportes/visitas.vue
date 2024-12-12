@@ -38,6 +38,14 @@ const headers = computed(() => {
       filtertype: 'checkedlist'
     },
     {
+      text: 'C.C Lider',
+      dataField: 'nume_iden_lide',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist'
+    },
+    {
       text: 'Nro. Identificación',
       dataField: 'nume_iden',
       width: '170',
@@ -167,6 +175,7 @@ const sourceGlobal = ref({
     { name: 'apel_terc', type: 'string' },
     { name: 'codi_zona', type: 'string' },
     { name: 'codi_sect', type: 'string' },
+    { name: 'nume_iden_lide', type: 'string' },
     { name: 'celu_ter1', type: 'string' },
     { name: 'dire_terc', type: 'string' },
     { name: 'fech_visi', type: 'string' },

@@ -57,1589 +57,646 @@ const itemsCorte = ref([])
 const itemsZona = ref([])
 
 const cabecera = computed(() => {
-  if(selectedVariable.value === 0) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Región',
-        key: 'codi_area',
-      },
-      {
-        title: 'Nro zonas',
-        key: 'tota_zona',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_tota_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_tota_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_tota_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_tota_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_tota_segu_porc',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_inco_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_inco_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_inco_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_inco_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_inco_segu_porc',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_rete_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_rete_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_rete_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_rete_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_rete_segu_porc',
-      },
-      {
-        title: 'Camp. ante.',
-        key: 'acti_camp_ante',
-      },
-      {
-        title: 'Obj. % acti. camp.',
-        key: 'acti_obje',
-      },
-      {
-        title: 'Obj. pedi. act.',
-        key: 'acti_obje_pedi',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'acti_porc_prim',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'acti_prim',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'acti_porc_segu',
-      },
-      {
-        title: 'Reproyección',
-        key: 'acti_segu',
-      },
-      {
-        title: 'Rete. camp. ante.',
-        key: 'cons_rete_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_rete_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'cons_rete_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'cons_rete_segu',
-      },
-      {
-        title: '1 camp. ante.',
-        key: 'cons_segu_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_segu_obje',
-      },
-      {
-        title: '2 camp. ante.',
-        key: 'cons_terc_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_terc_obje',
-      },
-      {
-        title: '3 camp. ante.',
-        key: 'cons_cuar_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_cuar_obje',
-      },
-      {
-        title: 'Peg21',
-        key: 'pe21',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe21_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe21_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe21_segu',
-      },
-      {
-        title: 'Peg42',
-        key: 'pe42',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe42_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe42_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe42_segu',
-      },
-      {
-        title: 'Peg63',
-        key: 'pe63',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe63_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe63_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe63_segu',
-      },
-      {
-        title: 'Pegs',
-        key: 'pegs',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pegs_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pegs_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pegs_segu',
-      },
-      {
-        title: 'Pos. rein.',
-        key: 'rein',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'rein_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'rein_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'rein_segu',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'capi_obje',
-      },
-      {
-        title: 'Reproyección',
-        key: 'capi_repr',
-      },
-      {
-        title: 'Venta',
-        key: 'tota_vent',
-      },
-      {
-        title: 'Cobranza 88%(por cobrar)',
-        key: 'cobr',
-      },
-      {
-        title: 'Cobranza 88%(te puedes quedar)',
-        key: 'cobr_colc',
-      },
-      {
-        title: 'Cobranza 92%(por cobrar)',
-        key: 'co92',
-      },
-      {
-        title: 'Cobranza 92%(te puedes quedar)',
-        key: 'co92_colc',
-      },
-    ]
-  } else if (selectedVariable.value === 1) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Región',
-        key: 'codi_area',
-      },
-      {
-        title: 'Nro zonas',
-        key: 'tota_zona',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_tota_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_tota_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_tota_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_tota_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_tota_segu_porc',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_inco_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_inco_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_inco_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_inco_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_inco_segu_porc',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_rete_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_rete_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_rete_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_rete_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_rete_segu_porc',
-      },
-    ]
-  } else if(selectedVariable.value === 2) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Región',
-        key: 'codi_area',
-      },
-      {
-        title: 'Nro zonas',
-        key: 'tota_zona',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Camp. ante.',
-        key: 'acti_camp_ante',
-      },
-      {
-        title: 'Obj. % acti. camp.',
-        key: 'acti_obje',
-      },
-      {
-        title: 'Obj. pedi. act.',
-        key: 'acti_obje_pedi',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'acti_porc_prim',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'acti_prim',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'acti_porc_segu',
-      },
-      {
-        title: 'Reproyección',
-        key: 'acti_segu',
-      },
-      {
-        title: 'Rete. camp. ante.',
-        key: 'cons_rete_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_rete_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'cons_rete_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'cons_rete_segu',
-      },
-      {
-        title: '1 camp. ante.',
-        key: 'cons_segu_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_segu_obje',
-      },
-      {
-        title: 'Peg21',
-        key: 'pe21',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe21_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe21_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe21_segu',
-      },
-      {
-        title: 'Peg42',
-        key: 'pe42',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe42_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe42_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe42_segu',
-      },
-      {
-        title: 'Peg63',
-        key: 'pe63',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe63_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe63_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe63_segu',
-      },
-      {
-        title: 'Pegs',
-        key: 'pegs',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pegs_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pegs_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pegs_segu',
-      },
-    ]
-  } else if(selectedVariable.value === 3) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Región',
-        key: 'codi_area',
-      },
-      {
-        title: 'Nro zonas',
-        key: 'tota_zona',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_rete_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_rete_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_rete_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_rete_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_rete_segu_porc',
-      },
-      {
-        title: 'Rete. camp. ante.',
-        key: 'cons_rete_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_rete_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'cons_rete_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'cons_rete_segu',
-      },
-      {
-        title: '1 camp. ante.',
-        key: 'cons_segu_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_segu_obje',
-      },
-      {
-        title: 'Peg21',
-        key: 'pe21',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe21_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe21_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe21_segu',
-      },
-      {
-        title: 'Peg42',
-        key: 'pe42',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe42_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe42_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe42_segu',
-      },
-      {
-        title: 'Peg63',
-        key: 'pe63',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe63_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe63_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe63_segu',
-      },
-      {
-        title: 'Pegs',
-        key: 'pegs',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pegs_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pegs_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pegs_segu',
-      },
-      {
-        title: 'Pos. rein.',
-        key: 'rein',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'rein_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'rein_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'rein_segu',
-      },
-    ]
-  } else if(selectedVariable.value === 4) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Región',
-        key: 'codi_area',
-      },
-      {
-        title: 'Nro zonas',
-        key: 'tota_zona',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_inco_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_inco_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_inco_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_inco_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_inco_segu_porc',
-      },
-      {
-        title: 'Peg63',
-        key: 'pe63',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe63_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe63_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe63_segu',
-      },
-      {
-        title: 'Pos. rein.',
-        key: 'rein',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'rein_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'rein_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'rein_segu',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'capi_obje',
-      },
-      {
-        title: 'Reproyección',
-        key: 'capi_repr',
-      },
-    ]
-  } else if(selectedVariable.value === 5) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Región',
-        key: 'codi_area',
-      },
-      {
-        title: 'Nro zonas',
-        key: 'tota_zona',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Venta',
-        key: 'tota_vent',
-      },
-      {
-        title: 'Cobranza 88%(por cobrar)',
-        key: 'cobr',
-      },
-      {
-        title: 'Cobranza 88%(te puedes quedar)',
-        key: 'cobr_colc',
-      },
-      {
-        title: 'Cobranza 92%(por cobrar)',
-        key: 'co92',
-      },
-      {
-        title: 'Cobranza 92%(te puedes quedar)',
-        key: 'co92_colc',
-      },
-    ]
-  } else if(selectedVariable.value === 6) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Región',
-        key: 'codi_area',
-      },
-      {
-        title: 'Nro zonas',
-        key: 'tota_zona',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Rete. camp. ante.',
-        key: 'cons_rete_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_rete_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'cons_rete_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'cons_rete_segu',
-      },
-      {
-        title: '1 camp. ante.',
-        key: 'cons_segu_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_segu_obje',
-      },
-      {
-        title: '2 camp. ante.',
-        key: 'cons_terc_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_terc_obje',
-      },
-      {
-        title: '3 camp. ante.',
-        key: 'cons_cuar_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_cuar_obje',
-      },
-    ]
-  }
+  return [
+    {
+      title: 'Corte',
+      key: 'codi_cort',
+      columna: 'A',
+    },
+    {
+      title: 'Región',
+      key: 'codi_area',
+      columna: 'B',
+    },
+    {
+      title: 'Nro zonas',
+      key: 'tota_zona',
+      columna: 'C',
+    },
+    {
+      title: 'Act. inic.',
+      key: 'acti_inic',
+      columna: 'D',
+    },
+    {
+      title: 'Obj. camp.',
+      key: 'pedi_tota_cant',
+      columna: 'E',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pedi_tota_prim',
+      columna: 'F',
+    },
+    {
+      title: 'Proyección (%)',
+      key: 'pedi_tota_prim_porc',
+      columna: 'G',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pedi_tota_segu',
+      columna: 'H',
+    },
+    {
+      title: 'Reproyección (%)',
+      key: 'pedi_tota_segu_porc',
+      columna: 'I',
+    },
+    {
+      title: 'Obj. camp.',
+      key: 'pedi_inco_cant',
+      columna: 'J',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pedi_inco_prim',
+      columna: 'K',
+    },
+    {
+      title: 'Proyección (%)',
+      key: 'pedi_inco_prim_porc',
+      columna: 'L',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pedi_inco_segu',
+      columna: 'M',
+    },
+    {
+      title: 'Reproyección (%)',
+      key: 'pedi_inco_segu_porc',
+      columna: 'N',
+    },
+    {
+      title: 'Obj. camp.',
+      key: 'pedi_rete_cant',
+      columna: 'O',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pedi_rete_prim',
+      columna: 'P',
+    },
+    {
+      title: 'Proyección (%)',
+      key: 'pedi_rete_prim_porc',
+      columna: 'Q',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pedi_rete_segu',
+      columna: 'R',
+    },
+    {
+      title: 'Reproyección (%)',
+      key: 'pedi_rete_segu_porc',
+      columna: 'S',
+    },
+    {
+      title: 'Camp. ante.',
+      key: 'acti_camp_ante',
+      columna: 'T',
+    },
+    {
+      title: 'Obj. % acti. camp.',
+      key: 'acti_obje',
+      columna: 'U',
+    },
+    {
+      title: 'Obj. pedi. act.',
+      key: 'acti_obje_pedi',
+      columna: 'V',
+    },
+    {
+      title: 'Proyección (%)',
+      key: 'acti_porc_prim',
+      columna: 'W',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'acti_prim',
+      columna: 'X',
+    },
+    {
+      title: 'Reproyección (%)',
+      key: 'acti_porc_segu',
+      columna: 'Y',
+    },
+    {
+      title: 'Reproyección',
+      key: 'acti_segu',
+      columna: 'Z',
+    },
+    {
+      title: 'Rete. camp. ante.',
+      key: 'cons_rete_camp_ante',
+      columna: 'AA',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'cons_rete_obje',
+      columna: 'AB',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'cons_rete_prim',
+      columna: 'AC',
+    },
+    {
+      title: 'Reproyección',
+      key: 'cons_rete_segu',
+      columna: 'AD',
+    },
+    {
+      title: '1 camp. ante.',
+      key: 'cons_segu_camp_ante',
+      columna: 'AE',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'cons_segu_obje',
+      columna: 'AF',
+    },
+    {
+      title: '2 camp. ante.',
+      key: 'cons_terc_camp_ante',
+      columna: 'AG',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'cons_terc_obje',
+      columna: 'AH',
+    },
+    {
+      title: '3 camp. ante.',
+      key: 'cons_cuar_camp_ante',
+      columna: 'AI',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'cons_cuar_obje',
+      columna: 'AJ',
+    },
+    {
+      title: 'Peg21',
+      key: 'pe21',
+      columna: 'AK',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'pe21_obje',
+      columna: 'AL',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pe21_prim',
+      columna: 'AM',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pe21_segu',
+      columna: 'AN',
+    },
+    {
+      title: 'Peg42',
+      key: 'pe42',
+      columna: 'AO',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'pe42_obje',
+      columna: 'AP',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pe42_prim',
+      columna: 'AQ',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pe42_segu',
+      columna: 'AR',
+    },
+    {
+      title: 'Peg63',
+      key: 'pe63',
+      columna: 'AS',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'pe63_obje',
+      columna: 'AT',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pe63_prim',
+      columna: 'AU',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pe63_segu',
+      columna: 'AV',
+    },
+    {
+      title: 'Pegs',
+      key: 'pegs',
+      columna: 'AW',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'pegs_obje',
+      columna: 'AX',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pegs_prim',
+      columna: 'AY',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pegs_segu',
+      columna: 'AZ',
+    },
+    {
+      title: 'Pos. rein.',
+      key: 'rein',
+      columna: 'BA',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'rein_obje',
+      columna: 'BB',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'rein_prim',
+      columna: 'BC',
+    },
+    {
+      title: 'Reproyección',
+      key: 'rein_segu',
+      columna: 'BD',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'capi_obje',
+      columna: 'BE',
+    },
+    {
+      title: 'Reproyección',
+      key: 'capi_repr',
+      columna: 'BF',
+    },
+    {
+      title: 'Venta',
+      key: 'tota_vent',
+      columna: 'BG',
+    },
+    {
+      title: 'Cobranza 88%(por cobrar)',
+      key: 'cobr',
+      columna: 'BH',
+    },
+    {
+      title: 'Cobranza 88%(te puedes quedar)',
+      key: 'cobr_colc',
+      columna: 'BI',
+    },
+    {
+      title: 'Cobranza 92%(por cobrar)',
+      key: 'co92',
+      columna: 'BJ',
+    },
+    {
+      title: 'Cobranza 92%(te puedes quedar)',
+      key: 'co92_colc',
+      columna: 'BK',
+    },
+  ]
+
 })
 
 const cabeceraZona = computed(() => {
-  if(selectedVariable.value === 0) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_tota_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_tota_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_tota_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_tota_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_tota_segu_porc',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_inco_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_inco_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_inco_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_inco_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_inco_segu_porc',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_rete_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_rete_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_rete_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_rete_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_rete_segu_porc',
-      },
-      {
-        title: 'Camp. ante.',
-        key: 'acti_camp_ante',
-      },
-      {
-        title: 'Obj.% acti. camp.',
-        key: 'acti_obje',
-      },
-      {
-        title: 'Obj. pedi. act.',
-        key: 'acti_obje_pedi',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'acti_porc_prim',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'acti_prim',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'acti_porc_segu',
-      },
-      {
-        title: 'Reproyección',
-        key: 'acti_segu',
-      },
-      {
-        title: 'Rete. camp. ante.',
-        key: 'cons_rete_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_rete_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'cons_rete_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'cons_rete_segu',
-      },
-      {
-        title: '1 Camp. ante.',
-        key: 'cons_segu_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_segu_obje',
-      },
-      {
-        title: '2 Camp. ante.',
-        key: 'cons_terc_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_terc_obje',
-      },
-      {
-        title: '3 Camp. ante.',
-        key: 'cons_cuar_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_cuar_obje',
-      },
-      {
-        title: 'Peg21',
-        key: 'pe21',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe21_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe21_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe21_segu',
-      },
-      {
-        title: 'Peg42',
-        key: 'pe42',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe42_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe42_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe42_segu',
-      },
-      {
-        title: 'Peg63',
-        key: 'pe63',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe63_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe63_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe63_segu',
-      },
-      {
-        title: 'Pegs',
-        key: 'pegs',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pegs_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pegs_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pegs_segu',
-      },
-      {
-        title: 'Pos. Rein.',
-        key: 'rein',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'rein_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'rein_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'rein_segu',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'capi_obje',
-      },
-      {
-        title: 'Reproyección',
-        key: 'capi_repr',
-      },
-      {
-        title: 'Venta',
-        key: 'tota_vent',
-      },
-      {
-        title: 'Cobranza 88%(por cobrar)',
-        key: 'cobr',
-      },
-      {
-        title: 'Cobranza 88%(te puedes quedar)',
-        key: 'cobr_colc',
-      },
-      {
-        title: 'Cobranza 92%(por cobrar)',
-        key: 'co92',
-      },
-      {
-        title: 'Cobranza 92%(te puedes quedar)',
-        key: 'co92_colc',
-      },
-    ]
-  } else if(selectedVariable.value === 1) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_tota_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_tota_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_tota_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_tota_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_tota_segu_porc',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_inco_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_inco_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_inco_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_inco_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_inco_segu_porc',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_rete_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_rete_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_rete_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_rete_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_rete_segu_porc',
-      },
-    ]
-  } else if(selectedVariable.value === 2) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Camp. ante.',
-        key: 'acti_camp_ante',
-      },
-      {
-        title: 'Obj.% acti. camp.',
-        key: 'acti_obje',
-      },
-      {
-        title: 'Obj. pedi. act.',
-        key: 'acti_obje_pedi',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'acti_porc_prim',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'acti_prim',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'acti_porc_segu',
-      },
-      {
-        title: 'Reproyección',
-        key: 'acti_segu',
-      },
-      {
-        title: 'Rete. camp. ante.',
-        key: 'cons_rete_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_rete_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'cons_rete_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'cons_rete_segu',
-      },
-      {
-        title: '1 Camp. ante.',
-        key: 'cons_segu_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_segu_obje',
-      },
-      {
-        title: 'Peg21',
-        key: 'pe21',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe21_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe21_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe21_segu',
-      },
-      {
-        title: 'Peg42',
-        key: 'pe42',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe42_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe42_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe42_segu',
-      },
-      {
-        title: 'Peg63',
-        key: 'pe63',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe63_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe63_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe63_segu',
-      },
-      {
-        title: 'Pegs',
-        key: 'pegs',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pegs_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pegs_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pegs_segu',
-      },
-    ]
-  } else if(selectedVariable.value === 3) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_rete_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_rete_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_rete_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_rete_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_rete_segu_porc',
-      },
-      {
-        title: 'Rete. camp. ante.',
-        key: 'cons_rete_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_rete_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'cons_rete_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'cons_rete_segu',
-      },
-      {
-        title: '1 Camp. ante.',
-        key: 'cons_segu_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_segu_obje',
-      },
-      {
-        title: 'Peg21',
-        key: 'pe21',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe21_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe21_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe21_segu',
-      },
-      {
-        title: 'Peg42',
-        key: 'pe42',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe42_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe42_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe42_segu',
-      },
-      {
-        title: 'Peg63',
-        key: 'pe63',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe63_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe63_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe63_segu',
-      },
-      {
-        title: 'Pegs',
-        key: 'pegs',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pegs_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pegs_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pegs_segu',
-      },
-      {
-        title: 'Pos. Rein.',
-        key: 'rein',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'rein_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'rein_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'rein_segu',
-      },
-    ]
-  } else if(selectedVariable.value === 4) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Obj. camp.',
-        key: 'pedi_inco_cant',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pedi_inco_prim',
-      },
-      {
-        title: 'Proyección (%)',
-        key: 'pedi_inco_prim_porc',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pedi_inco_segu',
-      },
-      {
-        title: 'Reproyección (%)',
-        key: 'pedi_inco_segu_porc',
-      },
-      {
-        title: 'Peg63',
-        key: 'pe63',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'pe63_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'pe63_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'pe63_segu',
-      },
-      {
-        title: 'Pos. Rein.',
-        key: 'rein',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'rein_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'rein_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'rein_segu',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'capi_obje',
-      },
-      {
-        title: 'Reproyección',
-        key: 'capi_repr',
-      },
-    ]
-  } else if(selectedVariable.value === 5) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Venta',
-        key: 'tota_vent',
-      },
-      {
-        title: 'Cobranza 88%(por cobrar)',
-        key: 'cobr',
-      },
-      {
-        title: 'Cobranza 88%(te puedes quedar)',
-        key: 'cobr_colc',
-      },
-      {
-        title: 'Cobranza 92%(por cobrar)',
-        key: 'co92',
-      },
-      {
-        title: 'Cobranza 92%(te puedes quedar)',
-        key: 'co92_colc',
-      },
-    ]
-  } else if(selectedVariable.value === 6) {
-    return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_inic',
-      },
-      {
-        title: 'Rete. camp. ante.',
-        key: 'cons_rete_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_rete_obje',
-      },
-      {
-        title: 'Obj. proyección',
-        key: 'cons_rete_prim',
-      },
-      {
-        title: 'Reproyección',
-        key: 'cons_rete_segu',
-      },
-      {
-        title: '1 Camp. ante.',
-        key: 'cons_segu_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_segu_obje',
-      },
-      {
-        title: '2 Camp. ante.',
-        key: 'cons_terc_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_terc_obje',
-      },
-      {
-        title: '3 Camp. ante.',
-        key: 'cons_cuar_camp_ante',
-      },
-      {
-        title: 'Obj. form. éxito',
-        key: 'cons_cuar_obje',
-      },
-    ]
-  }
+  return [
+    {
+      title: 'Corte',
+      key: 'codi_cort',
+      columna: 'A',
+    },
+    {
+      title: 'Zona',
+      key: 'codi_zona',
+      columna: 'B',
+    },
+    {
+      title: 'Gerente',
+      key: 'nomb_vend',
+      columna: 'C',
+    },
+    {
+      title: 'Act. inic.',
+      key: 'acti_inic',
+      columna: 'D',
+    },
+    {
+      title: 'Obj. camp.',
+      key: 'pedi_tota_cant',
+      columna: 'E',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pedi_tota_prim',
+      columna: 'F',
+    },
+    {
+      title: 'Proyección (%)',
+      key: 'pedi_tota_prim_porc',
+      columna: 'G',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pedi_tota_segu',
+      columna: 'H',
+    },
+    {
+      title: 'Reproyección (%)',
+      key: 'pedi_tota_segu_porc',
+      columna: 'I',
+
+    },
+    {
+      title: 'Obj. camp.',
+      key: 'pedi_inco_cant',
+      columna: 'J',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pedi_inco_prim',
+      columna: 'K',
+    },
+    {
+      title: 'Proyección (%)',
+      key: 'pedi_inco_prim_porc',
+      columna: 'L',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pedi_inco_segu',
+      columna: 'M',
+    },
+    {
+      title: 'Reproyección (%)',
+      key: 'pedi_inco_segu_porc',
+      columna: 'N',
+    },
+    {
+      title: 'Obj. camp.',
+      key: 'pedi_rete_cant',
+      columna: 'O',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pedi_rete_prim',
+      columna: 'P',
+    },
+    {
+      title: 'Proyección (%)',
+      key: 'pedi_rete_prim_porc',
+      columna: 'Q',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pedi_rete_segu',
+      columna: 'R',
+    },
+    {
+      title: 'Reproyección (%)',
+      key: 'pedi_rete_segu_porc',
+      columna: 'S',
+    },
+    {
+      title: 'Camp. ante.',
+      key: 'acti_camp_ante',
+      columna: 'T',
+    },
+    {
+      title: 'Obj.% acti. camp.',
+      key: 'acti_obje',
+      columna: 'U',
+    },
+    {
+      title: 'Obj. pedi. act.',
+      key: 'acti_obje_pedi',
+      columna: 'V',
+    },
+    {
+      title: 'Proyección (%)',
+      key: 'acti_porc_prim',
+      columna: 'W',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'acti_prim',
+      columna: 'X',
+    },
+    {
+      title: 'Reproyección (%)',
+      key: 'acti_porc_segu',
+      columna: 'Y',
+    },
+    {
+      title: 'Reproyección',
+      key: 'acti_segu',
+      columna: 'Z',
+    },
+    {
+      title: 'Rete. camp. ante.',
+      key: 'cons_rete_camp_ante',
+      columna: 'AA',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'cons_rete_obje',
+      columna: 'AB',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'cons_rete_prim',
+      columna: 'AC',
+    },
+    {
+      title: 'Reproyección',
+      key: 'cons_rete_segu',
+      columna: 'AD',
+    },
+    {
+      title: '1 Camp. ante.',
+      key: 'cons_segu_camp_ante',
+      columna: 'AE',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'cons_segu_obje',
+      columna: 'AF',
+    },
+    {
+      title: '2 Camp. ante.',
+      key: 'cons_terc_camp_ante',
+      columna: 'AG',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'cons_terc_obje',
+      columna: 'AH',
+    },
+    {
+      title: '3 Camp. ante.',
+      key: 'cons_cuar_camp_ante',
+      columna: 'AI',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'cons_cuar_obje',
+      columna: 'AJ',
+    },
+    {
+      title: 'Peg21',
+      key: 'pe21',
+      columna: 'AK',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'pe21_obje',
+      columna: 'AL',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pe21_prim',
+      columna: 'AM',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pe21_segu',
+      columna: 'AN',
+    },
+    {
+      title: 'Peg42',
+      key: 'pe42',
+      columna: 'AO',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'pe42_obje',
+      columna: 'AP',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pe42_prim',
+      columna: 'AQ',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pe42_segu',
+      columna: 'AR',
+    },
+    {
+      title: 'Peg63',
+      key: 'pe63',
+      columna: 'AS',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'pe63_obje',
+      columna: 'AT',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pe63_prim',
+      columna: 'AU',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pe63_segu',
+      columna: 'AV',
+    },
+    {
+      title: 'Pegs',
+      key: 'pegs',
+      columna: 'AW',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'pegs_obje',
+      columna: 'AX',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'pegs_prim',
+      columna: 'AY',
+    },
+    {
+      title: 'Reproyección',
+      key: 'pegs_segu',
+      columna: 'AZ',
+    },
+    {
+      title: 'Pos. Rein.',
+      key: 'rein',
+      columna: 'BA',
+    },
+    {
+      title: 'Obj. form. éxito',
+      key: 'rein_obje',
+      columna: 'BB',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'rein_prim',
+      columna: 'BC',
+    },
+    {
+      title: 'Reproyección',
+      key: 'rein_segu',
+      columna: 'BD',
+    },
+    {
+      title: 'Obj. proyección',
+      key: 'capi_obje',
+      columna: 'BE',
+    },
+    {
+      title: 'Reproyección',
+      key: 'capi_repr', 
+      columna: 'BF',
+    },
+    {
+      title: 'Venta',
+      key: 'tota_vent',
+      columna: 'BG',
+    },
+    {
+      title: 'Cobranza 88%(por cobrar)',
+      key: 'cobr',
+      columna: 'BH',
+    },
+    {
+      title: 'Cobranza 88%(te puedes quedar)',
+      key: 'cobr_colc',
+      columna: 'BI',
+    },
+    {
+      title: 'Cobranza 92%(por cobrar)',
+      key: 'co92',
+      columna: 'BJ',
+    },
+    {
+      title: 'Cobranza 92%(te puedes quedar)',
+      key: 'co92_colc',
+      columna: 'BK',
+    },
+  ]
+
 })
 
 const clasePedidoTotalZona = (row, columnfield, value) => {
@@ -2993,6 +2050,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'cons_prim',
     cellsformat: 'N',
     aggregates: [
@@ -3083,6 +2141,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'cons_segu',
     cellsformat: 'N',
     aggregates: [
@@ -3125,6 +2184,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'cons_terc',
     cellsformat: 'N',
     aggregates: [
@@ -3169,6 +2229,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'cons_cuar',
     cellsformat: 'N',
     aggregates: [
@@ -3213,6 +2274,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'pe21',
     cellsformat: 'N',
     aggregates: [
@@ -3303,6 +2365,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'pe42',
     cellsformat: 'N',
     aggregates: [
@@ -3393,6 +2456,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'pe63',
     cellsformat: 'N',
     aggregates: [
@@ -3483,6 +2547,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'pegs',
     cellsformat: 'N',
     aggregates: [
@@ -3573,6 +2638,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'rein',
     cellsformat: 'N',
     aggregates: [
@@ -4656,6 +3722,7 @@ const columnasZona =
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'cons_prim',
     cellsformat: 'N',
     aggregates: [
@@ -4746,6 +3813,7 @@ const columnasZona =
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'cons_segu',
     cellsformat: 'N',
     aggregates: [
@@ -4790,6 +3858,7 @@ const columnasZona =
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'cons_terc',
     cellsformat: 'N',
     aggregates: [
@@ -4834,6 +3903,7 @@ const columnasZona =
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'cons_cuar',
     cellsformat: 'N',
     aggregates: [
@@ -4878,6 +3948,7 @@ const columnasZona =
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'pe21',
     cellsformat: 'N',
     aggregates: [
@@ -4968,6 +4039,7 @@ const columnasZona =
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'pe42',
     cellsformat: 'N',
     aggregates: [
@@ -5058,6 +4130,7 @@ const columnasZona =
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'pe63',
     cellsformat: 'N',
     aggregates: [
@@ -5148,6 +4221,7 @@ const columnasZona =
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'pegs',
     cellsformat: 'N',
     aggregates: [
@@ -5238,6 +4312,7 @@ const columnasZona =
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true,
     columngroup: 'rein',
     cellsformat: 'N',
     aggregates: [
@@ -5934,6 +5009,12 @@ const onExcel = async () => {
   try {
     appStore.mensaje('Generando archivo')
     appStore.loading(true)
+    // console.log("general.value")
+    // console.log(general.value)
+    // console.log("selectedVariable.value")
+    // console.log(selectedVariable.value)
+    // console.log("cabeceraZona.value")
+    // console.log(cabeceraZona.value)
 
     const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-region/excel`, {
       method: "post",
@@ -6674,16 +5755,16 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                       <td>{{ general.reproyeccionIncorporacion }}</td>
                       <td>{{ general.reproyeccionPorcentajeIncorporacion }}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td>Retención</td>
                       <td>{{ general.objetivoRetencion }}</td>
                       <td>{{ general.proyeccionRetencion }}</td>
                       <td>{{ general.proyeccionPorcentajeRetencion }}</td>
                       <td>{{ general.reproyeccionRetencion }}</td>
                       <td>{{ general.reproyeccionPorcentajeRetencion }}</td>
-                    </tr>
+                    </tr> -->
                     <tr>
-                      <td>% Actividad</td>
+                      <td>Pedidos Totales</td>
                       <td>{{ general.objetivoActividad }}</td>
                       <td>{{ general.proyeccionActividad }}</td>
                       <td>{{ general.proyeccionPorcentajeActividad }}</td>
@@ -6697,7 +5778,7 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
           </VCol>
 
           <VCol cols="12">
-            <VCard title="Variables">
+            <!-- <VCard title="Variables">
               <VCardText>
                 <VRadioGroup
                   v-model="selectedVariable"
@@ -6714,7 +5795,7 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                   </div>
                 </VRadioGroup>
               </VCardText>
-            </VCard>
+            </VCard> -->
           </VCol>
       
           <VCol cols="12">

@@ -1,6 +1,8 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+
 
 
 definePage({
@@ -10,6 +12,11 @@ definePage({
   },
 })
 
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore();
 const refGridGlobal=ref()
 
@@ -282,6 +289,9 @@ const obtenerZona = async () => {
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
       method: "get",
+      query: {
+        codigo: userData.codi_perf,
+      },
     })
     
 

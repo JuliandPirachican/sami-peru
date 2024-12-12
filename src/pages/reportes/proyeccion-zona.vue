@@ -1,7 +1,12 @@
 <!-- eslint-disable camelcase -->
 <script setup>
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+
 import { useAppStore } from '@/stores/app';
-import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue";
+import { $api, $base } from '@/utils/api';
+
+import { EncryptStorage } from 'encrypt-storage';
+
 
 definePage({
   meta: {
@@ -10,6 +15,12 @@ definePage({
   },
 })
 
+
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
 
 
@@ -52,1734 +63,6 @@ const selectedVariable = ref(0)
 const selectedColumna = ref(0)
 
 const items = ref([])
-
-const cabecera = computed(() => {
-  if (selectedColumna.value >= 2) {
-    if(selectedVariable.value === 0) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_tota_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_tota_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pedi_tota_segu',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_inco_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_inco_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pedi_inco_segu',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_rete_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pedi_rete_segu',
-        },
-        {
-          title: 'Camp. ante.',
-          key: 'acti_camp_ante',
-        },
-        {
-          title: 'Obje. %',
-          key: 'acti_obje',
-        },
-        {
-          title: 'Obje. pedi.',
-          key: 'acti_obje_pedi',
-        },
-        {
-          title: 'Proyección (%)',
-          key: 'acti_porc_prim',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'acti_prim',
-        },
-        {
-          title: 'Reproyección (%)',
-          key: 'acti_porc_segu',
-        },
-        {
-          title: 'Reproyección',
-          key: 'acti_segu',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'cons_rete_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'cons_rete_segu',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: '2 Camp. ante.',
-          key: 'cons_terc_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_terc_obje',
-        },
-        {
-          title: '3 Camp. ante.',
-          key: 'cons_cuar_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_cuar_obje',
-        },
-        {
-          title: 'Peg21',
-          key: 'pe21',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe21_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe21_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe21_segu',
-        },
-        {
-          title: 'Peg42',
-          key: 'pe42',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe42_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe42_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe42_segu',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe63_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe63_segu',
-        },
-        {
-          title: 'Pegs',
-          key: 'pegs',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pegs_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pegs_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pegs_segu',
-        },
-        {
-          title: 'Pos. rein.',
-          key: 'rein',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'rein_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'rein_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'rein_segu',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'capi_obje',
-        },
-        {
-          title: 'Reproyección',
-          key: 'capi_repr',
-        },
-        {
-          title: 'Venta',
-          key: 'tota_vent',
-        },
-        {
-          title: 'Cobranza 88%(por cobrar)',
-          key: 'cobr',
-        },
-        {
-          title: 'Cobranza 88%(te puedes quedar)',
-          key: 'cobr_colc',
-        },
-        {
-          title: 'Cobranza 92%(por cobrar)',
-          key: 'co92',
-        },
-        {
-          title: 'Cobranza 92%(te puedes quedar)',
-          key: 'co92_colc',
-        },
-        {
-          title: 'Nivel lider obje. proy.',
-          key: 'nive_lide',
-        },
-      ]
-    } else if (selectedVariable.value === 1) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_tota_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_tota_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pedi_tota_segu',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_inco_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_inco_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pedi_inco_segu',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_rete_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pedi_rete_segu',
-        },
-      ]
-    } else if(selectedVariable.value === 2) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Camp. ante.',
-          key: 'acti_camp_ante',
-        },
-        {
-          title: 'Obje. %',
-          key: 'acti_obje',
-        },
-        {
-          title: 'Obje. pedi.',
-          key: 'acti_obje_pedi',
-        },
-        {
-          title: 'Proyección (%)',
-          key: 'acti_porc_prim',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'acti_prim',
-        },
-        {
-          title: 'Reproyección (%)',
-          key: 'acti_porc_segu',
-        },
-        {
-          title: 'Reproyección',
-          key: 'acti_segu',
-        },
-
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'cons_rete_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'cons_rete_segu',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: 'Peg21',
-          key: 'pe21',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe21_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe21_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe21_segu',
-        },
-        {
-          title: 'Peg42',
-          key: 'pe42',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe42_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe42_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe42_segu',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe63_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe63_segu',
-        },
-        {
-          title: 'Pegs',
-          key: 'pegs',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pegs_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pegs_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pegs_segu',
-        },
-      ]
-    } else if(selectedVariable.value === 3) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_rete_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pedi_rete_segu',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'cons_rete_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'cons_rete_segu',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: 'Peg21',
-          key: 'pe21',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe21_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe21_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe21_segu',
-        },
-        {
-          title: 'Peg42',
-          key: 'pe42',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe42_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe42_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe42_segu',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe63_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe63_segu',
-        },
-        {
-          title: 'Pegs',
-          key: 'pegs',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pegs_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pegs_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pegs_segu',
-        },
-        {
-          title: 'Pos. rein.',
-          key: 'rein',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'rein_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'rein_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'rein_segu',
-        },
-        {
-          title: 'Nivel lider obje. proy.',
-          key: 'nive_lide',
-        },
-      ]
-    } else if(selectedVariable.value === 4) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_inco_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_inco_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pedi_inco_segu',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe63_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'pe63_segu',
-        },
-        {
-          title: 'Pos. rein.',
-          key: 'rein',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'rein_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'rein_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'rein_segu',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'capi_obje',
-        },
-        {
-          title: 'Reproyección',
-          key: 'capi_repr',
-        },
-      ]
-    } else if(selectedVariable.value === 5) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Venta',
-          key: 'tota_vent',
-        },
-        {
-          title: 'Cobranza 88%(por cobrar)',
-          key: 'cobr',
-        },
-        {
-          title: 'Cobranza 88%(te puedes quedar)',
-          key: 'cobr_colc',
-        },
-        {
-          title: 'Cobranza 92%(por cobrar)',
-          key: 'co92',
-        },
-        {
-          title: 'Cobranza 92%(te puedes quedar)',
-          key: 'co92_colc',
-        },
-      ]
-    } else if(selectedVariable.value === 6) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'cons_rete_prim',
-        },
-        {
-          title: 'Reproyección',
-          key: 'cons_rete_segu',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: '2 Camp. ante.',
-          key: 'cons_terc_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_terc_obje',
-        },
-        {
-          title: '3 Camp. ante.',
-          key: 'cons_cuar_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_cuar_obje',
-        },
-      ]
-    }
-    
-  } else if (selectedColumna.value >= 1) {
-    if(selectedVariable.value === 0) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_tota_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_tota_prim',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_inco_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_inco_prim',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_rete_prim',
-        },
-        {
-          title: 'Camp. ante.',
-          key: 'acti_camp_ante',
-        },
-        {
-          title: 'Obje. %',
-          key: 'acti_obje',
-        },
-        {
-          title: 'Obje. pedi.',
-          key: 'acti_obje_pedi',
-        },
-        {
-          title: 'Proyección (%)',
-          key: 'acti_porc_prim',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'acti_prim',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'cons_rete_prim',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: '2 Camp. ante.',
-          key: 'cons_terc_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_terc_obje',
-        },
-        {
-          title: '3 Camp. ante.',
-          key: 'cons_cuar_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_cuar_obje',
-        },
-        {
-          title: 'Peg21',
-          key: 'pe21',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe21_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe21_prim',
-        },
-        {
-          title: 'Peg42',
-          key: 'pe42',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe42_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe42_prim',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe63_prim',
-        },
-        {
-          title: 'Pegs',
-          key: 'pegs',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pegs_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pegs_prim',
-        },
-        {
-          title: 'Pos. rein.',
-          key: 'rein',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'rein_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'rein_prim',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'capi_obje',
-        },
-        {
-          title: 'Venta',
-          key: 'tota_vent',
-        },
-        {
-          title: 'Cobranza 88%(por cobrar)',
-          key: 'cobr',
-        },
-        {
-          title: 'Cobranza 88%(te puedes quedar)',
-          key: 'cobr_colc',
-        },
-        {
-          title: 'Cobranza 92%(por cobrar)',
-          key: 'co92',
-        },
-        {
-          title: 'Cobranza 92%(te puedes quedar)',
-          key: 'co92_colc',
-        },
-        {
-          title: 'Nivel lider obje. proy.',
-          key: 'nive_lide',
-        },
-      ]
-    } else if (selectedVariable.value === 1) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_tota_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_tota_prim',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_inco_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_inco_prim',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_rete_prim',
-        },
-      ]
-    } else  if(selectedVariable.value === 2) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Camp. ante.',
-          key: 'acti_camp_ante',
-        },
-        {
-          title: 'Obje. %',
-          key: 'acti_obje',
-        },
-        {
-          title: 'Obje. pedi.',
-          key: 'acti_obje_pedi',
-        },
-        {
-          title: 'Proyección (%)',
-          key: 'acti_porc_prim',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'acti_prim',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'cons_rete_prim',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: 'Peg21',
-          key: 'pe21',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe21_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe21_prim',
-        },
-        {
-          title: 'Peg42',
-          key: 'pe42',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe42_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe42_prim',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe63_prim',
-        },
-        {
-          title: 'Pegs',
-          key: 'pegs',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pegs_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pegs_prim',
-        },
-      ]
-    } else if(selectedVariable.value === 3) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_rete_prim',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'cons_rete_prim',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: 'Peg21',
-          key: 'pe21',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe21_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe21_prim',
-        },
-        {
-          title: 'Peg42',
-          key: 'pe42',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe42_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe42_prim',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe63_prim',
-        },
-        {
-          title: 'Pegs',
-          key: 'pegs',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pegs_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pegs_prim',
-        },
-        {
-          title: 'Pos. rein.',
-          key: 'rein',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'rein_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'rein_prim',
-        },
-        {
-          title: 'Nivel lider obje. proy.',
-          key: 'nive_lide',
-        },
-      ]
-    } else if(selectedVariable.value === 4) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_inco_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pedi_inco_prim',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'pe63_prim',
-        },
-        {
-          title: 'Pos. rein.',
-          key: 'rein',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'rein_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'rein_prim',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'capi_obje',
-        },
-      ]
-    } else if(selectedVariable.value === 5) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Venta',
-          key: 'tota_vent',
-        },
-        {
-          title: 'Cobranza 88%(por cobrar)',
-          key: 'cobr',
-        },
-        {
-          title: 'Cobranza 88%(te puedes quedar)',
-          key: 'cobr_colc',
-        },
-        {
-          title: 'Cobranza 92%(por cobrar)',
-          key: 'co92',
-        },
-        {
-          title: 'Cobranza 92%(te puedes quedar)',
-          key: 'co92_colc',
-        },
-      ]
-    } else if(selectedVariable.value === 6) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'cons_rete_prim',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: '2 Camp. ante.',
-          key: 'cons_terc_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_terc_obje',
-        },
-        {
-          title: '3 Camp. ante.',
-          key: 'cons_cuar_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_cuar_obje',
-        },
-      ]
-    }
-  } else {
-    if(selectedVariable.value === 0) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_tota_obje',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_inco_obje',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_rete_obje',
-        },
-        {
-          title: 'Camp. ante.',
-          key: 'acti_camp_ante',
-        },
-        {
-          title: 'Obje. %',
-          key: 'acti_obje',
-        },
-        {
-          title: 'Obje. pedi.',
-          key: 'acti_obje_pedi',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: '2 Camp. ante.',
-          key: 'cons_terc_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_terc_obje',
-        },
-        {
-          title: '3 Camp. ante.',
-          key: 'cons_cuar_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_cuar_obje',
-        },
-        {
-          title: 'Peg21',
-          key: 'pe21',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe21_obje',
-        },
-        {
-          title: 'Peg42',
-          key: 'pe42',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe42_obje',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Pegs',
-          key: 'pegs',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pegs_obje',
-        },
-        {
-          title: 'Pos. rein.',
-          key: 'rein',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'rein_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'capi_obje',
-        },
-        {
-          title: 'Venta',
-          key: 'tota_vent',
-        },
-        {
-          title: 'Cobranza 88%(por cobrar)',
-          key: 'cobr',
-        },
-        {
-          title: 'Cobranza 88%(te puedes quedar)',
-          key: 'cobr_colc',
-        },
-        {
-          title: 'Cobranza 92%(por cobrar)',
-          key: 'co92',
-        },
-        {
-          title: 'Cobranza 92%(te puedes quedar)',
-          key: 'co92_colc',
-        },
-        {
-          title: 'Nivel lider obje. proy.',
-          key: 'nive_lide',
-        },
-      ]
-    } else if (selectedVariable.value === 1) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_tota_obje',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_inco_obje',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_rete_obje',
-        },
-      ]
-    } else  if(selectedVariable.value === 2) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Camp. ante.',
-          key: 'acti_camp_ante',
-        },
-        {
-          title: 'Obje. %',
-          key: 'acti_obje',
-        },
-        {
-          title: 'Obje. pedi.',
-          key: 'acti_obje_pedi',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: 'Peg21',
-          key: 'pe21',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe21_obje',
-        },
-        {
-          title: 'Peg42',
-          key: 'pe42',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe42_obje',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Pegs',
-          key: 'pegs',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pegs_obje',
-        },
-      ]
-    } else if(selectedVariable.value === 3) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_rete_obje',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: 'Peg21',
-          key: 'pe21',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe21_obje',
-        },
-        {
-          title: 'Peg42',
-          key: 'pe42',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe42_obje',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Pegs',
-          key: 'pegs',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pegs_obje',
-        },
-        {
-          title: 'Pos. rein.',
-          key: 'rein',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'rein_obje',
-        },
-        {
-          title: 'Nivel lider obje. proy.',
-          key: 'nive_lide',
-        },
-      ]
-    } else if(selectedVariable.value === 4) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pedi_inco_obje',
-        },
-        {
-          title: 'Peg63',
-          key: 'pe63',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'pe63_obje',
-        },
-        {
-          title: 'Pos. rein.',
-          key: 'rein',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'rein_obje',
-        },
-        {
-          title: 'Obj. proyección',
-          key: 'capi_obje',
-        },
-      ]
-    } else if(selectedVariable.value === 5) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Venta',
-          key: 'tota_vent',
-        },
-        {
-          title: 'Cobranza 88%(por cobrar)',
-          key: 'cobr',
-        },
-        {
-          title: 'Cobranza 88%(te puedes quedar)',
-          key: 'cobr_colc',
-        },
-        {
-          title: 'Cobranza 92%(por cobrar)',
-          key: 'co92',
-        },
-        {
-          title: 'Cobranza 92%(te puedes quedar)',
-          key: 'co92_colc',
-        },
-      ]
-    } else if(selectedVariable.value === 6) {
-      return [
-        {
-          title: 'Sector',
-          key: 'codi_sect',
-        },
-        {
-          title: 'Lider',
-          key: 'nomb_vend',
-        },
-        {
-          title: 'Act. inic.',
-          key: 'acti_inic',
-        },
-        {
-          title: 'Rete. camp. ante.',
-          key: 'cons_rete_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_rete_obje',
-        },
-        {
-          title: '1 Camp. ante.',
-          key: 'cons_segu_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_segu_obje',
-        },
-        {
-          title: '2 Camp. ante.',
-          key: 'cons_terc_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_terc_obje',
-        },
-        {
-          title: '3 Camp. ante.',
-          key: 'cons_cuar_camp_ante',
-        },
-        {
-          title: 'Obje. form. éxito',
-          key: 'cons_cuar_obje',
-        },
-      ]
-    }
-  }
-  
-})
 
 const claseIncorporacion = (row, columnfield, value) => {
   const dataRecord = refGridGlobal.value.getrowdata(row)
@@ -2022,7 +305,7 @@ const claseCapitalizacion = (row, columnfield, value) => {
     return `text-error`
   }
   
-  return ``
+  return `text-success`
 }
 
 let sumaNumePedi = 0
@@ -2033,6 +316,7 @@ let sumaActiObjePedi = 0
 let sumaActiPrim = 0
 let sumaActiSegu = 0
 
+/**columnas de la grilla */
 const columnaGlobal = [
   {
     text: 'Sector',
@@ -2043,6 +327,7 @@ const columnaGlobal = [
     editable: false,
     pinned: true,
     filtertype: 'checkedlist',
+    columna: 'A',
   },
   {
     text: 'Lider',
@@ -2053,6 +338,7 @@ const columnaGlobal = [
     editable: false,
     pinned: true,
     filtertype: 'checkedlist',
+    columna: 'B',
   },
   {
     text: 'Act. inic.',
@@ -2064,81 +350,62 @@ const columnaGlobal = [
     pinned: true,
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'C',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obje. form. éxito',
-    dataField: 'pedi_tota_obje',
+    text: 'Proyección',
+    dataField: 'pedi_inco_obje',   
     width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'tota',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'D',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obj. proyección',
-    dataField: 'pedi_tota_prim',
-    hidden: true,
-    width: '130',
+    text: 'Seguimiento',
+    dataField: 'segui_inco',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'tota',
     cellsformat: 'N',
     filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-       
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: 'Reproyección',
-    dataField: 'pedi_tota_segu',
-    hidden: true,
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'tota',
-    cellsformat: 'N',
-    filtertype: 'number',
+    columna: 'E',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obje. form. éxito',
-    dataField: 'pedi_inco_obje',
+    text: 'Ped. Camp. Ante',
+    datafield: 'pedi_rete',
     width: '140',
     align: 'center',
     cellsalign: 'center',
@@ -2146,77 +413,62 @@ const columnaGlobal = [
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'F',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyeccion',
     dataField: 'pedi_inco_prim',
-    hidden: true,
-    width: '130',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'G',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname: claseIncorporacion,
   },
   {
-    text: 'Reproyección',
-    dataField: 'pedi_inco_segu',
-    hidden: true,
-    width: '120',
+    text: 'Seguimiento',
+    dataField: 'segui_conse',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'H',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname: claseIncorporacion,
   },
   {
-    text: 'Obje. form. éxito',
-    datafield: 'pedi_rete_obje',
+    text: '1. Camp. Ante',
+    datafield: 'cons_segu_camp_ante',
     width: '140',
     align: 'center',
     cellsalign: 'center',
@@ -2224,139 +476,111 @@ const columnaGlobal = [
     columngroup: 'rete',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'I',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+        },
+      },
+    ],
+  },
+  
+  {
+    text: 'Proyeccion',
+    datafield: 'pedi_rete_segu_ocul',
+    width: '140',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'rete',
+    cellsformat: 'N',
+    filtertype: 'number',
+    columna: 'J',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Seguimiento',
     datafield: 'pedi_rete_prim',
-    hidden: true,
+    hidden: false,
     width: '130',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'rete',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'K',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
     cellclassname: claseRetencion,
   },
   {
-    text: 'Reproyección',
-    datafield: 'pedi_rete_segu',
-    hidden: true,
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'rete',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    cellclassname: claseRetencion,
-  },
-  {
-    text: 'tota ingr ante',
-    datafield: 'tota_ingr_ante',
-    hidden: true,
-  },
-  {
-    text: 'tota rein ante',
-    datafield: 'tota_rein_ante',
-    hidden: true,
-  },
-  {
-    text: 'acti inic ante',
-    datafield: 'acti_inic_ante',
-    hidden: true,
-  },
-  {
-    text: 'tota pedi ante',
-    datafield: 'tota_pedi_ante',
-    hidden: true,
-  },
-  {
-    text: 'nume acti',
-    datafield: 'nume_acti',
-    hidden: true,
-  },
-  {
-    text: 'acti nume prim',
-    datafield: 'acti_nume_prim',
-    hidden: true,
-  },
-  {
-    text: 'acti nume segu',
-    datafield: 'acti_nume_segu',
-    hidden: true,
-  },
-  {
-    text: 'Camp. ante.',
-    datafield: 'acti_camp_ante',
+    text: '2. Camp. Ante.',
+    datafield: 'pedi_rete_terc_ante',
+    hidden: false,
     width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     columngroup: 'acti',
-    cellsformat: 'P2',
+    cellsformat: 'N',
     filtertype: 'number',
+    columna: 'L',
     aggregates: [
       {
-        T: function (aggregatedValue, currentValue, column, record) {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
           
-          if (record.visibleindex === 0) {
-            sumaNumePedi = 0
-            sumaTotaIngr = 0
-            sumaTotaRein = 0
-            sumaActiInic = 0
-          }
-          sumaNumePedi += record.tota_pedi_ante
-          sumaNumePedi += record.tota_ingr_ante
-          sumaTotaRein += record.tota_rein_ante
-          sumaActiInic += record.acti_inic_ante
-          let total = 0
-
-          const calculo = parseInt(sumaNumePedi)
-                  - parseInt(sumaTotaIngr)
-                  - parseInt(sumaTotaRein)
-
-          const activas = parseInt(sumaActiInic)
-          if (calculo > 0 && activas > 0) {
-            total = 100 * (calculo / activas)
-          }
-          total = parseFloat(total).toFixed(2)
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+        },
+      },
+    ],
+    cellclassname: claseRetencion,
+  },
+  {
+    text: 'Proyección',
+    datafield: 'cons_rete_prim_ocul',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    editable: true,
+    columngroup: 'acti',
+    cellsformat: 'P2',
+    filtertype: 'number',
+    columna: 'M',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
           
-          return total
+          aggregatedValue += currentValue
+          
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+
         },
       },
     ],
   },
   {
-    text: 'Obje. %',
-    datafield: 'acti_obje',
+    text: 'Seguimiento',
+    datafield: 'cons_rete_segu_ocul',
     width: '140',
     align: 'center',
     cellsalign: 'center',
@@ -2364,28 +588,16 @@ const columnaGlobal = [
     columngroup: 'acti',
     cellsformat: 'P2',
     filtertype: 'number',
+    columna: 'N',
     aggregates: [
       {
-        T: function (aggregatedValue, currentValue, column, record) {
+        T: function (aggregatedValue, currentValue) {
           
-          if (record.visibleindex === 0) {
-            sumaActiInic = 0
-            sumaActiObjePedi = 0
-          }
-          sumaActiInic += record.acti_inic
-          sumaActiObjePedi += record.acti_obje_pedi
-          let total = 0
-          if (
-            parseInt(sumaActiInic) > 0
-                  && parseFloat(sumaActiObjePedi) > 0
-          ) {
-            total =
-                    100
-                    * (parseFloat(sumaActiObjePedi) / parseInt(sumaActiInic))
-          }
-          total = parseFloat(total).toFixed(2)
+            
+          aggregatedValue += currentValue
           
-          return total
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          
         },
       },
     ],
@@ -2401,227 +613,66 @@ const columnaGlobal = [
     },
   },
   {
-    text: 'Obje. pedi.',
-    datafield: 'acti_obje_pedi',
+    text: '3. Camp. Ante.',
+    datafield: 'pedi_rete_cuar_ante',
+    hidden: false,
     width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    columngroup: 'acti',
+    columngroup: 'cons4_ped',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'O',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
+    cellclassname: claseRetencion,
   },
   {
-    text: 'Proyección (%)',
-    datafield: 'acti_porc_prim',
-    hidden: true,
-    width: '140',
+    text: 'Proyección',
+    datafield: 'proy_segu',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
-    columngroup: 'acti',
-    cellsformat: 'p2',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          
-          if (record.visibleindex === 0) {
-            sumaActiPrim = 0
-            sumaActiInic = 0
-          }
-          sumaActiPrim += record.acti_prim
-          sumaActiInic += record.acti_inic
-          let total = 0
-          if (
-            parseInt(sumaActiPrim) > 0
-                  && parseInt(sumaActiInic) > 0
-          ) {
-            total =
-                    100 * (parseFloat(sumaActiPrim) / parseFloat(sumaActiInic))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-  },
-  {
-    text: 'Obj. proyección',
-    datafield: 'acti_prim',
-    hidden: true,
-    width: '130',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'acti',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    cellclassname: claseActividad,
-  },
-  {
-    text: 'Reproyección (%)',
-    datafield: 'acti_porc_segu',
-    hidden: true,
-    width: '140',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'acti',
+    editable: true,
+    columngroup: 'cons4_ped',
     cellsformat: 'P2',
     filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-         
-          if (record.visibleindex === 0) {
-            sumaActiSegu = 0
-            sumaActiInic = 0
-          }
-          sumaActiSegu += record.acti_segu
-          sumaActiInic += record.acti_inic
-          let total = 0
-          if (
-            parseInt(sumaActiSegu) > 0
-                  && parseFloat(sumaActiInic) > 0
-          ) {
-            total =
-                    100 * (parseInt(sumaActiSegu) / parseInt(sumaActiInic))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-  },
-  {
-    text: 'Reproyección',
-    datafield: 'acti_segu',
-    hidden: true,
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'acti',
-    cellsformat: 'N',
-    filtertype: 'number',
+    columna: 'P',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
-        },
-      },
-    ],
-    cellclassname: claseActividad,
-  },
-  {
-    text: 'Rete. camp. ante.',
-    datafield: 'cons_rete_camp_ante',
-    width: '150',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'cons_prim',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obje. form. éxito',
-    datafield: 'cons_rete_obje',
+    text: 'Seguimiento',
+    datafield: 'proy_segu1',
     width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
-    columngroup: 'cons_prim',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: 'Obj. proyección',
-    datafield: 'cons_rete_prim',
-    hidden: true,
-    width: '130',
-    align: 'center',
-    cellsalign: 'center',
     editable: true,
-    columngroup: 'cons_prim',
-    cellsformat: 'N',
+    columngroup: 'cons4_ped',
+    cellsformat: 'P2',
     filtertype: 'number',
+    columna: 'Q',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
-        },
-      },
-    ],
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },    
-    cellclassname: claseConsecutividadRetencion,
-  },
-  {
-    text: 'Reproyección',
-    datafield: 'cons_rete_segu',
-    hidden: true,
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: true,
-    columngroup: 'cons_prim',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
@@ -2632,128 +683,11 @@ const columnaGlobal = [
       
       return !(value === '')
     },
-    cellclassname: claseConsecutividadRetencion,
+    cellclassname() {
+      return 'text-secondary bg-primary-light'
+    },
   },
-  {
-    text: '1 Camp. ante.',
-    datafield: 'cons_segu_camp_ante',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'cons_segu',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: 'Obje. form. éxito',
-    datafield: 'cons_segu_obje',
-    width: '140',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'cons_segu',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: '2 Camp. ante.',
-    datafield: 'cons_terc_camp_ante',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'cons_terc',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: 'Obje. form. éxito',
-    datafield: 'cons_terc_obje',
-    width: '140',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'cons_terc',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: '3 Camp. ante.',
-    datafield: 'cons_cuar_camp_ante',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'cons_cuar',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: 'Obje. form. éxito',
-    datafield: 'cons_cuar_obje',
-    width: '140',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'cons_cuar',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
+  
   {
     text: 'Peg21',
     datafield: 'pe21',
@@ -2764,40 +698,42 @@ const columnaGlobal = [
     columngroup: 'pe21',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'R',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obje. form. éxito',
+    text: 'Proyección',
     datafield: 'pe21_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'pe21',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'S',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Seguimiento',
     datafield: 'pe21_prim',
-    hidden: true,
+    hidden: false,
     width: '130',
     align: 'center',
     cellsalign: 'center',
@@ -2805,41 +741,13 @@ const columnaGlobal = [
     columngroup: 'pe21',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'T',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
-        },
-      },
-    ],
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname: claseProyeccionPeg21,
-  },
-  {
-    text: 'Reproyección',
-    hidden: true,
-    datafield: 'pe21_segu',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: true,
-    columngroup: 'pe21',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
@@ -2862,40 +770,42 @@ const columnaGlobal = [
     columngroup: 'pe42',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'U',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obje. form. éxito',
+    text: 'Proyección',
     datafield: 'pe42_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'pe42',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'V',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Seguimiento',
     datafield: 'pe42_prim',
-    hidden: true,
+    hidden: false,
     width: '130',
     align: 'center',
     cellsalign: 'center',
@@ -2903,41 +813,13 @@ const columnaGlobal = [
     columngroup: 'pe42',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'W',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
-        },
-      },
-    ],
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname: claseProyeccionPeg42,
-  },
-  {
-    text: 'Reproyección',
-    datafield: 'pe42_segu',
-    hidden: true,
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: true,
-    columngroup: 'pe42',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
@@ -2960,40 +842,42 @@ const columnaGlobal = [
     columngroup: 'pe63',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'X',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obje. form. éxito',
+    text: 'Proyección',
     datafield: 'pe63_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'pe63',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'Y',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Seguimiento',
     datafield: 'pe63_prim',
-    hidden: true,
+    hidden: false,
     width: '130',
     align: 'center',
     cellsalign: 'center',
@@ -3001,12 +885,13 @@ const columnaGlobal = [
     columngroup: 'pe63',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'Z',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
        
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
@@ -3019,35 +904,7 @@ const columnaGlobal = [
     },
     cellclassname: claseProyeccionPeg63,
   },
-  {
-    text: 'Reproyección',
-    datafield: 'pe63_segu',
-    hidden: true,
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: true,
-    columngroup: 'pe63',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname: claseProyeccionPeg63,
-  },
+
   {
     text: 'Pegs',
     datafield: 'pegs',
@@ -3058,82 +915,63 @@ const columnaGlobal = [
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'AA',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obje. form. éxito',
+    text: 'Proyección',
     datafield: 'pegs_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'AB',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Seguimiento',
     datafield: 'pegs_prim',
-    hidden: true,
+    hidden: false,
     width: '130',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'AC',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
     cellclassname: claseProyeccionPegs,
   },
   {
-    text: 'Reproyección',
-    datafield: 'pegs_segu',
-    hidden: true,
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    columngroup: 'pegs',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    cellclassname: claseProyeccionPegs,
-  },
-  {
-    text: 'Pos. rein.',
+    text: 'Pos rein',
     datafield: 'rein',
     width: '120',
     align: 'center',
@@ -3142,40 +980,42 @@ const columnaGlobal = [
     columngroup: 'rein',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'AD',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obje. form. éxito',
+    text: 'Proyeccion',
     datafield: 'rein_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'rein',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'AE',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Seguimiento',
     datafield: 'rein_prim',
-    hidden: true,
+    hidden: false,
     width: '130',
     align: 'center',
     cellsalign: 'center',
@@ -3183,12 +1023,13 @@ const columnaGlobal = [
     columngroup: 'rein',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'AF',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
@@ -3202,222 +1043,160 @@ const columnaGlobal = [
     cellclassname: claseProyeccionReingreso,
   },
   {
-    text: 'Reproyección',
-    datafield: 'rein_segu',
-    hidden: true,
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: true,
-    columngroup: 'rein',
-    cellsformat: 'N',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname: claseProyeccionReingreso,
-  },
-  {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'capi_obje',
     width: '130',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
     columngroup: 'capi',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'AG',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
     cellclassname: claseCapitalizacion,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'capi_repr',
     width: '120',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
-    hidden: true,
+    editable: true,
+    hidden: false,
     columngroup: 'capi',
     cellsformat: 'N',
     filtertype: 'number',
+    columna: 'AH',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
     cellclassname: claseCapitalizacion,
   },
   {
-    text: 'Venta',
+    text: 'Objetivo Minimo',
     datafield: 'tota_vent',
     width: '120',
     align: 'center',
     cellsalign: 'center',
+    columngroup: 'pedi_tota',
     editable: false,
     cellsformat: 'D2',
     filtertype: 'number',
+    columna: 'AI',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) { 
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Cobranza 88%(por cobrar)',
+    text: 'Proyeccion',
     datafield: 'cobr',
     width: '160',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
+    columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
+    columna: 'AJ',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Cobranza 88%(te puedes quedar)',
+    text: 'Seguimiento',
     datafield: 'cobr_colc',
     width: '180',
     align: 'center',
     cellsalign: 'center',
-    editable: false,
+    editable: true,
+    columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
+    columna: 'AK',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
           
-          return aggregatedValue
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
     ],
   },
   {
-    text: 'Cobranza 92%(por cobrar)',
-    datafield: 'co92',
-    width: '160',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    cellsformat: 'D2',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: 'Cobranza 92%(te puedes quedar)',
-    datafield: 'co92_colc',
-    width: '180',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    cellsformat: 'D2',
-    filtertype: 'number',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: 'Nivel lider obje. proy.',
+    text: 'Nivel lider proyeccion',
     datafield: 'nive_lide',
+    columngroup: 'nive_lide',
     width: '180',
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    columna: 'AL',
+  },
+  {
+    text: 'Nivel lider seguimiento',
+    datafield: 'nive_lide_segui',
+    columngroup: 'nive_lide',
+    width: '180',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    columna: 'AM',
   },
 ]
-
+/**columnas de agrupacion de la grilla */
 const columnasGrupo = [
   {
-    text: 'Pedidos Totales',
+    text: 'Incorporacion',
     align: 'center',
     name: 'tota',
   },
   {
-    text: 'Incorporación',
+    text: 'Consecutividad',
     align: 'center',
     name: 'inco',
   },
   {
-    text: 'Pedidos de retención',
+    text: 'Consecutividad 2do pedido',
     align: 'center',
     name: 'rete',
   },
   {
-    text: '% Actividad',
+    text: 'Consecutividad 3er pedido',
     align: 'center',
     name: 'acti',
   },
   {
-    text: 'Consecutividad pedidos de retención 90%',
+    text: 'Consecutividad 4to pedido',
     align: 'center',
-    name: 'cons_prim',
-  },
-  {
-    text: 'Consecutividad 2do pedido 100%',
-    align: 'center',
-    name: 'cons_segu',
-  },
-  {
-    text: 'Consecutividad 3er pedido 80%',
-    align: 'center',
-    name: 'cons_terc',
-  },
-  {
-    text: 'Consecutividad 4to pedido 70%',
-    align: 'center',
-    name: 'cons_cuar',
+    name: 'cons4_ped',
   },
   {
     text: 'Peg21 40%',
@@ -3449,13 +1228,23 @@ const columnasGrupo = [
     align: 'center',
     name: 'capi',
   },
+  {
+    text: 'Pedidos Totales',
+    align: 'center',
+    name: 'pedi_tota',
+  },
+  {
+    text: 'Nivel lider',
+    align: 'center',
+    name: 'nive_lide',
+  }
 ]
 
 const sourceGlobal = ref({
   localdata: [],
   datafields: [
     { name: 'codi_sect', type: 'string' },
-    { name: 'nomb_vend', type: 'string' },
+    { name: 'nomb_vend', type: 'string' }, 
     { name: 'acti_inic', type: 'number' },
     { name: 'pedi_tota_obje', type: 'number' },
     { name: 'pedi_tota_prim', type: 'number' },
@@ -3509,9 +1298,11 @@ const sourceGlobal = ref({
     { name: 'tota_vent', type: 'number' },
     { name: 'cobr', type: 'number' },
     { name: 'cobr_colc', type: 'number' },
-    { name: 'co92', type: 'number' },
+    { name: 'tota_pedi_ante', type: 'number' },
     { name: 'co92_colc', type: 'number' },
     { name: 'nive_lide', type: 'number' },
+    { name: 'proy_segu', type: 'number' },
+    { name: 'proy_segu1', type: 'number' },
   ],
   datatype: 'json',
 })
@@ -3529,754 +1320,145 @@ const zonaOptions = ref([])
 const errorZona = ref(false)
 const errorMensajeZona = ref('')
 
+/**
+ * este evento sirve para editar 
+ * comportamientos de la grilla 
+ * como suma de las variables de las columnas 
+ * entre otras cosas
+ * @param event 
+ */
 const onEditar = event => {
-  const { args } = event
-  const columnDataField = args.datafield
-  const rowIndex = args.rowindex
-  const cellValue = args.value
-  if (columnDataField === 'pedi_inco_prim') {
-    let pedidoIncorporacion = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim')
-    let pedidoRetencion = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_prim')
+  const { args } = event;
+  const columnDataField = args.datafield;
+  const rowIndex = args.rowindex;
+  const cellValue = args.value;
 
-    let pedidoTotaPrim = parseInt(pedidoIncorporacion) + parseInt(pedidoRetencion)
+  /**
+   * Suma de las columnas 
+   * de objetivos de proyección de pegs21, pegs42 y pegs63
+   */
+  if (columnDataField === 'pe21_obje' || columnDataField === 'pe42_obje' || columnDataField === 'pe63_obje') {
+    let newValue = cellValue;
+    let proyPeg21 = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje');
+    let proyPeg42 = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje');
+    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
+
+    if (proyPeg21 > 0 || proyPeg42 > 0 || proyPeg63 > 0) {
+      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63;
+      if (sumProyPeg >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'pegs_obje', sumProyPeg)
+      }else{
+        refGridGlobal.value.setcellvalue(rowIndex, 'pegs_obje', 0)
+      }
+    }
     
-    if (!Number.isNaN(pedidoIncorporacion) && pedidoIncorporacion !== '') {
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_prim', pedidoTotaPrim)
-    }
-  } else if (columnDataField === 'pedi_inco_segu') {
-    const pedidoIncorporacion =  refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_segu')
-    const pedidoRetencion = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_segu')
-    if (!Number.isNaN(pedidoIncorporacion) && pedidoIncorporacion !== '') {
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_segu', parseInt(pedidoIncorporacion) + parseInt(pedidoRetencion))
-    }
-  } else if (columnDataField === 'acti_obje') {
-    const actiObje = parseFloat(refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_obje')).toFixed(2)
-    const actiInic = refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_inic')
-    if (!Number.isNaN(actiObje)) {
-      let actiObjePedi = 0
-      if (actiInic !== '0' && actiObje !== '0') {
-        actiObjePedi = (actiInic * actiObje) / 100
-        actiObjePedi = parseFloat(actiObjePedi).toFixed(2)
-        actiObjePedi = Math.ceil(actiObjePedi)
-      }
-
-      if (actiObje > 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'nume_acti', 1)
-      } else {
-        refGridGlobal.value.setcellvalue(rowIndex, 'nume_acti', 0)
-      }
-      refGridGlobal.value.setcellvalue(rowIndex, 'acti_obje_pedi', actiObjePedi)
-    }
-  } else if (columnDataField === 'cons_rete_prim') {
-    const consRetePrim = parseInt(refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_prim'))
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let pe21Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim')
-    let pe42Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim')
-    let pe63Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
-    let reinPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
-    if (!Number.isNaN(consRetePrim)) {
-      consSeguObje = parseInt(consSeguObje)
-      pe21Prim = parseInt(pe21Prim)
-      pe42Prim = parseInt(pe42Prim)
-      pe63Prim = parseInt(pe63Prim)
-      reinPrim = parseInt(reinPrim)
-      let pediRetePrim = consRetePrim
-            + consSeguObje
-            + pe21Prim
-            + pe42Prim
-            + pe63Prim
-            + reinPrim
-      pediRetePrim = parseInt(pediRetePrim)
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_prim', pediRetePrim)
-      let actiPrim = consRetePrim + consSeguObje + pe21Prim + pe42Prim + pe63Prim
-      actiPrim = parseInt(actiPrim)
-      refGridGlobal.value.setcellvalue(rowIndex, 'acti_prim', actiPrim)
-
-      let actiInic = refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_inic')
-      if (!Number.isNaN(actiPrim)) {
-        let actiPorcPrim = '0.00'
-        actiInic = parseInt(actiInic)
-        if (actiInic !== '0' && actiPrim !== '0') {
-          actiPorcPrim = (actiPrim / actiInic) * 100
-          actiPorcPrim = parseFloat(actiPorcPrim).toFixed(2)
-        }
-        actiPorcPrim = parseFloat(actiPorcPrim).toFixed(2)
-        if (actiPorcPrim > 0) {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_prim', 1)
-        } else {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_prim', 0)
-        }
-        refGridGlobal.value.setcellvalue(rowIndex, 'acti_porc_prim', actiPorcPrim)
-      }
-      const pediIncoPrim = parseInt(refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim'))
-      if (!Number.isNaN(pediRetePrim)) {
-        let pediTotaPrim = pediIncoPrim + pediRetePrim
-        pediTotaPrim = parseInt(pediTotaPrim)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_prim', pediTotaPrim)
-      }         
-    }
-  } else if (columnDataField === 'cons_rete_segu') {
-    const consReteSegu = parseInt(refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_segu'))
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let pe21Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_segu')
-    let pe42Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_segu')
-    let pe63Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_segu')
-    let reinSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_segu')
-    if (!Number.isNaN(consReteSegu)) {
-      consSeguObje = parseInt(consSeguObje)
-      pe21Segu = parseInt(pe21Segu)
-      pe42Segu = parseInt(pe42Segu)
-      pe63Segu = parseInt(pe63Segu)
-      reinSegu = parseInt(reinSegu)
-      let pediReteSegu = consReteSegu
-            + consSeguObje
-            + pe21Segu
-            + pe42Segu
-            + pe63Segu
-            + reinSegu
-      pediReteSegu = parseInt(pediReteSegu)
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_segu', pediReteSegu)
-      let actiSegu = consReteSegu + consSeguObje + pe21Segu + pe42Segu + pe63Segu
-      actiSegu = parseInt(actiSegu)
-      refGridGlobal.value.setcellvalue(rowIndex, 'acti_segu', actiSegu)
-      let actiInic = refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_inic')
-      if (!Number.isNaN(actiSegu)) {
-        let actiPorcSegu = '0.00'
-            
-        actiInic = parseInt(actiInic)
-        if (actiInic !== '0' && actiSegu !== '0') {
-          actiPorcSegu = (actiSegu / actiInic) * 100
-          actiPorcSegu = parseFloat(actiPorcSegu).toFixed(2)
-        }
-        actiPorcSegu = parseFloat(actiPorcSegu).toFixed(2)
-        if (actiPorcSegu > 0) {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_segu', 1)
-        } else {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_segu', 0)
-        }
-        refGridGlobal.value.setcellvalue(rowIndex, 'acti_porc_segu', actiPorcSegu)
-      }
-      let pediReteObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_obje')
-      let pediIncoSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_segu')
-      let pediRetePrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_prim')
-      pediIncoSegu = parseInt(pediIncoSegu)
-      pediRetePrim = parseInt(pediRetePrim)
-      pediReteObje = parseInt(pediReteObje)
-      if (!Number.isNaN(pediReteSegu)) {
-        let pediTotaSegu = pediIncoSegu + pediReteSegu
-        pediTotaSegu = parseInt(pediTotaSegu)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_segu', pediTotaSegu)
-      }
-    } 
-  } else if (columnDataField === 'pe21_prim') {
-    const pe21Prim = parseInt(refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim'))
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let consRetePrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_prim')
-    let pe42Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim')
-    let pe63Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
-    let reinPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
-    if (!Number.isNaN(pe21Prim)) {
-      consSeguObje = parseInt(consSeguObje)
-      consRetePrim = parseInt(consRetePrim)
-      pe42Prim = parseInt(pe42Prim)
-      pe63Prim = parseInt(pe63Prim)
-      reinPrim = parseInt(reinPrim)
-
-      const pegsPrim = pe63Prim + pe42Prim + pe21Prim
-
-      refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', pegsPrim)
-      let pediRetePrim = consRetePrim
-            + consSeguObje
-            + pe21Prim
-            + pe42Prim
-            + pe63Prim
-            + reinPrim
-      
-      pediRetePrim = parseInt(pediRetePrim)
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_prim', pediRetePrim)
-      let actiPrim = consRetePrim + consSeguObje + pe21Prim + pe42Prim + pe63Prim
-      
-      actiPrim = parseInt(actiPrim)
-      refGridGlobal.value.setcellvalue(rowIndex, 'acti_prim', actiPrim)
-      let actiInic = refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_inic')
-      if (!Number.isNaN(actiPrim)) {
-        let actiPorcPrim = '0.00'
-        
-        actiInic = parseInt(actiInic)
-        if (actiInic !== '0' && actiPrim !== '0') {
-          actiPorcPrim = (actiPrim / actiInic) * 100
-          actiPorcPrim = parseFloat(actiPorcPrim).toFixed(2)
-        }
-        actiPorcPrim = parseFloat(actiPorcPrim).toFixed(2)
-        if (actiPorcPrim > 0) {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_prim', 1)
-        } else {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_prim', 0)
-        }
-        refGridGlobal.value.setcellvalue(rowIndex, 'acti_porc_prim', actiPorcPrim)
-      }
-      let pediReteObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_obje')
-      let pediReteSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_segu')
-      let pediIncoPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim')
-      
-      pediIncoPrim = parseInt(pediIncoPrim)
-      
-      pediReteObje = parseInt(pediReteObje)
-      
-      pediReteSegu = parseInt(pediReteSegu)
-      if (!Number.isNaN(pediRetePrim)) {
-        let pediTotaPrim = pediIncoPrim + pediRetePrim
-        
-        pediTotaPrim = parseInt(pediTotaPrim)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_prim', pediTotaPrim)
-      }
-    }
-  } else if (columnDataField === 'pe21_segu') {
-    const pe21Segu = parseInt(cellValue)
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let consReteSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_segu')
-    let pe42Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_segu')
-    let pe63Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_segu')
-    let reinSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_segu')
-    if (!Number.isNaN(pe21Segu)) {
-      consSeguObje = parseInt(consSeguObje)
-      consReteSegu = parseInt(consReteSegu)
-      pe42Segu = parseInt(pe42Segu)
-      pe63Segu = parseInt(pe63Segu)
-      reinSegu = parseInt(reinSegu)
-
-      const pegsSegu = pe63Segu + pe42Segu + pe21Segu
-      
-      refGridGlobal.value.setcellvalue(rowIndex, 'pegs_segu', pegsSegu)
-      let pediReteSegu = consReteSegu
-            + consSeguObje
-            + pe21Segu
-            + pe42Segu
-            + pe63Segu
-            + reinSegu
-      
-      pediReteSegu = parseInt(pediReteSegu)
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_segu', pediReteSegu)
-
-      let actiSegu = consReteSegu + consSeguObje + pe21Segu + pe42Segu + pe63Segu
-      
-      actiSegu = parseInt(actiSegu)
-      refGridGlobal.value.setcellvalue(rowIndex, 'acti_segu', actiSegu)
-      let actiInic = refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_inic')
-      if (!Number.isNaN(actiSegu)) {
-        let actiPorcSegu = '0.00'
-        actiInic = parseInt(actiInic)
-        if (actiInic !== '0' && actiSegu !== '0') {
-          actiPorcSegu = (actiSegu / actiInic) * 100
-          actiPorcSegu = parseFloat(actiPorcSegu).toFixed(2)
-        }
-        actiPorcSegu = parseFloat(actiPorcSegu).toFixed(2)
-        if (actiPorcSegu > 0) {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_segu', 1)
-        } else {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_segu', 0)
-        }
-        refGridGlobal.value.setcellvalue(rowIndex, 'acti_porc_segu', actiPorcSegu)
-      }
-      let pediReteObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_obje')
-      let pediIncoSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_segu')
-      let pediRetePrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_prim')
-      pediIncoSegu = parseInt(pediIncoSegu)
-      pediRetePrim = parseInt(pediRetePrim)
-      pediReteObje = parseInt(pediReteObje)
-      if (!Number.isNaN(pediReteSegu)) {
-        let pediTotaSegu = pediIncoSegu + pediReteSegu
-        pediTotaSegu = parseInt(pediTotaSegu)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_segu', pediTotaSegu)
-      }
-    }
-  } else if (columnDataField === 'pe42_prim') {
-    const pe42Prim = parseInt(refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim'))
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let consRetePrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_prim')
-    let pe21Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim')
-    let pe63Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
-    let reinPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
-    if (!Number.isNaN(pe42Prim)) {
-      consSeguObje = parseInt(consSeguObje)
-      consRetePrim = parseInt(consRetePrim)
-      pe21Prim = parseInt(pe21Prim)
-      pe63Prim = parseInt(pe63Prim)
-      reinPrim = parseInt(reinPrim)
-    
-      const pegsPrim = pe63Prim + pe42Prim + pe21Prim
-  
-      refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', pegsPrim)
-      let pediRetePrim = consRetePrim
-                + consSeguObje
-                + pe21Prim
-                + pe42Prim
-                + pe63Prim
-                + reinPrim
-              
-      pediRetePrim = parseInt(pediRetePrim)
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_prim', pediRetePrim)
-      let actiPrim = consRetePrim + consSeguObje + pe21Prim + pe42Prim + pe63Prim
-              
-      actiPrim = parseInt(actiPrim)
-      refGridGlobal.value.setcellvalue(rowIndex, 'acti_prim', actiPrim)
-      let actiInic = refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_inic')
-      if (!Number.isNaN(actiPrim)) {
-        let actiPorcPrim = '0.00'
-        actiInic = parseInt(actiInic)
-        if (actiInic !== '0' && actiPrim !== '0') {
-          actiPorcPrim = (actiPrim / actiInic) * 100
-          actiPorcPrim = parseFloat(actiPorcPrim).toFixed(2)
-        }
-        actiPorcPrim = parseFloat(actiPorcPrim).toFixed(2)
-        if (actiPorcPrim > 0) {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_prim', 1)
-        } else {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_prim', 0)
-        }
-        refGridGlobal.value.setcellvalue(rowIndex, 'acti_porc_prim', actiPorcPrim)
-      }
-      let pediReteObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_obje')
-      let pediReteSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_segu')
-      let pediIncoPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim')
-      pediIncoPrim = parseInt(pediIncoPrim)
-      pediReteObje = parseInt(pediReteObje)
-      pediReteSegu = parseInt(pediReteSegu)
-      if (!Number.isNaN(pediRetePrim)) {
-        let pediTotaPrim = pediIncoPrim + pediRetePrim
-                
-        pediTotaPrim = parseInt(pediTotaPrim)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_prim', pediTotaPrim)
-      }
-    }
-  } else if (columnDataField === 'pe42_segu') {
-    const pe42Segu = parseInt(refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_segu'))
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let consReteSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_segu')
-    let pe21Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_segu')
-    let pe63Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_segu')
-    let reinSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_segu')
-    if (!Number.isNaN(pe42Segu)) {
-      consSeguObje = parseInt(consSeguObje)
-      consReteSegu = parseInt(consReteSegu)
-      pe21Segu = parseInt(pe21Segu)
-      pe63Segu = parseInt(pe63Segu)
-      reinSegu = parseInt(reinSegu)
-    
-      const pegsSegu = pe63Segu + pe42Segu + pe21Segu
-    
-      refGridGlobal.value.setcellvalue(rowIndex, 'pegs_segu', pegsSegu)
-      let pediReteSegu = consReteSegu
-                + consSeguObje
-                + pe21Segu
-                + pe42Segu
-                + pe63Segu
-                + reinSegu
-              
-      pediReteSegu = parseInt(pediReteSegu)
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_segu', pediReteSegu)
-
-      let actiSegu = consReteSegu + consSeguObje + pe21Segu + pe42Segu + pe63Segu
-              
-      actiSegu = parseInt(actiSegu)
-      refGridGlobal.value.setcellvalue(rowIndex, 'acti_segu', actiSegu)
-      
-      let actiInic = refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_inic')
-      if (!Number.isNaN(actiSegu)) {
-        let actiPorcSegu = '0.00'
-        actiInic = parseInt(actiInic)
-        if (actiInic !== '0' && actiSegu !== '0') {
-          actiPorcSegu = (actiSegu / actiInic) * 100
-          actiPorcSegu = parseFloat(actiPorcSegu).toFixed(2)
-        }
-        actiPorcSegu = parseFloat(actiPorcSegu).toFixed(2)
-        if (actiPorcSegu > 0) {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_segu', 1)
-        } else {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_segu', 0)
-        }
-        refGridGlobal.value.setcellvalue(rowIndex, 'acti_porc_segu', actiPorcSegu)
-      }
-      let pediReteObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_obje')
-      let pediIncoSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_segu')
-      let pediRetePrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_prim')
-      pediIncoSegu = parseInt(pediIncoSegu)
-      pediRetePrim = parseInt(pediRetePrim)
-      pediReteObje = parseInt(pediReteObje)
-      if (!Number.isNaN(pediReteSegu)) {
-        let pediTotaSegu = pediIncoSegu + pediReteSegu
-        pediTotaSegu = parseInt(pediTotaSegu)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_segu', pediTotaSegu)
-      }
-    }
-  } else if (columnDataField === 'pe63_prim') {
-    let pe63 = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63')
-    let pe63Obje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje')
-    let pe63Prim = parseInt(refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim'))
-    let pe63Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_segu')
-    let reinObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
-    let reinPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
-    let reinSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_segu')
-    let pediIncoObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje')
-    let pediIncoPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim')
-    let pediIncoSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_segu')
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let consRetePrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_prim')
-    let pe21Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim')
-    let pe42Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim')
-    if (!Number.isNaN(pe63Prim)) {
-      pe63 = parseInt(pe63)
-      pe63Obje = parseInt(pe63Obje)
-      pe63Prim = parseInt(pe63Prim)
-      pe63Segu = parseInt(pe63Segu)
-      reinObje = parseInt(reinObje)
-      reinPrim = parseInt(reinPrim)
-      reinSegu = parseInt(reinSegu)
-      pediIncoObje = parseInt(pediIncoObje)
-      pediIncoPrim = parseInt(pediIncoPrim)
-      pediIncoSegu = parseInt(pediIncoSegu)
-      let totaSali = 0
-      let totaInco = 0
-      let totaRein = 0
-      if (selectedColumna.value === 2) {
-        totaSali = pe63Segu
-        totaInco = pediIncoSegu
-        totaRein = reinSegu
-      } else if (selectedColumna.value === 1) {
-        totaSali = pe63Prim
-        totaInco = pediIncoPrim
-        totaRein = reinPrim
-      } else {
-        totaSali = pe63Obje
-        totaInco = pediIncoObje
-        totaRein = reinObje
-      }
-      if (pe63 > 0) {
-        totaSali = pe63 - totaSali
-      }
-      if (totaSali < 0) {
-        totaSali = 0
-      }
-      consSeguObje = parseInt(consSeguObje)
-      consRetePrim = parseInt(consRetePrim)
-      pe21Prim = parseInt(pe21Prim)
-      pe42Prim = parseInt(pe42Prim)
-
-      const pegsPrim = pe63Prim + pe42Prim + pe21Prim
-
-      refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', pegsPrim)
-
-      let pediRetePrim = consRetePrim
-            + consSeguObje
-            + pe21Prim
-            + pe42Prim
-            + pe63Prim
-            + reinPrim
-          
-      pediRetePrim = parseInt(pediRetePrim)
-
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_prim', pediRetePrim)
-          
-      const actiPrim = parseInt(
-        consRetePrim + consSeguObje + pe21Prim + pe42Prim + pe63Prim,
-      )
-
-      refGridGlobal.value.setcellvalue(rowIndex, 'acti_prim', actiPrim)
-      let actiInic = refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_inic')
-      if (!Number.isNaN(actiPrim)) {
-        let actiPorcPrim = '0.00'
-            
-        actiInic = parseInt(actiInic)
-        if (actiInic !== '0' && actiPrim !== '0') {
-          actiPorcPrim = (actiPrim / actiInic) * 100
-          actiPorcPrim = parseFloat(actiPorcPrim).toFixed(2)
-        }
-        actiPorcPrim = parseFloat(actiPorcPrim).toFixed(2)
-        if (actiPorcPrim > 0) {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_prim', 1)
-        } else {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_prim', 0)
-        }
-        refGridGlobal.value.setcellvalue(rowIndex, 'acti_porc_prim', actiPorcPrim)
-      }
-      totaSali = parseInt(totaSali)
-      totaInco = parseInt(totaInco)
-      totaRein = parseInt(totaRein)
-      let capiObje = totaInco + totaRein - totaSali
-      capiObje = parseInt(capiObje)
-      refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', capiObje)
-      let pediReteObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_obje')
-      let pediReteSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_segu')
-      pediIncoPrim = parseInt(pediIncoPrim)
-      pediReteObje = parseInt(pediReteObje)
-      pediReteSegu = parseInt(pediReteSegu)
-      if (!Number.isNaN(pediRetePrim)) {
-        let pediTotaPrim = pediIncoPrim + pediRetePrim
-        pediTotaPrim = parseInt(pediTotaPrim)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_prim', pediTotaPrim)
-      }
-    }
-  } else if (columnDataField === 'pe63_segu') {
-    let pe63 = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63')
-    let pe63Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
-    let pe63Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_segu')
-    let pe63Obje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje')
-    let reinObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
-    let reinPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
-    let reinSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_segu')
-    let pediIncoObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje')
-    let pediIncoPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim')
-    let pediIncoSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_segu')
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let consReteSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_segu')
-    let pe21Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_segu')
-    let pe42Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_segu')
-    if (!Number.isNaN(pe63Segu)) {
-      pe63 = parseInt(pe63)
-      pe63Obje = parseInt(pe63Obje)
-      pe63Prim = parseInt(pe63Prim)
-      pe63Segu = parseInt(pe63Segu)
-      reinObje = parseInt(reinObje)
-      reinPrim = parseInt(reinPrim)
-      reinSegu = parseInt(reinSegu)
-      pediIncoObje = parseInt(pediIncoObje)
-      pediIncoPrim = parseInt(pediIncoPrim)
-      pediIncoSegu = parseInt(pediIncoSegu)
-      let totaSali = 0
-      let totaInco = 0
-      let totaRein = 0
-      if (selectedColumna.value === 2) {
-        totaSali = pe63Segu
-        totaInco = pediIncoSegu
-        totaRein = reinSegu
-      } else if (selectedColumna.value === 1) {
-        totaSali = pe63Prim
-        totaInco = pediIncoPrim
-        totaRein = reinPrim
-      } else {
-        totaSali = pe63Obje
-        totaInco = pediIncoObje
-        totaRein = reinObje
-      }
-
-      if (pe63 > 0) {
-        totaSali = pe63 - totaSali
-      }
-
-      if (totaSali < 0) {
-        totaSali = 0
-      }
-      consSeguObje = parseInt(consSeguObje)
-      consReteSegu = parseInt(consReteSegu)
-      pe21Segu = parseInt(pe21Segu)
-      pe42Segu = parseInt(pe42Segu)
-
-      const pegsSegu = pe63Segu + pe42Segu + pe21Segu
-
-      refGridGlobal.value.setcellvalue(rowIndex, 'pegs_segu', pegsSegu)
-      let pediReteSegu = consReteSegu
-            + consSeguObje
-            + pe21Segu
-            + pe42Segu
-            + pe63Segu
-            + reinSegu
-      pediReteSegu = parseInt(pediReteSegu)
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_segu', pediReteSegu)
-      let actiSegu = consReteSegu + consSeguObje + pe21Segu + pe42Segu + pe63Segu
-          
-      actiSegu = parseInt(actiSegu)
-      refGridGlobal.value.setcellvalue(rowIndex, 'acti_segu', actiSegu)
-      let actiInic = refGridGlobal.value.getcellvaluebyid(rowIndex, 'acti_inic')
-      if (!Number.isNaN(actiSegu)) {
-        let actiPorcSegu = '0.00'
-        actiInic = parseInt(actiInic)
-        if (actiInic !== '0' && actiSegu !== '0') {
-          actiPorcSegu = (actiSegu / actiInic) * 100
-          actiPorcSegu = parseFloat(actiPorcSegu).toFixed(2)
-        }
-        actiPorcSegu = parseFloat(actiPorcSegu).toFixed(2)
-        if (actiPorcSegu > 0) {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_segu', 1)
-        } else {
-          refGridGlobal.value.setcellvalue(rowIndex, 'acti_nume_segu', 0)
-        }
-        refGridGlobal.value.setcellvalue(rowIndex, 'acti_porc_segu', actiPorcSegu)
-      }
-      totaSali = parseInt(totaSali)
-      totaInco = parseInt(totaInco)
-      totaRein = parseInt(totaRein)
-      let capiObje = totaInco + totaRein - totaSali
-          
-      capiObje = parseInt(capiObje)
-      refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', capiObje)
-      let pediReteObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_obje')
-      let pediRetePrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_prim')
-      pediIncoSegu = parseInt(pediIncoSegu)
-      pediRetePrim = parseInt(pediRetePrim)
-      pediReteObje = parseInt(pediReteObje)
-      if (!Number.isNaN(pediReteSegu)) {
-        let pediTotaSegu = pediIncoSegu + pediReteSegu
-        pediTotaSegu = parseInt(pediTotaSegu)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_segu', pediTotaSegu)
-      }
-    }
-  } else if (columnDataField === 'rein_prim') {
-    let pe63 = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63')
-    let pe63Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
-    let pe63Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_segu')
-    let pe63Obje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje')
-    let reinObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
-    let reinPrim = parseInt(refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim'))
-    let reinSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_segu')
-    let pediIncoObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje')
-    let pediIncoPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim')
-    let pediIncoSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_segu')
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let consRetePrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_prim')
-    let pe21Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim')
-    let pe42Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim')
-    if (!Number.isNaN(reinPrim)) {
-      pe63 = parseInt(pe63)
-      pe63Obje = parseInt(pe63Obje)
-      pe63Prim = parseInt(pe63Prim)
-      pe63Segu = parseInt(pe63Segu)
-      reinObje = parseInt(reinObje)
-      reinPrim = parseInt(reinPrim)
-      reinSegu = parseInt(reinSegu)
-      pediIncoObje = parseInt(pediIncoObje)
-      pediIncoPrim = parseInt(pediIncoPrim)
-      pediIncoSegu = parseInt(pediIncoSegu)
-      let totaSali = 0
-      let totaInco = 0
-      let totaRein = 0
-      if (selectedColumna.value === 2) {
-        totaSali = pe63Segu
-        totaInco = pediIncoSegu
-        totaRein = reinSegu
-      } else if (selectedColumna.value === 1) {
-        totaSali = pe63Prim
-        totaInco = pediIncoPrim
-        totaRein = reinPrim
-      } else {
-        totaSali = pe63Obje
-        totaInco = pediIncoObje
-        totaRein = reinObje
-      }
-      if (pe63 > 0) {
-        totaSali = pe63 - totaSali
-      }
-      if (totaSali < 0) {
-        totaSali = 0
-      }
-      consSeguObje = parseInt(consSeguObje)
-      consRetePrim = parseInt(consRetePrim)
-      pe21Prim = parseInt(pe21Prim)
-      pe42Prim = parseInt(pe42Prim)
-      let pediRetePrim = consRetePrim
-            + consSeguObje
-            + pe21Prim
-            + pe42Prim
-            + pe63Prim
-            + reinPrim
-          
-      pediRetePrim = parseInt(pediRetePrim)
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_prim', pediRetePrim)
-      totaSali = parseInt(totaSali)
-      totaInco = parseInt(totaInco)
-      totaRein = parseInt(totaRein)
-      let capiObje = totaInco + totaRein - totaSali
-      capiObje = parseInt(capiObje)
-      refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', capiObje)
-      let pediReteObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_obje')
-      let pediReteSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_segu')
-      pediIncoPrim = parseInt(pediIncoPrim)
-      pediReteObje = parseInt(pediReteObje)
-      pediReteSegu = parseInt(pediReteSegu)
-      if (!Number.isNaN(pediRetePrim)) {
-        let pediTotaPrim = pediIncoPrim + pediRetePrim
-        pediTotaPrim = parseInt(pediTotaPrim)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_prim', pediTotaPrim)
-      }
-    }
-  } else if (columnDataField === 'rein_segu') {
-    let pe63 = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63')
-    let pe63Prim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
-    let pe63Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_segu')
-    let pe63Obje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje')
-    let reinObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
-    let reinPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
-    let reinSegu = parseInt(refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_segu'))
-    let pediIncoObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje')
-    let pediIncoPrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim')
-    let pediIncoSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_segu')
-    let consSeguObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje')
-    let consReteSegu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_segu')
-    let pe21Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_segu')
-    let pe42Segu = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_segu')
-    if (!Number.isNaN(reinSegu)) {
-      pe63 = parseInt(pe63)
-      pe63Obje = parseInt(pe63Obje)
-      pe63Prim = parseInt(pe63Prim)
-      pe63Segu = parseInt(pe63Segu)
-      reinObje = parseInt(reinObje)
-      reinPrim = parseInt(reinPrim)
-      reinSegu = parseInt(reinSegu)
-      pediIncoObje = parseInt(pediIncoObje)
-      pediIncoPrim = parseInt(pediIncoPrim)
-      pediIncoSegu = parseInt(pediIncoSegu)
-      let totaSali = 0
-      let totaInco = 0
-      let totaRein = 0
-      if (this.columna === '2') {
-        totaSali = pe63Segu
-        totaInco = pediIncoSegu
-        totaRein = reinSegu
-      } else if (this.columna === '1') {
-        totaSali = pe63Prim
-        totaInco = pediIncoPrim
-        totaRein = reinPrim
-      } else if (this.columna === '0') {
-        totaSali = pe63Obje
-        totaInco = pediIncoObje
-        totaRein = reinObje
-      }
-      if (pe63 > 0) {
-        totaSali = pe63 - totaSali
-      }
-      if (totaSali < 0) {
-        totaSali = 0
-      }
-      consSeguObje = parseInt(consSeguObje)
-      consReteSegu = parseInt(consReteSegu)
-      pe21Segu = parseInt(pe21Segu)
-      pe42Segu = parseInt(pe42Segu)
-      let pediReteSegu = consReteSegu
-            + consSeguObje
-            + pe21Segu
-            + pe42Segu
-            + pe63Segu
-            + reinSegu
-          
-      pediReteSegu = parseInt(pediReteSegu)
-      refGridGlobal.value.setcellvalue(rowIndex, 'pedi_rete_segu', pediReteSegu)
-      totaSali = parseInt(totaSali)
-      totaInco = parseInt(totaInco)
-      totaRein = parseInt(totaRein)
-      let capiObje = totaInco + totaRein - totaSali
-      capiObje = parseInt(capiObje)
-      refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', capiObje)
-      let pediReteObje = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_obje')
-      let pediRetePrim = refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_rete_prim')
-      pediIncoSegu = parseInt(pediIncoSegu)
-      pediRetePrim = parseInt(pediRetePrim)
-      pediReteObje = parseInt(pediReteObje)
-      if (!Number.isNaN(pediReteSegu)) {
-        let pediTotaSegu = pediIncoSegu + pediReteSegu
-        pediTotaSegu = parseInt(pediTotaSegu)
-        refGridGlobal.value.setcellvalue(rowIndex, 'pedi_tota_segu', pediTotaSegu)
-      }
-    }
   }
+
+  /**
+   * Suma de las columnas 
+   * de objetivos de seguimiento de pegs21, pegs42 y pegs63
+   */
+  if (columnDataField === 'pe21_prim' || columnDataField === 'pe42_prim' || columnDataField === 'pe63_prim') {
+    let newValue = cellValue;
+    let proyPeg21 = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim');
+    let proyPeg42 = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim');
+    let proyPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim');
+
+    if (proyPeg21 > 0 || proyPeg42 > 0 || proyPeg63 > 0) {
+      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63;
+      if (sumProyPeg >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', sumProyPeg)
+      }else{
+        refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', 0)
+      }
+    }
+    
+  }
+
+
+  /**
+   * Suma de las columnas 
+   * de objetivos de seguimiento de pegs21, pegs42 y pegs63
+   * para validar si puede capitalizar o no la proyección
+   * el valor sumado se coloca en la columna de proyeccion de la capitalización
+   */
+  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'rein_obje' || columnDataField === 'pe63_obje') {
+    let newValue = cellValue;
+    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje');
+    let proyRein = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje');
+    let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
+    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
+    console.log(proyInco+" "+ proyRein+" "+ Peg63+" "+proyPeg63)
+    if (proyInco > 0 || proyRein > 0 || proyPeg63 > 0) {
+      let sumProyCapi = (proyInco + proyRein)  - (proyPeg63-Peg63);
+      console.log(sumProyCapi)
+      if (sumProyCapi >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', sumProyCapi)
+      }else{
+        refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', 0)
+      }
+    }
+    
+  }
+ 
+  /**
+   * Suma de las columnas 
+   * de objetivos de proyeccion de incorporacion, reingresos,pegs21, pegs42 y pegs63
+   * para validar si puede cumple el objetivos de pedidos o no la proyección
+   * el valor sumado se coloca en la columna de proyeccion de pedidos totales
+   */
+  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'pedi_inco_prim' || columnDataField === 'pe21_obje'
+  || columnDataField === 'pe42_obje' || columnDataField === 'pe63_obje' || columnDataField === 'rein_obje'
+  ) {
+    let newValue = cellValue;
+    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje');
+    let proyPediInco = columnDataField === 'pedi_inco_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim');
+    let Peg21Obje = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje'); 
+    let Peg42Obje = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje'); 
+    let Peg63Obje = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje'); 
+    let proyReinObje = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje');
+    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Obje+" "+Peg42Obje+" "+Peg63Obje+" "+proyReinObje);
+
+    if (proyInco > 0 || proyPediInco > 0 || Peg21Obje > 0 || Peg42Obje > 0 || Peg63Obje > 0 || proyReinObje > 0) {
+      let sumProyCapi = proyInco+proyPediInco+Peg21Obje+Peg42Obje+Peg63Obje-proyReinObje;
+      console.log(sumProyCapi)
+      if (sumProyCapi >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'cobr', sumProyCapi)
+      }else{
+        refGridGlobal.value.setcellvalue(rowIndex, 'cobr', 0)
+      }
+    }
+    
+  }
+  /**
+   * Suma de las columnas 
+   * de objetivos de seguimiento de incorporacion, reingresos,pegs21, pegs42 y pegs63
+   * para validar si puede cumple el objetivos de pedidos o no el seguimiento
+   */
+  if (columnDataField === 'segui_inco' || columnDataField === 'segui_conse' || columnDataField === 'pe21_prim'
+  || columnDataField === 'pe42_prim' || columnDataField === 'pe63_prim' || columnDataField === 'rein_prim'
+  ) {
+    let newValue = cellValue!==""||cellValue!==undefined ?cellValue:0;
+    let proyInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco');
+    let proyPediInco = columnDataField === 'segui_conse' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_conse');
+    let Peg21Segui = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim'); 
+    let Peg42Segui = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim'); 
+    let Peg63Segui = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim'); 
+    let proyReinSegui = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim');
+    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Segui+" "+Peg42Segui+" "+Peg63Segui+" "+proyReinSegui);
+
+    if (proyInco > 0 || proyPediInco > 0 || Peg21Segui > 0 || Peg42Segui > 0 || Peg63Segui > 0 || proyReinSegui > 0) {
+      let sumProyCapi = parseInt(proyInco)+parseInt(proyPediInco)+parseInt(Peg21Segui)+parseInt(Peg42Segui)+parseInt(Peg63Segui)+parseInt(proyReinSegui);
+      console.log(sumProyCapi)
+      if (sumProyCapi >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', sumProyCapi)
+      }else{
+        refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', 0)
+      }
+    }
+    
+  }
+ 
 }
 
 
@@ -4285,7 +1467,7 @@ onMounted(async () => {
   await obtenerCampana()
   await obtenerZona()
 
-  await mostrarVariables(selectedVariable.value)
+  // await mostrarVariables(selectedVariable.value)
 })
 
 const obtenerCampana = async () => {
@@ -4322,6 +1504,9 @@ const obtenerZona = async () => {
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
       method: "get",
+      query: {
+        codigo: userData.codi_perf,
+      },
     })
 
     const itemZona = data.data_glob
@@ -4427,7 +1612,7 @@ const onLimpiar= async () => {
     reproyeccionActividad: '0.00',
   }
   sourceGlobal.value.localdata = []
-  refGridGlobal.value.updatebounddata('cells')
+  refGridGlobal.value.updatebounddata('cells') 
   refGridGlobal.value.refreshfilterrow()
 }
 
@@ -4436,19 +1621,43 @@ const onExcel = async () => {
     appStore.mensaje('Generando archivo')
     appStore.loading(true)
 
+    // Exportar datos manualmente a XML
+    const rows = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+    if (!rows || rows.length === 0) {
+      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
+      appStore.color("error");
+      appStore.snackbar(true);
+      return;
+    }
+
+    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+
+    rows.forEach((row, index) => {
+      xmlData += `  <row id="${index + 1}">\n`;
+      for (const [key, value] of Object.entries(row)) {
+        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`;
+      }
+      xmlData += `  </row>\n`;
+    });
+
+    xmlData += `</rows>`;
+    console.log("Datos generados manualmente a XML:");
+    console.log(columnaGlobal.value);
+
     const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/excel`, {
       method: "post",
       body: {
         general: general.value,
         columna: selectedColumna.value,
         variable: selectedVariable.value,
-        cabecera: cabecera.value,
-        detalle: JSON.stringify(refGridGlobal.value.exportdata('xml')),
+        cabecera: columnaGlobal,
+        detalle: JSON.stringify(xmlData),
       },
     })
     
     window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
+    console.log(e)
   }
   finally {
     appStore.loading(false)
@@ -4456,48 +1665,95 @@ const onExcel = async () => {
 }
 
 const onRegistrar = async () => {
-  const dataInfoGlob = refGridGlobal.value.getdatainformation()
-  const dataRowsGlob = dataInfoGlob.rowscount
-  if(dataRowsGlob == 0 ) {
-    appStore.mensajeSnackbar('No tiene ninguna proyección por registrar.')
-    appStore.color("error")
-    appStore.snackbar(true)
-  } else if (selectedVariable.value !== 0) {
-    appStore.mensajeSnackbar('Para registrar la proyección debe de estar marcada la variable "Todos".')
-    appStore.color("error")
-    appStore.snackbar(true)
-  } else {
-    try {
-      appStore.mensaje('Generando proceso')
-      appStore.loading(true)
+  console.log("pruebas");
+  const dataInfoGlob = refGridGlobal?.value?.getdatainformation?.();
+  console.log(dataInfoGlob);
 
-      const data  = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona`, {
-        method: "post",
-        body: {
-          campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
-          zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
-          data: JSON.stringify(
-            refGridGlobal.value.exportdata(
-              'xml',
-              null,
-              false,
-              null,
-              true,
-            ),
-          ),
-        },
-      })
-    
-      appStore.mensajeSnackbar(`${data.message}`)
-      appStore.color("success")
-      appStore.snackbar(true)
-    } catch (e) {
-    }
-    finally {
-      appStore.loading(false)
-    }
+  const dataRowsGlob = dataInfoGlob?.rowscount || 0; // Validar si rowscount existe
+  console.log(dataRowsGlob);
+
+  if (dataRowsGlob === 0) {
+    appStore.mensajeSnackbar("No tiene ninguna proyección por registrar.");
+    appStore.color("error");
+    appStore.snackbar(true);
+    return; // Salir temprano
+  } else if (selectedVariable.value !== 0) {
+    appStore.mensajeSnackbar(
+      'Para registrar la proyección debe de estar marcada la variable "Todos".'
+    );
+    appStore.color("error");
+    appStore.snackbar(true);
+    return; // Salir temprano
   }
-}
+
+  console.log("pruebas en el else");
+  console.log(formulario.value.campana);
+  console.log(formulario.value.zona);
+
+  try {
+    // Exportar datos manualmente a XML
+    const rows = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+    if (!rows || rows.length === 0) {
+      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
+      appStore.color("error");
+      appStore.snackbar(true);
+      return;
+    }
+
+    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+
+    rows.forEach((row, index) => {
+      xmlData += `  <row id="${index + 1}">\n`;
+      for (const [key, value] of Object.entries(row)) {
+        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`;
+      }
+      xmlData += `  </row>\n`;
+    });
+
+    xmlData += `</rows>`;
+    console.log("Datos generados manualmente a XML:");
+    console.log(xmlData);
+
+    // appStore.mensaje("Generando proceso");
+    // appStore.loading(true);
+
+    const data = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona`, {
+      method: "post",
+      body: {
+        campana: formulario.value.campana || "",
+        zona: formulario.value.zona || "",
+        data: JSON.stringify(xmlData),
+        data_ext: JSON.stringify(xmlData),
+      },
+    });
+
+    console.log("Proceso completado con éxito:", data);
+    // Mostrar mensaje de éxito si es necesario
+    appStore.mensajeSnackbar(`${data.message}`)
+    appStore.color("success")
+    appStore.snackbar(true)
+  } catch (error) {
+    console.error("Error en onRegistrar:", error.message);
+    console.error("Detalles:", error.stack);
+    appStore.mensajeSnackbar("Ocurrió un error al registrar la proyección.");
+    appStore.color("error");
+    appStore.snackbar(true);
+  } finally {
+    appStore.loading(false);
+  }
+};
+
+// Función para escapar caracteres especiales en XML
+const escapeXML = (value) => {
+  if (value === null || value === undefined) return "";
+  return value
+    .toString()
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+};
 
 const limpiarValidacion = () => {
   errorCampana.value = false
@@ -4506,757 +1762,7 @@ const limpiarValidacion = () => {
   errorMensajeZona.value = ''
 }
 
-const columnsOcultarTodo = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_tota_obje',
-  'pedi_tota_prim',
-  'pedi_tota_segu',
-  'pedi_inco_obje',
-  'pedi_inco_prim',
-  'pedi_inco_segu',
-  'pedi_rete_obje',
-  'pedi_rete_prim',
-  'pedi_rete_segu',
-  'acti_camp_ante',
-  'acti_obje',
-  'acti_obje_pedi',
-  'acti_porc_prim',
-  'acti_prim',
-  'acti_porc_segu',
-  'acti_segu',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_rete_prim',
-  'cons_rete_segu',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'cons_terc_camp_ante',
-  'cons_terc_obje',
-  'cons_cuar_camp_ante',
-  'cons_cuar_obje',
-  'pe21',
-  'pe21_obje',
-  'pe21_prim',
-  'pe21_segu',
-  'pe42',
-  'pe42_obje',
-  'pe42_prim',
-  'pe42_segu',
-  'pe63',
-  'pe63_obje',
-  'pe63_prim',
-  'pe63_segu',
-  'pegs',
-  'pegs_obje',
-  'pegs_prim',
-  'pegs_segu',
-  'rein',
-  'rein_obje',
-  'rein_prim',
-  'rein_segu',
-  'capi_obje',
-  'capi_repr',
-  'tota_vent',
-  'cobr',
-  'cobr_colc',
-  'co92',
-  'co92_colc',
-  'nive_lide',
-]
 
-const columnsMostrarTodo = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_tota_obje',
-  'pedi_tota_prim',
-  'pedi_tota_segu',
-  'pedi_inco_obje',
-  'pedi_inco_prim',
-  'pedi_inco_segu',
-  'pedi_rete_obje',
-  'pedi_rete_prim',
-  'pedi_rete_segu',
-  'acti_camp_ante',
-  'acti_obje',
-  'acti_obje_pedi',
-  'acti_porc_prim',
-  'acti_prim',
-  'acti_porc_segu',
-  'acti_segu',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_rete_prim',
-  'cons_rete_segu',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'cons_terc_camp_ante',
-  'cons_terc_obje',
-  'cons_cuar_camp_ante',
-  'cons_cuar_obje',
-  'pe21',
-  'pe21_obje',
-  'pe21_prim',
-  'pe21_segu',
-  'pe42',
-  'pe42_obje',
-  'pe42_prim',
-  'pe42_segu',
-  'pe63',
-  'pe63_obje',
-  'pe63_prim',
-  'pe63_segu',
-  'pegs',
-  'pegs_obje',
-  'pegs_prim',
-  'pegs_segu',
-  'rein',
-  'rein_obje',
-  'rein_prim',
-  'rein_segu',
-  'capi_obje',
-  'capi_repr',
-  'tota_vent',
-  'cobr',
-  'cobr_colc',
-  'co92',
-  'co92_colc',
-  'nive_lide',
-]
-
-const columnsMostrarPedidosTotales = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_tota_obje',
-  'pedi_tota_prim',
-  'pedi_tota_segu',
-  'pedi_inco_obje',
-  'pedi_inco_prim',
-  'pedi_inco_segu',
-  'pedi_rete_obje',
-  'pedi_rete_prim',
-  'pedi_rete_segu',
-]
-
-const columnsMostrarPedidosActividad = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'acti_camp_ante',
-  'acti_obje',
-  'acti_obje_pedi',
-  'acti_porc_prim',
-  'acti_prim',
-  'acti_porc_segu',
-  'acti_segu',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_rete_prim',
-  'cons_rete_segu',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'pe21',
-  'pe21_obje',
-  'pe21_prim',
-  'pe21_segu',
-  'pe42',
-  'pe42_obje',
-  'pe42_prim',
-  'pe42_segu',
-  'pe63',
-  'pe63_obje',
-  'pe63_prim',
-  'pe63_segu',
-  'pegs',
-  'pegs_obje',
-  'pegs_prim',
-  'pegs_segu',
-]
-
-const columnsMostrarPedidosRetencion = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_rete_obje',
-  'pedi_rete_prim',
-  'pedi_rete_segu',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_rete_prim',
-  'cons_rete_segu',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'pe21',
-  'pe21_obje',
-  'pe21_prim',
-  'pe21_segu',
-  'pe42',
-  'pe42_obje',
-  'pe42_prim',
-  'pe42_segu',
-  'pe63',
-  'pe63_obje',
-  'pe63_prim',
-  'pe63_segu',
-  'pegs',
-  'pegs_obje',
-  'pegs_prim',
-  'pegs_segu',
-  'rein',
-  'rein_obje',
-  'rein_prim',
-  'rein_segu',
-  'nive_lide',
-]
-
-const columnsMostrarCapitalizacion = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_inco_obje',
-  'pedi_inco_prim',
-  'pedi_inco_segu',
-  'pe63',
-  'pe63_obje',
-  'pe63_prim',
-  'pe63_segu',
-  'rein',
-  'rein_obje',
-  'rein_prim',
-  'rein_segu',
-  'capi_obje',
-  'capi_repr',
-]
-
-const columnsMostrarCobranza = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'tota_vent',
-  'cobr',
-  'cobr_colc',
-  'co92',
-  'co92_colc',
-]
-
-const columnsMostrarConsecutividad = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_rete_prim',
-  'cons_rete_segu',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'cons_terc_camp_ante',
-  'cons_terc_obje',
-  'cons_cuar_camp_ante',
-  'cons_cuar_obje',
-]
-
-/*Proyeccion */
-const columnsMostrarTodoProyeccion = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_tota_obje',
-  'pedi_tota_prim',
-  'pedi_inco_obje',
-  'pedi_inco_prim',
-  'pedi_rete_obje',
-  'pedi_rete_prim',
-  'acti_camp_ante',
-  'acti_obje',
-  'acti_obje_pedi',
-  'acti_porc_prim',
-  'acti_prim',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_rete_prim',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'cons_terc_camp_ante',
-  'cons_terc_obje',
-  'cons_cuar_camp_ante',
-  'cons_cuar_obje',
-  'pe21',
-  'pe21_obje',
-  'pe21_prim',
-  'pe42',
-  'pe42_obje',
-  'pe42_prim',
-  'pe63',
-  'pe63_obje',
-  'pe63_prim',
-  'pegs',
-  'pegs_obje',
-  'pegs_prim',
-  'rein',
-  'rein_obje',
-  'rein_prim',
-  'capi_obje',
-  'tota_vent',
-  'cobr',
-  'cobr_colc',
-  'co92',
-  'co92_colc',
-  'nive_lide',
-]
-
-const columnsMostrarPedidosTotalesProyeccion = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_tota_obje',
-  'pedi_tota_prim',
-  'pedi_inco_obje',
-  'pedi_inco_prim',
-  'pedi_rete_obje',
-  'pedi_rete_prim',
-]
-
-const columnsMostrarPedidosActividadProyeccion = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'acti_camp_ante',
-  'acti_obje',
-  'acti_obje_pedi',
-  'acti_porc_prim',
-  'acti_prim',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_rete_prim',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'pe21',
-  'pe21_obje',
-  'pe21_prim',
-  'pe42',
-  'pe42_obje',
-  'pe42_prim',
-  'pe63',
-  'pe63_obje',
-  'pe63_prim',
-  'pegs',
-  'pegs_obje',
-  'pegs_prim',
-]
-
-const columnsMostrarPedidosRetencionProyeccion = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_rete_obje',
-  'pedi_rete_prim',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_rete_prim',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'pe21',
-  'pe21_obje',
-  'pe21_prim',
-  'pe42',
-  'pe42_obje',
-  'pe42_prim',
-  'pe63',
-  'pe63_obje',
-  'pe63_prim',
-  'pegs',
-  'pegs_obje',
-  'pegs_prim',
-  'rein',
-  'rein_obje',
-  'rein_prim',
-  'nive_lide',
-]
-
-const columnsMostrarCapitalizacionProyeccion = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_inco_obje',
-  'pedi_inco_prim',
-  'pe63',
-  'pe63_obje',
-  'pe63_prim',
-  'rein',
-  'rein_obje',
-  'rein_prim',
-  'capi_obje',
-]
-
-const columnsMostrarCobranzaProyeccion = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'tota_vent',
-  'cobr',
-  'cobr_colc',
-  'co92',
-  'co92_colc',
-]
-
-const columnsMostrarConsecutividadProyeccion = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_rete_prim',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'cons_terc_camp_ante',
-  'cons_terc_obje',
-  'cons_cuar_camp_ante',
-  'cons_cuar_obje',
-]
-
-/*formula */
-const columnsMostrarTodoFormula = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_tota_obje',
-  'pedi_inco_obje',
-  'pedi_rete_obje',
-  'acti_camp_ante',
-  'acti_obje',
-  'acti_obje_pedi',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'cons_terc_camp_ante',
-  'cons_terc_obje',
-  'cons_cuar_camp_ante',
-  'cons_cuar_obje',
-  'pe21',
-  'pe21_obje',
-  'pe42',
-  'pe42_obje',
-  'pe63',
-  'pe63_obje',
-  'pegs',
-  'pegs_obje',
-  'rein',
-  'rein_obje',
-  'capi_obje',
-  'tota_vent',
-  'cobr',
-  'cobr_colc',
-  'co92',
-  'co92_colc',
-  'nive_lide',
-]
-
-const columnsMostrarPedidosTotalesFormula = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_tota_obje',
-  'pedi_inco_obje',
-  'pedi_rete_obje',
-]
-
-const columnsMostrarPedidosActividadFormula = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'acti_camp_ante',
-  'acti_obje',
-  'acti_obje_pedi',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'pe21',
-  'pe21_obje',
-  'pe42',
-  'pe42_obje',
-  'pe63',
-  'pe63_obje',
-  'pegs',
-  'pegs_obje',
-]
-
-const columnsMostrarPedidosRetencionFormula = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_rete_obje',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'pe21',
-  'pe21_obje',
-  'pe42',
-  'pe42_obje',
-  'pe63',
-  'pe63_obje',
-  'pegs',
-  'pegs_obje',
-  'rein',
-  'rein_obje',
-  'nive_lide',
-]
-
-const columnsMostrarCapitalizacionFormula = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'pedi_inco_obje',
-  'pe63',
-  'pe63_obje',
-  'rein',
-  'rein_obje',
-  'capi_obje',
-]
-
-const columnsMostrarCobranzaFormula = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'tota_vent',
-  'cobr',
-  'cobr_colc',
-  'co92',
-  'co92_colc',
-]
-
-const columnsMostrarConsecutividadFormula = [
-  'codi_sect',
-  'nomb_vend',
-  'acti_inic',
-  'cons_rete_camp_ante',
-  'cons_rete_obje',
-  'cons_segu_camp_ante',
-  'cons_segu_obje',
-  'cons_terc_camp_ante',
-  'cons_terc_obje',
-  'cons_cuar_camp_ante',
-  'cons_cuar_obje',
-]
-
-const mostrarVariables = async nuevaVariable => {
-  refGridGlobal.value.beginupdate()
-
-  columnsOcultarTodo.forEach(column => {
-    refGridGlobal.value.hidecolumn(column)
-  })
-
-  if(selectedColumna.value >= 2){
-    if (nuevaVariable === 0) {
-      columnsMostrarTodo.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 1) {
-      columnsMostrarPedidosTotales.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 2) {
-      columnsMostrarPedidosActividad.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 3) {
-      columnsMostrarPedidosRetencion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 4) {
-      columnsMostrarCapitalizacion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 5) {
-      columnsMostrarCobranza.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 6) {
-      columnsMostrarConsecutividad.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    }
-  // eslint-disable-next-line sonarjs/no-duplicated-branches
-  } else if(selectedColumna.value >= 1 ){
-    if (nuevaVariable === 0) {
-      columnsMostrarTodoProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 1) {
-      columnsMostrarPedidosTotalesProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 2) {
-      columnsMostrarPedidosActividadProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 3) {
-      columnsMostrarPedidosRetencionProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 4) {
-      columnsMostrarCapitalizacionProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 5) {
-      columnsMostrarCobranzaProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 6) {
-      columnsMostrarConsecutividadProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    }
-  // eslint-disable-next-line sonarjs/no-duplicated-branches
-  } else {
-    if (nuevaVariable === 0) {
-      columnsMostrarTodoFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 1) {
-      columnsMostrarPedidosTotalesFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 2) {
-      columnsMostrarPedidosActividadFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 3) {
-      columnsMostrarPedidosRetencionFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 4) {
-      columnsMostrarCapitalizacionFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 5) {
-      columnsMostrarCobranzaFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (nuevaVariable === 6) {
-      columnsMostrarConsecutividadFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    }
-  }
-  
-  refGridGlobal.value.endupdate()
-}
-
-watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
-  await mostrarVariables(nuevaVariable)
-})
-
-watch(selectedColumna, async (nuevaVariable, antiguaVariable) => {
-  refGridGlobal.value.beginupdate()
-
-  columnsOcultarTodo.forEach(column => {
-    refGridGlobal.value.hidecolumn(column)
-  })
-
-  if(selectedColumna.value >= 2){
-    if (selectedVariable.value === 0) {
-      columnsMostrarTodo.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 1) {
-      columnsMostrarPedidosTotales.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 2) {
-      columnsMostrarPedidosActividad.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 3) {
-      columnsMostrarPedidosRetencion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 4) {
-      columnsMostrarCapitalizacion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 5) {
-      columnsMostrarCobranza.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 6) {
-      columnsMostrarConsecutividad.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    }
-  // eslint-disable-next-line sonarjs/no-duplicated-branches
-  } else if(selectedColumna.value >= 1 ){
-    if (selectedVariable.value === 0) {
-      columnsMostrarTodoProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 1) {
-      columnsMostrarPedidosTotalesProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 2) {
-      columnsMostrarPedidosActividadProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 3) {
-      columnsMostrarPedidosRetencionProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 4) {
-      columnsMostrarCapitalizacionProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 5) {
-      columnsMostrarCobranzaProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 6) {
-      columnsMostrarConsecutividadProyeccion.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    }
-  // eslint-disable-next-line sonarjs/no-duplicated-branches
-  } else {
-    if (selectedVariable.value === 0) {
-      columnsMostrarTodoFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 1) {
-      columnsMostrarPedidosTotalesFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 2) {
-      columnsMostrarPedidosActividadFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 3) {
-      columnsMostrarPedidosRetencionFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 4) {
-      columnsMostrarCapitalizacionFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 5) {
-      columnsMostrarCobranzaFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    } else if (selectedVariable.value === 6) {
-      columnsMostrarConsecutividadFormula.forEach(column => {
-        refGridGlobal.value.showcolumn(column)
-      })
-    }
-  }
-  
-
-  
-  refGridGlobal.value.endupdate()
-})
 </script>
 
 <template>
@@ -5325,20 +1831,15 @@ watch(selectedColumna, async (nuevaVariable, antiguaVariable) => {
                         OBJ. ZONA
                       </th>
                       <th class="text-uppercase">
-                        PROYECCIÓN
+                        OBJ. PROYECCIÓN
                       </th>
                       <th class="text-uppercase">
-                        REPROYECCIÓN
+                        SEGUIMIENTO 
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Lima - Provincia</td>
-                      <td colspan="3">
-                        {{ general.lima }}
-                      </td>
-                    </tr>
+                 
                     <tr>
                       <td>Incorporación</td>
                       <td>{{ general.objetivoIncorporacion }}</td>
@@ -5346,13 +1847,7 @@ watch(selectedColumna, async (nuevaVariable, antiguaVariable) => {
                       <td>{{ general.reproyeccionIncorporacion }}</td>
                     </tr>
                     <tr>
-                      <td>Retención</td>
-                      <td>{{ general.objetivoRetencion }}</td>
-                      <td>{{ general.proyeccionRetencion }}</td>
-                      <td>{{ general.reproyeccionRetencion }}</td>
-                    </tr>
-                    <tr>
-                      <td>% Actividad</td>
+                      <td>Pedidos Totales</td>
                       <td>{{ general.objetivoActividad }}</td>
                       <td>{{ general.proyeccionActividad }}</td>
                       <td>{{ general.reproyeccionActividad }}</td>
