@@ -133,7 +133,7 @@ const onLimpiar = () => {
  const full_url_embed=$embed+"CI/form_veri_pre_ases";
 
 onMounted(() => {
-  appStore.titulo(`Proceso / Aprobación Ingresos Digitales`) 
+  appStore.titulo(`Proceso / Aprobación Incorporaciones Digitales`) 
   onGenerar() 
   style_iframe_cgis()
 }) 

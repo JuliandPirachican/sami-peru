@@ -32,4 +32,5 @@ export default [
     subject: 'colombia/admi_asis', 
     action: 'colombia/admi_asis',
   },
+  
 ]
