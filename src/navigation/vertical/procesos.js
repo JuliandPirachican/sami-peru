@@ -25,13 +25,13 @@ export default [
     subject: 'colombia/proc_come_cerr_asis', 
     action: 'colombia/proc_come_cerr_asis',
   },
-  { 
-    title: 'Confirmar Incorporacion Digital', 
-    to: 'procesos-confirmar-inscripcion',
-    icon: { icon: 'tabler-user-plus' },
-    subject: 'colombia/proc_come_conf_insc_movi', 
-    action: 'colombia/proc_come_conf_insc_movi',
-  },
+  // { 
+  //   title: 'Confirmar Incorporacion Digital', 
+  //   to: 'procesos-confirmar-inscripcion',
+  //   icon: { icon: 'tabler-user-plus' },
+  //   subject: 'colombia/proc_come_conf_insc_movi', 
+  //   action: 'colombia/proc_come_conf_insc_movi',
+  // },
   { 
     title: 'Desbloquear asesora', 
     to: 'procesos-desbloquear-asesora',

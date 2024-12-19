@@ -245,10 +245,10 @@ const onZonaChange = async () => {
     sectorOptions.value = []
     formulario.value.sector = null
 
-    appStore.mensaje('Obteniendo sectores')
+    appStore.mensaje('Obteniendo lideres')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/comun/v1/sectores`, {
+    const { data } = await $api(`/api/comun/v1/zonas/lideres`, {
       method: "get",
       query: {
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
@@ -259,8 +259,8 @@ const onZonaChange = async () => {
 
     itemSector.forEach(element =>
       sectorOptions.value.push({
-        id: element.codi_sect,
-        text: element.codi_sect,
+        id: element.nume_iden,
+        text: element.nom_lider,
       }),
     )
   } catch (e) {
@@ -417,8 +417,8 @@ const limpiarValidacion = () => {
                     <AppSelect
                       v-model="formulario.sector"
                       :items="sectorOptions"
-                      label="Sector"
-                      placeholder="Seleccionar sector"
+                      label="Lider"
+                      placeholder="Seleccionar Lider"
                       item-title="text"
                       item-value="id"
                       :error="errorSector"

@@ -3,6 +3,7 @@
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+import { computed, ref } from 'vue';
 
 
 
@@ -26,6 +27,7 @@ const itemsInicialDetalle = ref([])
 const busqueda =  ref({})
 const refGridGlobal=ref()
 const refGridDeta=ref()
+const camp_label=ref({})
 
 const itemsdeta = computed(() => {
   if(busqueda.value) {
@@ -94,7 +96,7 @@ const formulario = ref({
 })
 
 
-const headers = computed(() => {
+const headers = ref(computed(() => {
   return [
     {
       text: 'Region',
@@ -137,7 +139,7 @@ const headers = computed(() => {
       filtertype: 'checkedlist'
     },
     {
-      text: '0',
+      text: camp_label?.value?.camp1 ? camp_label.value.camp1 : '0',
       dataField: 'codi_camp_1',
       width: '90',
       align: 'center',
@@ -145,49 +147,49 @@ const headers = computed(() => {
       // , aggregates: ['count']
     },
     {
-      text: '0%',
+      text: camp_label?.value?.camp1 ? `% ${camp_label.value.camp1}` : '% 0',
       dataField: 'porc_codi_camp_1',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0',
+      text: camp_label?.value?.camp2 ? camp_label.value.camp2 : '0',
       dataField: 'codi_camp_2',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0%',
+      text: camp_label?.value?.camp2 ? `% ${camp_label.value.camp2}` : '% 0',
       dataField: 'porc_codi_camp_2',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0',
+      text: camp_label?.value?.camp3 ? camp_label.value.camp3:'0',
       dataField: 'codi_camp_3',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0%',
+      text: camp_label?.value?.camp3 ? `% ${camp_label.value.camp3}`: '% 0',
       dataField: 'porc_codi_camp_3',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0',
+      text: camp_label?.value?.camp4 ? camp_label.value.camp4:'0',
       dataField: 'codi_camp_4',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0%',
+      text: camp_label?.value?.camp4 ? `% ${camp_label.value.camp4}`: '% 0',
       dataField: 'porc_codi_camp_4',
       width: '90',
       align: 'center',
@@ -195,7 +197,7 @@ const headers = computed(() => {
     },
     
   ]
-})
+}))
 
 const sourceGlobal = ref({
   localdata: [],
@@ -218,36 +220,7 @@ const sourceGlobal = ref({
 })
 
 
-const headersdeta1 = ref([
-  { key: 'codi_area', title: 'Región' },
-  { key: 'codi_cort', title: 'Corte' },
-  { key: 'codi_zona', title: 'Zona' },
-  { key: 'codi_sect', title: 'Sector' },
-  { key: 'codi_terc', title: 'Código' },
-  { key: 'nume_iden', title: 'Nro ident.' },
-  { key: 'nomb_clie', title: 'Nombre(s) y Apellido(s)' },
-  { key: 'camp_ingr', title: 'Camp. Ingr' },
-  { key: 'tele_terc', title: 'Teléfono' },
-  { key: 'sald_docu', title: 'Saldo' },
-  { key: 'codi_camp_1', title: '0' },
-  { key: 'codi_zona_1', title: '0 Zona' },
-  { key: 'codi_sect_1', title: '0 Sect' },
-  { key: 'tota_fact_1', title: '0 Fact' },
-  { key: 'codi_camp_2', title: '0' },
-  { key: 'codi_zona_2', title: '0 Zona' },
-  { key: 'codi_sect_2', title: '0 Sect' },
-  { key: 'tota_fact_2', title: '0 Fact' },
-  { key: 'codi_camp_3', title: '0' },
-  { key: 'codi_zona_3', title: '0 Zona' },
-  { key: 'codi_sect_3', title: '0 Sect' },
-  { key: 'tota_fact_3', title: '0 Fact' },
-  { key: 'codi_camp_4', title: '0' },
-  { key: 'codi_zona_4', title: '0 Zona' },
-  { key: 'codi_sect_4', title: '0 Sect' },
-  { key: 'tota_fact_4', title: '0 Fact' },
-])
-
-const headersdeta = computed(() => {
+const headersdeta = ref(computed(() => {
   return [
     {
       text: 'Camp. Ingr',
@@ -326,112 +299,112 @@ const headersdeta = computed(() => {
       cellsalign: 'center',
     },
     {
-      text: '0',
+      text: camp_label?.value?.camp1 ? camp_label.value.camp1 : '0',
       dataField: 'codi_camp_1',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Zona',
+      text: camp_label?.value?.camp1 ? `${camp_label.value.camp1} Zona` :'0 Zona',
       dataField: 'codi_zona_1',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Sector',
+      text: camp_label?.value?.camp1 ? `${camp_label.value.camp1} Sector` :'0 Sector',
       dataField: 'codi_sect_1',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Fact',
+      text: camp_label?.value?.camp1 ? `${camp_label.value.camp1} Fact` :'0 Fact',
       dataField: 'tota_fact_1',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 ',
+      text:  camp_label?.value?.camp2 ? camp_label.value.camp2 :'0 ',
       dataField: 'codi_camp_2',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Zona',
+      text: camp_label?.value?.camp2 ? `${camp_label.value.camp2} Zona` :'0 Zona',
       dataField: 'codi_zona_2',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Sector',
+      text: camp_label?.value?.camp2 ? `${camp_label.value.camp2} Sector` :'0 Sector',
       dataField: 'codi_sect_2',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Fact',
+      text: camp_label?.value?.camp2 ? `${camp_label.value.camp2} Fact` :'0 Fact',
       dataField: 'tota_fact_2',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 ',
+      text: camp_label?.value?.camp3 ? camp_label.value.camp3:'0 ',
       dataField: 'codi_camp_3',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Zona',
+      text: camp_label?.value?.camp3 ? `${camp_label.value.camp3} Zona` :'0 Zona',
       dataField: 'codi_zona_3',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Sector',
+      text: camp_label?.value?.camp3 ? `${camp_label.value.camp3} Sector` :'0 Sector',
       dataField: 'codi_sect_3',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Fact',
+      text: camp_label?.value?.camp3 ? `${camp_label.value.camp3} Fact` :'0 Fact',
       dataField: 'tota_fact_3',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 ',
+      text: camp_label?.value?.camp4 ? camp_label.value.camp4:'0 ',
       dataField: 'codi_camp_4',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Zona',
+      text: camp_label?.value?.camp4 ? `${camp_label.value.camp4} Zona` :'0 Zona',
       dataField: 'codi_zona_4',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Sector',
+      text: camp_label?.value?.camp4 ? `${camp_label.value.camp4} Sector` :'0 Sector',
       dataField: 'codi_sect_4',
       width: '90',
       align: 'center',
       cellsalign: 'center',
     },
     {
-      text: '0 Fact',
+      text:  camp_label?.value?.camp4 ? `${camp_label.value.camp4} Fact` :'0 Fact',
       dataField: 'tota_fact_4',
       width: '90',
       align: 'center',
@@ -439,7 +412,7 @@ const headersdeta = computed(() => {
     },
     
   ]
-})
+}))
 
 const sourceDeta = ref({
   localdata: [],
@@ -579,19 +552,15 @@ const onGenerar = async () => {
     sourceDeta.value.localdata = data.data_deta
     refGridDeta.value.updatebounddata('cells')
     refGridDeta.value.refreshfilterrow()
-
-    actualizarHeaders({ 
-      camp_1: data.codi_camp_1, 
-      camp_2: data.codi_camp_2, 
-      camp_3: data.codi_camp_3, 
-      camp_4: data.codi_camp_4,
-    })
-    actualizarHeadersDeta({ 
-      camp_1: data.codi_camp_1, 
-      camp_2: data.codi_camp_2, 
-      camp_3: data.codi_camp_3, 
-      camp_4: data.codi_camp_4,
-    })
+    /**
+     * @type {{[key: string]: string}}
+     * actualiza el objeto de datos para que se reflejen los cambios en el grid en las columnas
+     */
+    camp_label.value = {camp1: data.codi_camp_1
+      ,camp2: data.codi_camp_2
+      ,camp3: data.codi_camp_3
+      ,camp4: data.codi_camp_4
+    }
 
   } catch (error) {
     const { data } = error.response._data
@@ -615,50 +584,54 @@ const onGenerar = async () => {
 }
 
 const actualizarHeaders = datos => {
-  headers.value = [
-    { key: 'codi_area',        title: 'Región' },
-    { key: 'codi_cort',        title: 'Corte' },
-    { key: 'codi_zona',        title: 'Zona' },
-    { key: 'codi_sect',        title: 'Sector' },
-    { key: 'codi_camp_1',      title: datos.camp_1 },
-    { key: 'porc_codi_camp_1', title: `% ${datos.camp_1}` },
-    { key: 'codi_camp_2',      title: datos.camp_2 },
-    { key: 'porc_codi_camp_2', title: `% ${datos.camp_2 }` },
-    { key: 'codi_camp_3',      title: datos.camp_3 },
-    { key: 'porc_codi_camp_3', title: `% ${datos.camp_3 }` },
-    { key: 'codi_camp_4',      title: datos.camp_4 },
-    { key: 'porc_codi_camp_4', title: `% ${datos.camp_4 }` },
-  ]
+  console.log(datos)
+  console.log(headers)
+  headers.value[5].text = datos.camp_1
+  // headers.value = [
+  //   { dataField: 'codi_area',        text: 'Región' },
+  //   { dataField: 'codi_cort',        text: 'Corte' },
+  //   { dataField: 'codi_zona',        text: 'Zona' },
+  //   { dataField: 'codi_sect',        text: 'Sector' },
+  //   { dataField: 'codi_camp_1',      text: datos.camp_1 },
+  //   { dataField: 'porc_codi_camp_1', text: `% ${datos.camp_1}` },
+  //   { dataField: 'codi_camp_2',      text: datos.camp_2 },
+  //   { dataField: 'porc_codi_camp_2', text: `% ${datos.camp_2 }` },
+  //   { dataField: 'codi_camp_3',      text: datos.camp_3 },
+  //   { dataField: 'porc_codi_camp_3', text: `% ${datos.camp_3 }` },
+  //   { dataField: 'codi_camp_4',      text: datos.camp_4 },
+  //   { dataField: 'porc_codi_camp_4', text: `% ${datos.camp_4 }` },
+  // ]
+
 }
 
 const actualizarHeadersDeta = datos => {
   headersdeta.value = [
-    { key: 'codi_area',   title: 'Región' },
-    { key: 'codi_cort',   title: 'Corte' },
-    { key: 'codi_zona',   title: 'Zona' },
-    { key: 'codi_sect',   title: 'Sector' },
-    { key: 'codi_terc',   title: 'Código' },
-    { key: 'nume_iden',   title: 'Nro ident.' },
-    { key: 'nomb_clie',   title: 'Nombre(s) y Apellido(s)' },
-    { key: 'camp_ingr',   title: 'Camp. Ingr' },
-    { key: 'tele_terc',   title: 'Teléfono' },
-    { key: 'sald_docu',   title: 'Saldo' },
-    { key: 'codi_camp_1', title: datos.camp_1 },
-    { key: 'codi_zona_1', title: `${datos.camp_1} Zona` },
-    { key: 'codi_sect_1', title: `${datos.camp_1} Sect` },
-    { key: 'tota_fact_1', title: `${datos.camp_1} Fact` },
-    { key: 'codi_camp_2', title: datos.camp_2 },
-    { key: 'codi_zona_2', title: `${datos.camp_2} Zona` },
-    { key: 'codi_sect_2', title: `${datos.camp_2} Sect` },
-    { key: 'tota_fact_2', title: `${datos.camp_2} Fact` },
-    { key: 'codi_camp_3', title: datos.camp_3 },
-    { key: 'codi_zona_3', title: `${datos.camp_3} Zona` },
-    { key: 'codi_sect_3', title: `${datos.camp_3} Sect` },
-    { key: 'tota_fact_3', title: `${datos.camp_3} Fact` },
-    { key: 'codi_camp_4', title: datos.camp_4 },
-    { key: 'codi_zona_4', title: `${datos.camp_4} Zona` },
-    { key: 'codi_sect_4', title: `${datos.camp_4} Sect` },
-    { key: 'tota_fact_4', title: `${datos.camp_4} Fact` },
+    { dataField: 'codi_area',   text: 'Región' },
+    { dataField: 'codi_cort',   text: 'Corte' },
+    { dataField: 'codi_zona',   text: 'Zona' },
+    { dataField: 'codi_sect',   text: 'Sector' },
+    { dataField: 'codi_terc',   text: 'Código' },
+    { dataField: 'nume_iden',   text: 'Nro ident.' },
+    { dataField: 'nomb_clie',   text: 'Nombre(s) y Apellido(s)' },
+    { dataField: 'camp_ingr',   text: 'Camp. Ingr' },
+    { dataField: 'tele_terc',   text: 'Teléfono' },
+    { dataField: 'sald_docu',   text: 'Saldo' },
+    { dataField: 'codi_camp_1', text: datos.camp_1 },
+    { dataField: 'codi_zona_1', text: `${datos.camp_1} Zona` },
+    { dataField: 'codi_sect_1', text: `${datos.camp_1} Sect` },
+    { dataField: 'tota_fact_1', text: `${datos.camp_1} Fact` },
+    { dataField: 'codi_camp_2', text: datos.camp_2 },
+    { dataField: 'codi_zona_2', text: `${datos.camp_2} Zona` },
+    { dataField: 'codi_sect_2', text: `${datos.camp_2} Sect` },
+    { dataField: 'tota_fact_2', text: `${datos.camp_2} Fact` },
+    { dataField: 'codi_camp_3', text: datos.camp_3 },
+    { dataField: 'codi_zona_3', text: `${datos.camp_3} Zona` },
+    { dataField: 'codi_sect_3', text: `${datos.camp_3} Sect` },
+    { dataField: 'tota_fact_3', text: `${datos.camp_3} Fact` },
+    { dataField: 'codi_camp_4', text: datos.camp_4 },
+    { dataField: 'codi_zona_4', text: `${datos.camp_4} Zona` },
+    { dataField: 'codi_sect_4', text: `${datos.camp_4} Sect` },
+    { dataField: 'tota_fact_4', text: `${datos.camp_4} Fact` },
   ]
 }
 

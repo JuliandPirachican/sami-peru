@@ -158,13 +158,13 @@ export default [
     
   //   ],
   // },
-  { 
-    title: 'Incorporacion Digital', 
-    to: 'reportes-inscripciones',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_come_insc_movi', 
-    action: 'colombia/repo_come_insc_movi', 
-  },
+  // { 
+  //   title: 'Incorporacion Digital', 
+  //   to: 'reportes-inscripciones',
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_come_insc_movi', 
+  //   action: 'colombia/repo_come_insc_movi', 
+  // },
   // { 
   //   title: 'Lider pago', 
   //   to: 'reportes-lider-pago',

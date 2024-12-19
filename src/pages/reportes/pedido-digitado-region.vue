@@ -1274,25 +1274,25 @@ const initConfiguracion = () => {
   itemsDetalle.value = [
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención ciclo de nuevas 2do pedido',
+      nomb_conc: 'Pedidos pendientes de ciclo ciclo de nuevas 2do pedido',
       cant_conc: '0',
       porc_conc: '',
     },
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención ciclo de nuevas 3er pedido',
+      nomb_conc: 'Pedidos pendientes de ciclo ciclo de nuevas 3er pedido',
       cant_conc: '0',
       porc_conc: '',
     },
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención ciclo de nuevas 4to pedido',
+      nomb_conc: 'Pedidos pendientes de ciclo ciclo de nuevas 4to pedido',
       cant_conc: '0',
       porc_conc: '',
     },
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención ciclo de nuevas 5to pedido',
+      nomb_conc: 'Pedidos pendientes de ciclo ciclo de nuevas 5to pedido',
       cant_conc: '0',
       porc_conc: '',
     },
