@@ -101,7 +101,8 @@ const claseRetencion = (row, columnfield, value) => {
     // eslint-disable-next-line
         dataProy = parseInt(dataRecord.pedi_rete_segu);
   }
-  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  const porcProy = dataProy
+
   if (dataObje === 0) {
     return ``
   }
@@ -371,6 +372,7 @@ const columnaGlobal = [
     columngroup: 'tota',
     cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'D',
     aggregates: [
       {
@@ -392,6 +394,7 @@ const columnaGlobal = [
     columngroup: 'tota',
     cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'E',
     aggregates: [
       {
@@ -405,7 +408,7 @@ const columnaGlobal = [
   },
   {
     text: 'Ped. Camp. Ante',
-    datafield: 'pedi_rete',
+    datafield: 'pedi_tota_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
@@ -426,7 +429,7 @@ const columnaGlobal = [
   },
   {
     text: 'Proyeccion',
-    dataField: 'pedi_inco_prim',
+    dataField: 'pedi_tota_prim',
     width: '140',
     align: 'center',
     cellsalign: 'center',
@@ -434,6 +437,7 @@ const columnaGlobal = [
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'G',
     aggregates: [
       {
@@ -455,6 +459,7 @@ const columnaGlobal = [
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'H',
     aggregates: [
       {
@@ -468,7 +473,7 @@ const columnaGlobal = [
   },
   {
     text: '1. Camp. Ante',
-    datafield: 'cons_segu_camp_ante',
+    datafield: 'cons_rete_camp_ante',
     width: '140',
     align: 'center',
     cellsalign: 'center',
@@ -490,13 +495,14 @@ const columnaGlobal = [
   
   {
     text: 'Proyeccion',
-    datafield: 'pedi_rete_segu_ocul',
+    datafield: 'cons_rete_prim',
     width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'rete',
     cellsformat: 'N',
+    cellclassname: ' bg-primary-light',
     filtertype: 'number',
     columna: 'J',
     aggregates: [
@@ -520,6 +526,7 @@ const columnaGlobal = [
     columngroup: 'rete',
     cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'K',
     aggregates: [
       {
@@ -530,11 +537,11 @@ const columnaGlobal = [
         },
       },
     ],
-    cellclassname: claseRetencion,
+    
   },
   {
     text: '2. Camp. Ante.',
-    datafield: 'pedi_rete_terc_ante',
+    datafield: 'cons_segu_camp_ante',
     hidden: false,
     width: '120',
     align: 'center',
@@ -543,6 +550,7 @@ const columnaGlobal = [
     columngroup: 'acti',
     cellsformat: 'N',
     filtertype: 'number',
+
     columna: 'L',
     aggregates: [
       {
@@ -553,18 +561,19 @@ const columnaGlobal = [
         },
       },
     ],
-    cellclassname: claseRetencion,
+    
   },
   {
     text: 'Proyección',
-    datafield: 'cons_rete_prim_ocul',
+    datafield: 'cons_segu_obje',
     width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'acti',
-    cellsformat: 'P2',
+    cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'M',
     aggregates: [
       {
@@ -588,6 +597,7 @@ const columnaGlobal = [
     columngroup: 'acti',
     cellsformat: 'P2',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'N',
     aggregates: [
       {
@@ -614,7 +624,7 @@ const columnaGlobal = [
   },
   {
     text: '3. Camp. Ante.',
-    datafield: 'pedi_rete_cuar_ante',
+    datafield: 'cons_terc_camp_ante',
     hidden: false,
     width: '120',
     align: 'center',
@@ -633,18 +643,19 @@ const columnaGlobal = [
         },
       },
     ],
-    cellclassname: claseRetencion,
+    
   },
   {
     text: 'Proyección',
-    datafield: 'proy_segu',
+    datafield: 'cons_terc_obje',
     width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: true,
     columngroup: 'cons4_ped',
-    cellsformat: 'P2',
+    cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'P',
     aggregates: [
       {
@@ -666,6 +677,7 @@ const columnaGlobal = [
     columngroup: 'cons4_ped',
     cellsformat: 'P2',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'Q',
     aggregates: [
       {
@@ -676,13 +688,6 @@ const columnaGlobal = [
         },
       },
     ],
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
     cellclassname() {
       return 'text-secondary bg-primary-light'
     },
@@ -719,6 +724,7 @@ const columnaGlobal = [
     columngroup: 'pe21',
     cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'S',
     aggregates: [
       {
@@ -741,6 +747,7 @@ const columnaGlobal = [
     columngroup: 'pe21',
     cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'T',
     aggregates: [
       {
@@ -758,7 +765,7 @@ const columnaGlobal = [
       
       return !(value === '')
     },
-    cellclassname: claseProyeccionPeg21,
+    
   },
   {
     text: 'Peg42',
@@ -790,6 +797,7 @@ const columnaGlobal = [
     editable: true,
     columngroup: 'pe42',
     cellsformat: 'N',
+    cellclassname: ' bg-primary-light',
     filtertype: 'number',
     columna: 'V',
     aggregates: [
@@ -812,6 +820,7 @@ const columnaGlobal = [
     editable: true,
     columngroup: 'pe42',
     cellsformat: 'N',
+    cellclassname: ' bg-primary-light',
     filtertype: 'number',
     columna: 'W',
     aggregates: [
@@ -830,7 +839,7 @@ const columnaGlobal = [
       
       return !(value === '')
     },
-    cellclassname: claseProyeccionPeg42,
+    
   },
   {
     text: 'Peg63',
@@ -862,6 +871,7 @@ const columnaGlobal = [
     editable: true,
     columngroup: 'pe63',
     cellsformat: 'N',
+    cellclassname: ' bg-primary-light',
     filtertype: 'number',
     columna: 'Y',
     aggregates: [
@@ -884,6 +894,7 @@ const columnaGlobal = [
     editable: true,
     columngroup: 'pe63',
     cellsformat: 'N',
+    cellclassname: ' bg-primary-light',
     filtertype: 'number',
     columna: 'Z',
     aggregates: [
@@ -902,7 +913,7 @@ const columnaGlobal = [
       
       return !(value === '')
     },
-    cellclassname: claseProyeccionPeg63,
+    
   },
 
   {
@@ -968,7 +979,7 @@ const columnaGlobal = [
         },
       },
     ],
-    cellclassname: claseProyeccionPegs,
+    
   },
   {
     text: 'Pos rein',
@@ -1001,6 +1012,7 @@ const columnaGlobal = [
     columngroup: 'rein',
     cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'AE',
     aggregates: [
       {
@@ -1023,6 +1035,7 @@ const columnaGlobal = [
     columngroup: 'rein',
     cellsformat: 'N',
     filtertype: 'number',
+    cellclassname: ' bg-primary-light',
     columna: 'AF',
     aggregates: [
       {
@@ -1040,7 +1053,7 @@ const columnaGlobal = [
       
       return !(value === '')
     },
-    cellclassname: claseProyeccionReingreso,
+    
   },
   {
     text: 'Proyección',

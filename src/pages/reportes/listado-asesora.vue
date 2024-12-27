@@ -1,14 +1,7 @@
 <!-- eslint-disable camelcase -->
 <style >
-.jqx-grid-cell{
-  background-color:white ;
-}
 
-.jqx-grid-statusbar  .jqx-grid-cell{
-  border: 1px solid #7272729f !important; 
-  background-color: white;
-
-} 
+ 
 
 </style>
 
@@ -16,8 +9,9 @@
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+import JqxListBox from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxlistbox.vue';
+
 import { useDisplay } from 'vuetify';
-import { VDataTable } from 'vuetify/labs/VDataTable';
 
 
 
@@ -496,6 +490,175 @@ const sourceGlobal = ref({
   datatype: 'json',
 });
 
+
+const sourceLista = ref([
+  {
+    label: 'Cumpleaños',
+    value: 'fech_naci',
+    checked: false,
+  },
+  {
+    label: 'Barrio',
+    value: 'nomb_barr',
+    checked: true,
+  },
+  {
+    label: 'Dirección',
+    value: 'dire_terc',
+    checked: true,
+  },
+  {
+    label: 'Teléfono 1',
+    value: 'tele_ter1',
+    checked: true,
+  },
+  {
+    label: 'Teléfono 2',
+    value: 'tele_ter2',
+    checked: true,
+  },
+  {
+    label: 'Cupo',
+    value: 'cupo_cred',
+    checked: false,
+  },
+  {
+    label: 'Saldo',
+    value: 'sald_docu',
+    checked: true,
+  },
+  {
+    label: 'Camp. ingr.',
+    value: 'camp_ingr',
+    checked: false,
+  },
+  {
+    label: 'Ult. camp1',
+    value: 'codi_camp_1',
+    checked: true,
+  },
+  {
+    label: 'Ptos azzo. ult. camp1',
+    value: 'tota_publ_1',
+    checked: true,
+  },
+  {
+    label: 'Vta recep. ult. camp1',
+    value: 'vent_line_1',
+    checked: true,
+  },
+  {
+    label: 'Vta cata. ult. camp1',
+    value: 'vent_cata_1',
+    checked: true,
+  },
+  {
+    label: 'Fact. ult. camp1',
+    value: 'tota_fact_1',
+    checked: false,
+  },
+  {
+    label: 'Devo. ult. camp1',
+    value: 'tota_devo_1',
+    checked: false,
+  },
+  {
+    label: 'Ult. camp2',
+    value: 'codi_camp_2',
+    checked: true,
+  },
+  {
+    label: 'Ptos azzo. ult. camp2',
+    value: 'tota_publ_2',
+    checked: true,
+  },
+  {
+    label: 'Vta recep. ult. camp2',
+    value: 'vent_line_2',
+    checked: true,
+  },
+  {
+    label: 'Vta cata. ult. camp2',
+    value: 'vent_cata_2',
+    checked: true,
+  },
+  {
+    label: 'Fact. ult. camp2',
+    value: 'tota_fact_2',
+    checked: false,
+  },
+  {
+    label: 'Devo. ult. camp2',
+    value: 'tota_devo_2',
+    checked: false,
+  },
+  {
+    label: 'Ult. camp3',
+    value: 'codi_camp_3',
+    checked: false,
+  },
+  {
+    label: 'Ptos azzo. ult. camp3',
+    value: 'tota_publ_3',
+    checked: false,
+  },
+  {
+    label: 'Vta recep. ult. camp3',
+    value: 'vent_line_3',
+    checked: false,
+  },
+  {
+    label: 'Vta cata. ult. camp3',
+    value: 'vent_cata_3',
+    checked: false,
+  },
+  {
+    label: 'Fact. ult. camp3',
+    value: 'tota_fact_3',
+    checked: false,
+  },
+  {
+    label: 'Devo. ult. camp3',
+    value: 'tota_devo_3',
+    checked: false,
+  },
+  {
+    label: 'Ult. camp4',
+    value: 'codi_camp_4',
+    checked: false,
+  },
+  {
+    label: 'Ptos azzo. ult. camp4',
+    value: 'tota_publ_4',
+    checked: false,
+  },
+  {
+    label: 'Vta. linea rece. ult. camp4',
+    value: 'vent_line_4',
+    checked: false,
+  },
+  {
+    label: 'Vta. cata. rece. ult. camp4',
+    value: 'vent_cata_4',
+    checked: false,
+  },
+  {
+    label: 'Fact. ult. camp4',
+    value: 'tota_fact_4',
+    checked: false,
+  },
+  {
+    label: 'Devo. ult. camp4',
+    value: 'tota_devo_4',
+    checked: false,
+  },
+  {
+    label: 'Estado pedido',
+    value: 'esta_pedi',
+    checked: false,
+  },
+])
+
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
 const localizationGlobal =  {
     filterselectstring: ' ',
@@ -652,7 +815,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      cellclassname: 'bg-primary-light',
+      cellclassname: 'bg-success-light',
     },
     {
       text: 'Ptos. Azzo. Ult. Camp2',
@@ -661,7 +824,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      cellclassname: 'text-white bg-success',
+      cellclassname: 'text-white bg-success-light',
     },
     {
       text: 'Fact Ult. Camp2',
@@ -670,7 +833,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      cellclassname: 'text-white bg-success',
+      cellclassname: 'text-white bg-success-light',
     },
     {
       text: 'Devo Ult. Camp2',
@@ -679,7 +842,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      cellclassname: 'text-white bg-success',
+      cellclassname: 'text-white bg-success-light',
     },
     // {
     //   text: 'Ult. Camp3',
@@ -1454,7 +1617,7 @@ const itemsDetalleVisible = computed(() => {
       persistent
       :model-value="isOpen"
     >
-      <VCard color="background">
+    <VCard color="background">
         <VToolbar color="primary">
           <VBtn
             v-if="mobile"
@@ -1479,21 +1642,17 @@ const itemsDetalleVisible = computed(() => {
             </VBtn>
           </VToolbarItems>
         </VToolbar>
-        <VDataTable
-          v-model="selectedColumna"
-          :headers="headersColumna"
-          :items="itemsColumna"
-          :items-per-page="-1"
-          class="text-no-wrap"
-          
-          fixed-header
-          :height="(!mobile)? (itemsColumna.length > 15) ? 400 : null: null"
-
-          show-select
-          item-value="codi_colu"
-        >
-          <template #bottom />
-        </VDataTable>
+        <JqxListBox
+          ref="refListGlobal"
+          checkboxes
+          theme="material"
+          :source="sourceLista"
+          width="100%"
+          :height="400"
+          columnsresize
+          columnsautoresize
+          @check-change="onSeleccionar($event)"
+        />
       </VCard>
     </VDialog>
   </div>

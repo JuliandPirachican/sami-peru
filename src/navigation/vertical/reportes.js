@@ -18,13 +18,13 @@ export default [
     subject: 'colombia/repo_come_cicl_pedi', 
     action: 'colombia/repo_come_cicl_pedi', 
   },
-  { 
-    title: 'Comportamiento C&D', 
-    to: 'reportes-comportamiento-cambios',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_come_comp_canj_devo', 
-    action: 'colombia/repo_come_comp_canj_devo', 
-  },
+  // { 
+  //   title: 'Comportamiento C&D', 
+  //   to: 'reportes-comportamiento-cambios',
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_come_comp_canj_devo', 
+  //   action: 'colombia/repo_come_comp_canj_devo', 
+  // },
   { 
     title: 'Consecutividad asesoras nuevas', 
     to: 'reportes-consecutividad',
@@ -242,13 +242,13 @@ export default [
     subject: 'colombia/repo_come_simu_cobr', 
     action: 'colombia/repo_come_simu_cobr', 
   },
-  { 
-    title: 'Status MGZ', 
-    to: 'reportes-status-mgz',
-    icon: { icon: 'tabler-report' },
-    subject: 'colombia/repo_come_stat_mgzz', 
-    action: 'colombia/repo_come_stat_mgzz', 
-  },
+  // { 
+  //   title: 'Status MGZ', 
+  //   to: 'reportes-status-mgz',
+  //   icon: { icon: 'tabler-report' },
+  //   subject: 'colombia/repo_come_stat_mgzz', 
+  //   action: 'colombia/repo_come_stat_mgzz', 
+  // },
   { 
     title: 'Tracking zona', 
     to: 'reportes-tracking-zona',
