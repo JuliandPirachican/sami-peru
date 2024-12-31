@@ -259,7 +259,7 @@ const onZonaChange = async () => {
 
     itemSector.forEach(element =>
       sectorOptions.value.push({
-        id: element.nume_iden,
+        id: element.codi_lider,
         text: element.nom_lider,
       }),
     )

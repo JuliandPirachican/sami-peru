@@ -81,13 +81,13 @@ export default [
     subject: 'colombia/proc_come_prod_zona', 
     action: 'colombia/proc_come_prod_zona',
   },
-  { 
-    title: 'Solicitud recodificacion', 
-    to: 'procesos-solicitar-recodificacion',
-    icon: { icon: 'tabler-clock-24' },
-    subject: 'colombia/proc_come_soli_reco', 
-    action: 'colombia/proc_come_soli_reco',
-  },
+  // { 
+  //   title: 'Solicitud recodificacion', 
+  //   to: 'procesos-solicitar-recodificacion',
+  //   icon: { icon: 'tabler-clock-24' },
+  //   subject: 'colombia/proc_come_soli_reco', 
+  //   action: 'colombia/proc_come_soli_reco',
+  // },
   { 
     title: 'Solicitud vacaciones', 
     to: 'procesos-solicitar-vacaciones',
