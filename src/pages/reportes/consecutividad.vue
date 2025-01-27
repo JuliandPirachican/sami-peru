@@ -228,6 +228,7 @@ const headersdeta = ref(computed(() => {
       width: '120',
       align: 'center',
       cellsalign: 'center',
+      hidden: true, // esta oculta la columna
     },
     {
       text: 'Region',
@@ -235,7 +236,8 @@ const headersdeta = ref(computed(() => {
       width: '90',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      pinned: true
     },
     {
       text: 'Corte',
@@ -243,7 +245,8 @@ const headersdeta = ref(computed(() => {
       width: '90',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      pinned: true
     },
     {
       text: 'Zona',
@@ -251,7 +254,8 @@ const headersdeta = ref(computed(() => {
       width: '90',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      pinned: true
     },
     {
       text: 'Sector',
@@ -259,7 +263,8 @@ const headersdeta = ref(computed(() => {
       width: '90',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      pinned: true
     },
     {
       text: 'Código',
@@ -275,6 +280,7 @@ const headersdeta = ref(computed(() => {
       width: '120',
       align: 'center',
       cellsalign: 'center',
+      pinned: true
     },
     {
       text: 'Nombre(s) y Apellido(s)',
@@ -282,6 +288,7 @@ const headersdeta = ref(computed(() => {
       width: '300',
       align: 'center',
       cellsalign: 'center',
+      pinned: true
     },
     
     {

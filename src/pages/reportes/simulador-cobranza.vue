@@ -94,7 +94,7 @@ const headersGlobal = computed(() => {
     filterType: "checkedlist",
     text: "Saldo 31 días",
     dataField: "sald_31di",
-    cellclassname: 'text-white bg-error',
+    cellclassname: 'text-white bg-error-light',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -107,7 +107,7 @@ const headersGlobal = computed(() => {
     filterType: "checkedlist",
     text: "% 31 días",
     dataField: "porc_31di",
-    cellclassname: 'text-white bg-error',
+    cellclassname: 'text-white bg-error-light',
     aggregates: ['avg'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0;
@@ -120,7 +120,7 @@ const headersGlobal = computed(() => {
     filterType: "checkedlist",
     text: "Saldo actual",
     dataField: "sald_actu",
-    cellclassname: 'text-white bg-error',
+    cellclassname: 'text-white bg-error-light',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -133,7 +133,7 @@ const headersGlobal = computed(() => {
     filterType: "checkedlist",
     text: "% Actual",
     dataField: "porc_actu",
-    cellclassname: 'text-white bg-error',
+    cellclassname: 'text-white bg-error-light',
     aggregates: ['avg'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0;
@@ -146,7 +146,7 @@ const headersGlobal = computed(() => {
     filterType: "checkedlist",
     text: "Simulador",
     dataField: "simu_21di",
-    cellclassname: 'text-white bg-success',
+    cellclassname: 'text-white bg-success-light',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -159,7 +159,7 @@ const headersGlobal = computed(() => {
     filterType: "checkedlist",
     text: "% Simulador",
     dataField: "porc_simu_21di",
-    cellclassname: 'text-white bg-success',
+    cellclassname: 'text-white bg-success-light',
     aggregates: ['avg'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0;
@@ -172,7 +172,7 @@ const headersGlobal = computed(() => {
     filterType: "checkedlist",
     text: "Falta cobrar 31d",
     dataField: "falt_cobr_31di",
-    cellclassname: 'text-white bg-success',
+    cellclassname: 'text-white bg-success-light',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -326,6 +326,16 @@ const headersDetalle = computed(() => {
       text: "Saldo actual",
       dataField: "sald_actu",
     },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "Simulador",
+      dataField: "simu_31di",
+      cellclassname: 'text-white bg-success-light',
+      editable: true,
+    },
   ];
 });
  
@@ -376,6 +386,10 @@ const sourceDetalle = ref({
       type: "string",
       name: "sald_actu",
     },
+    {
+      type: "string",
+      name: "simu_31di",
+    }
   ],
   datatype: 'json',
 })
@@ -569,21 +583,24 @@ const updateQueryBuscar = debounce(item => {
  
 const actualizarItem = item => {
   const indexItem = itemsDetalle.value.indexOf(item)
+  console.log(item)
+  console.log(indexItem)
+  console.log(itemsDetalle.value)
   const data = itemsDetalle.value[indexItem]
  
-  if(item.simu_21di === '' || parseInt(item.simu_21di) < 0)
+  if(item.simu_31di === '' || parseInt(item.simu_31di) < 0)
   {
-    data.simu_21di = '0.00'
+    data.simu_31di = '0.00'
   }
  
-  const newValue = parseFloat(data.simu_21di_copi - data.simu_21di).toFixed(2)
+  const newValue = parseFloat(data.simu_31di_copi - data.simu_31di).toFixed(2)
   const codiSect = item.codi_sect
  
   const posicion = itemsGlobal.value.findIndex(e => e.codi_sect === codiSect)
  
   if (posicion !== -1) {
     const dataGlobal = itemsGlobal.value[posicion]
-    let simu21di = dataGlobal.simu_21di
+    let simu21di = dataGlobal.simu_31di
     let valoDocu = dataGlobal.valo_docu
     let obje21di = dataGlobal.obje_21di
     simu21di = parseFloat(simu21di).toFixed(2)
@@ -601,10 +618,10 @@ const actualizarItem = item => {
       faltCobr21di = '0.00'
     }
     dataGlobal.falt_cobr_21di = faltCobr21di
-    dataGlobal.porc_simu_21di = porcSimu21di
-    dataGlobal.simu_21di = simu21di
+    dataGlobal.porc_simu_31di = porcSimu21di
+    dataGlobal.simu_31di = simu21di
  
-    data.simu_21di_copi = data.simu_21di
+    data.simu_31di_copi = data.simu_31di
   }
 }
 </script>
@@ -740,7 +757,8 @@ const actualizarItem = item => {
                   scrollmode="logical"
                   showfilterrow
                   :columnsmenu="false"
-                  :editable="false"
+                  editable
+                  @cellendedit="updateQueryBuscar($event)"
                   />
                 </VCardText>
                 <!-- showstatusbar

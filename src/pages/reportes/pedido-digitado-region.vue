@@ -78,7 +78,28 @@ const headersDetalle = [
 
 const itemsDetalle = ref([])
 
-
+const columnsGroupCorte = [
+  {
+    text: 'Incorporacion',
+    align: 'center',
+    name: 'inco',
+  }
+  ,{
+    text: 'Retención',
+    align: 'center',
+    name: 'rete',
+  }
+  ,{
+    text: 'Pedidos Totales',
+    align: 'center',
+    name: 'pedi',
+  }
+  ,{
+    text: 'Cobranza',
+    align: 'center',
+    name: 'cobr',
+  }
+]
 
 const headersCorte = computed(() => {
   return [
@@ -116,6 +137,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Objetivo",
     dataField: "obje_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -128,6 +150,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Facturado",
     dataField: "fact_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -140,6 +163,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Cump. Fact.",
     dataField: "cump_fact_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -152,6 +176,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Pend. Fact.",
     dataField: "pend_fact_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -164,6 +189,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Total",
     dataField: "tota_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -177,6 +203,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "% Cump.",
     dataField: "cump_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -189,6 +216,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Objetivo",
     dataField: "obje_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -201,6 +229,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Facturado",
     dataField: "fact_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -213,6 +242,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Cump. Fact.",
     dataField: "cump_fact_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -225,6 +255,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Pend. Fact.",
     dataField: "pend_fact_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -237,6 +268,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Total",
     dataField: "tota_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -249,6 +281,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "% Cump.",
     dataField: "cump_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -261,6 +294,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "% Acti.",
     dataField: "acti_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -273,6 +307,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Objetivo",
     dataField: "obje_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -285,6 +320,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Facturado",
     dataField: "fact_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -297,6 +333,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Cump. Fact.",
     dataField: "cump_fact_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -309,6 +346,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Pend. Fact.",
     dataField: "pend_fact_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -321,6 +359,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Total",
     dataField: "tota_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -333,6 +372,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "% Cump.",
     dataField: "cump_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -345,6 +385,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Capi.",
     dataField: "fact_capi",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -357,6 +398,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Facturación",
     dataField: "valo_docu",
+    columngroup: 'cobr',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -369,6 +411,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Saldo 21di",
     dataField: "sald_21di",
+    columngroup: 'cobr',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -381,6 +424,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "% Cobr. 21di",
     dataField: "porc_21di",
+    columngroup: 'cobr',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -393,6 +437,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "Saldo Actu.",
     dataField: "sald_docu",
+    columngroup: 'cobr',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -405,6 +450,7 @@ const headersCorte = computed(() => {
     filterType: "checkedlist",
     text: "% Actu.",
     dataField: "porc_docu",
+    columngroup: 'cobr',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -454,6 +500,39 @@ const localization =  {
 
 const itemsCorte = ref([])
 
+const columnsGroupZona = [
+  {
+    text: 'Incorporacion',
+    align: 'center',
+    name: 'inco',
+  }
+  ,{
+    text: 'Retención',
+    align: 'center',
+    name: 'rete',
+  }
+  ,{
+    text: 'Pedidos Totales',
+    align: 'center',
+    name: 'pedi',
+  }
+  ,{
+    text: 'Cobranza',
+    align: 'center',
+    name: 'cobr',
+  }
+  ,{
+    text: 'Facturacion',
+    align: 'center',
+    name: 'fact',
+  }
+  ,{
+    text: 'P.P.P',
+    align: 'center',
+    name: 'ppp',
+  }
+]
+
 const headersZona = computed(() => {
   return [
   {
@@ -499,6 +578,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Objetivo",
     dataField: "obje_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -511,6 +591,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Facturado",
     dataField: "fact_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -523,6 +604,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Cump. Fact.",
     dataField: "cump_fact_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -535,6 +617,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Pend. Fact.",
     dataField: "pend_fact_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -547,6 +630,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Total",
     dataField: "tota_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -559,6 +643,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "% Cump.",
     dataField: "cump_inco",
+    columngroup: 'inco',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -571,6 +656,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Objetivo",
     dataField: "obje_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -583,6 +669,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Facturado",
     dataField: "fact_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -595,6 +682,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Cump. Fact.",
     dataField: "cump_fact_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -607,6 +695,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Pend. Fact.",
     dataField: "pend_fact_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -619,6 +708,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Total",
     dataField: "tota_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -631,6 +721,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "% Cump.",
     dataField: "cump_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -643,6 +734,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "% Obje. Acti.",
     dataField: "obje_acti",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -655,6 +747,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "% Acti.",
     dataField: "acti_rete",
+    columngroup: 'rete',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -667,6 +760,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Objetivo",
     dataField: "obje_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -679,6 +773,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Facturado",
     dataField: "fact_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -691,6 +786,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Cump. Fact.",
     dataField: "cump_fact_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -703,6 +799,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Pend. Fact.",
     dataField: "pend_fact_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -715,6 +812,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Total",
     dataField: "tota_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -727,6 +825,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "% Cump.",
     dataField: "cump_tota",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -739,6 +838,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Capi.",
     dataField: "fact_capi",
+    columngroup: 'pedi',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -751,6 +851,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Vta. Linea",
     dataField: "vent_line",
+    columngroup: 'fact',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -763,6 +864,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Faltante",
     dataField: "vent_falt",
+    columngroup: 'fact',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -775,6 +877,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Vta. Rece.",
     dataField: "vent_rece",
+    columngroup: 'fact',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -787,6 +890,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "% Falt.",
     dataField: "porc_falt",
+    columngroup: 'fact',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -799,6 +903,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Facturación",
     dataField: "valo_docu",
+    columngroup: 'ppp',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -811,6 +916,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Saldo 21di",
     dataField: "sald_21di",
+    columngroup: 'cobr',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -823,6 +929,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "% Cobr. 21di",
     dataField: "porc_21di",
+    columngroup: 'cobr',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -835,6 +942,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "Saldo Actu.",
     dataField: "sald_docu",
+    columngroup: 'cobr',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -847,6 +955,7 @@ const headersZona = computed(() => {
     filterType: "checkedlist",
     text: "% Actu.",
     dataField: "porc_docu",
+    columngroup: 'cobr',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -1931,6 +2040,7 @@ const onExcelConcepto = async () => {
                   :columns="headersCorte"
                   :source="adaptadorCorte"
                   :localization="localization"
+                  :columngroups="columnsGroupCorte"
                   columnsresize
                   columnsautoresize
                   enableanimations
@@ -1963,6 +2073,7 @@ const onExcelConcepto = async () => {
                   :columns="headersZona"
                   :source="adaptadorZona"
                   :localization="localizationZone"
+                  :columngroups="columnsGroupZona"
                   columnsresize
                   columnsautoresize
                   enableanimations
