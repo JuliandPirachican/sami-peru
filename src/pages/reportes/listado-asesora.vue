@@ -7,9 +7,11 @@
 
 <script setup>
 import { useAppStore } from '@/stores/app';
+import { $api, $base } from '@/utils/api';
 import { EncryptStorage } from 'encrypt-storage';
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 import JqxListBox from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxlistbox.vue';
+
 
 import { useDisplay } from 'vuetify';
 
@@ -77,7 +79,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  "<div >"+'T:'+aggregates['sum']+"</div>":"<div >"+'T:' +"0"+"</div>";
+      }
     },
     {
       text: 'Incorp.',
@@ -169,7 +175,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
     },
     {
       text: '% Rete PEG21',
@@ -177,7 +187,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
     {
       text: 'Rete. PEG42',
@@ -185,7 +199,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
     },
     {
       text: '% Rete PEG42',
@@ -193,7 +211,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
     {
       text: 'Rete. PEG63',
@@ -201,7 +223,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
     },
     {
       text: '% Rete PEG63',
@@ -209,7 +235,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
     {
       text: '% Acti.',
@@ -217,7 +247,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
     {
       text: 'Pedi. Reten.',
@@ -260,32 +294,6 @@ const headersGlobal = computed(() => {
     //   filtertype: 'checkedlist'
     // },
     {
-      text: 'Vta. Linea',
-      dataField: 'tota_line',
-      width: '150',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist',
-      columngroup: 'vent_line',
-      aggregates: ['sum'],
-      aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
-      }
-    },
-    {
-      text: 'Ppp Linea',
-      dataField: 'tota_pedi',
-      width: '150',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist',
-      columngroup: 'vent_line',
-      aggregates: ['sum'],
-      aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
-      }
-    },
-    {
       text: 'Vta. Rece.',
       dataField: 'vent_rece',
       width: '150',
@@ -306,6 +314,32 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
       filtertype: 'checkedlist',
       columngroup:"vent_recep",
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Vta. Linea',
+      dataField: 'tota_line',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      columngroup: 'vent_line',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
+    },
+    {
+      text: 'Ppp Linea',
+      dataField: 'tota_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      columngroup: 'vent_line',
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
@@ -357,7 +391,11 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      columngroup:"falt"
+      columngroup:"falt",
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
 
     {
@@ -480,12 +518,12 @@ const sourceGlobal = ref({
   {name: "posi_eg21",type:"string"},
   {name: "posi_eg42",type:"string"},
   {name: "posi_egre",type:"string"},
-  // {name: "rete_pe21",type:"string"},
-  // {name: "porc_re21",type:"string"},
-  // {name: "rete_pe42",type:"string"},
-  // {name: "porc_re42",type:"string"},
-  // {name: "rete_pe63",type:"string"},
-  // {name: "porc_re63",type:"string"}
+  {name: "rete_pe21",type:"string"},
+  {name: "porc_re21",type:"string"},
+  {name: "rete_pe42",type:"string"},
+  {name: "porc_re42",type:"string"},
+  {name: "rete_pe63",type:"string"},
+  {name: "porc_re63",type:"string"}
 ],
   datatype: 'json',
 });
@@ -672,7 +710,9 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: true, // esta oculta la columna
+
     },
     {
       text: 'Sector',
@@ -680,7 +720,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: true, // esta oculta la columna
     },
     {
       text: 'Nro ident.',
@@ -688,7 +729,7 @@ const headersDetalleTotal = computed(() => {
       width: '110',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      // filtertype: 'checkedlist'
     },
     {
       text: 'Nombre(s) y apellido(s)',
@@ -696,7 +737,7 @@ const headersDetalleTotal = computed(() => {
       width: '270',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      // filtertype: 'checkedlist'
     },
     {
       text: 'Cumpleaños',
@@ -704,7 +745,8 @@ const headersDetalleTotal = computed(() => {
       width: '140',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'     
+      hidden: true, // esta oculta la columna
+      // filtertype: 'checkedlist'     
        // , aggregates: ['count']
     },
     {
@@ -721,7 +763,7 @@ const headersDetalleTotal = computed(() => {
       width: '180',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      // filtertype: 'checkedlist'
     },
     {
       text: 'Telefono 1 ',
@@ -729,7 +771,7 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      // filtertype: 'checkedlist'
     },
     {
       text: 'Telefono 2',
@@ -737,7 +779,7 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      // filtertype: 'checkedlist'
     },
     {
       text: 'Status',
@@ -753,7 +795,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: true, // esta oculta la columna
     },
     {
       text: 'Saldo',
@@ -770,6 +813,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: true, // esta oculta la columna
       cellclassname: ' bg-primary-light',
     },
     {
@@ -1257,24 +1301,59 @@ const onLimpiar= async () => {
 
 const onExcel = async tipo => {
   try {
-    console.log(headersDetalle)
-    console.log("--------")
-    console.log(headersDetalle.value)
+
     appStore.mensaje('Generando archivo')
     appStore.loading(true)
     console.log(tipo)
+
+     // Exportar datos manualmente a XML
+     const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+     console.log(rows)
+    if (!rows || rows.length === 0) {
+      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
+      appStore.color("error");
+      appStore.snackbar(true);
+      return;
+    }
+
+    let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+
+    itemsGlobal.value.forEach((row, index) => {
+      xmlDataGlob += `  <row id="${index + 1}">\n`;
+      for (const [key, value] of Object.entries(row)) {
+        xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
+      }
+      xmlDataGlob += `  </row>\n`;
+    });
+
+    xmlDataGlob += `</rows>`;
+    
+    let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+
+    itemsDetalle.value.forEach((row, index) => {
+      xmlDataDeta += `  <row id="${index + 1}">\n`;
+      for (const [key, value] of Object.entries(row)) {
+        xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
+      }
+      xmlDataDeta += `  </row>\n`;
+    });
+
+    xmlDataDeta += `</rows>`;
+
+
     const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/excel`, {
       method: "POST",
       body: {
-        columnas: headersDetalleTotal.value,
+        columnas:  headersDetalleTotal.value,
         tipo: tipo,
-        data_glob: itemsGlobal.value,
-        data_deta: itemsDetalle.value,
+        data_glob: xmlDataGlob,
+        data_deta: xmlDataDeta,
       },
     })
-    
+    console.log(data)
     window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
+    console.log(e)
   }
   finally {
     appStore.loading(false)
@@ -1283,26 +1362,75 @@ const onExcel = async tipo => {
 
 const onPdf = async tipo => {
   try {
-    appStore.mensaje('Generando archivo')
-    appStore.loading(true)
 
-    const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/pdf`, {
-      method: "post",
-      body: {
-        columnas: headersDetalleTotal.value,
-        tipo: tipo,
-        data_glob: itemsGlobal.value,
-        data_deta: itemsDetalle.value,
-      },
-    })
-    
-    window.open(`${$base}/temporales/${data}`, '_blank')
+appStore.mensaje('Generando archivo')
+appStore.loading(true)
+console.log(tipo)
+
+ // Exportar datos manualmente a XML
+ const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+ console.log(rows)
+  if (!rows || rows.length === 0) {
+    appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
+    appStore.color("error");
+    appStore.snackbar(true);
+    return;
+  }
+
+  let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+
+  itemsGlobal.value.forEach((row, index) => {
+    xmlDataGlob += `  <row id="${index + 1}">\n`;
+    for (const [key, value] of Object.entries(row)) {
+      xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
+    }
+    xmlDataGlob += `  </row>\n`;
+  });
+
+  xmlDataGlob += `</rows>`;
+
+  let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+
+  itemsDetalle.value.forEach((row, index) => {
+    xmlDataDeta += `  <row id="${index + 1}">\n`;
+    for (const [key, value] of Object.entries(row)) {
+      xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
+    }
+    xmlDataDeta += `  </row>\n`;
+  });
+
+  xmlDataDeta += `</rows>`;
+
+
+  const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/pdf`, {
+    method: "POST",
+    body: {
+      columnas:  headersDetalleTotal.value,
+      tipo: tipo,
+      data_glob: xmlDataGlob,
+      data_deta: xmlDataDeta,
+    },
+  })
+  console.log(data)
+  window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
+  console.log(e)
   }
   finally {
-    appStore.loading(false)
+  appStore.loading(false)
   }
 }
+
+const escapeXML = (value) => {
+  if (value === null || value === undefined) return "";
+  return value
+    .toString()
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+};
 
 const limpiarValidacion = () => {
   errorCampana.value = false

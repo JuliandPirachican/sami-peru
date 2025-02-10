@@ -538,6 +538,7 @@ const columnasGlobal = [
     align: 'center',
     cellsalign: 'center',
     pinned: true,
+    hidden: true,
   },
   {
     text: 'Lider',
