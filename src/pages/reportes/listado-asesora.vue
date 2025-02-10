@@ -175,7 +175,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
     },
     {
       text: '% Rete PEG21',
@@ -183,7 +187,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
     {
       text: 'Rete. PEG42',
@@ -191,7 +199,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
     },
     {
       text: '% Rete PEG42',
@@ -199,7 +211,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
     {
       text: 'Rete. PEG63',
@@ -207,7 +223,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+      }
     },
     {
       text: '% Rete PEG63',
@@ -215,7 +235,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
     {
       text: '% Acti.',
@@ -223,7 +247,11 @@ const headersGlobal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
     {
       text: 'Pedi. Reten.',
@@ -363,7 +391,11 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      columngroup:"falt"
+      columngroup:"falt",
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+      }
     },
 
     {
@@ -688,7 +720,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: true, // esta oculta la columna
     },
     {
       text: 'Nro ident.',

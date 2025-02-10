@@ -264,7 +264,8 @@ const headersdeta = ref(computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      pinned: true
+      pinned: true,
+      hidden: true
     },
     {
       text: 'Código',

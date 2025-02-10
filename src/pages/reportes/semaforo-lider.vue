@@ -168,10 +168,10 @@ const obtenerZona = async () => {
 
 const obtenerSector = async () => {
   try {
-    appStore.mensaje('Obteniendo sectores')
+    appStore.mensaje('Obteniendo lideres')
     appStore.loading(true)
 
-    const { data } = await $api(`/api/comun/v1/sectores`, {
+    const { data } = await $api(`/api/comun/v1/zonas/lideres`, {
       method: "get",
       query: {
         codigo: userData.codi_perf,
@@ -183,8 +183,8 @@ const obtenerSector = async () => {
     
     itemSector.forEach(element => 
       sectorOptions.value.push({
-        id: element.codi_sect,
-        text: element.codi_sect,
+        id: element.codi_lider,
+        text: element.nom_lider,
       }),
     )
   } catch (e) {
@@ -705,8 +705,8 @@ const limpiarValidacion = () => {
                     <AppSelect
                       v-model="formulario.sector"
                       :items="sectorOptions"
-                      label="Sector"
-                      placeholder="Seleccionar sector"
+                      label="Lider"
+                      placeholder="Seleccionar lider"
                       item-title="text"
                       item-value="id"
                       :error="errorSector"

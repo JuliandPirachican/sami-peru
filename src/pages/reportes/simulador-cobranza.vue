@@ -2,7 +2,6 @@
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
-import debounce from 'lodash.debounce';
 
  
  
@@ -145,7 +144,7 @@ const headersGlobal = computed(() => {
     cellsAlign: "center",
     filterType: "checkedlist",
     text: "Simulador",
-    dataField: "simu_21di",
+    dataField: "simu_31di",
     cellclassname: 'text-white bg-success-light',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
@@ -158,7 +157,7 @@ const headersGlobal = computed(() => {
     cellsAlign: "center",
     filterType: "checkedlist",
     text: "% Simulador",
-    dataField: "porc_simu_21di",
+    dataField: "porc_simu_31di",
     cellclassname: 'text-white bg-success-light',
     aggregates: ['avg'],
     aggregatesrenderer: function (aggregates) {
@@ -218,11 +217,11 @@ const sourceGlobal = ref({
     },
     {
       type: "string",
-      name: "simu_21di",
+      name: "simu_31di",
     },
     {
       type: "string",
-      name: "porc_simu_21di",
+      name: "porc_simu_31di",
     },
     {
       type: "string",
@@ -336,6 +335,26 @@ const headersDetalle = computed(() => {
       cellclassname: 'text-white bg-success-light',
       editable: true,
     },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "Simulador",
+      dataField: "simu_31di_copi",
+      cellclassname: 'text-white bg-success-light',
+      hidden: true,
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "consecutivo lider",
+      dataField: "cons_lide",
+      cellclassname: 'text-white bg-success-light',
+      hidden: true,
+    },
   ];
 });
  
@@ -389,6 +408,14 @@ const sourceDetalle = ref({
     {
       type: "string",
       name: "simu_31di",
+    },
+    {
+      type: "string",
+      name: "simu_31di_copi",
+    },
+    {
+      type: "string",
+      name: "cons_lide",
     }
   ],
   datatype: 'json',
@@ -577,53 +604,74 @@ const limpiarValidacion = () => {
   errorMensajeZona.value = ''
 }
  
-const updateQueryBuscar = debounce(item => {
-  actualizarItem(item)
-}, 500)
- 
-const actualizarItem = item => {
-  const indexItem = itemsDetalle.value.indexOf(item)
-  console.log(item)
-  console.log(indexItem)
-  console.log(itemsDetalle.value)
-  const data = itemsDetalle.value[indexItem]
- 
-  if(item.simu_31di === '' || parseInt(item.simu_31di) < 0)
-  {
-    data.simu_31di = '0.00'
+let valoDocu = 0
+let saldDocu = 0
+let saldo31DiasDetalle = 0
+const onEditarInicio = event => {
+  const { args } = event
+
+  saldo31DiasDetalle = refGridDetalle.value.getcellvaluebyid(
+    args.rowindex,
+    'sald_31di',
+  )
+}
+
+const onEditarFin = event => {
+  const { args } = event
+  const columnDataField = args.datafield
+  const rowIndex = args.rowindex
+  const cellValue = parseFloat(args.value).toFixed(2)
+  const oldValue = parseFloat(args.oldvalue).toFixed(2)
+
+  const cons_lide = refGridDetalle.value.getcellvaluebyid(
+    rowIndex,
+    'cons_lide',
+  )
+
+  let rowIndexGlobal = 0
+  const cobrJson = sourceGlobal.value.localdata
+
+  for (let a = 0; a < cobrJson.length; a++) {
+    if (cobrJson[a].cons_lide === cons_lide) {
+      rowIndexGlobal = a
+    }
   }
- 
-  const newValue = parseFloat(data.simu_31di_copi - data.simu_31di).toFixed(2)
-  const codiSect = item.codi_sect
- 
-  const posicion = itemsGlobal.value.findIndex(e => e.codi_sect === codiSect)
- 
-  if (posicion !== -1) {
-    const dataGlobal = itemsGlobal.value[posicion]
-    let simu21di = dataGlobal.simu_31di
-    let valoDocu = dataGlobal.valo_docu
-    let obje21di = dataGlobal.obje_21di
-    simu21di = parseFloat(simu21di).toFixed(2)
-    simu21di -= newValue
-    valoDocu = parseFloat(valoDocu).toFixed(2)
-    let porcSimu21di = '0.00'
+  let newValue = oldValue - cellValue
+  newValue =parseFloat(parseFloat(newValue).toFixed(2)); 
+  if (columnDataField === 'simu_31di') {
+    let simu31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'simu_31di');
+    let valoDocu = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'valo_docu');
+    let obje31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'obje_31di');
+
+    console.log(" simu31di=",simu31di," valoDocu=", valoDocu," obje31di=", obje31di ," newValue=", newValue);
+    
+    simu31di = parseFloat(parseFloat(simu31di).toFixed(2));
+    console.log("simu31di menos newValue=",simu31di);
+    simu31di -= newValue
+    valoDocu = parseFloat(parseFloat(valoDocu).toFixed(2));
+    console.log("resultado simu31di=",simu31di);
+
+    let porcSimu31di = '0.00'
     if (valoDocu !== 0) {
-      porcSimu21di = 100 - 100 * (parseFloat(simu21di) / parseFloat(valoDocu))
-      porcSimu21di = parseFloat(porcSimu21di).toFixed(2)
+      porcSimu31di = 100 - 100 * (parseFloat(simu31di) / parseFloat(valoDocu))
+      porcSimu31di = parseFloat(porcSimu31di).toFixed(2)
     }
-    obje21di = parseFloat(obje21di).toFixed(2)
-    let faltCobr21di = obje21di - simu21di
-    faltCobr21di = parseFloat(faltCobr21di).toFixed(2)
-    if (faltCobr21di >= 0) {
-      faltCobr21di = '0.00'
-    }
-    dataGlobal.falt_cobr_21di = faltCobr21di
-    dataGlobal.porc_simu_31di = porcSimu21di
-    dataGlobal.simu_31di = simu21di
- 
-    data.simu_31di_copi = data.simu_31di
+  
+    obje31di = parseFloat(parseFloat(obje31di).toFixed(2));
+    let faltCobr31di = obje31di - simu31di
+    faltCobr31di = parseFloat(faltCobr31di).toFixed(2)
+    faltCobr31di = (faltCobr31di >= 0) ? '0.00': faltCobr31di;
+
+    /**
+     * Actualizar valores globales
+     */
+    refGridGlobal.value.setcellvalue(rowIndexGlobal,'porc_simu_31di',porcSimu31di);
+    refGridGlobal.value.setcellvalue(rowIndexGlobal,'falt_cobr_31di',faltCobr31di);
+    refGridGlobal.value.setcellvalue(rowIndexGlobal,'simu_31di', simu31di);
   }
 }
+
+
 </script>
  
 <template>
@@ -758,7 +806,9 @@ const actualizarItem = item => {
                   showfilterrow
                   :columnsmenu="false"
                   editable
-                  @cellendedit="updateQueryBuscar($event)"
+                  editmode="click"
+                  @cellbeginedit="onEditarInicio($event)"
+                  @cellendedit="onEditarFin($event)"
                   />
                 </VCardText>
                 <!-- showstatusbar

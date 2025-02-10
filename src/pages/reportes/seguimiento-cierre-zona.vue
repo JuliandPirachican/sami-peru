@@ -3958,7 +3958,7 @@ const columnas = [
     width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'c2',
+    cellsformat: 'N',
     aggregates: [
       {
         
@@ -3978,7 +3978,7 @@ const columnas = [
     width: '120',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'c2',
+    cellsformat: 'N',
     aggregates: [
       {
         
@@ -3998,7 +3998,7 @@ const columnas = [
     width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'c2',
+    cellsformat: 'N',
     aggregates: [
       {
         
@@ -4018,7 +4018,7 @@ const columnas = [
     width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'c2',
+    cellsformat: 'N',
     aggregates: [
       {
         
