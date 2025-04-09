@@ -43,6 +43,36 @@ const formulario = ref({
   zona: null,
 })
 
+/**
+ * Variables Globales de suma de porcentajes
+ */
+/** Rete pe 21, 42 y 63 **/
+const sum_posi_eg21_ante=ref({});
+const sum_rete_pe21=ref({});
+const sum_posi_eg42_ante=ref({});
+const sum_rete_pe42=ref({});
+const sum_posi_eg63_ante=ref({});
+const sum_rete_pe63=ref({});
+
+/**porc_acti **/
+const sum_tota_acti=ref({});
+const sum_tota_pedi=ref({});
+const sum_tota_ingr=ref({});
+const sum_tota_rein=ref({});
+
+/**ppp rece **/
+const sum_tota_rece=ref({});
+
+/** ppp fact **/
+const sum_tota_fact=ref({});
+
+/** ppp line **/
+const sum_tota_line=ref({});
+
+/** Upp **/
+const sum_tota_unid=ref({});
+
+
 
 const headersGlobal = computed(() => {
   return [
@@ -67,6 +97,15 @@ const headersGlobal = computed(() => {
     {
       text: 'Codigo Lider',
       dataField: 'codi_sect',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      pinned: true
+    },
+    {
+      text: 'Nombre Lider',
+      dataField: 'nomb_lide',
       width: '150',
       align: 'center',
       cellsalign: 'center',
@@ -117,6 +156,7 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
       filtertype: 'checkedlist',
       aggregates: ['sum'],
+      // hidden: true,
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
       }
@@ -190,7 +230,8 @@ const headersGlobal = computed(() => {
       filtertype: 'checkedlist',
       aggregates: ['avg'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+          let tota_porc_re21=(sum_posi_eg21_ante.value>0 &&  sum_rete_pe21.value>0) ? sum_rete_pe21.value/sum_posi_eg21_ante.value:0;
+          return  (tota_porc_re21>0) ?  'T:'+(tota_porc_re21*100).toFixed(2)+'%':'T:' +0;
       }
     },
     {
@@ -213,8 +254,10 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
       filtertype: 'checkedlist',
       aggregates: ['avg'],
+
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+          let tota_porc_re42=(sum_posi_eg42_ante.value>0 &&  sum_rete_pe42.value>0) ? sum_rete_pe42.value/sum_posi_eg42_ante.value:0;
+          return  (tota_porc_re42>0) ?  'T:'+(tota_porc_re42*100).toFixed(2)+'%':'T:' +0;
       }
     },
     {
@@ -237,8 +280,10 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
       filtertype: 'checkedlist',
       aggregates: ['avg'],
+
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+          let tota_porc_re63=(sum_posi_eg63_ante.value>0 &&  sum_rete_pe63.value>0) ? sum_rete_pe63.value/sum_posi_eg63_ante.value:0;
+          return  (tota_porc_re63>0) ?  'T:'+(tota_porc_re63*100).toFixed(2)+'%':'T:' +0;
       }
     },
     {
@@ -250,7 +295,8 @@ const headersGlobal = computed(() => {
       filtertype: 'checkedlist',
       aggregates: ['avg'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+          let tota_porc_acti=(sum_tota_acti.value>0 &&  sum_tota_ingr.value>0 &&  sum_tota_rein.value>0 &&  sum_tota_pedi.value>0) ? (sum_tota_pedi.value- sum_tota_ingr.value-sum_tota_rein.value)/sum_tota_acti.value:0;
+          return  (tota_porc_acti>0) ?  'T:'+(tota_porc_acti*100).toFixed(2)+'%':'T:' +0;
       }
     },
     {
@@ -261,6 +307,7 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
       filtertype: 'checkedlist',
       aggregates: ['sum'],
+      hidden:true,
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
       }
@@ -316,7 +363,9 @@ const headersGlobal = computed(() => {
       columngroup:"vent_recep",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        // sum_tota_pedi.value sum_tota_rece
+        let tota_ppp_rece= (sum_tota_pedi.value>0 && sum_tota_rece.value>0) ? (sum_tota_rece.value/sum_tota_pedi.value):0;
+        return  (tota_ppp_rece>0) ?  'T:'+tota_ppp_rece.toFixed(2):'T:' +0;
       }
     },
     {
@@ -342,7 +391,9 @@ const headersGlobal = computed(() => {
       columngroup: 'vent_line',
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        // sum_tota_pedi.value sum_tota_rece
+        let tota_ppp_line= (sum_tota_pedi.value>0 && sum_tota_line.value>0) ? (sum_tota_line.value/sum_tota_pedi.value):0;
+        return  (tota_ppp_line>0) ?  'T:'+tota_ppp_line.toFixed(2):'T:' +0;
       }
     },
     {
@@ -368,7 +419,9 @@ const headersGlobal = computed(() => {
       columngroup:"vent_fact",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        // sum_tota_pedi.value sum_tota_rece
+        let tota_ppp_fact= (sum_tota_fact.value>0 && sum_tota_rece.value>0) ? (sum_tota_fact.value/sum_tota_pedi.value):0;
+        return  (tota_ppp_fact>0) ?  'T:'+tota_ppp_fact.toFixed(2):'T:' +0;
       }
     },
     {
@@ -421,7 +474,8 @@ const headersGlobal = computed(() => {
       columngroup:"unid",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+          let tota_porc_re42=(sum_tota_unid.value>0 &&  sum_tota_pedi.value>0) ? sum_tota_unid.value/sum_tota_pedi.value:0;
+          return  (tota_porc_re42>0) ?  'T:'+(tota_porc_re42).toFixed(2):'T:' +0;
       }
     },
     {
@@ -434,7 +488,9 @@ const headersGlobal = computed(() => {
       columngroup:"unid",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        // sum_tota_pedi.value sum_tota_rece
+        let tota_cop_unid= (sum_tota_unid.value>0 && sum_tota_line.value>0) ? (sum_tota_line.value/sum_tota_unid.value):0;
+        return  (tota_cop_unid>0) ?  'T:'+tota_cop_unid.toFixed(2):'T:' +0;
       }
     },
     {
@@ -523,7 +579,8 @@ const sourceGlobal = ref({
   {name: "rete_pe42",type:"string"},
   {name: "porc_re42",type:"string"},
   {name: "rete_pe63",type:"string"},
-  {name: "porc_re63",type:"string"}
+  {name: "porc_re63",type:"string"},
+  {name: "nomb_lide",type:"string"},
 ],
   datatype: 'json',
 });
@@ -1260,6 +1317,34 @@ const onGenerar = async () => {
     })
 
     itemsGlobal.value = data.data_glob
+    console.log(data.data_glob)
+    /** Asignacion valores suma retePe 21,42 y 63 **/
+    sum_posi_eg21_ante.value = itemsGlobal.value.reduce((a, b) => a + Number(b.posi_eg21_ante), 0);
+    sum_rete_pe21.value = itemsGlobal.value.reduce((a, b) => a + Number(b.rete_pe21), 0);
+    sum_posi_eg42_ante.value = itemsGlobal.value.reduce((a, b) => a + Number(b.posi_eg42_ante), 0);
+    sum_rete_pe42.value = itemsGlobal.value.reduce((a, b) => a + Number(b.rete_pe42), 0)
+    sum_posi_eg63_ante.value = itemsGlobal.value.reduce((a, b) => a + Number(b.posi_egre_ante), 0);
+    sum_rete_pe63.value = itemsGlobal.value.reduce((a, b) => a + Number(b.rete_pe63), 0);
+
+    /** Asignacion valores suma para porcentaje de actividad **/
+    sum_tota_acti.value = itemsGlobal.value.reduce((a, b) => a + Number(b.acti_inic), 0);
+    sum_tota_ingr.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_ingr), 0);
+    sum_tota_rein.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_rein), 0);
+    sum_tota_pedi.value = itemsGlobal.value.reduce((a, b) => a + Number(b.nume_pedi), 0);
+
+    /** Asignacion valores suma para ppp rece **/
+    sum_tota_rece.value = itemsGlobal.value.reduce((a, b) => a + Number(b.vent_rece), 0);
+
+    /** Asignacion valores suma para ppp fact **/
+    sum_tota_fact.value =itemsGlobal.value.reduce((a, b) => a + Number(b.tota_fact), 0);
+
+    /** Asignacion valores suma para ppp line **/
+    sum_tota_line.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_line),0);
+
+    /**Asignacion valores suma para upp */
+    sum_tota_unid.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_unid),0);
+
+
     itemsDetalle.value = data.data_deta
     sourceGlobal.value.localdata = data.data_glob
     refGridGlobal.value.updatebounddata('cells')
@@ -1364,8 +1449,7 @@ const onPdf = async tipo => {
   try {
 
 appStore.mensaje('Generando archivo')
-appStore.loading(true)
-console.log(tipo)
+
 
  // Exportar datos manualmente a XML
  const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
@@ -1401,7 +1485,7 @@ console.log(tipo)
 
   xmlDataDeta += `</rows>`;
 
-
+  console.log({ xmlDataGlob, xmlDataDeta })
   const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/pdf`, {
     method: "POST",
     body: {
@@ -1411,7 +1495,7 @@ console.log(tipo)
       data_deta: xmlDataDeta,
     },
   })
-  console.log(data)
+
   window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
   console.log(e)
@@ -1492,9 +1576,6 @@ const itemsDetalleVisible = computed(() => {
                   <li>Peg21</li>
                   <li>Peg42</li>
                   <li>Peg63</li>
-                  <li>
-                    Posible Reingreso &lt;= COP. 25.00
-                  </li>
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 1</VListItemTitle>
@@ -1523,7 +1604,6 @@ const itemsDetalleVisible = computed(() => {
                   <li>Peg21</li>
                   <li>Peg42</li>
                   <li>Peg63</li>
-                  <li>Posible Reingreso</li>
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 2</VListItemTitle>
@@ -1580,8 +1660,6 @@ const itemsDetalleVisible = computed(() => {
                   <li>Peg21</li>
                   <li>Peg42</li>
                   <li>Peg63</li>
-                  <li>Posible Reingreso</li>
-                  <li>Posible Reincorporación &lt;= COP. 25.00</li>
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 4</VListItemTitle>

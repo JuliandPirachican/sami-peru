@@ -320,9 +320,9 @@ let sumaActiSegu = 0
 /**columnas de la grilla */
 const columnaGlobal = [
   {
-    text: 'Sector',
+    text: 'Codigo Lider',
     dataField: 'codi_sect',
-    width: '60',
+    width: '150',
     align: 'center',
     cellsalign: 'center',
     editable: false,
@@ -333,7 +333,7 @@ const columnaGlobal = [
   {
     text: 'Lider',
     dataField: 'nomb_vend',
-    width: '250',
+    width: '220',
     align: 'center',
     cellsalign: 'left',
     editable: false,
@@ -344,7 +344,7 @@ const columnaGlobal = [
   {
     text: 'Act. inic.',
     dataField: 'acti_inic',
-    width: '80',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     editable: false,
@@ -352,6 +352,27 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     columna: 'C',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+        },
+      },
+    ],
+  },
+  {
+    text: 'Objetivo Ventas',
+    dataField: 'obje_vent',
+    width: '150',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: true,
+    cellsformat: 'N',
+    filtertype: 'number',
+    columna: 'D',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -373,7 +394,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'D',
+    columna: 'E',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -395,7 +416,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'E',
+    columna: 'F',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -416,7 +437,7 @@ const columnaGlobal = [
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'F',
+    columna: 'G',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -438,7 +459,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'G',
+    columna: 'H',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -460,7 +481,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'H',
+    columna: 'I',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -481,7 +502,7 @@ const columnaGlobal = [
     columngroup: 'rete',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'I',
+    columna: 'J',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -504,7 +525,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'J',
+    columna: 'K',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -527,7 +548,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'K',
+    columna: 'L',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -551,7 +572,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
 
-    columna: 'L',
+    columna: 'M',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -574,7 +595,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'M',
+    columna: 'N',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -598,7 +619,7 @@ const columnaGlobal = [
     cellsformat: 'P2',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'N',
+    columna: 'O',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -633,7 +654,7 @@ const columnaGlobal = [
     columngroup: 'cons4_ped',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'O',
+    columna: 'P',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -656,7 +677,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'P',
+    columna: 'Q',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -678,7 +699,7 @@ const columnaGlobal = [
     cellsformat: 'P2',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'Q',
+    columna: 'R',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -703,7 +724,7 @@ const columnaGlobal = [
     columngroup: 'pe21',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'R',
+    columna: 'S',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -725,7 +746,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'S',
+    columna: 'T',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -748,7 +769,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'T',
+    columna: 'U',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -777,7 +798,7 @@ const columnaGlobal = [
     columngroup: 'pe42',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'U',
+    columna: 'V',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -799,7 +820,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'V',
+    columna: 'W',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -822,7 +843,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'W',
+    columna: 'X',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -851,7 +872,7 @@ const columnaGlobal = [
     columngroup: 'pe63',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'X',
+    columna: 'Y',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -873,7 +894,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'Y',
+    columna: 'Z',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -896,7 +917,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'Z',
+    columna: 'AA',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -926,7 +947,7 @@ const columnaGlobal = [
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AA',
+    columna: 'AB',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -947,7 +968,7 @@ const columnaGlobal = [
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AB',
+    columna: 'AC',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -969,7 +990,7 @@ const columnaGlobal = [
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AC',
+    columna: 'AD',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -991,7 +1012,7 @@ const columnaGlobal = [
     columngroup: 'rein',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AD',
+    columna: 'AE',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1013,7 +1034,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'AE',
+    columna: 'AF',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1036,7 +1057,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'AF',
+    columna: 'AG',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1065,7 +1086,7 @@ const columnaGlobal = [
     columngroup: 'capi',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AG',
+    columna: 'AH',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1088,7 +1109,7 @@ const columnaGlobal = [
     columngroup: 'capi',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AH',
+    columna: 'AI',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1110,7 +1131,7 @@ const columnaGlobal = [
     editable: false,
     cellsformat: 'D2',
     filtertype: 'number',
-    columna: 'AI',
+    columna: 'AJ',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) { 
@@ -1131,7 +1152,7 @@ const columnaGlobal = [
     columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
-    columna: 'AJ',
+    columna: 'AK',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1152,7 +1173,7 @@ const columnaGlobal = [
     columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
-    columna: 'AK',
+    columna: 'AL',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1171,7 +1192,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    columna: 'AL',
+    columna: 'AM',
   },
   {
     text: 'Nivel lider seguimiento',
@@ -1181,7 +1202,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    columna: 'AM',
+    columna: 'AN',
   },
 ]
 /**columnas de agrupacion de la grilla */
@@ -1259,6 +1280,7 @@ const sourceGlobal = ref({
     { name: 'codi_sect', type: 'string' },
     { name: 'nomb_vend', type: 'string' }, 
     { name: 'acti_inic', type: 'number' },
+    { name: 'obje_vent', type: 'number' },
     { name: 'pedi_tota_obje', type: 'number' },
     { name: 'pedi_tota_prim', type: 'number' },
     { name: 'pedi_tota_segu', type: 'number' },

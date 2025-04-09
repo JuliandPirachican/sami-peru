@@ -222,14 +222,14 @@ const sourceGlobal = ref({
 
 const headersdeta = ref(computed(() => {
   return [
-    {
-      text: 'Camp. Ingr',
-      dataField: 'camp_ingr',
-      width: '120',
-      align: 'center',
-      cellsalign: 'center',
-      hidden: true, // esta oculta la columna
-    },
+    // {
+    //   text: 'Camp. Ingr',
+    //   dataField: 'camp_ingr',
+    //   width: '120',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   hidden: true, // esta oculta la columna
+    // },
     {
       text: 'Region',
       dataField: 'codi_area',
@@ -257,16 +257,16 @@ const headersdeta = ref(computed(() => {
       filtertype: 'checkedlist',
       pinned: true
     },
-    {
-      text: 'Sector',
-      dataField: 'codi_sect',
-      width: '90',
-      align: 'center',
-      cellsalign: 'center',
-      filtertype: 'checkedlist',
-      pinned: true,
-      hidden: true
-    },
+    // {
+    //   text: 'Sector',
+    //   dataField: 'codi_sect',
+    //   width: '90',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    //   filtertype: 'checkedlist',
+    //   pinned: true,
+    //   hidden: true
+    // },
     {
       text: 'Código',
       dataField: 'codi_terc',
@@ -320,13 +320,13 @@ const headersdeta = ref(computed(() => {
       align: 'center',
       cellsalign: 'center',
     },
-    {
-      text: camp_label?.value?.camp1 ? `${camp_label.value.camp1} Sector` :'0 Sector',
-      dataField: 'codi_sect_1',
-      width: '90',
-      align: 'center',
-      cellsalign: 'center',
-    },
+    // {
+    //   text: camp_label?.value?.camp1 ? `${camp_label.value.camp1} Sector` :'0 Sector',
+    //   dataField: 'codi_sect_1',
+    //   width: '90',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    // },
     {
       text: camp_label?.value?.camp1 ? `${camp_label.value.camp1} Fact` :'0 Fact',
       dataField: 'tota_fact_1',
@@ -348,13 +348,13 @@ const headersdeta = ref(computed(() => {
       align: 'center',
       cellsalign: 'center',
     },
-    {
-      text: camp_label?.value?.camp2 ? `${camp_label.value.camp2} Sector` :'0 Sector',
-      dataField: 'codi_sect_2',
-      width: '90',
-      align: 'center',
-      cellsalign: 'center',
-    },
+    // {
+    //   text: camp_label?.value?.camp2 ? `${camp_label.value.camp2} Sector` :'0 Sector',
+    //   dataField: 'codi_sect_2',
+    //   width: '90',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    // },
     {
       text: camp_label?.value?.camp2 ? `${camp_label.value.camp2} Fact` :'0 Fact',
       dataField: 'tota_fact_2',
@@ -376,13 +376,13 @@ const headersdeta = ref(computed(() => {
       align: 'center',
       cellsalign: 'center',
     },
-    {
-      text: camp_label?.value?.camp3 ? `${camp_label.value.camp3} Sector` :'0 Sector',
-      dataField: 'codi_sect_3',
-      width: '90',
-      align: 'center',
-      cellsalign: 'center',
-    },
+    // {
+    //   text: camp_label?.value?.camp3 ? `${camp_label.value.camp3} Sector` :'0 Sector',
+    //   dataField: 'codi_sect_3',
+    //   width: '90',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    // },
     {
       text: camp_label?.value?.camp3 ? `${camp_label.value.camp3} Fact` :'0 Fact',
       dataField: 'tota_fact_3',
@@ -404,13 +404,13 @@ const headersdeta = ref(computed(() => {
       align: 'center',
       cellsalign: 'center',
     },
-    {
-      text: camp_label?.value?.camp4 ? `${camp_label.value.camp4} Sector` :'0 Sector',
-      dataField: 'codi_sect_4',
-      width: '90',
-      align: 'center',
-      cellsalign: 'center',
-    },
+    // {
+    //   text: camp_label?.value?.camp4 ? `${camp_label.value.camp4} Sector` :'0 Sector',
+    //   dataField: 'codi_sect_4',
+    //   width: '90',
+    //   align: 'center',
+    //   cellsalign: 'center',
+    // },
     {
       text:  camp_label?.value?.camp4 ? `${camp_label.value.camp4} Fact` :'0 Fact',
       dataField: 'tota_fact_4',
