@@ -5,9 +5,6 @@ import { EncryptStorage } from 'encrypt-storage';
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 import { computed, ref } from 'vue';
 
-
-
-
 definePage({
   meta: {
     action: 'colombia/repo_come_cons_ases_nuev',
@@ -551,7 +548,7 @@ const onGenerar = async () => {
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
       },
     })
-
+  
     items.value = data.data_glob
     itemsInicialDetalle.value = data.data_deta
     sourceGlobal.value.localdata = data.data_glob
