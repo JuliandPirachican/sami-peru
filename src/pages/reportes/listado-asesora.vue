@@ -588,11 +588,6 @@ const sourceGlobal = ref({
 
 const sourceLista = ref([
   {
-    label: 'Cumpleaños',
-    value: 'fech_naci',
-    checked: false,
-  },
-  {
     label: 'Barrio',
     value: 'nomb_barr',
     checked: true,
@@ -613,20 +608,11 @@ const sourceLista = ref([
     checked: true,
   },
   {
-    label: 'Cupo',
-    value: 'cupo_cred',
-    checked: false,
-  },
-  {
     label: 'Saldo',
     value: 'sald_docu',
     checked: true,
   },
-  {
-    label: 'Camp. ingr.',
-    value: 'camp_ingr',
-    checked: false,
-  },
+
   {
     label: 'Ult. camp1',
     value: 'codi_camp_1',
@@ -637,16 +623,7 @@ const sourceLista = ref([
     value: 'tota_publ_1',
     checked: true,
   },
-  {
-    label: 'Vta recep. ult. camp1',
-    value: 'vent_line_1',
-    checked: true,
-  },
-  {
-    label: 'Vta cata. ult. camp1',
-    value: 'vent_cata_1',
-    checked: true,
-  },
+  
   {
     label: 'Fact. ult. camp1',
     value: 'tota_fact_1',
@@ -668,16 +645,6 @@ const sourceLista = ref([
     checked: true,
   },
   {
-    label: 'Vta recep. ult. camp2',
-    value: 'vent_line_2',
-    checked: true,
-  },
-  {
-    label: 'Vta cata. ult. camp2',
-    value: 'vent_cata_2',
-    checked: true,
-  },
-  {
     label: 'Fact. ult. camp2',
     value: 'tota_fact_2',
     checked: false,
@@ -685,66 +652,6 @@ const sourceLista = ref([
   {
     label: 'Devo. ult. camp2',
     value: 'tota_devo_2',
-    checked: false,
-  },
-  {
-    label: 'Ult. camp3',
-    value: 'codi_camp_3',
-    checked: false,
-  },
-  {
-    label: 'Ptos azzo. ult. camp3',
-    value: 'tota_publ_3',
-    checked: false,
-  },
-  {
-    label: 'Vta recep. ult. camp3',
-    value: 'vent_line_3',
-    checked: false,
-  },
-  {
-    label: 'Vta cata. ult. camp3',
-    value: 'vent_cata_3',
-    checked: false,
-  },
-  {
-    label: 'Fact. ult. camp3',
-    value: 'tota_fact_3',
-    checked: false,
-  },
-  {
-    label: 'Devo. ult. camp3',
-    value: 'tota_devo_3',
-    checked: false,
-  },
-  {
-    label: 'Ult. camp4',
-    value: 'codi_camp_4',
-    checked: false,
-  },
-  {
-    label: 'Ptos azzo. ult. camp4',
-    value: 'tota_publ_4',
-    checked: false,
-  },
-  {
-    label: 'Vta. linea rece. ult. camp4',
-    value: 'vent_line_4',
-    checked: false,
-  },
-  {
-    label: 'Vta. cata. rece. ult. camp4',
-    value: 'vent_cata_4',
-    checked: false,
-  },
-  {
-    label: 'Fact. ult. camp4',
-    value: 'tota_fact_4',
-    checked: false,
-  },
-  {
-    label: 'Devo. ult. camp4',
-    value: 'tota_devo_4',
     checked: false,
   },
   {
@@ -1084,143 +991,143 @@ const selectedColumna = ref([
   'desc_segm',
 ])
 
-const headersDetalle = computed(() => {
-  if(selectedColumna.value.length > 0) {
-    return headersDetalleTotal.filter(header => selectedColumna.value.includes(header.key))
-  } else {
-    return []
-  }
-})
+// const headersDetalle = computed(() => {
+//   if(selectedColumna.value.length > 0) {
+//     return headersDetalleTotal.filter(header => selectedColumna.value.includes(header.key))
+//   } else {
+//     return []
+//   }
+// })
 
-const headersColumna = [
-  {
-    title: 'Columna',
-    key: 'nomb_colu',
-  },
-]
+// const headersColumna = [
+//   {
+//     title: 'Columna',
+//     key: 'nomb_colu',
+//   },
+// ]
 
-const itemsColumna = [
-  {
-    nomb_colu: 'Zona',
-    codi_colu: 'codi_zona',
-  },
-  {
-    nomb_colu: 'Sector',
-    codi_colu: 'codi_sect',
-  },
-  {
-    nomb_colu: 'Cumpleaños',
-    codi_colu: 'fech_naci',
-  },
-  {
-    nomb_colu: 'Distrito',
-    codi_colu: 'nomb_barr',
-  },
-  {
-    nomb_colu: 'Dirección',
-    codi_colu: 'dire_terc',
-  },
-  {
-    nomb_colu: 'Teléfono 1',
-    codi_colu: 'tele_ter1',
-  },
-  {
-    nomb_colu: 'Teléfono 2',
-    codi_colu: 'tele_ter2',
-  },
-  {
-    nomb_colu: 'Cupo',
-    codi_colu: 'cupo_cred',
-  },
-  {
-    nomb_colu: 'Saldo',
-    codi_colu: 'sald_docu',
-  },
-  {
-    nomb_colu: 'Camp. ingr.',
-    codi_colu: 'camp_ingr',
-  },
-  {
-    nomb_colu: 'Ult. camp1',
-    codi_colu: 'codi_camp_1',
-  },
-  {
-    nomb_colu: 'Ptos azzo. ult. camp1',
-    codi_colu: 'tota_publ_1',
-  },
-  {
-    nomb_colu: 'Fact. ult. camp1',
-    codi_colu: 'tota_fact_1',
-  },
-  {
-    nomb_colu: 'Devo. ult. camp1',
-    codi_colu: 'tota_devo_1',
-  },
-  {
-    nomb_colu: 'Ult. camp2',
-    codi_colu: 'codi_camp_2',
-  },
-  {
-    nomb_colu: 'Ptos azzo. ult. camp2',
-    codi_colu: 'tota_publ_2',
-  },
-  {
-    nomb_colu: 'Fact. ult. camp2',
-    codi_colu: 'tota_fact_2',
-  },
-  {
-    nomb_colu: 'Devo. ult. camp2',
-    codi_colu: 'tota_devo_2',
-  },
-  {
-    nomb_colu: 'Ult. camp3',
-    codi_colu: 'codi_camp_3',
-  },
-  {
-    nomb_colu: 'Ptos azzo. ult. camp3',
-    codi_colu: 'tota_publ_3',
-  },
-  {
-    nomb_colu: 'Fact. ult. camp3',
-    codi_colu: 'tota_fact_3',
-  },
-  {
-    nomb_colu: 'Devo. ult. camp3',
-    codi_colu: 'tota_devo_3',
-  },
-  {
-    nomb_colu: 'Ult. camp4',
-    codi_colu: 'codi_camp_4',
-  },
-  {
-    nomb_colu: 'Ptos azzo. ult. camp4',
-    codi_colu: 'tota_publ_4',
-  },
-  {
-    nomb_colu: 'Fact. ult. camp4',
-    codi_colu: 'tota_fact_4',
-  },
-  {
-    nomb_colu: 'Devo. ult. camp4',
-    codi_colu: 'tota_devo_4',
-  },
-  {
-    nomb_colu: 'Estado pedido',
-    codi_colu: 'esta_pedi',
-  },
-  {
-    nomb_colu: 'Gemma',
-    codi_colu: 'clie_gemm',
-  },
-  {
-    nomb_colu: 'Nivel',
-    codi_colu: 'nive_gemm',
-  },
-  {
-    nomb_colu: 'Creciendo con azzorti',
-    codi_colu: 'desc_segm',
-  },
-]
+// const itemsColumna = [
+//   {
+//     nomb_colu: 'Zona',
+//     codi_colu: 'codi_zona',
+//   },
+//   {
+//     nomb_colu: 'Sector',
+//     codi_colu: 'codi_sect',
+//   },
+//   {
+//     nomb_colu: 'Cumpleaños',
+//     codi_colu: 'fech_naci',
+//   },
+//   {
+//     nomb_colu: 'Distrito',
+//     codi_colu: 'nomb_barr',
+//   },
+//   {
+//     nomb_colu: 'Dirección',
+//     codi_colu: 'dire_terc',
+//   },
+//   {
+//     nomb_colu: 'Teléfono 1',
+//     codi_colu: 'tele_ter1',
+//   },
+//   {
+//     nomb_colu: 'Teléfono 2',
+//     codi_colu: 'tele_ter2',
+//   },
+//   {
+//     nomb_colu: 'Cupo',
+//     codi_colu: 'cupo_cred',
+//   },
+//   {
+//     nomb_colu: 'Saldo',
+//     codi_colu: 'sald_docu',
+//   },
+//   {
+//     nomb_colu: 'Camp. ingr.',
+//     codi_colu: 'camp_ingr',
+//   },
+//   {
+//     nomb_colu: 'Ult. camp1',
+//     codi_colu: 'codi_camp_1',
+//   },
+//   {
+//     nomb_colu: 'Ptos azzo. ult. camp1',
+//     codi_colu: 'tota_publ_1',
+//   },
+//   {
+//     nomb_colu: 'Fact. ult. camp1',
+//     codi_colu: 'tota_fact_1',
+//   },
+//   {
+//     nomb_colu: 'Devo. ult. camp1',
+//     codi_colu: 'tota_devo_1',
+//   },
+//   {
+//     nomb_colu: 'Ult. camp2',
+//     codi_colu: 'codi_camp_2',
+//   },
+//   {
+//     nomb_colu: 'Ptos azzo. ult. camp2',
+//     codi_colu: 'tota_publ_2',
+//   },
+//   {
+//     nomb_colu: 'Fact. ult. camp2',
+//     codi_colu: 'tota_fact_2',
+//   },
+//   {
+//     nomb_colu: 'Devo. ult. camp2',
+//     codi_colu: 'tota_devo_2',
+//   },
+//   {
+//     nomb_colu: 'Ult. camp3',
+//     codi_colu: 'codi_camp_3',
+//   },
+//   {
+//     nomb_colu: 'Ptos azzo. ult. camp3',
+//     codi_colu: 'tota_publ_3',
+//   },
+//   {
+//     nomb_colu: 'Fact. ult. camp3',
+//     codi_colu: 'tota_fact_3',
+//   },
+//   {
+//     nomb_colu: 'Devo. ult. camp3',
+//     codi_colu: 'tota_devo_3',
+//   },
+//   {
+//     nomb_colu: 'Ult. camp4',
+//     codi_colu: 'codi_camp_4',
+//   },
+//   {
+//     nomb_colu: 'Ptos azzo. ult. camp4',
+//     codi_colu: 'tota_publ_4',
+//   },
+//   {
+//     nomb_colu: 'Fact. ult. camp4',
+//     codi_colu: 'tota_fact_4',
+//   },
+//   {
+//     nomb_colu: 'Devo. ult. camp4',
+//     codi_colu: 'tota_devo_4',
+//   },
+//   {
+//     nomb_colu: 'Estado pedido',
+//     codi_colu: 'esta_pedi',
+//   },
+//   {
+//     nomb_colu: 'Gemma',
+//     codi_colu: 'clie_gemm',
+//   },
+//   {
+//     nomb_colu: 'Nivel',
+//     codi_colu: 'nive_gemm',
+//   },
+//   {
+//     nomb_colu: 'Creciendo con azzorti',
+//     codi_colu: 'desc_segm',
+//   },
+// ]
 
 const isOpen = ref(false)
 const itemsGlobal = ref([])
@@ -1530,6 +1437,19 @@ const itemsDetalleVisible = computed(() => {
   
   return itemsDetalle.value.slice(start, end)
 })
+
+// Función para manejar la selección de columnas es decir ocultar o mostrar esto aplica para la 2da tabla 
+const onSeleccionar = event => {
+  refGridDetalle.value.beginupdate()
+  if (event.args.checked) {
+    sourceLista.value[event.args.item.index].checked = true
+    refGridDetalle.value.showcolumn(event.args.item.value)
+  } else {
+    sourceLista.value[event.args.item.index].checked = false
+    refGridDetalle.value.hidecolumn(event.args.item.value)
+  }
+  refGridDetalle.value.endupdate()
+}
 </script>
 
 <template>
@@ -1566,16 +1486,18 @@ const itemsDetalleVisible = computed(() => {
                 location="start"
               >
                 <ol class="mx-6 my-2 text-white">
+                  <li>Incorporación</li>
+                  <li>Reincorporación</li>
                   <li>Consecutiva</li>
+                  <li>Consecutiva 2do pedido</li>
                   <li>Ret. Peg21</li>
                   <li>Ret. Peg42</li>
                   <li>Ret. Peg63</li>
                   <li>Reingreso</li>
-                  <li>Incorporación</li>
-                  <li>Reincorporación</li>
                   <li>Peg21</li>
                   <li>Peg42</li>
                   <li>Peg63</li>
+                  <li>Posible Reingreso</li>
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 1</VListItemTitle>
@@ -1598,17 +1520,19 @@ const itemsDetalleVisible = computed(() => {
                   <li>Ret. Peg21</li>
                   <li>Ret. Peg42</li>
                   <li>Ret. Peg63</li>
+                  <li>Reingreso</li>
                   <li>Incorporación</li>
                   <li>Reincorporación</li>
-                  <li>Reingreso</li>
+                  <li>Consecutiva 2do pedido</li>
                   <li>Peg21</li>
                   <li>Peg42</li>
                   <li>Peg63</li>
+                  <li>Posible Reingreso</li>
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 2</VListItemTitle>
             </VListItem>
-            <VListItem @click="onPdf('3')">
+            <!-- <VListItem @click="onPdf('3')">
               <template #prepend>
                 <VIcon
                   class="me-2"
@@ -1663,7 +1587,7 @@ const itemsDetalleVisible = computed(() => {
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 4</VListItemTitle>
-            </VListItem>
+            </VListItem> -->
           </VList>
         </VMenu>
         <VMenu>
