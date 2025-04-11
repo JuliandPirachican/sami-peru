@@ -1,11 +1,11 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue'
 
-import { useAppStore } from '@/stores/app';
-import { $api, $base } from '@/utils/api';
+import { useAppStore } from '@/stores/app'
+import { $api, $base } from '@/utils/api'
 
-import { EncryptStorage } from 'encrypt-storage';
+import { EncryptStorage } from 'encrypt-storage'
 
 
 definePage({
@@ -1205,6 +1205,8 @@ const columnaGlobal = [
     columna: 'AN',
   },
 ]
+
+
 /**columnas de agrupacion de la grilla */
 const columnasGrupo = [
   {
@@ -1233,22 +1235,22 @@ const columnasGrupo = [
     name: 'cons4_ped',
   },
   {
-    text: 'Peg21 40%',
+    text: 'Peg21 50%',
     align: 'center',
     name: 'pe21',
   },
   {
-    text: 'Peg42 30%',
+    text: 'Peg42 35%',
     align: 'center',
     name: 'pe42',
   },
   {
-    text: 'Peg63 25%',
+    text: 'Peg63 35%',
     align: 'center',
     name: 'pe63',
   },
   {
-    text: 'Suma de Pegs 35%',
+    text: 'Retencion Total',
     align: 'center',
     name: 'pegs',
   },
@@ -1271,7 +1273,7 @@ const columnasGrupo = [
     text: 'Nivel lider',
     align: 'center',
     name: 'nive_lide',
-  }
+  },
 ]
 
 const sourceGlobal = ref({
@@ -1363,23 +1365,23 @@ const errorMensajeZona = ref('')
  * @param event 
  */
 const onEditar = event => {
-  const { args } = event;
-  const columnDataField = args.datafield;
-  const rowIndex = args.rowindex;
-  const cellValue = args.value;
+  const { args } = event
+  const columnDataField = args.datafield
+  const rowIndex = args.rowindex
+  const cellValue = args.value
 
   /**
    * Suma de las columnas 
    * de objetivos de proyección de pegs21, pegs42 y pegs63
    */
   if (columnDataField === 'pe21_obje' || columnDataField === 'pe42_obje' || columnDataField === 'pe63_obje') {
-    let newValue = cellValue;
-    let proyPeg21 = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje');
-    let proyPeg42 = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje');
-    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
+    let newValue = cellValue
+    let proyPeg21 = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje')
+    let proyPeg42 = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje')
+    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje')
 
     if (proyPeg21 > 0 || proyPeg42 > 0 || proyPeg63 > 0) {
-      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63;
+      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63
       if (sumProyPeg >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'pegs_obje', sumProyPeg)
       }else{
@@ -1394,13 +1396,13 @@ const onEditar = event => {
    * de objetivos de seguimiento de pegs21, pegs42 y pegs63
    */
   if (columnDataField === 'pe21_prim' || columnDataField === 'pe42_prim' || columnDataField === 'pe63_prim') {
-    let newValue = cellValue;
-    let proyPeg21 = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim');
-    let proyPeg42 = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim');
-    let proyPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim');
+    let newValue = cellValue
+    let proyPeg21 = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim')
+    let proyPeg42 = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim')
+    let proyPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
 
     if (proyPeg21 > 0 || proyPeg42 > 0 || proyPeg63 > 0) {
-      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63;
+      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63
       if (sumProyPeg >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', sumProyPeg)
       }else{
@@ -1418,14 +1420,14 @@ const onEditar = event => {
    * el valor sumado se coloca en la columna de proyeccion de la capitalización
    */
   if (columnDataField === 'pedi_inco_obje' || columnDataField === 'rein_obje' || columnDataField === 'pe63_obje') {
-    let newValue = cellValue;
-    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje');
-    let proyRein = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje');
-    let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
-    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
+    let newValue = cellValue
+    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje')
+    let proyRein = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
+    let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63')
+    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje')
     console.log(proyInco+" "+ proyRein+" "+ Peg63+" "+proyPeg63)
     if (proyInco > 0 || proyRein > 0 || proyPeg63 > 0) {
-      let sumProyCapi = (proyInco + proyRein)  - (proyPeg63-Peg63);
+      let sumProyCapi = (proyInco + proyRein)  - (proyPeg63-Peg63)
       console.log(sumProyCapi)
       if (sumProyCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', sumProyCapi)
@@ -1445,17 +1447,17 @@ const onEditar = event => {
   if (columnDataField === 'pedi_inco_obje' || columnDataField === 'pedi_inco_prim' || columnDataField === 'pe21_obje'
   || columnDataField === 'pe42_obje' || columnDataField === 'pe63_obje' || columnDataField === 'rein_obje'
   ) {
-    let newValue = cellValue;
-    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje');
-    let proyPediInco = columnDataField === 'pedi_inco_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim');
-    let Peg21Obje = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje'); 
-    let Peg42Obje = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje'); 
-    let Peg63Obje = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje'); 
-    let proyReinObje = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje');
-    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Obje+" "+Peg42Obje+" "+Peg63Obje+" "+proyReinObje);
+    let newValue = cellValue
+    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje')
+    let proyPediInco = columnDataField === 'pedi_inco_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim')
+    let Peg21Obje = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje') 
+    let Peg42Obje = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje') 
+    let Peg63Obje = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje') 
+    let proyReinObje = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
+    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Obje+" "+Peg42Obje+" "+Peg63Obje+" "+proyReinObje)
 
     if (proyInco > 0 || proyPediInco > 0 || Peg21Obje > 0 || Peg42Obje > 0 || Peg63Obje > 0 || proyReinObje > 0) {
-      let sumProyCapi = proyInco+proyPediInco+Peg21Obje+Peg42Obje+Peg63Obje-proyReinObje;
+      let sumProyCapi = proyInco+proyPediInco+Peg21Obje+Peg42Obje+Peg63Obje-proyReinObje
       console.log(sumProyCapi)
       if (sumProyCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'cobr', sumProyCapi)
@@ -1465,6 +1467,7 @@ const onEditar = event => {
     }
     
   }
+
   /**
    * Suma de las columnas 
    * de objetivos de seguimiento de incorporacion, reingresos,pegs21, pegs42 y pegs63
@@ -1473,17 +1476,17 @@ const onEditar = event => {
   if (columnDataField === 'segui_inco' || columnDataField === 'segui_conse' || columnDataField === 'pe21_prim'
   || columnDataField === 'pe42_prim' || columnDataField === 'pe63_prim' || columnDataField === 'rein_prim'
   ) {
-    let newValue = cellValue!==""||cellValue!==undefined ?cellValue:0;
-    let proyInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco');
-    let proyPediInco = columnDataField === 'segui_conse' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_conse');
-    let Peg21Segui = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim'); 
-    let Peg42Segui = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim'); 
-    let Peg63Segui = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim'); 
-    let proyReinSegui = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim');
-    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Segui+" "+Peg42Segui+" "+Peg63Segui+" "+proyReinSegui);
+    let newValue = cellValue!==""||cellValue!==undefined ?cellValue:0
+    let proyInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco')
+    let proyPediInco = columnDataField === 'segui_conse' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_conse')
+    let Peg21Segui = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim') 
+    let Peg42Segui = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim') 
+    let Peg63Segui = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim') 
+    let proyReinSegui = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
+    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Segui+" "+Peg42Segui+" "+Peg63Segui+" "+proyReinSegui)
 
     if (proyInco > 0 || proyPediInco > 0 || Peg21Segui > 0 || Peg42Segui > 0 || Peg63Segui > 0 || proyReinSegui > 0) {
-      let sumProyCapi = parseInt(proyInco)+parseInt(proyPediInco)+parseInt(Peg21Segui)+parseInt(Peg42Segui)+parseInt(Peg63Segui)+parseInt(proyReinSegui);
+      let sumProyCapi = parseInt(proyInco)+parseInt(proyPediInco)+parseInt(Peg21Segui)+parseInt(Peg42Segui)+parseInt(Peg63Segui)+parseInt(proyReinSegui)
       console.log(sumProyCapi)
       if (sumProyCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', sumProyCapi)
@@ -1657,27 +1660,28 @@ const onExcel = async () => {
     appStore.loading(true)
 
     // Exportar datos manualmente a XML
-    const rows = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+    const rows = refGridGlobal?.value?.getrows?.() // Obtener las filas de la cuadrícula
     if (!rows || rows.length === 0) {
-      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
-      appStore.color("error");
-      appStore.snackbar(true);
-      return;
+      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.")
+      appStore.color("error")
+      appStore.snackbar(true)
+      
+      return
     }
 
-    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`
 
     rows.forEach((row, index) => {
-      xmlData += `  <row id="${index + 1}">\n`;
+      xmlData += `  <row id="${index + 1}">\n`
       for (const [key, value] of Object.entries(row)) {
-        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`
       }
-      xmlData += `  </row>\n`;
-    });
+      xmlData += `  </row>\n`
+    })
 
-    xmlData += `</rows>`;
-    console.log("Datos generados manualmente a XML:");
-    console.log(columnaGlobal.value);
+    xmlData += `</rows>`
+    console.log("Datos generados manualmente a XML:")
+    console.log(columnaGlobal.value)
 
     const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/excel`, {
       method: "post",
@@ -1700,54 +1704,60 @@ const onExcel = async () => {
 }
 
 const onRegistrar = async () => {
-  console.log("pruebas");
-  const dataInfoGlob = refGridGlobal?.value?.getdatainformation?.();
-  console.log(dataInfoGlob);
+  console.log("pruebas")
 
-  const dataRowsGlob = dataInfoGlob?.rowscount || 0; // Validar si rowscount existe
-  console.log(dataRowsGlob);
+  const dataInfoGlob = refGridGlobal?.value?.getdatainformation?.()
+
+  console.log(dataInfoGlob)
+
+  const dataRowsGlob = dataInfoGlob?.rowscount || 0 // Validar si rowscount existe
+
+  console.log(dataRowsGlob)
 
   if (dataRowsGlob === 0) {
-    appStore.mensajeSnackbar("No tiene ninguna proyección por registrar.");
-    appStore.color("error");
-    appStore.snackbar(true);
-    return; // Salir temprano
+    appStore.mensajeSnackbar("No tiene ninguna proyección por registrar.")
+    appStore.color("error")
+    appStore.snackbar(true)
+    
+    return // Salir temprano
   } else if (selectedVariable.value !== 0) {
     appStore.mensajeSnackbar(
-      'Para registrar la proyección debe de estar marcada la variable "Todos".'
-    );
-    appStore.color("error");
-    appStore.snackbar(true);
-    return; // Salir temprano
+      'Para registrar la proyección debe de estar marcada la variable "Todos".',
+    )
+    appStore.color("error")
+    appStore.snackbar(true)
+    
+    return // Salir temprano
   }
 
-  console.log("pruebas en el else");
-  console.log(formulario.value.campana);
-  console.log(formulario.value.zona);
+  console.log("pruebas en el else")
+  console.log(formulario.value.campana)
+  console.log(formulario.value.zona)
 
   try {
     // Exportar datos manualmente a XML
-    const rows = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+    const rows = refGridGlobal?.value?.getrows?.() // Obtener las filas de la cuadrícula
     if (!rows || rows.length === 0) {
-      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
-      appStore.color("error");
-      appStore.snackbar(true);
-      return;
+      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.")
+      appStore.color("error")
+      appStore.snackbar(true)
+      
+      return
     }
 
-    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`
 
     rows.forEach((row, index) => {
-      xmlData += `  <row id="${index + 1}">\n`;
+      xmlData += `  <row id="${index + 1}">\n`
       for (const [key, value] of Object.entries(row)) {
-        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`
       }
-      xmlData += `  </row>\n`;
-    });
+      xmlData += `  </row>\n`
+    })
 
-    xmlData += `</rows>`;
-    console.log("Datos generados manualmente a XML:");
-    console.log(xmlData);
+    xmlData += `</rows>`
+    console.log("Datos generados manualmente a XML:")
+    console.log(xmlData)
 
     // appStore.mensaje("Generando proceso");
     // appStore.loading(true);
@@ -1760,35 +1770,37 @@ const onRegistrar = async () => {
         data: JSON.stringify(xmlData),
         data_ext: JSON.stringify(xmlData),
       },
-    });
+    })
 
-    console.log("Proceso completado con éxito:", data);
+    console.log("Proceso completado con éxito:", data)
+
     // Mostrar mensaje de éxito si es necesario
     appStore.mensajeSnackbar(`${data.message}`)
     appStore.color("success")
     appStore.snackbar(true)
   } catch (error) {
-    console.error("Error en onRegistrar:", error.message);
-    console.error("Detalles:", error.stack);
-    appStore.mensajeSnackbar("Ocurrió un error al registrar la proyección.");
-    appStore.color("error");
-    appStore.snackbar(true);
+    console.error("Error en onRegistrar:", error.message)
+    console.error("Detalles:", error.stack)
+    appStore.mensajeSnackbar("Ocurrió un error al registrar la proyección.")
+    appStore.color("error")
+    appStore.snackbar(true)
   } finally {
-    appStore.loading(false);
+    appStore.loading(false)
   }
-};
+}
 
 // Función para escapar caracteres especiales en XML
-const escapeXML = (value) => {
-  if (value === null || value === undefined) return "";
+const escapeXML = value => {
+  if (value === null || value === undefined) return ""
+  
   return value
     .toString()
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-};
+    .replace(/'/g, "&apos;")
+}
 
 const limpiarValidacion = () => {
   errorCampana.value = false
@@ -1796,8 +1808,6 @@ const limpiarValidacion = () => {
   errorZona.value = false
   errorMensajeZona.value = ''
 }
-
-
 </script>
 
 <template>
@@ -1874,7 +1884,6 @@ const limpiarValidacion = () => {
                     </tr>
                   </thead>
                   <tbody>
-                 
                     <tr>
                       <td>Incorporación</td>
                       <td>{{ general.objetivoIncorporacion }}</td>
@@ -1893,47 +1902,49 @@ const limpiarValidacion = () => {
             </VCard>
           </VCol>
 
-          <!-- <VCol cols="12">
+          <!--
+            <VCol cols="12">
             <VCard title="Variables">
-              <VCardText>
-                <VRadioGroup
-                  v-model="selectedVariable"
-                  inline
-                >
-                  <div>
-                    <VRadio
-                      v-for="variable in variables"
-                      :key="variable.value"
-                      :label="variable.title"
-                      :value="variable.value"
-                      color="secondary"
-                    />
-                  </div>
-                </VRadioGroup>
-              </VCardText>
+            <VCardText>
+            <VRadioGroup
+            v-model="selectedVariable"
+            inline
+            >
+            <div>
+            <VRadio
+            v-for="variable in variables"
+            :key="variable.value"
+            :label="variable.title"
+            :value="variable.value"
+            color="secondary"
+            />
+            </div>
+            </VRadioGroup>
+            </VCardText>
             </VCard>
-          </VCol>
+            </VCol>
 
-          <VCol cols="12">
+            <VCol cols="12">
             <VCard title="Columnas">
-              <VCardText>
-                <VRadioGroup
-                  v-model="selectedColumna"
-                  inline
-                >
-                  <div>
-                    <VRadio
-                      v-for="columna in columnas"
-                      :key="columna.value"
-                      :label="columna.title"
-                      :value="columna.value"
-                      color="secondary"
-                    />
-                  </div>
-                </VRadioGroup>
-              </VCardText>
+            <VCardText>
+            <VRadioGroup
+            v-model="selectedColumna"
+            inline
+            >
+            <div>
+            <VRadio
+            v-for="columna in columnas"
+            :key="columna.value"
+            :label="columna.title"
+            :value="columna.value"
+            color="secondary"
+            />
+            </div>
+            </VRadioGroup>
+            </VCardText>
             </VCard>
-          </VCol> -->
+            </VCol> 
+          -->
 
           <VCol cols="12">
             <VCard title="Lista de proyección">
