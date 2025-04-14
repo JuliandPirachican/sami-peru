@@ -1215,7 +1215,7 @@ const columnasGrupo = [
     name: 'tota',
   },
   {
-    text: 'Consecutividad',
+    text: 'Consecutividad 80%',
     align: 'center',
     name: 'inco',
   },
@@ -1255,7 +1255,7 @@ const columnasGrupo = [
     name: 'pegs',
   },
   {
-    text: 'Reingresos 10%',
+    text: 'Reingresos ',
     align: 'center',
     name: 'rein',
   },
