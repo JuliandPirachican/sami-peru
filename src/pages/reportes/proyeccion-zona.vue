@@ -1077,7 +1077,7 @@ const columnaGlobal = [
     
   },
   {
-    text: 'Proyección',
+    text: 'Proyección ',
     datafield: 'capi_obje',
     width: '130',
     align: 'center',
