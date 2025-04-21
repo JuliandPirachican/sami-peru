@@ -1,5 +1,5 @@
 <script setup>
-import { useAppStore } from '@/stores/app';
+import { useAppStore } from '@/stores/app'
 
 const variableData = ref([
   {
@@ -59,7 +59,6 @@ const cierreData = ref([
     titulo: 'Mi cierre - Venta Recepcionada',
     objetivo: '0',
     facturado: '0',
-    pendiente: '0',
     valor1: '0.00',
     valor2: '0.00',
     color1: 'success',
@@ -192,7 +191,6 @@ const onLimpiar = () => {
       titulo: 'Mi cierre - Venta Recepcionada',
       objetivo: '0',
       facturado: '0',
-      pendiente: '0',
       valor1: '0.00',
       valor2: '0.00',
       color1: 'success',
@@ -369,7 +367,7 @@ const onGenerar = async () => {
               </VCol>
             </VRow>
             <VRow>
-              <VCol cols="4">
+              <VCol :cols="data.titulo !== 'Mi cierre - Venta Recepcionada' ? 4: 6">
                 <div class="d-flex flex-column">
                   <span class="text-h5 font-weight-medium text-center">Objetivo</span>
                   <span class="text-sm text-center">
@@ -382,7 +380,7 @@ const onGenerar = async () => {
                 inset
                 length="95"
               />
-              <VCol cols="4">
+              <VCol :cols="data.titulo !== 'Mi cierre - Venta Recepcionada' ? 4: 6">
                 <div class="d-flex flex-column">
                   <span class="text-h5 font-weight-medium text-center">Facturado</span>
                   <span class="text-sm text-center">
@@ -391,13 +389,17 @@ const onGenerar = async () => {
                 </div>
               </VCol>
               <VDivider
+                v-show="data.titulo !== 'Mi cierre - Venta Recepcionada'"
                 vertical
                 inset
                 length="95"
               />
-              <VCol cols="4">
+              <VCol
+                v-show="data.titulo !== 'Mi cierre - Venta Recepcionada'"
+                :cols="data.titulo !== 'Mi cierre - Venta Recepcionada' ? 4: 6"
+              >
                 <div class="d-flex flex-column">
-                  <span class="text-h5 font-weight-medium text-center">Pendiente</span>
+                  <span class="text-h5 font-weight-medium text-center">Pendiente</span>     
                   <span class="text-sm text-center">
                     {{ data.pendiente }}
                   </span>
