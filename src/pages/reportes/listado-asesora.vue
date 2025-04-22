@@ -588,6 +588,16 @@ const sourceGlobal = ref({
 
 const sourceLista = ref([
   {
+    label: 'Puntos Sueños Azzorti',
+    value: 'punt_suen_ases',
+    checked: true,
+  },
+  {
+    label: 'Cumpleaños',
+    value: 'fech_naci',
+    checked: true,
+  },
+  {
     label: 'Barrio',
     value: 'nomb_barr',
     checked: true,
@@ -627,12 +637,12 @@ const sourceLista = ref([
   {
     label: 'Fact. ult. camp1',
     value: 'tota_fact_1',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Devo. ult. camp1',
     value: 'tota_devo_1',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Ult. camp2',
@@ -647,17 +657,63 @@ const sourceLista = ref([
   {
     label: 'Fact. ult. camp2',
     value: 'tota_fact_2',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Devo. ult. camp2',
     value: 'tota_devo_2',
-    checked: false,
+    checked: true,
   },
+  {
+    label: 'Ult. camp3',
+    value: 'codi_camp_3',
+    checked: true,
+  },
+  {
+    label: 'Ptos azzo. ult. camp3',
+    value: 'tota_publ_3',
+    checked: true,
+  },
+  {
+    label: 'Fact. ult. camp3',
+    value: 'tota_fact_3',
+    checked: true,
+  },
+  {
+    label: 'Devo. ult. camp3',
+    value: 'tota_devo_3',
+    checked: true,
+  },
+  {
+    label: 'Ult. camp4',
+    value: 'codi_camp_4',
+    checked: true,
+  },
+  {
+    label: 'Ptos azzo. ult. camp4',
+    value: 'tota_publ_4',
+    checked: true,
+  },
+  {
+    label: 'Fact. ult. camp4',
+    value: 'tota_fact_4',
+    checked: true,
+  },
+  {
+    label: 'Devo. ult. camp4',
+    value: 'tota_devo_4',
+    checked: true,
+  },
+  // {
+  //   label: 'Status',
+  //   value: 'tipo_clie',
+  //   checked: true,
+  // },
+
   {
     label: 'Estado pedido',
     value: 'esta_pedi',
-    checked: false,
+    checked: true,
   },
 ])
 
@@ -679,7 +735,7 @@ const headersDetalleTotal = computed(() => {
 
     },
     {
-      text: 'Sector',
+      text: 'Codigo Lider',
       dataField: 'codi_sect',
       width: '100',
       align: 'center',
@@ -693,6 +749,7 @@ const headersDetalleTotal = computed(() => {
       width: '110',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta 
       // filtertype: 'checkedlist'
     },
     {
@@ -701,6 +758,7 @@ const headersDetalleTotal = computed(() => {
       width: '270',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta 
       // filtertype: 'checkedlist'
     },
     {
@@ -709,7 +767,7 @@ const headersDetalleTotal = computed(() => {
       width: '140',
       align: 'center',
       cellsalign: 'center',
-      hidden: true, // esta oculta la columna
+      hidden: false,// esta columna no esta oculta 
       // filtertype: 'checkedlist'     
        // , aggregates: ['count']
     },
@@ -719,7 +777,8 @@ const headersDetalleTotal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: false,// esta columna no esta oculta 
     },
     {
       text: 'Dirección',
@@ -727,6 +786,7 @@ const headersDetalleTotal = computed(() => {
       width: '180',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta
       // filtertype: 'checkedlist'
     },
     {
@@ -735,6 +795,7 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta
       // filtertype: 'checkedlist'
     },
     {
@@ -743,6 +804,7 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta
       // filtertype: 'checkedlist'
     },
     {
@@ -751,7 +813,16 @@ const headersDetalleTotal = computed(() => {
       width: '180',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta
       filtertype: 'checkedlist'
+    },
+		{
+      text: 'Puntos Sueños Azzorti',
+      dataField: 'punt_suen_ases',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      hidden: false, // esta columna no esta oculta
     },
     {
       text: 'Cupo',
@@ -768,7 +839,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: true, // esta oculta la columna
     },
     {
       text: 'Camp. Ingr.',
@@ -787,8 +859,10 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: ' bg-primary-light',
     },
+
     {
       text: 'Ptos. Azzo. Ult. Camp1',
       dataField: 'tota_publ_1',
@@ -796,6 +870,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: ' bg-primary-light',
     },
     {
@@ -805,6 +880,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: ' bg-primary-light',
     },
     {
@@ -813,6 +889,7 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
+      hidden: false, // esta columna no esta oculta
       cellclassname: ' bg-primary-light',
       filtertype: 'checkedlist'
     },
@@ -823,6 +900,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: 'bg-success-light',
     },
     {
@@ -832,6 +910,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: 'text-white bg-success-light',
     },
     {
@@ -841,6 +920,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: 'text-white bg-success-light',
     },
     {
@@ -850,79 +930,89 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: 'text-white bg-success-light',
     },
-    // {
-    //   text: 'Ult. Camp3',
-    //   dataField: 'codi_camp_3',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Ptos. Azzo. Ult. Camp3',
-    //   dataField: 'tota_publ_3',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Fact Ult. Camp3',
-    //   dataField: 'tota_fact_3',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Devo Ult. Camp3',
-    //   dataField: 'tota_devo_3',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Ult. Camp4',
-    //   dataField: 'codi_camp_4',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Ptos. Azzo. Ult. Camp4',
-    //   dataField: 'tota_publ_4',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Fact Ult. Camp4',
-    //   dataField: 'tota_fact_4',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Devo Ult. Camp4',
-    //   dataField: 'tota_devo_4',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
+    {
+      text: 'Ult. Camp3',
+      dataField: 'codi_camp_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Ptos. Azzo. Ult. Camp3',
+      dataField: 'tota_publ_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Fact Ult. Camp3',
+      dataField: 'tota_fact_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Devo Ult. Camp3',
+      dataField: 'tota_devo_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Ult. Camp4',
+      dataField: 'codi_camp_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Ptos. Azzo. Ult. Camp4',
+      dataField: 'tota_publ_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Fact Ult. Camp4',
+      dataField: 'tota_fact_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Devo Ult. Camp4',
+      dataField: 'tota_devo_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
     {
       text: 'Estado Pedido',
       dataField: 'esta_pedi',
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
     },
     
   ]
@@ -959,6 +1049,7 @@ const sourceDetalle = ref({
   {name: "tota_publ_4",type:"string"},
   {name: "tota_fact_4",type:"string"},
   {name: "tota_devo_4",type:"string"},
+	{name: "punt_suen_ases",type:"string"},
   {name: "esta_pedi",type:"string"}],
   datatype: 'json',
 });
@@ -1300,7 +1391,15 @@ const onExcel = async tipo => {
 
      // Exportar datos manualmente a XML
      const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
-     console.log(rows)
+     //obtener columnas de la cuadrícula
+     const columns = refGridDetalle.value.columns;
+     let visi_colu=[]
+     columns.forEach((column, index) => {
+				if (!column.hidden || column.datafield == 'codi_sect') {
+					visi_colu.push(column.datafield)
+				}
+    	});
+
     if (!rows || rows.length === 0) {
       appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
       appStore.color("error");
@@ -1325,18 +1424,25 @@ const onExcel = async tipo => {
     itemsDetalle.value.forEach((row, index) => {
       xmlDataDeta += `  <row id="${index + 1}">\n`;
       for (const [key, value] of Object.entries(row)) {
-        xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        if (visi_colu.includes(key)) {
+          xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        } 
       }
       xmlDataDeta += `  </row>\n`;
     });
 
     xmlDataDeta += `</rows>`;
-
+    let colum_info=[]
+    columns.forEach((column, index) => {
+      if (!column.hidden || column.datafield == 'codi_sect') {
+        colum_info.push({"dataField":column.datafield,"text":column.text})
+      }
+    });
 
     const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/excel`, {
       method: "POST",
       body: {
-        columnas:  headersDetalleTotal.value,
+        columnas:colum_info,
         tipo: tipo,
         data_glob: xmlDataGlob,
         data_deta: xmlDataDeta,
@@ -1354,61 +1460,73 @@ const onExcel = async tipo => {
 
 const onPdf = async tipo => {
   try {
+		appStore.mensaje('Generando archivo')
+		// Exportar datos manualmente a XML
+		const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+		const columns = refGridDetalle.value.columns;
+    let visi_colu=[]
+    columns.forEach((column, index) => {
+			if (!column.hidden || column.datafield == 'codi_sect') {
+				visi_colu.push(column.datafield)
+			}
+		});
 
-appStore.mensaje('Generando archivo')
+		if (!rows || rows.length === 0) {
+			appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
+			appStore.color("error");
+			appStore.snackbar(true);
+			return;
+		}
 
+		let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
- // Exportar datos manualmente a XML
- const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
- console.log(rows)
-  if (!rows || rows.length === 0) {
-    appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
-    appStore.color("error");
-    appStore.snackbar(true);
-    return;
-  }
+		itemsGlobal.value.forEach((row, index) => {
+			xmlDataGlob += `  <row id="${index + 1}">\n`;
+			for (const [key, value] of Object.entries(row)) {
+				xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
+			}
+			xmlDataGlob += `  </row>\n`;
+		});
 
-  let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+		xmlDataGlob += `</rows>`;
 
-  itemsGlobal.value.forEach((row, index) => {
-    xmlDataGlob += `  <row id="${index + 1}">\n`;
-    for (const [key, value] of Object.entries(row)) {
-      xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
-    }
-    xmlDataGlob += `  </row>\n`;
-  });
+		let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
-  xmlDataGlob += `</rows>`;
+		itemsDetalle.value.forEach((row, index) => {
+			xmlDataDeta += `  <row id="${index + 1}">\n`;
+			for (const [key, value] of Object.entries(row)) {
+				if (visi_colu.includes(key)) {
+          xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        }
+			}
+			xmlDataDeta += `  </row>\n`;
+		});
 
-  let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+		xmlDataDeta += `</rows>`;
 
-  itemsDetalle.value.forEach((row, index) => {
-    xmlDataDeta += `  <row id="${index + 1}">\n`;
-    for (const [key, value] of Object.entries(row)) {
-      xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
-    }
-    xmlDataDeta += `  </row>\n`;
-  });
+		let colum_info=[]
+    columns.forEach((column, index) => {
+      if (!column.hidden || column.datafield == 'codi_sect') {
+        colum_info.push({"dataField":column.datafield,"text":column.text})
+      }
+    });
 
-  xmlDataDeta += `</rows>`;
+		const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/pdf`, {
+			method: "POST",
+			body: {
+				columnas:colum_info,
+				tipo: tipo,
+				data_glob: xmlDataGlob,
+				data_deta: xmlDataDeta,
+			},
+		})
 
-  console.log({ xmlDataGlob, xmlDataDeta })
-  const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/pdf`, {
-    method: "POST",
-    body: {
-      columnas:  headersDetalleTotal.value,
-      tipo: tipo,
-      data_glob: xmlDataGlob,
-      data_deta: xmlDataDeta,
-    },
-  })
-
-  window.open(`${$base}/temporales/${data}`, '_blank')
+		window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
-  console.log(e)
+  	console.log(e)
   }
   finally {
-  appStore.loading(false)
+  	appStore.loading(false)
   }
 }
 
@@ -1502,7 +1620,7 @@ const onSeleccionar = event => {
               </VTooltip>
               <VListItemTitle>PDF 1</VListItemTitle>
             </VListItem>
-            <VListItem @click="onPdf('2')">
+            <!-- <VListItem @click="onPdf('2')">
               <template #prepend>
                 <VIcon
                   class="me-2"
@@ -1531,7 +1649,7 @@ const onSeleccionar = event => {
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 2</VListItemTitle>
-            </VListItem>
+            </VListItem> -->
             <!-- <VListItem @click="onPdf('3')">
               <template #prepend>
                 <VIcon

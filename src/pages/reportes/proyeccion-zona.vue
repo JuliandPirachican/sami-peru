@@ -23,7 +23,10 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
 
-
+const sumaIncorporacion = ref(0);
+const sumaSeguIncorporacion = ref(0);
+const sumaPediTotal = ref(0);
+const sumaSeguPediTotal = ref(0);
 
 const formulario = ref({
   campana: null,
@@ -42,22 +45,6 @@ const general = ref({
   proyeccionActividad: '0.00',
   reproyeccionActividad: '0.00',
 })
-
-const variables = ref([
-  { title: 'Todos', value: 0 },
-  { title: 'Pedidos totales', value: 1 },
-  { title: 'Pedidos de actividad', value: 2 },
-  { title: 'Pedidos de retención', value: 3 },
-  { title: 'Capitalización', value: 4 },
-  { title: 'Cobranza', value: 5 },
-  { title: 'Consecutividad', value: 6 },
-])
-
-const columnas = ref([
-  { title: 'Objetivo formula éxito', value: 0 },
-  { title: 'Objetivo proyección', value: 1 },
-  { title: 'Objetivo reproyección', value: 2 },
-])
 
 const selectedVariable = ref(0)
 const selectedColumna = ref(0)
@@ -309,13 +296,7 @@ const claseCapitalizacion = (row, columnfield, value) => {
   return `text-success`
 }
 
-let sumaNumePedi = 0
-let sumaTotaIngr = 0
-let sumaTotaRein = 0
-let sumaActiInic = 0
-let sumaActiObjePedi = 0
-let sumaActiPrim = 0
-let sumaActiSegu = 0
+
 
 /**columnas de la grilla */
 const columnaGlobal = [
@@ -399,7 +380,8 @@ const columnaGlobal = [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
-          
+          sumaIncorporacion.value = aggregatedValue 
+          general.value.proyeccionIncorporacion = aggregatedValue
           return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
@@ -417,13 +399,16 @@ const columnaGlobal = [
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
     columna: 'F',
-    aggregates: [
-      {
+    aggregates: [{
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
-        },
+              const value = parseFloat(currentValue);
+              if (!isNaN(value)) {
+                sumaSeguIncorporacion.value = aggregatedValue + value
+                general.value.reproyeccionIncorporacion = aggregatedValue + value;
+                return aggregatedValue + value;
+              }
+              return aggregatedValue;
+           },
       },
     ],
   },
@@ -485,9 +470,11 @@ const columnaGlobal = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          const value = parseFloat(currentValue);
+              if (!isNaN(value)) {
+                return aggregatedValue + value;
+              }
+              return aggregatedValue;
         },
       },
     ],
@@ -616,18 +603,18 @@ const columnaGlobal = [
     cellsalign: 'center',
     editable: true,
     columngroup: 'acti',
-    cellsformat: 'P2',
+    cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
     columna: 'O',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          
-            
-          aggregatedValue += currentValue
-          
-          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+            const value = parseFloat(currentValue);
+            if (!isNaN(value)) {
+              return aggregatedValue + value;
+            }
+            return aggregatedValue;
           
         },
       },
@@ -696,16 +683,18 @@ const columnaGlobal = [
     cellsalign: 'center',
     editable: true,
     columngroup: 'cons4_ped',
-    cellsformat: 'P2',
+    cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
     columna: 'R',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          const value = parseFloat(currentValue);
+            if (!isNaN(value)) {
+              return aggregatedValue + value;
+            }
+            return aggregatedValue;
         },
       },
     ],
@@ -1148,7 +1137,7 @@ const columnaGlobal = [
     width: '160',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
     columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
@@ -1157,7 +1146,8 @@ const columnaGlobal = [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
-          
+          sumaPediTotal.value = aggregatedValue
+          general.value.proyeccionActividad = aggregatedValue
           return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
@@ -1169,7 +1159,7 @@ const columnaGlobal = [
     width: '180',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
     columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
@@ -1178,7 +1168,8 @@ const columnaGlobal = [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
-          
+          sumaSeguPediTotal.value = aggregatedValue
+          general.value.reproyeccionActividad = aggregatedValue
           return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
@@ -1278,13 +1269,14 @@ const columnasGrupo = [
 
 const sourceGlobal = ref({
   localdata: [],
-  datafields: [
+  datafields: [ 
     { name: 'codi_sect', type: 'string' },
     { name: 'nomb_vend', type: 'string' }, 
     { name: 'acti_inic', type: 'number' },
     { name: 'obje_vent', type: 'number' },
     { name: 'pedi_tota_obje', type: 'number' },
     { name: 'pedi_tota_prim', type: 'number' },
+    { name: 'segui_inco', type: 'number' },
     { name: 'pedi_tota_segu', type: 'number' },
     { name: 'pedi_inco_obje', type: 'number' },
     { name: 'pedi_inco_prim', type: 'number' },
@@ -1304,6 +1296,7 @@ const sourceGlobal = ref({
     { name: 'cons_rete_obje', type: 'number' },
     { name: 'cons_rete_prim', type: 'number' },
     { name: 'cons_rete_segu', type: 'number' },
+    { name: 'cons_rete_segu_ocul', type: 'number' },
     { name: 'cons_segu_camp_ante', type: 'number' },
     { name: 'cons_segu_obje', type: 'number' },
     { name: 'cons_terc_camp_ante', type: 'number' },
@@ -1337,9 +1330,10 @@ const sourceGlobal = ref({
     { name: 'cobr_colc', type: 'number' },
     { name: 'tota_pedi_ante', type: 'number' },
     { name: 'co92_colc', type: 'number' },
-    { name: 'nive_lide', type: 'number' },
+    { name: 'nive_lide', type: 'string' },
     { name: 'proy_segu', type: 'number' },
     { name: 'proy_segu1', type: 'number' },
+    { name: 'segui_conse', type: 'number' },
   ],
   datatype: 'json',
 })
@@ -1364,15 +1358,14 @@ const errorMensajeZona = ref('')
  * entre otras cosas
  * @param event 
  */
-const onEditar = event => {
+const onEditar = async event => {
   const { args } = event
   const columnDataField = args.datafield
   const rowIndex = args.rowindex
   const cellValue = args.value
 
   /**
-   * Suma de las columnas 
-   * de objetivos de proyección de pegs21, pegs42 y pegs63
+   * Suma de las columnas de proyección de pegs21, pegs42 y pegs63
    */
   if (columnDataField === 'pe21_obje' || columnDataField === 'pe42_obje' || columnDataField === 'pe63_obje') {
     let newValue = cellValue
@@ -1392,19 +1385,18 @@ const onEditar = event => {
   }
 
   /**
-   * Suma de las columnas 
-   * de objetivos de seguimiento de pegs21, pegs42 y pegs63
+   * Suma de las columnas de seguimiento de pegs21, pegs42 y pegs63
    */
   if (columnDataField === 'pe21_prim' || columnDataField === 'pe42_prim' || columnDataField === 'pe63_prim') {
     let newValue = cellValue
-    let proyPeg21 = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim')
-    let proyPeg42 = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim')
-    let proyPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
+    let seguPeg21 = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim')
+    let seguPeg42 = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim')
+    let seguPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
 
-    if (proyPeg21 > 0 || proyPeg42 > 0 || proyPeg63 > 0) {
-      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63
-      if (sumProyPeg >= 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', sumProyPeg)
+    if (seguPeg21 > 0 || seguPeg42 > 0 || seguPeg63 > 0) {
+      let sumseguPeg = seguPeg21 + seguPeg42 + seguPeg63
+      if (sumseguPeg >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', sumseguPeg)
       }else{
         refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', 0)
       }
@@ -1414,17 +1406,16 @@ const onEditar = event => {
 
 
   /**
-   * Suma de las columnas 
-   * de objetivos de seguimiento de pegs21, pegs42 y pegs63
-   * para validar si puede capitalizar o no la proyección
-   * el valor sumado se coloca en la columna de proyeccion de la capitalización
+   * Suma de las columnas  de proyeccion de pegs21, pegs42 y pegs63 junto a los peg63
+   * para validar si puede capitalizar o no la proyección, el valor sumado 
+   * se coloca en la columna de proyeccion de la capitalización
    */
   if (columnDataField === 'pedi_inco_obje' || columnDataField === 'rein_obje' || columnDataField === 'pe63_obje') {
     let newValue = cellValue
-    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje')
+    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje');
+    let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
+    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
     let proyRein = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
-    let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63')
-    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje')
     console.log(proyInco+" "+ proyRein+" "+ Peg63+" "+proyPeg63)
     if (proyInco > 0 || proyRein > 0 || proyPeg63 > 0) {
       let sumProyCapi = (proyInco + proyRein)  - (proyPeg63-Peg63)
@@ -1437,6 +1428,30 @@ const onEditar = event => {
     }
     
   }
+
+  /**
+   * Suma de las columnas  de seguimiento de pegs21, pegs42 y pegs63 junto a los peg63
+   * para validar si puede capitalizar o no la proyección, el valor sumado 
+   * se coloca en la columna de seguimiento de la capitalización
+   */
+  if (columnDataField === 'segui_inco' || columnDataField === 'rein_prim' || columnDataField === 'pe63_prim') {
+    let newValue = cellValue
+    let seguInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco');
+    let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
+    let seguPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim');
+    let seguRein = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
+    console.log(seguInco+" "+ seguRein+" "+ Peg63+" "+seguPeg63)
+    if (seguInco > 0 || seguRein > 0 || seguPeg63 > 0) {
+      let sumseguCapi = (seguInco + seguRein)  - (seguPeg63-Peg63)
+      console.log(sumseguCapi)
+      if (sumseguCapi >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', sumseguCapi)
+      }else{
+        refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', 0)
+      }
+    }
+    
+  }
  
   /**
    * Suma de las columnas 
@@ -1444,26 +1459,33 @@ const onEditar = event => {
    * para validar si puede cumple el objetivos de pedidos o no la proyección
    * el valor sumado se coloca en la columna de proyeccion de pedidos totales
    */
-  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'pedi_inco_prim' || columnDataField === 'pe21_obje'
+  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'pedi_tota_prim' || columnDataField === 'pe21_obje'
   || columnDataField === 'pe42_obje' || columnDataField === 'pe63_obje' || columnDataField === 'rein_obje'
   ) {
     let newValue = cellValue
     let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje')
-    let proyPediInco = columnDataField === 'pedi_inco_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim')
+    let proyConse = columnDataField === 'pedi_tota_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_tota_prim')
     let Peg21Obje = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje') 
     let Peg42Obje = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje') 
     let Peg63Obje = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje') 
     let proyReinObje = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
-    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Obje+" "+Peg42Obje+" "+Peg63Obje+" "+proyReinObje)
+    console.log(proyInco+" "+ proyConse+" "+ Peg21Obje+" "+Peg42Obje+" "+Peg63Obje+" "+proyReinObje)
 
-    if (proyInco > 0 || proyPediInco > 0 || Peg21Obje > 0 || Peg42Obje > 0 || Peg63Obje > 0 || proyReinObje > 0) {
-      let sumProyCapi = proyInco+proyPediInco+Peg21Obje+Peg42Obje+Peg63Obje-proyReinObje
-      console.log(sumProyCapi)
+    if (proyInco > 0 || proyConse > 0 || Peg21Obje > 0 || Peg42Obje > 0 || Peg63Obje > 0 || proyReinObje > 0) {
+      let sumProyCapi = proyInco+proyConse+Peg21Obje+Peg42Obje+Peg63Obje-proyReinObje
       if (sumProyCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'cobr', sumProyCapi)
       }else{
         refGridGlobal.value.setcellvalue(rowIndex, 'cobr', 0)
       }
+      const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/niveLide`, {
+        method: "post",
+        query: {
+          proyInco: sumProyCapi,
+        },
+      });
+
+      refGridGlobal.value.setcellvalue(rowIndex, 'nive_lide', data.desc_rang)
     }
     
   }
@@ -1477,24 +1499,61 @@ const onEditar = event => {
   || columnDataField === 'pe42_prim' || columnDataField === 'pe63_prim' || columnDataField === 'rein_prim'
   ) {
     let newValue = cellValue!==""||cellValue!==undefined ?cellValue:0
-    let proyInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco')
-    let proyPediInco = columnDataField === 'segui_conse' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_conse')
+    let SeguInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco')
+    let SeguConse = columnDataField === 'segui_conse' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_conse')
     let Peg21Segui = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim') 
     let Peg42Segui = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim') 
     let Peg63Segui = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim') 
-    let proyReinSegui = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
-    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Segui+" "+Peg42Segui+" "+Peg63Segui+" "+proyReinSegui)
+    let SeguReinSegui = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
+    
+    SeguConse = SeguConse === undefined ? 0 : SeguConse;
+    SeguInco = SeguInco !== "" || SeguInco !== undefined ? SeguInco : 0;
+    Peg21Segui = Peg21Segui !== "" || Peg21Segui !== undefined ? Peg21Segui : 0;
+    Peg42Segui = Peg42Segui !== "" || Peg42Segui !== undefined ? Peg42Segui : 0;
+    Peg63Segui = Peg63Segui !== "" || Peg63Segui !== undefined ? Peg63Segui : 0;
+    SeguReinSegui = SeguReinSegui !== "" || SeguReinSegui !== undefined ? SeguReinSegui : 0;
+    console.log(SeguInco+"  "+ SeguConse+" "+ Peg21Segui+" "+Peg42Segui+" "+Peg63Segui+" "+SeguReinSegui)
 
-    if (proyInco > 0 || proyPediInco > 0 || Peg21Segui > 0 || Peg42Segui > 0 || Peg63Segui > 0 || proyReinSegui > 0) {
-      let sumProyCapi = parseInt(proyInco)+parseInt(proyPediInco)+parseInt(Peg21Segui)+parseInt(Peg42Segui)+parseInt(Peg63Segui)+parseInt(proyReinSegui)
-      console.log(sumProyCapi)
-      if (sumProyCapi >= 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', sumProyCapi)
+    if (SeguInco > 0 || SeguConse > 0 || Peg21Segui > 0 || Peg42Segui > 0 || Peg63Segui > 0 || SeguReinSegui > 0) {
+      let sumPediSegu = parseInt(SeguInco)+parseInt(SeguConse)+parseInt(Peg21Segui)+parseInt(Peg42Segui)+parseInt(Peg63Segui)+parseInt(SeguReinSegui)
+      console.log(sumPediSegu)
+      if (sumPediSegu >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', sumPediSegu)
       }else{
         refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', 0)
       }
+
+      const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/niveLide`, {
+        method: "post",
+        query: {
+          proyInco: sumPediSegu,
+        },
+      });
+
+      refGridGlobal.value.setcellvalue(rowIndex, 'nive_lide_segui', data.desc_rang)
     }
     
+  }
+
+  /**
+   * en caso de que las columnas de proyeccion y seguimiento del aparado de pedidos totales
+   * se puedan modificar esta funcion consultara el nuevo valor en base al valor insertado
+   */
+  if(columnDataField ==='cobr' || columnDataField === 'cobr_colc'){
+    let newValue = cellValue!==""||cellValue!==undefined ?cellValue:0
+    let proyInco = columnDataField === 'cobr' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'cobr')
+    let proyPediInco = columnDataField === 'cobr_colc' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'cobr_colc')
+    
+    const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/niveLide`, {
+      method: "post",
+      query: {
+        proyInco: proyInco,
+      },
+    });
+
+    refGridGlobal.value.setcellvalue(rowIndex, 'nive_lide', data.desc_rang)
+    if (proyInco > 0 || proyPediInco > 0) {
+    }
   }
  
 }
@@ -1596,18 +1655,19 @@ const onGenerar = async () => {
 
     refGridGlobal.value.updatebounddata('cells')
     refGridGlobal.value.refreshfilterrow()
-
+    console.log(sumaSeguIncorporacion.value)
+    sumaSeguIncorporacion.value = sumaSeguIncorporacion.value === undefined || isNaN(sumaSeguIncorporacion.value) ? 0 : sumaSeguIncorporacion.value
     general.value = {
       lima: data.lima_prov,
       objetivoIncorporacion: data.obje_inco,
-      proyeccionIncorporacion: data.obje_inco_proy,
-      reproyeccionIncorporacion: data.obje_inco_repr,
-      objetivoRetencion: data.obje_rete,
-      proyeccionRetencion: data.obje_rete_proy,
-      reproyeccionRetencion: data.obje_rete_repr,
+      proyeccionIncorporacion: sumaIncorporacion.value,
+      reproyeccionIncorporacion: sumaSeguIncorporacion.value,
+      // objetivoRetencion: data.obje_rete,
+      // proyeccionRetencion: sumaPediTotal,
+      // reproyeccionRetencion: data.obje_rete_repr,
       objetivoActividad: data.obje_acti,
-      proyeccionActividad: data.obje_acti_proy,
-      reproyeccionActividad: data.obje_acti_repr,
+      proyeccionActividad: sumaPediTotal.value,
+      reproyeccionActividad: sumaSeguPediTotal.value,
     }
     
   } catch (error) {
