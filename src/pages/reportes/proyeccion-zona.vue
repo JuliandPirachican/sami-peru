@@ -1,11 +1,11 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue'
 
-import { useAppStore } from '@/stores/app';
-import { $api, $base } from '@/utils/api';
+import { useAppStore } from '@/stores/app'
+import { $api, $base } from '@/utils/api'
 
-import { EncryptStorage } from 'encrypt-storage';
+import { EncryptStorage } from 'encrypt-storage'
 
 
 definePage({
@@ -23,7 +23,10 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
 
-
+const sumaIncorporacion = ref(0);
+const sumaSeguIncorporacion = ref(0);
+const sumaPediTotal = ref(0);
+const sumaSeguPediTotal = ref(0);
 
 const formulario = ref({
   campana: null,
@@ -42,22 +45,6 @@ const general = ref({
   proyeccionActividad: '0.00',
   reproyeccionActividad: '0.00',
 })
-
-const variables = ref([
-  { title: 'Todos', value: 0 },
-  { title: 'Pedidos totales', value: 1 },
-  { title: 'Pedidos de actividad', value: 2 },
-  { title: 'Pedidos de retención', value: 3 },
-  { title: 'Capitalización', value: 4 },
-  { title: 'Cobranza', value: 5 },
-  { title: 'Consecutividad', value: 6 },
-])
-
-const columnas = ref([
-  { title: 'Objetivo formula éxito', value: 0 },
-  { title: 'Objetivo proyección', value: 1 },
-  { title: 'Objetivo reproyección', value: 2 },
-])
 
 const selectedVariable = ref(0)
 const selectedColumna = ref(0)
@@ -309,20 +296,14 @@ const claseCapitalizacion = (row, columnfield, value) => {
   return `text-success`
 }
 
-let sumaNumePedi = 0
-let sumaTotaIngr = 0
-let sumaTotaRein = 0
-let sumaActiInic = 0
-let sumaActiObjePedi = 0
-let sumaActiPrim = 0
-let sumaActiSegu = 0
+
 
 /**columnas de la grilla */
 const columnaGlobal = [
   {
-    text: 'Sector',
+    text: 'Codigo Lider',
     dataField: 'codi_sect',
-    width: '60',
+    width: '150',
     align: 'center',
     cellsalign: 'center',
     editable: false,
@@ -333,7 +314,7 @@ const columnaGlobal = [
   {
     text: 'Lider',
     dataField: 'nomb_vend',
-    width: '250',
+    width: '220',
     align: 'center',
     cellsalign: 'left',
     editable: false,
@@ -344,7 +325,7 @@ const columnaGlobal = [
   {
     text: 'Act. inic.',
     dataField: 'acti_inic',
-    width: '80',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     editable: false,
@@ -352,6 +333,27 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     columna: 'C',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+        },
+      },
+    ],
+  },
+  {
+    text: 'Objetivo Ventas',
+    dataField: 'obje_vent',
+    width: '150',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: true,
+    cellsformat: 'N',
+    filtertype: 'number',
+    columna: 'D',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -373,12 +375,13 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'D',
+    columna: 'E',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
-          
+          sumaIncorporacion.value = aggregatedValue 
+          general.value.proyeccionIncorporacion = aggregatedValue
           return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
@@ -395,14 +398,17 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'E',
-    aggregates: [
-      {
+    columna: 'F',
+    aggregates: [{
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
-        },
+              const value = parseFloat(currentValue);
+              if (!isNaN(value)) {
+                sumaSeguIncorporacion.value = aggregatedValue + value
+                general.value.reproyeccionIncorporacion = aggregatedValue + value;
+                return aggregatedValue + value;
+              }
+              return aggregatedValue;
+           },
       },
     ],
   },
@@ -416,7 +422,7 @@ const columnaGlobal = [
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'F',
+    columna: 'G',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -438,7 +444,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'G',
+    columna: 'H',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -460,13 +466,15 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'H',
+    columna: 'I',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          const value = parseFloat(currentValue);
+              if (!isNaN(value)) {
+                return aggregatedValue + value;
+              }
+              return aggregatedValue;
         },
       },
     ],
@@ -481,7 +489,7 @@ const columnaGlobal = [
     columngroup: 'rete',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'I',
+    columna: 'J',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -504,7 +512,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'J',
+    columna: 'K',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -527,7 +535,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'K',
+    columna: 'L',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -551,7 +559,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
 
-    columna: 'L',
+    columna: 'M',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -574,7 +582,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'M',
+    columna: 'N',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -595,18 +603,18 @@ const columnaGlobal = [
     cellsalign: 'center',
     editable: true,
     columngroup: 'acti',
-    cellsformat: 'P2',
+    cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'N',
+    columna: 'O',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          
-            
-          aggregatedValue += currentValue
-          
-          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+            const value = parseFloat(currentValue);
+            if (!isNaN(value)) {
+              return aggregatedValue + value;
+            }
+            return aggregatedValue;
           
         },
       },
@@ -633,7 +641,7 @@ const columnaGlobal = [
     columngroup: 'cons4_ped',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'O',
+    columna: 'P',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -656,7 +664,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'P',
+    columna: 'Q',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -675,16 +683,18 @@ const columnaGlobal = [
     cellsalign: 'center',
     editable: true,
     columngroup: 'cons4_ped',
-    cellsformat: 'P2',
+    cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'Q',
+    columna: 'R',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          const value = parseFloat(currentValue);
+            if (!isNaN(value)) {
+              return aggregatedValue + value;
+            }
+            return aggregatedValue;
         },
       },
     ],
@@ -703,7 +713,7 @@ const columnaGlobal = [
     columngroup: 'pe21',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'R',
+    columna: 'S',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -725,7 +735,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'S',
+    columna: 'T',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -748,7 +758,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'T',
+    columna: 'U',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -777,7 +787,7 @@ const columnaGlobal = [
     columngroup: 'pe42',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'U',
+    columna: 'V',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -799,7 +809,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'V',
+    columna: 'W',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -822,7 +832,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'W',
+    columna: 'X',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -851,7 +861,7 @@ const columnaGlobal = [
     columngroup: 'pe63',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'X',
+    columna: 'Y',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -873,7 +883,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'Y',
+    columna: 'Z',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -896,7 +906,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
     filtertype: 'number',
-    columna: 'Z',
+    columna: 'AA',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -926,7 +936,7 @@ const columnaGlobal = [
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AA',
+    columna: 'AB',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -947,7 +957,7 @@ const columnaGlobal = [
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AB',
+    columna: 'AC',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -969,7 +979,7 @@ const columnaGlobal = [
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AC',
+    columna: 'AD',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -991,7 +1001,7 @@ const columnaGlobal = [
     columngroup: 'rein',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AD',
+    columna: 'AE',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1013,7 +1023,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'AE',
+    columna: 'AF',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1036,7 +1046,7 @@ const columnaGlobal = [
     cellsformat: 'N',
     filtertype: 'number',
     cellclassname: ' bg-primary-light',
-    columna: 'AF',
+    columna: 'AG',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1056,7 +1066,7 @@ const columnaGlobal = [
     
   },
   {
-    text: 'Proyección',
+    text: 'Proyección ',
     datafield: 'capi_obje',
     width: '130',
     align: 'center',
@@ -1065,7 +1075,7 @@ const columnaGlobal = [
     columngroup: 'capi',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AG',
+    columna: 'AH',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1088,7 +1098,7 @@ const columnaGlobal = [
     columngroup: 'capi',
     cellsformat: 'N',
     filtertype: 'number',
-    columna: 'AH',
+    columna: 'AI',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
@@ -1110,7 +1120,7 @@ const columnaGlobal = [
     editable: false,
     cellsformat: 'D2',
     filtertype: 'number',
-    columna: 'AI',
+    columna: 'AJ',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) { 
@@ -1127,16 +1137,17 @@ const columnaGlobal = [
     width: '160',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
     columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
-    columna: 'AJ',
+    columna: 'AK',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
-          
+          sumaPediTotal.value = aggregatedValue
+          general.value.proyeccionActividad = aggregatedValue
           return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
@@ -1148,16 +1159,17 @@ const columnaGlobal = [
     width: '180',
     align: 'center',
     cellsalign: 'center',
-    editable: true,
+    editable: false,
     columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
-    columna: 'AK',
+    columna: 'AL',
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
           aggregatedValue += currentValue
-          
+          sumaSeguPediTotal.value = aggregatedValue
+          general.value.reproyeccionActividad = aggregatedValue
           return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
         },
       },
@@ -1171,7 +1183,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    columna: 'AL',
+    columna: 'AM',
   },
   {
     text: 'Nivel lider seguimiento',
@@ -1181,9 +1193,11 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
-    columna: 'AM',
+    columna: 'AN',
   },
 ]
+
+
 /**columnas de agrupacion de la grilla */
 const columnasGrupo = [
   {
@@ -1192,7 +1206,7 @@ const columnasGrupo = [
     name: 'tota',
   },
   {
-    text: 'Consecutividad',
+    text: 'Consecutividad 80%',
     align: 'center',
     name: 'inco',
   },
@@ -1212,27 +1226,27 @@ const columnasGrupo = [
     name: 'cons4_ped',
   },
   {
-    text: 'Peg21 40%',
+    text: 'Peg21 50%',
     align: 'center',
     name: 'pe21',
   },
   {
-    text: 'Peg42 30%',
+    text: 'Peg42 35%',
     align: 'center',
     name: 'pe42',
   },
   {
-    text: 'Peg63 25%',
+    text: 'Peg63 35%',
     align: 'center',
     name: 'pe63',
   },
   {
-    text: 'Suma de Pegs 35%',
+    text: 'Retencion Total',
     align: 'center',
     name: 'pegs',
   },
   {
-    text: 'Reingresos 10%',
+    text: 'Reingresos ',
     align: 'center',
     name: 'rein',
   },
@@ -1250,17 +1264,19 @@ const columnasGrupo = [
     text: 'Nivel lider',
     align: 'center',
     name: 'nive_lide',
-  }
+  },
 ]
 
 const sourceGlobal = ref({
   localdata: [],
-  datafields: [
+  datafields: [ 
     { name: 'codi_sect', type: 'string' },
     { name: 'nomb_vend', type: 'string' }, 
     { name: 'acti_inic', type: 'number' },
+    { name: 'obje_vent', type: 'number' },
     { name: 'pedi_tota_obje', type: 'number' },
     { name: 'pedi_tota_prim', type: 'number' },
+    { name: 'segui_inco', type: 'number' },
     { name: 'pedi_tota_segu', type: 'number' },
     { name: 'pedi_inco_obje', type: 'number' },
     { name: 'pedi_inco_prim', type: 'number' },
@@ -1280,6 +1296,7 @@ const sourceGlobal = ref({
     { name: 'cons_rete_obje', type: 'number' },
     { name: 'cons_rete_prim', type: 'number' },
     { name: 'cons_rete_segu', type: 'number' },
+    { name: 'cons_rete_segu_ocul', type: 'number' },
     { name: 'cons_segu_camp_ante', type: 'number' },
     { name: 'cons_segu_obje', type: 'number' },
     { name: 'cons_terc_camp_ante', type: 'number' },
@@ -1313,9 +1330,10 @@ const sourceGlobal = ref({
     { name: 'cobr_colc', type: 'number' },
     { name: 'tota_pedi_ante', type: 'number' },
     { name: 'co92_colc', type: 'number' },
-    { name: 'nive_lide', type: 'number' },
+    { name: 'nive_lide', type: 'string' },
     { name: 'proy_segu', type: 'number' },
     { name: 'proy_segu1', type: 'number' },
+    { name: 'segui_conse', type: 'number' },
   ],
   datatype: 'json',
 })
@@ -1340,24 +1358,23 @@ const errorMensajeZona = ref('')
  * entre otras cosas
  * @param event 
  */
-const onEditar = event => {
-  const { args } = event;
-  const columnDataField = args.datafield;
-  const rowIndex = args.rowindex;
-  const cellValue = args.value;
+const onEditar = async event => {
+  const { args } = event
+  const columnDataField = args.datafield
+  const rowIndex = args.rowindex
+  const cellValue = args.value
 
   /**
-   * Suma de las columnas 
-   * de objetivos de proyección de pegs21, pegs42 y pegs63
+   * Suma de las columnas de proyección de pegs21, pegs42 y pegs63
    */
   if (columnDataField === 'pe21_obje' || columnDataField === 'pe42_obje' || columnDataField === 'pe63_obje') {
-    let newValue = cellValue;
-    let proyPeg21 = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje');
-    let proyPeg42 = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje');
-    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
+    let newValue = cellValue
+    let proyPeg21 = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje')
+    let proyPeg42 = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje')
+    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje')
 
     if (proyPeg21 > 0 || proyPeg42 > 0 || proyPeg63 > 0) {
-      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63;
+      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63
       if (sumProyPeg >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'pegs_obje', sumProyPeg)
       }else{
@@ -1368,19 +1385,18 @@ const onEditar = event => {
   }
 
   /**
-   * Suma de las columnas 
-   * de objetivos de seguimiento de pegs21, pegs42 y pegs63
+   * Suma de las columnas de seguimiento de pegs21, pegs42 y pegs63
    */
   if (columnDataField === 'pe21_prim' || columnDataField === 'pe42_prim' || columnDataField === 'pe63_prim') {
-    let newValue = cellValue;
-    let proyPeg21 = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim');
-    let proyPeg42 = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim');
-    let proyPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim');
+    let newValue = cellValue
+    let seguPeg21 = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim')
+    let seguPeg42 = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim')
+    let seguPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim')
 
-    if (proyPeg21 > 0 || proyPeg42 > 0 || proyPeg63 > 0) {
-      let sumProyPeg = proyPeg21 + proyPeg42 + proyPeg63;
-      if (sumProyPeg >= 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', sumProyPeg)
+    if (seguPeg21 > 0 || seguPeg42 > 0 || seguPeg63 > 0) {
+      let sumseguPeg = seguPeg21 + seguPeg42 + seguPeg63
+      if (sumseguPeg >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', sumseguPeg)
       }else{
         refGridGlobal.value.setcellvalue(rowIndex, 'pegs_prim', 0)
       }
@@ -1390,25 +1406,48 @@ const onEditar = event => {
 
 
   /**
-   * Suma de las columnas 
-   * de objetivos de seguimiento de pegs21, pegs42 y pegs63
-   * para validar si puede capitalizar o no la proyección
-   * el valor sumado se coloca en la columna de proyeccion de la capitalización
+   * Suma de las columnas  de proyeccion de pegs21, pegs42 y pegs63 junto a los peg63
+   * para validar si puede capitalizar o no la proyección, el valor sumado 
+   * se coloca en la columna de proyeccion de la capitalización
    */
   if (columnDataField === 'pedi_inco_obje' || columnDataField === 'rein_obje' || columnDataField === 'pe63_obje') {
-    let newValue = cellValue;
+    let newValue = cellValue
     let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje');
-    let proyRein = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje');
     let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
     let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
+    let proyRein = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
     console.log(proyInco+" "+ proyRein+" "+ Peg63+" "+proyPeg63)
     if (proyInco > 0 || proyRein > 0 || proyPeg63 > 0) {
-      let sumProyCapi = (proyInco + proyRein)  - (proyPeg63-Peg63);
+      let sumProyCapi = (proyInco + proyRein)  - (proyPeg63-Peg63)
       console.log(sumProyCapi)
       if (sumProyCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', sumProyCapi)
       }else{
         refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', 0)
+      }
+    }
+    
+  }
+
+  /**
+   * Suma de las columnas  de seguimiento de pegs21, pegs42 y pegs63 junto a los peg63
+   * para validar si puede capitalizar o no la proyección, el valor sumado 
+   * se coloca en la columna de seguimiento de la capitalización
+   */
+  if (columnDataField === 'segui_inco' || columnDataField === 'rein_prim' || columnDataField === 'pe63_prim') {
+    let newValue = cellValue
+    let seguInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco');
+    let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
+    let seguPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim');
+    let seguRein = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
+    console.log(seguInco+" "+ seguRein+" "+ Peg63+" "+seguPeg63)
+    if (seguInco > 0 || seguRein > 0 || seguPeg63 > 0) {
+      let sumseguCapi = (seguInco + seguRein)  - (seguPeg63-Peg63)
+      console.log(sumseguCapi)
+      if (sumseguCapi >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', sumseguCapi)
+      }else{
+        refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', 0)
       }
     }
     
@@ -1420,29 +1459,37 @@ const onEditar = event => {
    * para validar si puede cumple el objetivos de pedidos o no la proyección
    * el valor sumado se coloca en la columna de proyeccion de pedidos totales
    */
-  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'pedi_inco_prim' || columnDataField === 'pe21_obje'
+  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'pedi_tota_prim' || columnDataField === 'pe21_obje'
   || columnDataField === 'pe42_obje' || columnDataField === 'pe63_obje' || columnDataField === 'rein_obje'
   ) {
-    let newValue = cellValue;
-    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje');
-    let proyPediInco = columnDataField === 'pedi_inco_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_prim');
-    let Peg21Obje = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje'); 
-    let Peg42Obje = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje'); 
-    let Peg63Obje = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje'); 
-    let proyReinObje = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje');
-    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Obje+" "+Peg42Obje+" "+Peg63Obje+" "+proyReinObje);
+    let newValue = cellValue
+    let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje')
+    let proyConse = columnDataField === 'pedi_tota_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_tota_prim')
+    let Peg21Obje = columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje') 
+    let Peg42Obje = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje') 
+    let Peg63Obje = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje') 
+    let proyReinObje = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
+    console.log(proyInco+" "+ proyConse+" "+ Peg21Obje+" "+Peg42Obje+" "+Peg63Obje+" "+proyReinObje)
 
-    if (proyInco > 0 || proyPediInco > 0 || Peg21Obje > 0 || Peg42Obje > 0 || Peg63Obje > 0 || proyReinObje > 0) {
-      let sumProyCapi = proyInco+proyPediInco+Peg21Obje+Peg42Obje+Peg63Obje-proyReinObje;
-      console.log(sumProyCapi)
+    if (proyInco > 0 || proyConse > 0 || Peg21Obje > 0 || Peg42Obje > 0 || Peg63Obje > 0 || proyReinObje > 0) {
+      let sumProyCapi = proyInco+proyConse+Peg21Obje+Peg42Obje+Peg63Obje-proyReinObje
       if (sumProyCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'cobr', sumProyCapi)
       }else{
         refGridGlobal.value.setcellvalue(rowIndex, 'cobr', 0)
       }
+      const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/niveLide`, {
+        method: "post",
+        query: {
+          proyInco: sumProyCapi,
+        },
+      });
+
+      refGridGlobal.value.setcellvalue(rowIndex, 'nive_lide', data.desc_rang)
     }
     
   }
+
   /**
    * Suma de las columnas 
    * de objetivos de seguimiento de incorporacion, reingresos,pegs21, pegs42 y pegs63
@@ -1451,25 +1498,62 @@ const onEditar = event => {
   if (columnDataField === 'segui_inco' || columnDataField === 'segui_conse' || columnDataField === 'pe21_prim'
   || columnDataField === 'pe42_prim' || columnDataField === 'pe63_prim' || columnDataField === 'rein_prim'
   ) {
-    let newValue = cellValue!==""||cellValue!==undefined ?cellValue:0;
-    let proyInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco');
-    let proyPediInco = columnDataField === 'segui_conse' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_conse');
-    let Peg21Segui = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim'); 
-    let Peg42Segui = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim'); 
-    let Peg63Segui = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim'); 
-    let proyReinSegui = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim');
-    console.log(proyInco+" "+ proyPediInco+" "+ Peg21Segui+" "+Peg42Segui+" "+Peg63Segui+" "+proyReinSegui);
+    let newValue = cellValue!==""||cellValue!==undefined ?cellValue:0
+    let SeguInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco')
+    let SeguConse = columnDataField === 'segui_conse' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_conse')
+    let Peg21Segui = columnDataField === 'pe21_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_prim') 
+    let Peg42Segui = columnDataField === 'pe42_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_prim') 
+    let Peg63Segui = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim') 
+    let SeguReinSegui = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
+    
+    SeguConse = SeguConse === undefined ? 0 : SeguConse;
+    SeguInco = SeguInco !== "" || SeguInco !== undefined ? SeguInco : 0;
+    Peg21Segui = Peg21Segui !== "" || Peg21Segui !== undefined ? Peg21Segui : 0;
+    Peg42Segui = Peg42Segui !== "" || Peg42Segui !== undefined ? Peg42Segui : 0;
+    Peg63Segui = Peg63Segui !== "" || Peg63Segui !== undefined ? Peg63Segui : 0;
+    SeguReinSegui = SeguReinSegui !== "" || SeguReinSegui !== undefined ? SeguReinSegui : 0;
+    console.log(SeguInco+"  "+ SeguConse+" "+ Peg21Segui+" "+Peg42Segui+" "+Peg63Segui+" "+SeguReinSegui)
 
-    if (proyInco > 0 || proyPediInco > 0 || Peg21Segui > 0 || Peg42Segui > 0 || Peg63Segui > 0 || proyReinSegui > 0) {
-      let sumProyCapi = parseInt(proyInco)+parseInt(proyPediInco)+parseInt(Peg21Segui)+parseInt(Peg42Segui)+parseInt(Peg63Segui)+parseInt(proyReinSegui);
-      console.log(sumProyCapi)
-      if (sumProyCapi >= 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', sumProyCapi)
+    if (SeguInco > 0 || SeguConse > 0 || Peg21Segui > 0 || Peg42Segui > 0 || Peg63Segui > 0 || SeguReinSegui > 0) {
+      let sumPediSegu = parseInt(SeguInco)+parseInt(SeguConse)+parseInt(Peg21Segui)+parseInt(Peg42Segui)+parseInt(Peg63Segui)+parseInt(SeguReinSegui)
+      console.log(sumPediSegu)
+      if (sumPediSegu >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', sumPediSegu)
       }else{
         refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', 0)
       }
+
+      const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/niveLide`, {
+        method: "post",
+        query: {
+          proyInco: sumPediSegu,
+        },
+      });
+
+      refGridGlobal.value.setcellvalue(rowIndex, 'nive_lide_segui', data.desc_rang)
     }
     
+  }
+
+  /**
+   * en caso de que las columnas de proyeccion y seguimiento del aparado de pedidos totales
+   * se puedan modificar esta funcion consultara el nuevo valor en base al valor insertado
+   */
+  if(columnDataField ==='cobr' || columnDataField === 'cobr_colc'){
+    let newValue = cellValue!==""||cellValue!==undefined ?cellValue:0
+    let proyInco = columnDataField === 'cobr' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'cobr')
+    let proyPediInco = columnDataField === 'cobr_colc' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'cobr_colc')
+    
+    const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/niveLide`, {
+      method: "post",
+      query: {
+        proyInco: proyInco,
+      },
+    });
+
+    refGridGlobal.value.setcellvalue(rowIndex, 'nive_lide', data.desc_rang)
+    if (proyInco > 0 || proyPediInco > 0) {
+    }
   }
  
 }
@@ -1571,18 +1655,19 @@ const onGenerar = async () => {
 
     refGridGlobal.value.updatebounddata('cells')
     refGridGlobal.value.refreshfilterrow()
-
+    console.log(sumaSeguIncorporacion.value)
+    sumaSeguIncorporacion.value = sumaSeguIncorporacion.value === undefined || isNaN(sumaSeguIncorporacion.value) ? 0 : sumaSeguIncorporacion.value
     general.value = {
       lima: data.lima_prov,
       objetivoIncorporacion: data.obje_inco,
-      proyeccionIncorporacion: data.obje_inco_proy,
-      reproyeccionIncorporacion: data.obje_inco_repr,
-      objetivoRetencion: data.obje_rete,
-      proyeccionRetencion: data.obje_rete_proy,
-      reproyeccionRetencion: data.obje_rete_repr,
+      proyeccionIncorporacion: sumaIncorporacion.value,
+      reproyeccionIncorporacion: sumaSeguIncorporacion.value,
+      // objetivoRetencion: data.obje_rete,
+      // proyeccionRetencion: sumaPediTotal,
+      // reproyeccionRetencion: data.obje_rete_repr,
       objetivoActividad: data.obje_acti,
-      proyeccionActividad: data.obje_acti_proy,
-      reproyeccionActividad: data.obje_acti_repr,
+      proyeccionActividad: sumaPediTotal.value,
+      reproyeccionActividad: sumaSeguPediTotal.value,
     }
     
   } catch (error) {
@@ -1635,27 +1720,28 @@ const onExcel = async () => {
     appStore.loading(true)
 
     // Exportar datos manualmente a XML
-    const rows = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+    const rows = refGridGlobal?.value?.getrows?.() // Obtener las filas de la cuadrícula
     if (!rows || rows.length === 0) {
-      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
-      appStore.color("error");
-      appStore.snackbar(true);
-      return;
+      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.")
+      appStore.color("error")
+      appStore.snackbar(true)
+      
+      return
     }
 
-    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`
 
     rows.forEach((row, index) => {
-      xmlData += `  <row id="${index + 1}">\n`;
+      xmlData += `  <row id="${index + 1}">\n`
       for (const [key, value] of Object.entries(row)) {
-        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`
       }
-      xmlData += `  </row>\n`;
-    });
+      xmlData += `  </row>\n`
+    })
 
-    xmlData += `</rows>`;
-    console.log("Datos generados manualmente a XML:");
-    console.log(columnaGlobal.value);
+    xmlData += `</rows>`
+    console.log("Datos generados manualmente a XML:")
+    console.log(columnaGlobal.value)
 
     const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/excel`, {
       method: "post",
@@ -1678,54 +1764,60 @@ const onExcel = async () => {
 }
 
 const onRegistrar = async () => {
-  console.log("pruebas");
-  const dataInfoGlob = refGridGlobal?.value?.getdatainformation?.();
-  console.log(dataInfoGlob);
+  console.log("pruebas")
 
-  const dataRowsGlob = dataInfoGlob?.rowscount || 0; // Validar si rowscount existe
-  console.log(dataRowsGlob);
+  const dataInfoGlob = refGridGlobal?.value?.getdatainformation?.()
+
+  console.log(dataInfoGlob)
+
+  const dataRowsGlob = dataInfoGlob?.rowscount || 0 // Validar si rowscount existe
+
+  console.log(dataRowsGlob)
 
   if (dataRowsGlob === 0) {
-    appStore.mensajeSnackbar("No tiene ninguna proyección por registrar.");
-    appStore.color("error");
-    appStore.snackbar(true);
-    return; // Salir temprano
+    appStore.mensajeSnackbar("No tiene ninguna proyección por registrar.")
+    appStore.color("error")
+    appStore.snackbar(true)
+    
+    return // Salir temprano
   } else if (selectedVariable.value !== 0) {
     appStore.mensajeSnackbar(
-      'Para registrar la proyección debe de estar marcada la variable "Todos".'
-    );
-    appStore.color("error");
-    appStore.snackbar(true);
-    return; // Salir temprano
+      'Para registrar la proyección debe de estar marcada la variable "Todos".',
+    )
+    appStore.color("error")
+    appStore.snackbar(true)
+    
+    return // Salir temprano
   }
 
-  console.log("pruebas en el else");
-  console.log(formulario.value.campana);
-  console.log(formulario.value.zona);
+  console.log("pruebas en el else")
+  console.log(formulario.value.campana)
+  console.log(formulario.value.zona)
 
   try {
     // Exportar datos manualmente a XML
-    const rows = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+    const rows = refGridGlobal?.value?.getrows?.() // Obtener las filas de la cuadrícula
     if (!rows || rows.length === 0) {
-      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
-      appStore.color("error");
-      appStore.snackbar(true);
-      return;
+      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.")
+      appStore.color("error")
+      appStore.snackbar(true)
+      
+      return
     }
 
-    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+    let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`
 
     rows.forEach((row, index) => {
-      xmlData += `  <row id="${index + 1}">\n`;
+      xmlData += `  <row id="${index + 1}">\n`
       for (const [key, value] of Object.entries(row)) {
-        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`
       }
-      xmlData += `  </row>\n`;
-    });
+      xmlData += `  </row>\n`
+    })
 
-    xmlData += `</rows>`;
-    console.log("Datos generados manualmente a XML:");
-    console.log(xmlData);
+    xmlData += `</rows>`
+    console.log("Datos generados manualmente a XML:")
+    console.log(xmlData)
 
     // appStore.mensaje("Generando proceso");
     // appStore.loading(true);
@@ -1738,35 +1830,37 @@ const onRegistrar = async () => {
         data: JSON.stringify(xmlData),
         data_ext: JSON.stringify(xmlData),
       },
-    });
+    })
 
-    console.log("Proceso completado con éxito:", data);
+    console.log("Proceso completado con éxito:", data)
+
     // Mostrar mensaje de éxito si es necesario
     appStore.mensajeSnackbar(`${data.message}`)
     appStore.color("success")
     appStore.snackbar(true)
   } catch (error) {
-    console.error("Error en onRegistrar:", error.message);
-    console.error("Detalles:", error.stack);
-    appStore.mensajeSnackbar("Ocurrió un error al registrar la proyección.");
-    appStore.color("error");
-    appStore.snackbar(true);
+    console.error("Error en onRegistrar:", error.message)
+    console.error("Detalles:", error.stack)
+    appStore.mensajeSnackbar("Ocurrió un error al registrar la proyección.")
+    appStore.color("error")
+    appStore.snackbar(true)
   } finally {
-    appStore.loading(false);
+    appStore.loading(false)
   }
-};
+}
 
 // Función para escapar caracteres especiales en XML
-const escapeXML = (value) => {
-  if (value === null || value === undefined) return "";
+const escapeXML = value => {
+  if (value === null || value === undefined) return ""
+  
   return value
     .toString()
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-};
+    .replace(/'/g, "&apos;")
+}
 
 const limpiarValidacion = () => {
   errorCampana.value = false
@@ -1774,8 +1868,6 @@ const limpiarValidacion = () => {
   errorZona.value = false
   errorMensajeZona.value = ''
 }
-
-
 </script>
 
 <template>
@@ -1852,7 +1944,6 @@ const limpiarValidacion = () => {
                     </tr>
                   </thead>
                   <tbody>
-                 
                     <tr>
                       <td>Incorporación</td>
                       <td>{{ general.objetivoIncorporacion }}</td>
@@ -1871,47 +1962,49 @@ const limpiarValidacion = () => {
             </VCard>
           </VCol>
 
-          <!-- <VCol cols="12">
+          <!--
+            <VCol cols="12">
             <VCard title="Variables">
-              <VCardText>
-                <VRadioGroup
-                  v-model="selectedVariable"
-                  inline
-                >
-                  <div>
-                    <VRadio
-                      v-for="variable in variables"
-                      :key="variable.value"
-                      :label="variable.title"
-                      :value="variable.value"
-                      color="secondary"
-                    />
-                  </div>
-                </VRadioGroup>
-              </VCardText>
+            <VCardText>
+            <VRadioGroup
+            v-model="selectedVariable"
+            inline
+            >
+            <div>
+            <VRadio
+            v-for="variable in variables"
+            :key="variable.value"
+            :label="variable.title"
+            :value="variable.value"
+            color="secondary"
+            />
+            </div>
+            </VRadioGroup>
+            </VCardText>
             </VCard>
-          </VCol>
+            </VCol>
 
-          <VCol cols="12">
+            <VCol cols="12">
             <VCard title="Columnas">
-              <VCardText>
-                <VRadioGroup
-                  v-model="selectedColumna"
-                  inline
-                >
-                  <div>
-                    <VRadio
-                      v-for="columna in columnas"
-                      :key="columna.value"
-                      :label="columna.title"
-                      :value="columna.value"
-                      color="secondary"
-                    />
-                  </div>
-                </VRadioGroup>
-              </VCardText>
+            <VCardText>
+            <VRadioGroup
+            v-model="selectedColumna"
+            inline
+            >
+            <div>
+            <VRadio
+            v-for="columna in columnas"
+            :key="columna.value"
+            :label="columna.title"
+            :value="columna.value"
+            color="secondary"
+            />
+            </div>
+            </VRadioGroup>
+            </VCardText>
             </VCard>
-          </VCol> -->
+            </VCol> 
+          -->
 
           <VCol cols="12">
             <VCard title="Lista de proyección">

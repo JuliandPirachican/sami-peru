@@ -8,7 +8,7 @@ export const useAppStore = defineStore('app', {
     tituloState: '',
     localization: {
       percentsymbol: '%',
-      currencysymbol: 'S/ ',
+      currencysymbol: 'COP ',
       currencysymbolposition: 'before',
       decimalseparator: '.',
       thousandsseparator: '',

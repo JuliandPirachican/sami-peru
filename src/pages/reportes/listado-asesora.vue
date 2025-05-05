@@ -43,6 +43,36 @@ const formulario = ref({
   zona: null,
 })
 
+/**
+ * Variables Globales de suma de porcentajes
+ */
+/** Rete pe 21, 42 y 63 **/
+const sum_posi_eg21_ante=ref({});
+const sum_rete_pe21=ref({});
+const sum_posi_eg42_ante=ref({});
+const sum_rete_pe42=ref({});
+const sum_posi_eg63_ante=ref({});
+const sum_rete_pe63=ref({});
+
+/**porc_acti **/
+const sum_tota_acti=ref({});
+const sum_tota_pedi=ref({});
+const sum_tota_ingr=ref({});
+const sum_tota_rein=ref({});
+
+/**ppp rece **/
+const sum_tota_rece=ref({});
+
+/** ppp fact **/
+const sum_tota_fact=ref({});
+
+/** ppp line **/
+const sum_tota_line=ref({});
+
+/** Upp **/
+const sum_tota_unid=ref({});
+
+
 
 const headersGlobal = computed(() => {
   return [
@@ -67,6 +97,15 @@ const headersGlobal = computed(() => {
     {
       text: 'Codigo Lider',
       dataField: 'codi_sect',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      pinned: true
+    },
+    {
+      text: 'Nombre Lider',
+      dataField: 'nomb_lide',
       width: '150',
       align: 'center',
       cellsalign: 'center',
@@ -117,6 +156,7 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
       filtertype: 'checkedlist',
       aggregates: ['sum'],
+      // hidden: true,
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
       }
@@ -190,7 +230,8 @@ const headersGlobal = computed(() => {
       filtertype: 'checkedlist',
       aggregates: ['avg'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+          let tota_porc_re21=(sum_posi_eg21_ante.value>0 &&  sum_rete_pe21.value>0) ? sum_rete_pe21.value/sum_posi_eg21_ante.value:0;
+          return  (tota_porc_re21>0) ?  'T:'+(tota_porc_re21*100).toFixed(2)+'%':'T:' +0;
       }
     },
     {
@@ -213,8 +254,10 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
       filtertype: 'checkedlist',
       aggregates: ['avg'],
+
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+          let tota_porc_re42=(sum_posi_eg42_ante.value>0 &&  sum_rete_pe42.value>0) ? sum_rete_pe42.value/sum_posi_eg42_ante.value:0;
+          return  (tota_porc_re42>0) ?  'T:'+(tota_porc_re42*100).toFixed(2)+'%':'T:' +0;
       }
     },
     {
@@ -237,8 +280,10 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
       filtertype: 'checkedlist',
       aggregates: ['avg'],
+
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+          let tota_porc_re63=(sum_posi_eg63_ante.value>0 &&  sum_rete_pe63.value>0) ? sum_rete_pe63.value/sum_posi_eg63_ante.value:0;
+          return  (tota_porc_re63>0) ?  'T:'+(tota_porc_re63*100).toFixed(2)+'%':'T:' +0;
       }
     },
     {
@@ -250,7 +295,8 @@ const headersGlobal = computed(() => {
       filtertype: 'checkedlist',
       aggregates: ['avg'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2)+'%':'T:' +0;
+          let tota_porc_acti=(sum_tota_acti.value>0 &&  sum_tota_ingr.value>0 &&  sum_tota_rein.value>0 &&  sum_tota_pedi.value>0) ? (sum_tota_pedi.value- sum_tota_ingr.value-sum_tota_rein.value)/sum_tota_acti.value:0;
+          return  (tota_porc_acti>0) ?  'T:'+(tota_porc_acti*100).toFixed(2)+'%':'T:' +0;
       }
     },
     {
@@ -261,6 +307,7 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
       filtertype: 'checkedlist',
       aggregates: ['sum'],
+      hidden:true,
       aggregatesrenderer: function (aggregates) {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
       }
@@ -316,7 +363,9 @@ const headersGlobal = computed(() => {
       columngroup:"vent_recep",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        // sum_tota_pedi.value sum_tota_rece
+        let tota_ppp_rece= (sum_tota_pedi.value>0 && sum_tota_rece.value>0) ? (sum_tota_rece.value/sum_tota_pedi.value):0;
+        return  (tota_ppp_rece>0) ?  'T:'+tota_ppp_rece.toFixed(2):'T:' +0;
       }
     },
     {
@@ -342,7 +391,9 @@ const headersGlobal = computed(() => {
       columngroup: 'vent_line',
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        // sum_tota_pedi.value sum_tota_rece
+        let tota_ppp_line= (sum_tota_pedi.value>0 && sum_tota_line.value>0) ? (sum_tota_line.value/sum_tota_pedi.value):0;
+        return  (tota_ppp_line>0) ?  'T:'+tota_ppp_line.toFixed(2):'T:' +0;
       }
     },
     {
@@ -368,7 +419,9 @@ const headersGlobal = computed(() => {
       columngroup:"vent_fact",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        // sum_tota_pedi.value sum_tota_rece
+        let tota_ppp_fact= (sum_tota_fact.value>0 && sum_tota_rece.value>0) ? (sum_tota_fact.value/sum_tota_pedi.value):0;
+        return  (tota_ppp_fact>0) ?  'T:'+tota_ppp_fact.toFixed(2):'T:' +0;
       }
     },
     {
@@ -421,7 +474,8 @@ const headersGlobal = computed(() => {
       columngroup:"unid",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+          let tota_porc_re42=(sum_tota_unid.value>0 &&  sum_tota_pedi.value>0) ? sum_tota_unid.value/sum_tota_pedi.value:0;
+          return  (tota_porc_re42>0) ?  'T:'+(tota_porc_re42).toFixed(2):'T:' +0;
       }
     },
     {
@@ -434,7 +488,9 @@ const headersGlobal = computed(() => {
       columngroup:"unid",
       aggregates: ['sum'],
       aggregatesrenderer: function (aggregates) {
-          return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        // sum_tota_pedi.value sum_tota_rece
+        let tota_cop_unid= (sum_tota_unid.value>0 && sum_tota_line.value>0) ? (sum_tota_line.value/sum_tota_unid.value):0;
+        return  (tota_cop_unid>0) ?  'T:'+tota_cop_unid.toFixed(2):'T:' +0;
       }
     },
     {
@@ -523,7 +579,8 @@ const sourceGlobal = ref({
   {name: "rete_pe42",type:"string"},
   {name: "porc_re42",type:"string"},
   {name: "rete_pe63",type:"string"},
-  {name: "porc_re63",type:"string"}
+  {name: "porc_re63",type:"string"},
+  {name: "nomb_lide",type:"string"},
 ],
   datatype: 'json',
 });
@@ -531,9 +588,14 @@ const sourceGlobal = ref({
 
 const sourceLista = ref([
   {
+    label: 'Puntos Sueños Azzorti',
+    value: 'punt_suen_ases',
+    checked: true,
+  },
+  {
     label: 'Cumpleaños',
     value: 'fech_naci',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Barrio',
@@ -556,20 +618,11 @@ const sourceLista = ref([
     checked: true,
   },
   {
-    label: 'Cupo',
-    value: 'cupo_cred',
-    checked: false,
-  },
-  {
     label: 'Saldo',
     value: 'sald_docu',
     checked: true,
   },
-  {
-    label: 'Camp. ingr.',
-    value: 'camp_ingr',
-    checked: false,
-  },
+
   {
     label: 'Ult. camp1',
     value: 'codi_camp_1',
@@ -580,25 +633,16 @@ const sourceLista = ref([
     value: 'tota_publ_1',
     checked: true,
   },
-  {
-    label: 'Vta recep. ult. camp1',
-    value: 'vent_line_1',
-    checked: true,
-  },
-  {
-    label: 'Vta cata. ult. camp1',
-    value: 'vent_cata_1',
-    checked: true,
-  },
+  
   {
     label: 'Fact. ult. camp1',
     value: 'tota_fact_1',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Devo. ult. camp1',
     value: 'tota_devo_1',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Ult. camp2',
@@ -611,89 +655,65 @@ const sourceLista = ref([
     checked: true,
   },
   {
-    label: 'Vta recep. ult. camp2',
-    value: 'vent_line_2',
-    checked: true,
-  },
-  {
-    label: 'Vta cata. ult. camp2',
-    value: 'vent_cata_2',
-    checked: true,
-  },
-  {
     label: 'Fact. ult. camp2',
     value: 'tota_fact_2',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Devo. ult. camp2',
     value: 'tota_devo_2',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Ult. camp3',
     value: 'codi_camp_3',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Ptos azzo. ult. camp3',
     value: 'tota_publ_3',
-    checked: false,
-  },
-  {
-    label: 'Vta recep. ult. camp3',
-    value: 'vent_line_3',
-    checked: false,
-  },
-  {
-    label: 'Vta cata. ult. camp3',
-    value: 'vent_cata_3',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Fact. ult. camp3',
     value: 'tota_fact_3',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Devo. ult. camp3',
     value: 'tota_devo_3',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Ult. camp4',
     value: 'codi_camp_4',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Ptos azzo. ult. camp4',
     value: 'tota_publ_4',
-    checked: false,
-  },
-  {
-    label: 'Vta. linea rece. ult. camp4',
-    value: 'vent_line_4',
-    checked: false,
-  },
-  {
-    label: 'Vta. cata. rece. ult. camp4',
-    value: 'vent_cata_4',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Fact. ult. camp4',
     value: 'tota_fact_4',
-    checked: false,
+    checked: true,
   },
   {
     label: 'Devo. ult. camp4',
     value: 'tota_devo_4',
-    checked: false,
+    checked: true,
   },
+  // {
+  //   label: 'Status',
+  //   value: 'tipo_clie',
+  //   checked: true,
+  // },
+
   {
     label: 'Estado pedido',
     value: 'esta_pedi',
-    checked: false,
+    checked: true,
   },
 ])
 
@@ -715,13 +735,13 @@ const headersDetalleTotal = computed(() => {
 
     },
     {
-      text: 'Sector',
+      text: 'Codigo Lider',
       dataField: 'codi_sect',
       width: '100',
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      hidden: true, // esta oculta la columna
+      hidden: false, // esta oculta la columna
     },
     {
       text: 'Nro ident.',
@@ -729,7 +749,8 @@ const headersDetalleTotal = computed(() => {
       width: '110',
       align: 'center',
       cellsalign: 'center',
-      // filtertype: 'checkedlist'
+      hidden: false,// esta columna no esta oculta 
+      filtertype: 'checkedlist'
     },
     {
       text: 'Nombre(s) y apellido(s)',
@@ -737,6 +758,7 @@ const headersDetalleTotal = computed(() => {
       width: '270',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta 
       // filtertype: 'checkedlist'
     },
     {
@@ -745,7 +767,7 @@ const headersDetalleTotal = computed(() => {
       width: '140',
       align: 'center',
       cellsalign: 'center',
-      hidden: true, // esta oculta la columna
+      hidden: false,// esta columna no esta oculta 
       // filtertype: 'checkedlist'     
        // , aggregates: ['count']
     },
@@ -755,7 +777,8 @@ const headersDetalleTotal = computed(() => {
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: false,// esta columna no esta oculta 
     },
     {
       text: 'Dirección',
@@ -763,6 +786,7 @@ const headersDetalleTotal = computed(() => {
       width: '180',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta
       // filtertype: 'checkedlist'
     },
     {
@@ -771,6 +795,7 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta
       // filtertype: 'checkedlist'
     },
     {
@@ -779,6 +804,7 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta
       // filtertype: 'checkedlist'
     },
     {
@@ -787,7 +813,16 @@ const headersDetalleTotal = computed(() => {
       width: '180',
       align: 'center',
       cellsalign: 'center',
+      hidden: false,// esta columna no esta oculta
       filtertype: 'checkedlist'
+    },
+		{
+      text: 'Puntos Sueños Azzorti',
+      dataField: 'punt_suen_ases',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      hidden: false, // esta columna no esta oculta
     },
     {
       text: 'Cupo',
@@ -804,7 +839,8 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: true, // esta oculta la columna
     },
     {
       text: 'Camp. Ingr.',
@@ -823,8 +859,10 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: ' bg-primary-light',
     },
+
     {
       text: 'Ptos. Azzo. Ult. Camp1',
       dataField: 'tota_publ_1',
@@ -832,6 +870,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: ' bg-primary-light',
     },
     {
@@ -841,6 +880,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: ' bg-primary-light',
     },
     {
@@ -849,6 +889,7 @@ const headersDetalleTotal = computed(() => {
       width: '100',
       align: 'center',
       cellsalign: 'center',
+      hidden: false, // esta columna no esta oculta
       cellclassname: ' bg-primary-light',
       filtertype: 'checkedlist'
     },
@@ -859,6 +900,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: 'bg-success-light',
     },
     {
@@ -868,6 +910,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: 'text-white bg-success-light',
     },
     {
@@ -877,6 +920,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: 'text-white bg-success-light',
     },
     {
@@ -886,79 +930,89 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
       cellclassname: 'text-white bg-success-light',
     },
-    // {
-    //   text: 'Ult. Camp3',
-    //   dataField: 'codi_camp_3',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Ptos. Azzo. Ult. Camp3',
-    //   dataField: 'tota_publ_3',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Fact Ult. Camp3',
-    //   dataField: 'tota_fact_3',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Devo Ult. Camp3',
-    //   dataField: 'tota_devo_3',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Ult. Camp4',
-    //   dataField: 'codi_camp_4',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Ptos. Azzo. Ult. Camp4',
-    //   dataField: 'tota_publ_4',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Fact Ult. Camp4',
-    //   dataField: 'tota_fact_4',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Devo Ult. Camp4',
-    //   dataField: 'tota_devo_4',
-    //   width: '100',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
+    {
+      text: 'Ult. Camp3',
+      dataField: 'codi_camp_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Ptos. Azzo. Ult. Camp3',
+      dataField: 'tota_publ_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Fact Ult. Camp3',
+      dataField: 'tota_fact_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Devo Ult. Camp3',
+      dataField: 'tota_devo_3',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Ult. Camp4',
+      dataField: 'codi_camp_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Ptos. Azzo. Ult. Camp4',
+      dataField: 'tota_publ_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Fact Ult. Camp4',
+      dataField: 'tota_fact_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
+    {
+      text: 'Devo Ult. Camp4',
+      dataField: 'tota_devo_4',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
+    },
     {
       text: 'Estado Pedido',
       dataField: 'esta_pedi',
       width: '150',
       align: 'center',
       cellsalign: 'center',
-      filtertype: 'checkedlist'
+      filtertype: 'checkedlist',
+      hidden: false, // esta columna no esta oculta
     },
     
   ]
@@ -995,6 +1049,7 @@ const sourceDetalle = ref({
   {name: "tota_publ_4",type:"string"},
   {name: "tota_fact_4",type:"string"},
   {name: "tota_devo_4",type:"string"},
+	{name: "punt_suen_ases",type:"string"},
   {name: "esta_pedi",type:"string"}],
   datatype: 'json',
 });
@@ -1027,143 +1082,143 @@ const selectedColumna = ref([
   'desc_segm',
 ])
 
-const headersDetalle = computed(() => {
-  if(selectedColumna.value.length > 0) {
-    return headersDetalleTotal.filter(header => selectedColumna.value.includes(header.key))
-  } else {
-    return []
-  }
-})
+// const headersDetalle = computed(() => {
+//   if(selectedColumna.value.length > 0) {
+//     return headersDetalleTotal.filter(header => selectedColumna.value.includes(header.key))
+//   } else {
+//     return []
+//   }
+// })
 
-const headersColumna = [
-  {
-    title: 'Columna',
-    key: 'nomb_colu',
-  },
-]
+// const headersColumna = [
+//   {
+//     title: 'Columna',
+//     key: 'nomb_colu',
+//   },
+// ]
 
-const itemsColumna = [
-  {
-    nomb_colu: 'Zona',
-    codi_colu: 'codi_zona',
-  },
-  {
-    nomb_colu: 'Sector',
-    codi_colu: 'codi_sect',
-  },
-  {
-    nomb_colu: 'Cumpleaños',
-    codi_colu: 'fech_naci',
-  },
-  {
-    nomb_colu: 'Distrito',
-    codi_colu: 'nomb_barr',
-  },
-  {
-    nomb_colu: 'Dirección',
-    codi_colu: 'dire_terc',
-  },
-  {
-    nomb_colu: 'Teléfono 1',
-    codi_colu: 'tele_ter1',
-  },
-  {
-    nomb_colu: 'Teléfono 2',
-    codi_colu: 'tele_ter2',
-  },
-  {
-    nomb_colu: 'Cupo',
-    codi_colu: 'cupo_cred',
-  },
-  {
-    nomb_colu: 'Saldo',
-    codi_colu: 'sald_docu',
-  },
-  {
-    nomb_colu: 'Camp. ingr.',
-    codi_colu: 'camp_ingr',
-  },
-  {
-    nomb_colu: 'Ult. camp1',
-    codi_colu: 'codi_camp_1',
-  },
-  {
-    nomb_colu: 'Ptos azzo. ult. camp1',
-    codi_colu: 'tota_publ_1',
-  },
-  {
-    nomb_colu: 'Fact. ult. camp1',
-    codi_colu: 'tota_fact_1',
-  },
-  {
-    nomb_colu: 'Devo. ult. camp1',
-    codi_colu: 'tota_devo_1',
-  },
-  {
-    nomb_colu: 'Ult. camp2',
-    codi_colu: 'codi_camp_2',
-  },
-  {
-    nomb_colu: 'Ptos azzo. ult. camp2',
-    codi_colu: 'tota_publ_2',
-  },
-  {
-    nomb_colu: 'Fact. ult. camp2',
-    codi_colu: 'tota_fact_2',
-  },
-  {
-    nomb_colu: 'Devo. ult. camp2',
-    codi_colu: 'tota_devo_2',
-  },
-  {
-    nomb_colu: 'Ult. camp3',
-    codi_colu: 'codi_camp_3',
-  },
-  {
-    nomb_colu: 'Ptos azzo. ult. camp3',
-    codi_colu: 'tota_publ_3',
-  },
-  {
-    nomb_colu: 'Fact. ult. camp3',
-    codi_colu: 'tota_fact_3',
-  },
-  {
-    nomb_colu: 'Devo. ult. camp3',
-    codi_colu: 'tota_devo_3',
-  },
-  {
-    nomb_colu: 'Ult. camp4',
-    codi_colu: 'codi_camp_4',
-  },
-  {
-    nomb_colu: 'Ptos azzo. ult. camp4',
-    codi_colu: 'tota_publ_4',
-  },
-  {
-    nomb_colu: 'Fact. ult. camp4',
-    codi_colu: 'tota_fact_4',
-  },
-  {
-    nomb_colu: 'Devo. ult. camp4',
-    codi_colu: 'tota_devo_4',
-  },
-  {
-    nomb_colu: 'Estado pedido',
-    codi_colu: 'esta_pedi',
-  },
-  {
-    nomb_colu: 'Gemma',
-    codi_colu: 'clie_gemm',
-  },
-  {
-    nomb_colu: 'Nivel',
-    codi_colu: 'nive_gemm',
-  },
-  {
-    nomb_colu: 'Creciendo con azzorti',
-    codi_colu: 'desc_segm',
-  },
-]
+// const itemsColumna = [
+//   {
+//     nomb_colu: 'Zona',
+//     codi_colu: 'codi_zona',
+//   },
+//   {
+//     nomb_colu: 'Sector',
+//     codi_colu: 'codi_sect',
+//   },
+//   {
+//     nomb_colu: 'Cumpleaños',
+//     codi_colu: 'fech_naci',
+//   },
+//   {
+//     nomb_colu: 'Distrito',
+//     codi_colu: 'nomb_barr',
+//   },
+//   {
+//     nomb_colu: 'Dirección',
+//     codi_colu: 'dire_terc',
+//   },
+//   {
+//     nomb_colu: 'Teléfono 1',
+//     codi_colu: 'tele_ter1',
+//   },
+//   {
+//     nomb_colu: 'Teléfono 2',
+//     codi_colu: 'tele_ter2',
+//   },
+//   {
+//     nomb_colu: 'Cupo',
+//     codi_colu: 'cupo_cred',
+//   },
+//   {
+//     nomb_colu: 'Saldo',
+//     codi_colu: 'sald_docu',
+//   },
+//   {
+//     nomb_colu: 'Camp. ingr.',
+//     codi_colu: 'camp_ingr',
+//   },
+//   {
+//     nomb_colu: 'Ult. camp1',
+//     codi_colu: 'codi_camp_1',
+//   },
+//   {
+//     nomb_colu: 'Ptos azzo. ult. camp1',
+//     codi_colu: 'tota_publ_1',
+//   },
+//   {
+//     nomb_colu: 'Fact. ult. camp1',
+//     codi_colu: 'tota_fact_1',
+//   },
+//   {
+//     nomb_colu: 'Devo. ult. camp1',
+//     codi_colu: 'tota_devo_1',
+//   },
+//   {
+//     nomb_colu: 'Ult. camp2',
+//     codi_colu: 'codi_camp_2',
+//   },
+//   {
+//     nomb_colu: 'Ptos azzo. ult. camp2',
+//     codi_colu: 'tota_publ_2',
+//   },
+//   {
+//     nomb_colu: 'Fact. ult. camp2',
+//     codi_colu: 'tota_fact_2',
+//   },
+//   {
+//     nomb_colu: 'Devo. ult. camp2',
+//     codi_colu: 'tota_devo_2',
+//   },
+//   {
+//     nomb_colu: 'Ult. camp3',
+//     codi_colu: 'codi_camp_3',
+//   },
+//   {
+//     nomb_colu: 'Ptos azzo. ult. camp3',
+//     codi_colu: 'tota_publ_3',
+//   },
+//   {
+//     nomb_colu: 'Fact. ult. camp3',
+//     codi_colu: 'tota_fact_3',
+//   },
+//   {
+//     nomb_colu: 'Devo. ult. camp3',
+//     codi_colu: 'tota_devo_3',
+//   },
+//   {
+//     nomb_colu: 'Ult. camp4',
+//     codi_colu: 'codi_camp_4',
+//   },
+//   {
+//     nomb_colu: 'Ptos azzo. ult. camp4',
+//     codi_colu: 'tota_publ_4',
+//   },
+//   {
+//     nomb_colu: 'Fact. ult. camp4',
+//     codi_colu: 'tota_fact_4',
+//   },
+//   {
+//     nomb_colu: 'Devo. ult. camp4',
+//     codi_colu: 'tota_devo_4',
+//   },
+//   {
+//     nomb_colu: 'Estado pedido',
+//     codi_colu: 'esta_pedi',
+//   },
+//   {
+//     nomb_colu: 'Gemma',
+//     codi_colu: 'clie_gemm',
+//   },
+//   {
+//     nomb_colu: 'Nivel',
+//     codi_colu: 'nive_gemm',
+//   },
+//   {
+//     nomb_colu: 'Creciendo con azzorti',
+//     codi_colu: 'desc_segm',
+//   },
+// ]
 
 const isOpen = ref(false)
 const itemsGlobal = ref([])
@@ -1260,6 +1315,34 @@ const onGenerar = async () => {
     })
 
     itemsGlobal.value = data.data_glob
+    console.log(data.data_glob)
+    /** Asignacion valores suma retePe 21,42 y 63 **/
+    sum_posi_eg21_ante.value = itemsGlobal.value.reduce((a, b) => a + Number(b.posi_eg21_ante), 0);
+    sum_rete_pe21.value = itemsGlobal.value.reduce((a, b) => a + Number(b.rete_pe21), 0);
+    sum_posi_eg42_ante.value = itemsGlobal.value.reduce((a, b) => a + Number(b.posi_eg42_ante), 0);
+    sum_rete_pe42.value = itemsGlobal.value.reduce((a, b) => a + Number(b.rete_pe42), 0)
+    sum_posi_eg63_ante.value = itemsGlobal.value.reduce((a, b) => a + Number(b.posi_egre_ante), 0);
+    sum_rete_pe63.value = itemsGlobal.value.reduce((a, b) => a + Number(b.rete_pe63), 0);
+
+    /** Asignacion valores suma para porcentaje de actividad **/
+    sum_tota_acti.value = itemsGlobal.value.reduce((a, b) => a + Number(b.acti_inic), 0);
+    sum_tota_ingr.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_ingr), 0);
+    sum_tota_rein.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_rein), 0);
+    sum_tota_pedi.value = itemsGlobal.value.reduce((a, b) => a + Number(b.nume_pedi), 0);
+
+    /** Asignacion valores suma para ppp rece **/
+    sum_tota_rece.value = itemsGlobal.value.reduce((a, b) => a + Number(b.vent_rece), 0);
+
+    /** Asignacion valores suma para ppp fact **/
+    sum_tota_fact.value =itemsGlobal.value.reduce((a, b) => a + Number(b.tota_fact), 0);
+
+    /** Asignacion valores suma para ppp line **/
+    sum_tota_line.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_line),0);
+
+    /**Asignacion valores suma para upp */
+    sum_tota_unid.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_unid),0);
+
+
     itemsDetalle.value = data.data_deta
     sourceGlobal.value.localdata = data.data_glob
     refGridGlobal.value.updatebounddata('cells')
@@ -1307,8 +1390,18 @@ const onExcel = async tipo => {
     console.log(tipo)
 
      // Exportar datos manualmente a XML
-     const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
-     console.log(rows)
+     const rowsGlobal = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula 1era tabla
+     const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula 2da tabla
+     
+     //obtener columnas de la cuadrícula
+     const columns = refGridDetalle.value.columns;
+     let visi_colu=[]
+     columns.forEach((column, index) => {
+				if (!column.hidden || column.datafield == 'codi_sect') {
+					visi_colu.push(column.datafield)
+				}
+    	});
+
     if (!rows || rows.length === 0) {
       appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
       appStore.color("error");
@@ -1318,7 +1411,7 @@ const onExcel = async tipo => {
 
     let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
-    itemsGlobal.value.forEach((row, index) => {
+    rowsGlobal.forEach((row, index) => {
       xmlDataGlob += `  <row id="${index + 1}">\n`;
       for (const [key, value] of Object.entries(row)) {
         xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
@@ -1330,21 +1423,28 @@ const onExcel = async tipo => {
     
     let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
-    itemsDetalle.value.forEach((row, index) => {
+    rows.forEach((row, index) => {
       xmlDataDeta += `  <row id="${index + 1}">\n`;
       for (const [key, value] of Object.entries(row)) {
-        xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        if (visi_colu.includes(key)) {
+          xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        } 
       }
       xmlDataDeta += `  </row>\n`;
     });
 
     xmlDataDeta += `</rows>`;
-
+    let colum_info=[]
+    columns.forEach((column, index) => {
+      if (!column.hidden || column.datafield == 'codi_sect') {
+        colum_info.push({"dataField":column.datafield,"text":column.text})
+      }
+    });
 
     const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/excel`, {
       method: "POST",
       body: {
-        columnas:  headersDetalleTotal.value,
+        columnas:colum_info,
         tipo: tipo,
         data_glob: xmlDataGlob,
         data_deta: xmlDataDeta,
@@ -1362,62 +1462,75 @@ const onExcel = async tipo => {
 
 const onPdf = async tipo => {
   try {
+		appStore.mensaje('Generando archivo')
+		// Exportar datos manualmente a XML
+    const rowsGlobal = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula 1era tabla
+    const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula 2da tabla
+    
+    const columns = refGridDetalle.value.columns;
+    let visi_colu=[]
+    columns.forEach((column, index) => {
+			if (!column.hidden || column.datafield == 'codi_sect') {
+				visi_colu.push(column.datafield)
+			}
+		});
 
-appStore.mensaje('Generando archivo')
-appStore.loading(true)
-console.log(tipo)
+		if (!rows || rows.length === 0) {
+			appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
+			appStore.color("error");
+			appStore.snackbar(true);
+			return;
+		}
 
- // Exportar datos manualmente a XML
- const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
- console.log(rows)
-  if (!rows || rows.length === 0) {
-    appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
-    appStore.color("error");
-    appStore.snackbar(true);
-    return;
-  }
+		let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
-  let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+    rowsGlobal.forEach((row, index) => {
+			xmlDataGlob += `  <row id="${index + 1}">\n`;
+			for (const [key, value] of Object.entries(row)) {
+				xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
+			}
+			xmlDataGlob += `  </row>\n`;
+		});
 
-  itemsGlobal.value.forEach((row, index) => {
-    xmlDataGlob += `  <row id="${index + 1}">\n`;
-    for (const [key, value] of Object.entries(row)) {
-      xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
-    }
-    xmlDataGlob += `  </row>\n`;
-  });
+		xmlDataGlob += `</rows>`;
 
-  xmlDataGlob += `</rows>`;
+		let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
-  let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+    rows.forEach((row, index) => {
+			xmlDataDeta += `  <row id="${index + 1}">\n`;
+			for (const [key, value] of Object.entries(row)) {
+				if (visi_colu.includes(key)) {
+          xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        }
+			}
+			xmlDataDeta += `  </row>\n`;
+		});
 
-  itemsDetalle.value.forEach((row, index) => {
-    xmlDataDeta += `  <row id="${index + 1}">\n`;
-    for (const [key, value] of Object.entries(row)) {
-      xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
-    }
-    xmlDataDeta += `  </row>\n`;
-  });
+		xmlDataDeta += `</rows>`;
 
-  xmlDataDeta += `</rows>`;
+		let colum_info=[]
+    columns.forEach((column, index) => {
+      if (!column.hidden || column.datafield == 'codi_sect') {
+        colum_info.push({"dataField":column.datafield,"text":column.text})
+      }
+    });
 
+		const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/pdf`, {
+			method: "POST",
+			body: {
+				columnas:colum_info,
+				tipo: tipo,
+				data_glob: xmlDataGlob,
+				data_deta: xmlDataDeta,
+			},
+		})
 
-  const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/pdf`, {
-    method: "POST",
-    body: {
-      columnas:  headersDetalleTotal.value,
-      tipo: tipo,
-      data_glob: xmlDataGlob,
-      data_deta: xmlDataDeta,
-    },
-  })
-  console.log(data)
-  window.open(`${$base}/temporales/${data}`, '_blank')
+		window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
-  console.log(e)
+  	console.log(e)
   }
   finally {
-  appStore.loading(false)
+  	appStore.loading(false)
   }
 }
 
@@ -1446,6 +1559,19 @@ const itemsDetalleVisible = computed(() => {
   
   return itemsDetalle.value.slice(start, end)
 })
+
+// Función para manejar la selección de columnas es decir ocultar o mostrar esto aplica para la 2da tabla 
+const onSeleccionar = event => {
+  refGridDetalle.value.beginupdate()
+  if (event.args.checked) {
+    sourceLista.value[event.args.item.index].checked = true
+    refGridDetalle.value.showcolumn(event.args.item.value)
+  } else {
+    sourceLista.value[event.args.item.index].checked = false
+    refGridDetalle.value.hidecolumn(event.args.item.value)
+  }
+  refGridDetalle.value.endupdate()
+}
 </script>
 
 <template>
@@ -1482,24 +1608,23 @@ const itemsDetalleVisible = computed(() => {
                 location="start"
               >
                 <ol class="mx-6 my-2 text-white">
+                  <li>Incorporación</li>
+                  <li>Reincorporación</li>
                   <li>Consecutiva</li>
+                  <li>Consecutiva 2do pedido</li>
                   <li>Ret. Peg21</li>
                   <li>Ret. Peg42</li>
                   <li>Ret. Peg63</li>
                   <li>Reingreso</li>
-                  <li>Incorporación</li>
-                  <li>Reincorporación</li>
                   <li>Peg21</li>
                   <li>Peg42</li>
                   <li>Peg63</li>
-                  <li>
-                    Posible Reingreso &lt;= COP. 25.00
-                  </li>
+                  <li>Posible Reingreso</li>
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 1</VListItemTitle>
             </VListItem>
-            <VListItem @click="onPdf('2')">
+            <!-- <VListItem @click="onPdf('2')">
               <template #prepend>
                 <VIcon
                   class="me-2"
@@ -1517,9 +1642,10 @@ const itemsDetalleVisible = computed(() => {
                   <li>Ret. Peg21</li>
                   <li>Ret. Peg42</li>
                   <li>Ret. Peg63</li>
+                  <li>Reingreso</li>
                   <li>Incorporación</li>
                   <li>Reincorporación</li>
-                  <li>Reingreso</li>
+                  <li>Consecutiva 2do pedido</li>
                   <li>Peg21</li>
                   <li>Peg42</li>
                   <li>Peg63</li>
@@ -1527,8 +1653,8 @@ const itemsDetalleVisible = computed(() => {
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 2</VListItemTitle>
-            </VListItem>
-            <VListItem @click="onPdf('3')">
+            </VListItem> -->
+            <!-- <VListItem @click="onPdf('3')">
               <template #prepend>
                 <VIcon
                   class="me-2"
@@ -1580,12 +1706,10 @@ const itemsDetalleVisible = computed(() => {
                   <li>Peg21</li>
                   <li>Peg42</li>
                   <li>Peg63</li>
-                  <li>Posible Reingreso</li>
-                  <li>Posible Reincorporación &lt;= COP. 25.00</li>
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 4</VListItemTitle>
-            </VListItem>
+            </VListItem> -->
           </VList>
         </VMenu>
         <VMenu>

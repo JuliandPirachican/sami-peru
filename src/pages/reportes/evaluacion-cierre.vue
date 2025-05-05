@@ -1,9 +1,11 @@
 <!-- eslint-disable camelcase -->
 <script setup>
 import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
 import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue";
 import { useDisplay } from 'vuetify';
 import { VDataTable } from 'vuetify/labs/VDataTable';
+
 
 definePage({
   meta: {
@@ -14,6 +16,12 @@ definePage({
 
 const { mobile } = useDisplay()
 const appStore = useAppStore()
+
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 
 const formulario = ref({
   campana: null,
@@ -38,7 +46,7 @@ const cabeceraGlobal = [
     key: 'codi_zona',
   },
   {
-    title: 'Sector',
+    title: 'Codigo Lider',
     key: 'codi_sect',
   },
   {
@@ -305,14 +313,12 @@ const clasePorcentajeActividad = (row, columnfield, value) => {
 
 const claseObjetivoRetencionConsecutiva = (row, columnfield, value) => {
   const dataRecord = refGridGlobal.value.getrowdata(row)
-  const objeReteSist = parseInt(dataRecord.obje_rete_cons_sist)
+  // const objeReteSist = parseInt(dataRecord.obje_rete_cons_sist)
   const objeRete = parseInt(value)
-  let porcReteCons = 100 * (objeRete / objeReteSist)
-  porcReteCons = parseFloat(porcReteCons).toFixed(2)
+  let porcReteCons = 100 * (objeRete)
+  porcReteCons = parseFloat(objeRete).toFixed(2)
 
-  if (objeReteSist === 0) {
-    return ''
-  } else if (porcReteCons >= 100) {
+  if (porcReteCons >= 100) {
     return 'text-success'
   } else if (porcReteCons >= 80 && porcReteCons < 100) {
     return 'text-warning'
@@ -532,13 +538,13 @@ const columnasGlobal = [
     pinned: true,
   },
   {
-    text: 'Sector',
+    text: 'Codigo Lider',
     dataField: 'codi_sect',
     width: '60',
     align: 'center',
     cellsalign: 'center',
     pinned: true,
-    hidden: true,
+    hidden: false,
   },
   {
     text: 'Lider',
@@ -970,7 +976,7 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'cons',
-    cellsrenderer: claseObjetivoRetencionConsecutiva,
+    cellclassname: claseObjetivoRetencionConsecutiva,
   },
   {
     text: 'Facturado',
@@ -1283,7 +1289,7 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'pe21',
-    cellsrenderer: claseObjetivoPeg21,
+    cellclassname: claseObjetivoPeg21,
   },
   {
     text: 'Ret. peg21',
@@ -1354,7 +1360,7 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'pe42',
-    cellsrenderer: claseObjetivoPeg42,
+    cellclassname: claseObjetivoPeg42,
   },
   {
     text: 'Ret. peg42',
@@ -1448,7 +1454,7 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'pe63',
-    cellsrenderer: claseObjetivoPeg63,
+    cellclassname: claseObjetivoPeg63,
   },
   {
     text: 'Ret. peg63',
@@ -1542,7 +1548,7 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'suma',
-    cellsrenderer: claseObjetivoPegs,
+    cellclassname: claseObjetivoPegs,
   },
   {
     text: 'Ret. pegs',
@@ -1636,7 +1642,7 @@ const columnasGlobal = [
         },
       },
     ],
-    cellsrenderer: claseObjetivoReingreso,
+    cellclassname: claseObjetivoReingreso,
   },
   {
     text: 'Facturado',
@@ -2163,6 +2169,9 @@ const obtenerZona = async () => {
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
       method: "get",
+      query: {
+        codigo: userData.codi_perf,
+      },
     })
 
     const itemZona = data.data_glob
@@ -2436,12 +2445,12 @@ const onClose = () => {
                       <td>{{ general.facturadoIncorporacion }}</td>
                       <td>{{ general.cumplimientoIncorporacion }}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td>Retención</td>
                       <td>{{ general.objetivoRetencion }}</td>
                       <td>{{ general.facturadoRetencion }}</td>
                       <td>{{ general.cumplimientoRetencion }}</td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </VTable>
               </VCardText>

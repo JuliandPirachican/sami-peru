@@ -1,7 +1,9 @@
 <script setup>
 import { useAppStore } from '@/stores/app';
+import { EncryptStorage } from 'encrypt-storage';
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 import { useDisplay } from 'vuetify';
+
 
 definePage({
   meta: {
@@ -9,6 +11,12 @@ definePage({
     subject: 'colombia/repo_cons_asig_sect',
   },
 })
+
+const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
+  storageType: 'localStorage',
+})
+
+const userData = encryptStorage.getItem('userData')
 
 const { mobile } = useDisplay()
 const appStore = useAppStore()
@@ -178,6 +186,9 @@ const obtenerZona = async () => {
 
     const { data } = await $api(`/api/comun/v1/zonas`, {
       method: "GET",
+      query: {
+        codigo: userData.codi_perf,
+      },
     })
     
 

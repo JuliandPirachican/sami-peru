@@ -345,6 +345,13 @@ export default [
     subject: 'colombia/repo_vinc_digi', 
     action: 'colombia/repo_vinc_digi', 
   },
+  { 
+    title: 'Repo Pedidos Digitados', 
+    to: 'reportes-repo-pedi-digi', 
+    icon: { icon: 'tabler-report' },
+    subject: 'colombia/repo_pedi_digi', 
+    action: 'colombia/repo_pedi_digi', 
+  },
   
 ]
  

@@ -88,6 +88,7 @@ const itemsPegs = ref([])
 const itemsCapitalizacion = ref([])
 const itemsCanje = ref([])
 const itemsCobranza = ref([])
+const itemsCobranza31dias = ref([])
 const itemsNivel = ref([])
 
 const campanaOptions = ref([])
@@ -234,6 +235,7 @@ const onGenerar = async () => {
     itemsCapitalizacion.value = data.data_capi
     itemsCanje.value = data.data_canj
     itemsCobranza.value = data.data_cobr
+    itemsCobranza31dias.value = data.data_cobr31di
     itemsNivel.value = data.data_nive
 
     
@@ -290,6 +292,7 @@ const onExcel = async () => {
         pegs: itemsPegs.value,
         capitalizacion: itemsCapitalizacion.value,
         cobranza: itemsCobranza.value,
+        cobranza_31dias: itemsCobranza31dias.value,
         canjes: itemsCanje.value,
         nivel: itemsNivel.value,
         cabecera: headers.value,
@@ -405,16 +408,17 @@ const inicioVariables = () => {
       codi_camp_5: '0.00',
       codi_camp_6: '0.00',
       tota_camp: '0.00',
-    }, {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
+    }
+    // , {
+    //   nomb_conc: 'Objetivo',
+    //   codi_camp_1: '0.00',
+    //   codi_camp_2: '0.00',
+    //   codi_camp_3: '0.00',
+    //   codi_camp_4: '0.00',
+    //   codi_camp_5: '0.00',
+    //   codi_camp_6: '0.00',
+    //   tota_camp: '0.00',
+    // },
   ]
   itemsNivel.value = [
     {
@@ -439,7 +443,7 @@ const inicioVariables = () => {
       codi_camp_6: '0.00',
       tota_camp: '0.00',
     }, {
-      nomb_conc: '% Cumplimiento',
+      nomb_conc: '% C&D',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
@@ -470,46 +474,17 @@ const inicioVariables = () => {
       tota_camp: '0.00',
     },
   ]
-  itemsCapitalizacion.value = [
+
+  itemsCobranza31dias.value = [
     {
       nomb_conc: 'Facturado',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
-    }, {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
-    },
-  ]
-  itemsPegs.value =  [
-    {
-      nomb_conc: 'Facturado',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
-    }, {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
+      codi_camp_1: '0.00',
+      codi_camp_2: '0.00',
+      codi_camp_3: '0.00',
+      codi_camp_4: '0.00',
+      codi_camp_5: '0.00',
+      codi_camp_6: '0.00',
+      tota_camp: '0.00',
     }, {
       nomb_conc: '% Cumplimiento',
       codi_camp_1: '0.00',
@@ -520,6 +495,79 @@ const inicioVariables = () => {
       codi_camp_6: '0.00',
       tota_camp: '0.00',
     },
+  ]
+  itemsCapitalizacion.value = [
+    {
+      nomb_conc: 'Facturado',
+      codi_camp_1: '0',
+      codi_camp_2: '0',
+      codi_camp_3: '0',
+      codi_camp_4: '0',
+      codi_camp_5: '0',
+      codi_camp_6: '0',
+      tota_camp: '0',
+    },
+    //  {
+    //   nomb_conc: 'Objetivo',
+    //   codi_camp_1: '0',
+    //   codi_camp_2: '0',
+    //   codi_camp_3: '0',
+    //   codi_camp_4: '0',
+    //   codi_camp_5: '0',
+    //   codi_camp_6: '0',
+    //   tota_camp: '0',
+    // },
+  ]
+  itemsPegs.value =  [
+    {
+      nomb_conc: 'Facturado PEG21',
+      codi_camp_1: '0',
+      codi_camp_2: '0',
+      codi_camp_3: '0',
+      codi_camp_4: '0',
+      codi_camp_5: '0',
+      codi_camp_6: '0',
+      tota_camp: '0',
+    },
+    {
+      nomb_conc: 'Facturado PEG42',
+      codi_camp_1: '0',
+      codi_camp_2: '0',
+      codi_camp_3: '0',
+      codi_camp_4: '0',
+      codi_camp_5: '0',
+      codi_camp_6: '0',
+      tota_camp: '0',
+    },
+    {
+      nomb_conc: 'Facturado PEG63',
+      codi_camp_1: '0',
+      codi_camp_2: '0',
+      codi_camp_3: '0',
+      codi_camp_4: '0',
+      codi_camp_5: '0',
+      codi_camp_6: '0',
+      tota_camp: '0',
+    }
+    // , {
+    //   nomb_conc: 'Objetivo',
+    //   codi_camp_1: '0',
+    //   codi_camp_2: '0',
+    //   codi_camp_3: '0',
+    //   codi_camp_4: '0',
+    //   codi_camp_5: '0',
+    //   codi_camp_6: '0',
+    //   tota_camp: '0',
+    // }, {
+    //   nomb_conc: '% Cumplimiento',
+    //   codi_camp_1: '0.00',
+    //   codi_camp_2: '0.00',
+    //   codi_camp_3: '0.00',
+    //   codi_camp_4: '0.00',
+    //   codi_camp_5: '0.00',
+    //   codi_camp_6: '0.00',
+    //   tota_camp: '0.00',
+    // },
   ]
   itemsConsecutivaCuarto.value = [
     {
@@ -531,25 +579,26 @@ const inicioVariables = () => {
       codi_camp_5: '0',
       codi_camp_6: '0',
       tota_camp: '0',
-    }, {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
-    }, {
-      nomb_conc: '% Cumplimiento',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
+    }, 
+    // {
+    //   nomb_conc: 'Objetivo',
+    //   codi_camp_1: '0',
+    //   codi_camp_2: '0',
+    //   codi_camp_3: '0',
+    //   codi_camp_4: '0',
+    //   codi_camp_5: '0',
+    //   codi_camp_6: '0',
+    //   tota_camp: '0',
+    // }, {
+    //   nomb_conc: '% Cumplimiento',
+    //   codi_camp_1: '0.00',
+    //   codi_camp_2: '0.00',
+    //   codi_camp_3: '0.00',
+    //   codi_camp_4: '0.00',
+    //   codi_camp_5: '0.00',
+    //   codi_camp_6: '0.00',
+    //   tota_camp: '0.00',
+    // },
   ]
   itemsConsecutivaTercer.value =  [
     {
@@ -561,25 +610,26 @@ const inicioVariables = () => {
       codi_camp_5: '0',
       codi_camp_6: '0',
       tota_camp: '0',
-    }, {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
-    }, {
-      nomb_conc: '% Cumplimiento',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
+    }, 
+    // {
+    //   nomb_conc: 'Objetivo',
+    //   codi_camp_1: '0',
+    //   codi_camp_2: '0',
+    //   codi_camp_3: '0',
+    //   codi_camp_4: '0',
+    //   codi_camp_5: '0',
+    //   codi_camp_6: '0',
+    //   tota_camp: '0',
+    // }, {
+    //   nomb_conc: '% Cumplimiento',
+    //   codi_camp_1: '0.00',
+    //   codi_camp_2: '0.00',
+    //   codi_camp_3: '0.00',
+    //   codi_camp_4: '0.00',
+    //   codi_camp_5: '0.00',
+    //   codi_camp_6: '0.00',
+    //   tota_camp: '0.00',
+    // },
   ]
   itemsConsecutivaSegundo.value = [
     {
@@ -591,25 +641,26 @@ const inicioVariables = () => {
       codi_camp_5: '0',
       codi_camp_6: '0',
       tota_camp: '0',
-    }, {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
-    }, {
-      nomb_conc: '% Cumplimiento',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
+    }
+    // , {
+    //   nomb_conc: 'Objetivo',
+    //   codi_camp_1: '0',
+    //   codi_camp_2: '0',
+    //   codi_camp_3: '0',
+    //   codi_camp_4: '0',
+    //   codi_camp_5: '0',
+    //   codi_camp_6: '0',
+    //   tota_camp: '0',
+    // }, {
+    //   nomb_conc: '% Cumplimiento',
+    //   codi_camp_1: '0.00',
+    //   codi_camp_2: '0.00',
+    //   codi_camp_3: '0.00',
+    //   codi_camp_4: '0.00',
+    //   codi_camp_5: '0.00',
+    //   codi_camp_6: '0.00',
+    //   tota_camp: '0.00',
+    // },
   ]
   itemsConsecutiva.value = [
     {
@@ -621,16 +672,18 @@ const inicioVariables = () => {
       codi_camp_5: '0',
       codi_camp_6: '0',
       tota_camp: '0',
-    }, {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
-    }, {
+    }, 
+    // {
+    //   nomb_conc: 'Objetivo',
+    //   codi_camp_1: '0',
+    //   codi_camp_2: '0',
+    //   codi_camp_3: '0',
+    //   codi_camp_4: '0',
+    //   codi_camp_5: '0',
+    //   codi_camp_6: '0',
+    //   tota_camp: '0',
+    // }, 
+    {
       nomb_conc: '% Cumplimiento',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
@@ -752,7 +805,7 @@ const limpiarValidacion = () => {
             </VCard>
           </VCol>
 
-          <VCol cols="12">
+          <!-- <VCol cols="12">
             <VCard title="Pedido de retención">
               <VCardText>
                 <VDataTable
@@ -767,7 +820,7 @@ const limpiarValidacion = () => {
                 </VDataTable>
               </VCardText>
             </VCard>
-          </VCol>
+          </VCol> -->
 
           <VCol cols="12">
             <VCard title="% Actividad">
@@ -785,9 +838,9 @@ const limpiarValidacion = () => {
               </VCardText>
             </VCard>
           </VCol>
-
+          <!-- antigo consecutividad de pedidos de retencion -->
           <VCol cols="12">
-            <VCard title="Consecutividad pedidos de retención">
+            <VCard title="Consecutividad Total">
               <VCardText>
                 <VDataTable
                   :headers="headers"
@@ -855,7 +908,7 @@ const limpiarValidacion = () => {
           </VCol>
 
           <VCol cols="12">
-            <VCard title="Suma ret. pegs">
+            <VCard title="Facturación PEGS">
               <VCardText>
                 <VDataTable
                   :headers="headers"
@@ -894,6 +947,22 @@ const limpiarValidacion = () => {
                 <VDataTable
                   :headers="headers"
                   :items="itemsCobranza"
+                  :items-per-page="-1"
+                  class="text-no-wrap"
+                  
+                  fixed-header
+                >
+                  <template #bottom />
+                </VDataTable>
+              </VCardText>
+            </VCard>
+          </VCol>
+          <VCol cols="12">
+            <VCard title="Cobranza 31 días">
+              <VCardText>
+                <VDataTable
+                  :headers="headers"
+                  :items="itemsCobranza31dias"
                   :items-per-page="-1"
                   class="text-no-wrap"
                   
