@@ -198,6 +198,12 @@ const initConfiguracion = () => {
     }, 
     {
       cons_fila: '0',
+      nomb_conc: 'Total facturados consecutivas',
+      cant_conc: '0',
+      porc_conc: '',
+    },
+    {
+      cons_fila: '0',
       nomb_conc: 'Total facturados ciclo de nuevas 2do pedido',
       cant_conc: '0',
       porc_conc: '',
@@ -211,12 +217,6 @@ const initConfiguracion = () => {
     {
       cons_fila: '0',
       nomb_conc: 'Total facturados ciclo de nuevas 4to pedido',
-      cant_conc: '0',
-      porc_conc: '',
-    },
-    {
-      cons_fila: '0',
-      nomb_conc: 'Total facturados ciclo de nuevas 5to pedido',
       cant_conc: '0',
       porc_conc: '',
     },
@@ -282,6 +282,12 @@ const initConfiguracion = () => {
     },
     {
       cons_fila: '0',
+      nomb_conc: 'Pedidos pendientes consecutivas',
+      cant_conc: '0',
+      porc_conc: '',
+    },
+    {
+      cons_fila: '0',
       nomb_conc: 'Pedidos pendientes ciclo de nuevas 2do pedido',
       cant_conc: '0',
       porc_conc: '',
@@ -295,12 +301,6 @@ const initConfiguracion = () => {
     {
       cons_fila: '0',
       nomb_conc: 'Pedidos pendientes ciclo de nuevas 4to pedido',
-      cant_conc: '0',
-      porc_conc: '',
-    },
-    {
-      cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes ciclo de nuevas 5to pedido',
       cant_conc: '0',
       porc_conc: '',
     },
