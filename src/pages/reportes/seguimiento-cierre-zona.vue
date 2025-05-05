@@ -507,334 +507,84 @@ const clasePorcentaje21dias = (row, columnfield, value) => {
 const cabecera = computed(() => {
   if(selectedVariable.value === 0) {
     //todos
-    return [{
-        title: 'Codigo Lider',
-        key: 'codi_sect',
-      },
-      {
-        title: 'Lider',
-        key: 'nomb_lide',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_fina_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_inco',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_inco',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_inco',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_inco',
-      },
-      {
-        title: 'Total',
-        key: 'tota_inco',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_inco',
-      },
-      {
-        title: 'Rete. camp. ant.',
-        key: 'fact_rete_cons_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rete_cons',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons',
-      },
-      {
-        title: '1 Camp. ante.',
-        key: 'obje_rete_cons_segu',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons_segu',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons_segu',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons_segu',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons_segu',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons_segu',
-      },
-      {
-        title: '2 Camp. ante.',
-        key: 'obje_rete_cons_terc',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons_terc',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons_terc',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons_terc',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons_terc',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons_terc',
-      },
-      {
-        title: '3 Camp. ante.',
-        key: 'obje_rete_cons_cuar',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons_cuar',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons_cuar',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons_cuar',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons_cuar',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons_cuar',
-      },
-      {
-        title: 'Peg21',
-        key: 'fact_pe21_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe21',
-      },
-      {
-        title: 'Ret. peg21',
-        key: 'fact_pe21',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'porc_pe21',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe21',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe21',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe21',
-      },
-      {
-        title: 'Peg42',
-        key: 'fact_pe42_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe42',
-      },
-      {
-        title: 'Ret. peg42',
-        key: 'fact_pe42',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'porc_pe42',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe42',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe42',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe42',
-      },
-      {
-        title: 'Peg63',
-        key: 'fact_pe63_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe63',
-      },
-      {
-        title: 'Ret. peg63',
-        key: 'fact_pe63',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'porc_pe63',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe63',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe63',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe63',
-      },
-      {
-        title: 'Pegs',
-        key: 'fact_pegs_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pegs',
-      },
-      {
-        title: 'Ret. pegs',
-        key: 'fact_pegs',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'porc_pegs',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pegs',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pegs',
-      },
-      {
-        title: '% Cump',
-        key: 'cump_pegs',
-      },
-      {
-        title: 'Pos. reing.',
-        key: 'fact_rein_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rein',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rein',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'porc_rein',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rein',
-      },
-      {
-        title: 'Total',
-        key: 'tota_fact_rein',
-      },
-      {
-        title: '% Cump',
-        key: 'cump_rein',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_capi',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_capi',
-      },
-      {
-        title: 'Capi. pend.',
-        key: 'pend_capi',
-      },
-      {
-        title: 'Pedi. falt. obje.',
-        key: 'pend_capi_obje',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_tota',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_tota',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_tota',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_tota',
-      },
-      {
-        title: 'Total',
-        key: 'tota_tota',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_tota',
-      },
-      {
-        title: 'Dife. tota.',
-        key: 'dife_tota',
-      },
-      {
-        title: 'Objetivo Ventas',
-        key: 'obje_vent',
-      },
-      {
-        title: 'Venta',
-        key: 'fact_vent',
-      }
+    return [ { key: 'codi_sect', title: 'Codigo Lider' },
+  { key: 'nomb_lide', title: 'Lider' },
+  { key: 'acti_fina_ante', title: 'Act. inic.' },
+  { key: 'obje_inco', title: 'Objetivo' },
+  { key: 'fact_inco', title: 'Facturado' },
+  { key: 'cump_fact_inco', title: 'Cump. fact.' },
+  { key: 'pend_fact_inco', title: 'Pend. fact.' },
+  { key: 'tota_inco', title: 'Total' },
+  { key: 'cump_inco', title: '% Cump.' },
+  { key: 'obje_rete_cons', title: 'Objetivo' },
+  { key: 'fact_rete_cons', title: 'Facturado' },
+  { key: 'cump_fact_rete_cons', title: 'Cump. fact.' },
+  { key: 'pend_fact_rete_cons', title: 'Pend. fact.' },
+  { key: 'tota_rete_cons', title: 'Total' },
+  { key: 'cump_rete_cons', title: '% Cump.' },
+  { key: 'obje_rete_cons_segu', title: '1 Camp. ante.' },
+  { key: 'fact_rete_cons_segu', title: 'Facturado' },
+  { key: 'cump_fact_rete_cons_segu', title: 'Cump. fact.' },
+  { key: 'pend_fact_rete_cons_segu', title: 'Pend. fact.' },
+  { key: 'tota_rete_cons_segu', title: 'Total' },
+  { key: 'cump_rete_cons_segu', title: '% Cump.' },
+  { key: 'obje_rete_cons_terc', title: '2 Camp. ante.' },
+  { key: 'fact_rete_cons_terc', title: 'Facturado' },
+  { key: 'cump_fact_rete_cons_terc', title: 'Cump. fact.' },
+  { key: 'pend_fact_rete_cons_terc', title: 'Pend. fact.' },
+  { key: 'tota_rete_cons_terc', title: 'Total' },
+  { key: 'cump_rete_cons_terc', title: '% Cump.' },
+  { key: 'obje_rete_cons_cuar', title: '3 Camp. ante.' },
+  { key: 'fact_rete_cons_cuar', title: 'Facturado' },
+  { key: 'cump_fact_rete_cons_cuar', title: 'Cump. fact.' },
+  { key: 'pend_fact_rete_cons_cuar', title: 'Pend. fact.' },
+  { key: 'tota_rete_cons_cuar', title: 'Total' },
+  { key: 'cump_rete_cons_cuar', title: '% Cump.' },
+  { key: 'fact_pe21_ante', title: 'Peg21' },
+  { key: 'obje_pe21', title: 'Objetivo' },
+  { key: 'fact_pe21', title: 'Ret. peg21' },
+  { key: 'porc_pe21', title: '% Ret. pend.' },
+  { key: 'pend_fact_pe21', title: 'Pend. fact.' },
+  { key: 'tota_pe21', title: 'Total' },
+  { key: 'cump_pe21', title: '% Ret. pend.' },
+  { key: 'fact_pe42_ante', title: 'Peg42' },
+  { key: 'obje_pe42', title: 'Objetivo' },
+  { key: 'fact_pe42', title: 'Ret. peg42' },
+  { key: 'porc_pe42', title: '% Ret. pend.' },
+  { key: 'pend_fact_pe42', title: 'Pend. fact.' },
+  { key: 'tota_pe42', title: 'Total' },
+  { key: 'cump_pe42', title: '% Ret. pend.' },
+  { key: 'fact_pe63_ante', title: 'Peg63' },
+  { key: 'obje_pe63', title: 'Objetivo' },
+  { key: 'fact_pe63', title: 'Ret. peg63' },
+  { key: 'porc_pe63', title: '% Ret. pend.' },
+  { key: 'pend_fact_pe63', title: 'Pend. fact.' },
+  { key: 'tota_pe63', title: 'Total' },
+  { key: 'cump_pe63', title: '% Ret. pend.' },
+  { key: 'fact_pegs_ante', title: 'Pegs' },
+  { key: 'obje_pegs', title: 'Objetivo' },
+  { key: 'fact_pegs', title: 'Ret. pegs' },
+  { key: 'porc_pegs', title: 'Cump. fact.' },
+  { key: 'pend_fact_pegs', title: 'Pend. fact.' },
+  { key: 'tota_pegs', title: 'Total' },
+  { key: 'cump_pegs', title: '% Cump' },
+  { key: 'fact_rein_ante', title: 'Pos. reing.' },
+  { key: 'obje_rein', title: 'Objetivo' },
+  { key: 'fact_rein', title: 'Facturado' },
+  { key: 'porc_rein', title: 'Cump. fact.' },
+  { key: 'pend_fact_rein', title: 'Pend. fact.' },
+  { key: 'tota_fact_rein', title: 'Total' },
+  { key: 'cump_rein', title: '% Cump' },
+  { key: 'obje_capi', title: 'Objetivo' },
+  { key: 'fact_capi', title: 'Facturado' },
+  { key: 'pend_capi', title: 'Capi. pend.' },
+  { key: 'obje_tota', title: 'Objetivo' },
+  { key: 'fact_tota', title: 'Facturado' },
+  { key: 'cump_fact_tota', title: 'Cump. fact.' },
+  { key: 'pend_fact_tota', title: 'Pend. fact.' },
+  { key: 'tota_tota', title: 'Total' },
+  { key: 'obje_vent', title: 'Objetivo Ventas' },
+  { key: 'fact_vent', title: 'Venta' }
     ];
   } else if(selectedVariable.value === 1) {
     //capitalizacion
@@ -871,8 +621,7 @@ const cabecera = computed(() => {
     // Grupo 'capi'
     { title: 'Objetivo', key: 'obje_capi' },
     { title: 'Facturado', key: 'fact_capi' },
-    { title: 'Capi. pend.', key: 'pend_capi' },
-    { title: 'Pedi. falt. obje.', key: 'pend_capi_obje' }
+    { title: 'Capi. pend.', key: 'pend_capi' }
 ]
   } else if (selectedVariable.value === 2) {
     //consecutividad
@@ -938,13 +687,7 @@ const cabecera = computed(() => {
       { title: 'Total', key: 'tota_rete_cons' },
       { title: '% Cump.', key: 'cump_rete_cons' },
 
-      // Grupo 'cons_segu'
-      { title: '1 Camp. ante.', key: 'obje_rete_cons_segu' },
-      { title: 'Facturado', key: 'fact_rete_cons_segu' },
-      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_segu' },
-      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_segu' },
-      { title: 'Total', key: 'tota_rete_cons_segu' },
-      { title: '% Cump.', key: 'cump_rete_cons_segu' },
+
 
       // Grupo 'pe21'
       { title: 'Peg21', key: 'fact_pe21_ante' },

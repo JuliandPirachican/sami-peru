@@ -741,7 +741,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      hidden: true, // esta oculta la columna
+      hidden: false, // esta oculta la columna
     },
     {
       text: 'Nro ident.',
@@ -750,7 +750,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       hidden: false,// esta columna no esta oculta 
-      // filtertype: 'checkedlist'
+      filtertype: 'checkedlist'
     },
     {
       text: 'Nombre(s) y apellido(s)',
@@ -1390,7 +1390,9 @@ const onExcel = async tipo => {
     console.log(tipo)
 
      // Exportar datos manualmente a XML
-     const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
+     const rowsGlobal = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula 1era tabla
+     const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula 2da tabla
+     
      //obtener columnas de la cuadrícula
      const columns = refGridDetalle.value.columns;
      let visi_colu=[]
@@ -1409,7 +1411,7 @@ const onExcel = async tipo => {
 
     let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
-    itemsGlobal.value.forEach((row, index) => {
+    rowsGlobal.forEach((row, index) => {
       xmlDataGlob += `  <row id="${index + 1}">\n`;
       for (const [key, value] of Object.entries(row)) {
         xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
@@ -1421,7 +1423,7 @@ const onExcel = async tipo => {
     
     let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
-    itemsDetalle.value.forEach((row, index) => {
+    rows.forEach((row, index) => {
       xmlDataDeta += `  <row id="${index + 1}">\n`;
       for (const [key, value] of Object.entries(row)) {
         if (visi_colu.includes(key)) {
@@ -1462,8 +1464,10 @@ const onPdf = async tipo => {
   try {
 		appStore.mensaje('Generando archivo')
 		// Exportar datos manualmente a XML
-		const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula
-		const columns = refGridDetalle.value.columns;
+    const rowsGlobal = refGridGlobal?.value?.getrows?.(); // Obtener las filas de la cuadrícula 1era tabla
+    const rows = refGridDetalle?.value?.getrows?.(); // Obtener las filas de la cuadrícula 2da tabla
+    
+    const columns = refGridDetalle.value.columns;
     let visi_colu=[]
     columns.forEach((column, index) => {
 			if (!column.hidden || column.datafield == 'codi_sect') {
@@ -1480,7 +1484,7 @@ const onPdf = async tipo => {
 
 		let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
-		itemsGlobal.value.forEach((row, index) => {
+    rowsGlobal.forEach((row, index) => {
 			xmlDataGlob += `  <row id="${index + 1}">\n`;
 			for (const [key, value] of Object.entries(row)) {
 				xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
@@ -1492,7 +1496,7 @@ const onPdf = async tipo => {
 
 		let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
 
-		itemsDetalle.value.forEach((row, index) => {
+    rows.forEach((row, index) => {
 			xmlDataDeta += `  <row id="${index + 1}">\n`;
 			for (const [key, value] of Object.entries(row)) {
 				if (visi_colu.includes(key)) {
