@@ -530,6 +530,7 @@ const onSeleccionar = async item => {
 }
 
 const initConfiguracionDetalle = () => {
+  console.log('conceptoCodigo.value', conceptoCodigo.value)
   if (
     conceptoCodigo.value === '1'
         || conceptoCodigo.value === '2'
