@@ -99,7 +99,7 @@ const headersGlobal = computed(() => {
       cellsalign: 'center',
     },
     {
-      text: 'Prepedido',
+      text: 'Azzorti Proyecta',
       dataField: 'cant_prep',
       width: '180',
       align: 'center',

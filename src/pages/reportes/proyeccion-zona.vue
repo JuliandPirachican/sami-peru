@@ -41,9 +41,9 @@ const general = ref({
   objetivoRetencion: '0',
   proyeccionRetencion: '0',
   reproyeccionRetencion: '0',
-  objetivoActividad: '0.00',
-  proyeccionActividad: '0.00',
-  reproyeccionActividad: '0.00',
+  objetivoActividad: '0',
+  proyeccionActividad: '0',
+  reproyeccionActividad: '0',
 })
 
 const selectedVariable = ref(0)
@@ -307,6 +307,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     pinned: true,
     filtertype: 'checkedlist',
     columna: 'A',
@@ -318,6 +319,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'left',
     editable: false,
+    hidden: false,
     pinned: true,
     filtertype: 'checkedlist',
     columna: 'B',
@@ -329,6 +331,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     pinned: true,
     cellsformat: 'N',
     filtertype: 'number',
@@ -350,6 +353,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     pinned: true,
     cellsformat: 'N',
     filtertype: 'number',
@@ -371,6 +375,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'tota',
     cellsformat: 'N',
     filtertype: 'number',
@@ -394,6 +399,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'tota',
     cellsformat: 'N',
     filtertype: 'number',
@@ -419,6 +425,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
@@ -440,6 +447,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
@@ -462,6 +470,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'inco',
     cellsformat: 'N',
     filtertype: 'number',
@@ -486,6 +495,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columngroup: 'rete',
     cellsformat: 'N',
     filtertype: 'number',
@@ -508,6 +518,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'rete',
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
@@ -578,6 +589,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'acti',
     cellsformat: 'N',
     filtertype: 'number',
@@ -602,6 +614,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'acti',
     cellsformat: 'N',
     filtertype: 'number',
@@ -660,6 +673,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'cons4_ped',
     cellsformat: 'N',
     filtertype: 'number',
@@ -682,6 +696,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'cons4_ped',
     cellsformat: 'N',
     filtertype: 'number',
@@ -710,6 +725,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columngroup: 'pe21',
     cellsformat: 'N',
     filtertype: 'number',
@@ -731,6 +747,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'pe21',
     cellsformat: 'N',
     filtertype: 'number',
@@ -784,6 +801,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columngroup: 'pe42',
     cellsformat: 'N',
     filtertype: 'number',
@@ -805,6 +823,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'pe42',
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
@@ -858,6 +877,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columngroup: 'pe63',
     cellsformat: 'N',
     filtertype: 'number',
@@ -879,6 +899,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'pe63',
     cellsformat: 'N',
     cellclassname: ' bg-primary-light',
@@ -933,6 +954,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
@@ -954,6 +976,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'pegs',
     cellsformat: 'N',
     filtertype: 'number',
@@ -998,6 +1021,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columngroup: 'rein',
     cellsformat: 'N',
     filtertype: 'number',
@@ -1019,6 +1043,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'rein',
     cellsformat: 'N',
     filtertype: 'number',
@@ -1072,6 +1097,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: true,
+    hidden: false,
     columngroup: 'capi',
     cellsformat: 'N',
     filtertype: 'number',
@@ -1118,6 +1144,7 @@ const columnaGlobal = [
     cellsalign: 'center',
     columngroup: 'pedi_tota',
     editable: false,
+    hidden: false,
     cellsformat: 'D2',
     filtertype: 'number',
     columna: 'AJ',
@@ -1138,6 +1165,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
@@ -1160,6 +1188,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columngroup: 'pedi_tota',
     cellsformat: 'D2',
     filtertype: 'number',
@@ -1183,6 +1212,7 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columna: 'AM',
   },
   {
@@ -1193,8 +1223,19 @@ const columnaGlobal = [
     align: 'center',
     cellsalign: 'center',
     editable: false,
+    hidden: false,
     columna: 'AN',
   },
+  {
+    text: 'Total Egresos',
+    datafield: 'tota_egre',
+    width: '120',
+    align: 'center',
+    hidden: true,
+    cellsalign: 'center',
+    editable: false,
+    columna: 'AO',
+  }
 ]
 
 
@@ -1226,17 +1267,17 @@ const columnasGrupo = [
     name: 'cons4_ped',
   },
   {
-    text: 'Peg21 50%',
+    text: 'Peg21 minimo 50%',
     align: 'center',
     name: 'pe21',
   },
   {
-    text: 'Peg42 35%',
+    text: 'Peg42 minimo 35%',
     align: 'center',
     name: 'pe42',
   },
   {
-    text: 'Peg63 35%',
+    text: 'Peg63 minimo 25%',
     align: 'center',
     name: 'pe63',
   },
@@ -1334,6 +1375,7 @@ const sourceGlobal = ref({
     { name: 'proy_segu', type: 'number' },
     { name: 'proy_segu1', type: 'number' },
     { name: 'segui_conse', type: 'number' },
+    { name: 'tota_egre', type: 'number' }
   ],
   datatype: 'json',
 })
@@ -1406,19 +1448,18 @@ const onEditar = async event => {
 
 
   /**
-   * Suma de las columnas  de proyeccion de pegs21, pegs42 y pegs63 junto a los peg63
-   * para validar si puede capitalizar o no la proyección, el valor sumado 
+   * Suma de las columnas  de proyeccion de proyeccion objetivos inco, reingresos objetivo 
+   * y total egresos para validar si puede capitalizar o no la proyección, el valor sumado 
    * se coloca en la columna de proyeccion de la capitalización
    */
-  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'rein_obje' || columnDataField === 'pe63_obje') {
+  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'rein_obje' ) {
     let newValue = cellValue
     let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje');
-    let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
-    let proyPeg63 = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
     let proyRein = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
-    console.log(proyInco+" "+ proyRein+" "+ Peg63+" "+proyPeg63)
-    if (proyInco > 0 || proyRein > 0 || proyPeg63 > 0) {
-      let sumProyCapi = (proyInco + proyRein)  - (proyPeg63-Peg63)
+    let tota_egre = columnDataField === 'tota_egre' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'tota_egre');
+    console.log(proyInco+" "+ proyRein+" "+ tota_egre)
+    if (proyInco > 0 || proyRein > 0 || tota_egre > 0) {
+      let sumProyCapi = (proyInco + proyRein)  - tota_egre;
       console.log(sumProyCapi)
       if (sumProyCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', sumProyCapi)
@@ -1430,19 +1471,18 @@ const onEditar = async event => {
   }
 
   /**
-   * Suma de las columnas  de seguimiento de pegs21, pegs42 y pegs63 junto a los peg63
-   * para validar si puede capitalizar o no la proyección, el valor sumado 
-   * se coloca en la columna de seguimiento de la capitalización
+   * Suma de las columnas de proyeccion objetivos inco, reingresos objetivo
+   * y total egresos para validar si puede capitalizar o no la proyección, 
+   * el valor sumado se coloca en la columna de seguimiento de la capitalización
    */
-  if (columnDataField === 'segui_inco' || columnDataField === 'rein_prim' || columnDataField === 'pe63_prim') {
+  if (columnDataField === 'segui_inco' || columnDataField === 'rein_prim' ) {
     let newValue = cellValue
     let seguInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco');
-    let Peg63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
-    let seguPeg63 = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim');
     let seguRein = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
-    console.log(seguInco+" "+ seguRein+" "+ Peg63+" "+seguPeg63)
-    if (seguInco > 0 || seguRein > 0 || seguPeg63 > 0) {
-      let sumseguCapi = (seguInco + seguRein)  - (seguPeg63-Peg63)
+    let tota_egre = columnDataField === 'tota_egre' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'tota_egre');
+    console.log(seguInco+" "+ seguRein+" "+ tota_egre)
+    if (seguInco > 0 || seguRein > 0 || tota_egre > 0) {
+      let sumseguCapi = (seguInco + seguRein) - tota_egre;
       console.log(sumseguCapi)
       if (sumseguCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', sumseguCapi)
@@ -1637,9 +1677,9 @@ const onGenerar = async () => {
       objetivoRetencion: '0',
       proyeccionRetencion: '0',
       reproyeccionRetencion: '0',
-      objetivoActividad: '0.00',
-      proyeccionActividad: '0.00',
-      reproyeccionActividad: '0.00',
+      objetivoActividad: '0',
+      proyeccionActividad: '0',
+      reproyeccionActividad: '0',
     }
     items.value = []
 
@@ -1665,9 +1705,9 @@ const onGenerar = async () => {
       // objetivoRetencion: data.obje_rete,
       // proyeccionRetencion: sumaPediTotal,
       // reproyeccionRetencion: data.obje_rete_repr,
-      objetivoActividad: data.obje_acti,
-      proyeccionActividad: sumaPediTotal.value,
-      reproyeccionActividad: sumaSeguPediTotal.value,
+      objetivoActividad: parseInt(data.obje_acti),
+      proyeccionActividad: parseInt(sumaPediTotal.value),
+      reproyeccionActividad: parseInt(sumaSeguPediTotal.value),
     }
     
   } catch (error) {
@@ -1705,9 +1745,9 @@ const onLimpiar= async () => {
     objetivoRetencion: '0',
     proyeccionRetencion: '0',
     reproyeccionRetencion: '0',
-    objetivoActividad: '0.00',
-    proyeccionActividad: '0.00',
-    reproyeccionActividad: '0.00',
+    objetivoActividad: '0',
+    proyeccionActividad: '0',
+    reproyeccionActividad: '0',
   }
   sourceGlobal.value.localdata = []
   refGridGlobal.value.updatebounddata('cells') 
@@ -1729,12 +1769,22 @@ const onExcel = async () => {
       return
     }
 
+    const columns = refGridGlobal.value.columns;
+    let visi_colu=[]
+    columns.forEach((column, index) => {
+			if (!column.hidden || column.datafield == 'codi_sect') {
+				visi_colu.push(column.datafield)
+			}
+		});
+
     let xmlData = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`
 
     rows.forEach((row, index) => {
       xmlData += `  <row id="${index + 1}">\n`
       for (const [key, value] of Object.entries(row)) {
-        xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`
+				if (visi_colu.includes(key)) {
+          xmlData += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        }
       }
       xmlData += `  </row>\n`
     })
@@ -1743,14 +1793,21 @@ const onExcel = async () => {
     console.log("Datos generados manualmente a XML:")
     console.log(columnaGlobal.value)
 
+		let colum_info=[]
+    columns.forEach((column, index) => {
+      if (!column.hidden || column.datafield == 'codi_sect') {
+        colum_info.push({"datafield":column.datafield,"text":column.text,"columna":column.columna})
+      }
+    });
+
     const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/excel`, {
       method: "post",
       body: {
         general: general.value,
         columna: selectedColumna.value,
         variable: selectedVariable.value,
-        cabecera: columnaGlobal,
-        detalle: JSON.stringify(xmlData),
+        cabecera: colum_info,
+        detalle:(xmlData),
       },
     })
     
