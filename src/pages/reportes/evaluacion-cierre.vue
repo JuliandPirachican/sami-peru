@@ -81,18 +81,7 @@ const cabeceraGlobal = [
     title: 'Cump. fact.',
     key: 'cump_fact_inco',
   },
-  {
-    title: 'Objetivo',
-    key: 'obje_rete',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rete',
-  },
-  {
-    title: 'Cump. fact.',
-    key: 'cump_fact_rete',
-  },
+
   {
     title: 'Camp. ante.',
     key: 'porc_acti_ante',
@@ -434,18 +423,18 @@ const columnasGrupo = [
     align: 'center',
     name: 'inco',
   },
-  {
-    text: 'Pedidos de retención',
-    align: 'center',
-    name: 'rete',
-  },
+  // {
+  //   text: 'Pedidos de retención',
+  //   align: 'center',
+  //   name: 'rete',
+  // },
   {
     text: 'Pedidos totales',
     align: 'center',
     name: 'tota',
   },
   {
-    text: 'Consecutividad pedido de retención 90%',
+    text: 'Consecutividad pedido 90%',
     align: 'center',
     name: 'cons',
   },
@@ -719,79 +708,84 @@ const columnasGlobal = [
     columngroup: 'inco',
     cellclassname: claseCumplimientoIncorporacion,
   },
-  {
-    text: 'Objetivo',
-    dataField: 'obje_rete',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    aggregates: [
-      {
+  // se comenta para no mostrar datos de retencion 
+  // a peticion de Marisol
+  // {
+  //   text: 'Objetivo',
+  //   dataField: 'obje_rete',
+  //   width: '120',
+  //   hidden: true,
+  //   align: 'center',
+  //   cellsalign: 'center',
+  //   cellsformat: 'N',
+  //   aggregates: [
+  //     {
         
-        T: function(aggregatedValue, currentValue) {
+  //       T: function(aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+  //         aggregatedValue += currentValue
           
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: 'Facturado',
-    dataField: 'fact_rete',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    aggregates: [
-      {
+  //         return aggregatedValue
+  //       },
+  //     },
+  //   ],
+  //   columngroup: 'rete',
+  // },
+  // {
+  //   text: 'Facturado',
+  //   dataField: 'fact_rete',
+  //   width: '100',
+  //   hidden: true,
+  //   align: 'center',
+  //   cellsalign: 'center',
+  //   cellsformat: 'N',
+  //   aggregates: [
+  //     {
         
-        T: function(aggregatedValue, currentValue) {
+  //       T: function(aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+  //         aggregatedValue += currentValue
           
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: 'Cump. fact.',
-    dataField: 'cump_fact_rete',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    aggregates: [
-      {
+  //         return aggregatedValue
+  //       },
+  //     },
+  //   ],
+  //   columngroup: 'rete',
+  // },
+  // {
+  //   text: 'Cump. fact.',
+  //   dataField: 'cump_fact_rete',
+  //   width: '100',
+  //   hidden: true,
+  //   align: 'center',
+  //   cellsalign: 'center',
+  //   cellsformat: 'P2',
+  //   aggregates: [
+  //     {
         
-        T: function(aggregatedValue, currentValue, column, record) {
+  //       T: function(aggregatedValue, currentValue, column, record) {
           
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.fact_rete
-          sumaObje += record.obje_rete
-          let total = 0
+  //         if (record.visibleindex === 0) {
+  //           sumaFact = 0
+  //           sumaObje = 0
+  //         }
+  //         sumaFact += record.fact_rete
+  //         sumaObje += record.obje_rete
+  //         let total = 0
           
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
+  //         if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
             
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
+  //           total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
+  //         }
+  //         total = parseFloat(total).toFixed(2)
           
-          return total
-        },
-      },
-    ],
-    columngroup: 'rete',
-    cellclassname: claseCumplimientoRetencion,
-  },
+  //         return total
+  //       },
+  //     },
+  //   ],
+  //   columngroup: 'rete',
+  //   cellclassname: claseCumplimientoRetencion,
+  // },
   {
     text: 'acti inic ante',
     dataField: 'acti_inic_ante',

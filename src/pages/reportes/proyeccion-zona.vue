@@ -1160,7 +1160,7 @@ const columnaGlobal = [
   },
   {
     text: 'Proyeccion',
-    datafield: 'cobr',
+    datafield: 'proy_pedi_tota',
     width: '160',
     align: 'center',
     cellsalign: 'center',
@@ -1183,7 +1183,7 @@ const columnaGlobal = [
   },
   {
     text: 'Seguimiento',
-    datafield: 'cobr_colc',
+    datafield: 'segu_pedi_tota',
     width: '180',
     align: 'center',
     cellsalign: 'center',
@@ -1367,8 +1367,8 @@ const sourceGlobal = ref({
     { name: 'capi_obje', type: 'number' },
     { name: 'capi_repr', type: 'number' },
     { name: 'tota_vent', type: 'number' },
-    { name: 'cobr', type: 'number' },
-    { name: 'cobr_colc', type: 'number' },
+    { name: 'proy_pedi_tota', type: 'number' },
+    { name: 'segu_pedi_tota', type: 'number' },
     { name: 'tota_pedi_ante', type: 'number' },
     { name: 'co92_colc', type: 'number' },
     { name: 'nive_lide', type: 'string' },
@@ -1514,9 +1514,9 @@ const onEditar = async event => {
     if (proyInco > 0 || proyConse > 0 || Peg21Obje > 0 || Peg42Obje > 0 || Peg63Obje > 0 || proyReinObje > 0) {
       let sumProyCapi = proyInco+proyConse+Peg21Obje+Peg42Obje+Peg63Obje-proyReinObje
       if (sumProyCapi >= 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'cobr', sumProyCapi)
+        refGridGlobal.value.setcellvalue(rowIndex, 'proy_pedi_tota', sumProyCapi)
       }else{
-        refGridGlobal.value.setcellvalue(rowIndex, 'cobr', 0)
+        refGridGlobal.value.setcellvalue(rowIndex, 'proy_pedi_tota', 0)
       }
       const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/niveLide`, {
         method: "post",
@@ -1558,9 +1558,9 @@ const onEditar = async event => {
       let sumPediSegu = parseInt(SeguInco)+parseInt(SeguConse)+parseInt(Peg21Segui)+parseInt(Peg42Segui)+parseInt(Peg63Segui)+parseInt(SeguReinSegui)
       console.log(sumPediSegu)
       if (sumPediSegu >= 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', sumPediSegu)
+        refGridGlobal.value.setcellvalue(rowIndex, 'segu_pedi_tota', sumPediSegu)
       }else{
-        refGridGlobal.value.setcellvalue(rowIndex, 'cobr_colc', 0)
+        refGridGlobal.value.setcellvalue(rowIndex, 'segu_pedi_tota', 0)
       }
 
       const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/niveLide`, {
