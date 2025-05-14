@@ -2050,38 +2050,51 @@ const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
 
 const itemsDetalle = ref([])
 
+/**
+ * * @description Cabecera de la tabla del boton de ranking
+ * * @type {Array}
+ */
 const headersDetalle = computed(() => {
   return [
     {
       title: 'Puesto',
       key: 'nume_fila',
-    }, {
+    }, 
+    {
       title: 'Sector',
       key: 'codi_sect',
-    }, {
+    }, 
+    {
       title: 'Lider',
       key: 'nomb_lide',
-    }, {
+    }, 
+    {
       title: 'Pedi. total',
       key: 'porc_pedi',
-    }, {
+    }, 
+    {
       title: 'obje inco',
       key: 'obje_inco',
       cellsformat: 'N',
       hidden: true,
-    }, {
+    }, 
+    {
       title: 'Incorporación',
       key: 'porc_inco',
-    },  {
-      title: 'Pedi. rete.',
-      key: 'porc_rete',
-    }, {
+    },  
+    // {
+    //   title: 'Pedi. rete.',
+    //   key: 'porc_rete',
+    // }, 
+    {
       title: '% Acti.',
       key: 'porc_acti',
-    }, {
-      title: 'Cons. pedi. rete.',
+    }, 
+    {
+      title: 'Cons. pedi. ',
       key: 'porc_rete_cons',
-    },  {
+    },  
+    {
       title: 'Cons. 2do pedi.',
       key: 'porc_rete_segu',
     }, {
