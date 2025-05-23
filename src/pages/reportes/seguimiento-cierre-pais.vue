@@ -93,18 +93,7 @@ const claseCumplimientoTotalCierre = (row, columnfield, value) => {
   return `text-error`
 }
 
-// eslint-disable-next-line sonarjs/no-identical-functions
-const claseAsertividad = (row, columnfield, value) => {
-  const data = parseFloat(value).toFixed(2)
-  if (data >= 100) {
-    return `text-success`
-  }
-  if (data >= 90 && data < 100) {
-    return `text-warning`
-  }
-  
-  return `text-error`
-}
+
 
 const cabeceraGlobal = [
   {
@@ -130,7 +119,7 @@ const cabeceraGlobal = [
   
   {
     title: 'Objetivo',
-    key: 'obje_inco_camp',
+    key: 'obje_inco',
   },
   
  
@@ -140,7 +129,7 @@ const cabeceraGlobal = [
   },
   {
     title: 'Facturacion',
-    key: 'pedi_inco_fact',
+    key: 'fact_inco',
   },
   {
   title: 'Cump. fact.',
@@ -152,13 +141,13 @@ const cabeceraGlobal = [
   },
   {
     title: 'Total',
-    key: 'dife_inco_3',
+    key: 'tota_inco',
   },
   
  
   {
     title: '% Cump.',
-    key: 'cump_inco_esti',
+    key: 'cump_inco',
   },
   {
     title: 'Dife. tota.',
@@ -166,27 +155,27 @@ const cabeceraGlobal = [
   },
   {
     title: 'Objetivo',
-    key: 'obje_cons',
+    key: 'obje_rete_cons',
   },
   {
     title: 'Facturado',
-    key: 'pedi_cons_fact',
+    key: 'fact_rete_cons',
   },
   {
     title: 'Cump. fact.',
-    key: 'cump_cons_fact',
+    key: 'cump_fact_rete_cons',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_cons_fact',
+    key: 'pend_fact_rete_cons',
   },
   {
     title: 'Total',
-    key: 'tota_cons_fact',
+    key: 'tota_rete_cons',
   },
   {
     title: '% Cump.',
-    key: 'porc_cons_cump',
+    key: 'cump_rete_cons',
   },
   {
     title: '1 Camp. ante.',
@@ -194,190 +183,190 @@ const cabeceraGlobal = [
   },
   {
     title: 'Facturado',
-    key: 'pedi_con2_fact',
+    key: 'fact_rete_cons_segu',
   },
   {
     title: 'Cump. fact.',
-    key: 'cump_con2_fact',
+    key: 'cump_fact_rete_cons_segu',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_con2_fact',
+    key: 'pend_fact_rete_cons_segu',
   },
   {
     title: 'Total',
-    key: 'tota_con2_fact',
+    key: 'tota_rete_cons_segu',
   },
   {
     title: '% Cump.',
-    key: 'porc_con2_cump',
+    key: 'cump_rete_cons_segu',
   },
   {
     title: '2 Camp. ante.',
-    Key: 'camp_con3_ante',
+    Key: 'obje_rete_cons_terc',
   },
   {
     title: 'Facturado',
-    key: 'pedi_con3_fact',
+    key: 'fact_rete_cons_terc',
   },
   {
     title: 'Cump. fact.',
-    key: 'cump_con3_fact',
+    key: 'cump_fact_rete_cons_terc',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_con3_fact',
+    key: 'pend_fact_rete_cons_terc',
   },
   {
     title: 'Total',
-    key: 'tota_con3_fact',
+    key: 'tota_rete_cons_terc',
   },
   {
     title: '% Cump.',
-    key: 'porc_con3_cump',
+    key: 'cump_rete_cons_terc',
   },
   {
     title: '3 Camp. ante.',
-    key: 'camp_con4_ante',
+    key: 'obje_rete_cons_cuar',
   },
   {
     title: 'Facturado',
-    key: 'pedi_con4_fact',
+    key: 'fact_rete_cons_cuar',
   },
   {
     title:'Cump. fact.',
-    key: 'cump_con4_fact',
+    key: 'cump_fact_rete_cons_cuar',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_con4_fact',
+    key: 'pend_fact_rete_cons_cuar',
   },
   {
     title: 'Total',
-    key: 'tota_con4_fact',
+    key: 'tota_rete_cons_cuar',
   },
   {
     title: '% Cump.',
-    key: 'porc_con4_cump',
+    key: 'cump_rete_cons_cuar',
   },
   {
     title: 'peg21',
-    key: 'data_peg21',
+    key: 'fact_pe21_ante',
   },
   {
     title: 'Objetivo',
-    key: 'obje_peg21',
+    key: 'obje_pe21',
   },
   {
     title: 'Ret. peg21',
-    key: 'obje_rete_peg21',
+    key: 'fact_pe21',
   },
   {
     title: '%Ret. pend',
-    key: 'porc_pend_peg21',
+    key: 'porc_pe21',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_rete_peg21',
+    key: 'pend_fact_pe21',
   },
   {
     title: 'Total',
-    key: 'tota_peg21',
+    key: 'tota_pe21',
   },
   {
     title: '%Ret. pend',
-    key: 'porc_pend2_peg21',
+    key: 'cump_pe21',
   },
   
   {
     title: 'Peg42',
-    key: 'data_peg42',
+    key: 'fact_pe42_ante',
   },
   {
     title: 'Objetivo',
-    key: 'obje_peg42',
+    key: 'obje_pe42',
   },
   {
     title: 'Ret. peg42',
-    key: 'obje_rete_peg42',
+    key: 'fact_pe42',
   },
   {
     title: '%Ret. pend',
-    key: 'porc_pend_peg42',
+    key: 'porc_pe42',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_peg42',
+    key: 'pend_fact_pe42',
   },
   {
     title: 'Total',
-    key: 'tota_peg42',
+    key: 'tota_pe42',
   },
   {
     title: '%Ret. pend',
-    key: 'porc_pend2_peg42',
+    key: 'cump_pe42',
   },
   {
     title: 'Peg43',
-    key: 'data_peg63',
+    key: 'fact_pe63_ante',
   },
   {
     title: 'Objetivo',
-    key: 'obje_peg63',
+    key: 'obje_pe63',
   },
   {
     title: 'Ret. peg63',
-    key: 'obje_rete_peg63',
+    key: 'fact_pe63',
   },
   {
     title: '% Ret. pend.',
-    key: 'porc_pend_peg63',
+    key: 'porc_pe63',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_peg63',
+    key: 'pend_fact_pe63',
   },
   {
     title: 'Total',
-    key: 'tota_peg63',
+    key: 'tota_pe63',
   },
   {
     title: '% Ret. pend.',
-    key: 'porc_pend2_peg63',
+    key: 'cump_pe63',
   },
   {
     title: 'Pegs',
-    key: 'rete_pegs',
+    key: 'fact_pegs_ante',
   },
   {
     title: 'Objetivo',
-    key: 'obje_rete_camp',
+    key: 'obje_pegs',
   },
  
   
   {
     title: 'Ret. pegs',
-    key: 'obje_rete_pegs',
+    key: 'fact_pegs',
   },
   {
     title: 'Cump. fact.',
-    key: 'cump_rete_fact',
+    key: 'porc_pegs',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_rete_fact',
+    key: 'pend_fact_pegs',
   },
   {
     title: 'Total',
-    key: 'tota_rete_fact',
+    key: 'tota_pegs',
   },
   {
     title: '% Cump',
-    key: 'porc_rete_cump',
+    key: 'cump_pegs',
   },
   {
     title: 'pos. reing.',
-    key: 'posi_rein',
+    key: 'fact_rein_ante',
   },
   {
     title: 'Objetivo',
@@ -389,39 +378,39 @@ const cabeceraGlobal = [
   },
   {
     title: 'Cump. fact.',
-    key: 'cump_rein_fact',
+    key: 'porc_rein',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_rein_fact',
+    key: 'pend_fact_rein',
   },
   {
     title: 'Total',
-    key: 'tota_rein_fact',
+    key: 'tota_fact_rein',
   },
   {
     title: '% Cump.',
-    key: 'porc_rein_cump',
+    key: 'cump_rein',
   },
   {
     title: 'Objetivo',
-    key: 'obje_tota_camp',
+    key: 'obje_tota',
   },
   {
     title:'Facturado',
-    key: 'pedi_tota_fact',
+    key: 'fact_tota',
   },
   {
     title:'Cumpl. Fact',
-    key: 'cump_tota_fact',
+    key: 'cump_fact_tota',
   },
   {
     title: 'Pend. fact.',
-    key: 'pend_tota_fact',
+    key: 'pend_fact_tota',
   },
   {
     title: 'Total',
-    key: 'tota_tota_fact',
+    key: 'tota_tota',
   },
   {
     title: 'Objetivo Ventas',
@@ -429,19 +418,19 @@ const cabeceraGlobal = [
   },
   {
     title: 'Venta',
-    key: 'pedi_vent',
+    key: 'fact_vent',
   },
   {
     title: 'Objetivo',
-    key: 'obje_capi_cier',
+    key: 'obje_capi',
   },
   {
     title: 'Facturado',
-    key: 'capi_actu',
+    key: 'fact_capi',
   },
   {
     title: 'Capi. pend.',
-    key: 'capi_pend',
+    key: 'tota_capi_pend',
   },
   {
     title: '% Asertividad',
@@ -449,165 +438,6 @@ const cabeceraGlobal = [
   },
 ]
 
-// const cabeceraDetalle = [
-//   {
-//     title: 'Corte',
-//     key: 'codi_cort',
-//   },
-//   {
-//     title: 'Región',
-//     key: 'codi_area',
-//   },
-//   {
-//     title: 'Nro zonas',
-//     key: 'tota_zona',
-//   },
-//   {
-//     title: 'Objetivo',
-//     key: 'obje_inco_camp',
-//   },
- 
-  
-//   {
-//     title: 'Estimacion de cierre',
-//     key: 'obje_inco_cier',
-//   },
-//   {
-//     title: 'Facturacion',
-//     key: 'pedi_inco_fact',
-//   },
-//   {
-//   title: 'Cump. fact.',
-//   key:'cump_inco_fact',
-//  },
-//  {
-//   title: 'Pend. fact.',
-//   key:'pend_inco_fact',
-//  },
-
-//   {
-//     title: 'Total',
-//     key: 'dife_inco_3',
-//   },
-  
-//   {
-//     title: '% Cump. ',
-//     key: 'cump_inco_esti',
-//   },
-//   {
-//     title: 'Dife. tota.',
-//     key: 'dife_inco_tota',
-//   },
-//   {
-//     title: 'Objetivo',
-//     key: 'obje_rete_camp',
-//   },
- 
-//   {
-//     title: '% Reproyección',
-//     key: 'porc_rete_segu',
-//   },
-//   {
-//     title: 'Estimacion de cierre',
-//     key: 'obje_rete_cier',
-//   },
-//   {
-//     title: 'Facturacion',
-//     key: 'pedi_rete_fact',
-//   },
-//   {
-//     title: 'Dif  sol con ped. vs sin ped.',
-//     key: 'dife_rete_1',
-//   },
-//   {
-//     title: 'Dif cierre vs obj',
-//     key: 'dife_rete_2',
-//   },
-//   {
-//     title: 'Total estimacion vs obj',
-//     key: 'dife_rete_3',
-//   },
-//   {
-//     title: 'Total cierre vs obj',
-//     key: 'obje_rete_cier_tota',
-//   },
-//   {
-//     title: '% Cump. estimación',
-//     key: 'cump_rete_esti',
-//   },
-//   {
-//     title: '% Cump. cierre',
-//     key: 'cump_rete_cier',
-//   },
-//   {
-//     title: 'Objetivo',
-//     key: 'obje_acti_prim',
-//   },
-//   {
-//     title: 'Estimación',
-//     key: 'obje_acti_cier',
-//   },
-//   {
-//     title: 'Facturacion',
-//     key: 'obje_acti_fact',
-//   },
-//   {
-//     title: 'Objetivo',
-//     key: 'obje_tota_camp',
-//   },
-//   {
-//     title: '% Proyección',
-//     key: 'porc_tota_prim',
-//   },
-//   {
-//     title: '% Reproyección',
-//     key: 'porc_tota_segu',
-//   },
-//   {
-//     title: 'Estimacion de cierre',
-//     key: 'obje_tota_cier',
-//   },
-//   {
-//     title: 'Facturacion',
-//     key: 'pedi_tota_fact',
-//   },
-//   {
-//     title: 'Dif sol con ped. vs sin ped.',
-//     key: 'dife_tota_1',
-//   },
-//   {
-//     title: 'Dif cierre vs obj',
-//     key: 'dife_tota_2',
-//   },
-//   {
-//     title: 'Total estimacion vs obj',
-//     key: 'dife_tota_3',
-//   },
-//   {
-//     title: 'Total cierre vs obj',
-//     key: 'obje_tota_cier_tota',
-//   },
-//   {
-//     title: '% Cump. estimación',
-//     key: 'cump_tota_esti',
-//   },
-//   {
-//     title: '% Cump. cierre',
-//     key: 'cump_tota_cier',
-//   },
-//   {
-//     title: 'Estimación',
-//     key: 'obje_capi_cier',
-//   },
-//   {
-//     title: 'Facturado',
-//     key: 'capi_actu',
-//   },
-//   {
-//     title: '% Asertividad',
-//     key: 'porc_aser',
-//   },
-// ]
 
 let sumaFact = 0
 let sumaObje = 0
@@ -660,20 +490,22 @@ const columnasGlobal = [
   {
     text: 'Región',
     datafield: 'codi_area',
-    width: '60',
+    width: '70',
     align: 'center',
     cellsalign: 'center',
     filtertype: 'checkedlist',
     pinned: true,
+    hidden: false,
     editable: false,
   },
   {
     text: 'Nro zonas',
     datafield: 'tota_zona',
-    width: '80',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     pinned: true,
+    hidden: false,
     editable: false,
   },
   {
@@ -683,34 +515,38 @@ const columnasGlobal = [
     align: 'center',
     cellsalign: 'center',
     pinned: true,
+    hidden: false,
     editable: false,
   },
   {
     text: 'Proyección',
     datafield: 'tota_proy',
-    width: '80',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     pinned: true,
+    hidden: false,
     editable: false,
   },
   {
     text: 'Seguimiento',
     datafield: 'tota_segui',
-    width: '100',
+    width: '120',
     align: 'center',
     cellsalign: 'center',
     pinned: true,
+    hidden: false,
     editable: false,
   },
   {
     text: 'Objetivo',
-    datafield: 'obje_inco_camp',
-    width: '120',
+    datafield: 'obje_inco',
+    width: '90',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -724,12 +560,13 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',
-    datafield: 'pedi_inco_fact',
-    width: '120',
+    datafield: 'fact_inco',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -745,17 +582,30 @@ const columnasGlobal = [
    {
     text: 'Cump. fact.',
     datafield: 'cump_inco_fact',
-    width: '120',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
-    editable: false,
+    cellsformat: 'P2',
+    hidden: false,
     aggregates: [
       {
-        T: function(aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
+        
+        'T': function(aggregatedValue, currentValue, column, record) {
+          if (record.visibleindex === 0) {
+            sumaFact = 0
+            sumaObje = 0
+          }
+          sumaObje += record.obje_inco
+          sumaFact += record.fact_inco
+          let total = 0
           
-          return aggregatedValue
+          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
+            
+            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
         },
       },
     ],
@@ -765,11 +615,12 @@ const columnasGlobal = [
   {
     text: 'Pend. fact.',
     datafield: 'pend_inco_fact',
-    width: '120',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -785,12 +636,13 @@ const columnasGlobal = [
 
   {
     text: 'Total',
-    datafield: 'dife_inco_3',
-    width: '120',
+    datafield: 'tota_inco',
+    width: '60',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -805,12 +657,13 @@ const columnasGlobal = [
   
   {
     text: '% Cump. ',
-    datafield: 'cump_inco_esti',
-    width: '120',
+    datafield: 'cump_inco',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -820,7 +673,7 @@ const columnasGlobal = [
             sumaObje = 0
           }
           sumaFact += record.obje_inco_cier
-          sumaObje += record.obje_inco_camp
+          sumaObje += record.obje_inco
           let total = 0
   
           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
@@ -839,11 +692,12 @@ const columnasGlobal = [
   {
     text: 'Dife. tota.',
     datafield: 'dife_inco_tota',
-    width: '120',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'P',
+    cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -853,7 +707,7 @@ const columnasGlobal = [
             sumaObje = 0
           }
           sumaFact += record.obje_inco_cier
-          sumaObje += record.obje_inco_camp
+          sumaObje += record.obje_inco
           let total = 0
   
           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
@@ -871,12 +725,13 @@ const columnasGlobal = [
   },
   {
     text: 'Objetivo',
-    datafield: 'obje_cons',
-    width: '120',
+    datafield: 'obje_rete_cons',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -893,12 +748,13 @@ const columnasGlobal = [
   
   {
     text: 'Facturado',
-    datafield: 'pedi_cons_fact',
-    width: '120',
+    datafield: 'fact_rete_cons',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -912,18 +768,31 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. fact.',
-    datafield: 'cump_cons_fact',
-    width: '120',
-    align: 'center',
+    datafield: 'cump_fact_rete_cons',
+    width: '100',
+     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
-    editable: false,
+    cellsformat: 'P2',
+    hidden: false,
     aggregates: [
       {
-        T: function(aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
+        
+        'T': function(aggregatedValue, currentValue, column, record) {
+          if (record.visibleindex === 0) {
+            sumaFact = 0
+            sumaObje = 0
+          }
+          sumaFact += record.fact_rete_cons
+          sumaObje += record.obje_rete_cons
+          let total = 0
           
-          return aggregatedValue
+          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
+            
+            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
         },
       },
     ],
@@ -931,12 +800,13 @@ const columnasGlobal = [
   },
   {
     text: 'Pend. fact.',
-    datafield: 'pend_cons_fact',
-    width: '120',
+    datafield: 'pend_fact_rete_cons',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -950,12 +820,13 @@ const columnasGlobal = [
   },
   {
     text: 'Total',
-    datafield: 'tota_cons_fact',
-    width: '120',
+    datafield: 'tota_rete_cons',
+    width: '60',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -969,12 +840,13 @@ const columnasGlobal = [
   },
   {
     text: '% Cump.',
-    datafield: 'porc_cons_cump',
-    width: '120',
+    datafield: 'cump_rete_cons',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -985,15 +857,17 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'Cons',
+    cellclassname: claseCumplimientoRetencionCierre,
   },
   {
     text: '1 Camp. ante.',
-    datafield: 'camp_con2_ante',
+    datafield: 'obje_rete_cons_segu',
     width: '120',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1007,12 +881,13 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',
-    datafield: 'pedi_con2_fact',
-    width: '120',
+    datafield: 'fact_rete_cons_segu',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1026,12 +901,13 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. fact.',
-    datafield: 'cump_con2_fact',
-    width: '120',
+    datafield: 'cump_fact_rete_cons_segu',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1042,15 +918,17 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'Cons_2',
+    cellclassname: claseCumplimientoRetencionCierre,
   },
   {
     text: 'Pend. fact.',  
-    datafield: 'pend_con2_fact',
-    width: '120',
+    datafield: 'pend_fact_rete_cons_segu',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1064,12 +942,13 @@ const columnasGlobal = [
   },
   {
     text: 'Total',  
-    datafield: 'tota_con2_fact',
-    width: '120',
+    datafield: 'tota_rete_cons_segu',
+    width: '70',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1083,12 +962,13 @@ const columnasGlobal = [
   },
   {
     text: '% Cump.',  
-    datafield: 'porc_con2_cump',
-    width: '120',
+    datafield: 'cump_rete_cons_segu',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1099,15 +979,17 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'Cons_2',
+    cellclassname: claseCumplimientoRetencionCierre,
   },
   {
     text: '2 Camp. ante.',  
-    datafield: 'camp_con3_ante',
+    datafield: 'obje_rete_cons_terc',
     width: '120',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1121,12 +1003,13 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',  
-    datafield: 'pedi_con3_fact',
-    width: '120',
+    datafield: 'fact_rete_cons_terc',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1140,12 +1023,13 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. fact.',  
-    datafield: 'cump_con3_fact',
-    width: '120',
+    datafield: 'cump_fact_rete_cons_terc',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1156,15 +1040,17 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'Cons_3',
+    cellclassname: claseCumplimientoRetencionCierre,
   },
   {
     text: 'Pend. fact.',  
-    datafield: 'pend_con3_fact',
-    width: '120',
+    datafield: 'pend_fact_rete_cons_terc',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1178,12 +1064,13 @@ const columnasGlobal = [
   },
   {
     text: 'Total',  
-    datafield: 'tota_con3_fact',
-    width: '120',
+    datafield: 'tota_rete_cons_terc',
+    width: '70',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1197,12 +1084,13 @@ const columnasGlobal = [
   },
   {
     text: '% Cump.',  
-    datafield: 'porc_con3_cump',
-    width: '120',
+    datafield: 'cump_rete_cons_terc',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1213,15 +1101,17 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'Cons_3',
+    cellclassname: claseCumplimientoRetencionCierre,
   },
   {
     text: '3 Camp. ante.',  
-    datafield: 'camp_con4_ante',
+    datafield: 'obje_rete_cons_cuar',
     width: '120',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1235,12 +1125,13 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',  
-    datafield: 'pedi_con4_fact',
-    width: '120',
+    datafield: 'fact_rete_cons_cuar',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1254,12 +1145,13 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. fact.',  
-    datafield: 'cump_con4_fact',
-    width: '120',
+    datafield: 'cump_fact_rete_cons_cuar',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1270,15 +1162,17 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'Cons_4',
+    cellclassname: claseCumplimientoRetencionCierre,
   },
   {
     text: 'Pend. fact.',  
-    datafield: 'pend_con4_fact',
-    width: '120',
+    datafield: 'pend_fact_rete_cons_cuar',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1292,12 +1186,13 @@ const columnasGlobal = [
   },
   {
     text: 'Total',  
-    datafield: 'tota_con4_fact',
-    width: '120',
+    datafield: 'tota_rete_cons_cuar',
+    width: '70',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1311,12 +1206,13 @@ const columnasGlobal = [
   },
   {
     text: '% Cump.',  
-    datafield: 'porc_con4_cump',
-    width: '120',
+    datafield: 'cump_rete_cons_cuar',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1327,15 +1223,17 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'Cons_4',
+    cellclassname: claseCumplimientoRetencionCierre,
   },
   {
     text: 'peg21',  
-    datafield: 'data_peg21',
-    width: '120',
+    datafield: 'fact_pe21_ante',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1349,12 +1247,13 @@ const columnasGlobal = [
   },
   {
     text: 'Objetivo',  
-    datafield: 'obje_peg21',
-    width: '120',
+    datafield: 'obje_pe21',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1368,12 +1267,13 @@ const columnasGlobal = [
   },
   {
     text: 'Ret. peg21',  
-    datafield: 'obje_rete_peg21',
-    width: '120',
+    datafield: 'fact_pe21',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1387,12 +1287,13 @@ const columnasGlobal = [
   },
   {
     text: '%Ret. pend.',  
-    datafield: 'porc_pend_peg21',
+    datafield: 'porc_pe21',
     width: '120',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1407,12 +1308,13 @@ const columnasGlobal = [
   
   {
     text: 'Pend. fact.',  
-    datafield: 'pend_rete_peg21',
-    width: '120',
+    datafield: 'pend_fact_pe21',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1427,12 +1329,13 @@ const columnasGlobal = [
 
   {
     text: 'Total',  
-    datafield: 'tota_peg21',
-    width: '120',
+    datafield: 'tota_pe21',
+    width: '70',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1446,12 +1349,13 @@ const columnasGlobal = [
   },
   {
     text: '%Ret. pend.',  
-    datafield: 'porc_pend2_peg21',
+    datafield: 'cump_pe21',
     width: '120',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
         T: function(aggregatedValue, currentValue) {
@@ -1462,15 +1366,17 @@ const columnasGlobal = [
       },
     ],
     columngroup: 'peg21',
+    
   },
   {
       text: 'Peg42',  
-      datafield: 'data_peg42',
-      width: '120',
+      datafield: 'fact_pe42_ante',
+      width: '80',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1484,12 +1390,13 @@ const columnasGlobal = [
   },
   {
       text: 'Objetivo',  
-      datafield: 'Obje_peg42',
-      width: '120',
+      datafield: 'obje_pe42',
+      width: '80',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1503,12 +1410,13 @@ const columnasGlobal = [
     },
   {
       text: 'Ret. peg42',  
-      datafield: 'Obje_rete_peg42',
-      width: '120',
+      datafield: 'fact_pe42',
+      width: '100',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1522,12 +1430,13 @@ const columnasGlobal = [
     },
   {
       text: '% Ret. pend.',  
-      datafield: 'porc_pend_peg42',
+      datafield: 'porc_pe42',
       width: '120',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1541,12 +1450,13 @@ const columnasGlobal = [
     },
   {
       text: 'Pend. fact.',  
-      datafield: 'pend_peg42',
-      width: '120',
+      datafield: 'pend_fact_pe42',
+      width: '100',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1560,12 +1470,13 @@ const columnasGlobal = [
     },
   {
       text: 'Total',  
-      datafield: 'tota_peg42',
-      width: '120',
+      datafield: 'tota_pe42',
+      width: '70',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1579,12 +1490,13 @@ const columnasGlobal = [
     },
   {
       text: '% Ret. pend.',
-      datafield: 'porc_pend2_peg42',  
+      datafield: 'cump_pe42',  
       width: '120',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1598,12 +1510,13 @@ const columnasGlobal = [
     },
   {
       text: 'peg63',
-      datafield: 'data_peg63',  
-      width: '120',
+      datafield: 'fact_pe63_ante',  
+      width: '80',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1617,12 +1530,13 @@ const columnasGlobal = [
     },
     {
       text: 'Objetivo',
-      datafield: 'obje_peg63',  
-      width: '120',
+      datafield: 'obje_pe63',  
+      width: '80',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1635,13 +1549,14 @@ const columnasGlobal = [
       columngroup: 'peg63',
     },
   {
-      text: ' Ret. peg63',
-      datafield: 'obje_rete_peg63',  
-      width: '120',
+      text: 'Ret. peg63',
+      datafield: 'fact_pe63',  
+      width: '100',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1655,12 +1570,13 @@ const columnasGlobal = [
     },
   {
       text: '% Ret. pend.',
-      datafield: 'porc_pend_peg63',  
+      datafield: 'porc_pe63',  
       width: '120',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1674,12 +1590,13 @@ const columnasGlobal = [
     },
   {
       text: 'Pend. fact.',
-      datafield: 'pend_peg63',  
-      width: '120',
+      datafield: 'pend_fact_pe63',  
+      width: '100',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1693,12 +1610,13 @@ const columnasGlobal = [
     },
   {
       text: 'Total',
-      datafield: 'tota_peg63',  
-      width: '120',
+      datafield: 'tota_pe63',  
+      width: '70',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1712,12 +1630,13 @@ const columnasGlobal = [
     },
   {
       text: '%ret. pend.',
-      datafield: 'porc_pend2_peg63',  
+      datafield: 'cump_pe63',  
       width: '120',
       align: 'center',
       cellsalign: 'center',
       cellsformat: 'N',
       editable: false,
+      hidden: false,
       aggregates: [
         {
           T: function(aggregatedValue, currentValue) {
@@ -1731,12 +1650,13 @@ const columnasGlobal = [
     },
 {
     text: 'Pegs',
-    datafield: 'rete_pegs',
-    width: '120',
+    datafield: 'fact_pegs_ante',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1752,12 +1672,13 @@ const columnasGlobal = [
   },
   {
     text: 'Objetivo',
-    datafield: 'obje_rete_camp',
-    width: '120',
+    datafield: 'obje_pegs',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1775,12 +1696,13 @@ const columnasGlobal = [
   
   {
     text: 'Ret. pegs',
-    datafield: 'obje_rete_pegs',
-    width: '120',
+    datafield: 'fact_pegs',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1796,12 +1718,13 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. Fact.',
-    datafield: 'cump_rete_fact',
-    width: '120',
+    datafield: 'porc_pegs',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1817,12 +1740,13 @@ const columnasGlobal = [
   },
   {
     text: 'Pend. fact.', 
-    datafield: 'pend_rete_fact',
-    width: '120',
+    datafield: 'pend_fact_pegs',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1838,12 +1762,13 @@ const columnasGlobal = [
   },
   {
     text: 'Total',
-    datafield: 'tota_rete_fact',
-    width: '120',
+    datafield: 'tota_pegs',
+    width: '70',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1859,12 +1784,13 @@ const columnasGlobal = [
   },
   {
     text: '% Cump',
-    datafield: 'porc_rete_cump',
-    width: '120',
+    datafield: 'cump_pegs',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'N',
+    cellsformat: 'P',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1880,12 +1806,13 @@ const columnasGlobal = [
   },
   {
     text: 'Pos. reing.',
-    datafield: 'posi_rein',
-    width: '120',
+    datafield: 'fact_rein_ante',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1902,11 +1829,12 @@ const columnasGlobal = [
   {
     text: 'Objetivo',
     datafield: 'obje_rein',
-    width: '120',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1923,11 +1851,12 @@ const columnasGlobal = [
   {
     text: 'Facturado',
     datafield: 'fact_rein',
-    width: '120',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1943,12 +1872,13 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. fact.',
-    datafield: 'cump_rein_fact',
-    width: '120',
+    datafield: 'porc_rein',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1964,12 +1894,13 @@ const columnasGlobal = [
   },
   {
     text: 'Pend. fact.',
-    datafield: 'pend_rein_fact',
-    width: '120',
+    datafield: 'pend_fact_rein',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -1985,12 +1916,13 @@ const columnasGlobal = [
   },
   {
     text: 'Total',
-    datafield: 'tota_rein_fact',
-    width: '120',
+    datafield: 'tota_fact_rein',
+    width: '70',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -2006,12 +1938,13 @@ const columnasGlobal = [
   },
   {
     text: '% Cump.',
-    datafield: 'porc_rein_cump',
-    width: '120',
+    datafield: 'cump_rein',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -2027,11 +1960,12 @@ const columnasGlobal = [
   },
    {
     text: 'Objetivo',
-    datafield: 'obje_capi_cier',
-    width: '120',
+    datafield: 'obje_capi',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
+    hidden: false,
     aggregates: [
       {
 
@@ -2048,11 +1982,12 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',
-    datafield: 'capi_actu',
-    width: '120',
+    datafield: 'fact_capi',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
+    hidden: false,
     aggregates: [
       {
 
@@ -2069,11 +2004,12 @@ const columnasGlobal = [
   },
   {
     text: 'Capi. pend.',
-    datafield: 'capi_pend',
-    width: '120',
+    datafield: 'tota_capi_pend',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
+    hidden: false,
     aggregates: [
       {
 
@@ -2091,12 +2027,13 @@ const columnasGlobal = [
 
   {
     text: 'Objetivo',
-    datafield: 'obje_tota_camp',
-    width: '120',
+    datafield: 'obje_tota',
+    width: '80',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -2112,12 +2049,13 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',
-    datafield: 'pedi_tota_fact',
-    width: '120',
+    datafield: 'fact_tota',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -2133,12 +2071,13 @@ const columnasGlobal = [
   },
    {
     text: 'Cump. Fact',
-    datafield: 'cump_tota_fact',
-    width: '120',
+    datafield: 'cump_fact_tota',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -2154,12 +2093,13 @@ const columnasGlobal = [
   },
    {
     text: 'Pend. Fact',
-    datafield: 'pend_tota_fact',
-    width: '120',
+    datafield: 'pend_fact_tota',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -2175,12 +2115,13 @@ const columnasGlobal = [
   },
   {
     text: 'Total',
-    datafield: 'tota_tota_fact',
-    width: '120',
+    datafield: 'tota_tota',
+    width: '70',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -2197,11 +2138,12 @@ const columnasGlobal = [
   {
     text: 'Objetivo Ventas',
     datafield: 'obje_vent',
-    width: '120',
+    width: '150',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -2217,12 +2159,13 @@ const columnasGlobal = [
   },
   {
     text: 'Venta',
-    datafield: 'pedi_vent',
-    width: '120',
+    datafield: 'fact_vent',
+    width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
     editable: false,
+    hidden: false,
     aggregates: [
       {
 
@@ -2238,919 +2181,6 @@ const columnasGlobal = [
   },
 
 ]
-
-// const columnasDetalle = [
-//   {
-//     datafield: 'obje_inco_prim',
-//     hidden: true,
-//   },
-//   {
-//     datafield: 'obje_inco_segu',
-//     hidden: true,
-//   },
-//   {
-//     datafield: 'obje_rete_prim',
-//     hidden: true,
-//   },
-//   {
-//     datafield: 'obje_rete_segu',
-//     hidden: true,
-//   },
-//   {
-//     datafield: 'obje_tota_prim',
-//     hidden: true,
-//   },
-//   {
-//     datafield: 'obje_tota_segu',
-//     hidden: true,
-//   },
-//   {
-//     datafield: 'acti_inic',
-//     hidden: true,
-//   },
-//   {
-//     datafield: 'nume_pedi',
-//     hidden: true,
-//   },
-//   {
-//     datafield: 'tota_ingr',
-//     hidden: true,
-//   },
-//   {
-//     datafield: 'tota_rein',
-//     hidden: true,
-//   },
-//   {
-//     text: 'Corte',
-//     datafield: 'codi_cort',
-//     width: '60',
-//     align: 'center',
-//     cellsalign: 'center',
-//     filtertype: 'checkedlist',
-//     pinned: true,
-//     editable: false,
-//   },
-//   {
-//     text: 'Región',
-//     datafield: 'codi_area',
-//     width: '60',
-//     align: 'center',
-//     cellsalign: 'center',
-//     filtertype: 'checkedlist',
-//     pinned: true,
-//     editable: false,
-//   },
-//   {
-//     text: 'Nro zonas',
-//     datafield: 'tota_zona',
-//     width: '80',
-//     align: 'center',
-//     cellsalign: 'center',
-//     pinned: true,
-//     editable: false,
-//   },
-//   {
-//     text: 'Objetivo',
-//     datafield: 'obje_inco_camp',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'inco',
-//   },
-  
- 
-  
-//   {
-//     text: 'Facturado',
-//     datafield: 'pedi_inco_fact',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'inco',
-//   },
-//   {
-//     text: 'Cump. fact.',
-//     datafield: 'cump_inco_fact',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-//         T: function(aggregatedValue, currentValue) {
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'inco',
-//   },
-  
-//    {
-//     text: 'Pend. fact.',
-//     datafield: 'pend_inco_fact',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-//         T: function(aggregatedValue, currentValue) {
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'inco',
-//   },
- 
-//   {
-//     text: 'Total  ',
-//     datafield: 'dife_inco_3',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'inco',
-//   },
-  
-//   {
-//     text: '% Cump. ',
-//     datafield: 'cump_inco_esti',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function (aggregatedValue, currentValue, column, record) {
-          
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.obje_inco_cier
-//           sumaObje += record.obje_inco_camp
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'inco',
-//     cellclassname: claseCumplimientoIncorporacion,
-//   },
-//   {
-//     text: 'Dife. tota.',
-//     datafield: 'dife_inco_tota',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function (aggregatedValue, currentValue, column, record) {
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.obje_inco_cier
-//           sumaObje += record.obje_inco_camp
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'inco',
-//     cellclassname: claseCumplimientoIncorporacion,
-//   },
-  
-
-//   {
-//     text: 'Objetivo',
-//     datafield: 'obje_rete_camp',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//   },
-  
-//   {
-//     text: '% Reproyección',
-//     datafield: 'porc_rete_segu',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function (aggregatedValue, currentValue, column, record) {
-          
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.obje_rete_segu
-//           sumaObje += record.obje_rete_camp
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//   },
-//   {
-//     text: 'Estimacion de cierre',
-//     datafield: 'obje_rete_cier',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//   },
-//   {
-//     text: 'Facturacion',
-//     datafield: 'pedi_rete_fact',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//   },
-//   {
-//     text: 'Dif  sol con ped. vs sin ped.',
-//     datafield: 'dife_rete_1',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//   },
-//   {
-//     text: 'Dif cierre vs obj',
-//     datafield: 'dife_rete_2',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//   },
-//   {
-//     text: 'Total estimacion vs obj',
-//     datafield: 'dife_rete_3',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//   },
-//   {
-//     text: 'Total cierre vs obj',
-//     datafield: 'obje_rete_cier_tota',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//     editable: true,
-//     validation(cell, value) {
-//       if (value === '0') {
-//         return true
-//       }
-      
-//       return !(value === '')
-//     },
-//     cellclassname() {
-//       return 'text-secondary bg-primary-light'
-//     },
-//   },
-//   {
-//     text: '% Cump. estimación',
-//     datafield: 'cump_rete_esti',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function (aggregatedValue, currentValue, column, record) {
-          
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.obje_rete_cier
-//           sumaObje += record.obje_rete_camp
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//     cellclassname: claseCumplimientoRetencionEstimado,
-//   },
-//   {
-//     text: '% Cump. cierre',
-//     datafield: 'cump_rete_cier',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function (aggregatedValue, currentValue, column, record) {
-          
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.obje_rete_cier_tota
-//           sumaObje += record.obje_rete_camp
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'rete',
-//     cellclassname: claseCumplimientoRetencionCierre,
-//   },
-//   {
-//     text: 'Objetivo',
-//     datafield: 'obje_acti_prim',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P2',
-//     editable: false,
-//     columngroup: 'acti',
-//   },
-//   {
-//     text: 'Estimación',
-//     datafield: 'obje_acti_cier',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P2',
-//     editable: false,
-//     columngroup: 'acti',
-//   },
-//   {
-//     text: 'Facturacion',
-//     datafield: 'obje_acti_fact',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P2',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         'T': function(aggregatedValue, currentValue, column, record) {
-//           if (record.visibleindex === 0) {
-//             sumaActiInic = 0
-//             sumaNumePedi = 0
-//             sumaTotaIngr = 0
-//             sumaTotaRein = 0
-//           }
-//           sumaActiInic += record.acti_inic
-//           sumaNumePedi += record.nume_pedi
-//           sumaTotaIngr += record.tota_ingr
-//           sumaTotaRein += record.tota_rein
-//           let total = 0
-  
-//           if (parseInt(sumaActiInic) > 0 && parseInt(sumaNumePedi) - parseInt(sumaTotaIngr) - parseInt(sumaTotaRein) > 0) {
-    
-//             total = 100 * (parseInt(parseInt(sumaNumePedi) - parseInt(sumaTotaIngr) - parseInt(sumaTotaRein)) / parseInt(sumaActiInic))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'acti',
-//   },
-//   {
-//     text: 'Objetivo',
-//     datafield: 'obje_tota_camp',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//   },
-//   {
-//     text: '% Proyección',
-//     datafield: 'porc_tota_prim',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function (aggregatedValue, currentValue, column, record) {
-          
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.obje_tota_prim
-//           sumaObje += record.obje_tota_camp
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//   },
-//   {
-//     text: '% Reproyección',
-//     datafield: 'porc_tota_segu',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function (aggregatedValue, currentValue, column, record) {
-          
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.obje_tota_segu
-//           sumaObje += record.obje_tota_camp
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//   },
-//   {
-//     text: 'Estimacion de cierre',
-//     datafield: 'obje_tota_cier',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//   },
-//   {
-//     text: 'Facturacion',
-//     datafield: 'pedi_tota_fact',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//   },
-//   {
-//     text: 'Dif  sol con ped. vs sin ped.',
-//     datafield: 'dife_tota_1',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//   },
-//   {
-//     text: 'Dif cierre vs obj',
-//     datafield: 'dife_tota_2',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//   },
-//   {
-//     text: 'Total estimacion vs obj',
-//     datafield: 'dife_tota_3',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     editable: false,
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//   },
-//   {
-//     text: 'Total cierre vs obj',
-//     datafield: 'obje_tota_cier_tota',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     aggregates: [
-//       {
-
-//         T: function(aggregatedValue, currentValue) {
-  
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//     editable: false,
-//   },
-//   {
-//     text: '% Cump. estimación',
-//     datafield: 'cump_tota_esti',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     editable: false,
-//     aggregates: [
-//       {
-//         T: function (aggregatedValue, currentValue, column, record) {
-          
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.obje_tota_cier
-//           sumaObje += record.obje_tota_camp
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//     cellclassname: claseCumplimientoTotalEstimado,
-//   },
-//   {
-//     text: '% Cump. cierre',
-//     datafield: 'cump_tota_cier',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     editable: false,
-//     aggregates: [
-//       {
-//         T: function (aggregatedValue, currentValue, column, record) {
-          
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.obje_tota_cier_tota
-//           sumaObje += record.obje_tota_camp
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     columngroup: 'tota',
-//     cellclassname: claseCumplimientoTotalCierre,
-//   },
-//   {
-//     text: 'Estimación',
-//     datafield: 'obje_capi_cier',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     aggregates: [
-//       {
-//         T: function(aggregatedValue, currentValue) {
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'capi',
-//     editable: false,
-//   },
-//   {
-//     text: 'Facturado',
-//     datafield: 'capi_actu',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'N',
-//     aggregates: [
-//       {
-//         T: function(aggregatedValue, currentValue) {
-//           aggregatedValue += currentValue
-          
-//           return aggregatedValue
-//         },
-//       },
-//     ],
-//     columngroup: 'capi',
-//     editable: false,
-//   },
-//   {
-//     text: '% Asertividad',
-//     datafield: 'porc_aser',
-//     width: '120',
-//     align: 'center',
-//     cellsalign: 'center',
-//     cellsformat: 'P',
-//     aggregates: [
-//       {
-
-//         T: function (aggregatedValue, currentValue, column, record) {
-          
-//           if (record.visibleindex === 0) {
-//             sumaFact = 0
-//             sumaObje = 0
-//           }
-//           sumaFact += record.pedi_tota_fact
-//           sumaObje += record.obje_tota_cier_tota
-//           let total = 0
-  
-//           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-    
-//             total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-//           }
-//           total = parseFloat(total).toFixed(2)
-          
-//           return total
-//         },
-//       },
-//     ],
-//     editable: false,
-//     cellclassname: claseAsertividad,
-//   },
-// ]
 
 const columnasGrupo = [
   
@@ -3232,83 +2262,81 @@ const sourceGlobal = ref({
     { name: 'tota_obje', type: 'number' },
     { name: 'tota_proy', type: 'number' },
     { name: 'tota_segui', type: 'number' },
-    { name: 'obje_inco_camp', type: 'number' },
+    { name: 'obje_inco', type: 'number' },
     { name: 'obje_inco_prim', type: 'number' },
     { name: 'obje_inco_segu', type: 'number' },
     
-    { name: 'pedi_inco_fact', type: 'number' },
+    { name: 'fact_inco', type: 'number' },
     { name: 'pedi_inco_pend', type: 'number' },
-    { name: 'cump_inco_esti', type: 'number' },
+    { name: 'cump_inco', type: 'number' },
     { name: 'dife_inco_tota', type: 'number' },
    
-
-
-    { name: 'dife_inco_3', type: 'number' },
+    { name: 'tota_inco', type: 'number' },
     { name: 'cump_inco_fact', type: 'number' },
     { name: 'pend_inco_fact', type: 'number' },
-    { name: 'obje_cons', type: 'number' },
-    { name: 'pedi_cons_fact', type: 'number' },
-    { name: 'cump_cons_fact', type: 'number' },
-    { name: 'pend_cons_fact', type: 'number' },
-    { name: 'tota_cons_fact', type: 'number' },
-    { name: 'porc_cons_cump', type: 'number' },
-    { name: 'camp_con2_ante', type: 'number' },
-    { name: 'pedi_con2_fact', type: 'number' },
-    { name: 'cump_con2_fact', type: 'number' },
-    { name: 'pend_con2_fact', type: 'number' },
-    { name: 'tota_con2_fact', type: 'number' },
-    { name: 'porc_con2_cump', type: 'number' },
-    { name: 'camp_con3_ante', type: 'number' },
-    { name: 'pedi_con3_fact', type: 'number' },
-    { name: 'cump_con3_fact', type: 'number' },
-    { name: 'pend_con3_fact', type: 'number' },
-    { name: 'tota_con3_fact', type: 'number' },
-    { name: 'porc_con3_cump', type: 'number' },
-    { name: 'camp_con4_ante', type: 'number' },
-    { name: 'pedi_con4_fact', type: 'number' },
-    { name: 'cump_con4_fact', type: 'number' },
-    { name: 'pend_con4_fact', type: 'number' },
-    { name: 'tota_con4_fact', type: 'number' },
-    { name: 'porc_con4_cump', type: 'number' },
-    { name: 'data_peg21', type: 'number' },
-    { name: 'obje_peg21', type: 'number' },
-    { name: 'obje_rete_peg21', type: 'number' },
-    { name: 'porc_pend_peg21', type: 'number' },
-    { name: 'pend_rete_peg21', type: 'number' },
-    { name: 'tota_peg21', type: 'number' },
-    { name: 'porc_pend2_peg21', type: 'number' },
-    { name: 'data_peg42', type: 'number' },
-    { name: 'Obje_peg42', type: 'number' },
-    { name: 'Obje_rete_peg42', type: 'number'},
-    { name: 'porc_pend_peg42', type: 'number'},
-    { name: 'pend_peg42', type: 'number'},
-    { name: 'tota_peg42', type: 'number'},
-    { name: 'porc_pend2_peg42', type: 'number'},
-    { name: 'data_peg63', type: 'number'},
-    { name: 'obje_peg63', type: 'number'},
-    { name: 'obje_rete_peg63', type: 'number'},
-    { name: 'porc_pend_peg63', type: 'number'},
-    { name: 'pend_peg63', type: 'number'},
-    { name: 'tota_peg63', type: 'number'},
-    { name: 'porc_pend2_peg63', type: 'number'},
-    { name: 'rete_pegs', type: 'number' },
-    { name: 'obje_rete_camp', type: 'number' },
+    { name: 'obje_rete_cons', type: 'number' },
+    { name: 'fact_rete_cons', type: 'number' },
+    { name: 'cump_fact_rete_cons', type: 'number' },
+    { name: 'pend_fact_rete_cons', type: 'number' },
+    { name: 'tota_rete_cons', type: 'number' },
+    { name: 'cump_rete_cons', type: 'number' },
+    { name: 'obje_rete_cons_segu', type: 'number' },
+    { name: 'fact_rete_cons_segu', type: 'number' },
+    { name: 'cump_fact_rete_cons_segu', type: 'number' },
+    { name: 'pend_fact_rete_cons_segu', type: 'number' },
+    { name: 'tota_rete_cons_segu', type: 'number' },
+    { name: 'cump_rete_cons_segu', type: 'number' },
+    { name: 'obje_rete_cons_terc', type: 'number' },
+    { name: 'fact_rete_cons_terc', type: 'number' },
+    { name: 'cump_fact_rete_cons_terc', type: 'number' },
+    { name: 'pend_fact_rete_cons_terc', type: 'number' },
+    { name: 'tota_rete_cons_terc', type: 'number' },
+    { name: 'cump_rete_cons_terc', type: 'number' },
+    { name: 'obje_rete_cons_cuar', type: 'number' },
+    { name: 'fact_rete_cons_cuar', type: 'number' },
+    { name: 'cump_fact_rete_cons_cuar', type: 'number' },
+    { name: 'pend_fact_rete_cons_cuar', type: 'number' },
+    { name: 'tota_rete_cons_cuar', type: 'number' },
+    { name: 'cump_rete_cons_cuar', type: 'number' },
+    { name: 'fact_pe21_ante', type: 'number' },
+    { name: 'obje_pe21', type: 'number' },
+    { name: 'fact_pe21', type: 'number' },
+    { name: 'porc_pe21', type: 'number' },
+    { name: 'pend_fact_pe21', type: 'number' },
+    { name: 'tota_pe21', type: 'number' },
+    { name: 'cump_pe21', type: 'number' },
+    { name: 'fact_pe42_ante', type: 'number' },
+    { name: 'obje_pe42', type: 'number' },
+    { name: 'fact_pe42', type: 'number'},
+    { name: 'porc_pe42', type: 'number'},
+    { name: 'pend_fact_pe42', type: 'number'},
+    { name: 'tota_pe42', type: 'number'},
+    { name: 'cump_pe42', type: 'number'},
+    { name: 'fact_pe63_ante', type: 'number'},
+    { name: 'obje_pe63', type: 'number'},
+    { name: 'fact_pe63', type: 'number'},
+    { name: 'porc_pe63', type: 'number'},
+    { name: 'pend_fact_pe63', type: 'number'},
+    { name: 'tota_pe63', type: 'number'},
+    { name: 'cump_pe63', type: 'number'},
+    { name: 'fact_pegs_ante', type: 'number' },
+    { name: 'obje_pegs', type: 'number' },
     { name: 'obje_rete_prim', type: 'number' },
    
     { name: 'obje_rete_segu', type: 'number' },
-    { name: 'obje_rete_pegs', type: 'number' },
-    { name: 'cump_rete_fact', type: 'number' },
+    { name: 'fact_pegs', type: 'number' },
+    { name: 'porc_pegs', type: 'number' },
     { name: 'pedi_rete_pend', type: 'number' },
-    { name: 'pend_rete_fact', type: 'number' },
-    { name: 'tota_rete_fact', type: 'number' },
-    { name: 'porc_rete_cump', type: 'number' },
-    { name: 'posi_rein', type: 'number' },
+    { name: 'pend_fact_pegs', type: 'number' },
+    { name: 'tota_pegs', type: 'number' },
+    { name: 'cump_pegs', type: 'number' },
+    { name: 'fact_rein_ante', type: 'number' },
     { name: 'obje_rein', type: 'number' },
     { name: 'fact_rein', type: 'number' },
-    { name: 'cump_rein_fact', type: 'number' },
-    { name: 'pend_rein_fact', type: 'number' },
-    { name: 'tota_rein_fact', type: 'number' },
-    { name: 'porc_rein_cump', type: 'number' },
+    { name: 'porc_rein', type: 'number' },
+    { name: 'pend_fact_rein', type: 'number' },
+    { name: 'tota_fact_rein', type: 'number' },
+    { name: 'cump_rein', type: 'number' },
     { name: 'obje_rete_cier', type: 'number' },
     { name: 'pedi_rete_fact', type: 'number' },
     { name: 'pedi_rete_pend', type: 'number' },
@@ -3318,13 +2346,13 @@ const sourceGlobal = ref({
     { name: 'dife_rete_1', type: 'number' },
     { name: 'dife_rete_2', type: 'number' },
     { name: 'dife_rete_3', type: 'number' },  
-    { name: 'obje_tota_camp', type: 'number' },
-    { name: 'pedi_tota_fact', type: 'number' },
-    { name: 'cump_tota_fact', type: 'number' },
-    { name: 'pend_tota_fact', type: 'number' },
-    { name: 'tota_tota_fact', type: 'number' },
+    { name: 'obje_tota', type: 'number' },
+    { name: 'fact_tota', type: 'number' },
+    { name: 'cump_fact_tota', type: 'number' },
+    { name: 'pend_fact_tota', type: 'number' },
+    { name: 'tota_tota', type: 'number' },
     { name: 'obje_vent', type: 'number' },
-    { name: 'pedi_vent', type: 'number' },
+    { name: 'fact_vent', type: 'number' },
     { name: 'obje_tota_prim', type: 'number' },
    
     { name: 'obje_tota_segu', type: 'number' },
@@ -3332,12 +2360,10 @@ const sourceGlobal = ref({
 
     { name: 'pedi_tota_pend', type: 'number' },
 
-    { name: 'capi_actu', type: 'number' },
-    { name: 'capi_pend', type: 'number' },
-    { name: 'obje_capi_cier', type: 'number' },
+    { name: 'fact_capi', type: 'number' },
+    { name: 'tota_capi_pend', type: 'number' },
+    { name: 'obje_capi', type: 'number' },
     { name: 'porc_aser', type: 'number' },
-
-
 
     { name: 'acti_inic', type: 'number' },
     { name: 'nume_pedi', type: 'number' },
@@ -3347,74 +2373,8 @@ const sourceGlobal = ref({
   datatype: 'json',
 })
 
-// const sourceDetalle = ref({
-//   localdata: [],
-//   datafields: [
-//     { name: 'codi_cort', type: 'number' },
-//     { name: 'codi_area', type: 'string' },
-//     { name: 'obse_zona', type: 'string' },
-//     { name: 'tota_zona', type: 'number' },
-//     { name: 'obje_inco_camp', type: 'number' },
-//     { name: 'obje_inco_prim', type: 'number' },
-//     { name: 'obje_inco_segu', type: 'number' },
-   
-//     { name: 'pedi_inco_fact', type: 'number' },
-//     { name: 'pedi_inco_pend', type: 'number' },
-
-//     { name: 'cump_inco_esti', type: 'number' },
-//     { name: 'dife_inco_tota', type: 'number' },
-
-//     { name: 'dife_inco_3', type: 'number' },
-//     { name: 'cump_inco_fact', type: 'number' },
-//     { name: 'pend_inco_fact', type: 'number' },
-//     { name: 'obje_rete_camp', type: 'number' },
-//     { name: 'obje_rete_prim', type: 'number' },
-    
-//     { name: 'obje_rete_segu', type: 'number' },
-//     { name: 'porc_rete_segu', type: 'number' },
-//     { name: 'obje_rete_cier', type: 'number' },
-//     { name: 'pedi_rete_fact', type: 'number' },
-//     { name: 'pedi_rete_pend', type: 'number' },
-//     { name: 'obje_rete_cier_tota', type: 'number' },
-//     { name: 'cump_rete_esti', type: 'number' },
-//     { name: 'cump_rete_cier', type: 'number' },
-//     { name: 'dife_rete_1', type: 'number' },
-//     { name: 'dife_rete_2', type: 'number' },
-//     { name: 'dife_rete_3', type: 'number' },
-
-//     { name: 'obje_tota_camp', type: 'number' },
-//     { name: 'obje_tota_prim', type: 'number' },
-//     { name: 'porc_tota_prim', type: 'number' },
-//     { name: 'obje_tota_segu', type: 'number' },
-//     { name: 'porc_tota_segu', type: 'number' },
-//     { name: 'obje_tota_cier', type: 'number' },
-//     { name: 'pedi_tota_fact', type: 'number' },
-//     { name: 'pedi_tota_pend', type: 'number' },
-//     { name: 'obje_tota_cier_tota', type: 'number' },
-//     { name: 'cump_tota_esti', type: 'number' },
-//     { name: 'cump_tota_cier', type: 'number' },
-//     { name: 'dife_tota_1', type: 'number' },
-//     { name: 'dife_tota_2', type: 'number' },
-//     { name: 'dife_tota_3', type: 'number' },
-
-//     { name: 'capi_actu', type: 'number' },
-//     { name: 'obje_capi_cier', type: 'number' },
-//     { name: 'porc_aser', type: 'number' },
-
-//     { name: 'obje_acti_prim', type: 'number' },
-//     { name: 'obje_acti_cier', type: 'number' },
-//     { name: 'obje_acti_fact', type: 'number' },
-
-//     { name: 'acti_inic', type: 'number' },
-//     { name: 'nume_pedi', type: 'number' },
-//     { name: 'tota_ingr', type: 'number' },
-//     { name: 'tota_rein', type: 'number' },
-//   ],
-//   datatype: 'json',
-// })
 
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
-// const adaptadorDetalle = new jqx.dataAdapter(sourceDetalle.value)
 
 const refGridGlobal = ref()
 const refGridDetalle = ref()
@@ -3474,9 +2434,6 @@ const onGenerar = async () => {
     refGridGlobal.value.updatebounddata('cells')
     refGridGlobal.value.refreshfilterrow()
 
-    // sourceDetalle.value.localdata =  data.data_deta
-    // refGridDetalle.value.updatebounddata('cells')
-    // refGridDetalle.value.refreshfilterrow()
   } catch (error) {
     if(typeof error.response !== "undefined") {
       const { data } = error.response._data
@@ -3504,9 +2461,7 @@ const onLimpiar= async () => {
   sourceGlobal.value.localdata = []
   refGridGlobal.value.updatebounddata('cells')
   refGridGlobal.value.refreshfilterrow()
-  // sourceDetalle.value.localdata = []
-  // refGridDetalle.value.updatebounddata('cells')
-  // refGridDetalle.value.refreshfilterrow()
+
 }
 
 const onExcel = async () => {
@@ -3520,14 +2475,23 @@ const onExcel = async () => {
     try {
       appStore.mensaje('Generando archivo')
       appStore.loading(true)
+      const columns = refGridGlobal.value.columns;
+      let visi_colu=[];
+      columns.forEach((column, index) => {
+        if (!column.hidden || column.datafield == 'codi_sect') {
+          // visi_colu.push(column.datafield)
+          visi_colu.push({"key":column.datafield,"title":column.text})
+        }
+      });
 
+      
+      console.log(visi_colu)
       const { data } = await $api(`/api/sami/v1/reportes/seguimiento-cierre-pais/excel`, {
         method: "post",
         body: {
-          cabeceraGlobal: cabeceraGlobal,
+          cabeceraGlobal: visi_colu,
           detalleGlobal: JSON.stringify(refGridGlobal.value.exportdata('xml')),
-          cabeceraDetalle: cabeceraDetalle,
-          detalleDetalle: JSON.stringify(refGridDetalle.value.exportdata('xml')),
+
         },
       })
     
@@ -3541,94 +2505,94 @@ const onExcel = async () => {
   }
 }
 
-const onRegistrar = async () => {
-  const dataInfoGlob = refGridGlobal.value.getdatainformation()
-  const dataRowsGlob = dataInfoGlob.rowscount
-  if(dataRowsGlob == 0 ) {
-    appStore.mensajeSnackbar('No tiene ningun seguimiento de cierre por registrar.')
-    appStore.color("error")
-    appStore.snackbar(true)
-  } else {
-    try {
-      appStore.mensaje('Generando proceso')
-      appStore.loading(true)
+// const onRegistrar = async () => {
+//   const dataInfoGlob = refGridGlobal.value.getdatainformation()
+//   const dataRowsGlob = dataInfoGlob.rowscount
+//   if(dataRowsGlob == 0 ) {
+//     appStore.mensajeSnackbar('No tiene ningun seguimiento de cierre por registrar.')
+//     appStore.color("error")
+//     appStore.snackbar(true)
+//   } else {
+//     try {
+//       appStore.mensaje('Generando proceso')
+//       appStore.loading(true)
 
-      const data  = await $api(`/api/sami/v1/reportes/seguimiento-cierre-pais`, {
-        method: "post",
-        body: {
-          campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
-          data: JSON.stringify(
-            refGridGlobal.value.exportdata(
-              'xml',
-              null,
-              false,
-              null,
-              true,
-            ),
-          ),
-        },
-      })
+//       const data  = await $api(`/api/sami/v1/reportes/seguimiento-cierre-pais`, {
+//         method: "post",
+//         body: {
+//           campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
+//           data: JSON.stringify(
+//             refGridGlobal.value.exportdata(
+//               'xml',
+//               null,
+//               false,
+//               null,
+//               true,
+//             ),
+//           ),
+//         },
+//       })
     
-      appStore.mensajeSnackbar(`${data.message}`)
-      appStore.color("success")
-      appStore.snackbar(true)
-    } catch (e) {
-    }
-    finally {
-      appStore.loading(false)
-    }
-  }
-}
+//       appStore.mensajeSnackbar(`${data.message}`)
+//       appStore.color("success")
+//       appStore.snackbar(true)
+//     } catch (e) {
+//     }
+//     finally {
+//       appStore.loading(false)
+//     }
+//   }
+// }
 
 const limpiarValidacion = () => {
   errorCampana.value = false
   errorMensajeCampana.value = ''
 }
 
-const onEditar = event => {
-  const { args } = event
-  const columnDataField = args.datafield
-  const rowIndex = args.rowindex
-  const cellValue = args.value
-  if (columnDataField === 'obje_inco_cier') {
-    let objeReteCier = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_rete_cier')
-    let objeTota = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_tota')
-    let objeInco = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_inco')
-    const objeIncoCier = parseInt(cellValue)
-    if (!Number.isNaN(objeIncoCier)) {
-      objeReteCier = parseInt(objeReteCier)
-      objeTota = parseInt(objeTota)
-      objeInco = parseInt(objeInco)
-      let objeTotaCier = parseInt(objeReteCier) + parseInt(objeIncoCier)
-      let porcIncoCier = (parseInt(objeIncoCier) / parseInt(objeInco)) * 100
-      porcIncoCier = parseFloat(porcIncoCier).toFixed(2)
-      let porcTotaCier = (parseInt(objeTotaCier) / parseInt(objeTota)) * 100
-      porcTotaCier = parseFloat(porcTotaCier).toFixed(2)
+// const onEditar = event => {
+//   const { args } = event
+//   const columnDataField = args.datafield
+//   const rowIndex = args.rowindex
+//   const cellValue = args.value
+//   if (columnDataField === 'obje_inco_cier') {
+//     let objeReteCier = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_rete_cier')
+//     let objeTota = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_tota')
+//     let objeInco = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_inco')
+//     const objeIncoCier = parseInt(cellValue)
+//     if (!Number.isNaN(objeIncoCier)) {
+//       objeReteCier = parseInt(objeReteCier)
+//       objeTota = parseInt(objeTota)
+//       objeInco = parseInt(objeInco)
+//       let objeTotaCier = parseInt(objeReteCier) + parseInt(objeIncoCier)
+//       let porcIncoCier = (parseInt(objeIncoCier) / parseInt(objeInco)) * 100
+//       porcIncoCier = parseFloat(porcIncoCier).toFixed(2)
+//       let porcTotaCier = (parseInt(objeTotaCier) / parseInt(objeTota)) * 100
+//       porcTotaCier = parseFloat(porcTotaCier).toFixed(2)
 
-      refGridGlobal.value.setcellvalue(rowIndex, 'porc_inco_cier', porcIncoCier)
-      refGridGlobal.value.setcellvalue(rowIndex, 'porc_tota_cier', porcTotaCier)
-    }
-  } else if (columnDataField === 'obje_rete_cier') {
-    let objeIncoCier = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_inco_cier')
-    let objeTota = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_tota')
-    let objeRete = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_rete')
-    const objeReteCier = parseInt(cellValue)
-    if (!Number.isNaN(objeReteCier)) {
-      objeIncoCier = parseInt(objeIncoCier)
-      objeTota = parseInt(objeTota)
-      objeRete = parseInt(objeRete)
+//       refGridGlobal.value.setcellvalue(rowIndex, 'porc_inco_cier', porcIncoCier)
+//       refGridGlobal.value.setcellvalue(rowIndex, 'porc_tota_cier', porcTotaCier)
+//     }
+//   } else if (columnDataField === 'obje_rete_cier') {
+//     let objeIncoCier = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_inco_cier')
+//     let objeTota = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_tota')
+//     let objeRete = refGridGlobal.value.getcellvaluebyid(rowIndex, 'obje_rete')
+//     const objeReteCier = parseInt(cellValue)
+//     if (!Number.isNaN(objeReteCier)) {
+//       objeIncoCier = parseInt(objeIncoCier)
+//       objeTota = parseInt(objeTota)
+//       objeRete = parseInt(objeRete)
       
-      const objeTotaCier = parseInt(objeReteCier) + parseInt(objeIncoCier)
-      let porcReteCier = (parseInt(objeReteCier) / parseInt(objeRete)) * 100
-      porcReteCier = parseFloat(porcReteCier).toFixed(2)
-      let porcTotaCier = (parseInt(objeTotaCier) / parseInt(objeTota)) * 100
-      porcTotaCier = parseFloat(porcTotaCier).toFixed(2)
+//       const objeTotaCier = parseInt(objeReteCier) + parseInt(objeIncoCier)
+//       let porcReteCier = (parseInt(objeReteCier) / parseInt(objeRete)) * 100
+//       porcReteCier = parseFloat(porcReteCier).toFixed(2)
+//       let porcTotaCier = (parseInt(objeTotaCier) / parseInt(objeTota)) * 100
+//       porcTotaCier = parseFloat(porcTotaCier).toFixed(2)
 
-      refGridGlobal.value.setcellvalue(rowIndex, 'porc_rete_cier', porcReteCier)
-      refGridGlobal.value.setcellvalue(rowIndex, 'porc_tota_cier', porcTotaCier)
-    }
-  }
-}
+//       refGridGlobal.value.setcellvalue(rowIndex, 'porc_rete_cier', porcReteCier)
+//       refGridGlobal.value.setcellvalue(rowIndex, 'porc_tota_cier', porcTotaCier)
+//     }
+//   }
+// }
 </script>
 
 <template>
@@ -3637,7 +2601,7 @@ const onEditar = event => {
       <template #botones>
         <GenerarBoton @procesar="onGenerar" />
         <ExcelBoton @procesar="onExcel" />
-        <RegistrarBoton @procesar="onRegistrar" />
+        <!-- <RegistrarBoton @procesar="onRegistrar" /> -->
         <LimpiarBoton @procesar="onLimpiar" />
       </template>
       <template #contenido>
@@ -3700,39 +2664,6 @@ const onEditar = event => {
               </VCardText>
             </VCard>
           </VCol>
-
-          <!-- <VCol cols="12">
-            <VCard title="Consolidado región">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridDetalle"
-                  theme="material"
-                  width="100%"
-                  :localization="localization"
-                  :height="450"
-                  :columns="columnasDetalle"
-                  :source="adaptadorDetalle"
-                  :columngroups="columnasGrupo"
-                  columnsresize
-                  columnsautoresize
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  filterable
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  showstatusbar
-                  showaggregates
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  showfilterrow
-                  :columnsmenu="false"
-                  :editable="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol> -->
         </VRow>
       </template>
     </AppPlantilla>

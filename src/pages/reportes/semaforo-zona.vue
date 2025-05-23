@@ -3030,25 +3030,33 @@ const limpiarValidacion = () => {
   errorMensajeZona.value = ''
 }
 </script>
-<style >
+<style>
+/* Aplica solo dentro del módulo específico */
+.cont_sema_zona .jqx-grid-cell,
+.cont_sema_zona .jqx-grid-column-header {
+  border-right: none !important;  /* Quitar línea vertical derecha */
+  border-left: none !important;   /* Quitar línea vertical izquierda si existe */
+  border-bottom: 1px solid #e0e0e0 !important; /* Línea horizontal */
+}
 
-.jqx-grid-cell,
-.v-card-text,
-.jqx-grid-column-header {
+/* Elimina bordes laterales del contenido */
+.cont_sema_zona .jqx-grid-content {
+  border-left: none !important;
   border-right: none !important;
-  border-bottom: 1px solid #e0e0e0 !important;
-}
- 
-
-.jqx-widget{
-  border: none !important;
 }
 
-.jqx-grid-statusbar{
+/* También afecta la barra de estado si la hay */
+.cont_sema_zona .jqx-grid-statusbar {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Elimina cualquier borde del grid completo */
+.cont_sema_zona .jqx-widget {
   border: none !important;
 }
- 
 </style>
+
 <template >
   
   <div>
@@ -3060,599 +3068,602 @@ const limpiarValidacion = () => {
       </template>
       
       <template #contenido >
-        
-        <VRow>
-          
-          <VCol cols="12">
-            <VCard title="Buscar semáforo">
-              <VCardText>
-                <VRow justify="space-between">
-                  <VCol
-                    cols="12"
-                    md="4"
-                  >
-                    <AppSelect
-                      v-model="formulario.campana"
-                      :items="campanaOptions"
-                      label="Campaña"
-                      placeholder="Seleccionar campaña"
-                      item-title="text"
-                      item-value="id"
-                      :error="errorCampana"
-                      :error-messages="errorMensajeCampana"
+        <!-- <div > -->
+          <VRow >
+            
+            <VCol cols="12">
+              <VCard title="Buscar semáforo">
+                <VCardText>
+                  <VRow justify="space-between">
+                    <VCol
+                      cols="12"
+                      md="4"
+                    >
+                      <AppSelect
+                        v-model="formulario.campana"
+                        :items="campanaOptions"
+                        label="Campaña"
+                        placeholder="Seleccionar campaña"
+                        item-title="text"
+                        item-value="id"
+                        :error="errorCampana"
+                        :error-messages="errorMensajeCampana"
+                      />
+                    </VCol>
+                    <VCol
+                      cols="12"
+                      md="4"
+                    >
+                      <AppSelect
+                        v-model="formulario.zona"
+                        :items="zonaOptions"
+                        label="Zona"
+                        placeholder="Seleccionar zona"
+                        item-title="text"
+                        item-value="id"
+                        :error="errorZona"
+                        :error-messages="errorMensajeZona"
+                      />
+                    </VCol>
+                  </VRow>
+                </VCardText>
+              </VCard>
+            </VCol>
+             <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Pedidos totales">
+                <VCardText>
+                  <div >
+                    <JqxGrid
+                      ref="refGridPedidosTotales"
+                      theme="material"
+                      width="100%"
+                      autoheight
+                      class="cont_sema_zona"
+                      :enablehover="false"
+                      :columns="columnsPedidosTotales"
+                      :source="adaptadorPedidosTotales"
+                      :localization="localization"
+                      enableanimations
+                      sortable
+                      sortmode="many"
+                      :filterable="false"
+                      columnsresize
+                      :altrows="false"
+                      :showemptyrow="false"
+                      columnsreorder
+                      :showstatusbar="false"
+                      :showaggregates="false"
+                      selectionmode="singlecell"
+                      scrollmode="logical"
+                      :showfilterrow="false"
+                      :columnsmenu="false"
                     />
-                  </VCol>
-                  <VCol
-                    cols="12"
-                    md="4"
-                  >
-                    <AppSelect
-                      v-model="formulario.zona"
-                      :items="zonaOptions"
-                      label="Zona"
-                      placeholder="Seleccionar zona"
-                      item-title="text"
-                      item-value="id"
-                      :error="errorZona"
-                      :error-messages="errorMensajeZona"
-                    />
-                  </VCol>
-                </VRow>
-              </VCardText>
-            </VCard>
-          </VCol>
-           <VCol cols="12">
-            <VCard title="Pedidos totales">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridPedidosTotales"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  
-                  :enablehover="false"
-                  :columns="columnsPedidosTotales"
-                  :source="adaptadorPedidosTotales"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Incorporación">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridIncorporacion"
-                  theme="material"
-                  width="100%"
-                
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsIncorporacion"
-                  :source="adaptadorIncorporacion"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :autoshowloadelement="false"
-                  :showdefaultloadelement="false"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="% Actividad">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridActividad"
-                  theme="material"
-                  width="100%"
-               
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsActividad"
-                  :source="adaptadorActividad"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
- <VCol cols="12">
-            <VCard title="Consecutividad Total">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridConsecutividadTotal"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  flat
-                  
-                  :enablehover="false"
-                  :columns="columnsConsecutividadTotal"
-                  :source="adaptadorConsecutividadTotal"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Consecutividad nuevas">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridConsecutividadNuevas"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  flat
-                  
-                  :enablehover="false"
-                  :columns="columnsConsecutividadNuevas"
-                  :source="adaptadorConsecutividadNuevas"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-              <VCol cols="12">
-            <VCard title="Retención pegs">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridRetencionPegs"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  
-                  :enablehover="false"
-                  :columns="columnsRetencionPegs"
-                  :source="adaptadorRetencionPegs"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
+                  </div>
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Incorporación">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridIncorporacion"
+                    theme="material"
+                    width="100%"
+                    class="cont_sema_zona"
+                    autoheight
+                    :enablehover="false"
+                    :columns="columnsIncorporacion"
+                    :source="adaptadorIncorporacion"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :autoshowloadelement="false"
+                    :showdefaultloadelement="false"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="% Actividad" >
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridActividad"
+                    theme="material"
+                    width="100%"
+                    class="cont_sema_zona"
+                    autoheight
+                    :enablehover="false"
+                    :columns="columnsActividad"
+                    :source="adaptadorActividad"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+   <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Consecutividad Total">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridConsecutividadTotal"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    flat
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsConsecutividadTotal"
+                    :source="adaptadorConsecutividadTotal"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Consecutividad nuevas">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridConsecutividadNuevas"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    flat
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsConsecutividadNuevas"
+                    :source="adaptadorConsecutividadNuevas"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+                <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Retención pegs">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridRetencionPegs"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                     class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsRetencionPegs"
+                    :source="adaptadorRetencionPegs"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+               <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Capitalización">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridCapitalizacion"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsCapitalizacion"
+                    :source="adaptadorCapitalizacion"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
              <VCol cols="12">
-            <VCard title="Capitalización">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridCapitalizacion"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                 
-                  :enablehover="false"
-                  :columns="columnsCapitalizacion"
-                  :source="adaptadorCapitalizacion"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-           <VCol cols="12">
-            <VCard title="Cobranza">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridCobranza"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                
-                  :enablehover="false"
-                  :columns="columnsCobranza"
-                  :source="adaptadorCobranza"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-           <VCol cols="12">
-            <VCard title="Venta linea">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridVentaLinea"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  
-                  :enablehover="false"
-                  :columns="columnsVentaLinea"
-                  :source="adaptadorVentaLinea"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-              <VCol cols="12">
-            <VCard title="PPP facturado">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridPppFacturado"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                
-                  :enablehover="false"
-                  :columns="columnsPppFacturado"
-                  :source="adaptadorPppFacturado"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Venta recepcionada">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridVentaRecepcionada"
-                  theme="material"
-                  width="100%"
-                  autoheight
-          
-                  :enablehover="false"
-                  :columns="columnsVentaRecepcionada"
-                  :source="adaptadorVentaRecepcionada"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="PPP recepcionado">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridPppRecepcionado"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  
-                  :enablehover="false"
-                  :columns="columnsPppRecepcionado"
-                  :source="adaptadorPppRecepcionado"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Faltante">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridFaltante"
-                  theme="material"
-                  width="100%"
-                  autoheight
-               
-                  :enablehover="false"
-                  :columns="columnsFaltante"
-                  :source="adaptadorFaltante"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-           <VCol cols="12">
-            <VCard title="Cambios y devoluciones">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridCanje"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                
-                  :enablehover="false"
-                  :columns="columnsCanje"
-                  :source="adaptadorCanje"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="N° de Lideres">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridNumeroLideres"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                 
-                  :enablehover="false"
-                  :columns="columnsNumeroLideres"
-                  :source="adaptadorNumeroLideres"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Nivel de líderes">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridNivelLider"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  
-                  :enablehover="false"
-                  :columns="columnsNivelLider"
-                  :source="adaptadorNivelLider"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <!-- <VCol cols="12">
-            <VCard title="Líderes segun plan de carrera">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridLiderPlanCarrera"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsLiderPlanCarrera"
-                  :source="adaptadorLiderPlanCarrera"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol> -->
-
-         
-
-      
-         
-        </VRow>
+              <VCard title="Cobranza" class="cont_sema_zona">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridCobranza"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsCobranza"
+                    :source="adaptadorCobranza"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+             <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Venta linea">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridVentaLinea"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsVentaLinea"
+                    :source="adaptadorVentaLinea"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+                <VCol cols="12" class="cont_sema_zona">
+              <VCard title="PPP facturado">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridPppFacturado"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsPppFacturado"
+                    :source="adaptadorPppFacturado"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Venta recepcionada">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridVentaRecepcionada"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsVentaRecepcionada"
+                    :source="adaptadorVentaRecepcionada"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="PPP recepcionado">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridPppRecepcionado"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsPppRecepcionado"
+                    :source="adaptadorPppRecepcionado"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Faltante">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridFaltante"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsFaltante"
+                    :source="adaptadorFaltante"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+             <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Cambios y devoluciones">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridCanje"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsCanje"
+                    :source="adaptadorCanje"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="N° de Lideres">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridNumeroLideres"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsNumeroLideres"
+                    :source="adaptadorNumeroLideres"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Nivel de líderes">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridNivelLider"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsNivelLider"
+                    :source="adaptadorNivelLider"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <!-- <VCol cols="12">
+              <VCard title="Líderes segun plan de carrera">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridLiderPlanCarrera"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    :enablehover="false"
+                    :columns="columnsLiderPlanCarrera"
+                    :source="adaptadorLiderPlanCarrera"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol> -->
+  
+           
+  
+        
+           
+          </VRow>
+        <!-- </div> -->
       </template>
     </AppPlantilla>
   </div>
