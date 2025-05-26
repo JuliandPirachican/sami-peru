@@ -1,8 +1,8 @@
 <!-- eslint-disable camelcase -->
 <script setup>
-import { useAppStore } from '@/stores/app';
-import { EncryptStorage } from 'encrypt-storage';
-import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue";
+import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
+import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue"
 
 definePage({
   meta: {
@@ -23,7 +23,7 @@ const formulario = ref({
   area: null,
 })
 
-const general = ref({
+/*const general = ref({
   objetivoIncorporacion: '0',
   proyeccionIncorporacion: '0',
   proyeccionPorcentajeIncorporacion: '0.00',
@@ -33,12 +33,26 @@ const general = ref({
   proyeccionRetencion: '0',
   proyeccionPorcentajeRetencion: '0.00',
   reproyeccionRetencion: '0',
-  reproyeccionPorcentajeRetencion: '0',
+  reproyeccionPorcentajeRetencion: '0', 
   objetivoActividad: '0.00',
   proyeccionActividad: '0.00',
   proyeccionPorcentajeActividad: '0.00',
   reproyeccionActividad: '0.00',
   reproyeccionPorcentajeActividad: '0.00',
+})*/
+
+const general = ref({
+  objetivoIncorporacion: '0',
+  proyeccionIncorporacion: '0',
+  proyeccionPorcentajeIncorporacion: 0,
+  reproyeccionIncorporacion: '0', 
+  objetivoRetencion: '0',
+  proyeccionRetencion: '0',
+  reproyeccionRetencion: '0',
+  objetivoActividad: '0',
+  proyeccionActividad: '0',
+  proyeccionPorcentajeActividad: 0,
+  reproyeccionActividad: '0.00',
 })
 
 const variables = ref([
@@ -74,304 +88,847 @@ const cabecera = computed(() => {
       columna: 'C',
     },
     {
-      title: 'Act. inic.',
-      key: 'acti_inic',
+      text: 'Act. inic.',
+      dataField: 'acti_inic',
+      width: '100',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      pinned: true,
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'D',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. camp.',
-      key: 'pedi_tota_cant',
+      text: 'Objetivo Ventas',
+      dataField: 'obje_vent',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      pinned: true,
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'E',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. proyección',
-      key: 'pedi_tota_prim',
+      text: 'Proyección',
+      dataField: 'pedi_inco_obje',   
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'tota',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'F',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Proyección (%)',
-      key: 'pedi_tota_prim_porc',
+      text: 'Seguimiento',
+      dataField: 'segui_inco',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'tota',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'G',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Reproyección',
-      key: 'pedi_tota_segu',
+      text: 'Ped. Camp. Ante',
+      datafield: 'pedi_tota_obje',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      columngroup: 'inco',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'H',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Reproyección (%)',
-      key: 'pedi_tota_segu_porc',
+      text: 'Proyeccion',
+      dataField: 'pedi_tota_prim',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'inco',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'I',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. camp.',
-      key: 'pedi_inco_cant',
+      text: 'Seguimiento',
+      dataField: 'segui_conse',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'inco',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'J',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. proyección',
-      key: 'pedi_inco_prim',
+      text: '1. Camp. Ante',
+      datafield: 'cons_rete_camp_ante',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      columngroup: 'rete',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'K',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
+  
     {
-      title: 'Proyección (%)',
-      key: 'pedi_inco_prim_porc',
+      text: 'Proyeccion',
+      datafield: 'cons_rete_prim',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'rete',
+      cellsformat: 'N',
+      cellclassname: ' bg-primary-light',
+      filtertype: 'number',
       columna: 'L',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Reproyección',
-      key: 'pedi_inco_segu',
+      text: 'Seguimiento',
+      datafield: 'pedi_rete_prim',
+      hidden: false,
+      width: '130',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'rete',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'M',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+    
     },
     {
-      title: 'Reproyección (%)',
-      key: 'pedi_inco_segu_porc',
+      text: '2. Camp. Ante.',
+      datafield: 'cons_segu_camp_ante',
+      hidden: false,
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      columngroup: 'acti',
+      cellsformat: 'N',
+      filtertype: 'number',
+
       columna: 'N',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+    
     },
     {
-      title: 'Obj. camp.',
-      key: 'pedi_rete_cant',
+      text: 'Proyección',
+      datafield: 'cons_segu_obje',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'acti',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'O',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+          
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. proyección',
-      key: 'pedi_rete_prim',
+      text: 'Seguimiento',
+      datafield: 'cons_rete_segu_ocul',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'acti',
+      cellsformat: 'P2',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'P',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+          
+            
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          
+          },
+        },
+      ],
+      validation(cell, value) {
+        if (value === '0') {
+          return true
+        }
+      
+        return !(value === '')
+      },
+      cellclassname() {
+        return 'text-secondary bg-primary-light'
+      },
     },
     {
-      title: 'Proyección (%)',
-      key: 'pedi_rete_prim_porc',
+      text: '3. Camp. Ante.',
+      datafield: 'cons_terc_camp_ante',
+      hidden: false,
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      columngroup: 'cons4_ped',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'Q',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+    
     },
     {
-      title: 'Reproyección',
-      key: 'pedi_rete_segu',
+      text: 'Proyección',
+      datafield: 'cons_terc_obje',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'cons4_ped',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'R',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Reproyección (%)',
-      key: 'pedi_rete_segu_porc',
+      text: 'Seguimiento',
+      datafield: 'cons_terc_segi',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'cons4_ped',
+      cellsformat: 'P2',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'S',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+      cellclassname() {
+        return 'text-secondary bg-primary-light'
+      },
     },
+  
     {
-      title: 'Camp. ante.',
-      key: 'acti_camp_ante',
+      text: 'Peg21',
+      datafield: 'pe21',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      columngroup: 'pe21',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'T',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. % acti. camp.',
-      key: 'acti_obje',
+      text: 'Proyección',
+      datafield: 'pe21_obje',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pe21',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'U',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. pedi. act.',
-      key: 'acti_obje_pedi',
+      text: 'Seguimiento',
+      datafield: 'pe21_prim',
+      hidden: false,
+      width: '130',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pe21',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'V',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+      validation(cell, value) {
+        if (value === '0') {
+          return true
+        }
+      
+        return !(value === '')
+      },
+    
     },
     {
-      title: 'Proyección (%)',
-      key: 'acti_porc_prim',
+      text: 'Peg42',
+      datafield: 'pe42',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      columngroup: 'pe42',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'W',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. proyección',
-      key: 'acti_prim',
+      text: 'Proyección',
+      datafield: 'pe42_obje',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pe42',
+      cellsformat: 'N',
+      cellclassname: ' bg-primary-light',
+      filtertype: 'number',
       columna: 'X',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Reproyección (%)',
-      key: 'acti_porc_segu',
+      text: 'Seguimiento',
+      datafield: 'pe42_prim',
+      hidden: false,
+      width: '130',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pe42',
+      cellsformat: 'N',
+      cellclassname: ' bg-primary-light',
+      filtertype: 'number',
       columna: 'Y',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+      validation(cell, value) {
+        if (value === '0') {
+          return true
+        }
+      
+        return !(value === '')
+      },
+    
     },
     {
-      title: 'Reproyección',
-      key: 'acti_segu',
+      text: 'Peg63',
+      datafield: 'pe63',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      columngroup: 'pe63',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'Z',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Rete. camp. ante.',
-      key: 'cons_rete_camp_ante',
+      text: 'Proyección',
+      datafield: 'pe63_obje',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pe63',
+      cellsformat: 'N',
+      cellclassname: ' bg-primary-light',
+      filtertype: 'number',
       columna: 'AA',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'cons_rete_obje',
+      text: 'Seguimiento',
+      datafield: 'pe63_prim',
+      hidden: false, 
+      width: '130',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pe63',
+      cellsformat: 'N',
+      cellclassname: ' bg-primary-light',
+      filtertype: 'number',
       columna: 'AB',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+       
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+      validation(cell, value) {
+        if (value === '0') {
+          return true
+        }
+      
+        return !(value === '')
+      },
+    
     },
+
     {
-      title: 'Obj. proyección',
-      key: 'cons_rete_prim',
+      text: 'Pegs',
+      datafield: 'pegs',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      columngroup: 'pegs',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'AC',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Reproyección',
-      key: 'cons_rete_segu',
+      text: 'Proyección',
+      datafield: 'pegs_obje',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pegs',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'AD',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: '1 camp. ante.',
-      key: 'cons_segu_camp_ante',
+      text: 'Seguimiento',
+      datafield: 'pegs_prim',
+      hidden: false,
+      width: '130',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pegs',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'AE',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+    
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'cons_segu_obje',
+      text: 'Pos rein',
+      datafield: 'rein',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: false,
+      columngroup: 'rein',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'AF',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: '2 camp. ante.',
-      key: 'cons_terc_camp_ante',
+      text: 'Proyeccion',
+      datafield: 'rein_obje',
+      width: '140',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'rein',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'AG',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'cons_terc_obje',
+      text: 'Seguimiento',
+      datafield: 'rein_prim',
+      hidden: false,
+      width: '130',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'rein',
+      cellsformat: 'N',
+      filtertype: 'number',
+      cellclassname: ' bg-primary-light',
       columna: 'AH',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+      validation(cell, value) {
+        if (value === '0') {
+          return true
+        }
+      
+        return !(value === '')
+      },
+    
     },
     {
-      title: '3 camp. ante.',
-      key: 'cons_cuar_camp_ante',
+      text: 'Proyección ',
+      datafield: 'capi_obje',
+      width: '130',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'capi',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'AI',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+      cellclassname: claseCapitalizacion,
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'cons_cuar_obje',
+      text: 'Seguimiento',
+      datafield: 'capi_repr',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      hidden: false,
+      columngroup: 'capi',
+      cellsformat: 'N',
+      filtertype: 'number',
       columna: 'AJ',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
+      cellclassname: claseCapitalizacion,
     },
     {
-      title: 'Peg21',
-      key: 'pe21',
+      text: 'Objetivo Minimo',
+      datafield: 'tota_vent',
+      width: '120',
+      align: 'center',
+      cellsalign: 'center',
+      columngroup: 'pedi_tota',
+      editable: false,
+      cellsformat: 'D2',
+      filtertype: 'number',
       columna: 'AK',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) { 
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'pe21_obje',
+      text: 'Proyeccion',
+      datafield: 'cobr',
+      width: '160',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pedi_tota',
+      cellsformat: 'D2',
+      filtertype: 'number',
       columna: 'AL',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
     {
-      title: 'Obj. proyección',
-      key: 'pe21_prim',
+      text: 'Seguimiento',
+      datafield: 'cobr_colc',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+      editable: true,
+      columngroup: 'pedi_tota',
+      cellsformat: 'D2',
+      filtertype: 'number',
       columna: 'AM',
-    },
-    {
-      title: 'Reproyección',
-      key: 'pe21_segu',
-      columna: 'AN',
-    },
-    {
-      title: 'Peg42',
-      key: 'pe42',
-      columna: 'AO',
-    },
-    {
-      title: 'Obj. form. éxito',
-      key: 'pe42_obje',
-      columna: 'AP',
-    },
-    {
-      title: 'Obj. proyección',
-      key: 'pe42_prim',
-      columna: 'AQ',
-    },
-    {
-      title: 'Reproyección',
-      key: 'pe42_segu',
-      columna: 'AR',
-    },
-    {
-      title: 'Peg63',
-      key: 'pe63',
-      columna: 'AS',
-    },
-    {
-      title: 'Obj. form. éxito',
-      key: 'pe63_obje',
-      columna: 'AT',
-    },
-    {
-      title: 'Obj. proyección',
-      key: 'pe63_prim',
-      columna: 'AU',
-    },
-    {
-      title: 'Reproyección',
-      key: 'pe63_segu',
-      columna: 'AV',
-    },
-    {
-      title: 'Pegs',
-      key: 'pegs',
-      columna: 'AW',
-    },
-    {
-      title: 'Obj. form. éxito',
-      key: 'pegs_obje',
-      columna: 'AX',
-    },
-    {
-      title: 'Obj. proyección',
-      key: 'pegs_prim',
-      columna: 'AY',
-    },
-    {
-      title: 'Reproyección',
-      key: 'pegs_segu',
-      columna: 'AZ',
-    },
-    {
-      title: 'Pos. rein.',
-      key: 'rein',
-      columna: 'BA',
-    },
-    {
-      title: 'Obj. form. éxito',
-      key: 'rein_obje',
-      columna: 'BB',
-    },
-    {
-      title: 'Obj. proyección',
-      key: 'rein_prim',
-      columna: 'BC',
-    },
-    {
-      title: 'Reproyección',
-      key: 'rein_segu',
-      columna: 'BD',
-    },
-    {
-      title: 'Obj. proyección',
-      key: 'capi_obje',
-      columna: 'BE',
-    },
-    {
-      title: 'Reproyección',
-      key: 'capi_repr',
-      columna: 'BF',
-    },
-    {
-      title: 'Venta',
-      key: 'tota_vent',
-      columna: 'BG',
-    },
-    {
-      title: 'Cobranza 88%(por cobrar)',
-      key: 'cobr',
-      columna: 'BH',
-    },
-    {
-      title: 'Cobranza 88%(te puedes quedar)',
-      key: 'cobr_colc',
-      columna: 'BI',
-    },
-    {
-      title: 'Cobranza 92%(por cobrar)',
-      key: 'co92',
-      columna: 'BJ',
-    },
-    {
-      title: 'Cobranza 92%(te puedes quedar)',
-      key: 'co92_colc',
-      columna: 'BK',
+      aggregates: [
+        {
+          T: function (aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+          
+            return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
+          },
+        },
+      ],
     },
   ]
 
@@ -400,30 +957,14 @@ const cabeceraZona = computed(() => {
       columna: 'D',
     },
     {
-      title: 'Obj. camp.',
+      title: 'Proyeccion',
       key: 'pedi_tota_cant',
       columna: 'E',
     },
     {
-      title: 'Obj. proyección',
+      title: 'Seguimiento',
       key: 'pedi_tota_prim',
       columna: 'F',
-    },
-    {
-      title: 'Proyección (%)',
-      key: 'pedi_tota_prim_porc',
-      columna: 'G',
-    },
-    {
-      title: 'Reproyección',
-      key: 'pedi_tota_segu',
-      columna: 'H',
-    },
-    {
-      title: 'Reproyección (%)',
-      key: 'pedi_tota_segu_porc',
-      columna: 'I',
-
     },
     {
       title: 'Obj. camp.',
@@ -1345,137 +1886,8 @@ const columnas = [
       },
     ],
   },
-  {
-    text: 'Obj. camp.',
-    datafield: 'pedi_tota_cant',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    pinned: false,
-    columngroup: 'tota',
-    cellsformat: 'N',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-  },
-  {
-    text: 'Obj. proyección',
-    datafield: 'pedi_tota_prim',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    pinned: false,
-    columngroup: 'tota',
-    cellsformat: 'N',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    cellclassname: clasePedidoTotalConsolidado,
-  },
-  {
-    text: 'Proyección (%)',
-    datafield: 'pedi_tota_prim_porc',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    pinned: false,
-    columngroup: 'tota',
-    cellsformat: 'P2',
-    aggregates: [
-      {
-        T(aggregatedValue, currentValue, column, record) {
-          
-          if (record.visibleindex === 0) {
-            data = 0
-            obje = 0
-          }
-          data += record.pedi_tota_prim
-          obje += record.pedi_tota_cant
-          let total = 0
-          
-          if (parseInt(data) != 0 && parseInt(obje) != 0) {
-            
-            total = 100 * (parseInt(data) / parseInt(obje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-  },
-  {
-    text: 'Reproyección',
-    datafield: 'pedi_tota_segu',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    pinned: false,
-    columngroup: 'tota',
-    cellsformat: 'N',
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    cellclassname: clasePedidoTotalConsolidado,
-  },
-  {
-    text: 'Reproyección (%)',
-    datafield: 'pedi_tota_segu_porc',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    pinned: false,
-    columngroup: 'tota',
-    cellsformat: 'P2',
-    aggregates: [
-      {
-        T(aggregatedValue, currentValue, column, record) {
-          
-          if (record.visibleindex === 0) {
-            data = 0
-            obje = 0
-          }
-          data += record.pedi_tota_segu
-          obje += record.pedi_tota_cant
-          let total = 0
-          
-          if (parseInt(data) != 0 && parseInt(obje) != 0) {
-            
-            total = 100 * (parseInt(data) / parseInt(obje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-  },
-  {
+
+  /*{
     text: 'Obj. camp.',
     datafield: 'pedi_inco_cant',
     width: '120',
@@ -1496,9 +1908,9 @@ const columnas = [
         },
       },
     ],
-  },
+  },*/
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'pedi_inco_prim',
     width: '120',
     align: 'center',
@@ -1520,8 +1932,9 @@ const columnas = [
     ],
     cellclassname: claseIncorporacionConsolidado,
   },
-  {
-    text: 'Proyección (%)',
+
+  /*{
+    text: 'Proyección',
     datafield: 'pedi_inco_prim_porc',
     width: '120',
     align: 'center',
@@ -1552,9 +1965,9 @@ const columnas = [
         },
       },
     ],
-  },
+  },*/
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pedi_inco_segu',
     width: '120',
     align: 'center',
@@ -1576,7 +1989,8 @@ const columnas = [
     ],
     cellclassname: claseIncorporacionConsolidado,
   },
-  {
+
+  /*{
     text: 'Reproyección (%)',
     datafield: 'pedi_inco_segu_porc',
     width: '120',
@@ -1608,8 +2022,8 @@ const columnas = [
         },
       },
     ],
-  },
-  {
+  },*/
+  /*{
     text: 'Obj. camp.',
     datafield: 'pedi_rete_cant',
     width: '120',
@@ -1654,6 +2068,7 @@ const columnas = [
     ],
     cellclassname: claseRetencionConsolidado,
   },
+
   {
     text: 'Proyección (%)',
     datafield: 'pedi_rete_prim_porc',
@@ -1742,7 +2157,7 @@ const columnas = [
         },
       },
     ],
-  },
+  },*/
   {
     text: 'nume acti ante',
     datafield: 'nume_acti_ante',
@@ -1783,7 +2198,8 @@ const columnas = [
     datafield: 'acti_nume_segu',
     hidden: true,
   },
-  {
+
+  /*{
     text: 'Camp. ante.',
     datafield: 'acti_camp_ante',
     width: '120',
@@ -1805,7 +2221,7 @@ const columnas = [
           sumaNumePedi += record.tota_pedi_ante
           sumaTotaIngr += record.tota_ingr_ante
           sumaTotaRein += record.tota_rein_ante
-          sumaActiInic += record.acti_inic_ante
+          sumaActiInic += record.acti_inic_ante 
 
           let total = 0.0
           
@@ -1838,8 +2254,8 @@ const columnas = [
         },
       },
     ],
-  },
-  {
+  },*/
+  /* {
     text: 'Obj. % acti. camp.',
     datafield: 'acti_obje',
     width: '140',
@@ -1872,8 +2288,8 @@ const columnas = [
         },
       },
     ],
-  },
-  {
+  },*/
+  /*{
     text: 'Obj. pedi. act.',
     datafield: 'acti_obje_pedi',
     width: '120',
@@ -2019,9 +2435,9 @@ const columnas = [
       },
     ],
     cellclassname: claseActividadConsolidado,
-  },
+  },*/
   {
-    text: 'Rete. camp. ante.',
+    text: 'Ped. Camp. Ante',
     datafield: 'cons_rete_camp_ante',
     width: '140',
     align: 'center',
@@ -2043,14 +2459,13 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Proyección',
     datafield: 'cons_rete_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     pinned: false,
-    hidden: true,
     columngroup: 'cons_prim',
     cellsformat: 'N',
     aggregates: [
@@ -2066,7 +2481,7 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Seguimiento',
     datafield: 'cons_rete_prim',
     width: '120',
     align: 'center',
@@ -2088,7 +2503,8 @@ const columnas = [
     ],
     cellclassname: claseConsecutividadRetencionConsolidado,
   },
-  {
+
+  /* {
     text: 'Reproyección',
     datafield: 'cons_rete_segu',
     width: '120',
@@ -2110,7 +2526,7 @@ const columnas = [
       },
     ],
     cellclassname: claseConsecutividadRetencionConsolidado,
-  },
+  },*/
   {
     text: '1 camp. ante.',
     datafield: 'cons_segu_camp_ante',
@@ -2134,19 +2550,40 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Proyeccion',
     datafield: 'cons_segu_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     pinned: false,
-    hidden: true,
     columngroup: 'cons_segu',
     cellsformat: 'N',
     aggregates: [
       {
         
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'Seguimiento',
+    datafield: 'cons_segu_segi',
+    width: '140',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'cons_segu',
+    cellsformat: 'N',
+    aggregates: [
+      {
+         
         T: function (aggregatedValue, currentValue) {
           
           aggregatedValue += currentValue
@@ -2177,14 +2614,13 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Proyeccion',
     datafield: 'cons_terc_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     pinned: false,
-    hidden: true,
     columngroup: 'cons_terc',
     cellsformat: 'N',
     aggregates: [
@@ -2196,6 +2632,28 @@ const columnas = [
           
           return aggregatedValue
         },
+      },
+    ],
+  },
+  {
+    text: 'Seguimiento',
+    datafield: 'cons_terc_segi',
+    width: '140',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'cons_terc',
+    cellsformat: 'N',
+    aggregates: [
+      {
+         
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        }, 
       },
     ],
   },
@@ -2222,14 +2680,13 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Proyeccion',
     datafield: 'cons_cuar_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     pinned: false,
-    hidden: true,
     columngroup: 'cons_cuar',
     cellsformat: 'N',
     aggregates: [
@@ -2241,6 +2698,28 @@ const columnas = [
           
           return aggregatedValue
         },
+      },
+    ],
+  },
+  {
+    text: 'Seguimiento',
+    datafield: 'cons_cuar_segi',
+    width: '140',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'cons_cuar',
+    cellsformat: 'N',
+    aggregates: [
+      {
+         
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        }, 
       },
     ],
   },
@@ -2290,7 +2769,7 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'pe21_prim',
     width: '120',
     align: 'center',
@@ -2313,7 +2792,7 @@ const columnas = [
     cellclassname: clasePeg21Consolidado,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pe21_segu',
     width: '120',
     align: 'center',
@@ -2381,7 +2860,7 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyeccion',
     datafield: 'pe42_prim',
     width: '120',
     align: 'center',
@@ -2404,7 +2883,7 @@ const columnas = [
     cellclassname: clasePeg42Consolidado,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pe42_segu',
     width: '120',
     align: 'center',
@@ -2472,7 +2951,7 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'pe63_prim',
     width: '120',
     align: 'center',
@@ -2495,7 +2974,7 @@ const columnas = [
     cellclassname: clasePeg63Consolidado,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pe63_segu',
     width: '120',
     align: 'center',
@@ -2563,7 +3042,7 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'pegs_prim',
     width: '120',
     align: 'center',
@@ -2586,7 +3065,7 @@ const columnas = [
     cellclassname: clasePegsConsolidado,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pegs_segu',
     width: '120',
     align: 'center',
@@ -2654,7 +3133,7 @@ const columnas = [
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'rein_prim',
     width: '120',
     align: 'center',
@@ -2677,7 +3156,7 @@ const columnas = [
     cellclassname: claseReingresoConsolidado,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'rein_segu',
     width: '120',
     align: 'center',
@@ -2700,7 +3179,7 @@ const columnas = [
     cellclassname: claseReingresoConsolidado,
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'capi_obje',
     width: '120',
     align: 'center',
@@ -2723,7 +3202,7 @@ const columnas = [
     cellclassname: claseCapitalizacionConsolidado,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'capi_repr',
     width: '120',
     align: 'center',
@@ -2746,14 +3225,78 @@ const columnas = [
     cellclassname: claseCapitalizacionConsolidado,
   },
   {
-    text: 'Venta',
-    datafield: 'tota_vent',
+    text: 'Proyeccion ',
+    datafield: 'tota_pedi_proy',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'tota',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'Seguimiento',
+    datafield: 'tota_pedi_segi',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'tota',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    cellclassname: clasePedidoTotalConsolidado,
+  },
+  {
+    text: 'Objetivo',
+    datafield: 'vent_obje',
     width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     pinned: false,
     cellsformat: 'D2',
+    columngroup: 'vent',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'Seguimiento',
+    datafield: 'vent_segi',
+    width: '120',
+    align: 'center', 
+    cellsalign: 'center',
+    editable: false,
+    pinned: false, 
+    cellsformat: 'D2',
+    columngroup: 'vent',
     aggregates: [
       {
         
@@ -2774,6 +3317,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true, 
     cellsformat: 'D2',
     aggregates: [
       {
@@ -2795,6 +3339,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true, 
     cellsformat: 'd2',
     aggregates: [
       {
@@ -2816,6 +3361,7 @@ const columnas = [
     cellsalign: 'center',
     editable: false,
     pinned: false,
+    hidden: true, 
     cellsformat: 'D2',
     aggregates: [
       {
@@ -2838,6 +3384,7 @@ const columnas = [
     editable: false,
     pinned: false,
     cellsformat: 'D2',
+    hidden: true,  
     aggregates: [
       {
         
@@ -2910,6 +3457,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'tota',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -2932,6 +3480,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'tota',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -2955,6 +3504,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'tota',
     cellsformat: 'P2',
+    hidden: true,
     aggregates: [
       {
         
@@ -2989,6 +3539,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'tota',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -3012,6 +3563,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'tota',
     cellsformat: 'P2',
+    hidden: true,
     aggregates: [
       {
         
@@ -3046,6 +3598,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'inco',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -3059,7 +3612,7 @@ const columnasZona =
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'pedi_inco_prim',
     width: '120',
     align: 'center',
@@ -3091,6 +3644,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'inco',
     cellsformat: 'p2',
+    hidden: true,
     aggregates: [
       {
         
@@ -3116,7 +3670,7 @@ const columnasZona =
     ],
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pedi_inco_segu',
     width: '120',
     align: 'center',
@@ -3148,6 +3702,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'inco',
     cellsformat: 'p2',
+    hidden: true,
     aggregates: [
       {
         
@@ -3182,6 +3737,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'rete',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -3204,6 +3760,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'rete',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -3227,6 +3784,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'rete',
     cellsformat: 'p2',
+    hidden: true,
     aggregates: [
       {
         
@@ -3261,6 +3819,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'rete',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -3284,6 +3843,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'rete',
     cellsformat: 'p2',
+    hidden: true,
     aggregates: [
       {
         
@@ -3408,6 +3968,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'acti',
     cellsformat: 'p2',
+    hidden: true,
     aggregates: [
       {
         
@@ -3520,6 +4081,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'acti',
     cellsformat: 'P2',
+    hidden: true,
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
@@ -3554,6 +4116,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'acti',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -3576,6 +4139,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'acti',
     cellsformat: 'p2',
+    hidden: true,
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
@@ -3616,6 +4180,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'acti',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -3639,6 +4204,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'acti',
     cellsformat: 'p2',
+    hidden: true,
     aggregates: [
       {
         T(aggregatedValue, currentValue, column, record) {
@@ -3679,6 +4245,7 @@ const columnasZona =
     pinned: false,
     columngroup: 'acti',
     cellsformat: 'N',
+    hidden: true,
     aggregates: [
       {
         
@@ -3693,7 +4260,7 @@ const columnasZona =
     cellclassname: claseActividadZona,
   },
   {
-    text: 'Rete. camp. ante.',
+    text: 'Ped. camp. ante.',
     datafield: 'cons_rete_camp_ante',
     width: '140',
     align: 'center',
@@ -3738,7 +4305,7 @@ const columnasZona =
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'cons_rete_prim',
     width: '120',
     align: 'center',
@@ -3761,7 +4328,7 @@ const columnasZona =
     cellclassname: claseConsecutividadRetencionZona,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'cons_rete_segu',
     width: '120',
     align: 'center',
@@ -3806,14 +4373,35 @@ const columnasZona =
     ],
   },
   {
-    text: 'Obj. form. éxito',
+    text: 'Proyección',
     datafield: 'cons_segu_obje',
     width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     pinned: false,
-    hidden: true,
+    columngroup: 'cons_segu',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'Seguimiento',
+    datafield: 'cons_segu_segi',
+    width: '140',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
     columngroup: 'cons_segu',
     cellsformat: 'N',
     aggregates: [
@@ -3851,14 +4439,13 @@ const columnasZona =
     ],
   },
   {
-    text: 'Obj. form. éxito',
-    datafield: 'cons_terc_obje',
+    text: 'Proyección',
+    datafield: 'cons_terc_proy',
     width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     pinned: false,
-    hidden: true,
     columngroup: 'cons_terc',
     cellsformat: 'N',
     aggregates: [
@@ -3874,9 +4461,98 @@ const columnasZona =
     ],
   },
   {
+    text: 'Seguimiento',
+    datafield: 'cons_terc_segi',
+    width: '140',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'cons_terc',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'Obj. form. éxito',
+    datafield: 'cons_terc_obje',
+    width: '140',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false, 
+    hidden: true,
+    columngroup: 'cons_terc',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue 
+        },
+      },
+    ],
+  },
+  {
     text: '3 Camp. ante.',
     datafield: 'cons_cuar_camp_ante',
     width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'cons_cuar',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'Proyección',
+    datafield: 'cons_cuar_proy',  
+    width: '140',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'cons_cuar',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'Seguimiento',
+    datafield: 'cons_cuar_segi',
+    width: '140',
     align: 'center',
     cellsalign: 'center',
     editable: false,
@@ -3964,7 +4640,7 @@ const columnasZona =
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'pe21_prim',
     width: '120',
     align: 'center',
@@ -3987,7 +4663,7 @@ const columnasZona =
     cellclassname: clasePeg21Zona,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pe21_segu',
     width: '120',
     align: 'center',
@@ -4055,7 +4731,7 @@ const columnasZona =
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'pe42_prim',
     width: '120',
     align: 'center',
@@ -4078,7 +4754,7 @@ const columnasZona =
     cellclassname: clasePeg42Zona,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pe42_segu',
     width: '120',
     align: 'center',
@@ -4146,7 +4822,7 @@ const columnasZona =
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'pe63_prim',
     width: '120',
     align: 'center',
@@ -4169,7 +4845,7 @@ const columnasZona =
     cellclassname: clasePeg63Zona,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pe63_segu',
     width: '120',
     align: 'center',
@@ -4237,7 +4913,7 @@ const columnasZona =
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'pegs_prim',
     width: '120',
     align: 'center',
@@ -4260,7 +4936,7 @@ const columnasZona =
     cellclassname: clasePegsZona,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'pegs_segu',
     width: '120',
     align: 'center',
@@ -4328,7 +5004,7 @@ const columnasZona =
     ],
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'rein_prim',
     width: '120',
     align: 'center',
@@ -4351,7 +5027,7 @@ const columnasZona =
     cellclassname: claseReingresoZona,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'rein_segu',
     width: '120',
     align: 'center',
@@ -4374,7 +5050,7 @@ const columnasZona =
     cellclassname: claseReingresoZona,
   },
   {
-    text: 'Obj. proyección',
+    text: 'Proyección',
     datafield: 'capi_obje',
     width: '120',
     align: 'center',
@@ -4397,7 +5073,7 @@ const columnasZona =
     cellclassname: claseCapitalizacionZona,
   },
   {
-    text: 'Reproyección',
+    text: 'Seguimiento',
     datafield: 'capi_repr',
     width: '120',
     align: 'center',
@@ -4420,14 +5096,35 @@ const columnasZona =
     cellclassname: claseCapitalizacionZona,
   },
   {
-    text: 'Venta',
-    datafield: 'tota_vent',
+    text: 'Objetivos', 
+    datafield: 'tota_pedi_proy',
     width: '120',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     pinned: false,
-    cellsformat: 'D2',
+    columngroup: 'totas',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        }, 
+      },
+    ],
+  },
+  {
+    text: 'Seguimiento',
+    datafield: 'tota_pedi_segi',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'totas',
     aggregates: [
       {
         
@@ -4441,6 +5138,49 @@ const columnasZona =
     ],
   },
   {
+    text: 'Objetivo',
+    datafield: 'vent_obje',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false,
+    columngroup: 'vent',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+  {
+    text: 'Venta',
+    datafield: 'vent_segi',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    editable: false,
+    pinned: false, 
+    columngroup: 'vent',
+    aggregates: [
+      {
+        
+        T: function (aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+  },
+
+  /*{
     text: 'Cobranza 88%(por cobrar)',
     datafield: 'cobr',
     width: '160',
@@ -4460,7 +5200,7 @@ const columnasZona =
         },
       },
     ],
-  },
+  }, 
   {
     text: 'Cobranza 88%(te puedes quedar)',
     datafield: 'cobr_colc',
@@ -4523,21 +5263,22 @@ const columnasZona =
         },
       },
     ],
-  },
+  },*/
 ]
 
 const columnasGrupo = [
-  {
+  /*{
     text: 'Pedidos Totales',
     align: 'center',
     name: 'tota',
-  },
+  },*/
   {
     text: 'Incorporación',
     align: 'center',
     name: 'inco',
   },
-  {
+
+  /*{
     text: 'Pedidos de retención',
     align: 'center',
     name: 'rete',
@@ -4546,49 +5287,49 @@ const columnasGrupo = [
     text: '% Actividad',
     align: 'center',
     name: 'acti',
-  },
+  },*/
   {
-    text: 'Consecutividad pedidos de retención 90%',
+    text: 'Consecutividad',
     align: 'center',
     name: 'cons_prim',
   },
   {
-    text: 'Consecutividad 2do pedido 100%',
+    text: 'Consecutividad 2do pedido',
     align: 'center',
     name: 'cons_segu',
   },
   {
-    text: 'Consecutividad 3er pedido 80%',
+    text: 'Consecutividad 3er pedido',
     align: 'center',
     name: 'cons_terc',
   },
   {
-    text: 'Consecutividad 4to pedido 70%',
+    text: 'Consecutividad 4to pedido',
     align: 'center',
     name: 'cons_cuar',
   },
   {
-    text: 'Peg21 40%',
+    text: 'Peg21 minimo 50%',
     align: 'center',
     name: 'pe21',
   },
   {
-    text: 'Peg42 30%',
+    text: 'Peg42 minimo 35%',
     align: 'center',
     name: 'pe42',
   },
   {
-    text: 'Peg63 25%',
+    text: 'Peg63 minimo 25%',
     align: 'center',
     name: 'pe63',
   },
   {
-    text: 'Suma de Pegs 35%',
+    text: 'Retencion Total',
     align: 'center',
-    name: 'suma',
+    name: 'pegs',
   },
   {
-    text: 'Reingresos 10%',
+    text: 'Reingresos',
     align: 'center',
     name: 'rein',
   },
@@ -4596,21 +5337,27 @@ const columnasGrupo = [
     text: 'Capitalización',
     align: 'center',
     name: 'capi',
+  },
+  {
+    text: 'Pedidos Totales',
+    align: 'center',
+    name: 'tota',
+  },
+  {
+    text: 'Venta',
+    align: 'center',
+    name: 'vent',
   },
 ]
 
 const columnasGrupoZona = [
   {
-    text: 'Pedidos Totales',
-    align: 'center',
-    name: 'tota',
-  },
-  {
     text: 'Incorporación',
     align: 'center',
     name: 'inco',
   },
-  {
+
+  /*{
     text: 'Pedidos de retención',
     align: 'center',
     name: 'rete',
@@ -4619,49 +5366,49 @@ const columnasGrupoZona = [
     text: '% Actividad',
     align: 'center',
     name: 'acti',
-  },
+  },*/
   {
-    text: 'Consecutividad pedidos de retención 90%',
+    text: 'Consecutividad',
     align: 'center',
     name: 'cons_prim',
   },
   {
-    text: 'Consecutividad 2do pedido 100%',
+    text: 'Consecutividad 2do pedido',
     align: 'center',
     name: 'cons_segu',
   },
   {
-    text: 'Consecutividad 3er pedido 80%',
+    text: 'Consecutividad 3er pedido',
     align: 'center',
     name: 'cons_terc',
   },
   {
-    text: 'Consecutividad 4to pedido 70%',
+    text: 'Consecutividad 4to pedido',
     align: 'center',
     name: 'cons_cuar',
   },
   {
-    text: 'Peg21 40%',
+    text: 'Peg21 minimo 50%',
     align: 'center',
     name: 'pe21',
   },
   {
-    text: 'Peg42 30%',
+    text: 'Peg42 minimo 35%',
     align: 'center',
     name: 'pe42',
   },
   {
-    text: 'Peg63 25%',
+    text: 'Peg63 minimo 25%',
     align: 'center',
     name: 'pe63',
   },
   {
-    text: 'Suma de Pegs 35%',
+    text: 'Retencion Total',
     align: 'center',
-    name: 'suma',
+    name: 'pegs',
   },
   {
-    text: 'Reingresos 10%',
+    text: 'Reingresos',
     align: 'center',
     name: 'rein',
   },
@@ -4669,6 +5416,16 @@ const columnasGrupoZona = [
     text: 'Capitalización',
     align: 'center',
     name: 'capi',
+  },
+  {
+    text: 'Pedidos Totales',
+    align: 'center',
+    name: 'totas',
+  },
+  {
+    text: 'Venta',
+    align: 'center',
+    name: 'vent',
   },
 ]
 
@@ -4705,11 +5462,19 @@ const sourceGlobal = ref({
     { name: 'cons_rete_obje', type: 'number' },
     { name: 'cons_rete_prim', type: 'number' },
     { name: 'cons_rete_segu', type: 'number' },
-    { name: 'cons_segu_camp_ante', type: 'number' },
+    { name: 'cons_segu_camp_ante', type: 'number' }, 
     { name: 'cons_segu_obje', type: 'number' },
+    { name: 'cons_segu_proy', type: 'number' },
+    { name: 'cons_segu_segi', type: 'number' },
     { name: 'cons_terc_obje', type: 'number' },
+    { name: 'cons_terc_proy', type: 'number' },
+    { name: 'cons_terc_camp_ante', type: 'number' },
+    { name: 'cons_terc_proy', type: 'number' },
+    { name: 'cons_terc_segi', type: 'number' },
     { name: 'cons_cuar_camp_ante', type: 'number' },
     { name: 'cons_cuar_obje', type: 'number' },
+    { name: 'cons_cuar_proy', type: 'number' },
+    { name: 'cons_cuar_segi', type: 'number' },
     { name: 'pe21', type: 'number' },
     { name: 'pe21_obje', type: 'number' },
     { name: 'pe21_prim', type: 'number' },
@@ -4727,7 +5492,7 @@ const sourceGlobal = ref({
     { name: 'pegs_obje', type: 'number' },
     { name: 'pegs_prim', type: 'number' },
     { name: 'pegs_segu', type: 'number' },
-    { name: 'rein', type: 'number' },
+    { name: 'rein', type: 'number' }, 
     { name: 'rein_obje', type: 'number' },
     { name: 'rein_prim', type: 'number' },
     { name: 'rein_segu', type: 'number' },
@@ -4735,9 +5500,11 @@ const sourceGlobal = ref({
     { name: 'capi_repr', type: 'number' },
     { name: 'tota_vent', type: 'number' },
     { name: 'cobr', type: 'number' },
-    { name: 'cobr_colc', type: 'number' },
-    { name: 'co92', type: 'number' },
+    { name: 'tota_pedi_proy', type: 'number' },
+    { name: 'tota_pedi_segi', type: 'number' },
     { name: 'co92_colc', type: 'number' },
+    { name: 'vent_obje', type: 'number' },
+    { name: 'vent_segi', type: 'number' },
   ],
   datatype: 'json',
 })
@@ -4777,10 +5544,16 @@ const sourceGlobalZona = ref({
     { name: 'cons_rete_segu', type: 'number' },
     { name: 'cons_segu_camp_ante', type: 'number' },
     { name: 'cons_segu_obje', type: 'number' },
+    { name: 'cons_segu_proy', type: 'number' },
+    { name: 'cons_segu_segi', type: 'number' },
     { name: 'cons_terc_camp_ante', type: 'number' },
     { name: 'cons_terc_obje', type: 'number' },
+    { name: 'cons_terc_proy', type: 'number' },
+    { name: 'cons_terc_segi', type: 'number' },
     { name: 'cons_cuar_camp_ante', type: 'number' },
     { name: 'cons_cuar_obje', type: 'number' },
+    { name: 'cons_cuar_proy', type: 'number' }, 
+    { name: 'cons_cuar_segi', type: 'number' },
     { name: 'pe21', type: 'number' },
     { name: 'pe21_obje', type: 'number' },
     { name: 'pe21_prim', type: 'number' },
@@ -4806,9 +5579,11 @@ const sourceGlobalZona = ref({
     { name: 'capi_repr', type: 'number' },
     { name: 'tota_vent', type: 'number' },
     { name: 'cobr', type: 'number' },
-    { name: 'cobr_colc', type: 'number' },
-    { name: 'co92', type: 'number' },
+    { name: 'tota_pedi_proy', type: 'number' },
+    { name: 'tota_pedi_segi', type: 'number' },
     { name: 'co92_colc', type: 'number' },
+    { name: 'vent_obje', type: 'number' },
+    { name: 'vent_segi', type: 'number' },
   ],
   datatype: 'json',
 })
@@ -4935,8 +5710,6 @@ const onGenerar = async () => {
       objetivoIncorporacion: data.obje_inco,
       proyeccionIncorporacion: data.obje_inco_proy,
       proyeccionPorcentajeIncorporacion: data.obje_inco_proy_porc,
-      reproyeccionIncorporacion: data.obje_inco_repr,
-      reproyeccionPorcentajeIncorporacion: data.obje_inco_repr_porc,
       objetivoRetencion: data.obje_rete,
       proyeccionRetencion: data.obje_rete_proy,
       proyeccionPorcentajeRetencion: data.obje_rete_proy_porc,
@@ -5009,6 +5782,7 @@ const onExcel = async () => {
   try {
     appStore.mensaje('Generando archivo')
     appStore.loading(true)
+
     // console.log("general.value")
     // console.log(general.value)
     // console.log("selectedVariable.value")
@@ -5076,8 +5850,10 @@ const columnsOcultarTodo = [
   'cons_rete_segu',
   'cons_segu_camp_ante',
   'cons_segu_obje',
+  'cons_segu_segi',
   'cons_terc_camp_ante',
   'cons_terc_obje',
+  'cons_terc_proy',
   'cons_cuar_camp_ante',       
   'cons_cuar_obje',
   'pe21',
@@ -5107,6 +5883,8 @@ const columnsOcultarTodo = [
   'cobr_colc',
   'co92',
   'co92_colc',
+  'tota_pedi_proy',
+  'tota_pedi_segi',
 ]
 
 const columnsMostrarTodo = [
@@ -5142,6 +5920,7 @@ const columnsMostrarTodo = [
   'cons_rete_segu',
   'cons_segu_camp_ante',
   'cons_segu_obje',
+  'cons_segu_segi',
   'cons_terc_camp_ante',
   'cons_terc_obje',
   'cons_cuar_camp_ante',       
@@ -5173,6 +5952,8 @@ const columnsMostrarTodo = [
   'cobr_colc',
   'co92',
   'co92_colc',
+  'tota_pedi_proy',
+  'tota_pedi_segi',
 ]
 
 const columnsMostrarPedidosTotales = [
@@ -5387,6 +6168,8 @@ const columnsOcultarTodoZona = [
   'cobr_colc',
   'co92',
   'co92_colc',
+  'tota_pedi_proy',
+  'tota_pedi_segi',
 ]
 
 const columnsMostrarTodoZona = [
@@ -5453,6 +6236,8 @@ const columnsMostrarTodoZona = [
   'cobr_colc',
   'co92',
   'co92_colc',
+  'tota_pedi_proy',
+  'tota_pedi_segi',
 ]
 
 const columnsMostrarPedidosTotalesZona = [
@@ -5681,7 +6466,7 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
           <VCol cols="12">
             <VCard title="Buscar proyección">
               <VCardText>
-                <VRow justify="space-between">
+                <VRow justify="space-between"> 
                   <VCol
                     cols="12"
                     md="4"
@@ -5730,19 +6515,13 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                         CONCEPTO
                       </th>
                       <th class="text-uppercase">
-                        OBJ. ZONA
+                        OBJ. REGION
                       </th>
                       <th class="text-uppercase">
-                        PROYECCIÓN
+                        OBJ. PROYECCION
                       </th>
                       <th class="text-uppercase">
-                        % PROYECCIÓN
-                      </th>
-                      <th class="text-uppercase">
-                        REPROYECCIÓN
-                      </th>
-                      <th class="text-uppercase">
-                        % REPROYECCIÓN
+                        SEGUIMIENTO
                       </th>
                     </tr>
                   </thead>
@@ -5752,24 +6531,22 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                       <td>{{ general.objetivoIncorporacion }}</td>
                       <td>{{ general.proyeccionIncorporacion }}</td>
                       <td>{{ general.proyeccionPorcentajeIncorporacion }}</td>
-                      <td>{{ general.reproyeccionIncorporacion }}</td>
-                      <td>{{ general.reproyeccionPorcentajeIncorporacion }}</td>
                     </tr>
-                    <!-- <tr>
+                    <!--
+                      <tr>
                       <td>Retención</td>
                       <td>{{ general.objetivoRetencion }}</td>
                       <td>{{ general.proyeccionRetencion }}</td>
                       <td>{{ general.proyeccionPorcentajeRetencion }}</td>
                       <td>{{ general.reproyeccionRetencion }}</td>
                       <td>{{ general.reproyeccionPorcentajeRetencion }}</td>
-                    </tr> -->
+                      </tr> 
+                    -->
                     <tr>
                       <td>Pedidos Totales</td>
                       <td>{{ general.objetivoActividad }}</td>
                       <td>{{ general.proyeccionActividad }}</td>
                       <td>{{ general.proyeccionPorcentajeActividad }}</td>
-                      <td>{{ general.reproyeccionActividad }}</td>
-                      <td>{{ general.reproyeccionPorcentajeActividad }}</td>
                     </tr>
                   </tbody>
                 </VTable>
@@ -5778,24 +6555,26 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
           </VCol>
 
           <VCol cols="12">
-            <!-- <VCard title="Variables">
+            <!--
+              <VCard title="Variables">
               <VCardText>
-                <VRadioGroup
-                  v-model="selectedVariable"
-                  inline
-                >
-                  <div>
-                    <VRadio
-                      v-for="variable in variables"
-                      :key="variable.value"
-                      :label="variable.title"
-                      :value="variable.value"
-                      color="secondary"
-                    />
-                  </div>
-                </VRadioGroup>
+              <VRadioGroup
+              v-model="selectedVariable"
+              inline
+              >
+              <div>
+              <VRadio
+              v-for="variable in variables"
+              :key="variable.value"
+              :label="variable.title"
+              :value="variable.value"
+              color="secondary"
+              />
+              </div>
+              </VRadioGroup>
               </VCardText>
-            </VCard> -->
+              </VCard> 
+            -->
           </VCol>
       
           <VCol cols="12">
@@ -5846,7 +6625,7 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                   :columngroups="columnasGrupoZona"
                   columnsresize
                   columnsautoresize
-                  enableanimations
+                  enableanimations 
                   sortable
                   sortmode="many"
                   filterable
