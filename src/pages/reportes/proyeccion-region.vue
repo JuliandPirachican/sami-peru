@@ -934,6 +934,241 @@ const cabecera = computed(() => {
 
 })
 
+const cabeceraCorte = computed(() => {
+  return [
+    {
+      title: 'Corte',
+      key: 'codi_cort',
+      columna: 'A',
+    },
+    {
+      title: 'Región',
+      key: 'codi_area',
+      columna: 'B',
+    },
+    {
+      title: 'Nro zonas',
+      key: 'tota_zona',
+      columna: 'C',
+    },
+    {
+      title: 'Act. inic.',
+      key: 'acti_inic',
+      columna: 'D',
+    },
+    {
+      title: 'Proyección',
+      key: 'pedi_inco_prim',   
+      columna: 'E',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'pedi_inco_segu',   
+      columna: 'F',
+      
+    },
+    {
+      title: 'Ped. Camp. Ante',
+      key: 'cons_rete_camp_ante',   
+      columna: 'G',
+      
+    },
+    {
+      title: 'Proyeccion',
+      key: 'cons_rete_obje',   
+      columna: 'H',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'cons_rete_prim',   
+      columna: 'I',
+      
+    },
+    {
+      title: '1 camp. ante.',
+      key: 'cons_segu_camp_ante',   
+      columna: 'J',
+      
+    },
+    {
+      title: 'Proyeccion',
+      key: 'cons_segu_obje',   
+      columna: 'K',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'cons_segu_segi',   
+      columna: 'L',
+      
+    },
+    {
+      title: '2 camp ante.',
+      key: 'cons_terc_camp_ante',   
+      columna: 'M',
+      
+    },
+    {
+      title: 'Proyeccion',
+      key: 'cons_terc_obje',   
+      columna: 'N',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'cons_terc_segi',   
+      columna: 'O',
+      
+    },
+    {
+      title: '3 camp ante.',
+      key: 'cons_cuar_camp_ante',   
+      columna: 'P',
+      
+    },
+    {
+      title: 'Proyeccion',
+      key: 'cons_cuar_obje',   
+      columna: 'Q',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'cons_cuar_segi',   
+      columna: 'R',
+      
+    },
+    {
+      title: 'Peg21',
+      key: 'pe21',   
+      columna: 'S',
+      
+    },
+    {
+      title: 'Proyección',
+      key: 'pe21_prim',   
+      columna: 'T',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'pe21_segu',   
+      columna: 'U',
+      
+    },
+    {
+      title: 'Peg42',
+      key: 'pe42',   
+      columna: 'V',
+      
+    },
+    {
+      title: 'Proyección',
+      key: 'pe42_prim',   
+      columna: 'W',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'pe42_segu',   
+      columna: 'X',
+      
+    },
+    {
+      title: 'pe63',
+      key: 'pe42',   
+      columna: 'Y',
+      
+    },
+    {
+      title: 'Proyección',
+      key: 'pe63_prim',   
+      columna: 'Z',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'pe63_segu',   
+      columna: 'AA',
+      
+    },
+    {
+      title: 'Pegs',
+      key: 'pegs',   
+      columna: 'AB',
+      
+    },
+    {
+      title: 'Proyección',
+      key: 'pegs_prim',   
+      columna: 'AC',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'pegs_segu',   
+      columna: 'AD',
+      
+    },
+    {
+      title: 'Pos. Rein',
+      key: 'rein',   
+      columna: 'AE',
+      
+    },
+    {
+      title: 'Proyección',
+      key: 'rein_prim',   
+      columna: 'AF',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'rein_segu',   
+      columna: 'AG',
+      
+    },
+    {
+      title: 'Proyección',
+      key: 'capi_obje',   
+      columna: 'AH',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'capi_repr',   
+      columna: 'AI',
+      
+    },
+    {
+      title: 'Objetivos',
+      key: 'tota_pedi_proy',   
+      columna: 'AJ',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'tota_pedi_segi',   
+      columna: 'AK',
+      
+    },
+    {
+      title: 'Objetivo',
+      key: 'vent_obje',   
+      columna: 'AL',
+      
+    },
+    {
+      title: 'Venta',
+      key: 'vent_segi',   
+      columna: 'AM',
+      
+    },
+  ]
+})
+
 const cabeceraZona = computed(() => {
   return [
     {
@@ -957,284 +1192,214 @@ const cabeceraZona = computed(() => {
       columna: 'D',
     },
     {
-      title: 'Proyeccion',
-      key: 'pedi_tota_cant',
+      title: 'Proyección',
+      key: 'pedi_inco_prim',   
       columna: 'E',
+      
     },
     {
       title: 'Seguimiento',
-      key: 'pedi_tota_prim',
+      key: 'pedi_inco_segu',   
       columna: 'F',
+      
     },
     {
-      title: 'Obj. camp.',
-      key: 'pedi_inco_cant',
+      title: 'Ped. Camp. Ante',
+      key: 'cons_rete_camp_ante',   
+      columna: 'G',
+      
+    },
+    {
+      title: 'Proyeccion',
+      key: 'cons_rete_prim',   
+      columna: 'H',
+      
+    },
+    {
+      title: 'Seguimiento',
+      key: 'cons_rete_segu',    
+      columna: 'I',
+      
+    },
+    {
+      title: '1 camp. ante.',
+      key: 'cons_segu_camp_ante',   
       columna: 'J',
+      
     },
     {
-      title: 'Obj. proyección',
-      key: 'pedi_inco_prim',
+      title: 'Proyeccion',
+      key: 'cons_segu_obje',   
       columna: 'K',
+      
     },
     {
-      title: 'Proyección (%)',
-      key: 'pedi_inco_prim_porc',
+      title: 'Seguimiento',
+      key: 'cons_segu_segi',   
       columna: 'L',
+      
     },
     {
-      title: 'Reproyección',
-      key: 'pedi_inco_segu',
+      title: '2 camp ante.',
+      key: 'cons_terc_camp_ante',   
       columna: 'M',
+      
     },
     {
-      title: 'Reproyección (%)',
-      key: 'pedi_inco_segu_porc',
+      title: 'Proyeccion',
+      key: 'cons_terc_proy',   
       columna: 'N',
+      
     },
     {
-      title: 'Obj. camp.',
-      key: 'pedi_rete_cant',
+      title: 'Seguimiento',
+      key: 'cons_terc_segi',   
       columna: 'O',
+      
     },
     {
-      title: 'Obj. proyección',
-      key: 'pedi_rete_prim',
+      title: '3 camp ante.',
+      key: 'cons_cuar_camp_ante',   
       columna: 'P',
+      
     },
     {
-      title: 'Proyección (%)',
-      key: 'pedi_rete_prim_porc',
+      title: 'Proyeccion',
+      key: 'cons_cuar_proy',   
       columna: 'Q',
+      
     },
     {
-      title: 'Reproyección',
-      key: 'pedi_rete_segu',
+      title: 'Seguimiento',
+      key: 'cons_cuar_segi',   
       columna: 'R',
-    },
-    {
-      title: 'Reproyección (%)',
-      key: 'pedi_rete_segu_porc',
-      columna: 'S',
-    },
-    {
-      title: 'Camp. ante.',
-      key: 'acti_camp_ante',
-      columna: 'T',
-    },
-    {
-      title: 'Obj.% acti. camp.',
-      key: 'acti_obje',
-      columna: 'U',
-    },
-    {
-      title: 'Obj. pedi. act.',
-      key: 'acti_obje_pedi',
-      columna: 'V',
-    },
-    {
-      title: 'Proyección (%)',
-      key: 'acti_porc_prim',
-      columna: 'W',
-    },
-    {
-      title: 'Obj. proyección',
-      key: 'acti_prim',
-      columna: 'X',
-    },
-    {
-      title: 'Reproyección (%)',
-      key: 'acti_porc_segu',
-      columna: 'Y',
-    },
-    {
-      title: 'Reproyección',
-      key: 'acti_segu',
-      columna: 'Z',
-    },
-    {
-      title: 'Rete. camp. ante.',
-      key: 'cons_rete_camp_ante',
-      columna: 'AA',
-    },
-    {
-      title: 'Obj. form. éxito',
-      key: 'cons_rete_obje',
-      columna: 'AB',
-    },
-    {
-      title: 'Obj. proyección',
-      key: 'cons_rete_prim',
-      columna: 'AC',
-    },
-    {
-      title: 'Reproyección',
-      key: 'cons_rete_segu',
-      columna: 'AD',
-    },
-    {
-      title: '1 Camp. ante.',
-      key: 'cons_segu_camp_ante',
-      columna: 'AE',
-    },
-    {
-      title: 'Obj. form. éxito',
-      key: 'cons_segu_obje',
-      columna: 'AF',
-    },
-    {
-      title: '2 Camp. ante.',
-      key: 'cons_terc_camp_ante',
-      columna: 'AG',
-    },
-    {
-      title: 'Obj. form. éxito',
-      key: 'cons_terc_obje',
-      columna: 'AH',
-    },
-    {
-      title: '3 Camp. ante.',
-      key: 'cons_cuar_camp_ante',
-      columna: 'AI',
-    },
-    {
-      title: 'Obj. form. éxito',
-      key: 'cons_cuar_obje',
-      columna: 'AJ',
+      
     },
     {
       title: 'Peg21',
-      key: 'pe21',
-      columna: 'AK',
+      key: 'pe21',   
+      columna: 'S',
+      
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'pe21_obje',
-      columna: 'AL',
+      title: 'Proyección',
+      key: 'pe21_prim',   
+      columna: 'T',
+      
     },
     {
-      title: 'Obj. proyección',
-      key: 'pe21_prim',
-      columna: 'AM',
-    },
-    {
-      title: 'Reproyección',
-      key: 'pe21_segu',
-      columna: 'AN',
+      title: 'Seguimiento',
+      key: 'pe21_segu',   
+      columna: 'U',
+      
     },
     {
       title: 'Peg42',
-      key: 'pe42',
-      columna: 'AO',
+      key: 'pe42',   
+      columna: 'V',
+      
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'pe42_obje',
-      columna: 'AP',
+      title: 'Proyección',
+      key: 'pe42_prim',   
+      columna: 'W',
+      
     },
     {
-      title: 'Obj. proyección',
-      key: 'pe42_prim',
-      columna: 'AQ',
+      title: 'Seguimiento',
+      key: 'pe42_segu',   
+      columna: 'X',
+      
     },
     {
-      title: 'Reproyección',
-      key: 'pe42_segu',
-      columna: 'AR',
+      title: 'pe63',
+      key: 'pe42',   
+      columna: 'Y',
+      
     },
     {
-      title: 'Peg63',
-      key: 'pe63',
-      columna: 'AS',
+      title: 'Proyección',
+      key: 'pe63_prim',   
+      columna: 'Z',
+      
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'pe63_obje',
-      columna: 'AT',
-    },
-    {
-      title: 'Obj. proyección',
-      key: 'pe63_prim',
-      columna: 'AU',
-    },
-    {
-      title: 'Reproyección',
-      key: 'pe63_segu',
-      columna: 'AV',
+      title: 'Seguimiento',
+      key: 'pe63_segu',   
+      columna: 'AA',
+      
     },
     {
       title: 'Pegs',
-      key: 'pegs',
-      columna: 'AW',
+      key: 'pegs',   
+      columna: 'AB',
+      
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'pegs_obje',
-      columna: 'AX',
+      title: 'Proyección',
+      key: 'pegs_prim',   
+      columna: 'AC',
+      
     },
     {
-      title: 'Obj. proyección',
-      key: 'pegs_prim',
-      columna: 'AY',
+      title: 'Seguimiento',
+      key: 'pegs_segu',   
+      columna: 'AD',
+      
     },
     {
-      title: 'Reproyección',
-      key: 'pegs_segu',
-      columna: 'AZ',
+      title: 'Pos. Rein',
+      key: 'rein',   
+      columna: 'AE',
+      
     },
     {
-      title: 'Pos. Rein.',
-      key: 'rein',
-      columna: 'BA',
+      title: 'Proyección',
+      key: 'rein_prim',   
+      columna: 'AF',
+      
     },
     {
-      title: 'Obj. form. éxito',
-      key: 'rein_obje',
-      columna: 'BB',
+      title: 'Seguimiento',
+      key: 'rein_segu',   
+      columna: 'AG',
+      
     },
     {
-      title: 'Obj. proyección',
-      key: 'rein_prim',
-      columna: 'BC',
+      title: 'Proyección',
+      key: 'capi_obje',   
+      columna: 'AH',
+      
     },
     {
-      title: 'Reproyección',
-      key: 'rein_segu',
-      columna: 'BD',
+      title: 'Seguimiento',
+      key: 'capi_repr',   
+      columna: 'AI',
+      
     },
     {
-      title: 'Obj. proyección',
-      key: 'capi_obje',
-      columna: 'BE',
+      title: 'Objetivos',
+      key: 'tota_pedi_proy',   
+      columna: 'AJ',
+      
     },
     {
-      title: 'Reproyección',
-      key: 'capi_repr', 
-      columna: 'BF',
+      title: 'Seguimiento',
+      key: 'tota_pedi_segi',   
+      columna: 'AK',
+      
+    },
+    {
+      title: 'Objetivo',
+      key: 'vent_obje',   
+      columna: 'AL',
+      
     },
     {
       title: 'Venta',
-      key: 'tota_vent',
-      columna: 'BG',
-    },
-    {
-      title: 'Cobranza 88%(por cobrar)',
-      key: 'cobr',
-      columna: 'BH',
-    },
-    {
-      title: 'Cobranza 88%(te puedes quedar)',
-      key: 'cobr_colc',
-      columna: 'BI',
-    },
-    {
-      title: 'Cobranza 92%(por cobrar)',
-      key: 'co92',
-      columna: 'BJ',
-    },
-    {
-      title: 'Cobranza 92%(te puedes quedar)',
-      key: 'co92_colc',
-      columna: 'BK',
+      key: 'vent_segi',   
+      columna: 'AM',
+      
     },
   ]
 
@@ -5786,16 +5951,18 @@ const onExcel = async () => {
     // console.log("general.value")
     // console.log(general.value)
     // console.log("selectedVariable.value")
-    // console.log(selectedVariable.value)
+    console.log(cabecera.value)  
+ 
     // console.log("cabeceraZona.value")
     // console.log(cabeceraZona.value)
 
     const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-region/excel`, {
+      
       method: "post",
       body: {
         general: general.value,
         variable: selectedVariable.value,
-        cabecera_corte: cabecera.value,
+        cabecera_corte: cabeceraCorte.value,
         detalle: JSON.stringify(refGridGlobal.value.exportdata('xml')),
         cabecera_zona: cabeceraZona.value,
         detalle_zona: JSON.stringify(refGridGlobalZona.value.exportdata('xml')),
@@ -6625,20 +6792,32 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                   :columngroups="columnasGrupoZona"
                   columnsresize
                   columnsautoresize
-                  enableanimations 
                   sortable
+
                   sortmode="many"
+
                   filterable
+
                   :altrows="false"
+
                   :showemptyrow="false"
+
                   columnsreorder
+
                   showstatusbar
+
                   showaggregates
+
                   selectionmode="singlecell"
+
                   scrollmode="logical"
+
                   showfilterrow
+
                   :columnsmenu="false"
+
                   editable
+
                   editmode="click"
                 />
               </VCardText>
@@ -6649,3 +6828,6 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
     </AppPlantilla>
   </div>
 </template>
+ 
+                   
+
