@@ -1562,6 +1562,7 @@ const columnsNumeroLideres = [
     align: 'center',
     cellsformat: 'N',
   },
+  
   {
     text: codi_camp_4.value,
     dataField: 'codi_camp_4',
