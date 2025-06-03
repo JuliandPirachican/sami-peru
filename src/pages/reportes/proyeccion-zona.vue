@@ -262,30 +262,30 @@ const claseProyeccionPegs = (row, columnfield, value) => {
   return 'text-error'
 }
 
-const claseProyeccionReingreso = (row, columnfield, value) => {
+const clasePedidoTotal = (row, columnfield, value) => {
   const dataRecord = refGridGlobal.value.getrowdata(row)
-  const dataObje = parseInt(dataRecord.rein_obje)
-  let dataProy = 0
-  if (columnfield === 'rein_prim') {
-    dataProy = parseInt(dataRecord.rein_prim)
-  } else {
-    dataProy = parseInt(dataRecord.rein_segu)
-  }
-  const porcProy = parseFloat(100 * (dataProy / dataObje)).toFixed(2)
+  const dataObje = parseInt(dataRecord.tota_vent)
+  let dataProy = parseInt(dataRecord.proy_pedi_tota) 
+  console.log("dataObje")
+  console.log(dataObje)
+  console.log("dataProy")
+  console.log(dataProy)
   if (dataObje === 0) {
     return `bg-primary-light text-secondary`
   }
+
   if (dataProy === 0) {
     return `bg-primary-light text-secondary`
   }
-  if (porcProy >= 100) {
+
+  if (dataProy >= dataObje) {
     return `bg-primary-light text-success`
   }
-  if (porcProy >= 80 && porcProy < 100) {
-    return `bg-primary-light text-warning`
+
+  if (dataProy < dataObje) {
+    return `bg-primary-light text-error`
   }
   
-  return `bg-primary-light text-error`
 }
 
 const claseCapitalizacion = (row, columnfield, value) => {
@@ -1136,7 +1136,8 @@ const columnaGlobal = [
     ],
     cellclassname: claseCapitalizacion,
   },
-  {
+  { 
+    //aqui
     text: 'Objetivo Minimo',
     datafield: 'tota_vent',
     width: '120',
@@ -1180,6 +1181,7 @@ const columnaGlobal = [
         },
       },
     ],
+    cellclassname: clasePedidoTotal,
   },
   {
     text: 'Seguimiento',
