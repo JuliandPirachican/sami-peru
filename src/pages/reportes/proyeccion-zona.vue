@@ -1145,7 +1145,7 @@ const columnaGlobal = [
     columngroup: 'pedi_tota',
     editable: false,
     hidden: false,
-    cellsformat: 'D2',
+    cellsformat: 'N',
     filtertype: 'number',
     columna: 'AJ',
     aggregates: [
@@ -1167,7 +1167,7 @@ const columnaGlobal = [
     editable: false,
     hidden: false,
     columngroup: 'pedi_tota',
-    cellsformat: 'D2',
+    cellsformat: 'N',
     filtertype: 'number',
     columna: 'AK',
     aggregates: [
@@ -1190,7 +1190,7 @@ const columnaGlobal = [
     editable: false,
     hidden: false,
     columngroup: 'pedi_tota',
-    cellsformat: 'D2',
+    cellsformat: 'N',
     filtertype: 'number',
     columna: 'AL',
     aggregates: [
