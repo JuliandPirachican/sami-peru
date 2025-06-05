@@ -132,9 +132,14 @@ const cabeceraGlobal = [
     key: 'fact_inco',
   },
   {
+    title: 'proyeccion de incorporacion',
+    key: 'obje_inco_prime',
+  },
+  {
   title: 'Cump. fact.',
   key:'cump_inco_fact',
   },
+ 
   {
   title: 'Pend. fact.',
   key:'pend_inco_fact',
@@ -342,7 +347,10 @@ const cabeceraGlobal = [
     title: 'Objetivo',
     key: 'obje_pegs',
   },
- 
+ {
+    title: 'proyeccion de consecutividad 2do pedido',
+    key: 'cons_rete_prim',
+  },
   
   {
     title: 'Ret. pegs',
@@ -405,6 +413,42 @@ const cabeceraGlobal = [
     key: 'cump_fact_tota',
   },
   {
+    title:'proyeccion de consecutividad 3er pedido',
+    key: 'cons_segu_obje',
+  },
+  {
+    title:'proyeccion de consecutividad 4to pedido',
+    key: 'cons_terc_obje',
+  },
+  {
+    title:'proyeccion de peg21',
+    key: 'pe21_obje',
+  },
+  {
+    title:'proyeccion de retencion',
+    key: 'pegs_obje',
+  },
+   {
+    title:'proyeccion de reingresos',
+    key: 'rein_obje',
+  },
+  {
+    title:'proyeccion de capitalizacion',
+    key: 'capi_obje',
+  },
+  {
+    title:'proyeccion de pedidos totales',
+    key: 'proy_pedi_tota',
+  },
+  {
+    title:' proyeccion de peg63',
+    key: 'pe63_obje',
+  },
+  {
+    title:'proyeccion de peg42',
+    key: 'pe42_obje',
+  },
+  {
     title: 'Pend. fact.',
     key: 'pend_fact_tota',
   },
@@ -415,6 +459,10 @@ const cabeceraGlobal = [
   {
     title: 'Objetivo Ventas',
     key: 'obje_vent',
+  },
+  {
+    title: 'proyeccion de consecutividad',
+    key: 'obje_cons_lide',
   },
   {
     title: 'Venta',
@@ -455,6 +503,7 @@ const columnasGlobal = [
     datafield: 'obje_inco_segu',
     hidden: true,
   },
+ 
   {
     datafield: 'obje_rete_prim',
     hidden: true,
@@ -558,6 +607,28 @@ const columnasGlobal = [
     ],
     columngroup: 'inco',
   },
+  
+  {
+    text: 'proyeccion de incorporacion',
+    datafield: 'obje_inco_prime',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    hidden: false,
+    aggregates: [
+      {
+        T: function(aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'inco',
+  },
+  
   {
     text: 'Facturado',
     datafield: 'fact_inco',
@@ -745,6 +816,28 @@ const columnasGlobal = [
     ],
     columngroup: 'Cons',
   },
+  {
+    text: 'proyeccion de consecutividad',
+    datafield: 'obje_cons_lide',
+    width: '80',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    hidden: false,
+    aggregates: [
+      {
+
+        T: function(aggregatedValue, currentValue) {
+  
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'Cons',
+  },
   
   {
     text: 'Facturado',
@@ -862,6 +955,26 @@ const columnasGlobal = [
   {
     text: '1 Camp. ante.',
     datafield: 'obje_rete_cons_segu',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    hidden: false,
+    aggregates: [
+      {
+        T: function(aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'Cons_2',
+  },
+   {
+    text: 'proyeccion de consecutividad 2do pedido',
+    datafield: 'cons_rete_prim',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -1002,6 +1115,26 @@ const columnasGlobal = [
     columngroup: 'Cons_3',
   },
   {
+    text: 'proyeccion de consecutividad 3er pedido',  
+    datafield: 'cons_segu_obje',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    hidden: false,
+    aggregates: [
+      {
+        T: function(aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'Cons_3',
+  },
+  {
     text: 'Facturado',  
     datafield: 'fact_rete_cons_terc',
     width: '100',
@@ -1124,6 +1257,26 @@ const columnasGlobal = [
     columngroup: 'Cons_4',
   },
   {
+    text: 'proyeccion de consecutividad 4to pedido',  
+    datafield: 'cons_terc_obje',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    hidden: false,
+    aggregates: [
+      {
+        T: function(aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'Cons_4',
+  },
+  {
     text: 'Facturado',  
     datafield: 'fact_rete_cons_cuar',
     width: '100',
@@ -1228,6 +1381,26 @@ const columnasGlobal = [
   {
     text: 'peg21',  
     datafield: 'fact_pe21_ante',
+    width: '80',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    hidden: false,
+    aggregates: [
+      {
+        T: function(aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'peg21',
+  },
+  {
+    text: 'proyeccion de peg21',  
+    datafield: 'pe21_obje',
     width: '80',
     align: 'center',
     cellsalign: 'center',
@@ -1389,6 +1562,26 @@ const columnasGlobal = [
       columngroup: 'peg42',
   },
   {
+      text: 'proyeccion de peg42',  
+      datafield: 'pe42_obje',
+      width: '80',
+      align: 'center',
+      cellsalign: 'center',
+      cellsformat: 'N',
+      editable: false,
+      hidden: false,
+      aggregates: [
+        {
+          T: function(aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+            
+            return aggregatedValue
+          },
+        },
+      ],
+      columngroup: 'peg42',
+  },
+  {
       text: 'Objetivo',  
       datafield: 'obje_pe42',
       width: '80',
@@ -1511,6 +1704,26 @@ const columnasGlobal = [
   {
       text: 'peg63',
       datafield: 'fact_pe63_ante',  
+      width: '80',
+      align: 'center',
+      cellsalign: 'center',
+      cellsformat: 'N',
+      editable: false,
+      hidden: false,
+      aggregates: [
+        {
+          T: function(aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+            
+            return aggregatedValue
+          },
+        },
+      ],
+      columngroup: 'peg63',
+    },
+    {
+      text: 'proyeccion de peg63',
+      datafield: 'pe63_obje',  
       width: '80',
       align: 'center',
       cellsalign: 'center',
@@ -1692,7 +1905,28 @@ const columnasGlobal = [
     ],
     columngroup: 'rete',
   },
- 
+ {
+    text: 'proyeccion de retencion',
+    datafield: 'pegs_obje',
+    width: '80',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    hidden: false,
+    aggregates: [
+      {
+
+        T: function(aggregatedValue, currentValue) {
+  
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'rete',
+  },
   
   {
     text: 'Ret. pegs',
@@ -1848,6 +2082,28 @@ const columnasGlobal = [
     ],
     columngroup: 'rein',
   },
+    {
+    text: 'proyeccion de reingresos',
+    datafield: 'rein_obje',
+    width: '80',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    hidden: false,
+    aggregates: [
+      {
+
+        T: function(aggregatedValue, currentValue) {
+  
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'rein',
+  },
   {
     text: 'Facturado',
     datafield: 'fact_rein',
@@ -1981,6 +2237,28 @@ const columnasGlobal = [
     editable: false,
   },
   {
+    text: 'proyeccion de capitalizacion',
+    datafield: 'capi_obje',
+    width: '80',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    hidden: false,
+    aggregates: [
+      {
+
+        T: function(aggregatedValue, currentValue) {
+  
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'capi',
+    editable: false,
+  },
+  {
     text: 'Facturado',
     datafield: 'fact_capi',
     width: '100',
@@ -2028,6 +2306,28 @@ const columnasGlobal = [
   {
     text: 'Objetivo',
     datafield: 'obje_tota',
+    width: '80',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    hidden: false,
+    aggregates: [
+      {
+
+        T: function(aggregatedValue, currentValue) {
+  
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'tota',
+  },
+   {
+    text: 'proyeccion de pedidos totales',
+    datafield: 'proy_pedi_tota',
     width: '80',
     align: 'center',
     cellsalign: 'center',
@@ -2258,6 +2558,11 @@ const sourceGlobal = ref({
   datafields: [
     { name: 'codi_area', type: 'string' },
     { name: 'obse_zona', type: 'string' },
+    { name: 'cons_rete_prim', type: 'string' },
+   { name: 'cons_segu_obje', type: 'string' },
+      { name: 'pegs_obje', type: 'string' },
+      { name: 'rein_obje', type: 'string' },
+      { name: 'capi_obje', type: 'string' },
     { name: 'tota_zona', type: 'number' },
     { name: 'tota_obje', type: 'number' },
     { name: 'tota_proy', type: 'number' },
@@ -2265,14 +2570,18 @@ const sourceGlobal = ref({
     { name: 'obje_inco', type: 'number' },
     { name: 'obje_inco_prim', type: 'number' },
     { name: 'obje_inco_segu', type: 'number' },
-    
+    { name: 'obje_cons_lide', type: 'number' },
+    { name: 'cons_terc_obje', type: 'number' },
     { name: 'fact_inco', type: 'number' },
+     { name: 'obje_inco_prime', type: 'number' },
     { name: 'pedi_inco_pend', type: 'number' },
     { name: 'cump_inco', type: 'number' },
     { name: 'dife_inco_tota', type: 'number' },
-   
+   { name: 'pe21_obje', type: 'number' },
+   { name: 'pe42_obje', type: 'number' },
     { name: 'tota_inco', type: 'number' },
     { name: 'cump_inco_fact', type: 'number' },
+     { name: 'proy_pedi_tota', type: 'number' },
     { name: 'pend_inco_fact', type: 'number' },
     { name: 'obje_rete_cons', type: 'number' },
     { name: 'fact_rete_cons', type: 'number' },
@@ -2322,7 +2631,7 @@ const sourceGlobal = ref({
     { name: 'fact_pegs_ante', type: 'number' },
     { name: 'obje_pegs', type: 'number' },
     { name: 'obje_rete_prim', type: 'number' },
-   
+   { name: 'pe63_obje', type: 'number' },
     { name: 'obje_rete_segu', type: 'number' },
     { name: 'fact_pegs', type: 'number' },
     { name: 'porc_pegs', type: 'number' },
