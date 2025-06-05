@@ -2232,7 +2232,7 @@ const onGenerar = async () => {
     sourceConsecutividadNuevas.value.localdata = data.data_cons_nuev
     refGridConsecutividadNuevas.value.updatebounddata('cells')
 
-    sourceConsecutividadTotal.value.localdata = data.data_cons_nuev
+    sourceConsecutividadTotal.value.localdata = data.data_cons_rete
     refGridConsecutividadTotal.value.updatebounddata('cells')
     
     sourceCapitalizacion.value.localdata = data.data_capi
@@ -2639,7 +2639,7 @@ const inicioVariables = () => {
   
   sourceConsecutividadNuevas.value.localdata = [
     {
-      nomb_conc: '2do Pedido',
+      nomb_conc: 'Facturado',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
@@ -2649,7 +2649,7 @@ const inicioVariables = () => {
       tota_camp: '0.00',
     },
     {
-      nomb_conc: '3er Pedido',
+      nomb_conc: 'Objetivo',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
@@ -2659,7 +2659,7 @@ const inicioVariables = () => {
       tota_camp: '0.00',
     },
     {
-      nomb_conc: '4to Pedido',
+      nomb_conc: 'Diferencia',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
