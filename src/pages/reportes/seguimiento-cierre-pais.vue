@@ -2586,7 +2586,7 @@ const sourceGlobal = ref({
     { name: 'obje_rete_cons', type: 'number' },
     { name: 'fact_rete_cons', type: 'number' },
     { name: 'cump_fact_rete_cons', type: 'number' },
-    { name: 'pend_fact_rete_cons', type: 'number' },
+    { name: 'pend_fact_rete_cons', type: 'number' }, 
     { name: 'tota_rete_cons', type: 'number' },
     { name: 'cump_rete_cons', type: 'number' },
     { name: 'obje_rete_cons_segu', type: 'number' },
