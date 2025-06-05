@@ -1472,7 +1472,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1481,7 +1481,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1490,7 +1490,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1499,7 +1499,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1508,7 +1508,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1517,7 +1517,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1526,7 +1526,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1593,7 +1593,7 @@ const columnsNumeroLideres = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1611,7 +1611,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1619,7 +1619,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1627,7 +1627,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1635,7 +1635,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1643,7 +1643,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1651,7 +1651,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1659,7 +1659,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1677,7 +1677,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1685,7 +1685,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1693,7 +1693,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1701,7 +1701,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1709,7 +1709,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1717,7 +1717,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1725,7 +1725,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1744,7 +1744,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1752,7 +1752,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1760,7 +1760,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1768,7 +1768,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1776,7 +1776,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1784,7 +1784,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1792,7 +1792,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1803,7 +1803,7 @@ const columnsVentaRecepcionada = [
     width: '23%',
     cellsalign: 'left',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: '0',
@@ -1811,7 +1811,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1819,7 +1819,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1827,7 +1827,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1835,7 +1835,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1843,7 +1843,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1851,7 +1851,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1859,7 +1859,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
 ]
 
@@ -2117,7 +2117,7 @@ const columnsNivelLider = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
 ]
 
