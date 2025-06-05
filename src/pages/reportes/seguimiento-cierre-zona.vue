@@ -568,6 +568,7 @@ const cabecera = computed(() => {
   { key: 'tota_pe63', title: 'Total' },
   { key: 'cump_pe63', title: '% Ret. pend.' },
   { key: 'fact_pegs_ante', title: 'Pegs' },
+   { key: 'pegs_obje', title: 'proyeccion de retencion' },
   { key: 'obje_pegs', title: 'Objetivo' },
   { key: 'fact_pegs', title: 'Ret. pegs' },
   { key: 'porc_pegs', title: 'Cump. fact.' },
@@ -591,6 +592,7 @@ const cabecera = computed(() => {
   { key: 'tota_tota', title: 'Total' },
   { key: 'obje_vent', title: 'Objetivo Ventas' },
   { key: 'fact_vent', title: 'Venta' }
+   
     ];
   } else if(selectedVariable.value === 1) {
     //capitalizacion
@@ -600,6 +602,7 @@ const cabecera = computed(() => {
     { title: 'Act. inic.', key: 'acti_fina_ante' },
     // Grupo 'inco'
     { title: 'Objetivo', key: 'obje_inco' },
+    { title: 'obje_inco_prime', key: 'obje_inco' },
     { title: 'Facturado', key: 'fact_inco' },
     { title: 'Cump. fact.', key: 'cump_fact_inco' },
     { title: 'Pend. fact.', key: 'pend_fact_inco' },
@@ -626,6 +629,7 @@ const cabecera = computed(() => {
 
     // Grupo 'capi'
     { title: 'Objetivo', key: 'obje_capi' },
+     { title: ' proyeccion de capitalizacion', key: 'capi_obje' },
     { title: 'Facturado', key: 'fact_capi' },
     { title: 'Capi. pend.', key: 'pend_capi' }
 ]
@@ -633,6 +637,7 @@ const cabecera = computed(() => {
     //consecutividad
     return [
     { title: 'Codigo Lider', key: 'codi_sect' },
+    { title: 'proyeccion de consecutividad', key: 'obje_cons_lide' },
     { title: 'Lider', key: 'nomb_lide' },
     { title: 'Act. inic.', key: 'acti_fina_ante' },
     
@@ -648,6 +653,7 @@ const cabecera = computed(() => {
     // Grupo 'cons_segu'
     { title: '1 Camp. ante.', key: 'obje_rete_cons_segu' },
     { title: 'Facturado', key: 'fact_rete_cons_segu' },
+    { title: 'proyeccion de consecutividad 2do pedido', key: 'cons_rete_prim' },
     { title: 'Cump. fact.', key: 'cump_fact_rete_cons_segu' },
     { title: 'Pend. fact.', key: 'pend_fact_rete_cons_segu' },
     { title: 'Total', key: 'tota_rete_cons_segu' },
@@ -655,6 +661,7 @@ const cabecera = computed(() => {
 
     // Grupo 'cons_terc'
     { title: '2 Camp. ante.', key: 'obje_rete_cons_terc' },
+    { title: 'proyeccion de consecutividad 3er pedido', key: 'cons_segu_obje' },
     { title: 'Facturado', key: 'fact_rete_cons_terc' },
     { title: 'Cump. fact.', key: 'cump_fact_rete_cons_terc' },
     { title: 'Pend. fact.', key: 'pend_fact_rete_cons_terc' },
@@ -663,6 +670,7 @@ const cabecera = computed(() => {
 
     // Grupo 'cons_cuar'
     { title: '3 Camp. ante.', key: 'obje_rete_cons_cuar' },
+    { title: 'proyeccion de consecutividad 4to pedido', key: 'cons_terc_obje' },
     { title: 'Facturado', key: 'fact_rete_cons_cuar' },
     { title: 'Cump. fact.', key: 'cump_fact_rete_cons_cuar' },
     { title: 'Pend. fact.', key: 'pend_fact_rete_cons_cuar' },
@@ -674,6 +682,7 @@ const cabecera = computed(() => {
     //pedidos totales 
     return [
       { title: 'Codigo Lider', key: 'codi_sect' },
+      { title: 'proyeccion de pedidos totales', key: 'proy_pedi_tota' },
       { title: 'Lider', key: 'nomb_lide' },
       { title: 'Act. inic.', key: 'acti_fina_ante' },
       // Grupo 'inco'
@@ -698,6 +707,7 @@ const cabecera = computed(() => {
       // Grupo 'pe21'
       { title: 'Peg21', key: 'fact_pe21_ante' },
       { title: 'Objetivo', key: 'obje_pe21' },
+      { title: 'proyeccion de peg21', key: 'pe21_obje' },
       { title: 'Ret. peg21', key: 'fact_pe21' },
       { title: '% Ret. pend.', key: 'porc_pe21' },
       { title: 'Pend. fact.', key: 'pend_fact_pe21' },
@@ -706,6 +716,7 @@ const cabecera = computed(() => {
 
       // Grupo 'pe42'
       { title: 'Peg42', key: 'fact_pe42_ante' },
+      { title: 'proyeccion de peg42', key: 'pe42_obje' },
       { title: 'Objetivo', key: 'obje_pe42' },
       { title: 'Ret. peg42', key: 'fact_pe42' },
       { title: '% Ret. pend.', key: 'porc_pe42' },
@@ -715,6 +726,7 @@ const cabecera = computed(() => {
 
       // Grupo 'pe63'
       { title: 'Peg63', key: 'fact_pe63_ante' },
+      { title: 'proyeccion de peg63', key: 'pe63_obje' },
       { title: 'Objetivo', key: 'obje_pe63' },
       { title: 'Ret. peg63', key: 'fact_pe63' },
       { title: '% Ret. pend.', key: 'porc_pe63' },
@@ -724,6 +736,7 @@ const cabecera = computed(() => {
 
       // Grupo 'rein'
       { title: 'Pos. reing.', key: 'fact_rein_ante' },
+     { title: 'proyeccion de reingresos', key: 'rein_obje' },
       { title: 'Objetivo', key: 'obje_rein' },
       { title: 'Facturado', key: 'fact_rein' },
       { title: 'Cump. fact.', key: 'porc_rein' },
@@ -783,6 +796,26 @@ const columnas = [
   {
     text: 'Objetivo',
     datafield: 'obje_inco',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        'T': function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'inco',
+  },
+  {
+    text: 'proyeccion de incorporacion',
+    datafield: 'obje_inco_prime',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -969,6 +1002,28 @@ const columnas = [
     cellclassname: claseObtetivoConsecutiva,
   },
   {
+    text: 'proyeccion de consecutividad',
+    datafield: 'obje_cons_lide',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        'T': function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'cons',
+    cellclassname: claseObtetivoConsecutiva,
+  },
+  {
     text: 'Facturado',
     datafield: 'fact_rete_cons',
     width: '100',
@@ -1107,6 +1162,24 @@ const columnas = [
     ],
     columngroup: 'cons_segu',
   },
+   {
+    text: 'proyeccion de consecutividad 2do pedido',
+    datafield: 'cons_rete_prim',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        'T': function(aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'cons_segu',
+  },
   {
     text: 'Facturado',
     datafield: 'fact_rete_cons_segu',
@@ -1228,6 +1301,25 @@ const columnas = [
   {
     text: '2 Camp. ante.',
     datafield: 'obje_rete_cons_terc',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+
+    cellsformat: 'N',
+    aggregates: [
+      {
+        'T': function(aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'cons_terc',
+  },
+  {
+    text: 'proyeccion de consecutividad 3er pedido',
+    datafield: 'cons_segu_obje',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1394,6 +1486,27 @@ const columnas = [
     columngroup: 'cons_cuar',
   },
   {
+    text: 'proyeccion de consecutividad 4to pedido',
+    datafield: 'cons_terc_obje',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        'T': function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'cons_cuar',
+  },
+  {
     text: 'Facturado',
     datafield: 'fact_rete_cons_cuar',
     width: '100',
@@ -1524,6 +1637,27 @@ const columnas = [
   {
     text: 'Peg21',
     datafield: 'fact_pe21_ante',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        'T': function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'pe21',
+  },
+  {
+    text: 'proyeccion de peg21',
+    datafield: 'pe21_obje',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1714,6 +1848,27 @@ const columnas = [
     columngroup: 'pe42',
   },
   {
+    text: 'proyeccion de peg42',
+    datafield: 'pe42_obje',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        'T': function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'pe42',
+  },
+  {
     text: 'Objetivo',
     datafield: 'obje_pe42',
     width: '120',
@@ -1865,6 +2020,27 @@ const columnas = [
   {
     text: 'Peg63',
     datafield: 'fact_pe63_ante',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        'T': function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'pe63',
+  },
+  {
+    text: 'proyeccion de peg63',
+    datafield: 'pe63_obje',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -2050,6 +2226,27 @@ const columnas = [
     columngroup: 'pegs',
   },
   {
+    text: 'proyeccion de retencion',
+    datafield: 'pegs_obje',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        'T': function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'pegs',
+  },
+  {
     text: 'Objetivo',
     datafield: 'obje_pegs',
     width: '120',
@@ -2202,6 +2399,27 @@ const columnas = [
   {
     text: 'Pos. reing.',
     datafield: 'fact_rein_ante',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        'T': function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'rein',
+  },
+   {
+    text: 'proyeccion de reingresos',
+    datafield: 'rein_obje',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -2386,6 +2604,26 @@ const columnas = [
     columngroup: 'capi',
   },
   {
+    text: ' proyeccion de capitalizacion',
+    datafield: 'capi_obje',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        'T': function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'capi',
+  },
+  {
     text: 'Facturado',
     datafield: 'fact_capi',
     width: '100',
@@ -2449,6 +2687,24 @@ const columnas = [
   {
     text: 'Objetivo',
     datafield: 'obje_tota',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        'T': function(aggregatedValue, currentValue) {   
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'tota',
+  },
+  {
+    text: ' proyeccion de pedidos totales',
+    datafield: 'proy_pedi_tota',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -2729,8 +2985,19 @@ const sourceGlobal = ref({
   datafields: [
     { name: 'codi_sect', type: 'string' }, // Nota: Corregí "codi_sect" (original tenía 'codi_sect', no 'codi_sect')
     { name: 'nomb_lide', type: 'string' },
+     { name: 'proy_pedi_tota', type: 'string' },
+    { name: 'rein_obje', type: 'string' },
+    { name: 'pegs_obje', type: 'string' },
+    { name: 'pe63_obje', type: 'string' },
+     { name: 'pe42_obje', type: 'string' },
+    { name: 'pe21_obje', type: 'string' },
+    { name: 'cons_terc_obje', type: 'string' },
+    { name: 'cons_rete_prim', type: 'string' },
+    { name: 'cons_segu_obje', type: 'string' },
     { name: 'acti_fina_ante', type: 'number' },
+     { name: 'obje_cons_lide', type: 'number' },
     { name: 'obje_tota', type: 'number' },
+     { name: 'obje_inco_prime', type: 'number' },
     { name: 'fact_tota', type: 'number' },
     { name: 'cump_fact_tota', type: 'number' },
     { name: 'pend_fact_tota', type: 'number' },
@@ -2807,6 +3074,7 @@ const sourceGlobal = ref({
     { name: 'fact_capi', type: 'number' },
     { name: 'pend_capi', type: 'number' },
     { name: 'pend_capi_obje', type: 'number' },
+    { name: 'capi_obje', type: 'number' },
     { name: 'obje_vent', type: 'number' },
     { name: 'fact_vent', type: 'number' }
 ],
@@ -3010,6 +3278,17 @@ const limpiarValidacion = () => {
 
 const columnsOcultarTodo = [
   'obje_tota',
+  'proy_pedi_tota',
+  'rein_obje',
+  'pegs_obje',
+  'pe63_obje',
+  'pe42_obje',
+  'pe21_obje',
+  'cons_terc_obje',
+  'cons_segu_obje',
+  'cons_rete_prim',
+  'obje_cons_lide',
+  'obje_inco_prime',
   'fact_tota',
   'cump_fact_tota',
   'pend_fact_tota',
@@ -3097,6 +3376,7 @@ const columnsOcultarTodo = [
   'obje_capi',
   'pend_capi',
   'pend_capi_obje',
+  'capi_obje',
   'valo_docu',
   'obje_docu',
   'pend_cobr',
@@ -3114,7 +3394,18 @@ const columnsOcultarTodo = [
 
 const columnsMostrarTodo = [
   'obje_tota',
+  'proy_pedi_tota',
+  'rein_obje',
+  'pegs_obje',
+  'pe63_obje',
+  'pe42_obje',
+  'pe21_obje',
+  'cons_terc_obje',
+  'cons_segu_obje',
+  'cons_rete_prim',
   'fact_tota',
+  'obje_cons_lide',
+  'obje_inco_prime',
   'cump_fact_tota',
   'pend_fact_tota',
   'tota_tota',
@@ -3201,6 +3492,7 @@ const columnsMostrarTodo = [
   'obje_capi',
   'pend_capi',
   'pend_capi_obje',
+  'capi_obje',
   'valo_docu',
   'obje_docu',
   'pend_cobr',
@@ -3218,10 +3510,17 @@ const columnsMostrarTodo = [
 
 const columnsMostrarPedidosTotales = [
   'obje_tota',
+  'proy_pedi_tota',
+  'rein_obje',
+  'pe63_obje',
+  'pe21_obje',
+  'pe42_obje',
+  'obje_inco_prime',
   'fact_tota',
   'cump_fact_tota',
   'pend_fact_tota',
   'tota_tota',
+  'obje_cons_lide',
   'cump_tota',
   'dife_tota',
   'obje_inco',
@@ -3269,6 +3568,8 @@ const columnsMostrarPedidosTotales = [
 
 const columnsMostrarCapitalizacion = [
   'obje_inco',
+  'rein_obje',
+  'obje_inco_prime',
   'fact_inco',  
   'cump_fact_inco',
   'pend_fact_inco',
@@ -3292,11 +3593,16 @@ const columnsMostrarCapitalizacion = [
   'obje_capi',
   'pend_capi',
   'pend_capi_obje',
+  'capi_obje',
 ]
 
 
 const columnsMostrarConsecutividad = [
   'fact_rete_cons_ante',
+  'cons_terc_obje',
+  'cons_segu_obje',
+  'cons_rete_prim',
+  'obje_cons_lide',
   'obje_rete_cons',
   'fact_rete_cons',
   'cump_fact_rete_cons',
