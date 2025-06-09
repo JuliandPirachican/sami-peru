@@ -132,7 +132,7 @@ const cabeceraGlobal = [
     key: 'fact_inco',
   },
   {
-    title: 'proyeccion de incorporacion',
+    title: 'proyeccion inco.',
     key: 'obje_inco_prime',
   },
   {
@@ -609,9 +609,9 @@ const columnasGlobal = [
   },
   
   {
-    text: 'proyeccion de incorporacion',
+    text: 'proyeccion inco.',
     datafield: 'obje_inco_prime',
-    width: '100',
+    width: '130',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'N',
@@ -1399,8 +1399,8 @@ const columnasGlobal = [
     columngroup: 'peg21',
   },
   {
-    text: 'proyeccion de peg21',  
-    datafield: 'pe21_obje',
+    text: 'Objetivo',  
+    datafield: 'obje_pe21',
     width: '80',
     align: 'center',
     cellsalign: 'center',
@@ -1419,8 +1419,8 @@ const columnasGlobal = [
     columngroup: 'peg21',
   },
   {
-    text: 'Objetivo',  
-    datafield: 'obje_pe21',
+    text: 'proyeccion de peg21',  
+    datafield: 'pe21_obje',
     width: '80',
     align: 'center',
     cellsalign: 'center',
@@ -1562,26 +1562,6 @@ const columnasGlobal = [
       columngroup: 'peg42',
   },
   {
-      text: 'proyeccion de peg42',  
-      datafield: 'pe42_obje',
-      width: '80',
-      align: 'center',
-      cellsalign: 'center',
-      cellsformat: 'N',
-      editable: false,
-      hidden: false,
-      aggregates: [
-        {
-          T: function(aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
-            
-            return aggregatedValue
-          },
-        },
-      ],
-      columngroup: 'peg42',
-  },
-  {
       text: 'Objetivo',  
       datafield: 'obje_pe42',
       width: '80',
@@ -1601,6 +1581,26 @@ const columnasGlobal = [
       ],
       columngroup: 'peg42',
     },
+    {
+      text: 'proyeccion de peg42',  
+      datafield: 'pe42_obje',
+      width: '80',
+      align: 'center',
+      cellsalign: 'center',
+      cellsformat: 'N',
+      editable: false,
+      hidden: false,
+      aggregates: [
+        {
+          T: function(aggregatedValue, currentValue) {
+            aggregatedValue += currentValue
+            
+            return aggregatedValue
+          },
+        },
+      ],
+      columngroup: 'peg42',
+  },
   {
       text: 'Ret. peg42',  
       datafield: 'fact_pe42',
@@ -1722,8 +1722,8 @@ const columnasGlobal = [
       columngroup: 'peg63',
     },
     {
-      text: 'proyeccion de peg63',
-      datafield: 'pe63_obje',  
+      text: 'Objetivo',
+      datafield: 'obje_pe63',  
       width: '80',
       align: 'center',
       cellsalign: 'center',
@@ -1742,8 +1742,8 @@ const columnasGlobal = [
       columngroup: 'peg63',
     },
     {
-      text: 'Objetivo',
-      datafield: 'obje_pe63',  
+      text: 'proyeccion de peg63',
+      datafield: 'pe63_obje',  
       width: '80',
       align: 'center',
       cellsalign: 'center',

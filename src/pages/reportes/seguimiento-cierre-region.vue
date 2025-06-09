@@ -903,6 +903,62 @@ const cabecera = computed(() => {
         key: 'dife_inco_tota',
       },
       {
+        title: 'Objetivo Venta',
+        key: 'obje_vent',
+      },
+      {
+        title: 'Facturado',
+        key: 'fact_vent',
+      },
+      
+    ]
+  } else if(selectedVariable.value === 1) {
+    return [
+      {
+        title: 'Corte',
+        key: 'codi_cort',
+      },
+      {
+        title: 'Zona',
+        key: 'codi_zona',
+      },
+      {
+        title: 'Gerente zonal',
+        key: 'nomb_vend',
+      },
+      {
+        title: 'Act. inic.',
+        key: 'acti_fina_ante',
+      },
+      {
+        title: 'Objetivo',
+        key: 'obje_tota',
+      },
+      {
+        title: 'Facturado',
+        key: 'fact_tota',
+      },
+      {
+        title: 'Cump. Fact.',
+        key: 'cump_fact_tota',
+      },
+      {
+        title: 'Pend. fact.',
+        key: 'pend_fact_tota',
+      },
+      {
+        title: 'Total',
+        key: 'tota_tota',
+      },
+      {
+        title: '% Cump.',
+        key: 'cump_tota',
+      },
+      {
+        title: 'Dife. tota.',
+        key: 'dife_inco_tota',
+      },
+      {
         title: 'Objetivo',
         key: 'obje_inco',
       },

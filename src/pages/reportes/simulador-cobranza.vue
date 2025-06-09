@@ -308,6 +308,7 @@ const headersDetalle = computed(() => {
       filterType: "checkedlist",
       text: "Percepcion",
       dataField: "impu_perc",
+      hidden: true,
     },
     {
       width: 150,

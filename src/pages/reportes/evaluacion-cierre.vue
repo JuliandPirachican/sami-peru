@@ -434,7 +434,7 @@ const columnasGrupo = [
     name: 'tota',
   },
   {
-    text: 'Consecutividad pedido 90%',
+    text: 'Consecutividad ',
     align: 'center',
     name: 'cons',
   },
@@ -474,12 +474,12 @@ const columnasGrupo = [
     name: 'acti',
   },
   {
-    text: 'Peg21 40%',
+    text: 'Peg21 50%',
     align: 'center',
     name: 'pe21',
   },
   {
-    text: 'Peg42 30%',
+    text: 'Peg42 35%',
     align: 'center',
     name: 'pe42',
   },
@@ -489,7 +489,7 @@ const columnasGrupo = [
     name: 'pe63',
   },
   {
-    text: 'Suma pegs 35%',
+    text: 'Retencion Total',
     align: 'center',
     name: 'suma',
   },
