@@ -2117,7 +2117,7 @@ const columnsNivelLider = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'N',
+    cellsformat: 'D2',
   },
 ]
 

@@ -529,69 +529,13 @@ const cabecera = computed(() => {
         title: 'Act. inic.',
         key: 'acti_fina_ante',
       },
-      {
-        title: 'Objetivo',
-        key: 'obje_tota',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_tota_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_tota_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_tota_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_tota_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_tota',
-      },
-      {
-        title: 'Cump. Fact.',
-        key: 'cump_fact_tota',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_tota',
-      },
-      {
-        title: 'Total',
-        key: 'tota_tota',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_tota',
-      },
-      {
-        title: 'Dife. tota.',
-        key: 'dife_tota',
-      },
+
       {
         title: 'Objetivo',
         key: 'obje_inco',
       },
-      {
-        title: '% Proyección',
-        key: 'obje_inco_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_inco_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_inco_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_inco_cier',
+      {title:'Proyeccion Inco', 
+       key:'obje_inco_prim'
       },
       {
         title: 'Facturado',
@@ -615,75 +559,11 @@ const cabecera = computed(() => {
       },
       {
         title: 'Objetivo',
-        key: 'obje_rete',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_rete_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_rete_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_rete_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_rete_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete',
-      },
-      {
-        title: 'Dife. rete.',
-        key: 'dife_rete',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_acti',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_acti_cier',
-      },
-      {
-        title: 'Obje. pedi.',
-        key: 'nume_pedi_acti',
-      },
-      {
-        title: '% Acti. fact.',
-        key: 'porc_acti',
-      },
-      {
-        title: '% Acti. pend.',
-        key: 'porc_acti_pend',
-      },
-      {
-        title: 'Rete. camp. ant.',
-        key: 'fact_rete_cons_ante',
-      },
-      {
-        title: 'Objetivo',
         key: 'obje_rete_cons',
+      },
+      {
+        title: 'Proyeccion consectuvidad',
+        key: 'obje_cons_lide',
       },
       {
         title: 'Facturado',
@@ -710,6 +590,10 @@ const cabecera = computed(() => {
         key: 'obje_rete_cons_segu',
       },
       {
+        title: 'Proyeccion Consecutividad 2do Pedido',
+        key: 'cons_rete_prim',
+      },
+      {
         title: 'Facturado',
         key: 'fact_rete_cons_segu',
       },
@@ -734,6 +618,10 @@ const cabecera = computed(() => {
         key: 'obje_rete_cons_terc',
       },
       {
+        title: 'Proyeccion Consecutividad 3er Pedido',
+        key: 'cons_segu_obje',
+      },
+      {
         title: 'Facturado',
         key: 'fact_rete_cons_terc',
       },
@@ -756,6 +644,10 @@ const cabecera = computed(() => {
       {
         title: '3 Camp. ante.',
         key: 'obje_rete_cons_cuar',
+      },
+      {
+        title: 'Proyeccion Consecutividad 4to Pedido',
+        key: 'cons_terc_obje',
       },
       {
         title: 'Facturado',
@@ -786,6 +678,10 @@ const cabecera = computed(() => {
         key: 'obje_pe21',
       },
       {
+        title: 'Proyeccion Peg21',
+        key: 'pe21_obje',
+      },
+      {
         title: 'Ret. peg21',
         key: 'fact_pe21',
       },
@@ -812,6 +708,10 @@ const cabecera = computed(() => {
       {
         title: 'Objetivo',
         key: 'obje_pe42',
+      },
+      {
+        title: 'Proyeccion Peg42',
+        key: 'pe42_obje',
       },
       {
         title: 'Ret. peg42',
@@ -842,6 +742,10 @@ const cabecera = computed(() => {
         key: 'obje_pe63',
       },
       {
+        title: 'Proyeccion Peg63',
+        key: 'pe63_obje',
+      },
+      {
         title: 'Ret. peg63',
         key: 'fact_pe63',
       },
@@ -868,6 +772,10 @@ const cabecera = computed(() => {
       {
         title: 'Objetivo',
         key: 'obje_pegs',
+      },
+      {
+        title: 'Proyeccion Pegs',
+        key: 'pegs_obje',
       },
       {
         title: 'Ret. pegs',
@@ -898,6 +806,10 @@ const cabecera = computed(() => {
         key: 'obje_rein',
       },
       {
+        title: 'Proyeccion Reing.',
+        key: 'rein_obje',
+      },
+      {
         title: 'Facturado',
         key: 'fact_rein',
       },
@@ -922,8 +834,8 @@ const cabecera = computed(() => {
         key: 'obje_capi',
       },
       {
-        title: 'Estimación',
-        key: 'obje_capi_cier',
+        title: 'Proyeccion Capi.',
+        key: 'capi_obje',
       },
       {
         title: 'Facturado',
@@ -931,56 +843,18 @@ const cabecera = computed(() => {
       },
       {
         title: 'Capi. pend.',
-        key: 'pend_capi',
+        key: 'tota_capi_pend',
       },
-      {
-        title: 'Pedi. falt. obje.',
-        key: 'pend_capi_obje',
-      },
-      {
-        title: 'Venta',
-        key: 'dat_vent',
-      },
+      
       {
         title: 'Objetivo Venta',
         key: 'obje_vent',
       },
       {
-        title: 'Objetivo 88%',
-        key: 'obje_docu',
-      },
-      {
-        title: 'Saldo 21di.',
-        key: 'sald_21di',
-      },
-      {
-        title: 'Pend por Cobr 88%',
-        key: 'pend_cobr',
-      },
-      {
-        title: '% Cobr. 21di.',
-        key: 'porc_21di',
-      },
-      {
-        title: 'Saldo actu.',
-        key: 'sald_docu',
-      },
-      {
-        title: '% Cobr. actu.',
-        key: 'porc_docu',
-      },
-      {
         title: 'Facturado',
-        key: 'pppp_fact',
+        key: 'fact_vent',
       },
-      {
-        title: 'Recepcionado',
-        key: 'pppp_rece',
-      },
-      {
-        title: 'Observación',
-        key: 'obse_zona',
-      },
+      
     ]
   } else if(selectedVariable.value === 1) {
     return [
@@ -1005,22 +879,6 @@ const cabecera = computed(() => {
         key: 'obje_tota',
       },
       {
-        title: '% Proyección',
-        key: 'obje_tota_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_tota_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_tota_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_tota_cier',
-      },
-      {
         title: 'Facturado',
         key: 'fact_tota',
       },
@@ -1042,27 +900,11 @@ const cabecera = computed(() => {
       },
       {
         title: 'Dife. tota.',
-        key: 'dife_tota',
+        key: 'dife_inco_tota',
       },
       {
         title: 'Objetivo',
         key: 'obje_inco',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_inco_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_inco_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_inco_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_inco_cier',
       },
       {
         title: 'Facturado',
@@ -1089,22 +931,6 @@ const cabecera = computed(() => {
         key: 'obje_rete',
       },
       {
-        title: '% Proyección',
-        key: 'obje_rete_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_rete_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_rete_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_rete_cier',
-      },
-      {
         title: 'Facturado',
         key: 'fact_rete',
       },
@@ -1123,15 +949,7 @@ const cabecera = computed(() => {
       {
         title: '% Cump.',
         key: 'cump_rete',
-      },
-      {
-        title: 'Dife. rete.',
-        key: 'dife_rete',
-      },
-      {
-        title: 'Observación',
-        key: 'obse_zona',
-      },
+      }
     ]
   } else if (selectedVariable.value === 2) {
     return [
@@ -1154,10 +972,6 @@ const cabecera = computed(() => {
       {
         title: 'Objetivo',
         key: 'obje_acti',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_acti_cier',
       },
       {
         title: 'Obje. pedi.',
@@ -1330,15 +1144,7 @@ const cabecera = computed(() => {
       {
         title: 'Total',
         key: 'tota_pegs',
-      },
-      {
-        title: '% Cump',
-        key: 'cump_pegs',
-      },
-      {
-        title: 'Observación',
-        key: 'obse_zona',
-      },
+      }
     ]
   } else if (selectedVariable.value === 3) {
     return [
@@ -1361,22 +1167,6 @@ const cabecera = computed(() => {
       {
         title: 'Objetivo',
         key: 'obje_rete',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_rete_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_rete_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_rete_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_rete_cier',
       },
       {
         title: 'Facturado',
@@ -1589,15 +1379,7 @@ const cabecera = computed(() => {
       {
         title: 'Total',
         key: 'tota_fact_rein',
-      },
-      {
-        title: '% Cump',
-        key: 'cump_rein',
-      },
-      {
-        title: 'Observación',
-        key: 'obse_zona',
-      },
+      }
     ]
   } else if (selectedVariable.value === 4) {
     return [
@@ -1620,22 +1402,6 @@ const cabecera = computed(() => {
       {
         title: 'Objetivo',
         key: 'obje_inco',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_inco_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_inco_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_inco_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_inco_cier',
       },
       {
         title: 'Facturado',
@@ -1718,16 +1484,12 @@ const cabecera = computed(() => {
         key: 'obje_capi',
       },
       {
-        title: 'Estimación',
-        key: 'obje_capi_cier',
-      },
-      {
         title: 'Facturado',
         key: 'fact_capi',
       },
       {
         title: 'Capi. pend.',
-        key: 'pend_capi',
+        key: 'tota_capi_pend',
       },
       {
         title: 'Pedi. falt. obje.',
@@ -1763,30 +1525,6 @@ const cabecera = computed(() => {
       {
         title: 'Objetivo Venta',
         key: 'obje_vent',
-      },
-      {
-        title: 'Objetivo 88%',
-        key: 'obje_docu',
-      },
-      {
-        title: 'Saldo 21di.',
-        key: 'sald_21di',
-      },
-      {
-        title: 'Pend por Cobr 88%',
-        key: 'pend_cobr',
-      },
-      {
-        title: '% Cobr. 21di.',
-        key: 'porc_21di',
-      },
-      {
-        title: 'Saldo actu.',
-        key: 'sald_docu',
-      },
-      {
-        title: '% Cobr. actu.',
-        key: 'porc_docu',
       },
       {
         title: 'Facturado',
@@ -2138,7 +1876,7 @@ const columnas = [
     width: '120',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'P2',
+    cellsformat: 'N',
     editable: false,
      aggregates: [
       {
@@ -2360,7 +2098,7 @@ const columnas = [
   },
   {
     text: 'Dife. tota.',
-    datafield: 'dife_tota',
+    datafield: 'dife_inco_tota',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -4125,7 +3863,7 @@ const columnas = [
   },
   {
     text: 'Capi. pend.',
-    datafield: 'pend_capi',
+    datafield: 'tota_capi_pend',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -5139,7 +4877,7 @@ const columnas = [
 
 {
     text: 'Ventas',
-    datafield: 'tota_vent',
+    datafield: 'fact_vent',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -5284,7 +5022,7 @@ const sourceGlobal = ref({
     { name: 'pend_fact_tota', type: 'number' },
     { name: 'tota_tota', type: 'number' },
     { name: 'cump_tota', type: 'number' },
-    { name: 'dife_tota', type: 'number' },
+    { name: 'dife_inco_tota', type: 'number' },
     { name: 'tota_prim', type: 'number' },
     { name: 'tota_segu', type: 'number' },
     { name: 'obje_tota_prim', type: 'number' },
@@ -5385,7 +5123,7 @@ const sourceGlobal = ref({
     { name: 'fact_capi', type: 'number' },
     { name: 'obje_capi', type: 'number' },
     { name: 'obje_capi_cier', type: 'number' },
-    { name: 'pend_capi', type: 'number' },
+    { name: 'tota_capi_pend', type: 'number' },
     { name: 'pend_capi_obje', type: 'number' },
     { name: 'porc_tota_capi', type: 'number' },
 
@@ -5410,6 +5148,8 @@ const sourceGlobal = ref({
     { name: 'obje_pegs_sist_ocul', type: 'number' },
     { name: 'obje_rein_sist_ocul', type: 'number' },
     { name: 'obse_zona', type: 'string' },
+    { name:'obje_vent', type: 'number' },
+    { name:'fact_vent', type: 'number' },
   ],
   datatype: 'json',
 })
@@ -5747,7 +5487,7 @@ const columnsOcultarTodo = [
   'pend_fact_tota',
   'tota_tota',
   'cump_tota',
-  'dife_tota',
+  'dife_inco_tota',
   'obje_inco',
   'obje_inco_prim',
   'obje_inco_segu',
@@ -5837,7 +5577,7 @@ const columnsOcultarTodo = [
   'fact_capi',
   'obje_capi',
   'obje_capi_cier',
-  'pend_capi',
+  'tota_capi_pend',
   'pend_capi_obje',
   'valo_docu',
   'obje_docu',
@@ -5875,7 +5615,7 @@ const columnsMostrarTodo = [
   'pend_fact_tota',
   'tota_tota',
   'cump_tota',
-  'dife_tota',
+  'dife_inco_tota',
   'obje_inco',
   'obje_inco_prim',
   'obje_inco_segu',
@@ -5965,7 +5705,7 @@ const columnsMostrarTodo = [
   'fact_capi',
   'obje_capi',
   'obje_capi_cier',
-  'pend_capi',
+  'tota_capi_pend',
   'pend_capi_obje',
   'valo_docu',
   'obje_docu',
@@ -5999,7 +5739,7 @@ const columnsMostrarPedidosTotales = [
   'pend_fact_tota',
   'tota_tota',
   'cump_tota',
-  'dife_tota',
+  'dife_inco_tota',
   'obje_inco',
   'obje_inco_prim',
   'obje_inco_segu',
@@ -6158,7 +5898,7 @@ const columnsMostrarCapitalizacion = [
   'pend_fact_inco',
   'tota_inco',
   'cump_inco',
-  'dife_tota',
+  'dife_inco_tota',
   'cump_rein',
   'fact_rein',
   'tota_fact_rein',
@@ -6173,7 +5913,7 @@ const columnsMostrarCapitalizacion = [
   'pend_fact_pe63',
   'tota_pe63',
   'cump_pe63',
-  'pend_capi',
+  'tota_capi_pend',
   'fact_capi',
   'obje_capi',
 ]
@@ -6269,7 +6009,7 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
       <template #botones>
         <GenerarBoton @procesar="onGenerar" />
         <ExcelBoton @procesar="onExcel" />
-        <RegistrarBoton @procesar="onRegistrar" />
+        <!-- <RegistrarBoton @procesar="onRegistrar" /> -->
         <LimpiarBoton @procesar="onLimpiar" />
       </template>
       <template #contenido>
