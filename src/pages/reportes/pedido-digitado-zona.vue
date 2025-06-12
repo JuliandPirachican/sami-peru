@@ -323,7 +323,7 @@ const initConfiguracion = () => {
       porc_conc: '',
     },
     {
-      cons_fila: '0',
+      cons_fila: '11',
       nomb_conc: 'Pedidos pendientes de retención',
       cant_conc: '0',
       porc_conc: '',

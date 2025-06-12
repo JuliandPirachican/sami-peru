@@ -2639,7 +2639,7 @@ const inicioVariables = () => {
   
   sourceConsecutividadNuevas.value.localdata = [
     {
-      nomb_conc: 'Facturado',
+      nomb_conc: '2do Pedido',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
@@ -2649,7 +2649,7 @@ const inicioVariables = () => {
       tota_camp: '0.00',
     },
     {
-      nomb_conc: 'Objetivo',
+      nomb_conc: '3er Pedido',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
@@ -2659,7 +2659,7 @@ const inicioVariables = () => {
       tota_camp: '0.00',
     },
     {
-      nomb_conc: 'Diferencia',
+      nomb_conc: '4to Pedido',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
