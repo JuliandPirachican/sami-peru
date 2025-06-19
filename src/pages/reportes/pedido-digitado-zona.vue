@@ -269,7 +269,7 @@ const initConfiguracion = () => {
       porc_conc: '0.00 %',
     },
     {
-      cons_fila: '0',
+      cons_fila: '11',
       nomb_conc: 'Total pedidos retenidos',
       cant_conc: '0',
       porc_conc: '',
@@ -322,12 +322,7 @@ const initConfiguracion = () => {
       cant_conc: '0',
       porc_conc: '',
     },
-    {
-      cons_fila: '11',
-      nomb_conc: 'Pedidos pendientes de retención',
-      cant_conc: '0',
-      porc_conc: '',
-    },
+ 
     {
       cons_fila: '7',
       nomb_conc: 'Pedidos pendientes de activas',

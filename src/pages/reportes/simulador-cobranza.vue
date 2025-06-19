@@ -135,7 +135,7 @@ const headersGlobal = computed(() => {
     cellclassname: 'text-white bg-error-light',
     aggregates: ['avg'],
     aggregatesrenderer: function (aggregates) {
-        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0;
+        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2):'T:' +0;
     }
   },
   {
@@ -174,7 +174,7 @@ const headersGlobal = computed(() => {
     cellclassname: 'text-white bg-success-light',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0;
     }
   }
 ]
