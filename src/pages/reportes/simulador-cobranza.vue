@@ -66,7 +66,7 @@ const headersGlobal = computed(() => {
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
         // suma=Math.round(aggregates['sum'],2);
-        return  (aggregates['sum']!=undefined) ?  'T:'+Math.round(aggregates['sum'],4):'T:' +0;
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0;
     }
   },
   {
@@ -79,12 +79,8 @@ const headersGlobal = computed(() => {
     cellclassname: 'text-white bg-primary-light',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0;
     }
- 
-    // cellsRenderer: (row, column, value) => {
-    //     return `<div style="width:100%; heigth:100%; background-color: bone; color: #000; text-align: center;">${value}</div>`; // Cambia el color de fondo y el color del texto
-    //   }
   },
   {
     width: 150,
@@ -96,7 +92,7 @@ const headersGlobal = computed(() => {
     cellclassname: 'text-white bg-error-light',
     aggregates: ['sum'],
     aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0;
     }
   },
   {
@@ -109,7 +105,7 @@ const headersGlobal = computed(() => {
     cellclassname: 'text-white bg-error-light',
     aggregates: ['avg'],
     aggregatesrenderer: function (aggregates) {
-        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0;
+        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2):'T:' +0;
     }
   },
   {
@@ -301,15 +297,7 @@ const headersDetalle = computed(() => {
       text: "Valor facturado",
       dataField: "valo_fact",
     },
-    {
-      width: 150,
-      align: "center",
-      cellsAlign: "center",
-      filterType: "checkedlist",
-      text: "Percepcion",
-      dataField: "impu_perc",
-      hidden: true,
-    },
+
     {
       width: 150,
       align: "center",
@@ -336,16 +324,7 @@ const headersDetalle = computed(() => {
       cellclassname: 'text-white bg-success-light',
       editable: true,
     },
-    {
-      width: 150,
-      align: "center",
-      cellsAlign: "center",
-      filterType: "checkedlist",
-      text: "Simulador",
-      dataField: "simu_31di_copi",
-      cellclassname: 'text-white bg-success-light',
-      hidden: true,
-    },
+
     {
       width: 150,
       align: "center",

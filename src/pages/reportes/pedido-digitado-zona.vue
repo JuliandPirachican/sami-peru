@@ -819,6 +819,7 @@ const onGenerarDetalle = async () => {
       method: "get",
       query: {
         titulo: conceptoTitulo.value,
+        campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
         cantidad: conceptoCantidad.value,
       },
     })
