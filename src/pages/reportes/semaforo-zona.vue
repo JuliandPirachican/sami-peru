@@ -2116,8 +2116,7 @@ const columnsNivelLider = [
     dataField: 'tota_camp',
     width: '11%',
     cellsalign: 'center',
-    align: 'center',
-    cellsformat: 'D2',
+    align: 'center'
   },
 ]
 
