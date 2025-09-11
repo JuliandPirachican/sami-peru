@@ -4,6 +4,7 @@ import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
 import { useDisplay } from 'vuetify';
 import { VDataTable } from 'vuetify/labs/VDataTable';
+import { VBtn } from 'vuetify/lib/components/index.mjs';
 
 definePage({
   meta: {
@@ -734,12 +735,20 @@ const initConfiguracionDetalle = () => {
         key: 'moti_code',
       },
       {
-        title: 'Mini',
+        title: 'Mont Mini',
         key: 'moti_mini',
+      },
+      {
+        title: 'Rete X Prod',
+        key: 'rete_prod',
       },
       {
         title: 'Bloq',
         key: 'moti_bloq',
+      },
+      {
+        title: 'Mont Min Publico',
+        key: 'moti_minp',
       },
     ]
   }
@@ -976,6 +985,18 @@ const onExcelConcepto = async () => {
           <VToolbarItems>
             <VMenu transition="slide-y-transition">
               <template #activator="{ props }">
+                <VBtn
+                  color="default"
+                  :icon="mobile"
+                  v-if="conceptoTitulo === 'Total pedidos retenidos'"
+                >
+                  <VIcon
+                    v-if="mobile"
+                    size="x-large"
+                    icon="tabler-dots-vertical"
+                  />
+                  <span v-if="!mobile"><a style="color:white;" :href="`https://intranet.dupree.co/desarrollo/cgis/repo_pedi_digi.php`" target="_blank">LIBERACIÓN DE PEDIDOS</a></span>
+                </VBtn>
                 <VBtn
                   color="default"
                   v-bind="props"
