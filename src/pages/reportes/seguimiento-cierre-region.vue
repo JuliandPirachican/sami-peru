@@ -1,8 +1,8 @@
-<!-- eslint-disable camelcase -->
+<!-- eslint-disable camelcase  inicio -->
 <script setup>
-import { useAppStore } from '@/stores/app';
-import { EncryptStorage } from 'encrypt-storage';
-import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue";
+import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
+import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue"
 
 definePage({
   meta: {
@@ -47,7 +47,8 @@ const variables = ref([
   { title: 'Consecutividad', value: 6 },
   { title: 'Pedidos totales', value: 1 },
   { title: 'Retención de pegs', value: 3 },
-   // { title: 'Pedidos de actividad', value: 2 },
+
+  // { title: 'Pedidos de actividad', value: 2 },
   // { title: 'Cobranza', value: 5 },
 ])
 
@@ -513,100 +514,100 @@ const clasePorcentaje21di = (row, columnfield, value) => {
 const cabecera = computed(() => {
   if(selectedVariable.value === 0) {
     return [
-  { title: 'Corte', key: 'codi_cort' },
-  { title: 'Zona', key: 'codi_zona' },
-  { title: 'Gerente zonal', key: 'nomb_vend' },
-  { title: 'Act. inic.', key: 'acti_fina_ante' },
+      { title: 'Corte', key: 'codi_cort' },
+      { title: 'Zona', key: 'codi_zona' },
+      { title: 'Gerente zonal', key: 'nomb_vend' },
+      { title: 'Act. inic.', key: 'acti_fina_ante' },
 
-  { title: 'Objetivo', key: 'obje_inco' },
-  { title: 'Facturado', key: 'fact_inco' },
-  { title: 'Cump. Fact.', key: 'cump_fact_inco' },
-  { title: 'Pend. fact.', key: 'pend_fact_inco' },
-  { title: 'Total', key: 'tota_inco' },
-  { title: '% Cump.', key: 'cump_inco' },
-  { title: 'Dife. tota.', key: 'dife_inco_tota' },
+      { title: 'Objetivo', key: 'obje_inco' },
+      { title: 'Facturado', key: 'fact_inco' },
+      { title: 'Cump. Fact.', key: 'cump_fact_inco' },
+      { title: 'Pend. fact.', key: 'pend_fact_inco' },
+      { title: 'Total', key: 'tota_inco' },
+      { title: '% Cump.', key: 'cump_inco' },
+      { title: 'Dife. tota.', key: 'dife_inco_tota' },
 
-  { title: 'Objetivo', key: 'obje_rete_cons' },
-  { title: 'Facturado', key: 'fact_rete_cons' },
-  { title: 'Cump. fact.', key: 'cump_fact_rete_cons' },
-  { title: 'Pend. fact.', key: 'pend_fact_rete_cons' },
-  { title: 'Total', key: 'tota_rete_cons' },
-  { title: '% Cump.', key: 'cump_rete_cons' },
+      { title: 'Objetivo', key: 'obje_rete_cons' },
+      { title: 'Facturado', key: 'fact_rete_cons' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons' },
+      { title: 'Total', key: 'tota_rete_cons' },
+      { title: '% Cump.', key: 'cump_rete_cons' },
 
-  { title: '1 Camp. ante.', key: 'obje_rete_cons_segu' },
-  { title: 'Facturado', key: 'fact_rete_cons_segu' },
-  { title: 'Cump. fact.', key: 'cump_fact_rete_cons_segu' },
-  { title: 'Pend. fact.', key: 'pend_fact_rete_cons_segu' },
-  { title: 'Total', key: 'tota_rete_cons_segu' },
-  { title: '% Cump.', key: 'cump_rete_cons_segu' },
+      { title: '1 Camp. ante.', key: 'obje_rete_cons_segu' },
+      { title: 'Facturado', key: 'fact_rete_cons_segu' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_segu' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_segu' },
+      { title: 'Total', key: 'tota_rete_cons_segu' },
+      { title: '% Cump.', key: 'cump_rete_cons_segu' },
 
-  { title: '2 Camp. ante.', key: 'obje_rete_cons_terc' },
-  { title: 'Facturado', key: 'fact_rete_cons_terc' },
-  { title: 'Cump. fact.', key: 'cump_fact_rete_cons_terc' },
-  { title: 'Pend. fact.', key: 'pend_fact_rete_cons_terc' },
-  { title: 'Total', key: 'tota_rete_cons_terc' },
-  { title: '% Cump.', key: 'cump_rete_cons_terc' },
+      { title: '2 Camp. ante.', key: 'obje_rete_cons_terc' },
+      { title: 'Facturado', key: 'fact_rete_cons_terc' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_terc' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_terc' },
+      { title: 'Total', key: 'tota_rete_cons_terc' },
+      { title: '% Cump.', key: 'cump_rete_cons_terc' },
 
-  { title: '3 Camp. ante.', key: 'obje_rete_cons_cuar' },
-  { title: 'Facturado', key: 'fact_rete_cons_cuar' },
-  { title: 'Cump. fact.', key: 'cump_fact_rete_cons_cuar' },
-  { title: 'Pend. fact.', key: 'pend_fact_rete_cons_cuar' },
-  { title: 'Total', key: 'tota_rete_cons_cuar' },
-  { title: '% Cump.', key: 'cump_rete_cons_cuar' },
+      { title: '3 Camp. ante.', key: 'obje_rete_cons_cuar' },
+      { title: 'Facturado', key: 'fact_rete_cons_cuar' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_cuar' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_cuar' },
+      { title: 'Total', key: 'tota_rete_cons_cuar' },
+      { title: '% Cump.', key: 'cump_rete_cons_cuar' },
 
-  { title: 'Peg21', key: 'fact_pe21_ante' },
-  { title: 'Objetivo', key: 'obje_pe21' },
-  { title: 'Ret. peg21', key: 'fact_pe21' },
-  { title: '% Ret. fact.', key: 'porc_pe21' },
-  { title: 'Pend. fact.', key: 'pend_fact_pe21' },
-  { title: 'Total', key: 'tota_pe21' },
-  { title: '% Ret. pend.', key: 'cump_pe21' },
+      { title: 'Peg21', key: 'fact_pe21_ante' },
+      { title: 'Objetivo', key: 'obje_pe21' },
+      { title: 'Ret. peg21', key: 'fact_pe21' },
+      { title: '% Ret. fact.', key: 'porc_pe21' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe21' },
+      { title: 'Total', key: 'tota_pe21' },
+      { title: '% Ret. pend.', key: 'cump_pe21' },
 
-  { title: 'Peg42', key: 'fact_pe42_ante' },
-  { title: 'Objetivo', key: 'obje_pe42' },
-  { title: 'Ret. peg42', key: 'fact_pe42' },
-  { title: '% Ret. fact.', key: 'porc_pe42' },
-  { title: 'Pend. fact.', key: 'pend_fact_pe42' },
-  { title: 'Total', key: 'tota_pe42' },
-  { title: '% Ret. pend.', key: 'cump_pe42' },
+      { title: 'Peg42', key: 'fact_pe42_ante' },
+      { title: 'Objetivo', key: 'obje_pe42' },
+      { title: 'Ret. peg42', key: 'fact_pe42' },
+      { title: '% Ret. fact.', key: 'porc_pe42' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe42' },
+      { title: 'Total', key: 'tota_pe42' },
+      { title: '% Ret. pend.', key: 'cump_pe42' },
 
-  { title: 'Peg63', key: 'fact_pe63_ante' },
-  { title: 'Objetivo', key: 'obje_pe63' },
-  { title: 'Ret. peg63', key: 'fact_pe63' },
-  { title: '% Ret. fact.', key: 'porc_pe63' },
-  { title: 'Pend. fact.', key: 'pend_fact_pe63' },
-  { title: 'Total', key: 'tota_pe63' },
-  { title: '% Ret. pend.', key: 'cump_pe63' },
+      { title: 'Peg63', key: 'fact_pe63_ante' },
+      { title: 'Objetivo', key: 'obje_pe63' },
+      { title: 'Ret. peg63', key: 'fact_pe63' },
+      { title: '% Ret. fact.', key: 'porc_pe63' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe63' },
+      { title: 'Total', key: 'tota_pe63' },
+      { title: '% Ret. pend.', key: 'cump_pe63' },
 
-  { title: 'Pegs', key: 'fact_pegs_ante' },
-  { title: 'Objetivo', key: 'obje_pegs' },
-  { title: 'Ret. pegs', key: 'fact_pegs' },
-  { title: 'Cump. fact.', key: 'porc_pegs' },
-  { title: 'Pend. fact.', key: 'pend_fact_pegs' },
-  { title: 'Total', key: 'tota_pegs' },
-  { title: '% Cump', key: 'cump_pegs' },
+      { title: 'Pegs', key: 'fact_pegs_ante' },
+      { title: 'Objetivo', key: 'obje_pegs' },
+      { title: 'Ret. pegs', key: 'fact_pegs' },
+      { title: 'Cump. fact.', key: 'porc_pegs' },
+      { title: 'Pend. fact.', key: 'pend_fact_pegs' },
+      { title: 'Total', key: 'tota_pegs' },
+      { title: '% Cump', key: 'cump_pegs' },
 
-  { title: 'Pos. reing.', key: 'fact_rein_ante' },
-  { title: 'Objetivo', key: 'obje_rein' },
-  { title: 'Facturado', key: 'fact_rein' },
-  { title: 'Cump. fact.', key: 'porc_rein' },
-  { title: 'Pend. fact.', key: 'pend_fact_rein' },
-  { title: 'Total', key: 'tota_fact_rein' },
-  { title: '% Cump', key: 'cump_rein' },
+      { title: 'Pos. reing.', key: 'fact_rein_ante' },
+      { title: 'Objetivo', key: 'obje_rein' },
+      { title: 'Facturado', key: 'fact_rein' },
+      { title: 'Cump. fact.', key: 'porc_rein' },
+      { title: 'Pend. fact.', key: 'pend_fact_rein' },
+      { title: 'Total', key: 'tota_fact_rein' },
+      { title: '% Cump', key: 'cump_rein' },
 
-  { title: 'Objetivo', key: 'obje_capi' },
-  { title: 'Facturado', key: 'fact_capi' },
-  { title: 'Capi. pend.', key: 'tota_capi_pend' },
+      { title: 'Objetivo', key: 'obje_capi' },
+      { title: 'Facturado', key: 'fact_capi' },
+      { title: 'Capi. pend.', key: 'tota_capi_pend' },
 
-  { title: 'Objetivo', key: 'obje_tota' },
-  { title: 'Facturado', key: 'fact_tota' },
-  { title: 'Cump. Fact.', key: 'cump_fact_tota' },
-  { title: 'Pend. fact.', key: 'pend_fact_tota' },
-  { title: 'Total', key: 'tota_tota' },
+      { title: 'Objetivo', key: 'obje_tota' },
+      { title: 'Facturado', key: 'fact_tota' },
+      { title: 'Cump. Fact.', key: 'cump_fact_tota' },
+      { title: 'Pend. fact.', key: 'pend_fact_tota' },
+      { title: 'Total', key: 'tota_tota' },
 
-  {title:'Objetivo Ventas', key:'obje_vent'},
-  {title:'Ventas', key:'fact_vent'},
-];
+      { title: 'Objetivo Ventas', key: 'obje_vent' },
+      { title: 'Ventas', key: 'fact_vent' },
+    ]
 
   } else if(selectedVariable.value === 1) {
     return [
@@ -641,7 +642,7 @@ const cabecera = computed(() => {
 
       { title: 'Objetivo', key: 'obje_capi' },
       { title: 'Facturado', key: 'fact_capi' },
-      { title: 'Capi. pend.', key: 'tota_capi_pend' }
+      { title: 'Capi. pend.', key: 'tota_capi_pend' },
     ]
   } else if (selectedVariable.value === 2) {
     return [
@@ -676,7 +677,7 @@ const cabecera = computed(() => {
       { title: 'Cump. fact.', key: 'cump_fact_rete_cons_cuar' },
       { title: 'Pend. fact.', key: 'pend_fact_rete_cons_cuar' },
       { title: 'Total', key: 'tota_rete_cons_cuar' },
-      { title: '% Cump.', key: 'cump_rete_cons_cuar' }
+      { title: '% Cump.', key: 'cump_rete_cons_cuar' },
     ]
   } else if (selectedVariable.value === 3) {
     return [
@@ -2327,7 +2328,7 @@ const columnas = [
     ],
     columngroup: 'pe42',
   },
-   {
+  {
     text: 'Peg63',
     datafield: 'fact_pe63_ante',
     width: '100',
@@ -2498,7 +2499,7 @@ const columnas = [
     ],
     columngroup: 'pe63',
   },
-   {
+  {
     text: 'Pegs',
     datafield: 'fact_pegs_ante',
     width: '100',
@@ -2840,7 +2841,7 @@ const columnas = [
     ],
     columngroup: 'rein',
   },
-   {
+  {
     text: 'Objetivo',
     datafield: 'obje_capi',
     width: '120',
@@ -2904,7 +2905,7 @@ const columnas = [
     ],
     columngroup: 'capi',
   },
-   {
+  {
     text: 'Objetivo',
     datafield: 'obje_tota',
     width: '120',
@@ -3037,7 +3038,7 @@ const columnas = [
     columngroup: 'vents',
   },
 
-{
+  {
     text: 'Ventas',
     datafield: 'fact_vent',
     width: '100',
@@ -3130,7 +3131,7 @@ const columnasGrupo = [
     align: 'center',
     name: 'capi',
   },
-   {
+  {
     text: 'Venta',
     align: 'center',
     name: 'vents',
@@ -3298,8 +3299,8 @@ const sourceGlobal = ref({
     { name: 'obje_pegs_sist_ocul', type: 'number' },
     { name: 'obje_rein_sist_ocul', type: 'number' },
     { name: 'obse_zona', type: 'string' },
-    {name: 'fact_vent', type: 'number'},
-    {name: 'obje_vent', type: 'number'},
+    { name: 'fact_vent', type: 'number' },
+    { name: 'obje_vent', type: 'number' },
   ],
   datatype: 'json',
 })
@@ -4199,14 +4200,16 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                       <td>{{ general.facturadoPendienteIncorporacion }}</td>
                       <td>{{ general.cumplimientoTotalIncorporacion }}</td>
                     </tr>
-                    <!--  <tr>
+                    <!--
+                      <tr>
                       <td>Retención</td>
                       <td>{{ general.objetivoRetencion }}</td>
                       <td>{{ general.facturadoRetencion }}</td>
                       <td>{{ general.cumplimientoRetencion }}</td>
                       <td>{{ general.facturadoPendienteRetencion }}</td>
                       <td>{{ general.cumplimientoTotalRetencion }}</td>
-                    </tr> -->
+                      </tr> 
+                    -->
                     <tr>
                       <td>Pedidos Totales</td>
                       <td>{{ general.objetivoActividad }}</td>
