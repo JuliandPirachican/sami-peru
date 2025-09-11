@@ -1,8 +1,8 @@
-<!-- eslint-disable camelcase -->
+<!-- eslint-disable camelcase inicio -->
 <script setup>
-import { useAppStore } from '@/stores/app';
-import { EncryptStorage } from 'encrypt-storage';
-import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue'
 
 
 definePage({
@@ -13,11 +13,13 @@ definePage({
 })
 
 const appStore = useAppStore()
+
 const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
   storageType: 'localStorage',
 })
 
 const userData = encryptStorage.getItem('userData')
+
 const formulario = ref({
   campana: null,
   zona: null,
@@ -39,16 +41,16 @@ const general = ref({
   cumplimientoActividad: '0.00',
   facturadoPendienteActividad: '0.00',
   cumplimientoTotalActividad: '0.00',
-});
+})
 
 const variables = ref([
   { title: 'Todos', value: 0 },
   { title: 'Capitalización', value: 1 },
   { title: 'Consecutividad', value: 2 },
   { title: 'Pedidos totales', value: 3 },
-]);
+])
 
-const selectedVariable = ref(0);
+const selectedVariable = ref(0)
 
 const claseCumplimientoTotal = (row, columnfield, value) => {
   const dataRecord = refGridGlobal.value.getrowdata(
@@ -514,179 +516,179 @@ const cabecera = computed(() => {
   if(selectedVariable.value === 0) {
     //todos
     return [{ key: 'codi_sect', title: 'Codigo Lider' },
-            { key: 'nomb_lide', title: 'Lider' },
-            { key: 'acti_fina_ante', title: 'Act. inic.' },
-            { key: 'obje_inco', title: 'Objetivo' },
-            { key: 'obje_inco_prime', title: 'Proyeccion Inco.' },
-            { key: 'fact_inco', title: 'Facturado' },
-            { key: 'cump_fact_inco', title: 'Cump. fact.' },
-            { key: 'pend_fact_inco', title: 'Pend. fact.' },
-            { key: 'tota_inco', title: 'Total' },
-            { key: 'cump_inco', title: '% Cump.' },
-            { key: 'obje_rete_cons', title: 'Objetivo' },
-            { key: 'obje_cons_lide', title: 'Proyeccion Consec.' },
-            { key: 'fact_rete_cons', title: 'Facturado' },
-            { key: 'cump_fact_rete_cons', title: 'Cump. fact.' },
-            { key: 'pend_fact_rete_cons', title: 'Pend. fact.' },
-            { key: 'tota_rete_cons', title: 'Total' },
-            { key: 'cump_rete_cons', title: '% Cump.' },
-            { key: 'obje_rete_cons_segu', title: '1 Camp. ante.' },
-            { key: 'cons_rete_prim', title: 'Proyeccion Segu.' },
-            { key: 'fact_rete_cons_segu', title: 'Facturado' },
-            { key: 'cump_fact_rete_cons_segu', title: 'Cump. fact.' },
-            { key: 'pend_fact_rete_cons_segu', title: 'Pend. fact.' },
-            { key: 'tota_rete_cons_segu', title: 'Total' },
-            { key: 'cump_rete_cons_segu', title: '% Cump.' },
-            { key: 'obje_rete_cons_terc', title: '2 Camp. ante.' },
-            { key: 'cons_segu_obje', title: 'Proyeccion Terc.' },
-            { key: 'fact_rete_cons_terc', title: 'Facturado' },
-            { key: 'cump_fact_rete_cons_terc', title: 'Cump. fact.' },
-            { key: 'pend_fact_rete_cons_terc', title: 'Pend. fact.' },
-            { key: 'tota_rete_cons_terc', title: 'Total' },
-            { key: 'cump_rete_cons_terc', title: '% Cump.' },
-            { key: 'obje_rete_cons_cuar', title: '3 Camp. ante.' },
-            { key: 'cons_terc_obje', title: 'Proyeccion Cuar.' },
-            { key: 'fact_rete_cons_cuar', title: 'Facturado' },
-            { key: 'cump_fact_rete_cons_cuar', title: 'Cump. fact.' },
-            { key: 'pend_fact_rete_cons_cuar', title: 'Pend. fact.' },
-            { key: 'tota_rete_cons_cuar', title: 'Total' },
-            { key: 'cump_rete_cons_cuar', title: '% Cump.' },
-            { key: 'fact_pe21_ante', title: 'Peg21' },
-            { key: 'obje_pe21', title: 'Objetivo' },
-            { key: 'pe21_obje', title: 'Proyeccion Peg21' },
-            { key: 'fact_pe21', title: 'Ret. peg21' },
-            { key: 'porc_pe21', title: '% Ret. pend.' },
-            { key: 'pend_fact_pe21', title: 'Pend. fact.' },
-            { key: 'tota_pe21', title: 'Total' },
-            { key: 'cump_pe21', title: '% Ret. pend.' },
-            { key: 'fact_pe42_ante', title: 'Peg42' },
-            { key: 'obje_pe42', title: 'Objetivo' },
-            { key: 'pe42_obje', title: 'Proyeccion Peg42' },
-            { key: 'fact_pe42', title: 'Ret. peg42' },
-            { key: 'porc_pe42', title: '% Ret. pend.' },
-            { key: 'pend_fact_pe42', title: 'Pend. fact.' },
-            { key: 'tota_pe42', title: 'Total' },
-            { key: 'cump_pe42', title: '% Ret. pend.' },
-            { key: 'fact_pe63_ante', title: 'Peg63' },
-            { key: 'obje_pe63', title: 'Objetivo' },
-            { key: 'pe63_obje', title: 'Proyeccion Peg63' },
-            { key: 'fact_pe63', title: 'Ret. peg63' },
-            { key: 'porc_pe63', title: '% Ret. pend.' },
-            { key: 'pend_fact_pe63', title: 'Pend. fact.' },
-            { key: 'tota_pe63', title: 'Total' },
-            { key: 'cump_pe63', title: '% Ret. pend.' },
-            { key: 'fact_pegs_ante', title: 'Pegs' },
-            { key: 'obje_pegs', title: 'Objetivo' },
-            { key: 'pegs_obje', title: 'Proyeccion Pegs' },
-            { key: 'fact_pegs', title: 'Ret. pegs' },
-            { key: 'porc_pegs', title: 'Cump. fact.' },
-            { key: 'pend_fact_pegs', title: 'Pend. fact.' },
-            { key: 'tota_pegs', title: 'Total' },
-            { key: 'cump_pegs', title: '% Cump' },
-            { key: 'fact_rein_ante', title: 'Pos. reing.' },
-            { key: 'obje_rein', title: 'Objetivo' },
-            { key: 'rein_obje', title: 'Proyeccion Reing.' },
-            { key: 'fact_rein', title: 'Facturado' },
-            { key: 'porc_rein', title: 'Cump. fact.' },
-            { key: 'pend_fact_rein', title: 'Pend. fact.' },
-            { key: 'tota_fact_rein', title: 'Total' },
-            { key: 'cump_rein', title: '% Cump' },
-            { key: 'obje_capi', title: 'Objetivo' },
-            { key: 'capi_obje', title: 'Proyeccion Capi.' },
-            { key: 'fact_capi', title: 'Facturado' },
-            { key: 'pend_capi', title: 'Capi. pend.' },
-            { key: 'obje_tota', title: 'Objetivo' },
-            { key: 'proy_pedi_tota', title: 'Proyeccion Tota.' },
-            { key: 'fact_tota', title: 'Facturado' },
-            { key: 'cump_fact_tota', title: 'Cump. fact.' },
-            { key: 'pend_fact_tota', title: 'Pend. fact.' },
-            { key: 'tota_tota', title: 'Total' },
-            { key: 'obje_vent', title: 'Objetivo Ventas' },
-            { key: 'fact_vent', title: 'Venta' },
-      ];
+      { key: 'nomb_lide', title: 'Lider' },
+      { key: 'acti_fina_ante', title: 'Act. inic.' },
+      { key: 'obje_inco', title: 'Objetivo' },
+      { key: 'obje_inco_prime', title: 'Proyeccion Inco.' },
+      { key: 'fact_inco', title: 'Facturado' },
+      { key: 'cump_fact_inco', title: 'Cump. fact.' },
+      { key: 'pend_fact_inco', title: 'Pend. fact.' },
+      { key: 'tota_inco', title: 'Total' },
+      { key: 'cump_inco', title: '% Cump.' },
+      { key: 'obje_rete_cons', title: 'Objetivo' },
+      { key: 'obje_cons_lide', title: 'Proyeccion Consec.' },
+      { key: 'fact_rete_cons', title: 'Facturado' },
+      { key: 'cump_fact_rete_cons', title: 'Cump. fact.' },
+      { key: 'pend_fact_rete_cons', title: 'Pend. fact.' },
+      { key: 'tota_rete_cons', title: 'Total' },
+      { key: 'cump_rete_cons', title: '% Cump.' },
+      { key: 'obje_rete_cons_segu', title: '1 Camp. ante.' },
+      { key: 'cons_rete_prim', title: 'Proyeccion Segu.' },
+      { key: 'fact_rete_cons_segu', title: 'Facturado' },
+      { key: 'cump_fact_rete_cons_segu', title: 'Cump. fact.' },
+      { key: 'pend_fact_rete_cons_segu', title: 'Pend. fact.' },
+      { key: 'tota_rete_cons_segu', title: 'Total' },
+      { key: 'cump_rete_cons_segu', title: '% Cump.' },
+      { key: 'obje_rete_cons_terc', title: '2 Camp. ante.' },
+      { key: 'cons_segu_obje', title: 'Proyeccion Terc.' },
+      { key: 'fact_rete_cons_terc', title: 'Facturado' },
+      { key: 'cump_fact_rete_cons_terc', title: 'Cump. fact.' },
+      { key: 'pend_fact_rete_cons_terc', title: 'Pend. fact.' },
+      { key: 'tota_rete_cons_terc', title: 'Total' },
+      { key: 'cump_rete_cons_terc', title: '% Cump.' },
+      { key: 'obje_rete_cons_cuar', title: '3 Camp. ante.' },
+      { key: 'cons_terc_obje', title: 'Proyeccion Cuar.' },
+      { key: 'fact_rete_cons_cuar', title: 'Facturado' },
+      { key: 'cump_fact_rete_cons_cuar', title: 'Cump. fact.' },
+      { key: 'pend_fact_rete_cons_cuar', title: 'Pend. fact.' },
+      { key: 'tota_rete_cons_cuar', title: 'Total' },
+      { key: 'cump_rete_cons_cuar', title: '% Cump.' },
+      { key: 'fact_pe21_ante', title: 'Peg21' },
+      { key: 'obje_pe21', title: 'Objetivo' },
+      { key: 'pe21_obje', title: 'Proyeccion Peg21' },
+      { key: 'fact_pe21', title: 'Ret. peg21' },
+      { key: 'porc_pe21', title: '% Ret. pend.' },
+      { key: 'pend_fact_pe21', title: 'Pend. fact.' },
+      { key: 'tota_pe21', title: 'Total' },
+      { key: 'cump_pe21', title: '% Ret. pend.' },
+      { key: 'fact_pe42_ante', title: 'Peg42' },
+      { key: 'obje_pe42', title: 'Objetivo' },
+      { key: 'pe42_obje', title: 'Proyeccion Peg42' },
+      { key: 'fact_pe42', title: 'Ret. peg42' },
+      { key: 'porc_pe42', title: '% Ret. pend.' },
+      { key: 'pend_fact_pe42', title: 'Pend. fact.' },
+      { key: 'tota_pe42', title: 'Total' },
+      { key: 'cump_pe42', title: '% Ret. pend.' },
+      { key: 'fact_pe63_ante', title: 'Peg63' },
+      { key: 'obje_pe63', title: 'Objetivo' },
+      { key: 'pe63_obje', title: 'Proyeccion Peg63' },
+      { key: 'fact_pe63', title: 'Ret. peg63' },
+      { key: 'porc_pe63', title: '% Ret. pend.' },
+      { key: 'pend_fact_pe63', title: 'Pend. fact.' },
+      { key: 'tota_pe63', title: 'Total' },
+      { key: 'cump_pe63', title: '% Ret. pend.' },
+      { key: 'fact_pegs_ante', title: 'Pegs' },
+      { key: 'obje_pegs', title: 'Objetivo' },
+      { key: 'pegs_obje', title: 'Proyeccion Pegs' },
+      { key: 'fact_pegs', title: 'Ret. pegs' },
+      { key: 'porc_pegs', title: 'Cump. fact.' },
+      { key: 'pend_fact_pegs', title: 'Pend. fact.' },
+      { key: 'tota_pegs', title: 'Total' },
+      { key: 'cump_pegs', title: '% Cump' },
+      { key: 'fact_rein_ante', title: 'Pos. reing.' },
+      { key: 'obje_rein', title: 'Objetivo' },
+      { key: 'rein_obje', title: 'Proyeccion Reing.' },
+      { key: 'fact_rein', title: 'Facturado' },
+      { key: 'porc_rein', title: 'Cump. fact.' },
+      { key: 'pend_fact_rein', title: 'Pend. fact.' },
+      { key: 'tota_fact_rein', title: 'Total' },
+      { key: 'cump_rein', title: '% Cump' },
+      { key: 'obje_capi', title: 'Objetivo' },
+      { key: 'capi_obje', title: 'Proyeccion Capi.' },
+      { key: 'fact_capi', title: 'Facturado' },
+      { key: 'pend_capi', title: 'Capi. pend.' },
+      { key: 'obje_tota', title: 'Objetivo' },
+      { key: 'proy_pedi_tota', title: 'Proyeccion Tota.' },
+      { key: 'fact_tota', title: 'Facturado' },
+      { key: 'cump_fact_tota', title: 'Cump. fact.' },
+      { key: 'pend_fact_tota', title: 'Pend. fact.' },
+      { key: 'tota_tota', title: 'Total' },
+      { key: 'obje_vent', title: 'Objetivo Ventas' },
+      { key: 'fact_vent', title: 'Venta' }]
   } else if(selectedVariable.value === 1) {
     //capitalizacion
     return [
-    { title: 'Codigo Lider', key: 'codi_sect' },
-    { title: 'Lider', key: 'nomb_lide' },
-    { title: 'Act. inic.', key: 'acti_fina_ante' },
-    // Grupo 'inco'
-    { key: 'obje_inco', title: 'Objetivo' },
-    { key: 'obje_inco_prime', title: 'Proyeccion Inco.' },
-    { key: 'fact_inco', title: 'Facturado' },
-    { key: 'cump_fact_inco', title: 'Cump. fact.' },
-    { key: 'pend_fact_inco', title: 'Pend. fact.' },
-    { key: 'tota_inco', title: 'Total' },
-    { key: 'cump_inco', title: '% Cump.' },
+      { title: 'Codigo Lider', key: 'codi_sect' },
+      { title: 'Lider', key: 'nomb_lide' },
+      { title: 'Act. inic.', key: 'acti_fina_ante' },
 
-    // Grupo 'rein'
-    { key: 'fact_rein_ante', title: 'Pos. reing.' },
-    { key: 'obje_rein', title: 'Objetivo' },
-    { key: 'rein_obje', title: 'Proyeccion Reing.' },
-    { key: 'fact_rein', title: 'Facturado' },
-    { key: 'porc_rein', title: 'Cump. fact.' },
-    { key: 'pend_fact_rein', title: 'Pend. fact.' },
-    { key: 'tota_fact_rein', title: 'Total' },
-    { key: 'cump_rein', title: '% Cump' },
+      // Grupo 'inco'
+      { key: 'obje_inco', title: 'Objetivo' },
+      { key: 'obje_inco_prime', title: 'Proyeccion Inco.' },
+      { key: 'fact_inco', title: 'Facturado' },
+      { key: 'cump_fact_inco', title: 'Cump. fact.' },
+      { key: 'pend_fact_inco', title: 'Pend. fact.' },
+      { key: 'tota_inco', title: 'Total' },
+      { key: 'cump_inco', title: '% Cump.' },
 
-    // Grupo 'pe63'
-    { key: 'fact_pe63_ante', title: 'Peg63' },
-    { key: 'obje_pe63', title: 'Objetivo' },
-    { key: 'pe63_obje', title: 'Proyeccion Peg63' }, 
-    { key: 'fact_pe63', title: 'Ret. peg63' },
-    { key: 'porc_pe63', title: '% Ret. pend.' },
-    { key: 'pend_fact_pe63', title: 'Pend. fact.' },
-    { key: 'tota_pe63', title: 'Total' },
-    { key: 'cump_pe63', title: '% Ret. pend.' },
+      // Grupo 'rein'
+      { key: 'fact_rein_ante', title: 'Pos. reing.' },
+      { key: 'obje_rein', title: 'Objetivo' },
+      { key: 'rein_obje', title: 'Proyeccion Reing.' },
+      { key: 'fact_rein', title: 'Facturado' },
+      { key: 'porc_rein', title: 'Cump. fact.' },
+      { key: 'pend_fact_rein', title: 'Pend. fact.' },
+      { key: 'tota_fact_rein', title: 'Total' },
+      { key: 'cump_rein', title: '% Cump' },
 
-    // Grupo 'capi'
-    { key: 'obje_capi', title: 'Objetivo' },
-    { key: 'capi_obje', title: 'Proyeccion Capi.' },
-    { key: 'fact_capi', title: 'Facturado' },
-    { key: 'pend_capi', title: 'Capi. pend.' }
-]
+      // Grupo 'pe63'
+      { key: 'fact_pe63_ante', title: 'Peg63' },
+      { key: 'obje_pe63', title: 'Objetivo' },
+      { key: 'pe63_obje', title: 'Proyeccion Peg63' }, 
+      { key: 'fact_pe63', title: 'Ret. peg63' },
+      { key: 'porc_pe63', title: '% Ret. pend.' },
+      { key: 'pend_fact_pe63', title: 'Pend. fact.' },
+      { key: 'tota_pe63', title: 'Total' },
+      { key: 'cump_pe63', title: '% Ret. pend.' },
+
+      // Grupo 'capi'
+      { key: 'obje_capi', title: 'Objetivo' },
+      { key: 'capi_obje', title: 'Proyeccion Capi.' },
+      { key: 'fact_capi', title: 'Facturado' },
+      { key: 'pend_capi', title: 'Capi. pend.' },
+    ]
   } else if (selectedVariable.value === 2) {
     //consecutividad
     return [
-    { title: 'Codigo Lider', key: 'codi_sect' },
-    { title: 'Lider', key: 'nomb_lide' },
-    { title: 'Act. inic.', key: 'acti_fina_ante' },
+      { title: 'Codigo Lider', key: 'codi_sect' },
+      { title: 'Lider', key: 'nomb_lide' },
+      { title: 'Act. inic.', key: 'acti_fina_ante' },
     
-    // Grupo 'cons'
-    { key: 'obje_rete_cons', title: 'Objetivo' },
-    { key: 'obje_cons_lide', title: 'Proyeccion Consec.' },
-    { key: 'fact_rete_cons', title: 'Facturado' },
-    { key: 'cump_fact_rete_cons', title: 'Cump. fact.' },
-    { key: 'pend_fact_rete_cons', title: 'Pend. fact.' },
-    { key: 'tota_rete_cons', title: 'Total' },
-    { key: 'cump_rete_cons', title: '% Cump.' },
+      // Grupo 'cons'
+      { key: 'obje_rete_cons', title: 'Objetivo' },
+      { key: 'obje_cons_lide', title: 'Proyeccion Consec.' },
+      { key: 'fact_rete_cons', title: 'Facturado' },
+      { key: 'cump_fact_rete_cons', title: 'Cump. fact.' },
+      { key: 'pend_fact_rete_cons', title: 'Pend. fact.' },
+      { key: 'tota_rete_cons', title: 'Total' },
+      { key: 'cump_rete_cons', title: '% Cump.' },
 
-    // Grupo 'cons_segu'
-    { key: 'obje_rete_cons_segu', title: '1 Camp. ante.' },
-    { key: 'cons_rete_prim', title: 'Proyeccion Segu.' },
-    { key: 'fact_rete_cons_segu', title: 'Facturado' },
-    { key: 'cump_fact_rete_cons_segu', title: 'Cump. fact.' },
-    { key: 'pend_fact_rete_cons_segu', title: 'Pend. fact.' },
-    { key: 'tota_rete_cons_segu', title: 'Total' },
-    { key: 'cump_rete_cons_segu', title: '% Cump.' },
+      // Grupo 'cons_segu'
+      { key: 'obje_rete_cons_segu', title: '1 Camp. ante.' },
+      { key: 'cons_rete_prim', title: 'Proyeccion Segu.' },
+      { key: 'fact_rete_cons_segu', title: 'Facturado' },
+      { key: 'cump_fact_rete_cons_segu', title: 'Cump. fact.' },
+      { key: 'pend_fact_rete_cons_segu', title: 'Pend. fact.' },
+      { key: 'tota_rete_cons_segu', title: 'Total' },
+      { key: 'cump_rete_cons_segu', title: '% Cump.' },
 
-    // Grupo 'cons_terc'
-    { key: 'obje_rete_cons_terc', title: '2 Camp. ante.' },
-    { key: 'cons_segu_obje', title: 'Proyeccion Terc.' },
-    { key: 'fact_rete_cons_terc', title: 'Facturado' },
-    { key: 'cump_fact_rete_cons_terc', title: 'Cump. fact.' },
-    { key: 'pend_fact_rete_cons_terc', title: 'Pend. fact.' },
-    { key: 'tota_rete_cons_terc', title: 'Total' },
-    { key: 'cump_rete_cons_terc', title: '% Cump.' },
+      // Grupo 'cons_terc'
+      { key: 'obje_rete_cons_terc', title: '2 Camp. ante.' },
+      { key: 'cons_segu_obje', title: 'Proyeccion Terc.' },
+      { key: 'fact_rete_cons_terc', title: 'Facturado' },
+      { key: 'cump_fact_rete_cons_terc', title: 'Cump. fact.' },
+      { key: 'pend_fact_rete_cons_terc', title: 'Pend. fact.' },
+      { key: 'tota_rete_cons_terc', title: 'Total' },
+      { key: 'cump_rete_cons_terc', title: '% Cump.' },
 
-    // Grupo 'cons_cuar'
-    { key: 'obje_rete_cons_cuar', title: '3 Camp. ante.' },
-    { key: 'cons_terc_obje', title: 'Proyeccion Cuar.' },
-    { key: 'fact_rete_cons_cuar', title: 'Facturado' },
-    { key: 'cump_fact_rete_cons_cuar', title: 'Cump. fact.' },
-    { key: 'pend_fact_rete_cons_cuar', title: 'Pend. fact.' },
-    { key: 'tota_rete_cons_cuar', title: 'Total' },
-    { key: 'cump_rete_cons_cuar', title: '% Cump.' }
+      // Grupo 'cons_cuar'
+      { key: 'obje_rete_cons_cuar', title: '3 Camp. ante.' },
+      { key: 'cons_terc_obje', title: 'Proyeccion Cuar.' },
+      { key: 'fact_rete_cons_cuar', title: 'Facturado' },
+      { key: 'cump_fact_rete_cons_cuar', title: 'Cump. fact.' },
+      { key: 'pend_fact_rete_cons_cuar', title: 'Pend. fact.' },
+      { key: 'tota_rete_cons_cuar', title: 'Total' },
+      { key: 'cump_rete_cons_cuar', title: '% Cump.' },
 
 
     ]
@@ -696,6 +698,7 @@ const cabecera = computed(() => {
       { title: 'Codigo Lider', key: 'codi_sect' },
       { title: 'Lider', key: 'nomb_lide' },
       { title: 'Act. inic.', key: 'acti_fina_ante' },
+
       // Grupo 'inco'
       { key: 'obje_inco', title: 'Objetivo' },
       { key: 'obje_inco_prime', title: 'Proyeccion Inco.' },
@@ -752,7 +755,7 @@ const cabecera = computed(() => {
       { key: 'porc_rein', title: 'Cump. fact.' },
       { key: 'pend_fact_rein', title: 'Pend. fact.' },
       { key: 'tota_fact_rein', title: 'Total' },
-      { key: 'cump_rein', title: '% Cump' }
+      { key: 'cump_rein', title: '% Cump' },
     ]
   } 
  
@@ -765,6 +768,8 @@ let sumaActiInic = 0
 let sumaNumePedi = 0
 let sumaTotaIngr = 0
 let sumaTotaRein = 0
+
+
 //headers de la tabla     
 const columnas = [
   {
@@ -1172,7 +1177,7 @@ const columnas = [
     ],
     columngroup: 'cons_segu',
   },
-   {
+  {
     text: 'proyeccion de consecutividad 2do pedido',
     datafield: 'cons_rete_prim',
     width: '100',
@@ -2829,6 +2834,7 @@ const columnas = [
     cellsalign: 'center',
     cellsformat: 'P2',
     hidden: true,
+
     // Cambié el nombre de la propiedad a "hidden" para ocultar la columna
     aggregates: [
       {
@@ -2860,6 +2866,7 @@ const columnas = [
     width: '100',
     align: 'center',
     hidden: true,
+
     // Cambié el nombre de la propiedad a "hidden" para ocultar la columna
     cellsalign: 'center',
     cellsformat: 'N',
@@ -2876,7 +2883,8 @@ const columnas = [
     ],
     columngroup: 'tota',
     cellclassname: claseDiferenciaTotal,
-  },{
+  },
+  {
     text: 'Objetivo Ventas',
     datafield: 'obje_vent',
     width: '200',
@@ -2993,101 +3001,101 @@ const columnasGrupo = [
 const sourceGlobal = ref({
   localdata: [],
   datafields: [
-    { name: 'codi_sect', type: 'string'}, // Nota: Corregí "codi_sect" (original tenía 'codi_sect', no 'codi_sect')
-    { name: 'nomb_lide', type: 'string'},
-    { name: 'proy_pedi_tota', type: 'string'},
-    { name: 'rein_obje', type: 'string'},
-    { name: 'pegs_obje', type: 'string'},
-    { name: 'pe63_obje', type: 'string'},
-    { name: 'pe42_obje', type: 'string'},
-    { name: 'pe21_obje', type: 'string'},
-    { name: 'cons_terc_obje', type: 'string'},
-    { name: 'cons_rete_prim', type: 'string'},
-    { name: 'cons_segu_obje', type: 'string'},
-    { name: 'acti_fina_ante', type: 'number'},
-    { name: 'obje_cons_lide', type: 'number'},
-    { name: 'obje_tota', type: 'number'},
-    { name: 'obje_inco_prime', type: 'number'},
-    { name: 'fact_tota', type: 'number'},
-    { name: 'cump_fact_tota', type: 'number'},
-    { name: 'pend_fact_tota', type: 'number'},
-    { name: 'tota_tota', type: 'number'},
-    { name: 'cump_tota', type: 'number'},
-    { name: 'dife_tota', type: 'number'},
-    { name: 'obje_inco', type: 'number'},
-    { name: 'fact_inco', type: 'number'},
-    { name: 'cump_fact_inco', type: 'number'},
-    { name: 'pend_fact_inco', type: 'number'},
-    { name: 'tota_inco', type: 'number'},
-    { name: 'cump_inco', type: 'number'},
-    { name: 'fact_rete_cons_ante', type: 'number'},
-    { name: 'obje_rete_cons', type: 'number'},
-    { name: 'fact_rete_cons', type: 'number'},
-    { name: 'cump_fact_rete_cons', type: 'number'},
-    { name: 'pend_fact_rete_cons', type: 'number'},
-    { name: 'tota_rete_cons', type: 'number'},
-    { name: 'cump_rete_cons', type: 'number'},
-    { name: 'obje_rete_cons_segu', type: 'number'},
-    { name: 'fact_rete_cons_segu', type: 'number'},
-    { name: 'cump_fact_rete_cons_segu', type: 'number'},
-    { name: 'pend_fact_rete_cons_segu', type: 'number'},
-    { name: 'tota_rete_cons_segu', type: 'number'},
-    { name: 'cump_rete_cons_segu', type: 'number'},
-    { name: 'obje_rete_cons_terc', type: 'number'},
-    { name: 'fact_rete_cons_terc', type: 'number'},
-    { name: 'cump_fact_rete_cons_terc', type: 'number'},
-    { name: 'pend_fact_rete_cons_terc', type: 'number'},
-    { name: 'tota_rete_cons_terc', type: 'number'},
-    { name: 'cump_rete_cons_terc', type: 'number'},
-    { name: 'obje_rete_cons_cuar', type: 'number'},
-    { name: 'fact_rete_cons_cuar', type: 'number'},
-    { name: 'cump_fact_rete_cons_cuar', type: 'number'},
-    { name: 'pend_fact_rete_cons_cuar', type: 'number'},
-    { name: 'tota_rete_cons_cuar', type: 'number'},
-    { name: 'cump_rete_cons_cuar', type: 'number'},
-    { name: 'fact_pe21_ante', type: 'number'},
-    { name: 'obje_pe21', type: 'number'},
-    { name: 'fact_pe21', type: 'number'},
-    { name: 'porc_pe21', type: 'number'},
-    { name: 'pend_fact_pe21', type: 'number'},
-    { name: 'tota_pe21', type: 'number'},
-    { name: 'cump_pe21', type: 'number'},
-    { name: 'fact_pe42_ante', type: 'number'},
-    { name: 'obje_pe42', type: 'number'},
-    { name: 'fact_pe42', type: 'number'},
-    { name: 'porc_pe42', type: 'number'},
-    { name: 'pend_fact_pe42', type: 'number'},
-    { name: 'tota_pe42', type: 'number'},
-    { name: 'cump_pe42', type: 'number'},
-    { name: 'fact_pe63_ante', type: 'number'},
-    { name: 'obje_pe63', type: 'number'},
-    { name: 'fact_pe63', type: 'number'},
-    { name: 'porc_pe63', type: 'number'},
-    { name: 'pend_fact_pe63', type: 'number'},
-    { name: 'tota_pe63', type: 'number'},
-    { name: 'cump_pe63', type: 'number'},
-    { name: 'fact_pegs_ante', type: 'number'},
-    { name: 'obje_pegs', type: 'number'},
-    { name: 'fact_pegs', type: 'number'},
-    { name: 'porc_pegs', type: 'number'},
-    { name: 'pend_fact_pegs', type: 'number'},
-    { name: 'tota_pegs', type: 'number'},
-    { name: 'cump_pegs', type: 'number'},
-    { name: 'fact_rein_ante', type: 'number'},
-    { name: 'obje_rein', type: 'number'},
-    { name: 'fact_rein', type: 'number'},
-    { name: 'porc_rein', type: 'number'},
-    { name: 'pend_fact_rein', type: 'number'},
-    { name: 'tota_fact_rein', type: 'number'},
-    { name: 'cump_rein', type: 'number'},
-    { name: 'obje_capi', type: 'number'},
-    { name: 'fact_capi', type: 'number'},
-    { name: 'pend_capi', type: 'number'},
-    { name: 'pend_capi_obje', type: 'number'},
-    { name: 'capi_obje', type: 'number'},
-    { name: 'obje_vent', type: 'number'},
-    { name: 'fact_vent', type: 'number'}
-],
+    { name: 'codi_sect', type: 'string' }, // Nota: Corregí "codi_sect" (original tenía 'codi_sect', no 'codi_sect')
+    { name: 'nomb_lide', type: 'string' },
+    { name: 'proy_pedi_tota', type: 'string' },
+    { name: 'rein_obje', type: 'string' },
+    { name: 'pegs_obje', type: 'string' },
+    { name: 'pe63_obje', type: 'string' },
+    { name: 'pe42_obje', type: 'string' },
+    { name: 'pe21_obje', type: 'string' },
+    { name: 'cons_terc_obje', type: 'string' },
+    { name: 'cons_rete_prim', type: 'string' },
+    { name: 'cons_segu_obje', type: 'string' },
+    { name: 'acti_fina_ante', type: 'number' },
+    { name: 'obje_cons_lide', type: 'number' },
+    { name: 'obje_tota', type: 'number' },
+    { name: 'obje_inco_prime', type: 'number' },
+    { name: 'fact_tota', type: 'number' },
+    { name: 'cump_fact_tota', type: 'number' },
+    { name: 'pend_fact_tota', type: 'number' },
+    { name: 'tota_tota', type: 'number' },
+    { name: 'cump_tota', type: 'number' },
+    { name: 'dife_tota', type: 'number' },
+    { name: 'obje_inco', type: 'number' },
+    { name: 'fact_inco', type: 'number' },
+    { name: 'cump_fact_inco', type: 'number' },
+    { name: 'pend_fact_inco', type: 'number' },
+    { name: 'tota_inco', type: 'number' },
+    { name: 'cump_inco', type: 'number' },
+    { name: 'fact_rete_cons_ante', type: 'number' },
+    { name: 'obje_rete_cons', type: 'number' },
+    { name: 'fact_rete_cons', type: 'number' },
+    { name: 'cump_fact_rete_cons', type: 'number' },
+    { name: 'pend_fact_rete_cons', type: 'number' },
+    { name: 'tota_rete_cons', type: 'number' },
+    { name: 'cump_rete_cons', type: 'number' },
+    { name: 'obje_rete_cons_segu', type: 'number' },
+    { name: 'fact_rete_cons_segu', type: 'number' },
+    { name: 'cump_fact_rete_cons_segu', type: 'number' },
+    { name: 'pend_fact_rete_cons_segu', type: 'number' },
+    { name: 'tota_rete_cons_segu', type: 'number' },
+    { name: 'cump_rete_cons_segu', type: 'number' },
+    { name: 'obje_rete_cons_terc', type: 'number' },
+    { name: 'fact_rete_cons_terc', type: 'number' },
+    { name: 'cump_fact_rete_cons_terc', type: 'number' },
+    { name: 'pend_fact_rete_cons_terc', type: 'number' },
+    { name: 'tota_rete_cons_terc', type: 'number' },
+    { name: 'cump_rete_cons_terc', type: 'number' },
+    { name: 'obje_rete_cons_cuar', type: 'number' },
+    { name: 'fact_rete_cons_cuar', type: 'number' },
+    { name: 'cump_fact_rete_cons_cuar', type: 'number' },
+    { name: 'pend_fact_rete_cons_cuar', type: 'number' },
+    { name: 'tota_rete_cons_cuar', type: 'number' },
+    { name: 'cump_rete_cons_cuar', type: 'number' },
+    { name: 'fact_pe21_ante', type: 'number' },
+    { name: 'obje_pe21', type: 'number' },
+    { name: 'fact_pe21', type: 'number' },
+    { name: 'porc_pe21', type: 'number' },
+    { name: 'pend_fact_pe21', type: 'number' },
+    { name: 'tota_pe21', type: 'number' },
+    { name: 'cump_pe21', type: 'number' },
+    { name: 'fact_pe42_ante', type: 'number' },
+    { name: 'obje_pe42', type: 'number' },
+    { name: 'fact_pe42', type: 'number' },
+    { name: 'porc_pe42', type: 'number' },
+    { name: 'pend_fact_pe42', type: 'number' },
+    { name: 'tota_pe42', type: 'number' },
+    { name: 'cump_pe42', type: 'number' },
+    { name: 'fact_pe63_ante', type: 'number' },
+    { name: 'obje_pe63', type: 'number' },
+    { name: 'fact_pe63', type: 'number' },
+    { name: 'porc_pe63', type: 'number' },
+    { name: 'pend_fact_pe63', type: 'number' },
+    { name: 'tota_pe63', type: 'number' },
+    { name: 'cump_pe63', type: 'number' },
+    { name: 'fact_pegs_ante', type: 'number' },
+    { name: 'obje_pegs', type: 'number' },
+    { name: 'fact_pegs', type: 'number' },
+    { name: 'porc_pegs', type: 'number' },
+    { name: 'pend_fact_pegs', type: 'number' },
+    { name: 'tota_pegs', type: 'number' },
+    { name: 'cump_pegs', type: 'number' },
+    { name: 'fact_rein_ante', type: 'number' },
+    { name: 'obje_rein', type: 'number' },
+    { name: 'fact_rein', type: 'number' },
+    { name: 'porc_rein', type: 'number' },
+    { name: 'pend_fact_rein', type: 'number' },
+    { name: 'tota_fact_rein', type: 'number' },
+    { name: 'cump_rein', type: 'number' },
+    { name: 'obje_capi', type: 'number' },
+    { name: 'fact_capi', type: 'number' },
+    { name: 'pend_capi', type: 'number' },
+    { name: 'pend_capi_obje', type: 'number' },
+    { name: 'capi_obje', type: 'number' },
+    { name: 'obje_vent', type: 'number' },
+    { name: 'fact_vent', type: 'number' },
+  ],
   datatype: 'json',
 })
 
@@ -3143,7 +3151,7 @@ const obtenerZona = async () => {
       method: "get",
       query: {
         codigo: userData.codi_perf,
-      }
+      },
     })
     
     const itemZona = data.data_glob
@@ -3287,7 +3295,7 @@ const limpiarValidacion = () => {
 
 
 const columnsOcultarTodo = [
- 'obje_tota',
+  'obje_tota',
   'proy_pedi_tota',
   'rein_obje',
   'pegs_obje',
@@ -3411,8 +3419,9 @@ const columnsOcultarTodo = [
   'obje_pegs',
   'rein_obje',
   'capi_obje',
-  'proy_pedi_tota'
+  'proy_pedi_tota',
 ]
+
 /**mostrar todas las columnas */
 const columnsMostrarTodo = [
   'obje_tota',
@@ -3539,7 +3548,7 @@ const columnsMostrarTodo = [
   'obje_pegs',
   'rein_obje',
   'capi_obje',
-  'proy_pedi_tota'
+  'proy_pedi_tota',
 
 
 ]
@@ -3607,93 +3616,93 @@ const columnsMostrarPedidosTotales = [
   , "fact_tota"
   , "cump_fact_tota"
   , "pend_fact_tota"
-  , "tota_tota"
+  , "tota_tota",
 ]
 
 /**mostrar columnas para el filtro de capitalización */
 const columnsMostrarCapitalizacion = [
   "codi_sect"
-, "nomb_lide"
-, "acti_fina_ante"
+  , "nomb_lide"
+  , "acti_fina_ante"
 
-, "obje_inco"
-, "obje_inco_prime"
-, "fact_inco"
-, "cump_fact_inco"
-, "pend_fact_inco"
-, "tota_inco"
-, "cump_inco"
-, "fact_rein_ante"
-, "obje_rein"
-, "rein_obje"
-, "fact_rein"
-, "porc_rein"
-, "pend_fact_rein"
-, "tota_fact_rein"
-, "cump_rein"
-, "fact_pe63_ante"
-, "obje_pe63"
-, "pe63_obje"
-, "fact_pe63"
-, "porc_pe63"
-, "pend_fact_pe63"
-, "tota_pe63"
-, "cump_pe63"
-, "obje_capi"
-, "capi_obje"
-, "fact_capi"
-, "pend_capi"
+  , "obje_inco"
+  , "obje_inco_prime"
+  , "fact_inco"
+  , "cump_fact_inco"
+  , "pend_fact_inco"
+  , "tota_inco"
+  , "cump_inco"
+  , "fact_rein_ante"
+  , "obje_rein"
+  , "rein_obje"
+  , "fact_rein"
+  , "porc_rein"
+  , "pend_fact_rein"
+  , "tota_fact_rein"
+  , "cump_rein"
+  , "fact_pe63_ante"
+  , "obje_pe63"
+  , "pe63_obje"
+  , "fact_pe63"
+  , "porc_pe63"
+  , "pend_fact_pe63"
+  , "tota_pe63"
+  , "cump_pe63"
+  , "obje_capi"
+  , "capi_obje"
+  , "fact_capi"
+  , "pend_capi",
 ]
 
 /**mostrar columnas para el filtro de consecutividad */
 const columnsMostrarConsecutividad =[
   "codi_sect"
-, "obje_cons_lide"
-, "nomb_lide"
-, "acti_fina_ante"
+  , "obje_cons_lide"
+  , "nomb_lide"
+  , "acti_fina_ante"
 
-, "obje_rete_cons"
-, "obje_cons_lide"
-, "fact_rete_cons"
-, "cump_fact_rete_cons"
-, "pend_fact_rete_cons"
-, "tota_rete_cons"
-, "cump_rete_cons" 
+  , "obje_rete_cons"
+  , "obje_cons_lide"
+  , "fact_rete_cons"
+  , "cump_fact_rete_cons"
+  , "pend_fact_rete_cons"
+  , "tota_rete_cons"
+  , "cump_rete_cons" 
 
-, "cons_rete_prim"
-, "fact_rete_cons_segu"
-, "cump_fact_rete_cons_segu"
-, "pend_fact_rete_cons_segu"
-, "tota_rete_cons_segu"
-, "cump_rete_cons_segu"
-, "obje_rete_cons_segu"
-, "cons_rete_prim"
-, "fact_rete_cons_segu"
-, "cump_fact_rete_cons_segu"
-, "pend_fact_rete_cons_segu"
-, "tota_rete_cons_segu"
-, "cump_rete_cons_segu"
-, "obje_rete_cons_terc"
-, "cons_segu_obje"
-, "fact_rete_cons_terc"
-, "cump_fact_rete_cons_terc"
-, "pend_fact_rete_cons_terc"
-, "tota_rete_cons_terc"
-, "cump_rete_cons_terc"
-, "obje_rete_cons_cuar"
-, "cons_terc_obje"
-, "fact_rete_cons_cuar"
-, "cump_fact_rete_cons_cuar"
-, "pend_fact_rete_cons_cuar"
-, "tota_rete_cons_cuar"
-, "cump_rete_cons_cuar"
+  , "cons_rete_prim"
+  , "fact_rete_cons_segu"
+  , "cump_fact_rete_cons_segu"
+  , "pend_fact_rete_cons_segu"
+  , "tota_rete_cons_segu"
+  , "cump_rete_cons_segu"
+  , "obje_rete_cons_segu"
+  , "cons_rete_prim"
+  , "fact_rete_cons_segu"
+  , "cump_fact_rete_cons_segu"
+  , "pend_fact_rete_cons_segu"
+  , "tota_rete_cons_segu"
+  , "cump_rete_cons_segu"
+  , "obje_rete_cons_terc"
+  , "cons_segu_obje"
+  , "fact_rete_cons_terc"
+  , "cump_fact_rete_cons_terc"
+  , "pend_fact_rete_cons_terc"
+  , "tota_rete_cons_terc"
+  , "cump_rete_cons_terc"
+  , "obje_rete_cons_cuar"
+  , "cons_terc_obje"
+  , "fact_rete_cons_cuar"
+  , "cump_fact_rete_cons_cuar"
+  , "pend_fact_rete_cons_cuar"
+  , "tota_rete_cons_cuar"
+  , "cump_rete_cons_cuar",
 ]
 
 const columnMapping = {
   0: columnsMostrarTodo,
   1: columnsMostrarCapitalizacion,
   2: columnsMostrarConsecutividad,
-  3: columnsMostrarPedidosTotales
+  3: columnsMostrarPedidosTotales,
 }
 
 watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
