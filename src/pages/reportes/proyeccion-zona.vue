@@ -1510,19 +1510,10 @@ const onEditar = async event => {
     let proyConse = columnDataField === 'pedi_tota_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_tota_prim');
     let pegs_obje = columnDataField === 'pegs_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pegs_obje');  
     let proyReinObje = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje');
-    let pedi_tota_prim= columnDataField === 'pedi_tota_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_tota_prim');
-    let cons_rete_prim= columnDataField === 'cons_rete_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_rete_prim');
-    let cons_segu_obje= columnDataField === 'cons_segu_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_segu_obje');
-    let cons_terc_obje= columnDataField === 'cons_terc_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'cons_terc_obje');
-    let pe21_obje= columnDataField === 'pe21_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe21_obje');
-    let pe42_obje= columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje');
-    let pe63_obje= columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
-    let capi_obje= columnDataField === 'capi_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'capi_obje');
     console.log(proyInco+" "+ proyConse+" "+ pegs_obje+" "+proyReinObje)
 
     if (proyInco > 0 || proyConse > 0 || pegs_obje > 0 || proyReinObje > 0) {
-      let sumProyInco = proyInco+proyConse+pegs_obje+proyReinObje+pedi_tota_prim+cons_rete_prim+cons_segu_obje+cons_terc_obje+pe21_obje+pe42_obje+pe63_obje+capi_obje
-      console.log(sumProyInco)
+      let sumProyInco = proyInco+proyConse+pegs_obje+proyReinObje
       if (sumProyInco >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'proy_pedi_tota', sumProyInco)
       }else{
