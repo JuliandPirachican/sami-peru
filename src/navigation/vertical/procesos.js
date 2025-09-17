@@ -124,4 +124,11 @@ export default [
     subject: 'colombia/pre_pedido',  
     action: 'colombia/pre_pedido',
   },
+  { 
+    title: 'Gestor lideres', 
+    to: 'procesos-gest-lide-tabl-lide',
+    icon: { icon: 'tabler-world-up' },
+    subject: 'colombia/gest_lide_tabl_lide',  
+    action: 'colombia/gest_lide_tabl_lide',
+  },
 ]
