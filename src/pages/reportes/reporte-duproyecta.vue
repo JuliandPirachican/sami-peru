@@ -133,7 +133,7 @@ const onLimpiar = () => {
  const full_url_embed=$embed+"CI/repo_pre_pedi";
 
 onMounted(() => {
-  appStore.titulo(`Reporte Duproyecta`)
+  appStore.titulo(`Reporte Azzorti Proyecta`)
   onGenerar()
   style_iframe_cgis()
 })
@@ -145,7 +145,7 @@ onMounted(() => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Reporte Duproyecta">
+            <VCard title="Reporte Azzorti Proyecta">
               <VCardText>
                 <VCard>
                   <iframe id="iframe_option"

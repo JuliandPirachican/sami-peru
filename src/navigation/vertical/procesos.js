@@ -125,7 +125,7 @@ export default [
     action: 'colombia/pre_pedido',
   },
   { 
-    title: 'Gestor lideres', 
+    title: 'Nombramiento De Lideres', 
     to: 'procesos-gest-lide-tabl-lide',
     icon: { icon: 'tabler-world-up' },
     subject: 'colombia/gest_lide_tabl_lide',  
