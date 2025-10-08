@@ -79,17 +79,33 @@ const headers1 = computed(() => {
       key: 'opci_pre1',
     },
     {
+      title: 'Puntos 1er pedido',
+      key: 'punt_prim_pedi',
+    },
+    {
       title: '2do pedido',
       key: 'opci_pre2',
+    },
+    {
+      title: 'Puntos 2do pedido',
+      key: 'punt_segu_pedi',
     },
     {
       title: '3er pedido',
       key: 'opci_pre3',
     },
     {
+      title: 'Puntos 3er pedido',
+      key: 'punt_terc_pedi',
+    },
+    {
       title: '4to pedido',
       key: 'opci_pre4',
     },
+    {
+      title: 'Puntos 4to pedido',
+      key: 'punt_cuart_pedi',
+    }
   ]
 });
 
@@ -191,8 +207,22 @@ const headers = computed(() => {
       cellsalign: 'center',
     },
     {
+      text: 'Puntos 1er Pedido',
+      dataField: 'punt_prim_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
       text: '2do Pedido',
       dataField: 'opci_pre2',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
+      text: 'Puntos 2do Pedido',
+      dataField: 'punt_segu_pedi',
       width: '150',
       align: 'center',
       cellsalign: 'center',
@@ -205,12 +235,26 @@ const headers = computed(() => {
       cellsalign: 'center',
     },
     {
+      text: 'Puntos 3er Pedido',
+      dataField: 'punt_terc_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+    {
       text: '4to Pedido',
       dataField: 'opci_pre4',
       width: '150',
       align: 'center',
       cellsalign: 'center',
     },
+    {
+      text: 'Puntos 4to Pedido',
+      dataField: 'punt_cuart_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    }
     
   ]
 });
@@ -230,9 +274,13 @@ const sourceGlobal = ref({
     { name: 'nume_iden_padr', type: 'integer' },
     { name: 'nomb_terc_padr', type: 'string' },
     { name: 'opci_pre1', type: 'string' },
+    { name: 'punt_prim_pedi', type: 'string' },
     { name: 'opci_pre2', type: 'string' },
+    { name: 'punt_segu_pedi', type: 'string' },
     { name: 'opci_pre3', type: 'string' },
+    { name: 'punt_terc_pedi', type: 'string' },
     { name: 'opci_pre4', type: 'string' },
+    { name: 'punt_cuart_pedi', type: 'string' },
   ],
   datatype: 'json',
 })

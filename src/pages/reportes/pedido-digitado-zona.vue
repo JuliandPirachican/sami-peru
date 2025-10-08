@@ -4,6 +4,7 @@ import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
 import { useDisplay } from 'vuetify';
 import { VDataTable } from 'vuetify/labs/VDataTable';
+import { VBtn } from 'vuetify/lib/components/index.mjs';
 
 definePage({
   meta: {
@@ -23,8 +24,16 @@ const appStore = useAppStore()
 const formulario = ref({
   campana: null,
   zona: null,
-})
+});
 
+const pedi_sele_libe = ref(new Set());
+const camp_sele=ref('');
+const keyRow = row =>`${row.codi_terc}-${camp_sele.value}-${row.nume_iden ?? ''}`;
+const toggleSeleccion = (row, checked) => {
+const k = keyRow(row)
+  if (checked) pedi_sele_libe.value.add(k)
+  else pedi_sele_libe.value.delete(k)
+}
 
 const headersGlobal = [
   {
@@ -198,6 +207,12 @@ const initConfiguracion = () => {
     }, 
     {
       cons_fila: '0',
+      nomb_conc: 'Total facturados consecutivas',
+      cant_conc: '0',
+      porc_conc: '',
+    },
+    {
+      cons_fila: '0',
       nomb_conc: 'Total facturados ciclo de nuevas 2do pedido',
       cant_conc: '0',
       porc_conc: '',
@@ -211,12 +226,6 @@ const initConfiguracion = () => {
     {
       cons_fila: '0',
       nomb_conc: 'Total facturados ciclo de nuevas 4to pedido',
-      cant_conc: '0',
-      porc_conc: '',
-    },
-    {
-      cons_fila: '0',
-      nomb_conc: 'Total facturados ciclo de nuevas 5to pedido',
       cant_conc: '0',
       porc_conc: '',
     },
@@ -269,7 +278,7 @@ const initConfiguracion = () => {
       porc_conc: '0.00 %',
     },
     {
-      cons_fila: '0',
+      cons_fila: '11',
       nomb_conc: 'Total pedidos retenidos',
       cant_conc: '0',
       porc_conc: '',
@@ -277,6 +286,12 @@ const initConfiguracion = () => {
     {
       cons_fila: '13',
       nomb_conc: 'Total pedidos digitados',
+      cant_conc: '0',
+      porc_conc: '',
+    },
+    {
+      cons_fila: '0',
+      nomb_conc: 'Pedidos pendientes consecutivas',
       cant_conc: '0',
       porc_conc: '',
     },
@@ -300,12 +315,6 @@ const initConfiguracion = () => {
     },
     {
       cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes ciclo de nuevas 5to pedido',
-      cant_conc: '0',
-      porc_conc: '',
-    },
-    {
-      cons_fila: '0',
       nomb_conc: 'Pedidos pendientes de retención peg21',
       cant_conc: '0',
       porc_conc: '',
@@ -322,12 +331,7 @@ const initConfiguracion = () => {
       cant_conc: '0',
       porc_conc: '',
     },
-    {
-      cons_fila: '0',
-      nomb_conc: 'Pedidos pendientes de retención',
-      cant_conc: '0',
-      porc_conc: '',
-    },
+ 
     {
       cons_fila: '7',
       nomb_conc: 'Pedidos pendientes de activas',
@@ -439,7 +443,7 @@ const onGenerar = async () => {
     limpiarValidacion()
 
     initConfiguracion()
-
+    camp_sele.value=formulario.value.campana;
     const { data } = await $api(`/api/sami/v1/reportes/pedidos-digitados`, {
       method: "get",
       query: {
@@ -530,6 +534,7 @@ const onSeleccionar = async item => {
 }
 
 const initConfiguracionDetalle = () => {
+  console.log('conceptoCodigo.value', conceptoCodigo.value)
   if (
     conceptoCodigo.value === '1'
         || conceptoCodigo.value === '2'
@@ -617,10 +622,7 @@ const initConfiguracionDetalle = () => {
         title: 'Fecha',
         key: 'fech_docu',
       },
-      {
-        title: 'Gemma',
-        key: 'clie_gemm',
-      },
+  
       {
         title: 'Nivel',
         key: 'nive_gemm',
@@ -738,12 +740,24 @@ const initConfiguracionDetalle = () => {
         key: 'moti_code',
       },
       {
-        title: 'Mini',
+        title: 'Mont Mini',
         key: 'moti_mini',
+      },
+      {
+        title: 'Rete X Prod',
+        key: 'rete_prod',
       },
       {
         title: 'Bloq',
         key: 'moti_bloq',
+      },
+      {
+        title: 'Mont Min Publico',
+        key: 'moti_minp',
+      },
+      {
+        title: 'Aprobar Min',
+        key: 'libe_pedi',
       },
     ]
   }
@@ -823,10 +837,11 @@ const onGenerarDetalle = async () => {
       method: "get",
       query: {
         titulo: conceptoTitulo.value,
+        campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
         cantidad: conceptoCantidad.value,
       },
-    })
-
+    });
+    console.log('data.dato', data.dato)
     itemsSubDetalle.value = data.dato
     
   } catch (error) {
@@ -852,6 +867,50 @@ const onExcelConcepto = async () => {
     
     window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
+  }
+  finally {
+    appStore.loading(false)
+  }
+}
+
+/**liberar pedidos */
+const onLiberarPedido = async () => {
+  try {
+    if (pedi_sele_libe.value.size === 0) {
+      appStore.mensajeSnackbar('No ha seleccionado ningún pedido para liberar')
+      appStore.color("error")
+      appStore.snackbar(true)
+      return
+    }
+
+    appStore.mensaje('Liberando pedidos')
+    appStore.loading(true)
+
+    const listaPedidos = Array.from(pedi_sele_libe.value)
+
+    await $api(`/api/sami/v1/reportes/pedidos-digitados/liberarPedido`, {
+      method: "post",
+      body: {
+        pedi_lide: listaPedidos,
+        usuario: userData.codi_perf,
+      },
+    })
+
+    appStore.mensajeSnackbar('Pedidos liberados con éxito')
+    appStore.color("success")
+    appStore.snackbar(true)
+    pedi_sele_libe.value = new Set()
+    await onGenerarDetalle()
+    await onGenerar()
+  } catch (e) {
+    if(e.response !== undefined) {
+      const { data } = e.response._data    
+      if (typeof data != "undefined" && data.message) {
+        appStore.mensajeSnackbar(data.message)
+        appStore.color("error")
+        appStore.snackbar(true)
+      }
+    }
   }
   finally {
     appStore.loading(false)
@@ -981,6 +1040,18 @@ const onExcelConcepto = async () => {
               <template #activator="{ props }">
                 <VBtn
                   color="default"
+                  :icon="mobile"
+                  v-if="conceptoTitulo === 'Total pedidos retenidos'"
+                >
+                  <VIcon
+                    v-if="mobile"
+                    size="x-large"
+                    icon="tabler-dots-vertical"
+                  />
+                  <span @click="onLiberarPedido"  >Liberar Pedidos</span>
+                </VBtn>
+                <VBtn
+                  color="default"
                   v-bind="props"
                   :icon="mobile"
                 >
@@ -1027,7 +1098,18 @@ const onExcelConcepto = async () => {
           no-data-text="Sin información para mostrar"
           fixed-header
           :height="(!mobile)? (itemsSubDetalle.length > 15) ? 400 : null: null"
-        >
+        > 
+        <template #item.libe_pedi="{ item }" v-if="conceptoTitulo === 'Total pedidos retenidos'">
+          <div class="d-flex justify-center align-center">
+            <VCheckbox
+              :model-value="pedi_sele_libe.has(keyRow(item.raw ?? item))"
+              @update:model-value="val => toggleSeleccion(item.raw ?? item, val)"
+              density="compact"
+              hide-details
+              v-if="item.libe_pedi === 'X'"
+            />
+          </div>
+        </template>
           <template #bottom />
         </VDataTable>
       </VCard>

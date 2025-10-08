@@ -60,7 +60,7 @@ const headers = computed(() => {
     },
     {
       key: 'nume_iden',
-      title: 'Premio',
+      title: 'Numero Identificacion',
     },
     {
       key: 'nomb_terc',
@@ -280,7 +280,7 @@ const onExcel = async () => {
       appStore.mensaje('Generando archivo')
       appStore.loading(true)
 
-      const { data } = await $api(`/api/sami/v1/reportes/lider-ganadoras-zona/excel`, {
+      const { data } = await $api(`/api/sami/v1/reportes/consulta-asignacion-sector/excel`, {
         method: "post",
         body: {
           cabecera: headers.value,

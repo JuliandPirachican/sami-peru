@@ -60,6 +60,7 @@ declare module 'vue-router/auto/routes' {
     'procesos-confirmar-inscripcion': RouteRecordInfo<'procesos-confirmar-inscripcion', '/procesos/confirmar-inscripcion', Record<never, never>, Record<never, never>>,
     'procesos-consolidado-campana': RouteRecordInfo<'procesos-consolidado-campana', '/procesos/consolidado-campana', Record<never, never>, Record<never, never>>,
     'procesos-desbloquear-asesora': RouteRecordInfo<'procesos-desbloquear-asesora', '/procesos/desbloquear-asesora', Record<never, never>, Record<never, never>>,
+    'procesos-gest-lide-tabl-lide': RouteRecordInfo<'procesos-gest-lide-tabl-lide', '/procesos/gest-lide-tabl_lide', Record<never, never>, Record<never, never>>,
     'procesos-gestionar-posible-asesora': RouteRecordInfo<'procesos-gestionar-posible-asesora', '/procesos/gestionar-posible-asesora', Record<never, never>, Record<never, never>>,
     'procesos-gestionar-vacaciones': RouteRecordInfo<'procesos-gestionar-vacaciones', '/procesos/gestionar-vacaciones', Record<never, never>, Record<never, never>>,
     'procesos-grabar-pedido': RouteRecordInfo<'procesos-grabar-pedido', '/procesos/grabar-pedido', Record<never, never>, Record<never, never>>,

@@ -169,49 +169,6 @@ const claseIncorporacion= (row, columnfield,  value) => {
   return ''
 }
  
-const claseRetencion= (row, columnfield,  value) => {
-  if (row === 2) {
-    const dataRecord = refGridRetencion.value.getrowdata(1)
-    let objeTota = ''
-    if (columnfield === 'codi_camp_1') {
-      
-      objeTota = parseInt(dataRecord.codi_camp_1)
-    } else if (columnfield === 'codi_camp_2') {
-      
-      objeTota = parseInt(dataRecord.codi_camp_2)
-    } else if (columnfield === 'codi_camp_3') {
-      
-      objeTota = parseInt(dataRecord.codi_camp_3)
-    } else if (columnfield === 'codi_camp_4') {
-      
-      objeTota = parseInt(dataRecord.codi_camp_4)
-    } else if (columnfield === 'codi_camp_5') {
-      
-      objeTota = parseInt(dataRecord.codi_camp_5)
-    } else if (columnfield === 'codi_camp_6') {
-      
-      objeTota = parseInt(dataRecord.codi_camp_6)
-    } else if (columnfield === 'tota_camp') {
-      
-      objeTota = parseInt(dataRecord.tota_camp)
-    }
-    const cumpTota = parseFloat(value).toFixed(2)
-    if (objeTota === 0) {
-      return ''
-    }
-    if (cumpTota >= 100) {
-      return 'text-success'
-    }
-    if (cumpTota >= 94.99 && cumpTota < 100) {
-      return 'text-warning'
-    }
-      
-    return 'text-error'
-  }
-    
-  return ''
-}
-
 const claseActividad= (row, columnfield,  value) => {
   if (row === 2) {
     const dataRecord = refGridActividad.value.getrowdata(1)
@@ -304,25 +261,6 @@ const claseCobranza= (row, columnfield,  value) => {
     
   return ''
 }
-  
-// const claseLiderPlanCarrera= (row, columnfield,  value) => {
-//   if (row === 1) {
-//     const cumpTota = parseFloat(value).toFixed(2)
-//     if (value === '0.00') {
-//       return ''
-//     }
-//     if (cumpTota >= 70) {
-//       return 'text-success'
-//     }
-//     if (cumpTota >= 50 && cumpTota < 70) {
-//       return 'text-warning'
-//     }
-      
-//     return 'text-error'
-//   }
-    
-//   return ''
-// }
 
 const claseCapitalizacion = (row, columnfield,  value) => {
   if (formulario.value.zona !== '') {
@@ -613,93 +551,218 @@ const claseConsecutividadNuevas= (row, columnfield,  value) => {
   return ''
 }
 
-// const clasePlanCarrera = (row, columnfield, value) => {
-//   if (row === 2) {
-//     const dataRecord = refGridPlanCarrera.value.getrowdata(0)
-//     let objeTota = ''
-//     if (columnfield === 'codi_camp_1') {
-      
-//       objeTota = parseInt(dataRecord.codi_camp_1)
-//     } else if (columnfield === 'codi_camp_2') {
-      
-//       objeTota = parseInt(dataRecord.codi_camp_2)
-//     } else if (columnfield === 'codi_camp_3') {
-      
-//       objeTota = parseInt(dataRecord.codi_camp_3)
-//     } else if (columnfield === 'codi_camp_4') {
-      
-//       objeTota = parseInt(dataRecord.codi_camp_4)
-//     } else if (columnfield === 'codi_camp_5') {
-      
-//       objeTota = parseInt(dataRecord.codi_camp_5)
-//     } else if (columnfield === 'codi_camp_6') {
-      
-//       objeTota = parseInt(dataRecord.codi_camp_6)
-//     } else if (columnfield === 'tota_camp') {
-      
-//       objeTota = parseInt(dataRecord.tota_camp)
-//     }
-//     const cumpTota = parseFloat(value).toFixed(2)
-//     if (objeTota === 0) {
-//       return ''
-//     }
-//     if (cumpTota >= 100) {
-//       return 'text-success'
-//     }
-//     if (cumpTota >= 94.99 && cumpTota < 100) {
-//       return 'text-warning'
-//     }
-    
-//     return 'text-error'
-//   }
-  
-//   return ''
-// }
-
-const claseConsecutividadRetencion = (row, columnfield, value) => {
-  if (row === 2) {
-    const dataRecord = refGridConsecutividadRetencion.value.getrowdata(0)
-    let objeTota = ''
-    if (columnfield === 'codi_camp_1') {
-      
-      objeTota = parseFloat(dataRecord.codi_camp_1).toFixed(2)
-    }
-    if (columnfield === 'codi_camp_2') {
-      
-      objeTota = parseFloat(dataRecord.codi_camp_2).toFixed(2)
-    }
-    if (columnfield === 'codi_camp_3') {
-      
-      objeTota = parseFloat(dataRecord.codi_camp_3).toFixed(2)
-    }
-    if (columnfield === 'codi_camp_4') {
-      
-      objeTota = parseFloat(dataRecord.codi_camp_4).toFixed(2)
-    }
-    if (columnfield === 'codi_camp_5') {
-      
-      objeTota = parseFloat(dataRecord.codi_camp_5).toFixed(2)
-    }
-    if (columnfield === 'codi_camp_6') {
-      
-      objeTota = parseFloat(dataRecord.codi_camp_6).toFixed(2)
-    }
-    if (columnfield === 'tota_camp') {
-      
-      objeTota = parseFloat(dataRecord.tota_camp).toFixed(2)
-    }
+const claseConsecutividadTotal= (row, columnfield,  value) => {
+  if (row === 0 && formulario.value.zona !== '') {
     const cumpTota = parseFloat(value).toFixed(2)
-    if (objeTota > 0) {
-      if (cumpTota >= 0) {
+    if (columnfield === 'codi_camp_1') {
+      if (codi_camp_1.value=== '0') {
+        return ''
+      }
+      if (cumpTota >= 80) {
         return 'text-success'
       }
-      
+        
       return 'text-error'
     }
-    
-    return ''
+    if (columnfield === 'codi_camp_2') {
+      if (codi_camp_2.value=== '0') {
+        return ''
+      }
+      if (cumpTota >= 80) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_3') {
+      if (codi_camp_3.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 80) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_4') {
+      if (codi_camp_4.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 80) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_5') {
+      if (codi_camp_5.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 80) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_6') {
+      if (codi_camp_6.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 80) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'tota_camp') {
+      if (cumpTota >= 80) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
   }
-  
+  if (row === 1 && formulario.value.zona !== '') {
+    const cumpTota = parseFloat(value).toFixed(2)
+    if (columnfield === 'codi_camp_1') {
+      if (codi_camp_1.value=== '0') {
+        return ''
+      }
+      if (cumpTota >= 70) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_2') {
+      if (codi_camp_2.value=== '0') {
+        return ''
+      }
+      if (cumpTota >= 70) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_3') {
+      if (codi_camp_3.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 70) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_4') {
+      if (codi_camp_4.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 70) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_5') {
+      if (codi_camp_5.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 70) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_6') {
+      if (codi_camp_6.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 70) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'tota_camp') {
+      if (cumpTota >= 70) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+  }
+  if (row === 2 && formulario.value.zona !== '') {
+    const cumpTota = parseFloat(value).toFixed(2)
+    if (columnfield === 'codi_camp_1') {
+      if (codi_camp_1.value=== '0') {
+        return ''
+      }
+      if (cumpTota >= 60) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_2') {
+      if (codi_camp_2.value=== '0') {
+        return ''
+      }
+      if (cumpTota >= 60) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_3') {
+      if (codi_camp_3.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 60) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_4') {
+      if (codi_camp_4.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 60) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_5') {
+      if (codi_camp_5.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 60) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'codi_camp_6') {
+      if (codi_camp_6.value === '0') {
+        return ''
+      }
+      if (cumpTota >= 60) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+    if (columnfield === 'tota_camp') {
+      if (cumpTota >= 60) {
+        return 'text-success'
+      }
+        
+      return 'text-error'
+    }
+  }
+    
   return ''
 }
 
@@ -723,24 +786,6 @@ const sourceIncorporacion = ref({
 
 const adaptadorIncorporacion = new jqx.dataAdapter(sourceIncorporacion.value)
 const refGridIncorporacion = ref()
-
-const sourceRetencion = ref({
-  localdata: [],
-  datafields: [
-    { name: 'nomb_conc', type: 'string' },
-    { name: 'codi_camp_1', type: 'string' },
-    { name: 'codi_camp_2', type: 'string' },
-    { name: 'codi_camp_3', type: 'string' },
-    { name: 'codi_camp_4', type: 'string' },
-    { name: 'codi_camp_5', type: 'string' },
-    { name: 'codi_camp_6', type: 'string' },
-    { name: 'tota_camp', type: 'string' },
-  ],
-  datatype: 'json',
-})
-
-const adaptadorRetencion = new jqx.dataAdapter(sourceRetencion.value)
-const refGridRetencion = ref()
 
 const sourceActividad = ref({
   localdata: [],
@@ -775,8 +820,26 @@ const sourceConsecutividadNuevas = ref({
   datatype: 'json',
 })
 
+const sourceConsecutividadTotal = ref({
+  localdata: [],
+  datafields: [
+    { name: 'nomb_conc', type: 'string' },
+    { name: 'codi_camp_1', type: 'number' },
+    { name: 'codi_camp_2', type: 'number' },
+    { name: 'codi_camp_3', type: 'number' },
+    { name: 'codi_camp_4', type: 'number' },
+    { name: 'codi_camp_5', type: 'number' },
+    { name: 'codi_camp_6', type: 'number' },
+    { name: 'tota_camp', type: 'number' },
+  ],
+  datatype: 'json',
+})
+
 const adaptadorConsecutividadNuevas = new jqx.dataAdapter(sourceConsecutividadNuevas.value)
 const refGridConsecutividadNuevas = ref()
+
+const adaptadorConsecutividadTotal = new jqx.dataAdapter(sourceConsecutividadTotal.value)
+const refGridConsecutividadTotal = ref()
 
 const sourceCapitalizacion = ref({
   localdata: [],
@@ -813,42 +876,6 @@ const sourceCobranza = ref({
 
 const adaptadorCobranza = new jqx.dataAdapter(sourceCobranza.value)
 const refGridCobranza = ref()
-
-// const sourcePlanCarrera = ref({
-//   localdata: [],
-//   datafields: [
-//     { name: 'nomb_conc', type: 'string' },
-//     { name: 'codi_camp_1', type: 'string' },
-//     { name: 'codi_camp_2', type: 'string' },
-//     { name: 'codi_camp_3', type: 'string' },
-//     { name: 'codi_camp_4', type: 'string' },
-//     { name: 'codi_camp_5', type: 'string' },
-//     { name: 'codi_camp_6', type: 'string' },
-//     { name: 'tota_camp', type: 'string' },
-//   ],
-//   datatype: 'json',
-// })
-
-// const adaptadorPlanCarrera = new jqx.dataAdapter(sourcePlanCarrera.value)
-// const refGridPlanCarrera = ref()
-
-const sourceConsecutividadRetencion = ref({
-  localdata: [],
-  datafields: [
-    { name: 'nomb_conc', type: 'string' },
-    { name: 'codi_camp_1', type: 'number' },
-    { name: 'codi_camp_2', type: 'number' },
-    { name: 'codi_camp_3', type: 'number' },
-    { name: 'codi_camp_4', type: 'number' },
-    { name: 'codi_camp_5', type: 'number' },
-    { name: 'codi_camp_6', type: 'number' },
-    { name: 'tota_camp', type: 'number' },
-  ],
-  datatype: 'json',
-})
-
-const adaptadorConsecutividadRetencion = new jqx.dataAdapter(sourceConsecutividadRetencion.value)
-const refGridConsecutividadRetencion = ref()
 
 const sourceNumeroLideres = ref({
   localdata: [],
@@ -1012,24 +1039,6 @@ const sourceNivelLider = ref({
 const adaptadorNivelLider = new jqx.dataAdapter(sourceNivelLider.value)
 const refGridNivelLider = ref()
 
-// const sourceLiderPlanCarrera = ref({
-//   localdata: [],
-//   datafields: [
-//     { name: 'nomb_conc', type: 'string' },
-//     { name: 'codi_camp_1', type: 'string' },
-//     { name: 'codi_camp_2', type: 'string' },
-//     { name: 'codi_camp_3', type: 'string' },
-//     { name: 'codi_camp_4', type: 'string' },
-//     { name: 'codi_camp_5', type: 'string' },
-//     { name: 'codi_camp_6', type: 'string' },
-//     { name: 'tota_camp', type: 'string' },
-//   ],
-//   datatype: 'json',
-// })
-
-// const adaptadorLiderPlanCarrera = new jqx.dataAdapter(sourceLiderPlanCarrera.value)
-// const refGridLiderPlanCarrera = ref()
-
 const columnsPedidosTotales =  [
   {
     text: 'Concepto',
@@ -1159,73 +1168,6 @@ const columnsIncorporacion = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseIncorporacion,
-  },
-]
-
-
-const columnsRetencion = [
-  {
-    text: 'Concepto',
-    dataField: 'nomb_conc',
-    width: '23%',
-    cellsalign: 'left',
-    align: 'center',
-  },
-  {
-    text: '0',
-    dataField: 'codi_camp_1',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseRetencion,
-  },
-  {
-    text: codi_camp_2.value,
-    dataField: 'codi_camp_2',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseRetencion,
-  },
-  {
-    text: codi_camp_3.value,
-    dataField: 'codi_camp_3',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseRetencion,
-  },
-  {
-    text: codi_camp_4.value,
-    dataField: 'codi_camp_4',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseRetencion,
-  },
-  {
-    text: codi_camp_5.value,
-    dataField: 'codi_camp_5',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseRetencion,
-  },
-  {
-    text: codi_camp_6.value,
-    dataField: 'codi_camp_6',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseRetencion,
-  },
-  {
-    text: 'Total',
-    dataField: 'tota_camp',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseRetencion,
   },
 ]
 
@@ -1375,6 +1317,79 @@ const columnsConsecutividadNuevas = [
   },
 ]
 
+const columnsConsecutividadTotal = [
+  {
+    text: 'Concepto',
+    dataField: 'nomb_conc',
+    width: '23%',
+    cellsalign: 'left',
+    align: 'center',
+  },
+  {
+    text: '0',
+    dataField: 'codi_camp_1',
+    width: '11%',
+    cellsalign: 'center',
+    align: 'center',
+    cellsformat: 'P2',
+    cellclassname: claseConsecutividadTotal,
+  },
+  {
+    text: codi_camp_2.value,
+    dataField: 'codi_camp_2',
+    width: '11%',
+    cellsalign: 'center',
+    align: 'center',
+    cellsformat: 'P2',
+    cellclassname: claseConsecutividadTotal,
+  },
+  {
+    text: codi_camp_3.value,
+    dataField: 'codi_camp_3',
+    width: '11%',
+    cellsalign: 'center',
+    align: 'center',
+    cellsformat: 'P2',
+    cellclassname: claseConsecutividadTotal,
+  },
+  {
+    text: codi_camp_4.value,
+    dataField: 'codi_camp_4',
+    width: '11%',
+    cellsalign: 'center',
+    align: 'center',
+    cellsformat: 'P2',
+    cellclassname: claseConsecutividadTotal,
+  },
+  {
+    text: codi_camp_5.value,
+    dataField: 'codi_camp_5',
+    width: '11%',
+    cellsalign: 'center',
+    align: 'center',
+    cellsformat: 'P2',
+    cellclassname: claseConsecutividadTotal,
+  },
+  {
+    text: codi_camp_6.value,
+    dataField: 'codi_camp_6',
+    width: '11%',
+    cellsalign: 'center',
+    align: 'center',
+    cellsformat: 'P2',
+    cellclassname: claseConsecutividadTotal,
+  },
+  {
+    text: 'Total',
+    dataField: 'tota_camp',
+    width: '11%',
+    cellsalign: 'center',
+    align: 'center',
+    cellsformat: 'P2',
+    cellclassname: claseConsecutividadTotal,
+  },
+]
+
 
 const columnsCapitalizacion = [
   {
@@ -1457,7 +1472,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1466,7 +1481,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1475,7 +1490,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1484,7 +1499,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1493,7 +1508,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1502,7 +1517,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1511,147 +1526,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'D2',
-  },
-]
-
-
-// const columnsPlanCarrera = [
-//   {
-//     text: 'Concepto',
-//     dataField: 'nomb_conc',
-//     width: '23%',
-//     cellsalign: 'left',
-//     align: 'center',
-//   },
-//   {
-//     text: '0',
-//     dataField: 'codi_camp_1',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: clasePlanCarrera,
-//   },
-//   {
-//     text: codi_camp_2.value,
-//     dataField: 'codi_camp_2',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: clasePlanCarrera,
-//   },
-//   {
-//     text: codi_camp_3.value,
-//     dataField: 'codi_camp_3',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: clasePlanCarrera,
-//   },
-//   {
-//     text: codi_camp_4.value,
-//     dataField: 'codi_camp_4',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: clasePlanCarrera,
-//   },
-//   {
-//     text: codi_camp_5.value,
-//     dataField: 'codi_camp_5',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: clasePlanCarrera,
-//   },
-//   {
-//     text: codi_camp_6.value,
-//     dataField: 'codi_camp_6',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: clasePlanCarrera,
-//   },
-//   {
-//     text: 'Total',
-//     dataField: 'tota_camp',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: clasePlanCarrera,
-//   },
-// ]
-
-const columnsConsecutividadRetencion = [
-  {
-    text: 'Concepto',
-    dataField: 'nomb_conc',
-    width: '23%',
-    cellsalign: 'left',
-    align: 'center',
-  },
-  {
-    text: '0',
-    dataField: 'codi_camp_1',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseConsecutividadRetencion,
-    cellsformat: 'P2',
-  },
-  {
-    text: codi_camp_2.value,
-    dataField: 'codi_camp_2',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseConsecutividadRetencion,
-    cellsformat: 'P2',
-  },
-  {
-    text: codi_camp_3.value,
-    dataField: 'codi_camp_3',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseConsecutividadRetencion,
-    cellsformat: 'P2',
-  },
-  {
-    text: codi_camp_4.value,
-    dataField: 'codi_camp_4',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseConsecutividadRetencion,
-    cellsformat: 'P2',
-  },
-  {
-    text: codi_camp_5.value,
-    dataField: 'codi_camp_5',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseConsecutividadRetencion,
-    cellsformat: 'P2',
-  },
-  {
-    text: codi_camp_6.value,
-    dataField: 'codi_camp_6',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseConsecutividadRetencion,
-    cellsformat: 'P2',
-  },
-  {
-    text: 'Total',
-    dataField: 'tota_camp',
-    width: '11%',
-    cellsalign: 'center',
-    align: 'center',
-    cellclassname: claseConsecutividadRetencion,
-    cellsformat: 'P2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1687,6 +1562,7 @@ const columnsNumeroLideres = [
     align: 'center',
     cellsformat: 'N',
   },
+  
   {
     text: codi_camp_4.value,
     dataField: 'codi_camp_4',
@@ -1717,7 +1593,7 @@ const columnsNumeroLideres = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'D2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1735,7 +1611,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1743,7 +1619,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1751,7 +1627,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1759,7 +1635,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1767,7 +1643,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1775,7 +1651,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1783,7 +1659,7 @@ const columnsPppFacturado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1801,7 +1677,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1809,7 +1685,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1817,7 +1693,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1825,7 +1701,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1833,7 +1709,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1841,7 +1717,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1849,7 +1725,7 @@ const columnsPppRecepcionado = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1868,7 +1744,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1876,7 +1752,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1884,7 +1760,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1892,7 +1768,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1900,7 +1776,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1908,7 +1784,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1916,7 +1792,7 @@ const columnsVentaLinea = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
 ]
 
@@ -1927,7 +1803,7 @@ const columnsVentaRecepcionada = [
     width: '23%',
     cellsalign: 'left',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: '0',
@@ -1935,7 +1811,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_2.value,
@@ -1943,7 +1819,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1951,7 +1827,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_4.value,
@@ -1959,7 +1835,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1967,7 +1843,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1975,7 +1851,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1983,7 +1859,7 @@ const columnsVentaRecepcionada = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
   },
 ]
 
@@ -2240,76 +2116,9 @@ const columnsNivelLider = [
     dataField: 'tota_camp',
     width: '11%',
     cellsalign: 'center',
-    align: 'center',
-    cellsformat: 'D2',
+    align: 'center'
   },
 ]
-
-// const columnsLiderPlanCarrera = [
-//   {
-//     text: 'Concepto',
-//     dataField: 'nomb_conc',
-//     width: '23%',
-//     cellsalign: 'left',
-//     align: 'center',
-//   },
-//   {
-//     text: '0',
-//     dataField: 'codi_camp_1',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: claseLiderPlanCarrera,
-//   },
-//   {
-//     text: codi_camp_2.value,
-//     dataField: 'codi_camp_2',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: claseLiderPlanCarrera,
-//   },
-//   {
-//     text: codi_camp_3.value,
-//     dataField: 'codi_camp_3',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: claseLiderPlanCarrera,
-//   },
-//   {
-//     text: codi_camp_4.value,
-//     dataField: 'codi_camp_4',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: claseLiderPlanCarrera,
-//   },
-//   {
-//     text: codi_camp_5.value,
-//     dataField: 'codi_camp_5',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: claseLiderPlanCarrera,
-//   },
-//   {
-//     text: codi_camp_6.value,
-//     dataField: 'codi_camp_6',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: claseLiderPlanCarrera,
-//   },
-//   {
-//     text: 'Total',
-//     dataField: 'tota_camp',
-//     width: '11%',
-//     cellsalign: 'center',
-//     align: 'center',
-//     cellclassname: claseLiderPlanCarrera,
-//   },
-// ]
 
 const campanaOptions = ref([])
 const errorCampana = ref(false)
@@ -2416,26 +2225,20 @@ const onGenerar = async () => {
     sourcePedidosTotales.value.localdata = data.data_pedi_tota
     refGridPedidosTotales.value.updatebounddata('cells')
     
-    sourceRetencion.value.localdata = data.data_pedi_rete
-    refGridRetencion.value.updatebounddata('cells')
-    
     sourceActividad.value.localdata = data.data_acti
     refGridActividad.value.updatebounddata('cells')
     
     sourceConsecutividadNuevas.value.localdata = data.data_cons_nuev
     refGridConsecutividadNuevas.value.updatebounddata('cells')
+
+    sourceConsecutividadTotal.value.localdata = data.data_cons_rete
+    refGridConsecutividadTotal.value.updatebounddata('cells')
     
     sourceCapitalizacion.value.localdata = data.data_capi
     refGridCapitalizacion.value.updatebounddata('cells')
     
     sourceCobranza.value.localdata = data.data_cobr
     refGridCobranza.value.updatebounddata('cells')
-    
-    // sourcePlanCarrera.value.localdata = data.data_plan_carr
-    // refGridPlanCarrera.value.updatebounddata('cells')
-
-    sourceConsecutividadRetencion.value.localdata = data.data_cons_rete
-    refGridConsecutividadRetencion.value.updatebounddata('cells')
 
     sourceNumeroLideres.value.localdata = data.data_nume_lide
     refGridNumeroLideres.value.updatebounddata('cells')
@@ -2464,9 +2267,6 @@ const onGenerar = async () => {
     sourceNivelLider.value.localdata = data.data_nive_lide
     refGridNivelLider.value.updatebounddata('cells')
 
-    // sourceLiderPlanCarrera.value.localdata = data.data_lide_plan_carr
-    // refGridLiderPlanCarrera.value.updatebounddata('cells')
-
     refGridIncorporacion.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
     refGridIncorporacion.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
     refGridIncorporacion.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
@@ -2480,12 +2280,7 @@ const onGenerar = async () => {
     refGridPedidosTotales.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
     refGridPedidosTotales.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
     refGridPedidosTotales.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
-    refGridRetencion.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
-    refGridRetencion.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
-    refGridRetencion.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
-    refGridRetencion.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
-    refGridRetencion.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
-    refGridRetencion.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
+
     refGridActividad.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
     refGridActividad.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
     refGridActividad.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
@@ -2498,6 +2293,12 @@ const onGenerar = async () => {
     refGridConsecutividadNuevas.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
     refGridConsecutividadNuevas.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
     refGridConsecutividadNuevas.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
+    refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
+    refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
+    refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
+    refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
+    refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
+    refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
     refGridCapitalizacion.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
     refGridCapitalizacion.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
     refGridCapitalizacion.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
@@ -2511,18 +2312,7 @@ const onGenerar = async () => {
     refGridCobranza.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
     refGridCobranza.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
     refGridCobranza.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
-    // refGridPlanCarrera.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
-    // refGridPlanCarrera.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
-    // refGridPlanCarrera.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
-    // refGridPlanCarrera.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
-    // refGridPlanCarrera.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
-    // refGridPlanCarrera.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
-    refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
-    refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
-    refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
-    refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
-    refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
-    refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
+
     refGridNumeroLideres.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
     refGridNumeroLideres.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
     refGridNumeroLideres.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
@@ -2577,12 +2367,7 @@ const onGenerar = async () => {
     refGridNivelLider.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
     refGridNivelLider.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
     refGridNivelLider.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
-    // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
-    // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
-    // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
-    // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
-    // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
-    // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
+
   } catch (error) {
     if (typeof error.response!= "undefined") {
       const { data } = error.response._data    
@@ -2632,12 +2417,7 @@ const onLimpiar= async () => {
   refGridPedidosTotales.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
   refGridPedidosTotales.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
   refGridPedidosTotales.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
-  refGridRetencion.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
-  refGridRetencion.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
-  refGridRetencion.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
-  refGridRetencion.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
-  refGridRetencion.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
-  refGridRetencion.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
+
   refGridActividad.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
   refGridActividad.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
   refGridActividad.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
@@ -2650,6 +2430,14 @@ const onLimpiar= async () => {
   refGridConsecutividadNuevas.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
   refGridConsecutividadNuevas.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
   refGridConsecutividadNuevas.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
+  
+  refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
+  refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
+  refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
+  refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
+  refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
+  refGridConsecutividadTotal.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
+
   refGridCapitalizacion.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
   refGridCapitalizacion.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
   refGridCapitalizacion.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
@@ -2663,18 +2451,7 @@ const onLimpiar= async () => {
   refGridCobranza.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
   refGridCobranza.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
   refGridCobranza.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
-  // refGridPlanCarrera.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
-  // refGridPlanCarrera.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
-  // refGridPlanCarrera.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
-  // refGridPlanCarrera.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
-  // refGridPlanCarrera.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
-  // refGridPlanCarrera.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
-  refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
-  refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
-  refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
-  refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
-  refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
-  refGridConsecutividadRetencion.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
+
   refGridNumeroLideres.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
   refGridNumeroLideres.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
   refGridNumeroLideres.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
@@ -2729,12 +2506,7 @@ const onLimpiar= async () => {
   refGridNivelLider.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
   refGridNivelLider.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
   refGridNivelLider.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
-  // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_1', 'text', codi_camp_1.value)
-  // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_2', 'text', codi_camp_2.value)
-  // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_3', 'text', codi_camp_3.value)
-  // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_4', 'text', codi_camp_4.value)
-  // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_5', 'text', codi_camp_5.value)
-  // refGridLiderPlanCarrera.value.setcolumnproperty('codi_camp_6', 'text', codi_camp_6.value)
+
   inicioVariables()
 }
 
@@ -2749,17 +2521,16 @@ const onExcel = async () => {
         cabecera: headers.value,
         incorporacion: JSON.stringify(refGridIncorporacion.value.exportdata('xml')),
         consecutividadNuevas: JSON.stringify(refGridConsecutividadNuevas.value.exportdata('xml')),
-        retencion: JSON.stringify(refGridRetencion.value.exportdata('xml')),
+        consecutividadTotal: JSON.stringify(refGridConsecutividadTotal.value.exportdata('xml')),
         pedidosTotales: JSON.stringify(refGridPedidosTotales.value.exportdata('xml')),
-        // planCarrera: JSON.stringify(refGridPlanCarrera.value.exportdata('xml')),
-        consecutividadRetencion: JSON.stringify(refGridConsecutividadRetencion.value.exportdata('xml')),
+
         actividad: JSON.stringify(refGridActividad.value.exportdata('xml')),
         cobranza: JSON.stringify(refGridCobranza.value.exportdata('xml')),
         capitalizacion: JSON.stringify(refGridCapitalizacion.value.exportdata('xml')),
         retencionPegs: JSON.stringify(refGridRetencionPegs.value.exportdata('xml')),
         numeroLideres: JSON.stringify(refGridNumeroLideres.value.exportdata('xml')),
         nivelLider: JSON.stringify(refGridNivelLider.value.exportdata('xml')),
-        // liderPlanCarrera: JSON.stringify(refGridLiderPlanCarrera.value.exportdata('xml')),
+  
         ventaLinea: JSON.stringify(refGridVentaLinea.value.exportdata('xml')),
         pppFacturado: JSON.stringify(refGridPppFacturado.value.exportdata('xml')),
         ventaRecepcionada: JSON.stringify(refGridVentaRecepcionada.value.exportdata('xml')),
@@ -2847,42 +2618,7 @@ const inicioVariables = () => {
   ]
   sourceIncorporacion.value.datatype = 'json'
   refGridIncorporacion.value.updatebounddata('cells')
-  
-  sourceRetencion.value.localdata = [
-    {
-      nomb_conc: 'Facturado',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
-    },
-    {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0',
-      codi_camp_2: '0',
-      codi_camp_3: '0',
-      codi_camp_4: '0',
-      codi_camp_5: '0',
-      codi_camp_6: '0',
-      tota_camp: '0',
-    },
-    {
-      nomb_conc: '% Cumplimiento',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
-  ]
-  sourceRetencion.value.datatype = 'json'
-  refGridRetencion.value.updatebounddata('cells')
-  
+
   sourceActividad.value.localdata = [
     {
       nomb_conc: 'Facturado',
@@ -2894,26 +2630,8 @@ const inicioVariables = () => {
       codi_camp_6: '0.00',
       tota_camp: '0.00',
     },
-    {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
-    {
-      nomb_conc: 'Diferencia',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
+   
+    
   ]
   sourceActividad.value.datatype = 'json'
   refGridActividad.value.updatebounddata('cells')
@@ -2950,8 +2668,44 @@ const inicioVariables = () => {
       tota_camp: '0.00',
     },
   ]
+
+  sourceConsecutividadTotal.value.localdata = [
+    {
+      nomb_conc: 'Concepto',
+      codi_camp_1: '0.00',
+      codi_camp_2: '0.00',
+      codi_camp_3: '0.00',
+      codi_camp_4: '0.00',
+      codi_camp_5: '0.00',
+      codi_camp_6: '0.00',
+      tota_camp: '0.00',
+    },
+    {
+      nomb_conc: 'Facturado',
+      codi_camp_1: '0.00',
+      codi_camp_2: '0.00',
+      codi_camp_3: '0.00',
+      codi_camp_4: '0.00',
+      codi_camp_5: '0.00',
+      codi_camp_6: '0.00',
+      tota_camp: '0.00',
+    },
+    {
+      nomb_conc: '% Cumplimiento',
+      codi_camp_1: '0.00',
+      codi_camp_2: '0.00',
+      codi_camp_3: '0.00',
+      codi_camp_4: '0.00',
+      codi_camp_5: '0.00',
+      codi_camp_6: '0.00',
+      tota_camp: '0.00',
+    },
+  ]
   sourceConsecutividadNuevas.value.datatype = 'json'
   refGridConsecutividadNuevas.value.updatebounddata('cells')
+
+  sourceConsecutividadTotal.value.datatype = 'json'
+  refGridConsecutividadTotal.value.updatebounddata('cells')
   
   sourceCapitalizacion.value.localdata = [
     {
@@ -3022,77 +2776,7 @@ const inicioVariables = () => {
   ]
   sourceCobranza.value.datatype = 'json'
   refGridCobranza.value.updatebounddata('cells')
-  
-  // sourcePlanCarrera.value.localdata = [
-  //   {
-  //     nomb_conc: 'Objetivo',
-  //     codi_camp_1: '0',
-  //     codi_camp_2: '0',
-  //     codi_camp_3: '0',
-  //     codi_camp_4: '0',
-  //     codi_camp_5: '0',
-  //     codi_camp_6: '0',
-  //     tota_camp: '0',
-  //   },
-  //   {
-  //     nomb_conc: 'Diferencia',
-  //     codi_camp_1: '0',
-  //     codi_camp_2: '0',
-  //     codi_camp_3: '0',
-  //     codi_camp_4: '0',
-  //     codi_camp_5: '0',
-  //     codi_camp_6: '0',
-  //     tota_camp: '0',
-  //   },
-  //   {
-  //     nomb_conc: '% Cumplimiento',
-  //     codi_camp_1: '0.00',
-  //     codi_camp_2: '0.00',
-  //     codi_camp_3: '0.00',
-  //     codi_camp_4: '0.00',
-  //     codi_camp_5: '0.00',
-  //     codi_camp_6: '0.00',
-  //     tota_camp: '0.00',
-  //   },
-  // ]
-  // sourcePlanCarrera.value.datatype = 'json'
-  // refGridPlanCarrera.value.updatebounddata('cells')
-  
-  sourceConsecutividadRetencion.value.localdata = [
-    {
-      nomb_conc: 'Facturado',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
-    {
-      nomb_conc: 'Objetivo',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
-    {
-      nomb_conc: 'Diferencia',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
-  ]
-  sourceConsecutividadRetencion.value.datatype = 'json'
-  refGridConsecutividadRetencion.value.updatebounddata('cells')
-  
+ 
   sourceNumeroLideres.value.localdata = [
     {
       nomb_conc: 'Nro',
@@ -3125,7 +2809,7 @@ const inicioVariables = () => {
   
   sourcePppRecepcionado.value.localdata = [
     {
-      nomb_conc: 'Recepcionado',
+      nomb_conc: 'Facturado',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
@@ -3155,7 +2839,7 @@ const inicioVariables = () => {
   
   sourceVentaRecepcionada.value.localdata = [
     {
-      nomb_conc: 'Recepcionado',
+      nomb_conc: 'Facturado',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
@@ -3179,33 +2863,23 @@ const inicioVariables = () => {
       codi_camp_6: '0.00',
       tota_camp: '0.00',
     },
-    {
-      nomb_conc: 'Corte',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
-    {
-      nomb_conc: 'Diferencia',
-      codi_camp_1: '0.00',
-      codi_camp_2: '0.00',
-      codi_camp_3: '0.00',
-      codi_camp_4: '0.00',
-      codi_camp_5: '0.00',
-      codi_camp_6: '0.00',
-      tota_camp: '0.00',
-    },
   ]
   sourceFaltante.value.datatype = 'json'
   refGridFaltante.value.updatebounddata('cells')
   
   sourceCanje.value.localdata = [
     {
-      nomb_conc: 'Porcentaje',
+      nomb_conc: 'Venta Neta',
+      codi_camp_1: '0.00',
+      codi_camp_2: '0.00',
+      codi_camp_3: '0.00',
+      codi_camp_4: '0.00',
+      codi_camp_5: '0.00',
+      codi_camp_6: '0.00',
+      tota_camp: '0.00',
+    },
+     {
+      nomb_conc: '% de C&D',
       codi_camp_1: '0.00',
       codi_camp_2: '0.00',
       codi_camp_3: '0.00',
@@ -3338,32 +3012,6 @@ const inicioVariables = () => {
   sourceNivelLider.value.datatype = 'json'
   refGridNivelLider.value.updatebounddata('cells')
 
-  // sourceLiderPlanCarrera.value.localdata = [
-  //   {
-  //     nomb_conc: '',
-  //     codi_camp_1: '0',
-  //     codi_camp_2: '0',
-  //     codi_camp_3: '0',
-  //     codi_camp_4: '0',
-  //     codi_camp_5: '0',
-  //     codi_camp_6: '0',
-  //     tota_camp: '0',
-  //   },
-  //   {
-  //     nomb_conc: 'Porcentaje',
-  //     codi_camp_1: '0.00',
-  //     codi_camp_2: '0.00',
-  //     codi_camp_3: '0.00',
-  //     codi_camp_4: '0.00',
-  //     codi_camp_5: '0.00',
-  //     codi_camp_6: '0.00',
-  //     tota_camp: '0.00',
-  //   },
-  // ]
-  // sourceLiderPlanCarrera.value.datatype = 'json'
-  // refGridLiderPlanCarrera.value.updatebounddata(
-  //   'cells',
-  // )
 }
 
 const limpiarValidacion = () => {
@@ -3373,8 +3021,35 @@ const limpiarValidacion = () => {
   errorMensajeZona.value = ''
 }
 </script>
+<style>
+/* Aplica solo dentro del módulo específico */
+.cont_sema_zona .jqx-grid-cell,
+.cont_sema_zona .jqx-grid-column-header {
+  border-right: none !important;  /* Quitar línea vertical derecha */
+  border-left: none !important;   /* Quitar línea vertical izquierda si existe */
+  border-bottom: 1px solid #e0e0e0 !important; /* Línea horizontal */
+}
 
-<template>
+/* Elimina bordes laterales del contenido */
+.cont_sema_zona .jqx-grid-content {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* También afecta la barra de estado si la hay */
+.cont_sema_zona .jqx-grid-statusbar {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Elimina cualquier borde del grid completo */
+.cont_sema_zona .jqx-widget {
+  border: none !important;
+}
+</style>
+
+<template >
+  
   <div>
     <AppPlantilla>
       <template #botones>
@@ -3382,638 +3057,604 @@ const limpiarValidacion = () => {
         <ExcelBoton @procesar="onExcel" />
         <LimpiarBoton @procesar="onLimpiar" />
       </template>
-      <template #contenido>
-        <VRow>
-          <VCol cols="12">
-            <VCard title="Buscar semáforo">
-              <VCardText>
-                <VRow justify="space-between">
-                  <VCol
-                    cols="12"
-                    md="4"
-                  >
-                    <AppSelect
-                      v-model="formulario.campana"
-                      :items="campanaOptions"
-                      label="Campaña"
-                      placeholder="Seleccionar campaña"
-                      item-title="text"
-                      item-value="id"
-                      :error="errorCampana"
-                      :error-messages="errorMensajeCampana"
+      
+      <template #contenido >
+        <!-- <div > -->
+          <VRow >
+            
+            <VCol cols="12">
+              <VCard title="Buscar semáforo">
+                <VCardText>
+                  <VRow justify="space-between">
+                    <VCol
+                      cols="12"
+                      md="4"
+                    >
+                      <AppSelect
+                        v-model="formulario.campana"
+                        :items="campanaOptions"
+                        label="Campaña"
+                        placeholder="Seleccionar campaña"
+                        item-title="text"
+                        item-value="id"
+                        :error="errorCampana"
+                        :error-messages="errorMensajeCampana"
+                      />
+                    </VCol>
+                    <VCol
+                      cols="12"
+                      md="4"
+                    >
+                      <AppSelect
+                        v-model="formulario.zona"
+                        :items="zonaOptions"
+                        label="Zona"
+                        placeholder="Seleccionar zona"
+                        item-title="text"
+                        item-value="id"
+                        :error="errorZona"
+                        :error-messages="errorMensajeZona"
+                      />
+                    </VCol>
+                  </VRow>
+                </VCardText>
+              </VCard>
+            </VCol>
+             <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Pedidos totales">
+                <VCardText>
+                  <div >
+                    <JqxGrid
+                      ref="refGridPedidosTotales"
+                      theme="material"
+                      width="100%"
+                      autoheight
+                      class="cont_sema_zona"
+                      :enablehover="false"
+                      :columns="columnsPedidosTotales"
+                      :source="adaptadorPedidosTotales"
+                      :localization="localization"
+                      enableanimations
+                      sortable
+                      sortmode="many"
+                      :filterable="false"
+                      columnsresize
+                      :altrows="false"
+                      :showemptyrow="false"
+                      columnsreorder
+                      :showstatusbar="false"
+                      :showaggregates="false"
+                      selectionmode="singlecell"
+                      scrollmode="logical"
+                      :showfilterrow="false"
+                      :columnsmenu="false"
                     />
-                  </VCol>
-                  <VCol
-                    cols="12"
-                    md="4"
-                  >
-                    <AppSelect
-                      v-model="formulario.zona"
-                      :items="zonaOptions"
-                      label="Zona"
-                      placeholder="Seleccionar zona"
-                      item-title="text"
-                      item-value="id"
-                      :error="errorZona"
-                      :error-messages="errorMensajeZona"
-                    />
-                  </VCol>
-                </VRow>
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Incorporación">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridIncorporacion"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsIncorporacion"
-                  :source="adaptadorIncorporacion"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :autoshowloadelement="false"
-                  :showdefaultloadelement="false"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Consecutividad nuevas">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridConsecutividadNuevas"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsConsecutividadNuevas"
-                  :source="adaptadorConsecutividadNuevas"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Pedido de retención">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridRetencion"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsRetencion"
-                  :source="adaptadorRetencion"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Pedidos totales">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridPedidosTotales"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsPedidosTotales"
-                  :source="adaptadorPedidosTotales"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <!-- <VCol cols="12">
-            <VCard title="Plan de carrera">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridPlanCarrera"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsPlanCarrera"
-                  :source="adaptadorPlanCarrera"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol> -->
-
-          <VCol cols="12">
-            <VCard title="Consecutividad pedido de retención">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridConsecutividadRetencion"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsConsecutividadRetencion"
-                  :source="adaptadorConsecutividadRetencion"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="% Actividad">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridActividad"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsActividad"
-                  :source="adaptadorActividad"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Cobranza">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridCobranza"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsCobranza"
-                  :source="adaptadorCobranza"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Capitalización">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridCapitalizacion"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsCapitalizacion"
-                  :source="adaptadorCapitalizacion"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Retención pegs">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridRetencionPegs"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsRetencionPegs"
-                  :source="adaptadorRetencionPegs"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Nro de líderes">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridNumeroLideres"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsNumeroLideres"
-                  :source="adaptadorNumeroLideres"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Nivel de líderes">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridNivelLider"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsNivelLider"
-                  :source="adaptadorNivelLider"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <!-- <VCol cols="12">
-            <VCard title="Líderes segun plan de carrera">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridLiderPlanCarrera"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsLiderPlanCarrera"
-                  :source="adaptadorLiderPlanCarrera"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol> -->
-
-          <VCol cols="12">
-            <VCard title="Venta linea">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridVentaLinea"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsVentaLinea"
-                  :source="adaptadorVentaLinea"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="PPP facturado">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridPppFacturado"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsPppFacturado"
-                  :source="adaptadorPppFacturado"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Venta recepcionada">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridVentaRecepcionada"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsVentaRecepcionada"
-                  :source="adaptadorVentaRecepcionada"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="PPP recepcionado">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridPppRecepcionado"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsPppRecepcionado"
-                  :source="adaptadorPppRecepcionado"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Faltante">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridFaltante"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsFaltante"
-                  :source="adaptadorFaltante"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-
-          <VCol cols="12">
-            <VCard title="Cambios y devoluciones">
-              <VCardText>
-                <JqxGrid
-                  ref="refGridCanje"
-                  theme="material"
-                  width="100%"
-                  autoheight
-                  :enablehover="false"
-                  :columns="columnsCanje"
-                  :source="adaptadorCanje"
-                  :localization="localization"
-                  enableanimations
-                  sortable
-                  sortmode="many"
-                  :filterable="false"
-                  columnsresize
-                  :altrows="false"
-                  :showemptyrow="false"
-                  columnsreorder
-                  :showstatusbar="false"
-                  :showaggregates="false"
-                  selectionmode="singlecell"
-                  scrollmode="logical"
-                  :showfilterrow="false"
-                  :columnsmenu="false"
-                />
-              </VCardText>
-            </VCard>
-          </VCol>
-        </VRow>
+                  </div>
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Incorporación">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridIncorporacion"
+                    theme="material"
+                    width="100%"
+                    class="cont_sema_zona"
+                    autoheight
+                    :enablehover="false"
+                    :columns="columnsIncorporacion"
+                    :source="adaptadorIncorporacion"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :autoshowloadelement="false"
+                    :showdefaultloadelement="false"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="% Actividad" >
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridActividad"
+                    theme="material"
+                    width="100%"
+                    class="cont_sema_zona"
+                    autoheight
+                    :enablehover="false"
+                    :columns="columnsActividad"
+                    :source="adaptadorActividad"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+   <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Consecutividad Total">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridConsecutividadTotal"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    flat
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsConsecutividadTotal"
+                    :source="adaptadorConsecutividadTotal"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Consecutividad nuevas">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridConsecutividadNuevas"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    flat
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsConsecutividadNuevas"
+                    :source="adaptadorConsecutividadNuevas"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+                <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Retención pegs">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridRetencionPegs"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                     class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsRetencionPegs"
+                    :source="adaptadorRetencionPegs"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+               <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Capitalización">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridCapitalizacion"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsCapitalizacion"
+                    :source="adaptadorCapitalizacion"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+             <VCol cols="12">
+              <VCard title="Cobranza" class="cont_sema_zona">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridCobranza"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsCobranza"
+                    :source="adaptadorCobranza"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+             <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Venta linea">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridVentaLinea"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsVentaLinea"
+                    :source="adaptadorVentaLinea"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+                <VCol cols="12" class="cont_sema_zona">
+              <VCard title="PPP facturado">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridPppFacturado"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsPppFacturado"
+                    :source="adaptadorPppFacturado"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Venta recepcionada">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridVentaRecepcionada"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsVentaRecepcionada"
+                    :source="adaptadorVentaRecepcionada"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="PPP recepcionado">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridPppRecepcionado"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsPppRecepcionado"
+                    :source="adaptadorPppRecepcionado"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Faltante">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridFaltante"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsFaltante"
+                    :source="adaptadorFaltante"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+             <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Cambios y devoluciones">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridCanje"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsCanje"
+                    :source="adaptadorCanje"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="N° de Lideres">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridNumeroLideres"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsNumeroLideres"
+                    :source="adaptadorNumeroLideres"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <VCol cols="12" class="cont_sema_zona">
+              <VCard title="Nivel de líderes">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridNivelLider"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    class="cont_sema_zona"
+                    :enablehover="false"
+                    :columns="columnsNivelLider"
+                    :source="adaptadorNivelLider"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol>
+  
+            <!-- <VCol cols="12">
+              <VCard title="Líderes segun plan de carrera">
+                <VCardText>
+                  <JqxGrid
+                    ref="refGridLiderPlanCarrera"
+                    theme="material"
+                    width="100%"
+                    autoheight
+                    :enablehover="false"
+                    :columns="columnsLiderPlanCarrera"
+                    :source="adaptadorLiderPlanCarrera"
+                    :localization="localization"
+                    enableanimations
+                    sortable
+                    sortmode="many"
+                    :filterable="false"
+                    columnsresize
+                    :altrows="false"
+                    :showemptyrow="false"
+                    columnsreorder
+                    :showstatusbar="false"
+                    :showaggregates="false"
+                    selectionmode="singlecell"
+                    scrollmode="logical"
+                    :showfilterrow="false"
+                    :columnsmenu="false"
+                  />
+                </VCardText>
+              </VCard>
+            </VCol> -->
+  
+           
+  
+        
+           
+          </VRow>
+        <!-- </div> -->
       </template>
     </AppPlantilla>
   </div>

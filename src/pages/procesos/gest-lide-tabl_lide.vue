@@ -2,32 +2,15 @@
 import { useAppStore } from '@/stores/app';
 import { style_iframe_cgis } from '@/stores/style-iframe';
 
-
 definePage({
   meta: {
-    action: 'colombia/repo_pre_pedi',
-    subject: 'colombia/repo_pre_pedi',
+    action: 'colombia/gest_lide_tabl_lide',
+    subject: 'colombia/gest_lide_tabl_lide',
   },
 })
 
 // *Declaracion de variables
 const appStore = useAppStore()
-
-const headers = [
-  {
-    title: 'Codigo',
-    key: 'codi_prog',
-  },
-  {
-    title: 'Programa',
-    key: 'nomb_prog',
-  },
-  {
-    title: 'Ruta',
-    key: 'ruta_prog',
-  },
-]
-
 const selected = ref([])
 const items = ref([])
 
@@ -66,38 +49,6 @@ const onGenerar = async () => {
   }
 }
 
-// ^Metodo registrar modulos al perfil gerente de zona
-const onRegistrar = async () => {
-  if(selected.value.length == 0) {
-    appStore.mensajeSnackbar('No a seleccionado ningun programa.')
-    appStore.color("error")
-    appStore.snackbar(true)
-  } else {
-    try {
-      appStore.mensaje('Generando proceso')
-      appStore.loading(true)
- 
-      const response = await $api(`/api/sami/v1/administracion/permisos`, {
-        method: "POST",
-        body: {
-          programas: JSON.stringify(selected.value),
-        },
-      })
-
-      let mensaje = response.message
-      mensaje = mensaje.toLowerCase()
-      mensaje = mensaje.charAt(0).toUpperCase() + mensaje.slice(1)
-      appStore.mensajeSnackbar(mensaje)
-      appStore.color("success")
-      appStore.snackbar(true)
-    } catch (e) {
-    }
-    finally {
-      appStore.loading(false)
-    }
-  }
-  
-}
 
 /**
  * funcion que permite loguear dentro del iframe 
@@ -126,17 +77,16 @@ const onLimpiar = () => {
   items.value = []
   selected.value = []
 }
-
 /**
  * url del embebido
  */
- const full_url_embed=$embed+"CI/repo_pre_pedi";
+ const full_url_embed=$embed+"CI/tab_lide";
 
-onMounted(() => {
-  appStore.titulo(`Reporte Azzorti Proyecta`)
-  onGenerar()
+onMounted(() => { 
+  appStore.titulo(`Proceso / Consolidado Campaña`) 
+  onGenerar() 
   style_iframe_cgis()
-})
+}) 
 </script>
 
 <template>
@@ -145,7 +95,7 @@ onMounted(() => {
       <template #contenido>
         <VRow>
           <VCol cols="12">
-            <VCard title="Reporte Azzorti Proyecta">
+            <VCard title="Consolidado Campaña">
               <VCardText>
                 <VCard>
                   <iframe id="iframe_option"
@@ -166,6 +116,6 @@ onMounted(() => {
 
 <style>
 #iframe_option{
-  width: 100%;
+  inline-size: 100%;
 }
 </style>

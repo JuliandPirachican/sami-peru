@@ -409,16 +409,7 @@ const inicioVariables = () => {
       codi_camp_6: '0.00',
       tota_camp: '0.00',
     }
-    // , {
-    //   nomb_conc: 'Objetivo',
-    //   codi_camp_1: '0.00',
-    //   codi_camp_2: '0.00',
-    //   codi_camp_3: '0.00',
-    //   codi_camp_4: '0.00',
-    //   codi_camp_5: '0.00',
-    //   codi_camp_6: '0.00',
-    //   tota_camp: '0.00',
-    // },
+
   ]
   itemsNivel.value = [
     {

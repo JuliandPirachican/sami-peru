@@ -1,8 +1,8 @@
-<!-- eslint-disable camelcase -->
+<!-- eslint-disable camelcase  inicio -->
 <script setup>
-import { useAppStore } from '@/stores/app';
-import { EncryptStorage } from 'encrypt-storage';
-import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue";
+import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
+import JqxGrid from "jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue"
 
 definePage({
   meta: {
@@ -43,12 +43,13 @@ const general = ref({
 
 const variables = ref([
   { title: 'Todos', value: 0 },
-  { title: 'Pedidos totales', value: 1 },
-  { title: 'Pedidos de actividad', value: 2 },
-  { title: 'Pedidos de retención', value: 3 },
   { title: 'Capitalización', value: 4 },
-  { title: 'Cobranza', value: 5 },
   { title: 'Consecutividad', value: 6 },
+  { title: 'Pedidos totales', value: 1 },
+  { title: 'Retención de pegs', value: 3 },
+
+  // { title: 'Pedidos de actividad', value: 2 },
+  // { title: 'Cobranza', value: 5 },
 ])
 
 const selectedVariable = ref(0)
@@ -513,1087 +514,216 @@ const clasePorcentaje21di = (row, columnfield, value) => {
 const cabecera = computed(() => {
   if(selectedVariable.value === 0) {
     return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente zonal',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_fina_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_tota',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_tota_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_tota_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_tota_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_tota_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_tota',
-      },
-      {
-        title: 'Cump. Fact.',
-        key: 'cump_fact_tota',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_tota',
-      },
-      {
-        title: 'Total',
-        key: 'tota_tota',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_tota',
-      },
-      {
-        title: 'Dife. tota.',
-        key: 'dife_tota',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_inco',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_inco_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_inco_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_inco_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_inco_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_inco',
-      },
-      {
-        title: 'Cump. Fact.',
-        key: 'cump_fact_inco',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_inco',
-      },
-      {
-        title: 'Total',
-        key: 'tota_inco',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_inco',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rete',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_rete_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_rete_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_rete_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_rete_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete',
-      },
-      {
-        title: 'Dife. rete.',
-        key: 'dife_rete',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_acti',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_acti_cier',
-      },
-      {
-        title: 'Obje. pedi.',
-        key: 'nume_pedi_acti',
-      },
-      {
-        title: '% Acti. fact.',
-        key: 'porc_acti',
-      },
-      {
-        title: '% Acti. pend.',
-        key: 'porc_acti_pend',
-      },
-      {
-        title: 'Rete. camp. ant.',
-        key: 'fact_rete_cons_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rete_cons',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons',
-      },
-      {
-        title: '1 Camp. ante.',
-        key: 'obje_rete_cons_segu',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons_segu',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons_segu',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons_segu',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons_segu',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons_segu',
-      },
-      {
-        title: '2 Camp. ante.',
-        key: 'obje_rete_cons_terc',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons_terc',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons_terc',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons_terc',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons_terc',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons_terc',
-      },
-      {
-        title: '3 Camp. ante.',
-        key: 'obje_rete_cons_cuar',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons_cuar',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons_cuar',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons_cuar',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons_cuar',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons_cuar',
-      },
-      {
-        title: 'Peg21',
-        key: 'fact_pe21_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe21',
-      },
-      {
-        title: 'Ret. peg21',
-        key: 'fact_pe21',
-      },
-      {
-        title: '% Ret. fact.',
-        key: 'porc_pe21',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe21',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe21',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe21',
-      },
-      {
-        title: 'Peg42',
-        key: 'fact_pe42_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe42',
-      },
-      {
-        title: 'Ret. peg42',
-        key: 'fact_pe42',
-      },
-      {
-        title: '% Ret. fact.',
-        key: 'porc_pe42',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe42',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe42',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe42',
-      },
-      {
-        title: 'Peg63',
-        key: 'fact_pe63_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe63',
-      },
-      {
-        title: 'Ret. peg63',
-        key: 'fact_pe63',
-      },
-      {
-        title: '% Ret. fact.',
-        key: 'porc_pe63',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe63',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe63',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe63',
-      },
-      {
-        title: 'Pegs',
-        key: 'fact_pegs_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pegs',
-      },
-      {
-        title: 'Ret. pegs',
-        key: 'fact_pegs',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'porc_pegs',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pegs',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pegs',
-      },
-      {
-        title: '% Cump',
-        key: 'cump_pegs',
-      },
-      {
-        title: 'Pos. reing.',
-        key: 'fact_rein_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rein',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rein',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'porc_rein',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rein',
-      },
-      {
-        title: 'Total',
-        key: 'tota_fact_rein',
-      },
-      {
-        title: '% Cump',
-        key: 'cump_rein',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_capi',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_capi_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_capi',
-      },
-      {
-        title: 'Capi. pend.',
-        key: 'pend_capi',
-      },
-      {
-        title: 'Pedi. falt. obje.',
-        key: 'pend_capi_obje',
-      },
-      {
-        title: 'Venta',
-        key: 'valo_docu',
-      },
-      {
-        title: 'Objetivo 88%',
-        key: 'obje_docu',
-      },
-      {
-        title: 'Saldo 21di.',
-        key: 'sald_21di',
-      },
-      {
-        title: 'Pend por Cobr 88%',
-        key: 'pend_cobr',
-      },
-      {
-        title: '% Cobr. 21di.',
-        key: 'porc_21di',
-      },
-      {
-        title: 'Saldo actu.',
-        key: 'sald_docu',
-      },
-      {
-        title: '% Cobr. actu.',
-        key: 'porc_docu',
-      },
-      {
-        title: 'Facturado',
-        key: 'pppp_fact',
-      },
-      {
-        title: 'Recepcionado',
-        key: 'pppp_rece',
-      },
-      {
-        title: 'Observación',
-        key: 'obse_zona',
-      },
+      { title: 'Corte', key: 'codi_cort' },
+      { title: 'Zona', key: 'codi_zona' },
+      { title: 'Gerente zonal', key: 'nomb_vend' },
+      { title: 'Act. inic.', key: 'acti_fina_ante' },
+
+      { title: 'Objetivo', key: 'obje_inco' },
+      { title: 'Facturado', key: 'fact_inco' },
+      { title: 'Cump. Fact.', key: 'cump_fact_inco' },
+      { title: 'Pend. fact.', key: 'pend_fact_inco' },
+      { title: 'Total', key: 'tota_inco' },
+      { title: '% Cump.', key: 'cump_inco' },
+      { title: 'Dife. tota.', key: 'dife_inco_tota' },
+
+      { title: 'Objetivo', key: 'obje_rete_cons' },
+      { title: 'Facturado', key: 'fact_rete_cons' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons' },
+      { title: 'Total', key: 'tota_rete_cons' },
+      { title: '% Cump.', key: 'cump_rete_cons' },
+
+      { title: '1 Camp. ante.', key: 'obje_rete_cons_segu' },
+      { title: 'Facturado', key: 'fact_rete_cons_segu' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_segu' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_segu' },
+      { title: 'Total', key: 'tota_rete_cons_segu' },
+      { title: '% Cump.', key: 'cump_rete_cons_segu' },
+
+      { title: '2 Camp. ante.', key: 'obje_rete_cons_terc' },
+      { title: 'Facturado', key: 'fact_rete_cons_terc' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_terc' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_terc' },
+      { title: 'Total', key: 'tota_rete_cons_terc' },
+      { title: '% Cump.', key: 'cump_rete_cons_terc' },
+
+      { title: '3 Camp. ante.', key: 'obje_rete_cons_cuar' },
+      { title: 'Facturado', key: 'fact_rete_cons_cuar' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_cuar' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_cuar' },
+      { title: 'Total', key: 'tota_rete_cons_cuar' },
+      { title: '% Cump.', key: 'cump_rete_cons_cuar' },
+
+      { title: 'Peg21', key: 'fact_pe21_ante' },
+      { title: 'Objetivo', key: 'obje_pe21' },
+      { title: 'Ret. peg21', key: 'fact_pe21' },
+      { title: '% Ret. fact.', key: 'porc_pe21' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe21' },
+      { title: 'Total', key: 'tota_pe21' },
+      { title: '% Ret. pend.', key: 'cump_pe21' },
+
+      { title: 'Peg42', key: 'fact_pe42_ante' },
+      { title: 'Objetivo', key: 'obje_pe42' },
+      { title: 'Ret. peg42', key: 'fact_pe42' },
+      { title: '% Ret. fact.', key: 'porc_pe42' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe42' },
+      { title: 'Total', key: 'tota_pe42' },
+      { title: '% Ret. pend.', key: 'cump_pe42' },
+
+      { title: 'Peg63', key: 'fact_pe63_ante' },
+      { title: 'Objetivo', key: 'obje_pe63' },
+      { title: 'Ret. peg63', key: 'fact_pe63' },
+      { title: '% Ret. fact.', key: 'porc_pe63' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe63' },
+      { title: 'Total', key: 'tota_pe63' },
+      { title: '% Ret. pend.', key: 'cump_pe63' },
+
+      { title: 'Pegs', key: 'fact_pegs_ante' },
+      { title: 'Objetivo', key: 'obje_pegs' },
+      { title: 'Ret. pegs', key: 'fact_pegs' },
+      { title: 'Cump. fact.', key: 'porc_pegs' },
+      { title: 'Pend. fact.', key: 'pend_fact_pegs' },
+      { title: 'Total', key: 'tota_pegs' },
+      { title: '% Cump', key: 'cump_pegs' },
+
+      { title: 'Pos. reing.', key: 'fact_rein_ante' },
+      { title: 'Objetivo', key: 'obje_rein' },
+      { title: 'Facturado', key: 'fact_rein' },
+      { title: 'Cump. fact.', key: 'porc_rein' },
+      { title: 'Pend. fact.', key: 'pend_fact_rein' },
+      { title: 'Total', key: 'tota_fact_rein' },
+      { title: '% Cump', key: 'cump_rein' },
+
+      { title: 'Objetivo', key: 'obje_capi' },
+      { title: 'Facturado', key: 'fact_capi' },
+      { title: 'Capi. pend.', key: 'tota_capi_pend' },
+
+      { title: 'Objetivo', key: 'obje_tota' },
+      { title: 'Facturado', key: 'fact_tota' },
+      { title: 'Cump. Fact.', key: 'cump_fact_tota' },
+      { title: 'Pend. fact.', key: 'pend_fact_tota' },
+      { title: 'Total', key: 'tota_tota' },
+
+      { title: 'Objetivo Ventas', key: 'obje_vent' },
+      { title: 'Ventas', key: 'fact_vent' },
     ]
+
   } else if(selectedVariable.value === 1) {
     return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente zonal',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_fina_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_tota',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_tota_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_tota_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_tota_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_tota_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_tota',
-      },
-      {
-        title: 'Cump. Fact.',
-        key: 'cump_fact_tota',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_tota',
-      },
-      {
-        title: 'Total',
-        key: 'tota_tota',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_tota',
-      },
-      {
-        title: 'Dife. tota.',
-        key: 'dife_tota',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_inco',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_inco_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_inco_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_inco_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_inco_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_inco',
-      },
-      {
-        title: 'Cump. Fact.',
-        key: 'cump_fact_inco',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_inco',
-      },
-      {
-        title: 'Total',
-        key: 'tota_inco',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_inco',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rete',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_rete_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_rete_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_rete_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_rete_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete',
-      },
-      {
-        title: 'Dife. rete.',
-        key: 'dife_rete',
-      },
-      {
-        title: 'Observación',
-        key: 'obse_zona',
-      },
+      { title: 'Corte', key: 'codi_cort' },
+      { title: 'Zona', key: 'codi_zona' },
+      { title: 'Gerente zonal', key: 'nomb_vend' },
+      { title: 'Act. inic.', key: 'acti_fina_ante' },
+
+      { title: 'Objetivo', key: 'obje_inco' },
+      { title: 'Facturado', key: 'fact_inco' },
+      { title: 'Cump. Fact.', key: 'cump_fact_inco' },
+      { title: 'Pend. fact.', key: 'pend_fact_inco' },
+      { title: 'Total', key: 'tota_inco' },
+      { title: '% Cump.', key: 'cump_inco' },
+      { title: 'Dife. tota.', key: 'dife_inco_tota' },
+
+      { title: 'Pos. reing.', key: 'fact_rein_ante' },
+      { title: 'Objetivo', key: 'obje_rein' },
+      { title: 'Facturado', key: 'fact_rein' },
+      { title: 'Cump. fact.', key: 'porc_rein' },
+      { title: 'Pend. fact.', key: 'pend_fact_rein' },
+      { title: 'Total', key: 'tota_fact_rein' },
+      { title: '% Cump', key: 'cump_rein' },
+
+      { title: 'Peg63', key: 'fact_pe63_ante' },
+      { title: 'Objetivo', key: 'obje_pe63' },
+      { title: 'Ret. peg63', key: 'fact_pe63' },
+      { title: '% Ret. fact.', key: 'porc_pe63' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe63' },
+      { title: 'Total', key: 'tota_pe63' },
+      { title: '% Ret. pend.', key: 'cump_pe63' },
+
+      { title: 'Objetivo', key: 'obje_capi' },
+      { title: 'Facturado', key: 'fact_capi' },
+      { title: 'Capi. pend.', key: 'tota_capi_pend' },
     ]
   } else if (selectedVariable.value === 2) {
     return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente zonal',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_fina_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_acti',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_acti_cier',
-      },
-      {
-        title: 'Obje. pedi.',
-        key: 'nume_pedi_acti',
-      },
-      {
-        title: '% Acti. fact.',
-        key: 'porc_acti',
-      },
-      {
-        title: '% Acti. pend.',
-        key: 'porc_acti_pend',
-      },
-      {
-        title: 'Rete. camp. ant.',
-        key: 'fact_rete_cons_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rete_cons',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons',
-      },
-      {
-        title: '1 Camp. ante.',
-        key: 'obje_rete_cons_segu',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons_segu',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons_segu',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons_segu',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons_segu',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons_segu',
-      },
-      {
-        title: 'Peg21',
-        key: 'fact_pe21_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe21',
-      },
-      {
-        title: 'Ret. peg21',
-        key: 'fact_pe21',
-      },
-      {
-        title: '% Ret. fact.',
-        key: 'porc_pe21',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe21',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe21',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe21',
-      },
-      {
-        title: 'Peg42',
-        key: 'fact_pe42_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe42',
-      },
-      {
-        title: 'Ret. peg42',
-        key: 'fact_pe42',
-      },
-      {
-        title: '% Ret. fact.',
-        key: 'porc_pe42',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe42',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe42',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe42',
-      },
-      {
-        title: 'Peg63',
-        key: 'fact_pe63_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe63',
-      },
-      {
-        title: 'Ret. peg63',
-        key: 'fact_pe63',
-      },
-      {
-        title: '% Ret. fact.',
-        key: 'porc_pe63',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe63',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe63',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe63',
-      },
-      {
-        title: 'Pegs',
-        key: 'fact_pegs_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pegs',
-      },
-      {
-        title: 'Ret. pegs',
-        key: 'fact_pegs',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'porc_pegs',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pegs',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pegs',
-      },
-      {
-        title: '% Cump',
-        key: 'cump_pegs',
-      },
-      {
-        title: 'Observación',
-        key: 'obse_zona',
-      },
+      { title: 'Corte', key: 'codi_cort' },
+      { title: 'Zona', key: 'codi_zona' },
+      { title: 'Gerente zonal', key: 'nomb_vend' },
+      { title: 'Act. inic.', key: 'acti_fina_ante' },
+
+      { title: 'Objetivo', key: 'obje_rete_cons' },
+      { title: 'Facturado', key: 'fact_rete_cons' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons' },
+      { title: 'Total', key: 'tota_rete_cons' },
+      { title: '% Cump.', key: 'cump_rete_cons' },
+
+      { title: '1 Camp. ante.', key: 'obje_rete_cons_segu' },
+      { title: 'Facturado', key: 'fact_rete_cons_segu' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_segu' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_segu' },
+      { title: 'Total', key: 'tota_rete_cons_segu' },
+      { title: '% Cump.', key: 'cump_rete_cons_segu' },
+
+      { title: '2 Camp. ante.', key: 'obje_rete_cons_terc' },
+      { title: 'Facturado', key: 'fact_rete_cons_terc' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_terc' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_terc' },
+      { title: 'Total', key: 'tota_rete_cons_terc' },
+      { title: '% Cump.', key: 'cump_rete_cons_terc' },
+
+      { title: '3 Camp. ante.', key: 'obje_rete_cons_cuar' },
+      { title: 'Facturado', key: 'fact_rete_cons_cuar' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons_cuar' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons_cuar' },
+      { title: 'Total', key: 'tota_rete_cons_cuar' },
+      { title: '% Cump.', key: 'cump_rete_cons_cuar' },
     ]
   } else if (selectedVariable.value === 3) {
     return [
-      {
-        title: 'Corte',
-        key: 'codi_cort',
-      },
-      {
-        title: 'Zona',
-        key: 'codi_zona',
-      },
-      {
-        title: 'Gerente zonal',
-        key: 'nomb_vend',
-      },
-      {
-        title: 'Act. inic.',
-        key: 'acti_fina_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rete',
-      },
-      {
-        title: '% Proyección',
-        key: 'obje_rete_prim',
-      },
-      {
-        title: '% Reproyección',
-        key: 'obje_rete_segu',
-      },
-      {
-        title: 'Estimación',
-        key: 'obje_rete_cier',
-      },
-      {
-        title: '% Estimación',
-        key: 'porc_rete_cier',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete',
-      },
-      {
-        title: 'Dife. rete.',
-        key: 'dife_rete',
-      },
-      {
-        title: 'Rete. camp. ant.',
-        key: 'fact_rete_cons_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rete_cons',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons',
-      },
-      {
-        title: '1 Camp. ante.',
-        key: 'obje_rete_cons_segu',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rete_cons_segu',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'cump_fact_rete_cons_segu',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rete_cons_segu',
-      },
-      {
-        title: 'Total',
-        key: 'tota_rete_cons_segu',
-      },
-      {
-        title: '% Cump.',
-        key: 'cump_rete_cons_segu',
-      },
-      {
-        title: 'Peg21',
-        key: 'fact_pe21_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe21',
-      },
-      {
-        title: 'Ret. peg21',
-        key: 'fact_pe21',
-      },
-      {
-        title: '% Ret. fact.',
-        key: 'porc_pe21',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe21',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe21',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe21',
-      },
-      {
-        title: 'Peg42',
-        key: 'fact_pe42_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe42',
-      },
-      {
-        title: 'Ret. peg42',
-        key: 'fact_pe42',
-      },
-      {
-        title: '% Ret. fact.',
-        key: 'porc_pe42',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe42',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe42',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe42',
-      },
-      {
-        title: 'Peg63',
-        key: 'fact_pe63_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pe63',
-      },
-      {
-        title: 'Ret. peg63',
-        key: 'fact_pe63',
-      },
-      {
-        title: '% Ret. fact.',
-        key: 'porc_pe63',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pe63',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pe63',
-      },
-      {
-        title: '% Ret. pend.',
-        key: 'cump_pe63',
-      },
-      {
-        title: 'Pegs',
-        key: 'fact_pegs_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_pegs',
-      },
-      {
-        title: 'Ret. pegs',
-        key: 'fact_pegs',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'porc_pegs',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_pegs',
-      },
-      {
-        title: 'Total',
-        key: 'tota_pegs',
-      },
-      {
-        title: '% Cump',
-        key: 'cump_pegs',
-      },
-      {
-        title: 'Pos. reing.',
-        key: 'fact_rein_ante',
-      },
-      {
-        title: 'Objetivo',
-        key: 'obje_rein',
-      },
-      {
-        title: 'Facturado',
-        key: 'fact_rein',
-      },
-      {
-        title: 'Cump. fact.',
-        key: 'porc_rein',
-      },
-      {
-        title: 'Pend. fact.',
-        key: 'pend_fact_rein',
-      },
-      {
-        title: 'Total',
-        key: 'tota_fact_rein',
-      },
-      {
-        title: '% Cump',
-        key: 'cump_rein',
-      },
-      {
-        title: 'Observación',
-        key: 'obse_zona',
-      },
+      { title: 'Corte', key: 'codi_cort' },
+      { title: 'Zona', key: 'codi_zona' },
+      { title: 'Gerente zonal', key: 'nomb_vend' },
+      { title: 'Act. inic.', key: 'acti_fina_ante' },
+
+      { title: 'Objetivo', key: 'obje_inco' },
+      { title: 'Facturado', key: 'fact_inco' },
+      { title: 'Cump. Fact.', key: 'cump_fact_inco' },
+      { title: 'Pend. fact.', key: 'pend_fact_inco' },
+      { title: 'Total', key: 'tota_inco' },
+      { title: '% Cump.', key: 'cump_inco' },
+      { title: 'Dife. tota.', key: 'dife_inco_tota' },
+
+      { title: 'Objetivo', key: 'obje_rete_cons' },
+      { title: 'Facturado', key: 'fact_rete_cons' },
+      { title: 'Cump. fact.', key: 'cump_fact_rete_cons' },
+      { title: 'Pend. fact.', key: 'pend_fact_rete_cons' },
+      { title: 'Total', key: 'tota_rete_cons' },
+      { title: '% Cump.', key: 'cump_rete_cons' },
+
+      { title: 'Peg21', key: 'fact_pe21_ante' },
+      { title: 'Objetivo', key: 'obje_pe21' },
+      { title: 'Ret. peg21', key: 'fact_pe21' },
+      { title: '% Ret. fact.', key: 'porc_pe21' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe21' },
+      { title: 'Total', key: 'tota_pe21' },
+      { title: '% Ret. pend.', key: 'cump_pe21' },
+
+      { title: 'Peg42', key: 'fact_pe42_ante' },
+      { title: 'Objetivo', key: 'obje_pe42' },
+      { title: 'Ret. peg42', key: 'fact_pe42' },
+      { title: '% Ret. fact.', key: 'porc_pe42' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe42' },
+      { title: 'Total', key: 'tota_pe42' },
+      { title: '% Ret. pend.', key: 'cump_pe42' },
+
+      { title: 'Peg63', key: 'fact_pe63_ante' },
+      { title: 'Objetivo', key: 'obje_pe63' },
+      { title: 'Ret. peg63', key: 'fact_pe63' },
+      { title: '% Ret. fact.', key: 'porc_pe63' },
+      { title: 'Pend. fact.', key: 'pend_fact_pe63' },
+      { title: 'Total', key: 'tota_pe63' },
+      { title: '% Ret. pend.', key: 'cump_pe63' },
     ]
   } else if (selectedVariable.value === 4) {
     return [
@@ -1723,7 +853,7 @@ const cabecera = computed(() => {
       },
       {
         title: 'Capi. pend.',
-        key: 'pend_capi',
+        key: 'tota_capi_pend',
       },
       {
         title: 'Pedi. falt. obje.',
@@ -1754,7 +884,11 @@ const cabecera = computed(() => {
       },
       {
         title: 'Venta',
-        key: 'valo_docu',
+        key: 'dat_vent',
+      },
+      {
+        title: 'Objetivo Venta',
+        key: 'obje_vent',
       },
       {
         title: 'Objetivo 88%',
@@ -1810,10 +944,6 @@ const cabecera = computed(() => {
       {
         title: 'Act. inic.',
         key: 'acti_fina_ante',
-      },
-      {
-        title: 'Rete. camp. ant.',
-        key: 'fact_rete_cons_ante',
       },
       {
         title: 'Objetivo',
@@ -2104,264 +1234,7 @@ const columnas = [
       },
     ],
   },
-  {
-    text: 'Objetivo',
-    datafield: 'obje_tota',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    editable: false,
-    aggregates: [
-      {        
-        T: function (aggregatedValue, currentValue) {          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: '% Proyección',
-    datafield: 'obje_tota_prim',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.tota_prim
-          sumaObje += record.obje_tota
-          let total = 0
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: '% Reproyección',
-    datafield: 'obje_tota_segu',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.tota_segu
-          sumaObje += record.obje_tota
-          let total = 0
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-            
-          return total
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: 'Estimación',
-    datafield: 'obje_tota_cier',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: '% Estimación',
-    datafield: 'porc_tota_cier',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: 'Facturado',
-    datafield: 'fact_tota',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'n',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: 'Cump. Fact.',
-    datafield: 'cump_fact_tota',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'p2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.fact_tota
-          sumaObje += record.obje_tota
-          let total = 0
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          console.log(sumaFact, sumaObje, total)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'tota',
-    cellclassname: claseCumplimientoTotal,
-  },
-  {
-    text: 'Pend. fact.',
-    datafield: 'pend_fact_tota',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'n',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: 'Total',
-    datafield: 'tota_tota',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'n',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: '% Cump.',
-    datafield: 'cump_tota',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    cellsformat: 'P2',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.tota_tota
-          sumaObje += record.obje_tota
-          let total = 0
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: 'Dife. tota.',
-    datafield: 'dife_tota',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'n',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'tota',
-    cellclassname: claseDiferenciaTotal,
-  },
+ 
   {
     text: 'Objetivo',
     datafield: 'obje_inco',
@@ -2373,118 +1246,6 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'inco',
-  },
-  {
-    text: '% Proyección',
-    datafield: 'obje_inco_prim',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.inco_prim
-          sumaObje += record.obje_inco
-          let total = 0
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'inco',
-  },
-  {
-    text: '% Reproyección',
-    datafield: 'obje_inco_segu',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.inco_segu
-          sumaObje += record.obje_inco
-          let total = 0
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'inco',
-  },
-  {
-    text: 'Estimación',
-    datafield: 'obje_inco_cier',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    editable: true,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'inco',
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname() {
-      return 'text-secondary bg-primary-light'
-    },
-  },
-  {
-    text: '% Estimación',
-    datafield: 'porc_inco_cier',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
           aggregatedValue += currentValue
           
           return aggregatedValue
@@ -2620,198 +1381,8 @@ const columnas = [
     columngroup: 'inco',
   },
   {
-    text: 'Objetivo',
-    datafield: 'obje_rete',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'n',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: '% Proyección',
-    datafield: 'obje_rete_prim',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.rete_prim
-          sumaObje += record.obje_rete
-          let total = 0
-          
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: '% Reproyección',
-    datafield: 'obje_rete_segu',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.rete_segu
-          sumaObje += record.obje_rete
-          let total = 0
-          
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: 'Estimación',
-    datafield: 'obje_rete_cier',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    editable: true,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname() {
-      return 'text-secondary bg-primary-light'
-    },
-  },
-  {
-    text: '% Estimación',
-    datafield: 'porc_rete_cier',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: 'Facturado',
-    datafield: 'fact_rete',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'n',
-    editable: false,
-    aggregates: [
-      {                  
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: 'Cump. fact.',
-    datafield: 'cump_fact_rete',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'p2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.fact_rete
-          sumaObje += record.obje_rete
-          let total = 0
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'rete',
-    cellclassname: claseCumplimientoRetencion,
-  },
-  {
-    text: 'Pend. fact.',
-    datafield: 'pend_fact_rete',
+    text: 'Dife. tota.',
+    datafield: 'dife_inco_tota',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -2826,265 +1397,8 @@ const columnas = [
         },
       },
     ],
-    columngroup: 'rete',
-  },
-  {
-    text: 'Total',
-    datafield: 'tota_rete',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    editable: false,
-    cellsformat: 'n',
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: '% Cump.',
-    datafield: 'cump_rete',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'p2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.tota_rete
-          sumaObje += record.obje_rete
-          let total = 0
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: 'Dife. rete.',
-    datafield: 'dife_rete',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'n',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-    cellclassname: claseDiferenciaRetencion,
-  },
-  {
-    text: 'nume acti',
-    datafield: 'nume_acti',
-    hidden: true,
-    cellsformat: 'n',
-  },
-  {
-    text: 'Objetivo',
-    datafield: 'obje_acti',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'p2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          let sumaFact = 0
-          let sumaObje = 0
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.acti_fina_ante
-          sumaObje += record.nume_pedi_acti
-          let total = 0
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (parseFloat(sumaObje) / parseInt(sumaFact))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'acti',
-  },
-  {
-    text: 'Estimación',
-    datafield: 'obje_acti_cier',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'p2',
-    editable: true,
-    columngroup: 'acti',
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname() {
-      return 'text-secondary bg-primary-light'
-    },
-  },
-  {
-    text: 'Obje. pedi.',
-    datafield: 'nume_pedi_acti',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'n',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'acti',
-  },
-  {
-    text: '% Acti. fact.',
-    datafield: 'porc_acti',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'p2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          if (record.visibleindex === 0) {
-            sumaActiInic = 0
-            sumaNumePedi = 0
-            sumaTotaIngr = 0
-            sumaTotaRein = 0
-          }
-          sumaActiInic += record.acti_inic
-          sumaNumePedi += record.nume_pedi
-          sumaTotaIngr += record.tota_ingr
-          sumaTotaRein += record.tota_rein
-          let total = 0
-          if (
-            parseInt(sumaActiInic) > 0 &&
-                      parseInt(sumaNumePedi) -
-                        parseInt(sumaTotaIngr) -
-                        parseInt(sumaTotaRein) >
-                        0
-          ) {
-            total =
-                        100
-                        * (parseInt(
-                          parseInt(sumaNumePedi) -
-                            parseInt(sumaTotaIngr) -
-                            parseInt(sumaTotaRein),
-                        )
-                          / parseInt(sumaActiInic))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'acti',
-    cellclassname: clasePorcentajeActividad,
-  },
-  {
-    text: '% Acti. pend.',
-    datafield: 'porc_acti_pend',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue, column, record) {
-          if (record.visibleindex === 0) {
-            sumaActiInic = 0
-            sumaNumePedi = 0
-            sumaTotaIngr = 0
-            sumaTotaRein = 0
-          }
-          sumaActiInic += record.acti_inic
-          sumaNumePedi += record.nume_pedi_pend
-          sumaTotaIngr += record.tota_ingr_pend
-          sumaTotaRein += record.tota_rein_pend
-          let total = 0
-          if (
-            parseInt(sumaActiInic) > 0 &&
-                      parseInt(sumaNumePedi) -
-                        parseInt(sumaTotaIngr) -
-                        parseInt(sumaTotaRein) >
-                        0
-          ) {
-            total =
-                        100
-                        * (parseInt(
-                          parseInt(sumaNumePedi) -
-                            parseInt(sumaTotaIngr) -
-                            parseInt(sumaTotaRein),
-                        )
-                          / parseInt(sumaActiInic))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'acti',
-  },
-  {
-    text: 'Rete. camp. ant.',
-    datafield: 'fact_rete_cons_ante',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'n',
-    editable: false,
-    aggregates: [
-      {
-        T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'cons',
+    columngroup: 'inco',
+    cellclassname: claseDiferenciaTotal,
   },
   {
     text: 'Objetivo',
@@ -4079,7 +2393,7 @@ const columnas = [
     columngroup: 'pe63',
   },
   {
-    text: '% Ret. fact.',
+    text: '% Ret. pend.',
     datafield: 'porc_pe63',
     width: '100',
     align: 'center',
@@ -4549,37 +2863,6 @@ const columnas = [
     columngroup: 'capi',
   },
   {
-    text: 'Estimación',
-    datafield: 'obje_capi_cier',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    editable: true,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'capi',
-    validation(cell, value) {
-      if (value === '0') {
-        return true
-      }
-      
-      return !(value === '')
-    },
-    cellclassname() {
-      return 'text-secondary bg-primary-light'
-    },
-  },
-  {
     text: 'Facturado',
     datafield: 'fact_capi',
     width: '100',
@@ -4603,7 +2886,7 @@ const columnas = [
   },
   {
     text: 'Capi. pend.',
-    datafield: 'pend_capi',
+    datafield: 'tota_capi_pend',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -4623,289 +2906,178 @@ const columnas = [
     columngroup: 'capi',
   },
   {
-    text: 'Pedi. falt. obje.',
-    datafield: 'pend_capi_obje',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'capi',
-    cellclassname: claseObjetivoCapitalizacion,
-  },
-  {
-    text: 'Valor',
-    datafield: 'valo_docu',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'C2',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'cobr',
-  },
-  {
-    text: 'Objetivo 88%',
-    datafield: 'obje_docu',
+    text: 'Objetivo',
+    datafield: 'obje_tota',
     width: '120',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'N',
     editable: false,
     aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
+      {        
+        T: function (aggregatedValue, currentValue) {          
           aggregatedValue += currentValue
           
           return aggregatedValue
         },
       },
     ],
-    columngroup: 'cobr',
-  },
-  {
-    text: 'Saldo 21di.',
-    datafield: 'sald_21di',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'C2',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'cobr',
-  },
-  {
-    text: 'Pend por Cobr 88%',
-    datafield: 'pend_cobr',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'C2',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'cobr',
-  },
-  {
-    text: '% Cobr. 21di.',
-    datafield: 'porc_21di',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue, column, record) {
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.valo_docu
-          sumaObje += record.sald_21di
-          let total = 0
-          
-          if (parseInt(sumaFact) > 0) {
-            total = 100 * (1 - sumaObje / sumaFact)
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'cobr',
-    cellclassname: clasePorcentaje21di,
-  },
-  {
-    text: 'Saldo actu.',
-    datafield: 'sald_docu',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'C2',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'cobr',
-  },
-  {
-    text: '% Cobr. actu.',
-    datafield: 'porc_docu',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    editable: false,
-    aggregates: [
-      {
-        
-        T: function (aggregatedValue, currentValue, column, record) {
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.valo_docu
-          sumaObje += record.sald_docu
-          let total = 0
-          
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = 100 * (1 - sumaObje / sumaFact)
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'cobr',
+    columngroup: 'tota',
   },
   {
     text: 'Facturado',
-    datafield: 'pppp_fact',
+    datafield: 'fact_tota',
     width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'n',
     editable: false,
     aggregates: [
       {
-        
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'tota',
+  },
+  {
+    text: 'Cump. Fact.',
+    datafield: 'cump_fact_tota',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'p2',
+    editable: false,
+    aggregates: [
+      {
         T: function (aggregatedValue, currentValue, column, record) {
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
           }
-          sumaFact += record.tota_line
-          sumaObje += record.nume_pedi
+          sumaFact += record.fact_tota
+          sumaObje += record.obje_tota
           let total = 0
-          
           if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = parseFloat(
-              parseFloat(sumaFact) / parseFloat(sumaObje),
-            )
+            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
           }
           total = parseFloat(total).toFixed(2)
+          console.log(sumaFact, sumaObje, total)
           
           return total
         },
       },
     ],
-    columngroup: 'pppp',
+    columngroup: 'tota',
+    cellclassname: claseCumplimientoTotal,
   },
   {
-    text: 'Recepcionado',
-    datafield: 'pppp_rece',
+    text: 'Pend. fact.',
+    datafield: 'pend_fact_tota',
     width: '100',
     align: 'center',
     cellsalign: 'center',
-    cellsformat: 'C2',
+    cellsformat: 'n',
     editable: false,
     aggregates: [
       {
-        
-        T: function (aggregatedValue, currentValue, column, record) {
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.tota_rece
-          sumaObje += record.nume_pedi
-          let total = 0
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
           
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            total = parseFloat(
-              parseFloat(sumaFact) / parseFloat(sumaObje),
-            )
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
+          return aggregatedValue
         },
       },
     ],
-    columngroup: 'pppp',
+    columngroup: 'tota',
   },
   {
-    text: 'Observación',
-    datafield: 'obse_zona',
-    width: '200',
+    text: 'Total',
+    datafield: 'tota_tota',
+    width: '100',
     align: 'center',
-    cellsalign: 'left',
-    editable: true,
+    cellsalign: 'center',
+    cellsformat: 'n',
+    editable: false,
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'tota',
+  },
+  {
+    text: 'nume acti',
+    datafield: 'nume_acti',
+    hidden: true,
+    cellsformat: 'n',
+  },
+  {
+    text: 'Objetivo Ventas',
+    datafield: 'obje_vent',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    editable: false,
+    aggregates: [
+      {        
+        T: function (aggregatedValue, currentValue) {          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'vents',
+  },
+
+  {
+    text: 'Ventas',
+    datafield: 'fact_vent',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'n',
+    editable: false,
+    aggregates: [
+      {
+        T: function (aggregatedValue, currentValue) {
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'vents',
   },
 ]
     
 const columnasGrupo = [
+  {
+    
+    text: 'Incorporación',
+    align: 'center',
+    name: 'inco',
+  },
   {
     text: 'Pedidos Totales',
     align: 'center',
     name: 'tota',
   },
   {
-    text: 'Incorporación',
-    align: 'center',
-    name: 'inco',
-  },
-  {
-    text: 'Pedidos de retención',
+    text: '% de Retención',
     align: 'center',
     name: 'rete',
   },
   {
-    text: 'Consecutividad pedidos de retención 90%',
+    text: 'Consecutividad ',
     align: 'center',
     name: 'cons',
   },
@@ -4930,27 +3102,27 @@ const columnasGrupo = [
     name: 'acti',
   },
   {
-    text: 'Peg21 40%',
+    text: 'Peg21 Minimo 50%',
     align: 'center',
     name: 'pe21',
   },
   {
-    text: 'Peg42 30%',
+    text: 'Peg42 Minimo 30%',
     align: 'center',
     name: 'pe42',
   },
   {
-    text: 'Peg63 25%',
+    text: 'Peg63 Minimo 25%',
     align: 'center',
     name: 'pe63',
   },
   {
-    text: 'Suma de Pegs 35%',
+    text: 'Retención Total',
     align: 'center',
     name: 'suma',
   },
   {
-    text: 'Reingresos 10%',
+    text: 'Reingresos',
     align: 'center',
     name: 'rein',
   },
@@ -4958,6 +3130,11 @@ const columnasGrupo = [
     text: 'Capitalización',
     align: 'center',
     name: 'capi',
+  },
+  {
+    text: 'Venta',
+    align: 'center',
+    name: 'vents',
   },
   {
     text: 'Cobranza',
@@ -4969,28 +3146,12 @@ const columnasGrupo = [
     align: 'center',
     name: 'pppp',
   },
+ 
 ]
 
 const sourceGlobal = ref({
   localdata: [],
   datafields: [
-    { name: 'codi_cort', type: 'number' },
-    { name: 'codi_zona', type: 'string' },
-    { name: 'nomb_vend', type: 'string' },
-    { name: 'acti_fina_ante', type: 'number' },
-    { name: 'obje_tota', type: 'number' },
-    { name: 'fact_tota', type: 'number' },
-    { name: 'cump_fact_tota', type: 'number' },
-    { name: 'pend_fact_tota', type: 'number' },
-    { name: 'tota_tota', type: 'number' },
-    { name: 'cump_tota', type: 'number' },
-    { name: 'dife_tota', type: 'number' },
-    { name: 'tota_prim', type: 'number' },
-    { name: 'tota_segu', type: 'number' },
-    { name: 'obje_tota_prim', type: 'number' },
-    { name: 'obje_tota_segu', type: 'number' },
-    { name: 'obje_tota_cier', type: 'number' },
-    { name: 'porc_tota_cier', type: 'number' },
     { name: 'obje_inco', type: 'number' },
     { name: 'fact_inco', type: 'number' },
     { name: 'cump_fact_inco', type: 'number' },
@@ -5003,6 +3164,23 @@ const sourceGlobal = ref({
     { name: 'obje_inco_segu', type: 'number' },
     { name: 'obje_inco_cier', type: 'number' },
     { name: 'porc_inco_cier', type: 'number' },
+    { name: 'codi_cort', type: 'number' },
+    { name: 'codi_zona', type: 'string' },
+    { name: 'nomb_vend', type: 'string' },
+    { name: 'acti_fina_ante', type: 'number' },
+    { name: 'obje_tota', type: 'number' },
+    { name: 'fact_tota', type: 'number' },
+    { name: 'cump_fact_tota', type: 'number' },
+    { name: 'pend_fact_tota', type: 'number' },
+    { name: 'tota_tota', type: 'number' },
+    { name: 'cump_tota', type: 'number' },
+    { name: 'dife_inco_tota', type: 'number' },
+    { name: 'tota_prim', type: 'number' },
+    { name: 'tota_segu', type: 'number' },
+    { name: 'obje_tota_prim', type: 'number' },
+    { name: 'obje_tota_segu', type: 'number' },
+    { name: 'obje_tota_cier', type: 'number' },
+    { name: 'porc_tota_cier', type: 'number' }, 
     { name: 'obje_rete', type: 'number' },
     { name: 'fact_rete', type: 'number' },
     { name: 'cump_fact_rete', type: 'number' },
@@ -5016,7 +3194,6 @@ const sourceGlobal = ref({
     { name: 'obje_rete_segu', type: 'number' },
     { name: 'obje_rete_cier', type: 'number' },
     { name: 'porc_rete_cier', type: 'number' },
-    { name: 'fact_rete_cons_ante', type: 'number' },
     { name: 'obje_rete_cons', type: 'number' },
     { name: 'fact_rete_cons', type: 'number' },
     { name: 'cump_fact_rete_cons', type: 'number' },
@@ -5097,7 +3274,7 @@ const sourceGlobal = ref({
     { name: 'fact_capi', type: 'number' },
     { name: 'obje_capi', type: 'number' },
     { name: 'obje_capi_cier', type: 'number' },
-    { name: 'pend_capi', type: 'number' },
+    { name: 'tota_capi_pend', type: 'number' },
     { name: 'pend_capi_obje', type: 'number' },
     { name: 'porc_tota_capi', type: 'number' },
 
@@ -5122,6 +3299,8 @@ const sourceGlobal = ref({
     { name: 'obje_pegs_sist_ocul', type: 'number' },
     { name: 'obje_rein_sist_ocul', type: 'number' },
     { name: 'obse_zona', type: 'string' },
+    { name: 'fact_vent', type: 'number' },
+    { name: 'obje_vent', type: 'number' },
   ],
   datatype: 'json',
 })
@@ -5437,6 +3616,8 @@ const onEditar = event => {
 
 const columnsOcultarTodo = [
   'obje_tota',
+  'obje_vent',
+  'fact_vent',
   'obje_tota_prim',
   'obje_tota_segu',
   'obje_tota_cier',
@@ -5446,7 +3627,7 @@ const columnsOcultarTodo = [
   'pend_fact_tota',
   'tota_tota',
   'cump_tota',
-  'dife_tota',
+  'dife_inco_tota',
   'obje_inco',
   'obje_inco_prim',
   'obje_inco_segu',
@@ -5468,7 +3649,6 @@ const columnsOcultarTodo = [
   'tota_rete',
   'cump_rete',
   'dife_rete',
-  'fact_rete_cons_ante',
   'obje_rete_cons',
   'fact_rete_cons',
   'cump_fact_rete_cons',
@@ -5536,7 +3716,7 @@ const columnsOcultarTodo = [
   'fact_capi',
   'obje_capi',
   'obje_capi_cier',
-  'pend_capi',
+  'tota_capi_pend',
   'pend_capi_obje',
   'valo_docu',
   'obje_docu',
@@ -5549,6 +3729,7 @@ const columnsOcultarTodo = [
   'pppp_rece',
   'nive_lide',
   'nive_lide_proy',
+  'porc_tota_capi',
 ]
 
 const columnsMostrarTodo = [
@@ -5562,7 +3743,7 @@ const columnsMostrarTodo = [
   'pend_fact_tota',
   'tota_tota',
   'cump_tota',
-  'dife_tota',
+  'dife_inco_tota',
   'obje_inco',
   'obje_inco_prim',
   'obje_inco_segu',
@@ -5584,7 +3765,6 @@ const columnsMostrarTodo = [
   'tota_rete',
   'cump_rete',
   'dife_rete',
-  'fact_rete_cons_ante',
   'obje_rete_cons',
   'fact_rete_cons',
   'cump_fact_rete_cons',
@@ -5652,7 +3832,7 @@ const columnsMostrarTodo = [
   'fact_capi',
   'obje_capi',
   'obje_capi_cier',
-  'pend_capi',
+  'tota_capi_pend',
   'pend_capi_obje',
   'valo_docu',
   'obje_docu',
@@ -5665,6 +3845,8 @@ const columnsMostrarTodo = [
   'pppp_rece',
   'nive_lide',
   'nive_lide_proy',
+  'obje_vent',
+  'fact_vent',
 ]
 
 const columnsMostrarPedidosTotales = [
@@ -5678,7 +3860,7 @@ const columnsMostrarPedidosTotales = [
   'pend_fact_tota',
   'tota_tota',
   'cump_tota',
-  'dife_tota',
+  'dife_inco_tota',
   'obje_inco',
   'obje_inco_prim',
   'obje_inco_segu',
@@ -5700,6 +3882,42 @@ const columnsMostrarPedidosTotales = [
   'tota_rete',
   'cump_rete',
   'dife_rete',
+  'cumnp_rete_cons',
+  'fact_rete_cons',
+  'pend_fact_rete_cons',
+  'tota_rete_cons',
+  'cump_rete_cons',
+  'cump_fact_rete_cons',
+  'fact_rete_cons',
+  'obje_rete_cons',
+  'fact_pe21_ante',
+  'onbe_pe21',
+  'fact_pe21',
+  'porc_pe21',
+  'pend_fact_pe21',
+  'tota_pe21',
+  'cump_pe21',
+  'fact_pe42_ante',
+  'obje_pe42',
+  'fact_pe42',
+  'porc_pe42',
+  'pend_fact_pe42',
+  'tota_pe42',
+  'cump_pe42',
+  'fact_pe63_ante',
+  'obje_pe63',
+  'fact_pe63',
+  'porc_pe63',
+  'pend_fact_pe63',
+  'tota_pe63',
+  'cump_pe63',
+  'fact_rein_ante',
+  'obje_rein',
+  'fact_rein',
+  'porc_rein',
+  'pend_fact_rein',
+  'tota_fact_rein',
+  'cump_rein',
 ]
 
 const columnsMostrarPedidosActividad = [
@@ -5708,7 +3926,6 @@ const columnsMostrarPedidosActividad = [
   'porc_acti',
   'nume_pedi_acti',
   'porc_acti_pend',
-  'fact_rete_cons_ante',
   'obje_rete_cons',
   'fact_rete_cons',
   'cump_fact_rete_cons',
@@ -5763,19 +3980,7 @@ const columnsMostrarPedidosRetencion = [
   'tota_rete',
   'cump_rete',
   'dife_rete',
-  'fact_rete_cons_ante',
-  'obje_rete_cons',
-  'fact_rete_cons',
-  'cump_fact_rete_cons',
-  'pend_fact_rete_cons',
-  'tota_rete_cons',
-  'cump_rete_cons',
-  'obje_rete_cons_segu',
-  'fact_rete_cons_segu',
-  'cump_fact_rete_cons_segu',
-  'pend_fact_rete_cons_segu',
-  'tota_rete_cons_segu',
-  'cump_rete_cons_segu',
+
   'fact_pe21_ante',
   'obje_pe21',
   'fact_pe21',
@@ -5797,42 +4002,24 @@ const columnsMostrarPedidosRetencion = [
   'pend_fact_pe63',
   'tota_pe63',
   'cump_pe63',
-  'fact_pegs_ante',
-  'obje_pegs',
-  'fact_pegs',
-  'porc_pegs',
-  'pend_fact_pegs',
-  'tota_pegs',
-  'cump_pegs',
-  'fact_rein_ante',
-  'obje_rein',
-  'fact_rein',
-  'porc_rein',
-  'pend_fact_rein',
-  'tota_fact_rein',
-  'cump_rein',
-  'nive_lide',
-  'nive_lide_proy',
 ]
 
 const columnsMostrarCapitalizacion = [
+  
   'obje_inco',
-  'obje_inco_prim',
-  'obje_inco_segu',
-  'obje_inco_cier',
-  'porc_inco_cier',
   'fact_inco',
   'cump_fact_inco',
   'pend_fact_inco',
   'tota_inco',
   'cump_inco',
-  'fact_rein_ante',
-  'obje_rein',
-  'fact_rein',
-  'porc_rein',
-  'pend_fact_rein',
-  'tota_fact_rein',
+  'dife_inco_tota',
   'cump_rein',
+  'fact_rein',
+  'tota_fact_rein',
+  'pend_fact_rein',
+  'porc_rein',
+  'obje_rein',
+  'fact_rein_ante',
   'fact_pe63_ante',
   'obje_pe63',
   'fact_pe63',
@@ -5840,18 +4027,17 @@ const columnsMostrarCapitalizacion = [
   'pend_fact_pe63',
   'tota_pe63',
   'cump_pe63',
+  'tota_capi_pend',
   'fact_capi',
   'obje_capi',
-  'obje_capi_cier',
-  'pend_capi',
-  'pend_capi_obje',
 ]
 
 const columnsMostrarCobranza = [
 
-  'valo_docu',
-  'obje_docu',
-  'pend_cobr',
+
+  // 'valo_docu',
+  // 'obje_docu',
+  // 'pend_cobr',
   'porc_21di',
   'sald_21di',
   'sald_docu',
@@ -5861,7 +4047,6 @@ const columnsMostrarCobranza = [
 ]
 
 const columnsMostrarConsecutividad = [
-  'fact_rete_cons_ante',
   'obje_rete_cons',
   'fact_rete_cons',
   'cump_fact_rete_cons',
@@ -5990,7 +4175,7 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                         CONCEPTO
                       </th>
                       <th class="text-uppercase">
-                        OBJ. ZONA
+                        OBJ. REGION
                       </th>
                       <th class="text-uppercase">
                         FACTURADO
@@ -6015,22 +4200,24 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
                       <td>{{ general.facturadoPendienteIncorporacion }}</td>
                       <td>{{ general.cumplimientoTotalIncorporacion }}</td>
                     </tr>
-                    <tr>
+                    <!--
+                      <tr>
                       <td>Retención</td>
                       <td>{{ general.objetivoRetencion }}</td>
                       <td>{{ general.facturadoRetencion }}</td>
                       <td>{{ general.cumplimientoRetencion }}</td>
                       <td>{{ general.facturadoPendienteRetencion }}</td>
                       <td>{{ general.cumplimientoTotalRetencion }}</td>
-                    </tr>
+                      </tr> 
+                    -->
                     <tr>
-                      <td>% Actividad</td>
+                      <td>Pedidos Totales</td>
                       <td>{{ general.objetivoActividad }}</td>
                       <td>{{ general.facturadoActividad }}</td>
                       <td>{{ general.cumplimientoActividad }}</td>
                       <td>{{ general.facturadoPendienteActividad }}</td>
                       <td>{{ general.cumplimientoTotalActividad }}</td>
-                    </tr>
+                    </tr> 
                   </tbody>
                 </VTable>
               </VCardText>

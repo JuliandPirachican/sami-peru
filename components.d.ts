@@ -56,6 +56,7 @@ declare module 'vue' {
     ExcelBoton: typeof import('./src/components/buttons/ExcelBoton.vue')['default']
     GenerarBoton: typeof import('./src/components/buttons/GenerarBoton.vue')['default']
     I18n: typeof import('./src/@core/components/I18n.vue')['default']
+    ImagenBoton: typeof import('./src/components/buttons/ImagenBoton.vue')['default']
     LimpiarBoton: typeof import('./src/components/buttons/LimpiarBoton.vue')['default']
     MapaBoton: typeof import('./src/components/buttons/MapaBoton.vue')['default']
     MoreBtn: typeof import('./src/@core/components/MoreBtn.vue')['default']

@@ -35,9 +35,9 @@ const general = ref({
   objetivoIncorporacion: '0',
   facturadoIncorporacion: '0',
   cumplimientoIncorporacion: '0.00',
-  objetivoRetencion: '0',
-  facturadoRetencion: '0',
-  cumplimientoRetencion: '0.00',
+  objetivoPedidos: '0',
+  facturadoPedidos: '0',
+  cumplimientoPedidos: '0.00',
 })
 
 const cabeceraGlobal = [
@@ -81,18 +81,7 @@ const cabeceraGlobal = [
     title: 'Cump. fact.',
     key: 'cump_fact_inco',
   },
-  {
-    title: 'Objetivo',
-    key: 'obje_rete',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rete',
-  },
-  {
-    title: 'Cump. fact.',
-    key: 'cump_fact_rete',
-  },
+
   {
     title: 'Camp. ante.',
     key: 'porc_acti_ante',
@@ -434,18 +423,18 @@ const columnasGrupo = [
     align: 'center',
     name: 'inco',
   },
-  {
-    text: 'Pedidos de retención',
-    align: 'center',
-    name: 'rete',
-  },
+  // {
+  //   text: 'Pedidos de retención',
+  //   align: 'center',
+  //   name: 'rete',
+  // },
   {
     text: 'Pedidos totales',
     align: 'center',
     name: 'tota',
   },
   {
-    text: 'Consecutividad pedido de retención 90%',
+    text: 'Consecutividad 80%',
     align: 'center',
     name: 'cons',
   },
@@ -485,7 +474,7 @@ const columnasGrupo = [
     name: 'acti',
   },
   {
-    text: 'Peg21 40%',
+    text: 'Peg21 50%',
     align: 'center',
     name: 'pe21',
   },
@@ -500,7 +489,7 @@ const columnasGrupo = [
     name: 'pe63',
   },
   {
-    text: 'Suma pegs 35%',
+    text: 'Retencion Total',
     align: 'center',
     name: 'suma',
   },
@@ -510,7 +499,7 @@ const columnasGrupo = [
     name: 'rein',
   },
   {
-    text: 'Productividad retención líder',
+    text: 'Lider',
     align: 'center',
     name: 'lide',
   },
@@ -572,79 +561,6 @@ const columnasGlobal = [
         },
       },
     ],
-  },
-  {
-    text: 'Objetivo',
-    dataField: 'obje_tota',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: 'Facturado',
-    dataField: 'fact_tota',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'tota',
-  },
-  {
-    text: 'Cump. fact.',
-    dataField: 'cump_fact_tota',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue, column, record) {
-          
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.fact_tota
-          sumaObje += record.obje_tota
-          let total = 0
-          
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'tota',
-    cellclassname: claseCumplimientoTotal,
   },
   {
     text: 'Objetivo',
@@ -720,79 +636,6 @@ const columnasGlobal = [
     cellclassname: claseCumplimientoIncorporacion,
   },
   {
-    text: 'Objetivo',
-    dataField: 'obje_rete',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: 'Facturado',
-    dataField: 'fact_rete',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'rete',
-  },
-  {
-    text: 'Cump. fact.',
-    dataField: 'cump_fact_rete',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue, column, record) {
-          
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.fact_rete
-          sumaObje += record.obje_rete
-          let total = 0
-          
-          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
-            
-            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'rete',
-    cellclassname: claseCumplimientoRetencion,
-  },
-  {
     text: 'acti inic ante',
     dataField: 'acti_inic_ante',
     hidden: true,
@@ -832,111 +675,9 @@ const columnasGlobal = [
     dataField: 'nume_pedi_acti',
     hidden: true,
   },
-  {
-    text: 'Camp. ante.',
-    dataField: 'porc_acti_ante',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue, column, record) {
-          
-          if (record.visibleindex === 0) {
-            sumaActiInic = 0
-            sumaNumePedi = 0
-            sumaTotaIngr = 0
-            sumaTotaRein = 0
-          }
-          sumaActiInic += record.acti_inic_ante
-          sumaNumePedi += record.nume_pedi_ante
-          sumaTotaIngr += record.tota_ingr_ante
-          sumaTotaRein += record.tota_rein_ante
-          let total = 0
-          
-          if (parseInt(sumaActiInic) > 0 && parseInt(sumaNumePedi) - parseInt(sumaTotaIngr) - parseInt(sumaTotaRein) > 0) {
-            
-            total = 100 * (parseInt(parseInt(sumaNumePedi) - parseInt(sumaTotaIngr) - parseInt(sumaTotaRein)) / parseInt(sumaActiInic))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'acti',
-  },
-  {
-    text: 'Objetivo',
-    dataField: 'obje_acti',
-    width: '120',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    columngroup: 'acti',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue, column, record) {
-          
-          if (record.visibleindex === 0) {
-            sumaFact = 0
-            sumaObje = 0
-          }
-          sumaFact += record.acti_inic
-          sumaObje += record.nume_pedi_acti
-          let total = 0
-          
-          if (parseInt(sumaFact) > 0 && parseFloat(sumaObje) > 0) {
-            
-            total = 100 * (parseFloat(sumaObje) / parseInt(sumaFact))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-  },
-  {
-    text: 'Facturado',
-    dataField: 'porc_acti',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'P2',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue, column, record) {
-          
-          if (record.visibleindex === 0) {
-            sumaActiInic = 0
-            sumaNumePedi = 0
-            sumaTotaIngr = 0
-            sumaTotaRein = 0
-          }
-          sumaActiInic += record.acti_inic
-          sumaNumePedi += record.nume_pedi
-          sumaTotaIngr += record.tota_ingr
-          sumaTotaRein += record.tota_rein
-          let total = 0
-          
-          if (parseInt(sumaActiInic) > 0 && parseInt(sumaNumePedi) - parseInt(sumaTotaIngr) - parseInt(sumaTotaRein) > 0) {
-            
-            total = 100 * (parseInt(parseInt(sumaNumePedi) - parseInt(sumaTotaIngr) - parseInt(sumaTotaRein)) / parseInt(sumaActiInic))
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
-        },
-      },
-    ],
-    columngroup: 'acti',
-    cellclassname: clasePorcentajeActividad,
-  },
+
+  //aca
+  
   {
     text: 'Rete. camp. ant.',
     dataField: 'fact_rete_cons_ante',
@@ -1571,7 +1312,7 @@ const columnasGlobal = [
     columngroup: 'suma',
   },
   {
-    text: 'Cump. fact.',
+    text: '% Retencion',
     dataField: 'porc_pegs',
     width: '100',
     align: 'center',
@@ -1737,6 +1478,80 @@ const columnasGlobal = [
       },
     ],
     cellclassname: claseFacturacionCapitalizacion,
+  },
+  
+  {
+    text: 'Objetivo',
+    dataField: 'obje_tota',
+    width: '120',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'tota',
+  },
+  {
+    text: 'Facturado',
+    dataField: 'fact_tota',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'N',
+    aggregates: [
+      {
+        
+        T: function(aggregatedValue, currentValue) {
+          
+          aggregatedValue += currentValue
+          
+          return aggregatedValue
+        },
+      },
+    ],
+    columngroup: 'tota',
+  },
+  {
+    text: 'Cump. fact.',
+    dataField: 'cump_fact_tota',
+    width: '100',
+    align: 'center',
+    cellsalign: 'center',
+    cellsformat: 'P2',
+    aggregates: [
+      {
+        
+        T: function(aggregatedValue, currentValue, column, record) {
+          
+          if (record.visibleindex === 0) {
+            sumaFact = 0
+            sumaObje = 0
+          }
+          sumaFact += record.fact_tota
+          sumaObje += record.obje_tota
+          let total = 0
+          
+          if (parseInt(sumaObje) > 0 && parseInt(sumaFact) > 0) {
+            
+            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
+    columngroup: 'tota',
+    cellclassname: claseCumplimientoTotal,
   },
   {
     text: 'valo docu',
@@ -2056,38 +1871,51 @@ const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
 
 const itemsDetalle = ref([])
 
+/**
+ * * @description Cabecera de la tabla del boton de ranking
+ * * @type {Array}
+ */
 const headersDetalle = computed(() => {
   return [
     {
       title: 'Puesto',
       key: 'nume_fila',
-    }, {
+    }, 
+    {
       title: 'Sector',
       key: 'codi_sect',
-    }, {
+    }, 
+    {
       title: 'Lider',
       key: 'nomb_lide',
-    }, {
+    }, 
+    {
       title: 'Pedi. total',
       key: 'porc_pedi',
-    }, {
+    }, 
+    {
       title: 'obje inco',
       key: 'obje_inco',
       cellsformat: 'N',
       hidden: true,
-    }, {
+    }, 
+    {
       title: 'Incorporación',
       key: 'porc_inco',
-    },  {
-      title: 'Pedi. rete.',
-      key: 'porc_rete',
-    }, {
+    },  
+    // {
+    //   title: 'Pedi. rete.',
+    //   key: 'porc_rete',
+    // }, 
+    {
       title: '% Acti.',
       key: 'porc_acti',
-    }, {
-      title: 'Cons. pedi. rete.',
+    }, 
+    {
+      title: 'Cons. pedi. ',
       key: 'porc_rete_cons',
-    },  {
+    },  
+    {
       title: 'Cons. 2do pedi.',
       key: 'porc_rete_segu',
     }, {
@@ -2202,9 +2030,9 @@ const onGenerar = async () => {
       objetivoIncorporacion: '0',
       facturadoIncorporacion: '0',
       cumplimientoIncorporacion: '0.00',
-      objetivoRetencion: '0',
-      facturadoRetencion: '0',
-      cumplimientoRetencion: '0.00',
+      objetivoPedidos: '0',
+      facturadoPedidos: '0',
+      cumplimientoPedidos: '0.00',
     }
     
     const { data } = await $api(`/api/sami/v1/reportes/evaluacion-cierre-zona`, {
@@ -2224,9 +2052,9 @@ const onGenerar = async () => {
       objetivoIncorporacion: data.obje_inco,
       facturadoIncorporacion: data.fact_inco,
       cumplimientoIncorporacion: data.porc_inco,
-      objetivoRetencion: data.obje_rete,
-      facturadoRetencion: data.fact_rete,
-      cumplimientoRetencion: data.porc_rete,
+      objetivoPedidos: data.obje_pedi,
+      facturadoPedidos: data.fact_pedi,
+      cumplimientoPedidos: data.porc_cump_pedi,
     }
   } catch (error) {
     if(typeof error.response !== "undefined") {
@@ -2310,9 +2138,9 @@ const onLimpiar= async () => {
     objetivoIncorporacion: '0',
     facturadoIncorporacion: '0',
     cumplimientoIncorporacion: '0.00',
-    objetivoRetencion: '0',
-    facturadoRetencion: '0',
-    cumplimientoRetencion: '0.00',
+    objetivoPedidos: '0',
+    facturadoPedidos: '0',
+    cumplimientoPedidos: '0.00',
   }
   sourceGlobal.value.localdata = []
   refGridGlobal.value.updatebounddata('cells')
@@ -2371,7 +2199,7 @@ const onClose = () => {
       <template #botones>
         <GenerarBoton @procesar="onGenerar" />
         <ExcelBoton @procesar="onExcel" />
-        <RankingBoton @procesar="onRanking" />
+        <!-- <RankingBoton @procesar="onRanking" /> -->
         <LimpiarBoton @procesar="onLimpiar" />
       </template>
       <template #contenido>
@@ -2445,12 +2273,12 @@ const onClose = () => {
                       <td>{{ general.facturadoIncorporacion }}</td>
                       <td>{{ general.cumplimientoIncorporacion }}</td>
                     </tr>
-                    <!-- <tr>
-                      <td>Retención</td>
-                      <td>{{ general.objetivoRetencion }}</td>
-                      <td>{{ general.facturadoRetencion }}</td>
-                      <td>{{ general.cumplimientoRetencion }}</td>
-                    </tr> -->
+                    <tr>
+                      <td>Pedidos</td>
+                      <td>{{ general.objetivoPedidos }}</td>
+                      <td>{{ general.facturadoPedidos }}</td>
+                      <td>{{ general.cumplimientoPedidos }}</td>
+                    </tr>
                   </tbody>
                 </VTable>
               </VCardText>
