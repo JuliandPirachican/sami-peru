@@ -24,8 +24,16 @@ const appStore = useAppStore()
 const formulario = ref({
   campana: null,
   zona: null,
-})
+});
 
+const pedi_sele_libe = ref(new Set());
+const camp_sele=ref('');
+const keyRow = row =>`${row.codi_terc}-${camp_sele.value}-${row.nume_iden ?? ''}`;
+const toggleSeleccion = (row, checked) => {
+const k = keyRow(row)
+  if (checked) pedi_sele_libe.value.add(k)
+  else pedi_sele_libe.value.delete(k)
+}
 
 const headersGlobal = [
   {
@@ -435,7 +443,7 @@ const onGenerar = async () => {
     limpiarValidacion()
 
     initConfiguracion()
-
+    camp_sele.value=formulario.value.campana;
     const { data } = await $api(`/api/sami/v1/reportes/pedidos-digitados`, {
       method: "get",
       query: {
@@ -614,10 +622,7 @@ const initConfiguracionDetalle = () => {
         title: 'Fecha',
         key: 'fech_docu',
       },
-      {
-        title: 'Gemma',
-        key: 'clie_gemm',
-      },
+  
       {
         title: 'Nivel',
         key: 'nive_gemm',
@@ -750,6 +755,10 @@ const initConfiguracionDetalle = () => {
         title: 'Mont Min Publico',
         key: 'moti_minp',
       },
+      {
+        title: 'Aprobar Min',
+        key: 'libe_pedi',
+      },
     ]
   }
   if (conceptoCodigo.value === '9') {
@@ -831,8 +840,8 @@ const onGenerarDetalle = async () => {
         campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
         cantidad: conceptoCantidad.value,
       },
-    })
-
+    });
+    console.log('data.dato', data.dato)
     itemsSubDetalle.value = data.dato
     
   } catch (error) {
@@ -858,6 +867,50 @@ const onExcelConcepto = async () => {
     
     window.open(`${$base}/temporales/${data}`, '_blank')
   } catch (e) {
+  }
+  finally {
+    appStore.loading(false)
+  }
+}
+
+/**liberar pedidos */
+const onLiberarPedido = async () => {
+  try {
+    if (pedi_sele_libe.value.size === 0) {
+      appStore.mensajeSnackbar('No ha seleccionado ningún pedido para liberar')
+      appStore.color("error")
+      appStore.snackbar(true)
+      return
+    }
+
+    appStore.mensaje('Liberando pedidos')
+    appStore.loading(true)
+
+    const listaPedidos = Array.from(pedi_sele_libe.value)
+
+    await $api(`/api/sami/v1/reportes/pedidos-digitados/liberarPedido`, {
+      method: "post",
+      body: {
+        pedi_lide: listaPedidos,
+        usuario: userData.codi_perf,
+      },
+    })
+
+    appStore.mensajeSnackbar('Pedidos liberados con éxito')
+    appStore.color("success")
+    appStore.snackbar(true)
+    pedi_sele_libe.value = new Set()
+    await onGenerarDetalle()
+    await onGenerar()
+  } catch (e) {
+    if(e.response !== undefined) {
+      const { data } = e.response._data    
+      if (typeof data != "undefined" && data.message) {
+        appStore.mensajeSnackbar(data.message)
+        appStore.color("error")
+        appStore.snackbar(true)
+      }
+    }
   }
   finally {
     appStore.loading(false)
@@ -995,7 +1048,7 @@ const onExcelConcepto = async () => {
                     size="x-large"
                     icon="tabler-dots-vertical"
                   />
-                  <span v-if="!mobile"><a style="color:white;" :href="`https://intranet.dupree.co/desarrollo/cgis/repo_pedi_digi.php`" target="_blank">LIBERACIÓN DE PEDIDOS</a></span>
+                  <span @click="onLiberarPedido"  >Liberar Pedidos</span>
                 </VBtn>
                 <VBtn
                   color="default"
@@ -1045,7 +1098,18 @@ const onExcelConcepto = async () => {
           no-data-text="Sin información para mostrar"
           fixed-header
           :height="(!mobile)? (itemsSubDetalle.length > 15) ? 400 : null: null"
-        >
+        > 
+        <template #item.libe_pedi="{ item }" v-if="conceptoTitulo === 'Total pedidos retenidos'">
+          <div class="d-flex justify-center align-center">
+            <VCheckbox
+              :model-value="pedi_sele_libe.has(keyRow(item.raw ?? item))"
+              @update:model-value="val => toggleSeleccion(item.raw ?? item, val)"
+              density="compact"
+              hide-details
+              v-if="item.libe_pedi === 'X'"
+            />
+          </div>
+        </template>
           <template #bottom />
         </VDataTable>
       </VCard>
