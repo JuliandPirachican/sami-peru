@@ -1,25 +1,34 @@
+<style >
+.swal2-container {
+  z-index: 9999 !important;
+}
+</style>
 <!-- eslint-disable camelcase -->
 <script setup>
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
+import Swal from 'sweetalert2';
 import { useDisplay } from 'vuetify';
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { VBtn } from 'vuetify/lib/components/index.mjs';
+
+
 
 definePage({
   meta: {
     action: 'colombia/repo_come_pedi_digi',
     subject: 'colombia/repo_come_pedi_digi',
   },
-})
+});
+
 
 const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
   storageType: 'localStorage',
-})
+});
 
-const { mobile } = useDisplay()
-const userData = encryptStorage.getItem('userData')
-const appStore = useAppStore()
+const { mobile } = useDisplay();
+const userData = encryptStorage.getItem('userData');
+const appStore = useAppStore();
 
 const formulario = ref({
   campana: null,
@@ -29,6 +38,12 @@ const formulario = ref({
 const pedi_sele_libe = ref(new Set());
 const camp_sele=ref('');
 const keyRow = row =>`${row.codi_terc}-${camp_sele.value}-${row.nume_iden ?? ''}`;
+
+/**
+ * Agrega o elimina una fila de la seleccion
+ * @param {Object} row - Fila de la tabla
+ * @param {Boolean} checked - True si se selecciona, false si no
+ */
 const toggleSeleccion = (row, checked) => {
 const k = keyRow(row)
   if (checked) pedi_sele_libe.value.add(k)
@@ -55,9 +70,9 @@ const headersGlobal = [
     key: 'porc_conc',
     title: 'Porcentaje',
   },
-]
+];
 
-const itemsGlobal = ref([])
+const itemsGlobal = ref([]);
 
 const headersDetalle = [
   {
@@ -79,31 +94,37 @@ const headersDetalle = [
     title: 'Porcentaje',
     width: '10px',
   },
-]
+];
 
-const itemsDetalle = ref([])
+const itemsDetalle = ref([]);
 
-const headersSubDetalle = ref([])
-const itemsSubDetalle = ref([])
-const campanaOptions = ref([])
-const errorCampana = ref(false)
-const errorMensajeCampana = ref('')
+const headersSubDetalle = ref([]);
+const itemsSubDetalle = ref([]);
+const campanaOptions = ref([]);
+const errorCampana = ref(false);
+const errorMensajeCampana = ref('');
 
-const zonaOptions = ref([])
-const errorZona = ref(false)
-const errorMensajeZona = ref('')
-const modalDetalle = ref(false)
-const conceptoTitulo = ref('')
-const conceptoCodigo = ref(0)
-const conceptoCantidad = ref(0)
+const zonaOptions = ref([]);
+const errorZona = ref(false);
+const errorMensajeZona = ref('');
+const modalDetalle = ref(false);
+const conceptoTitulo = ref('');
+const conceptoCodigo = ref(0);
+const conceptoCantidad = ref(0);
 
 onMounted(async () => {
   appStore.titulo(`Reportes / Pedido digitado zona`)
   initConfiguracion()
   await obtenerCampana()
   await obtenerZona()
-})
+});
 
+/**
+ * Inicializa la configuración de la tabla con los conceptos
+ * globales y locales para el reporte de pedido digitado por zona.
+ * 
+ * @returns {void} No devuelve nada.
+ */
 const initConfiguracion = () => {
   itemsGlobal.value = [
     {
@@ -115,15 +136,6 @@ const initConfiguracion = () => {
       rece_desc: '',
       porc_conc: '0.00 %',
     }, 
-    // {
-    //   nomb_conc: 'Retención',
-    //   line_desc: '',
-    //   obje_conc: '0',
-    //   falt_desc: '',
-    //   fact_conc: '0',
-    //   rece_desc: '',
-    //   porc_conc: '0.00 %',
-    // },
     {
       nomb_conc: 'Pedidos Totales',
       line_desc: '',
@@ -253,12 +265,6 @@ const initConfiguracion = () => {
       cant_conc: '0',
       porc_conc: '',
     },
-    // {
-    //   cons_fila: '5',
-    //   nomb_conc: 'Pedidos facturados de retencion',
-    //   cant_conc: '0',
-    //   porc_conc: '',
-    // },
     {
       cons_fila: '6',
       nomb_conc: 'Pedidos facturados de incorporacion',
@@ -377,8 +383,13 @@ const initConfiguracion = () => {
       porc_conc: '',
     },
   ]
-}
+};
 
+/**
+ * Obtiene la lista de campañas futuras desde la API.
+ * 
+ * @returns {Promise<void>} Promesa que se resuelve cuando se completa la petición.
+ */
 const obtenerCampana = async () => {
   try {
     appStore.mensaje('Obteniendo campaña')
@@ -406,6 +417,11 @@ const obtenerCampana = async () => {
   }
 }
 
+/**
+ * Obtiene la lista de zonas desde la API.
+ * 
+ * @returns {Promise<void>} Promesa que se resuelve cuando se completa la petición.
+ */
 const obtenerZona = async () => {
   try {
     appStore.mensaje('Obteniendo zona')
@@ -436,6 +452,11 @@ const obtenerZona = async () => {
   }
 }
 
+/**
+ * Genera un informe de seguimiento de cierre de zona
+ * 
+ * @returns {Promise<void>} Promesa que se resuelve cuando se completa la petición.
+ */
 const onGenerar = async () => {
   try {
     appStore.mensaje('Obteniendo información')
@@ -479,6 +500,12 @@ const onGenerar = async () => {
   }
 }
 
+/**
+ * Limpia el formulario y configura los valores por defecto.
+ * 
+ * @returns {Promise<void>} Promesa que se resuelve cuando se 
+ * completa la petición.
+ */
 const onLimpiar= async () => {
   formulario.value = {
     campana: null,
@@ -487,6 +514,13 @@ const onLimpiar= async () => {
   initConfiguracion()
 }
 
+/**
+ * Genera un archivo Excel con la información de seguimiento
+ * de cierre de zona.
+ * 
+ * @returns {Promise<void>} Promesa que se resuelve cuando se
+ * completa la petición.
+ */
 const onExcel = async () => {
   try {
     appStore.mensaje('Generando archivo')
@@ -508,6 +542,11 @@ const onExcel = async () => {
   }
 }
 
+/**
+ * Limpia los errores de la validación.
+ * 
+ * @returns {void} No devuelve nada.
+ */
 const limpiarValidacion = () => {
   errorCampana.value = false
   errorMensajeCampana.value = ''
@@ -515,6 +554,12 @@ const limpiarValidacion = () => {
   errorMensajeZona.value = ''
 }
 
+/**
+ * Obtiene el detalle de un concepto.
+ * 
+ * @param {Object} item - Objeto que contiene la información del concepto.
+ * @returns {Promise<void>} Promesa que se resuelve cuando se completa la petición.
+ */
 const onSeleccionar = async item => {
   const cantConc = parseInt(item.cant_conc)
   const nombConc = item.nomb_conc
@@ -533,6 +578,11 @@ const onSeleccionar = async item => {
   }
 }
 
+/**
+ * Configura los headers de la tabla de detalle según el concepto seleccionado.
+ * 
+ * @returns {void} No devuelve nada.
+ */
 const initConfiguracionDetalle = () => {
   console.log('conceptoCodigo.value', conceptoCodigo.value)
   if (
@@ -819,6 +869,10 @@ const initConfiguracionDetalle = () => {
   }
 }
 
+/**
+ * Cierra el modal de detalle de un concepto y reinicia los valores
+ * de los campos conceptoTitulo, conceptoCodigo, conceptoCantidad, headersSubDetalle e itemsSubDetalle.
+ */
 const onCloseConcepto = () => {
   modalDetalle.value = false
   conceptoTitulo.value = ''
@@ -828,6 +882,14 @@ const onCloseConcepto = () => {
   itemsSubDetalle.value = []
 }
 
+/**
+ * Obtiene la lista de detalles de un concepto digitado y
+ * lo asigna a itemsSubDetalle.
+ * 
+ * @param {string} conceptoTitulo - Título del concepto digitado.
+ * @param {string} campana - Código de la campaña.
+ * @param {number} cantidad - Cantidad a filtrar.
+ */
 const onGenerarDetalle = async () => {
   try {
     appStore.mensaje('Obteniendo información')
@@ -852,6 +914,13 @@ const onGenerarDetalle = async () => {
   }
 }
 
+/**
+ * Genera un archivo Excel con la información de seguimiento
+ * de cierre de zona.
+ * 
+ * @returns {Promise<void>} Promesa que se resuelve cuando se
+ * completa la petición.
+ */
 const onExcelConcepto = async () => {
   try {
     appStore.mensaje('Generando archivo')
@@ -874,14 +943,65 @@ const onExcelConcepto = async () => {
 }
 
 /**liberar pedidos */
-const onLiberarPedido = async () => {
-  try {
+
+
+/**
+ * Función que permite liberar los pedidos seleccionados
+ * 
+ * @returns {Promise<void>} Promesa que se resuelve cuando 
+ * se completa la liberación de los pedidos
+ */
+const gene_conf_libe_pedi = async () => {
     if (pedi_sele_libe.value.size === 0) {
       appStore.mensajeSnackbar('No ha seleccionado ningún pedido para liberar')
       appStore.color("error")
       appStore.snackbar(true)
       return
     }
+    let html_conf_libe_pedi ="<div class='row'>";
+    html_conf_libe_pedi+="  <div class='col text-center'>";
+    html_conf_libe_pedi+="    Atencion.<br> Esta a punto de liberar <strong>"+pedi_sele_libe.value.size+" </strong> Pedido(s). ";
+    html_conf_libe_pedi+="    <br>";
+    html_conf_libe_pedi+="    <strong>¿Desea continuar?</strong>";
+    html_conf_libe_pedi+="  </div>";
+    html_conf_libe_pedi+="</div>";
+
+    Swal.fire({
+      title: 'Liberacion de pedidos',
+      html: html_conf_libe_pedi,
+      icon: 'warning',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Liberar '+pedi_sele_libe.value.size+' pedido(s)',
+      cancelButtonText: 'Cancelar Liberacion',
+      customClass: {
+        confirmButton: 'v-btn bg-primary mr-1',
+        cancelButton: 'v-btn bg-error ml-1',
+      },
+    }).then(result => {
+      if (result.isConfirmed) {
+        onLiberarPedido()
+      }
+      
+      if (result.isDismissed || result.isDenied) {
+        console.log('Cancelado')
+        pedi_sele_libe.value = new Set()
+        return
+      }
+    });
+};
+
+
+/**
+ * Función que permite liberar los pedidos seleccionados
+ * 
+ * @returns {Promise<void>} Promesa que se resuelve el
+ * envio de la liberación de los pedidos al servidor
+ */
+const onLiberarPedido = async () => {
+  try {
+    console.log('Liberar pedidos')
+
 
     appStore.mensaje('Liberando pedidos')
     appStore.loading(true)
@@ -1048,7 +1168,7 @@ const onLiberarPedido = async () => {
                     size="x-large"
                     icon="tabler-dots-vertical"
                   />
-                  <span @click="onLiberarPedido"  >Liberar Pedidos</span>
+                  <span @click="gene_conf_libe_pedi()"  >Liberar Pedidos</span>
                 </VBtn>
                 <VBtn
                   color="default"
