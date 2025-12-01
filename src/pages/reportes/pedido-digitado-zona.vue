@@ -901,6 +901,7 @@ const onGenerarDetalle = async () => {
         titulo: conceptoTitulo.value,
         campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
         cantidad: conceptoCantidad.value,
+        codi_zona: (formulario.value.zona === null) ? '' : formulario.value.zona
       },
     });
     console.log('data.dato', data.dato)
