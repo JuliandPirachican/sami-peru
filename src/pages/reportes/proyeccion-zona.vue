@@ -1460,15 +1460,18 @@ const onEditar = async event => {
    * y total egresos para validar si puede capitalizar o no la proyección, el valor sumado 
    * se coloca en la columna de proyeccion de la capitalización
    */
-  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'rein_obje' ) {
+  if (columnDataField === 'pedi_inco_obje' || columnDataField === 'rein_obje' || columnDataField === 'pe63_obje' ) {
     let newValue = cellValue
     let proyInco = columnDataField === 'pedi_inco_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pedi_inco_obje');
     let proyRein = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
-    let tota_egre = columnDataField === 'tota_egre' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'tota_egre');
-    console.log(proyInco+" "+ proyRein+" "+ tota_egre)
-    if (proyInco > 0 || proyRein > 0 || tota_egre > 0) {
-      let sumProyCapi = (proyInco + proyRein)  - tota_egre;
-      console.log(sumProyCapi)
+    let pe63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
+    if (proyInco > 0 || proyRein > 0 || pe63 > 0) {
+      let pe63_obje = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje');
+      console.log("formula proyeccion capitalizacion")
+      console.log(proyInco+" "+ proyRein+" "+ pe63+" "+ pe63_obje);
+      let sum_inco_rein = proyInco + proyRein;
+      let rest_peg63_peg63_obje = pe63 - pe63_obje;
+      let sumProyCapi = sum_inco_rein - rest_peg63_peg63_obje;
       if (sumProyCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', sumProyCapi)
       }else{
@@ -1483,15 +1486,17 @@ const onEditar = async event => {
    * y total egresos para validar si puede capitalizar o no la proyección, 
    * el valor sumado se coloca en la columna de seguimiento de la capitalización
    */
-  if (columnDataField === 'segui_inco' || columnDataField === 'rein_prim' ) {
+  if (columnDataField === 'segui_inco' || columnDataField === 'rein_prim' || columnDataField === 'pe63_prim') {
     let newValue = cellValue
     let seguInco = columnDataField === 'segui_inco' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'segui_inco');
     let seguRein = columnDataField === 'rein_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_prim')
-    let tota_egre = columnDataField === 'tota_egre' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'tota_egre');
-    console.log(seguInco+" "+ seguRein+" "+ tota_egre)
+    let pe63 = columnDataField === 'pe63' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63');
+    let pe63_segu = columnDataField === 'pe63_prim' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_prim');
+    console.log("formula seguimiento capitalizacion")
+    console.log(seguInco+" "+ seguRein+" "+ pe63+" "+ pe63_segu);
+
     if (seguInco > 0 || seguRein > 0 || tota_egre > 0) {
-      let sumseguCapi = (seguInco + seguRein) - tota_egre;
-      console.log(sumseguCapi)
+      let sumseguCapi = (seguInco + seguRein) - (pe63 - pe63_segu);
       if (sumseguCapi >= 0) {
         refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', sumseguCapi)
       }else{
