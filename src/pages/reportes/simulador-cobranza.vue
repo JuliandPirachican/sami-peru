@@ -598,11 +598,13 @@ const onEditarInicio = event => {
 
 const onEditarFin = event => {
   const { args } = event
+  console.log("args=", args);
   const columnDataField = args.datafield
+  console.log("columnDataField=", columnDataField);
   const rowIndex = args.rowindex
-  const cellValue = parseFloat(args.value).toFixed(2)
-  const oldValue = parseFloat(args.oldvalue).toFixed(2)
-
+  const cellValue = parseFloat(args.value)
+  const oldValue = parseFloat(args.oldvalue.replace(/,/g, ''))
+  console.log("oldValue=", oldValue,"args.oldvalue=",args.oldvalue, " cellValue=", cellValue);
   const cons_lide = refGridDetalle.value.getcellvaluebyid(
     rowIndex,
     'cons_lide',
@@ -619,16 +621,15 @@ const onEditarFin = event => {
   let newValue = oldValue - cellValue
   newValue =parseFloat(parseFloat(newValue).toFixed(2)); 
   if (columnDataField === 'simu_31di') {
-    let simu31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'simu_31di');
-    let valoDocu = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'valo_docu');
-    let obje31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'obje_31di');
+    let simu31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'simu_31di').replace(/,/g, '');
+    let valoDocu = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'valo_docu').replace(/,/g, '');
+    let obje31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'obje_31di').replace(/,/g, '');
 
-    console.log(" simu31di=",simu31di," valoDocu=", valoDocu," obje31di=", obje31di ," newValue=", newValue);
     
     simu31di = parseFloat(parseFloat(simu31di).toFixed(2));
-    console.log("simu31di menos newValue=",simu31di);
+    console.log("simu31di=",simu31di," - newValue=",simu31di);
     simu31di -= newValue
-    valoDocu = parseFloat(parseFloat(valoDocu).toFixed(2));
+    valoDocu = parseFloat(parseFloat(valoDocu.replace(/,/g, '')).toFixed(2));
     console.log("resultado simu31di=",simu31di);
 
     let porcSimu31di = '0.00'
@@ -637,7 +638,7 @@ const onEditarFin = event => {
       porcSimu31di = parseFloat(porcSimu31di).toFixed(2)
     }
   
-    obje31di = parseFloat(parseFloat(obje31di).toFixed(2));
+    obje31di = parseFloat(parseFloat(obje31di.replace(/,/g, '')).toFixed(2));
     let faltCobr31di = obje31di - simu31di
     faltCobr31di = parseFloat(faltCobr31di).toFixed(2)
     faltCobr31di = (faltCobr31di >= 0) ? '0.00': faltCobr31di;
@@ -645,9 +646,11 @@ const onEditarFin = event => {
     /**
      * Actualizar valores globales
      */
+    let conv_simu_31di = simu31di.toLocaleString('en-US', { minimumFractionDigits: 2 });
+    let conv_falt_cobr_31di = faltCobr31di.toLocaleString('en-US', { minimumFractionDigits: 2 });
     refGridGlobal.value.setcellvalue(rowIndexGlobal,'porc_simu_31di',porcSimu31di);
-    refGridGlobal.value.setcellvalue(rowIndexGlobal,'falt_cobr_31di',faltCobr31di);
-    refGridGlobal.value.setcellvalue(rowIndexGlobal,'simu_31di', simu31di);
+    refGridGlobal.value.setcellvalue(rowIndexGlobal,'falt_cobr_31di',conv_falt_cobr_31di);
+    refGridGlobal.value.setcellvalue(rowIndexGlobal,'simu_31di', conv_simu_31di);
   }
 }
 
