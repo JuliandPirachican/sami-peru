@@ -206,21 +206,21 @@ const claseCobranza= (row, columnfield,  value) => {
     const dataRecord = refGridCobranza.value.getrowdata(1)
     let objeTota = ''
     if (columnfield === 'codi_camp_1') {
-      objeTota = parseFloat(dataRecord.codi_camp_1).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_1)
     } else if (columnfield === 'codi_camp_2') {
-      objeTota = parseFloat(dataRecord.codi_camp_2).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_2)
     } else if (columnfield === 'codi_camp_3') {
-      objeTota = parseFloat(dataRecord.codi_camp_3).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_3)
     } else if (columnfield === 'codi_camp_4') {
-      objeTota = parseFloat(dataRecord.codi_camp_4).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_4)
     } else if (columnfield === 'codi_camp_5') {
-      objeTota = parseFloat(dataRecord.codi_camp_5).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_5)
     } else if (columnfield === 'codi_camp_6') {
-      objeTota = parseFloat(dataRecord.codi_camp_6).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_6)
     } else if (columnfield === 'tota_camp') {
-      objeTota = parseFloat(dataRecord.tota_camp).toFixed(2)
+      objeTota = parseFloat(dataRecord.tota_camp)
     }
-    const cumpTota = parseFloat(value).toFixed(2)
+    const cumpTota = parseFloat(value)
     if (objeTota === '0.00') {
       return ''
     }
@@ -234,21 +234,21 @@ const claseCobranza= (row, columnfield,  value) => {
     const dataRecord = refGridCobranza.value.getrowdata(1)
     let objeTota = ''
     if (columnfield === 'codi_camp_1') {
-      objeTota = parseFloat(dataRecord.codi_camp_1).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_1)
     } else if (columnfield === 'codi_camp_2') {
-      objeTota = parseFloat(dataRecord.codi_camp_2).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_2)
     } else if (columnfield === 'codi_camp_3') {
-      objeTota = parseFloat(dataRecord.codi_camp_3).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_3)
     } else if (columnfield === 'codi_camp_4') {
-      objeTota = parseFloat(dataRecord.codi_camp_4).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_4)
     } else if (columnfield === 'codi_camp_5') {
-      objeTota = parseFloat(dataRecord.codi_camp_5).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_5)
     } else if (columnfield === 'codi_camp_6') {
-      objeTota = parseFloat(dataRecord.codi_camp_6).toFixed(2)
+      objeTota = parseFloat(dataRecord.codi_camp_6)
     } else if (columnfield === 'tota_camp') {
-      objeTota = parseFloat(dataRecord.tota_camp).toFixed(2)
+      objeTota = parseFloat(dataRecord.tota_camp)
     }
-    const cumpTota = parseFloat(value).toFixed(2)
+    const cumpTota = parseFloat(value)
     if (objeTota === '0.00') {
       return ''
     }
@@ -863,13 +863,13 @@ const sourceCobranza = ref({
   localdata: [],
   datafields: [
     { name: 'nomb_conc', type: 'string' },
-    { name: 'codi_camp_1', type: 'number' },
-    { name: 'codi_camp_2', type: 'number' },
-    { name: 'codi_camp_3', type: 'number' },
-    { name: 'codi_camp_4', type: 'number' },
-    { name: 'codi_camp_5', type: 'number' },
-    { name: 'codi_camp_6', type: 'number' },
-    { name: 'tota_camp', type: 'number' },
+    { name: 'codi_camp_1', type: 'string' },
+    { name: 'codi_camp_2', type: 'string' },
+    { name: 'codi_camp_3', type: 'string' },
+    { name: 'codi_camp_4', type: 'string' },
+    { name: 'codi_camp_5', type: 'string' },
+    { name: 'codi_camp_6', type: 'string' },
+    { name: 'tota_camp', type: 'string' },
   ],
   datatype: 'json',
 })
@@ -1471,8 +1471,7 @@ const columnsCobranza = [
     width: '11%',
     cellsalign: 'center',
     align: 'center',
-    cellclassname: claseCobranza,
-    cellsformat: 'N',
+    cellclassname: claseCobranza
   },
   {
     text: codi_camp_2.value,
@@ -1481,7 +1480,6 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'N',
   },
   {
     text: codi_camp_3.value,
@@ -1490,7 +1488,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'N',
+    cellsformat: 'n',
   },
   {
     text: codi_camp_4.value,
@@ -1499,7 +1497,6 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'N',
   },
   {
     text: codi_camp_5.value,
@@ -1508,7 +1505,6 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'N',
   },
   {
     text: codi_camp_6.value,
@@ -1517,7 +1513,6 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'N',
   },
   {
     text: 'Total',
@@ -1526,7 +1521,7 @@ const columnsCobranza = [
     cellsalign: 'center',
     align: 'center',
     cellclassname: claseCobranza,
-    cellsformat: 'N',
+    cellsformat: 'n2',
   },
 ]
 

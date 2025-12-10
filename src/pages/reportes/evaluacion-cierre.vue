@@ -95,10 +95,6 @@ const cabeceraGlobal = [
     key: 'porc_acti',
   },
   {
-    title: 'Rete. camp. ant.',
-    key: 'fact_rete_cons_ante',
-  },
-  {
     title: 'Objetivo',
     key: 'obje_rete_cons',
   },
@@ -317,7 +313,7 @@ const claseObjetivoRetencionConsecutiva = (row, columnfield, value) => {
 }
 
 const claseCumplimientoRetencionConsecutiva = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'fact_rete_cons_ante', 100, 90)
+  return getClaseCumplimiento(row, columnfield, value, 'cump_fact_rete_cons', 100, 90)
 }
 
 const claseCumplimientoConsecutivaSegundo = (row, columnfield, value) => {
@@ -676,28 +672,6 @@ const columnasGlobal = [
     hidden: true,
   },
 
-  //aca
-  
-  {
-    text: 'Rete. camp. ant.',
-    dataField: 'fact_rete_cons_ante',
-    width: '100',
-    align: 'center',
-    cellsalign: 'center',
-    cellsformat: 'N',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue) {
-          
-          aggregatedValue += currentValue
-          
-          return aggregatedValue
-        },
-      },
-    ],
-    columngroup: 'cons',
-  },
   {
     text: 'Objetivo',
     dataField: 'obje_rete_cons',
@@ -1812,7 +1786,6 @@ const sourceGlobal = ref({
     { name: 'porc_acti', type: 'number' },
     { name: 'nume_pedi_acti', type: 'number' },
     { name: 'porc_acti_ante', type: 'number' },
-    { name: 'fact_rete_cons_ante', type: 'number' },
     { name: 'obje_rete_cons', type: 'number' },
     { name: 'fact_rete_cons', type: 'number' },
     { name: 'cump_fact_rete_cons', type: 'number' },

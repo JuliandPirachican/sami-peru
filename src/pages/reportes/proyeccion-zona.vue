@@ -1472,11 +1472,8 @@ const onEditar = async event => {
       let sum_inco_rein = proyInco + proyRein;
       let rest_peg63_peg63_obje = pe63 - pe63_obje;
       let sumProyCapi = sum_inco_rein - rest_peg63_peg63_obje;
-      if (sumProyCapi >= 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', sumProyCapi)
-      }else{
-        refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', 0)
-      }
+      refGridGlobal.value.setcellvalue(rowIndex, 'capi_obje', sumProyCapi)
+   
     }
     
   }
@@ -1495,13 +1492,11 @@ const onEditar = async event => {
     console.log("formula seguimiento capitalizacion")
     console.log(seguInco+" "+ seguRein+" "+ pe63+" "+ pe63_segu);
 
-    if (seguInco > 0 || seguRein > 0 || tota_egre > 0) {
+    if (seguInco > 0 || seguRein > 0 || pe63 > 0) {
       let sumseguCapi = (seguInco + seguRein) - (pe63 - pe63_segu);
-      if (sumseguCapi >= 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', sumseguCapi)
-      }else{
-        refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', 0)
-      }
+      console.log(sumseguCapi)
+      refGridGlobal.value.setcellvalue(rowIndex, 'capi_repr', sumseguCapi)
+
     }
     
   }
