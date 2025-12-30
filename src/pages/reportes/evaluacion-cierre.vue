@@ -41,228 +41,60 @@ const general = ref({
 })
 
 const cabeceraGlobal = [
-  {
-    title: 'Zona',
-    key: 'codi_zona',
-  },
-  {
-    title: 'Codigo Lider',
-    key: 'codi_sect',
-  },
-  {
-    title: 'Lider',
-    key: 'nomb_lide',
-  },
-  {
-    title: 'Act. inic.',
-    key: 'acti_inic',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_tota',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_tota',
-  },
-  {
-    title: 'Cump. fact.',
-    key: 'cump_fact_tota',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_inco',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_inco',
-  },
-  {
-    title: 'Cump. fact.',
-    key: 'cump_fact_inco',
-  },
-
-  {
-    title: 'Camp. ante.',
-    key: 'porc_acti_ante',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_acti',
-  },
-  {
-    title: 'Facturado',
-    key: 'porc_acti',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_rete_cons',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rete_cons',
-  },
-  {
-    title: 'Cump. fact.',
-    key: 'cump_fact_rete_cons',
-  },
-  {
-    title: '1 Camp. ante.',
-    key: 'obje_rete_cons_segu',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rete_cons_segu',
-  },
-  {
-    title: 'Cump. fact.',
-    key: 'cump_fact_rete_cons_segu',
-  },
-  {
-    title: '2 Camp. ante.',
-    key: 'obje_rete_cons_terc',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rete_cons_terc',
-  },
-  {
-    title: 'Cump. fact.',
-    key: 'cump_fact_rete_cons_terc',
-  },
-  {
-    title: '3 Camp. ante.',
-    key: 'obje_rete_cons_cuar',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rete_cons_cuar',
-  },
-  {
-    title: 'Cump. fact.',
-    key: 'cump_fact_rete_cons_cuar',
-  },
-  {
-    title: 'Peg21',
-    key: 'fact_pe21_ante',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_pe21',
-  },
-  {
-    title: 'Ret. peg21',
-    key: 'fact_pe21',
-  },
-  {
-    title: '% Ret. fact.',
-    key: 'porc_pe21',
-  },
-  {
-    title: 'Peg42',
-    key: 'fact_pe42_ante',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_pe42',
-  },
-  {
-    title: 'Ret. peg42',
-    key: 'fact_pe42',
-  },
-  {
-    title: '% Ret. fact.',
-    key: 'porc_pe42',
-  },
-  {
-    title: 'Peg63',
-    key: 'fact_pe63_ante',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_pe63',
-  },
-  {
-    title: 'Ret. peg63',
-    key: 'fact_pe63',
-  },
-  {
-    title: '% Ret. fact.',
-    key: 'porc_pe63',
-  },
-  {
-    title: 'Pegs',
-    key: 'fact_pegs_ante',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_pegs',
-  },
-  {
-    title: 'Ret. pegs',
-    key: 'fact_pegs',
-  },
-  {
-    title: 'Cump. fact.',
-    key: 'porc_pegs',
-  },
-  {
-    title: 'Pos. reing.',
-    key: 'fact_rein_ante',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_rein',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_rein',
-  },
-  {
-    title: '% Cump',
-    key: 'porc_rein',
-  },
-  {
-    title: 'Objetivo',
-    key: 'obje_capi',
-  },
-  {
-    title: 'Facturado',
-    key: 'fact_capi',
-  },
-  {
-    title: 'Pend. 21di',
-    key: 'pend_21di',
-  },
-  {
-    title: '% Cobr. 21di.',
-    key: 'porc_21di',
-  },
-  {
-    title: 'Pend. 31di',
-    key: 'pend_31di',
-  },
-  {
-    title: '% Cobr. 31di.',
-    key: 'porc_31di',
-  },
-  {
-    title: 'Facturado',
-    key: 'pppp_fact',
-  },
-  {
-    title: 'Recepcionado',
-    key: 'pppp_rece',
-  },
-  {
-    title: 'Ingreso lider',
-    key: 'camp_ingr',
-  },
-  {
-    title: 'Nivel de lider',
-    key: 'nive_lide',
-  },
+  { title: 'Zona',                key: 'codi_zona' },
+  { title: 'Codigo Lider',        key: 'cons_lide' },
+  { title: 'Lider',               key: 'nomb_lide' },
+  { title: 'Act. inic.',          key: 'acti_inic' },
+  { title: 'Objetivo',            key: 'obje_inco' },
+  { title: 'Facturado',           key: 'fact_inco' },
+  { title: 'Cump. fact.',         key: 'cump_fact_inco' },
+  { title: 'Objetivo',            key: 'cons_obje_prim_conse' },
+  { title: 'Facturado',           key: 'cons_tota_fact_prim' },
+  { title: 'Cump. fact.',         key: 'porc_cump_fact_prim' },
+  { title: '1 Camp. ante.',       key: 'cons_obje_segu_conse' },
+  { title: 'Facturado',           key: 'cons_tota_fact_segu' },
+  { title: 'Cump. fact.',         key: 'porc_cump_fact_segu' },
+  { title: '2 Camp. ante.',       key: 'cons_obje_terc_conse' },
+  { title: 'Facturado',           key: 'cons_tota_fact_terc' },
+  { title: 'Cump. fact.',         key: 'porc_cump_fact_terc' },
+  { title: '3 Camp. ante.',       key: 'obje_rete_cons_cuar' },
+  { title: 'Facturado',           key: 'cons_tota_fact_cuar' },
+  { title: 'Cump. fact.',         key: 'porc_cump_fact_cuar' },
+  { title: 'Peg21',               key: 'cons_info_peg21_lide' },
+  { title: 'Objetivo',            key: 'cons_info_proy_pe21' },
+  { title: 'Ret. peg21',          key: 'cons_info_rete_pe21' },
+  { title: '% Ret. fact.',        key: 'porc_fact_rete_pe21' },
+  { title: 'Peg42',               key: 'cons_info_peg42_lide' },
+  { title: 'Objetivo',            key: 'cons_info_proy_pe42' },
+  { title: 'Ret. peg42',          key: 'cons_info_rete_pe42' },
+  { title: '% Ret. fact.',        key: 'porc_fact_rete_pe42' },
+  { title: 'Peg63',               key: 'cons_info_peg63_lide' },
+  { title: 'Objetivo',            key: 'cons_info_proy_pe63' },
+  { title: 'Ret. peg63',          key: 'cons_info_rete_pe63' },
+  { title: '% Ret. fact.',        key: 'porc_fact_rete_pe63' },
+  { title: 'Pegs',                key: 'cons_tota_pegs_lide' },
+  { title: 'Objetivo',            key: 'cons_info_proy_pegs' },
+  { title: 'Ret. pegs',           key: 'cons_info_rete_pegs' },
+  { title: '% Retencion',         key: 'porc_fact_rete_pegs' },
+  { title: 'Pos. reing.',         key: 'cons_posi_rein_lide' },
+  { title: 'Objetivo',            key: 'cons_info_proy_rein' },
+  { title: 'Facturado',           key: 'cons_info_fact_rein' },
+  { title: '% Cump',              key: 'porc_fact_rein_lide' },
+  { title: 'Objetivo',            key: 'cons_capi_proy_lide' },
+  { title: 'Facturado',           key: 'cons_capi_fact_lide' },
+  { title: 'Objetivo',            key: 'obje_tota' },
+  { title: 'Facturado',           key: 'fact_tota' },
+  { title: 'Cump. fact.',         key: 'cump_fact_tota' },
+  { title: 'Pend. 21di',          key: 'cons_info_pend_pe21' },
+  { title: '% Cobr. 21di.',       key: 'porc_info_sald_21di' },
+  { title: 'Pend. 31di',          key: 'cons_info_pend_pe31' },
+  { title: '% Cobr. 31di.',       key: 'porc_info_sald_31di' },
+  { title: 'Facturado',           key: 'cons_info_pppp_line' },
+  { title: 'Recepcionado',        key: 'cons_info_pppp_rece' },
+  { title: 'Ingreso lider',       key: 'cons_codi_camp_ingr' },
+  { title: 'Nivel de lider',      key: 'cons_info_nive_lide' },
 ]
+
 
 const getClaseCumplimiento = (row, columnfield, value, objeField, thresholdSuccess, thresholdWarning) => {
   const dataRecord = refGridGlobal.value.getrowdata(row)
@@ -313,15 +145,15 @@ const claseObjetivoRetencionConsecutiva = (row, columnfield, value) => {
 }
 
 const claseCumplimientoRetencionConsecutiva = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'cump_fact_rete_cons', 100, 90)
+  return getClaseCumplimiento(row, columnfield, value, 'porc_cump_fact_prim', 100, 90)
 }
 
 const claseCumplimientoConsecutivaSegundo = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'obje_rete_cons_segu', 100, 80)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_obje_segu_conse', 100, 80)
 }
 
 const claseCumplimientoConsecutivaTercer = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'obje_rete_cons_terc', 80, 70)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_obje_terc_conse', 80, 70)
 }
 
 const claseCumplimientoConsecutivaCuarto = (row, columnfield, value) => {
@@ -329,48 +161,48 @@ const claseCumplimientoConsecutivaCuarto = (row, columnfield, value) => {
 }
 
 const claseObjetivoPeg21 = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'fact_pe21', 100, 80)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_rete_pe21', 100, 80)
 }
 
 const clasePorcentajePeg21 = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'obje_pe21', 100, 90)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_proy_pe21', 100, 90)
 }
 
 const claseObjetivoPeg42 = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'fact_pe42', 100, 80)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_rete_pe42', 100, 80)
 }
 
 const clasePorcentajePeg42 = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'obje_pe42', 100, 90)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_proy_pe42', 100, 90)
 }
 
 const claseObjetivoPeg63 = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'fact_pe63', 100, 80)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_rete_pe63', 100, 80)
 }
 
 const clasePorcentajePeg63 = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'obje_pe63', 100, 90)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_proy_pe63', 100, 90)
 }
 
 const claseObjetivoPegs = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'fact_pegs', 100, 80)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_rete_pegs', 100, 80)
 }
 
 const clasePorcentajePegs = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'obje_pegs', 100, 90)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_proy_pegs', 100, 90)
 }
 
 const claseObjetivoReingreso = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'fact_rein', 100, 80)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_fact_rein', 100, 80)
 }
 
 const clasePorcentajeReingreso = (row, columnfield, value) => {
-  return getClaseCumplimiento(row, columnfield, value, 'obje_rein', 100, 90)
+  return getClaseCumplimiento(row, columnfield, value, 'cons_info_proy_rein', 100, 90)
 }
 
 const claseFacturacionCapitalizacion = (row, columnfield, value) => {
   const dataRecord = refGridGlobal.value.getrowdata(row)
-  const objeCapi = parseInt(dataRecord.obje_capi)
+  const objeCapi = parseInt(dataRecord.cons_capi_proy_lide)
 
   if (objeCapi === 0) {
     return ''
@@ -419,11 +251,6 @@ const columnasGrupo = [
     align: 'center',
     name: 'inco',
   },
-  // {
-  //   text: 'Pedidos de retención',
-  //   align: 'center',
-  //   name: 'rete',
-  // },
   {
     text: 'Pedidos totales',
     align: 'center',
@@ -524,7 +351,7 @@ const columnasGlobal = [
   },
   {
     text: 'Codigo Lider',
-    dataField: 'codi_sect',
+    dataField: 'cons_lide',
     width: '60',
     align: 'center',
     cellsalign: 'center',
@@ -632,26 +459,6 @@ const columnasGlobal = [
     cellclassname: claseCumplimientoIncorporacion,
   },
   {
-    text: 'acti inic ante',
-    dataField: 'acti_inic_ante',
-    hidden: true,
-  },
-  {
-    text: 'nume pedi ante',
-    dataField: 'nume_pedi_ante',
-    hidden: true,
-  },
-  {
-    text: 'tota ingr ante',
-    dataField: 'tota_ingr_ante',
-    hidden: true,
-  },
-  {
-    text: 'tota rein ante',
-    dataField: 'tota_rein_ante',
-    hidden: true,
-  },
-  {
     text: 'nume pedi',
     dataField: 'nume_pedi',
     hidden: true,
@@ -674,7 +481,7 @@ const columnasGlobal = [
 
   {
     text: 'Objetivo',
-    dataField: 'obje_rete_cons',
+    dataField: 'cons_obje_prim_conse',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -695,7 +502,7 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',
-    dataField: 'fact_rete_cons',
+    dataField: 'cons_tota_fact_prim',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -715,7 +522,7 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. fact.',
-    dataField: 'cump_fact_rete_cons',
+    dataField: 'porc_cump_fact_prim',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -729,8 +536,8 @@ const columnasGlobal = [
             sumaFact = 0
             sumaObje = 0
           }
-          sumaFact += record.fact_rete_cons
-          sumaObje += record.obje_rete_cons
+          sumaFact += record.cons_tota_fact_prim
+          sumaObje += record.cons_obje_prim_conse
           let total = 0
           
           if (parseInt(sumaFact) > 0 && parseInt(sumaObje) > 0) {
@@ -748,7 +555,7 @@ const columnasGlobal = [
   },
   {
     text: '1 Camp. ante.',
-    dataField: 'obje_rete_cons_segu',
+    dataField: 'cons_obje_segu_conse',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -768,7 +575,7 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',
-    dataField: 'fact_rete_cons_segu',
+    dataField: 'cons_tota_fact_segu',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -788,7 +595,7 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. fact.',
-    dataField: 'cump_fact_rete_cons_segu',
+    dataField: 'porc_cump_fact_segu',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -802,8 +609,8 @@ const columnasGlobal = [
             sumaFact = 0
             sumaObje = 0
           }
-          sumaFact += record.fact_rete_cons_segu
-          sumaObje += record.obje_rete_cons_segu
+          sumaFact += record.cons_tota_fact_segu
+          sumaObje += record.cons_obje_segu_conse
           let total = 0
           
           if (parseInt(sumaFact) > 0 && parseInt(sumaObje) > 0) {
@@ -821,7 +628,7 @@ const columnasGlobal = [
   },
   {
     text: '2 Camp. ante.',
-    dataField: 'obje_rete_cons_terc',
+    dataField: 'cons_obje_terc_conse',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -841,7 +648,7 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',
-    dataField: 'fact_rete_cons_terc',
+    dataField: 'cons_tota_fact_terc',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -861,7 +668,7 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. fact.',
-    dataField: 'cump_fact_rete_cons_terc',
+    dataField: 'porc_cump_fact_terc',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -875,8 +682,8 @@ const columnasGlobal = [
             sumaFact = 0
             sumaObje = 0
           }
-          sumaFact += record.fact_rete_cons_terc
-          sumaObje += record.obje_rete_cons_terc
+          sumaFact += record.cons_tota_fact_terc
+          sumaObje += record.cons_obje_terc_conse
           let total = 0
           
           if (parseInt(sumaFact) > 0 && parseInt(sumaObje) > 0) {
@@ -914,7 +721,7 @@ const columnasGlobal = [
   },
   {
     text: 'Facturado',
-    dataField: 'fact_rete_cons_cuar',
+    dataField: 'cons_tota_fact_cuar',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -934,21 +741,20 @@ const columnasGlobal = [
   },
   {
     text: 'Cump. fact.',
-    dataField: 'cump_fact_rete_cons_cuar',
+    dataField: 'porc_cump_fact_cuar',
     width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'P2',
     aggregates: [
       {
-        
         T: function(aggregatedValue, currentValue, column, record) {
           
           if (record.visibleindex === 0) {
             sumaFact = 0
             sumaObje = 0
           }
-          sumaFact += record.fact_rete_cons_cuar
+          sumaFact += record.cons_tota_fact_cuar
           sumaObje += record.obje_rete_cons_cuar
           let total = 0
           
@@ -967,7 +773,7 @@ const columnasGlobal = [
   },
   {
     text: 'Peg21',
-    dataField: 'fact_pe21_ante',
+    dataField: 'cons_info_peg21_lide',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -987,7 +793,7 @@ const columnasGlobal = [
   },
   {
     text: 'Objetivo',
-    dataField: 'obje_pe21',
+    dataField: 'cons_info_proy_pe21',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -1008,7 +814,7 @@ const columnasGlobal = [
   },
   {
     text: 'Ret. peg21',
-    dataField: 'fact_pe21',
+    dataField: 'cons_info_rete_pe21',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1028,17 +834,38 @@ const columnasGlobal = [
   },
   {
     text: '% Ret. fact.',
-    dataField: 'porc_pe21',
+    dataField: 'porc_fact_rete_pe21',
     width: '100',
     align: 'center',
     cellsalign: 'center',
     cellsformat: 'P2',
     columngroup: 'pe21',
+    aggregates: [{ 
+      T: function(aggregatedValue, currentValue, column, record) {
+          
+          if (record.visibleindex === 0) {
+            sumaFact = 0
+            sumaObje = 0
+          }
+          sumaFact += record.cons_info_rete_pe21
+          sumaObje += record.cons_info_proy_pe21
+          let total = 0
+          
+          if (parseInt(sumaFact) > 0 && parseInt(sumaObje) > 0) {
+            
+            total = 100 * (parseInt(sumaFact) / parseInt(sumaObje))
+          }
+          total = parseFloat(total).toFixed(2)
+          
+          return total
+        },
+      },
+    ],
     cellclassname: clasePorcentajePeg21,
   },
   {
     text: 'Peg42',
-    dataField: 'fact_pe42_ante',
+    dataField: 'cons_info_peg42_lide',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1058,7 +885,7 @@ const columnasGlobal = [
   },
   {
     text: 'Objetivo',
-    dataField: 'obje_pe42',
+    dataField: 'cons_info_proy_pe42',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -1079,7 +906,7 @@ const columnasGlobal = [
   },
   {
     text: 'Ret. peg42',
-    dataField: 'fact_pe42',
+    dataField: 'cons_info_rete_pe42',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1099,7 +926,7 @@ const columnasGlobal = [
   },
   {
     text: '% Ret. fact.',
-    dataField: 'porc_pe42',
+    dataField: 'porc_fact_rete_pe42',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1113,8 +940,8 @@ const columnasGlobal = [
             sumaFact = 0
             sumaObje = 0
           }
-          sumaFact += record.fact_pe42
-          sumaObje += record.obje_pe42
+          sumaFact += record.cons_info_rete_pe42
+          sumaObje += record.cons_info_proy_pe42
           let total = 0
           
           if (parseInt(sumaFact) > 0 && parseInt(sumaObje) > 0) {
@@ -1132,7 +959,7 @@ const columnasGlobal = [
   },
   {
     text: 'Peg63',
-    dataField: 'fact_pe63_ante',
+    dataField: 'cons_info_peg63_lide',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1152,7 +979,7 @@ const columnasGlobal = [
   },
   {
     text: 'Objetivo',
-    dataField: 'obje_pe63',
+    dataField: 'cons_info_proy_pe63',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -1173,7 +1000,7 @@ const columnasGlobal = [
   },
   {
     text: 'Ret. peg63',
-    dataField: 'fact_pe63',
+    dataField: 'cons_info_rete_pe63',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1193,7 +1020,7 @@ const columnasGlobal = [
   },
   {
     text: '% Ret. fact.',
-    dataField: 'porc_pe63',
+    dataField: 'porc_fact_rete_pe63',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1207,8 +1034,8 @@ const columnasGlobal = [
             sumaFact = 0
             sumaObje = 0
           }
-          sumaFact += record.fact_pe63
-          sumaObje += record.obje_pe63
+          sumaFact += record.cons_info_rete_pe63
+          sumaObje += record.cons_info_proy_pe63
           let total = 0
           
           if (parseInt(sumaFact) > 0 && parseInt(sumaObje) > 0) {
@@ -1226,7 +1053,7 @@ const columnasGlobal = [
   },
   {
     text: 'Pegs',
-    dataField: 'fact_pegs_ante',
+    dataField: 'cons_tota_pegs_lide',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1246,7 +1073,7 @@ const columnasGlobal = [
   },
   {
     text: 'Objetivo',
-    dataField: 'obje_pegs',
+    dataField: 'cons_info_proy_pegs',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -1267,7 +1094,7 @@ const columnasGlobal = [
   },
   {
     text: 'Ret. pegs',
-    dataField: 'fact_pegs',
+    dataField: 'cons_info_rete_pegs',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1287,7 +1114,7 @@ const columnasGlobal = [
   },
   {
     text: '% Retencion',
-    dataField: 'porc_pegs',
+    dataField: 'porc_fact_rete_pegs',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1301,8 +1128,8 @@ const columnasGlobal = [
             sumaFact = 0
             sumaObje = 0
           }
-          sumaFact += record.fact_pegs
-          sumaObje += record.obje_pegs
+          sumaFact += record.cons_info_rete_pegs
+          sumaObje += record.cons_info_proy_pegs
           let total = 0
           
           if (parseInt(sumaFact) > 0 && parseInt(sumaObje) > 0) {
@@ -1321,7 +1148,7 @@ const columnasGlobal = [
   {
     text: 'Pos. reing.',
     columngroup: 'rein',
-    dataField: 'fact_rein_ante',
+    dataField: 'cons_posi_rein_lide',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1341,7 +1168,7 @@ const columnasGlobal = [
   {
     text: 'Objetivo',
     columngroup: 'rein',
-    dataField: 'obje_rein',
+    dataField: 'cons_info_proy_rein',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -1362,7 +1189,7 @@ const columnasGlobal = [
   {
     text: 'Facturado',
     columngroup: 'rein',
-    dataField: 'fact_rein',
+    dataField: 'cons_info_fact_rein',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1382,7 +1209,7 @@ const columnasGlobal = [
   {
     text: '% Cump',
     columngroup: 'rein',
-    dataField: 'porc_rein',
+    dataField: 'porc_fact_rein_lide',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1397,8 +1224,8 @@ const columnasGlobal = [
             sumaFact = 0
             sumaObje = 0
           }
-          sumaFact += record.fact_rein
-          sumaObje += record.obje_rein
+          sumaFact += record.cons_info_fact_rein
+          sumaObje += record.cons_info_proy_rein
           let total = 0
           
           if (parseInt(sumaFact) > 0 && parseInt(sumaObje) > 0) {
@@ -1415,7 +1242,7 @@ const columnasGlobal = [
   {
     text: 'Objetivo',
     columngroup: 'capi',
-    dataField: 'obje_capi',
+    dataField: 'cons_capi_proy_lide',
     width: '120',
     align: 'center',
     cellsalign: 'center',
@@ -1435,7 +1262,7 @@ const columnasGlobal = [
   {
     text: 'Facturado',
     columngroup: 'capi',
-    dataField: 'fact_capi',
+    dataField: 'cons_capi_fact_lide',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1528,24 +1355,9 @@ const columnasGlobal = [
     cellclassname: claseCumplimientoTotal,
   },
   {
-    text: 'valo docu',
-    dataField: 'valo_docu',
-    hidden: true,
-  },
-  {
-    text: 'sald 21di',
-    dataField: 'sald_21di',
-    hidden: true,
-  },
-  {
-    text: 'sald 31di',
-    dataField: 'sald_31di',
-    hidden: true,
-  },
-  {
     text: 'Pend. 21di',
     columngroup: 'cobr',
-    dataField: 'pend_21di',
+    dataField: 'cons_info_pend_pe21',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1565,7 +1377,7 @@ const columnasGlobal = [
   {
     text: '% Cobr. 21di.',
     columngroup: 'cobr',
-    dataField: 'porc_21di',
+    dataField: 'porc_info_sald_21di',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1597,7 +1409,7 @@ const columnasGlobal = [
   {
     text: 'Pend. 31di',
     columngroup: 'cobr',
-    dataField: 'pend_31di',
+    dataField: 'cons_info_pend_pe31',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1617,7 +1429,7 @@ const columnasGlobal = [
   {
     text: '% Cobr. 31di.',
     columngroup: 'cobr',
-    dataField: 'porc_31di',
+    dataField: 'porc_info_sald_31di',
     width: '100',
     align: 'center',
     cellsalign: 'center',
@@ -1647,46 +1459,21 @@ const columnasGlobal = [
     cellclassname: clasePorcentaje31dias,
   },
   {
-    text: 'tota line',
-    dataField: 'tota_line',
-    hidden: true,
-    cellsformat: 'D2',
-  },
-  {
-    text: 'tota rece',
-    dataField: 'tota_rece',
-    hidden: true,
-    cellsformat: 'D2',
-  },
-  {
     text: 'Facturado',
     columngroup: 'pppp',
-    dataField: 'pppp_fact',
+    dataField: 'cons_info_pppp_line',
     width: '100',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     cellsformat: 'D2',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue, column, record) {
+   aggregates: [
+      { 
+        T: function(aggregatedValue, currentValue) {
           
-          if (record.visibleindex === 0) {
-            sumaLine = 0
-            sumaPedi = 0
-          }
-          sumaLine += record.tota_line
-          sumaPedi += record.nume_pedi
-          let total = 0
+          aggregatedValue += currentValue
           
-          if (parseInt(sumaPedi) > 0 && parseInt(sumaLine) > 0) {
-            
-            total = parseFloat(sumaLine) / parseFloat(sumaPedi)
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
+          return aggregatedValue
         },
       },
     ],
@@ -1694,32 +1481,19 @@ const columnasGlobal = [
   {
     text: 'Recepcionado',
     columngroup: 'pppp',
-    dataField: 'pppp_rece',
+    dataField: 'cons_info_pppp_rece',
     width: '100',
     align: 'center',
     cellsalign: 'center',
     editable: false,
     cellsformat: 'D2',
-    aggregates: [
-      {
-        
-        T: function(aggregatedValue, currentValue, column, record) {
+     aggregates: [
+      { 
+        T: function(aggregatedValue, currentValue) {
           
-          if (record.visibleindex === 0) {
-            sumaRece = 0
-            sumaPedi = 0
-          }
-          sumaRece += record.tota_rece
-          sumaPedi += record.nume_pedi
-          let total = 0
+          aggregatedValue += currentValue
           
-          if (parseInt(sumaPedi) > 0 && parseInt(sumaRece) > 0) {
-            
-            total = parseFloat(sumaRece) / parseFloat(sumaPedi)
-          }
-          total = parseFloat(total).toFixed(2)
-          
-          return total
+          return aggregatedValue
         },
       },
     ],
@@ -1727,7 +1501,7 @@ const columnasGlobal = [
   {
     text: 'Ingreso lider',
     columngroup: 'lide',
-    dataField: 'camp_ingr',
+    dataField: 'cons_codi_camp_ingr',
     width: '150',
     align: 'left',
     cellsalign: 'center',
@@ -1735,21 +1509,12 @@ const columnasGlobal = [
   {
     text: 'Nivel de lider',
     columngroup: 'lide',
-    dataField: 'nive_lide',
+    dataField: 'cons_info_nive_lide',
     width: '150',
     align: 'left',
     cellsalign: 'center',
   },
-  {
-    text: 'porc canj',
-    dataField: 'porc_canj',
-    hidden: true,
-  },
-  {
-    text: 'vent neto',
-    dataField: 'vent_neto',
-    hidden: true,
-  },
+
 ]
 
 const sourceGlobal = ref({
@@ -1762,7 +1527,7 @@ const sourceGlobal = ref({
     { name: 'obje_pegs_sist', type: 'number' },
     { name: 'obje_rein_sist', type: 'number' },
     { name: 'codi_zona', type: 'string' },
-    { name: 'codi_sect', type: 'string' },
+    { name: 'cons_lide', type: 'string' },
     { name: 'nomb_lide', type: 'string' },
     { name: 'acti_inic', type: 'number' },
     { name: 'obje_tota', type: 'number' },
@@ -1786,56 +1551,56 @@ const sourceGlobal = ref({
     { name: 'porc_acti', type: 'number' },
     { name: 'nume_pedi_acti', type: 'number' },
     { name: 'porc_acti_ante', type: 'number' },
-    { name: 'obje_rete_cons', type: 'number' },
-    { name: 'fact_rete_cons', type: 'number' },
-    { name: 'cump_fact_rete_cons', type: 'number' },
-    { name: 'obje_rete_cons_segu', type: 'number' },
-    { name: 'fact_rete_cons_segu', type: 'number' },
-    { name: 'cump_fact_rete_cons_segu', type: 'number' },
-    { name: 'obje_rete_cons_terc', type: 'number' },
-    { name: 'fact_rete_cons_terc', type: 'number' },
-    { name: 'cump_fact_rete_cons_terc', type: 'number' },
+    { name: 'cons_obje_prim_conse', type: 'number' },
+    { name: 'cons_tota_fact_prim', type: 'string' },
+    { name: 'porc_cump_fact_prim', type: 'number' },
+    { name: 'cons_obje_segu_conse', type: 'number' },
+    { name: 'cons_tota_fact_segu', type: 'number' },
+    { name: 'porc_cump_fact_segu', type: 'number' },
+    { name: 'cons_obje_terc_conse', type: 'number' },
+    { name: 'cons_tota_fact_terc', type: 'number' },
+    { name: 'porc_cump_fact_terc', type: 'number' },
     { name: 'obje_rete_cons_cuar', type: 'number' },
-    { name: 'fact_rete_cons_cuar', type: 'number' },
-    { name: 'cump_fact_rete_cons_cuar', type: 'number' },
-    { name: 'fact_pe21_ante', type: 'number' },
-    { name: 'obje_pe21', type: 'number' },
-    { name: 'fact_pe21', type: 'number' },
-    { name: 'porc_pe21', type: 'number' },
-    { name: 'fact_pe42_ante', type: 'number' },
-    { name: 'obje_pe42', type: 'number' },
-    { name: 'fact_pe42', type: 'number' },
-    { name: 'porc_pe42', type: 'number' },
-    { name: 'fact_pe63_ante', type: 'number' },
-    { name: 'obje_pe63', type: 'number' },
-    { name: 'fact_pe63', type: 'number' },
-    { name: 'porc_pe63', type: 'number' },
-    { name: 'fact_pegs_ante', type: 'number' },
-    { name: 'obje_pegs', type: 'number' },
-    { name: 'fact_pegs', type: 'number' },
-    { name: 'porc_pegs', type: 'number' },
-    { name: 'obje_rein', type: 'number' },
-    { name: 'fact_rein', type: 'number' },
-    { name: 'porc_rein', type: 'number' },
-    { name: 'fact_capi', type: 'number' },
-    { name: 'obje_capi', type: 'number' },
+    { name: 'cons_tota_fact_cuar', type: 'number' },
+    { name: 'porc_cump_fact_cuar', type: 'number' },
+    { name: 'cons_info_peg21_lide', type: 'number' },
+    { name: 'cons_info_proy_pe21', type: 'number' },
+    { name: 'cons_info_rete_pe21', type: 'number' },
+    { name: 'porc_fact_rete_pe21', type: 'number' },
+    { name: 'cons_info_peg42_lide', type: 'number' },
+    { name: 'cons_info_proy_pe42', type: 'number' },
+    { name: 'cons_info_rete_pe42', type: 'number' },
+    { name: 'porc_fact_rete_pe42', type: 'number' },
+    { name: 'cons_info_peg63_lide', type: 'number' },
+    { name: 'cons_info_proy_pe63', type: 'number' },
+    { name: 'cons_info_rete_pe63', type: 'number' },
+    { name: 'porc_fact_rete_pe63', type: 'number' },
+    { name: 'cons_tota_pegs_lide', type: 'number' },
+    { name: 'cons_info_proy_pegs', type: 'number' },
+    { name: 'cons_info_rete_pegs', type: 'number' },
+    { name: 'porc_fact_rete_pegs', type: 'number' },
+    { name: 'cons_info_proy_rein', type: 'number' },
+    { name: 'cons_info_fact_rein', type: 'number' },
+    { name: 'porc_fact_rein_lide', type: 'number' },
+    { name: 'cons_capi_fact_lide', type: 'number' },
+    { name: 'cons_capi_proy_lide', type: 'number' },
     { name: 'valo_docu', type: 'number' },
-    { name: 'porc_21di', type: 'number' },
+    { name: 'porc_info_sald_21di', type: 'number' },
     { name: 'sald_21di', type: 'number' },
-    { name: 'pend_21di', type: 'number' },
-    { name: 'pend_31di', type: 'number' },
-    { name: 'porc_31di', type: 'number' },
+    { name: 'cons_info_pend_pe21', type: 'number' },
+    { name: 'cons_info_pend_pe31', type: 'number' },
+    { name: 'porc_info_sald_31di', type: 'number' },
     { name: 'sald_31di', type: 'number' },
     { name: 'tota_line', type: 'number' },
     { name: 'tota_rece', type: 'number' },
-    { name: 'pppp_fact', type: 'number' },
-    { name: 'pppp_rece', type: 'number' },
-    { name: 'camp_ingr', type: 'number' },
-    { name: 'nive_lide', type: 'string' },
+    { name: 'cons_info_pppp_line', type: 'number' },
+    { name: 'cons_info_pppp_rece', type: 'number' },
+    { name: 'cons_codi_camp_ingr', type: 'number' },
+    { name: 'cons_info_nive_lide', type: 'string' },
     { name: 'nive_lide_proy', type: 'string' },
     { name: 'porc_canj', type: 'number' },
     { name: 'vent_neto', type: 'number' },
-    { name: 'fact_rein_ante', type: 'number' },
+    { name: 'cons_posi_rein_lide', type: 'number' },
   ],
   datatype: 'json',
 })
@@ -1856,7 +1621,7 @@ const headersDetalle = computed(() => {
     }, 
     {
       title: 'Sector',
-      key: 'codi_sect',
+      key: 'cons_lide',
     }, 
     {
       title: 'Lider',
@@ -1899,10 +1664,10 @@ const headersDetalle = computed(() => {
       key: 'porc_rete_cuar',
     }, {
       title: 'Suma ret. pegs',
-      key: 'porc_pegs',
+      key: 'porc_fact_rete_pegs',
     }, {
       title: 'Capi.',
-      key: 'fact_capi',
+      key: 'cons_capi_fact_lide',
     }, {
       title: 'Cobr. 21di.',
       key: 'porc_cobr',
