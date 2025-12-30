@@ -1517,19 +1517,20 @@ const onEditar = async event => {
     let Peg42Obje = columnDataField === 'pe42_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe42_obje') 
     let Peg63Obje = columnDataField === 'pe63_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'pe63_obje') 
     let proyReinObje = columnDataField === 'rein_obje' ? newValue : refGridGlobal.value.getcellvaluebyid(rowIndex, 'rein_obje')
-    console.log(proyInco+" "+ proyConse+" "+ Peg21Obje+" "+Peg42Obje+" "+Peg63Obje+" "+proyReinObje)
+    console.log("proyeccion pedidos totales"+"--"+proyInco+" "+ proyConse+" "+ Peg21Obje+" "+Peg42Obje+" "+Peg63Obje+" "+proyReinObje)
 
     if (proyInco > 0 || proyConse > 0 || Peg21Obje > 0 || Peg42Obje > 0 || Peg63Obje > 0 || proyReinObje > 0) {
-      let sumProyCapi = proyInco+proyConse+Peg21Obje+Peg42Obje+Peg63Obje-proyReinObje
-      if (sumProyCapi >= 0) {
-        refGridGlobal.value.setcellvalue(rowIndex, 'proy_pedi_tota', sumProyCapi)
+      let sum_proy_pedi_tota = proyInco+proyConse+Peg21Obje+Peg42Obje+Peg63Obje+proyReinObje;
+      console.log("sum_proy_pedi_tota="+sum_proy_pedi_tota)
+      if (sum_proy_pedi_tota >= 0) {
+        refGridGlobal.value.setcellvalue(rowIndex, 'proy_pedi_tota', sum_proy_pedi_tota)
       }else{
         refGridGlobal.value.setcellvalue(rowIndex, 'proy_pedi_tota', 0)
       }
       const { data } = await $api(`/api/sami/v1/reportes/proyeccion-campana-zona/niveLide`, {
         method: "post",
         query: {
-          proyInco: sumProyCapi,
+          proyInco: sum_proy_pedi_tota,
         },
       });
 
