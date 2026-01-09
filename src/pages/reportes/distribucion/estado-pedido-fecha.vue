@@ -116,8 +116,23 @@ const headers = computed(() => {
       cellsalign: 'center',
     },
     {
-      text: 'Picking',
+      text: 'Fecha Pedido',
+      dataField: 'fech_pedi',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+ 
+    {
+      text: 'Facturado',
       dataField: 'fech_fact',
+      width: '150',
+      align: 'center',
+      cellsalign: 'center',
+    },
+       {
+      text: 'Picking',
+      dataField: 'fech_pick',
       width: '150',
       align: 'center',
       cellsalign: 'center',
@@ -168,6 +183,8 @@ const sourceGlobal = ref({
     { name: 'fech_desp', type: 'string' },
     { name: 'fech_asig', type: 'string' },
     { name: 'fech_entr', type: 'string' },
+    { name: 'fech_pedi', type: 'string' },
+    { name: 'fech_pick', type: 'string' },
     { name: 'fech_devo', type: 'string' },
   ],
   datatype: 'json',
