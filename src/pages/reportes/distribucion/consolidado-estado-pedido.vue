@@ -400,19 +400,25 @@ const onCellClickFilter = async event => {
     }
     
      try {
-      let vali_cons_lide=1;
       appStore.mensaje('Obteniendo información')
       appStore.loading(true)
       // limpiarValidacion()
 
-      const { data } = await $api(`/api/sami/v1/reportes/consolidado-estado-pedido/mostrarSoporte`, {
+      const { data, status } = await $api(`/api/sami/v1/reportes/consolidado-estado-pedido/mostrarSoporte`, {
         method: "POST",
         query: {
-          imag_sopor_usua_fact:info_fila.fact_imag
+          imag_sopor_usua_fact:info_fila.fact_imag,
+          campana:formulario.value.campana
         },
       })
-      console.log(data)
-      console.log(data.data)
+
+      if(!status) {
+        appStore.mensajeSnackbar('No se pudo obtener la imagen de soporte.')
+        appStore.color("error")
+        appStore.snackbar(true)
+        return
+      }
+      // console.log(data.data)
       urlSoporte.value = data
       modalSoporte.value = true
       
