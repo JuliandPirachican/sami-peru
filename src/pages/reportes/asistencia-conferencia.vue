@@ -179,7 +179,7 @@ const errorMensajeZona = ref('')
 const tipoOptions = ref([])
 
 onMounted(async () => {
-  appStore.titulo(`Reportes / Asistencia conferencia`)
+  appStore.titulo(`Reportes / Asistencia Reuniones`)
   await obtenerCampana()
   await obtenerZona()
   await obtenerReunion()
