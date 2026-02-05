@@ -1,7 +1,8 @@
 <!-- eslint-disable camelcase -->
 <style >
-
- 
+.nomb_ases_filtro{
+  cursor: pointer;
+}
 
 </style>
 
@@ -34,6 +35,7 @@ const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore();
 const refGridGlobal=ref();
 const refGridDetalle=ref()
+const refListGlobal = ref();
 
 const rowsPerPage = ref(100)
 const currentPage = ref(1)
@@ -110,7 +112,8 @@ const headersGlobal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      pinned: true
+      pinned: true,
+      cellclassname: 'nomb_ases_filtro'
     },
     {
       text: 'Act. Inic.',
@@ -324,22 +327,6 @@ const headersGlobal = computed(() => {
           return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
       }
     },
-    // {
-    //   text: 'Vta. Publ',
-    //   dataField: 'vent_publ',
-    //   width: '150',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
-    // {
-    //   text: 'Ppp Publ.',
-    //   dataField: 'pppp_publ',
-    //   width: '150',
-    //   align: 'center',
-    //   cellsalign: 'center',
-    //   filtertype: 'checkedlist'
-    // },
     {
       text: 'Vta. Rece.',
       dataField: 'vent_rece',
@@ -588,6 +575,11 @@ const sourceGlobal = ref({
 
 const sourceLista = ref([
   {
+    label:"Selecciona todo",
+    value:"all",
+    checked:false
+  },
+  {
     label: 'Puntos Sueños Azzorti',
     value: 'punt_suen_ases',
     checked: true,
@@ -617,11 +609,11 @@ const sourceLista = ref([
     value: 'tele_ter2',
     checked: true,
   },
-  {
-    label: 'Saldo',
-    value: 'sald_docu',
-    checked: true,
-  },
+  // {
+  //   label: 'Saldo',
+  //   value: 'sald_docu',
+  //   checked: true,
+  // },
 
   {
     label: 'Ult. camp1',
@@ -724,6 +716,7 @@ const localizationGlobal =  {
 
 const headersDetalleTotal = computed(() => {
   return [
+
     {
       text: 'Zona',
       dataField: 'codi_zona',
@@ -1082,143 +1075,6 @@ const selectedColumna = ref([
   'desc_segm',
 ])
 
-// const headersDetalle = computed(() => {
-//   if(selectedColumna.value.length > 0) {
-//     return headersDetalleTotal.filter(header => selectedColumna.value.includes(header.key))
-//   } else {
-//     return []
-//   }
-// })
-
-// const headersColumna = [
-//   {
-//     title: 'Columna',
-//     key: 'nomb_colu',
-//   },
-// ]
-
-// const itemsColumna = [
-//   {
-//     nomb_colu: 'Zona',
-//     codi_colu: 'codi_zona',
-//   },
-//   {
-//     nomb_colu: 'Sector',
-//     codi_colu: 'codi_sect',
-//   },
-//   {
-//     nomb_colu: 'Cumpleaños',
-//     codi_colu: 'fech_naci',
-//   },
-//   {
-//     nomb_colu: 'Distrito',
-//     codi_colu: 'nomb_barr',
-//   },
-//   {
-//     nomb_colu: 'Dirección',
-//     codi_colu: 'dire_terc',
-//   },
-//   {
-//     nomb_colu: 'Teléfono 1',
-//     codi_colu: 'tele_ter1',
-//   },
-//   {
-//     nomb_colu: 'Teléfono 2',
-//     codi_colu: 'tele_ter2',
-//   },
-//   {
-//     nomb_colu: 'Cupo',
-//     codi_colu: 'cupo_cred',
-//   },
-//   {
-//     nomb_colu: 'Saldo',
-//     codi_colu: 'sald_docu',
-//   },
-//   {
-//     nomb_colu: 'Camp. ingr.',
-//     codi_colu: 'camp_ingr',
-//   },
-//   {
-//     nomb_colu: 'Ult. camp1',
-//     codi_colu: 'codi_camp_1',
-//   },
-//   {
-//     nomb_colu: 'Ptos azzo. ult. camp1',
-//     codi_colu: 'tota_publ_1',
-//   },
-//   {
-//     nomb_colu: 'Fact. ult. camp1',
-//     codi_colu: 'tota_fact_1',
-//   },
-//   {
-//     nomb_colu: 'Devo. ult. camp1',
-//     codi_colu: 'tota_devo_1',
-//   },
-//   {
-//     nomb_colu: 'Ult. camp2',
-//     codi_colu: 'codi_camp_2',
-//   },
-//   {
-//     nomb_colu: 'Ptos azzo. ult. camp2',
-//     codi_colu: 'tota_publ_2',
-//   },
-//   {
-//     nomb_colu: 'Fact. ult. camp2',
-//     codi_colu: 'tota_fact_2',
-//   },
-//   {
-//     nomb_colu: 'Devo. ult. camp2',
-//     codi_colu: 'tota_devo_2',
-//   },
-//   {
-//     nomb_colu: 'Ult. camp3',
-//     codi_colu: 'codi_camp_3',
-//   },
-//   {
-//     nomb_colu: 'Ptos azzo. ult. camp3',
-//     codi_colu: 'tota_publ_3',
-//   },
-//   {
-//     nomb_colu: 'Fact. ult. camp3',
-//     codi_colu: 'tota_fact_3',
-//   },
-//   {
-//     nomb_colu: 'Devo. ult. camp3',
-//     codi_colu: 'tota_devo_3',
-//   },
-//   {
-//     nomb_colu: 'Ult. camp4',
-//     codi_colu: 'codi_camp_4',
-//   },
-//   {
-//     nomb_colu: 'Ptos azzo. ult. camp4',
-//     codi_colu: 'tota_publ_4',
-//   },
-//   {
-//     nomb_colu: 'Fact. ult. camp4',
-//     codi_colu: 'tota_fact_4',
-//   },
-//   {
-//     nomb_colu: 'Devo. ult. camp4',
-//     codi_colu: 'tota_devo_4',
-//   },
-//   {
-//     nomb_colu: 'Estado pedido',
-//     codi_colu: 'esta_pedi',
-//   },
-//   {
-//     nomb_colu: 'Gemma',
-//     codi_colu: 'clie_gemm',
-//   },
-//   {
-//     nomb_colu: 'Nivel',
-//     codi_colu: 'nive_gemm',
-//   },
-//   {
-//     nomb_colu: 'Creciendo con azzorti',
-//     codi_colu: 'desc_segm',
-//   },
-// ]
 
 const isOpen = ref(false)
 const itemsGlobal = ref([])
@@ -1299,6 +1155,7 @@ const obtenerZona = async () => {
 
 const onGenerar = async () => {
   try {
+    let vali_cons_lide=0;
     appStore.mensaje('Obteniendo información')
     appStore.loading(true)
     limpiarValidacion()
@@ -1311,6 +1168,7 @@ const onGenerar = async () => {
       query: {
         campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
+        vali_cons_lide: vali_cons_lide
       },
     })
 
@@ -1560,18 +1418,134 @@ const itemsDetalleVisible = computed(() => {
   return itemsDetalle.value.slice(start, end)
 })
 
-// Función para manejar la selección de columnas es decir ocultar o mostrar esto aplica para la 2da tabla 
 const onSeleccionar = event => {
-  refGridDetalle.value.beginupdate()
   if (event.args.checked) {
-    sourceLista.value[event.args.item.index].checked = true
-    refGridDetalle.value.showcolumn(event.args.item.value)
+    if(event.args.item.value == 'all'){
+      refGridDetalle.value.beginupdate()
+      refListGlobal.value.beginUpdate()
+
+      sourceLista.value.forEach((element, index) => {
+        if(index != 0){
+          sourceLista.value[index].checked = true
+          refGridDetalle.value.showcolumn(sourceLista.value[index].value)
+          refListGlobal.value.checkIndex(index)
+        }
+      });
+      
+      refListGlobal.value.endUpdate()
+      refGridDetalle.value.endupdate()
+      
+    } else {
+      sourceLista.value[event.args.item.index].checked = true
+      refGridDetalle.value.showcolumn(event.args.item.value)
+    }
   } else {
-    sourceLista.value[event.args.item.index].checked = false
-    refGridDetalle.value.hidecolumn(event.args.item.value)
+    if(event.args.item.value == 'all'){
+      refGridDetalle.value.beginupdate()
+      refListGlobal.value.beginUpdate()
+      
+      sourceLista.value.forEach((element, index) => {
+        if(index != 0){
+          sourceLista.value[index].checked = false
+          refGridDetalle.value.hidecolumn(sourceLista.value[index].value)
+          refListGlobal.value.uncheckIndex(index)
+        }
+      });
+      
+      refListGlobal.value.endUpdate()
+      refGridDetalle.value.endupdate()
+      
+    } else {
+      sourceLista.value[event.args.item.index].checked = false
+      refGridDetalle.value.hidecolumn(event.args.item.value)
+    }
   }
-  refGridDetalle.value.endupdate()
 }
+
+const onCellClickFilter = async event => {
+  if (event.args.datafield === 'nomb_lide') {
+    event.args.cancel = true;
+    console.log('Filtro zona');
+    let info_fila = event.args.row.bounddata;
+    console.log(info_fila);
+     try {
+      let vali_cons_lide=1;
+      appStore.mensaje('Obteniendo información')
+      appStore.loading(true)
+      limpiarValidacion()
+
+      itemsGlobal.value = []
+      itemsDetalle.value = []
+
+      const { data } = await $api(`/api/sami/v1/reportes/listado-asesora`, {
+        method: "GET",
+        query: {
+          campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
+          zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
+          vali_cons_lide: vali_cons_lide,
+          codi_lide_cons: info_fila.codi_sect
+        },
+      })
+
+      itemsGlobal.value = data.data_glob
+      console.log(data.data_glob)
+      /** Asignacion valores suma retePe 21,42 y 63 **/
+      sum_posi_eg21_ante.value = itemsGlobal.value.reduce((a, b) => a + Number(b.posi_eg21_ante), 0);
+      sum_rete_pe21.value = itemsGlobal.value.reduce((a, b) => a + Number(b.rete_pe21), 0);
+      sum_posi_eg42_ante.value = itemsGlobal.value.reduce((a, b) => a + Number(b.posi_eg42_ante), 0);
+      sum_rete_pe42.value = itemsGlobal.value.reduce((a, b) => a + Number(b.rete_pe42), 0)
+      sum_posi_eg63_ante.value = itemsGlobal.value.reduce((a, b) => a + Number(b.posi_egre_ante), 0);
+      sum_rete_pe63.value = itemsGlobal.value.reduce((a, b) => a + Number(b.rete_pe63), 0);
+
+      /** Asignacion valores suma para porcentaje de actividad **/
+      sum_tota_acti.value = itemsGlobal.value.reduce((a, b) => a + Number(b.acti_inic), 0);
+      sum_tota_ingr.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_ingr), 0);
+      sum_tota_rein.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_rein), 0);
+      sum_tota_pedi.value = itemsGlobal.value.reduce((a, b) => a + Number(b.nume_pedi), 0);
+
+      /** Asignacion valores suma para ppp rece **/
+      sum_tota_rece.value = itemsGlobal.value.reduce((a, b) => a + Number(b.vent_rece), 0);
+
+      /** Asignacion valores suma para ppp fact **/
+      sum_tota_fact.value =itemsGlobal.value.reduce((a, b) => a + Number(b.tota_fact), 0);
+
+      /** Asignacion valores suma para ppp line **/
+      sum_tota_line.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_line),0);
+
+      /**Asignacion valores suma para upp */
+      sum_tota_unid.value = itemsGlobal.value.reduce((a, b) => a + Number(b.tota_unid),0);
+
+
+      itemsDetalle.value = data.data_deta
+      sourceGlobal.value.localdata = data.data_glob
+      refGridGlobal.value.updatebounddata('cells')
+      refGridGlobal.value.refreshfilterrow()
+      sourceDetalle.value.localdata = data.data_deta
+      refGridDetalle.value.updatebounddata('cells')
+      refGridDetalle.value.refreshfilterrow()
+      
+    } catch (error) {
+      const { data } = error.response._data    
+      if (typeof data != "undefined") {
+        for (var key in data)
+        {
+          if (key == 'campana') {
+            errorCampana.value = true
+            errorMensajeCampana.value = data[key]
+          }
+          if (key == 'zona') {
+            errorZona.value = true
+            errorMensajeZona.value = data[key]
+          }
+        }
+      }
+    }
+    finally {
+      appStore.loading(false)
+    }
+
+  }
+} 
 </script>
 
 <template>
@@ -1822,6 +1796,7 @@ const onSeleccionar = event => {
                   showaggregates
                   :columnsmenu="false"
                   :editable="false"
+                  @cellclick="onCellClickFilter"
                   />
               </VCardText>
             </VCard>

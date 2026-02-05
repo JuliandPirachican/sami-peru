@@ -1,7 +1,7 @@
 <script setup>
-import { useAppStore } from '@/stores/app';
-import { EncryptStorage } from 'encrypt-storage';
-import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
+import { useAppStore } from '@/stores/app'
+import { EncryptStorage } from 'encrypt-storage'
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue'
 
  
  
@@ -18,7 +18,7 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 })
 
 const userData = encryptStorage.getItem('userData')
-const appStore = useAppStore();
+const appStore = useAppStore()
 const refGridGlobal=ref()
 const refGridDetalle=ref()
  
@@ -34,147 +34,150 @@ const objetivo31Options = ref([])
  
 const headersGlobal = computed(() => {
   return [
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "Codigo Lider",
-    dataField: "cons_lide",
-    pinned:true,
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "Codigo Lider",
+      dataField: "cons_lide",
+      pinned: true,
+
     // cellclassname: 'text-white bg-primary-light',
-  },
-  {
-    width: 250,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "Nombre Lider",
-    dataField: "nomb_terc",
-    pinned:true,
+    },
+    {
+      width: 250,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "Nombre Lider",
+      dataField: "nomb_terc",
+      pinned: true,
+
     // cellclassname: 'text-white bg-primary-light',
-  },
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "Valor",
-    dataField: "valo_docu",
-    pinned:true,
-    // cellclassname: 'text-white bg-primary-light',
-    aggregates: ['sum'],
-    aggregatesrenderer: function (aggregates) {
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center", 
+      filterType: "checkedlist",
+      text: "Valor",
+      dataField: "valo_docu",
+      pinned: true,
+
+      // cellclassname: 'text-white bg-primary-light',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
         // suma=Math.round(aggregates['sum'],2);
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0;
-    }
-  },
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "Obj. max. saldo 31d",
-    dataField: "obje_31di",
-    cellclassname: 'text-white bg-primary-light',
-    aggregates: ['sum'],
-    aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0;
-    }
-  },
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "Saldo 31 días",
-    dataField: "sald_31di",
-    cellclassname: 'text-white bg-error-light',
-    aggregates: ['sum'],
-    aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0;
-    }
-  },
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "% 31 días",
-    dataField: "porc_31di",
-    cellclassname: 'text-white bg-error-light',
-    aggregates: ['avg'],
-    aggregatesrenderer: function (aggregates) {
-        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2):'T:' +0;
-    }
-  },
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "Saldo actual",
-    dataField: "sald_actu",
-    cellclassname: 'text-white bg-error-light',
-    aggregates: ['sum'],
-    aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
-    }
-  },
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "% Actual",
-    dataField: "porc_actu",
-    cellclassname: 'text-white bg-error-light',
-    aggregates: ['avg'],
-    aggregatesrenderer: function (aggregates) {
-        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2):'T:' +0;
-    }
-  },
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "Simulador",
-    dataField: "simu_31di",
-    cellclassname: 'text-white bg-success-light',
-    aggregates: ['sum'],
-    aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0;
-    }
-  },
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "% Simulador",
-    dataField: "porc_simu_31di",
-    cellclassname: 'text-white bg-success-light',
-    aggregates: ['avg'],
-    aggregatesrenderer: function (aggregates) {
-        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0;
-    }
-  },
-  {
-    width: 150,
-    align: "center",
-    cellsAlign: "center",
-    filterType: "checkedlist",
-    text: "Falta cobrar 31d",
-    dataField: "falt_cobr_31di",
-    cellclassname: 'text-white bg-success-light',
-    aggregates: ['sum'],
-    aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0;
-    }
-  }
-]
-});
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0
+      },
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "Obj. max. saldo 31d",
+      dataField: "obje_31di",
+      cellclassname: 'text-white bg-primary-light',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0
+      },
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "Saldo 31 días",
+      dataField: "sald_31di",
+      cellclassname: 'text-white bg-error-light',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0
+      },
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "% 31 días",
+      dataField: "porc_31di",
+      cellclassname: 'text-white bg-error-light',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2):'T:' +0
+      },
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "Saldo actual",
+      dataField: "sald_actu",
+      cellclassname: 'text-white bg-error-light',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0
+      },
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "% Actual",
+      dataField: "porc_actu",
+      cellclassname: 'text-white bg-error-light',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2):'T:' +0
+      },
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "Simulador",
+      dataField: "simu_31di",
+      cellclassname: 'text-white bg-success-light',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0
+      },
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "% Simulador",
+      dataField: "porc_simu_31di",
+      cellclassname: 'text-white bg-success-light',
+      aggregates: ['avg'],
+      aggregatesrenderer: function (aggregates) {
+        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0
+      },
+    },
+    {
+      width: 150,
+      align: "center",
+      cellsAlign: "center",
+      filterType: "checkedlist",
+      text: "Falta cobrar 31d",
+      dataField: "falt_cobr_31di",
+      cellclassname: 'text-white bg-success-light',
+      aggregates: ['sum'],
+      aggregatesrenderer: function (aggregates) {
+        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0
+      },
+    },
+  ]
+})
  
 const sourceGlobal = ref({
   localdata: [],
@@ -188,48 +191,50 @@ const sourceGlobal = ref({
       name: "nomb_terc",
     },
     {
-      type: "string",
+      type: "number",
       name: "valo_docu",
     },
     {
-      type: "string",
+      type: "number",
       name: "obje_31di",
     },
     {
-      type: "string",
+      type: "number",
       name: "sald_31di",
     },
     {
-      type: "string",
+      type: "number",
       name: "porc_31di",
     },
     {
-      type: "string",
+      type: "number",
       name: "sald_actu",
     },
     {
-      type: "string",
+      type: "number",
       name: "porc_actu",
     },
     {
-      type: "string",
+      type: "number",
       name: "simu_31di",
     },
     {
-      type: "string",
+      type: "number", 
       name: "porc_simu_31di",
     },
     {
-      type: "string",
+      type: "number",
       name: "falt_cobr_31di",
     },
   ],
   datatype: 'json',
 })
+
 const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
+
 const localization =  {
-    filterselectstring: ' ',
-};
+  filterselectstring: ' ',
+}
  
 const headersDetalle = computed(() => {
   return [
@@ -335,8 +340,8 @@ const headersDetalle = computed(() => {
       cellclassname: 'text-white bg-success-light',
       hidden: true,
     },
-  ];
-});
+  ]
+})
  
 const sourceDetalle = ref({
   localdata: [],
@@ -396,14 +401,16 @@ const sourceDetalle = ref({
     {
       type: "string",
       name: "cons_lide",
-    }
+    },
   ],
   datatype: 'json',
 })
+
 const adaptadorDetalle = new jqx.dataAdapter(sourceDetalle.value)
+
 const localizationDetail =  {
-    filterselectstring: ' ',
-};
+  filterselectstring: ' ',
+}
  
 const itemsGlobal = ref([])
 const itemsDetalle = ref([])
@@ -587,6 +594,7 @@ const limpiarValidacion = () => {
 let valoDocu = 0
 let saldDocu = 0
 let saldo31DiasDetalle = 0
+
 const onEditarInicio = event => {
   const { args } = event
 
@@ -598,10 +606,18 @@ const onEditarInicio = event => {
 
 const onEditarFin = event => {
   const { args } = event
+
+  console.log("args=", args)
+
   const columnDataField = args.datafield
+
+  console.log("columnDataField=", columnDataField)
+
   const rowIndex = args.rowindex
-  const cellValue = parseFloat(args.value).toFixed(2)
-  const oldValue = parseFloat(args.oldvalue).toFixed(2)
+  const cellValue = parseFloat(args.value)
+  const oldValue = parseFloat(args.oldvalue.replace(/,/g, ''))
+
+  console.log("oldValue=", oldValue, "args.oldvalue=", args.oldvalue, " cellValue=", cellValue)
 
   const cons_lide = refGridDetalle.value.getcellvaluebyid(
     rowIndex,
@@ -617,19 +633,18 @@ const onEditarFin = event => {
     }
   }
   let newValue = oldValue - cellValue
-  newValue =parseFloat(parseFloat(newValue).toFixed(2)); 
+  newValue =parseFloat(parseFloat(newValue).toFixed(2)) 
   if (columnDataField === 'simu_31di') {
-    let simu31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'simu_31di');
-    let valoDocu = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'valo_docu');
-    let obje31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal,'obje_31di');
+    let simu31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal, 'simu_31di').replace(/,/g, '')
+    let valoDocu = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal, 'valo_docu').replace(/,/g, '')
+    let obje31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal, 'obje_31di').replace(/,/g, '')
 
-    console.log(" simu31di=",simu31di," valoDocu=", valoDocu," obje31di=", obje31di ," newValue=", newValue);
     
-    simu31di = parseFloat(parseFloat(simu31di).toFixed(2));
-    console.log("simu31di menos newValue=",simu31di);
+    simu31di = parseFloat(parseFloat(simu31di).toFixed(2))
+    console.log("simu31di=", simu31di, " - newValue=", simu31di)
     simu31di -= newValue
-    valoDocu = parseFloat(parseFloat(valoDocu).toFixed(2));
-    console.log("resultado simu31di=",simu31di);
+    valoDocu = parseFloat(parseFloat(valoDocu.replace(/,/g, '')).toFixed(2))
+    console.log("resultado simu31di=", simu31di)
 
     let porcSimu31di = '0.00'
     if (valoDocu !== 0) {
@@ -637,21 +652,21 @@ const onEditarFin = event => {
       porcSimu31di = parseFloat(porcSimu31di).toFixed(2)
     }
   
-    obje31di = parseFloat(parseFloat(obje31di).toFixed(2));
+    obje31di = parseFloat(parseFloat(obje31di.replace(/,/g, '')).toFixed(2))
     let faltCobr31di = obje31di - simu31di
     faltCobr31di = parseFloat(faltCobr31di).toFixed(2)
-    faltCobr31di = (faltCobr31di >= 0) ? '0.00': faltCobr31di;
+    faltCobr31di = (faltCobr31di >= 0) ? '0.00': faltCobr31di
 
     /**
      * Actualizar valores globales
      */
-    refGridGlobal.value.setcellvalue(rowIndexGlobal,'porc_simu_31di',porcSimu31di);
-    refGridGlobal.value.setcellvalue(rowIndexGlobal,'falt_cobr_31di',faltCobr31di);
-    refGridGlobal.value.setcellvalue(rowIndexGlobal,'simu_31di', simu31di);
+    let conv_simu_31di = simu31di.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    let conv_falt_cobr_31di = faltCobr31di.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    refGridGlobal.value.setcellvalue(rowIndexGlobal, 'porc_simu_31di', porcSimu31di)
+    refGridGlobal.value.setcellvalue(rowIndexGlobal, 'falt_cobr_31di', conv_falt_cobr_31di)
+    refGridGlobal.value.setcellvalue(rowIndexGlobal, 'simu_31di', conv_simu_31di)
   }
 }
-
-
 </script>
  
 <template>
@@ -707,19 +722,21 @@ const onEditarFin = event => {
             <VCard title="Lista cartera">
               <VCardText>
                 <VRow justify="space-between">
-                  <!-- <VCol
+                  <!--
+                    <VCol
                     cols="12"
                     md="4"
-                  >
-                   <AppSelect
-                      v-model="formulario.objetivo21"
-                      :items="objetivo21Options"
-                      label="Objetivo 21 días"
-                      placeholder="Seleccionar objetivo"
-                      item-title="text"
-                      item-value="id"
+                    >
+                    <AppSelect
+                    v-model="formulario.objetivo21"
+                    :items="objetivo21Options"
+                    label="Objetivo 21 días"
+                    placeholder="Seleccionar objetivo"
+                    item-title="text"
+                    item-value="id"
                     />
-                  </VCol> -->
+                    </VCol> 
+                  -->
                   <VCol
                     cols="12"
                     md="4"
@@ -760,7 +777,7 @@ const onEditarFin = event => {
                   showaggregates
                   :columnsmenu="false"
                   :editable="false"
-                  />
+                />
               </VCardText>
              
               <VCardText>
@@ -789,10 +806,12 @@ const onEditarFin = event => {
                   editmode="click"
                   @cellbeginedit="onEditarInicio($event)"
                   @cellendedit="onEditarFin($event)"
-                  />
-                </VCardText>
-                <!-- showstatusbar
-                showaggregates -->
+                />
+              </VCardText>
+              <!--
+                showstatusbar
+                showaggregates 
+              -->
             </VCard>
           </VCol>
         </VRow>

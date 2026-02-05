@@ -1,6 +1,14 @@
+<style >
+.nomb_ases_filtro{
+  cursor: pointer;
+}
+
+</style>
 <script setup>
 import { useAppStore } from '@/stores/app';
 import { EncryptStorage } from 'encrypt-storage';
+import { ref } from 'vue';
+
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue3/vue_jqxgrid.vue';
 
 
@@ -17,7 +25,10 @@ const encryptStorage = new EncryptStorage('AZZORTI-SAMI', {
 
 const userData = encryptStorage.getItem('userData')
 const appStore = useAppStore()
-const refGridGlobal=ref()
+const refGridGlobal=ref();
+
+const modalSoporte = ref(false)
+const urlSoporte = ref('')
 
 const formulario = ref({
   campana: null,
@@ -102,6 +113,8 @@ const headers = computed(() => {
       width: '250',
       align: 'center',
       cellsalign: 'center',
+            cellclassname: 'nomb_ases_filtro'
+
     },
     {
       text: 'Pedido',
@@ -109,6 +122,46 @@ const headers = computed(() => {
       width: '180',
       align: 'center',
       cellsalign: 'center',
+    },
+    {
+      text: 'Fecha Entrega',
+      dataField: 'fech_conf_pedi',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+      cellclassname: 'nomb_ases_filtro'
+
+    },
+    {
+      text: 'Motivo',
+      dataField: 'noti_moti',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+      cellclassname: 'nomb_ases_filtro'
+
+    },
+    {
+      text: 'Soporte de entrega',
+      dataField: 'fact_imag',
+      width: '180',
+      align: 'center',
+      cellsalign: 'center',
+      cellsrenderer: function (row, column, value, rowData) {
+        if (value != false) {
+           return `<div class="text-center" style="cursor: pointer;">
+                  <button class="btn btn-warning" ">
+                    Ver soporte
+                  </button>
+                </div>`;
+        }else{
+            return `<div class="text-center">
+                  <button disabled>
+                    Sin soporte
+                  </button>
+                </div>`; 
+        }
+      }
     },
     {
       text: 'Estado',
@@ -132,6 +185,9 @@ const sourceGlobal = ref({
     { name: 'nomb_comp', type: 'string' },
     { name: 'nume_fact', type: 'string' },
     { name: 'esta_fina', type: 'string' },
+    { name:"fact_imag", type:"string"},
+    { name:"noti_moti", type:"string"},
+    { name:"fech_conf_pedi", type:"string"},
   ],
   datatype: 'json',
 })
@@ -172,6 +228,8 @@ const obtenerCampana = async () => {
     appStore.loading(false)
   }
 }
+
+
 
 const obtenerZona = async () => {
   try {
@@ -327,6 +385,66 @@ const limpiarValidacion = () => {
   errorIdentificacion.value = false
   errorMensajeIdentificacion.value = ''
 }
+
+const onCellClickFilter = async event => {
+  if (event.args.datafield === 'fact_imag' || event.args.datafield === 'nomb_comp') {
+    event.args.cancel = true;
+    console.log('Filtro img');
+    let info_fila = event.args.row.bounddata;
+    console.log(info_fila.fact_imag);
+    if(info_fila.fact_imag == false) {
+      appStore.mensajeSnackbar('No existe imagen de soporte para el registro seleccionado.')
+      appStore.color("error")
+      appStore.snackbar(true)
+      return
+    }
+    
+     try {
+      appStore.mensaje('Obteniendo información')
+      appStore.loading(true)
+      // limpiarValidacion()
+
+      const { data, status } = await $api(`/api/sami/v1/reportes/consolidado-estado-pedido/mostrarSoporte`, {
+        method: "POST",
+        query: {
+          imag_sopor_usua_fact:info_fila.fact_imag,
+          campana:formulario.value.campana
+        },
+      })
+
+      if(!status) {
+        appStore.mensajeSnackbar('No se pudo obtener la imagen de soporte.')
+        appStore.color("error")
+        appStore.snackbar(true)
+        return
+      }
+      // console.log(data.data)
+      urlSoporte.value = data
+      modalSoporte.value = true
+      
+    } catch (error) {
+      const { data } = error.response._data    
+      if (typeof data != "undefined") {
+        for (var key in data)
+        {
+          if (key == 'campana') {
+            errorCampana.value = true
+            errorMensajeCampana.value = data[key]
+          }
+          if (key == 'zona') {
+            errorZona.value = true
+            errorMensajeZona.value = data[key]
+          }
+        }
+      }
+    }
+    finally {
+      appStore.loading(false)
+    }
+
+  }
+} 
+
 </script>
 
 <template>
@@ -426,7 +544,41 @@ const limpiarValidacion = () => {
               </VCardText>
             </VCard>
           </VCol>
-
+          <VDialog color="background" v-model="modalSoporte" max-width="900">
+             <VToolbar color="primary" density="compact">
+              <VBtn
+                v-if="mobile"
+                icon
+                color="default"
+                height="40"
+                :rounded="false"
+                @click="modalSoporte = false"
+              >
+                <VIcon icon="tabler-x" />
+              </VBtn>
+              <VSpacer />
+              <VToolbarItems>
+                <VBtn
+                  v-if="!mobile"
+                  icon
+                  @click="modalSoporte = false"
+                >
+                  <VIcon icon="tabler-x" />
+                </VBtn>
+            </VToolbarItems>
+          </VToolbar>
+            <VCard>
+              <VCardText>
+                <div style="display:flex; justify-content:center;">
+                  <img
+                    :src="urlSoporte"
+                    alt="Soporte"
+                    style="max-width:100%; max-height:70vh; object-fit:contain;"
+                  />
+                </div>
+              </VCardText>
+            </VCard>
+          </VDialog>
           <VCol cols="12">
             <VCard title="Lista de pedidos">
               <VCardText>
@@ -464,6 +616,7 @@ const limpiarValidacion = () => {
                   showfilterrow
                   :columnsmenu="false"
                   :editable="false"
+                  @cellclick="onCellClickFilter"
                   />
               </VCardText>
             </VCard>

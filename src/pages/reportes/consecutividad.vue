@@ -26,6 +26,10 @@ const refGridGlobal=ref()
 const refGridDeta=ref()
 const camp_label=ref({})
 
+const liderOptions = ref([])
+const errorLider = ref(false)
+const errorMensajeLider = ref('')
+
 const itemsdeta = computed(() => {
   if(busqueda.value) {
     return itemsInicialDetalle.value.filter(item => {
@@ -90,6 +94,7 @@ const onSeleccionar = (columna, item) => {
 const formulario = ref({
   campana: null,
   zona: null,
+  lider: null
 })
 
 
@@ -534,6 +539,14 @@ const obtenerZona = async () => {
   }
 }
 
+/**
+ * @function
+ * @name onGenerar
+ * @description Genera el reporte de consecutividad de asesoras
+ * @param {Object} formulario - objeto con los valores de la campaña, zona y lider
+ * @return {Promise} - promesa con el resultado de la petición
+ * @throws {Object} - objeto con los errores de la petición
+ */
 const onGenerar = async () => {
   try {
     appStore.mensaje('Obteniendo información')
@@ -546,6 +559,7 @@ const onGenerar = async () => {
       query: {
         campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
+        lider: (formulario.value.lider === null) ? '' : formulario.value.lider,
       },
     })
   
@@ -588,57 +602,7 @@ const onGenerar = async () => {
   }
 }
 
-const actualizarHeaders = datos => {
-  console.log(datos)
-  console.log(headers)
-  headers.value[5].text = datos.camp_1
-  // headers.value = [
-  //   { dataField: 'codi_area',        text: 'Región' },
-  //   { dataField: 'codi_cort',        text: 'Corte' },
-  //   { dataField: 'codi_zona',        text: 'Zona' },
-  //   { dataField: 'codi_sect',        text: 'Sector' },
-  //   { dataField: 'codi_camp_1',      text: datos.camp_1 },
-  //   { dataField: 'porc_codi_camp_1', text: `% ${datos.camp_1}` },
-  //   { dataField: 'codi_camp_2',      text: datos.camp_2 },
-  //   { dataField: 'porc_codi_camp_2', text: `% ${datos.camp_2 }` },
-  //   { dataField: 'codi_camp_3',      text: datos.camp_3 },
-  //   { dataField: 'porc_codi_camp_3', text: `% ${datos.camp_3 }` },
-  //   { dataField: 'codi_camp_4',      text: datos.camp_4 },
-  //   { dataField: 'porc_codi_camp_4', text: `% ${datos.camp_4 }` },
-  // ]
 
-}
-
-const actualizarHeadersDeta = datos => {
-  headersdeta.value = [
-    { dataField: 'codi_area',   text: 'Región' },
-    { dataField: 'codi_cort',   text: 'Corte' },
-    { dataField: 'codi_zona',   text: 'Zona' },
-    { dataField: 'codi_sect',   text: 'Sector' },
-    { dataField: 'codi_terc',   text: 'Código' },
-    { dataField: 'nume_iden',   text: 'Nro ident.' },
-    { dataField: 'nomb_clie',   text: 'Nombre(s) y Apellido(s)' },
-    { dataField: 'camp_ingr',   text: 'Camp. Ingr' },
-    { dataField: 'tele_terc',   text: 'Teléfono' },
-    { dataField: 'sald_docu',   text: 'Saldo' },
-    { dataField: 'codi_camp_1', text: datos.camp_1 },
-    { dataField: 'codi_zona_1', text: `${datos.camp_1} Zona` },
-    { dataField: 'codi_sect_1', text: `${datos.camp_1} Sect` },
-    { dataField: 'tota_fact_1', text: `${datos.camp_1} Fact` },
-    { dataField: 'codi_camp_2', text: datos.camp_2 },
-    { dataField: 'codi_zona_2', text: `${datos.camp_2} Zona` },
-    { dataField: 'codi_sect_2', text: `${datos.camp_2} Sect` },
-    { dataField: 'tota_fact_2', text: `${datos.camp_2} Fact` },
-    { dataField: 'codi_camp_3', text: datos.camp_3 },
-    { dataField: 'codi_zona_3', text: `${datos.camp_3} Zona` },
-    { dataField: 'codi_sect_3', text: `${datos.camp_3} Sect` },
-    { dataField: 'tota_fact_3', text: `${datos.camp_3} Fact` },
-    { dataField: 'codi_camp_4', text: datos.camp_4 },
-    { dataField: 'codi_zona_4', text: `${datos.camp_4} Zona` },
-    { dataField: 'codi_sect_4', text: `${datos.camp_4} Sect` },
-    { dataField: 'tota_fact_4', text: `${datos.camp_4} Fact` },
-  ]
-}
 
 const onExcel = async () => {
   try {
@@ -718,6 +682,44 @@ const limpiarValidacion = () => {
   errorZona.value = false 
   errorMensajeZona.value = ''
 }
+
+/**
+ * Cambia el valor de la zona y actualiza la lista de lideres
+ * con los lideres de la zona seleccionada
+ * @returns {Promise<void>} No devuelve nada, solo actualiza la lista de lideres
+ */
+const onZonaChange = async () => {
+  try {
+    liderOptions.value = []
+    formulario.value.lider = null
+
+    appStore.mensaje('Obteniendo lideres')
+    appStore.loading(true)
+
+    const { data } = await $api(`/api/comun/v1/zonas/lideres`, {
+      method: "get",
+      query: {
+        zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
+      },
+    })
+
+    const itemLider = data.data_glob
+
+    itemLider.forEach(element =>
+      liderOptions.value.push({
+        id: element.codi_lider,
+        text: element.nom_lider,
+      }),
+    )
+  } catch (e) {
+    if(e.response !== undefined) {
+      console.log(e.response._data)
+    }
+  }
+  finally {
+    appStore.loading(false)
+  }
+}
 </script>
 
 <template>
@@ -762,6 +764,22 @@ const limpiarValidacion = () => {
                       item-value="id"
                       :error="errorZona"
                       :error-messages="errorMensajeZona"
+                      @update:model-value="onZonaChange"
+                    />
+                  </VCol>
+                    <VCol
+                    cols="12"
+                    md="4"
+                  >
+                    <AppSelect
+                      v-model="formulario.lider"
+                      :items="liderOptions"
+                      label="Lider"
+                      placeholder="Seleccionar Lider"
+                      item-title="text"
+                      item-value="id"
+                      :error="errorLider"
+                      :error-messages="errorMensajeLider"
                     />
                   </VCol>
                 </VRow>
