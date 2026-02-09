@@ -59,18 +59,20 @@ const headersGlobal = computed(() => {
     {
       width: 150,
       align: "center",
-      cellsAlign: "center", 
       filterType: "checkedlist",
       text: "Valor",
       dataField: "valo_docu",
       pinned: true,
-
-      // cellclassname: 'text-white bg-primary-light',
+      cellsformat: "f2", 
       aggregates: ['sum'],
-      aggregatesrenderer: function (aggregates) {
-        // suma=Math.round(aggregates['sum'],2);
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0
-      },
+      aggregatesrenderer: aggregates =>
+        aggregates.sum !== undefined
+          ? 'T:' + aggregates.sum.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+          : 'T:0.00',
+      
     },
     {
       width: 150,
@@ -80,10 +82,15 @@ const headersGlobal = computed(() => {
       text: "Obj. max. saldo 31d",
       dataField: "obje_31di",
       cellclassname: 'text-white bg-primary-light',
+      cellsformat: "f2", 
       aggregates: ['sum'],
-      aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0
-      },
+      aggregatesrenderer: aggregates =>
+        aggregates.sum !== undefined
+          ? 'T:' + aggregates.sum.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+          : 'T:0.00',
     },
     {
       width: 150,
@@ -93,10 +100,15 @@ const headersGlobal = computed(() => {
       text: "Saldo 31 días",
       dataField: "sald_31di",
       cellclassname: 'text-white bg-error-light',
+      cellsformat: "f2", 
       aggregates: ['sum'],
-      aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0
-      },
+      aggregatesrenderer: aggregates =>
+        aggregates.sum !== undefined
+          ? 'T:' + aggregates.sum.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+          : 'T:0.00',
     },
     {
       width: 150,
@@ -108,7 +120,13 @@ const headersGlobal = computed(() => {
       cellclassname: 'text-white bg-error-light',
       aggregates: ['avg'],
       aggregatesrenderer: function (aggregates) {
-        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2):'T:' +0
+        const avg = Number(aggregates.avg)
+
+        if (Number.isFinite(avg)) {
+          return 'T:' + avg.toFixed(2) + '%'
+        }
+
+        return 'T:0.00%'
       },
     },
     {
@@ -119,10 +137,15 @@ const headersGlobal = computed(() => {
       text: "Saldo actual",
       dataField: "sald_actu",
       cellclassname: 'text-white bg-error-light',
+      cellsformat: "f2", 
       aggregates: ['sum'],
-      aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0
-      },
+      aggregatesrenderer: aggregates =>
+        aggregates.sum !== undefined
+          ? 'T:' + aggregates.sum.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+          : 'T:0.00',
     },
     {
       width: 150,
@@ -133,8 +156,15 @@ const headersGlobal = computed(() => {
       dataField: "porc_actu",
       cellclassname: 'text-white bg-error-light',
       aggregates: ['avg'],
+      cellsformat: "f2",  
       aggregatesrenderer: function (aggregates) {
-        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg'].toFixed(2):'T:' +0
+        const avg = Number(aggregates.avg)
+
+        if (Number.isFinite(avg)) {
+          return 'T:' + avg.toFixed(2) + '%'
+        }
+
+        return 'T:0.00%'
       },
     },
     {
@@ -146,9 +176,13 @@ const headersGlobal = computed(() => {
       dataField: "simu_31di",
       cellclassname: 'text-white bg-success-light',
       aggregates: ['sum'],
-      aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum']:'T:' +0
-      },
+      aggregatesrenderer: aggregates =>
+        aggregates.sum !== undefined
+          ? 'T:' + aggregates.sum.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+          : 'T:0.00',
     },
     {
       width: 150,
@@ -160,7 +194,13 @@ const headersGlobal = computed(() => {
       cellclassname: 'text-white bg-success-light',
       aggregates: ['avg'],
       aggregatesrenderer: function (aggregates) {
-        return  (aggregates['avg']!=undefined) ?  'T:'+aggregates['avg']:'T:' +0
+        const avg = Number(aggregates.avg)
+
+        if (Number.isFinite(avg)) {
+          return 'T:' + avg.toFixed(2) + '%'
+        }
+
+        return 'T:0.00%'
       },
     },
     {
@@ -172,9 +212,13 @@ const headersGlobal = computed(() => {
       dataField: "falt_cobr_31di",
       cellclassname: 'text-white bg-success-light',
       aggregates: ['sum'],
-      aggregatesrenderer: function (aggregates) {
-        return  (aggregates['sum']!=undefined) ?  'T:'+aggregates['sum'].toFixed(2):'T:' +0
-      },
+      aggregatesrenderer: aggregates =>
+        aggregates.sum !== undefined
+          ? 'T:' + aggregates.sum.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+          : 'T:0.00', 
     },
   ]
 })
@@ -219,7 +263,7 @@ const sourceGlobal = ref({
       name: "simu_31di",
     },
     {
-      type: "number", 
+      type: "number",
       name: "porc_simu_31di",
     },
     {
@@ -234,6 +278,8 @@ const adaptadorGlobal = new jqx.dataAdapter(sourceGlobal.value)
 
 const localization =  {
   filterselectstring: ' ',
+  thousandsseparator: ',',
+  decimalseparator: '.',
 }
  
 const headersDetalle = computed(() => {
@@ -371,7 +417,7 @@ const sourceDetalle = ref({
       name: "codi_camp",
     },
     {
-      type: "string",
+      type: "number",
       name: "valo_docu",
     },
     {
@@ -410,6 +456,8 @@ const adaptadorDetalle = new jqx.dataAdapter(sourceDetalle.value)
 
 const localizationDetail =  {
   filterselectstring: ' ',
+  thousandsseparator: ',',
+  decimalseparator: '.',
 }
  
 const itemsGlobal = ref([])
@@ -519,8 +567,35 @@ const onGenerar = async () => {
       },
     })
  
-    itemsGlobal.value = data.global
+    /*itemsGlobal.value = data.global
     sourceGlobal.value.localdata = data.global
+    refGridGlobal.value.updatebounddata('cells')*/
+
+    const toNumber = v => {
+      if (v === null || v === undefined || v === '') return 0
+      if (typeof v === 'number') return v
+
+      return Number(
+        String(v)
+          .replace(/,/g, ''), // quita miles
+      )
+    }
+
+    itemsGlobal.value = data.global.map(item => ({  
+      cons_lide: item.cons_lide,
+      nomb_terc: item.nomb_terc,
+      valo_docu: toNumber(item.valo_docu), 
+      obje_31di: toNumber(item.obje_31di),
+      sald_31di: toNumber(item.sald_31di),
+      porc_31di: Number(item.porc_31di),
+      sald_actu: toNumber(item.sald_actu),
+      porc_actu: Number(item.porc_actu),
+      simu_31di: toNumber(item.simu_31di),
+      porc_simu_31di: Number(item.porc_simu_31di),
+      falt_cobr_31di: toNumber(item.falt_cobr_31di),
+    }))
+
+    sourceGlobal.value.localdata = itemsGlobal.value
     refGridGlobal.value.updatebounddata('cells')
     refGridGlobal.value.refreshfilterrow()
    
@@ -606,18 +681,10 @@ const onEditarInicio = event => {
 
 const onEditarFin = event => {
   const { args } = event
-
-  console.log("args=", args)
-
   const columnDataField = args.datafield
-
-  console.log("columnDataField=", columnDataField)
-
   const rowIndex = args.rowindex
-  const cellValue = parseFloat(args.value)
-  const oldValue = parseFloat(args.oldvalue.replace(/,/g, ''))
-
-  console.log("oldValue=", oldValue, "args.oldvalue=", args.oldvalue, " cellValue=", cellValue)
+  const cellValue = parseFloat(args.value).toFixed(2)
+  const oldValue = parseFloat(args.oldvalue).toFixed(2)
 
   const cons_lide = refGridDetalle.value.getcellvaluebyid(
     rowIndex,
@@ -635,15 +702,16 @@ const onEditarFin = event => {
   let newValue = oldValue - cellValue
   newValue =parseFloat(parseFloat(newValue).toFixed(2)) 
   if (columnDataField === 'simu_31di') {
-    let simu31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal, 'simu_31di').replace(/,/g, '')
-    let valoDocu = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal, 'valo_docu').replace(/,/g, '')
-    let obje31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal, 'obje_31di').replace(/,/g, '')
+    let simu31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal, 'simu_31di')
+    let valoDocu = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal, 'valo_docu')
+    let obje31di = refGridGlobal.value.getcellvaluebyid(rowIndexGlobal, 'obje_31di')
 
+    console.log(" simu31di=", simu31di, " valoDocu=", valoDocu, " obje31di=", obje31di, " newValue=", newValue)
     
     simu31di = parseFloat(parseFloat(simu31di).toFixed(2))
-    console.log("simu31di=", simu31di, " - newValue=", simu31di)
+    console.log("simu31di menos newValue=", simu31di)
     simu31di -= newValue
-    valoDocu = parseFloat(parseFloat(valoDocu.replace(/,/g, '')).toFixed(2))
+    valoDocu = parseFloat(parseFloat(valoDocu).toFixed(2))
     console.log("resultado simu31di=", simu31di)
 
     let porcSimu31di = '0.00'
@@ -652,7 +720,7 @@ const onEditarFin = event => {
       porcSimu31di = parseFloat(porcSimu31di).toFixed(2)
     }
   
-    obje31di = parseFloat(parseFloat(obje31di.replace(/,/g, '')).toFixed(2))
+    obje31di = parseFloat(parseFloat(obje31di).toFixed(2))
     let faltCobr31di = obje31di - simu31di
     faltCobr31di = parseFloat(faltCobr31di).toFixed(2)
     faltCobr31di = (faltCobr31di >= 0) ? '0.00': faltCobr31di
@@ -660,11 +728,9 @@ const onEditarFin = event => {
     /**
      * Actualizar valores globales
      */
-    let conv_simu_31di = simu31di.toLocaleString('en-US', { minimumFractionDigits: 2 })
-    let conv_falt_cobr_31di = faltCobr31di.toLocaleString('en-US', { minimumFractionDigits: 2 })
     refGridGlobal.value.setcellvalue(rowIndexGlobal, 'porc_simu_31di', porcSimu31di)
-    refGridGlobal.value.setcellvalue(rowIndexGlobal, 'falt_cobr_31di', conv_falt_cobr_31di)
-    refGridGlobal.value.setcellvalue(rowIndexGlobal, 'simu_31di', conv_simu_31di)
+    refGridGlobal.value.setcellvalue(rowIndexGlobal, 'falt_cobr_31di', faltCobr31di)
+    refGridGlobal.value.setcellvalue(rowIndexGlobal, 'simu_31di', simu31di)
   }
 }
 </script>
