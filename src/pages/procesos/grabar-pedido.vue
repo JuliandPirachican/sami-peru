@@ -323,9 +323,7 @@ const obtenerEstadoPedidogz = async() => {
         nroDocumento: (formulario.value.nroDocumento === null) ? '' : formulario.value.nroDocumento,
       },
     })
-    console.log("result data estado pedido sami gz")
-    console.log(data)
-    console.log("result data estado pedido sami gz")
+
     const zona = data.codi_zona
     const documento = data.nume_iden
     
@@ -343,10 +341,14 @@ const obtenerEstadoPedidogz = async() => {
       },
     });
 
-    console.log("result data estadoPedido")
-    console.log(estadoPedido)
-    console.log("result data estadoPedido")
-    
+
+    const { data: info_cupo } = await $api(`/api/sami/v1/procesos/grabar-pedido/consulta_cupo`, {
+      method: "post",
+      body: {
+        "cons_info_nume_iden": (formulario.value.nroDocumento === null) ? '' : formulario.value.nroDocumento,
+      },
+    });
+
     formulario.value.codigoCliente = estadoPedido.dato_ases[0].codi_terc
     formulario.value.asesora = estadoPedido.dato_ases[0].nomb_ases
     formulario.value.direcccion = estadoPedido.dato_ases[0].dire_terc
@@ -355,13 +357,11 @@ const obtenerEstadoPedidogz = async() => {
     formulario.value.telefono = estadoPedido.dato_ases[0].celu_ter1
     formulario.value.campana = estadoPedido.dato_ases[0].codi_camp
     formulario.value.zona = estadoPedido.dato_ases[0].codi_zona
-    formulario.value.cupo = estadoPedido.dato_ases[0].cupo_cred
+    formulario.value.cupo = info_cupo.info_cupo
     formulario.value.saldo = estadoPedido.dato_ases[0].sald_ases
     formulario.value.punt_sue = estadoPedido.dato_ases[0].punt_suen
     formulario.value.isAutocomplete = false
-    console.log("formulario")
-    console.log(formulario)
-    console.log("formulario")
+
     itemsGlobal.value = estadoPedido.codi_pedi.map(item => {
       return {
         ...item,
