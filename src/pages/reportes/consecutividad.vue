@@ -700,6 +700,7 @@ const onZonaChange = async () => {
       method: "get",
       query: {
         zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
+        campana: (formulario.value.campana === null) ? '' : formulario.value.campana
       },
     })
 
