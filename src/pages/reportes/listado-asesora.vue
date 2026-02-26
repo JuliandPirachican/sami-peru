@@ -609,11 +609,11 @@ const sourceLista = ref([
     value: 'tele_ter2',
     checked: true,
   },
-  // {
-  //   label: 'Saldo',
-  //   value: 'sald_docu',
-  //   checked: true,
-  // },
+  {
+    label: 'Saldo',
+    value: 'sald_docu',
+    checked: true,
+  },
 
   {
     label: 'Ult. camp1',
@@ -833,7 +833,7 @@ const headersDetalleTotal = computed(() => {
       align: 'center',
       cellsalign: 'center',
       filtertype: 'checkedlist',
-      hidden: true, // esta oculta la columna
+      hidden: false, // esta oculta la columna
     },
     {
       text: 'Camp. Ingr.',
