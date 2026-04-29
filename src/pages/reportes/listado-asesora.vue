@@ -580,7 +580,7 @@ const sourceLista = ref([
     checked:false
   },
   {
-    label: 'Puntos Sueños Azzorti',
+    label: 'Puntos Azzorti',
     value: 'punt_suen_ases',
     checked: true,
   },
@@ -810,7 +810,7 @@ const headersDetalleTotal = computed(() => {
       filtertype: 'checkedlist'
     },
 		{
-      text: 'Puntos Sueños Azzorti',
+      text: 'Puntos  Azzorti',
       dataField: 'punt_suen_ases',
       width: '100',
       align: 'center',
