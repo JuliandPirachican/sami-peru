@@ -1392,6 +1392,75 @@ const onPdf = async tipo => {
   }
 }
 
+const onFormatoProyeccion = async () => {
+  try {
+    appStore.mensaje('Generando archivo')
+    const rowsGlobal = refGridGlobal?.value?.getrows?.();
+    const rows = refGridDetalle?.value?.getrows?.();
+
+    const columns = refGridDetalle.value.columns;
+    let visi_colu = []
+    columns.forEach((column, index) => {
+      if (!column.hidden || column.datafield == 'codi_sect') {
+        visi_colu.push(column.datafield)
+      }
+    });
+
+    if (!rows || rows.length === 0) {
+      appStore.mensajeSnackbar("No hay datos en la cuadrícula para exportar.");
+      appStore.color("error");
+      appStore.snackbar(true);
+      return;
+    }
+
+    let xmlDataGlob = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+    rowsGlobal.forEach((row, index) => {
+      xmlDataGlob += `  <row id="${index + 1}">\n`;
+      for (const [key, value] of Object.entries(row)) {
+        xmlDataGlob += `    <${key}>${escapeXML(value)}</${key}>\n`;
+      }
+      xmlDataGlob += `  </row>\n`;
+    });
+    xmlDataGlob += `</rows>`;
+
+    let xmlDataDeta = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+    rows.forEach((row, index) => {
+      xmlDataDeta += `  <row id="${index + 1}">\n`;
+      for (const [key, value] of Object.entries(row)) {
+        if (visi_colu.includes(key)) {
+          xmlDataDeta += `    <${key}>${escapeXML(value)}</${key}>\n`;
+        }
+      }
+      xmlDataDeta += `  </row>\n`;
+    });
+    xmlDataDeta += `</rows>`;
+
+    let colum_info = []
+    columns.forEach((column) => {
+      if (!column.hidden || column.datafield == 'codi_sect') {
+        colum_info.push({ "dataField": column.datafield, "text": column.text })
+      }
+    });
+
+    const { data } = await $api(`/api/sami/v1/reportes/listado-asesora/generaFormatoAsesora`, {
+      method: "POST",
+      body: {
+        columnas: colum_info,
+        data_glob: xmlDataGlob,
+        data_deta: xmlDataDeta,
+        campana: (formulario.value.campana === null) ? '' : formulario.value.campana,
+        zona: (formulario.value.zona === null) ? '' : formulario.value.zona,
+      },
+    })
+
+    window.open(`${$base}/temporales/${data}`, '_blank')
+  } catch (e) {
+    console.log(e)
+  } finally {
+    appStore.loading(false)
+  }
+}
+
 const escapeXML = (value) => {
   if (value === null || value === undefined) return "";
   return value
@@ -1597,6 +1666,16 @@ const onCellClickFilter = async event => {
                 </ol>
               </VTooltip>
               <VListItemTitle>PDF 1</VListItemTitle>
+            </VListItem>
+            <VListItem @click="onFormatoProyeccion()">
+              <template #prepend>
+                <VIcon
+                  class="me-2"
+                  icon="tabler-file-chart"
+                  size="22"
+                />
+              </template>
+              <VListItemTitle>Formato de Proyección</VListItemTitle>
             </VListItem>
             <!-- <VListItem @click="onPdf('2')">
               <template #prepend>
