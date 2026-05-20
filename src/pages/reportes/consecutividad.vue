@@ -628,52 +628,15 @@ const onExcel = async () => {
 }
 
 const onLimpiar= async () => {
-  headers.value = [
-    { key: 'codi_area',        title: 'Región' },
-    { key: 'codi_cort',        title: 'Corte' },
-    { key: 'codi_zona',        title: 'Zona' },
-    { key: 'codi_sect',        title: 'Sector' },
-    { key: 'codi_camp_1',      title: '0' },
-    { key: 'porc_codi_camp_1', title: '% 0' },
-    { key: 'codi_camp_2',      title: '0' },
-    { key: 'porc_codi_camp_2', title: '% 0' },
-    { key: 'codi_camp_3',      title: '0' },
-    { key: 'porc_codi_camp_3', title: '% 0' },
-    { key: 'codi_camp_4',      title: '0' },
-    { key: 'porc_codi_camp_4', title: '% 0' },
-  ]
-  headersdeta.value = [
-    { key: 'codi_area', title: 'Región' },
-    { key: 'codi_cort', title: 'Corte' },
-    { key: 'codi_zona', title: 'Zona' },
-    { key: 'codi_sect', title: 'Sector' },
-    { key: 'codi_terc', title: 'Código' },
-    { key: 'nume_iden', title: 'Nro ident.' },
-    { key: 'nomb_clie', title: 'Nombre(s) y Apellido(s)' },
-    { key: 'camp_ingr', title: 'Camp. Ingr' },
-    { key: 'tele_terc', title: 'Teléfono' },
-    { key: 'sald_docu', title: 'Saldo' },
-    { key: 'codi_camp_1', title: '0' },
-    { key: 'codi_zona_1', title: '0 Zona' },
-    { key: 'codi_sect_1', title: '0 Sect' },
-    { key: 'tota_fact_1', title: '0 Fact' },
-    { key: 'codi_camp_2', title: '0' },
-    { key: 'codi_zona_2', title: '0 Zona' },
-    { key: 'codi_sect_2', title: '0 Sect' },
-    { key: 'tota_fact_2', title: '0 Fact' },
-    { key: 'codi_camp_3', title: '0' },
-    { key: 'codi_zona_3', title: '0 Zona' },
-    { key: 'codi_sect_3', title: '0 Sect' },
-    { key: 'tota_fact_3', title: '0 Fact' },
-    { key: 'codi_camp_4', title: '0' },
-    { key: 'codi_zona_4', title: '0 Zona' },
-    { key: 'codi_sect_4', title: '0 Sect' },
-    { key: 'tota_fact_4', title: '0 Fact' },
-  ]
   items.value = []
-  itemsdeta.value = []
   itemsInicialDetalle.value = []
   busqueda.value = {}
+  sourceGlobal.value.localdata = []
+  sourceDeta.value.localdata = []
+  refGridGlobal.value.updatebounddata('cells')
+  refGridGlobal.value.refreshfilterrow()
+  refGridDeta.value.updatebounddata('cells')
+  refGridDeta.value.refreshfilterrow()
 }
 
 const limpiarValidacion = () => {
