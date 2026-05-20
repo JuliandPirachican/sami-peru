@@ -351,7 +351,7 @@ const onGenerar = async () => {
                   :color="data.color1"
                 >
                   <span class="text-body-1 text-high-emphasis font-weight-medium">
-                    {{ data.valor1 }}%
+                    {{ String(data.valor1).replace('%', '') }}%
                   </span>
                 </VProgressCircular>
                 <VProgressCircular
