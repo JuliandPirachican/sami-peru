@@ -101,7 +101,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -122,7 +122,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -144,7 +144,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -166,7 +166,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -187,7 +187,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -209,7 +209,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -231,7 +231,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -252,7 +252,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -275,7 +275,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -298,7 +298,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -322,7 +322,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -346,7 +346,7 @@ const cabecera = computed(() => {
         {
           T: function (aggregatedValue, currentValue) {
           
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
 
@@ -371,7 +371,7 @@ const cabecera = computed(() => {
           T: function (aggregatedValue, currentValue) {
           
             
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           
@@ -404,7 +404,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -427,7 +427,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -449,7 +449,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -474,7 +474,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -496,7 +496,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -519,7 +519,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -548,7 +548,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -570,7 +570,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -593,7 +593,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -622,7 +622,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -644,7 +644,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -667,7 +667,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
        
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -697,7 +697,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -718,7 +718,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -740,7 +740,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -762,7 +762,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -784,7 +784,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -803,11 +803,11 @@ const cabecera = computed(() => {
       cellsformat: 'N',
       filtertype: 'number',
       cellclassname: ' bg-primary-light',
-      columna: 'AH',
+      columna: 'AH', 
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -836,7 +836,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -859,7 +859,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -881,7 +881,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) { 
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -902,7 +902,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -923,7 +923,7 @@ const cabecera = computed(() => {
       aggregates: [
         {
           T: function (aggregatedValue, currentValue) {
-            aggregatedValue += currentValue
+            aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
             return aggregatedValue!==undefined && !isNaN(aggregatedValue)?aggregatedValue:0
           },
@@ -2044,7 +2044,7 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2067,7 +2067,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2089,7 +2089,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2146,7 +2146,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2203,7 +2203,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2225,7 +2225,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2282,7 +2282,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2467,7 +2467,7 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {   
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2529,7 +2529,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2593,7 +2593,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2616,7 +2616,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2638,7 +2638,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2660,7 +2660,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2684,7 +2684,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2707,7 +2707,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2729,7 +2729,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2751,7 +2751,7 @@ const columnas = [
          
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2771,7 +2771,7 @@ const columnas = [
     aggregates: [
       {        
         T: function (aggregatedValue, currentValue) {   
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
 
           return aggregatedValue
         },
@@ -2793,7 +2793,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2815,7 +2815,7 @@ const columnas = [
          
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         }, 
@@ -2837,7 +2837,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2859,7 +2859,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2881,7 +2881,7 @@ const columnas = [
          
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         }, 
@@ -2903,7 +2903,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2926,7 +2926,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2948,7 +2948,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2971,7 +2971,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -2994,7 +2994,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3017,7 +3017,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3039,7 +3039,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3062,7 +3062,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3085,7 +3085,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3108,7 +3108,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3130,7 +3130,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3153,7 +3153,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3176,7 +3176,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3199,7 +3199,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3221,7 +3221,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3244,7 +3244,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3267,7 +3267,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3290,7 +3290,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3312,7 +3312,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3335,7 +3335,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3358,7 +3358,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3381,7 +3381,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3402,7 +3402,7 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3422,7 +3422,7 @@ const columnas = [
     aggregates: [
       {
         T: function (aggregatedValue, currentValue) {
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3445,7 +3445,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3467,7 +3467,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3489,7 +3489,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3511,7 +3511,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3533,7 +3533,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3555,7 +3555,7 @@ const columnas = [
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3605,7 +3605,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3628,7 +3628,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3651,7 +3651,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3710,7 +3710,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3769,7 +3769,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3791,7 +3791,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3849,7 +3849,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3908,7 +3908,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3931,7 +3931,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -3990,7 +3990,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4044,7 +4044,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4062,7 +4062,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4080,7 +4080,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4098,7 +4098,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4116,7 +4116,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4193,7 +4193,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4211,7 +4211,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4229,7 +4229,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4287,7 +4287,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4351,7 +4351,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4416,7 +4416,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4439,7 +4439,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4462,7 +4462,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4484,7 +4484,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4507,7 +4507,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4530,7 +4530,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4552,7 +4552,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4574,7 +4574,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4596,7 +4596,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4618,7 +4618,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4640,7 +4640,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4663,7 +4663,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue 
         },
@@ -4685,7 +4685,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4707,7 +4707,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4729,7 +4729,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4752,7 +4752,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4774,7 +4774,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4797,7 +4797,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4819,7 +4819,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4842,7 +4842,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4865,7 +4865,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4888,7 +4888,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4910,7 +4910,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4933,7 +4933,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4956,7 +4956,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -4979,7 +4979,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5001,7 +5001,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5024,7 +5024,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5047,7 +5047,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5070,7 +5070,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5092,7 +5092,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5115,7 +5115,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5138,7 +5138,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5161,7 +5161,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5183,7 +5183,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5206,7 +5206,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5229,7 +5229,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5252,7 +5252,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5274,7 +5274,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         }, 
@@ -5295,7 +5295,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5316,7 +5316,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5337,7 +5337,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5359,7 +5359,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5380,7 +5380,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5401,7 +5401,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
@@ -5422,7 +5422,7 @@ const columnasZona =
         
         T: function (aggregatedValue, currentValue) {
           
-          aggregatedValue += currentValue
+          aggregatedValue += isNaN(Number(currentValue)) ? 0 : Number(currentValue)
           
           return aggregatedValue
         },
