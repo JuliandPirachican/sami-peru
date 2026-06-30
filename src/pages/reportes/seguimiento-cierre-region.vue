@@ -4118,7 +4118,7 @@ watch(selectedVariable, async (nuevaVariable, antiguaVariable) => {
       <template #botones>
         <GenerarBoton @procesar="onGenerar" />
         <ExcelBoton @procesar="onExcel" />
-        <RegistrarBoton @procesar="onRegistrar" />
+        <!-- <RegistrarBoton @procesar="onRegistrar" /> -->
         <LimpiarBoton @procesar="onLimpiar" />
       </template>
       <template #contenido>
